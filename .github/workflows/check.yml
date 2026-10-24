@@ -1,0 +1,18 @@
+name: check
+on:
+  push:
+  pull_request:
+jobs:
+  catalog:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: スクリプトの構文
+        run: for f in tools/*.js; do node --check "$f"; done && bash -n tools/sync.sh
+      - name: カタログが最新で、選ぶスキルの表に全部のスキルが載っている
+        run: node tools/catalog.js --check
+      - name: JSON の形
+        run: for f in sources.json .claude-plugin/marketplace.json plugins/site-skills/.claude-plugin/plugin.json; do node -e "JSON.parse(require('fs').readFileSync('$f','utf8'))"; done

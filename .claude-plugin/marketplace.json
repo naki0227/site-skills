@@ -1,0 +1,14 @@
+{
+  "name": "site-skills",
+  "owner": {
+    "name": "naki0227"
+  },
+  "description": "実在サイトの解剖から育てた、種類ごとのWebサイト品質基準のスキル集",
+  "plugins": [
+    {
+      "name": "site-skills",
+      "source": "./plugins/site-skills",
+      "description": "実在サイトの解剖から育てた、種類ごと（LP・EC・ゲーム・コーポレート・SaaS・メディア・予約）のWebサイト品質基準と、どれを使うかを選ぶスキル"
+    }
+  ]
+}

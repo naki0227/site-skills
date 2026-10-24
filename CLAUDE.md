@@ -1,0 +1,7 @@
+# site-skills
+
+- Webサイト・ページ・画面を作る・直すときは、まず `.claude/skills/site-skills/SKILL.md` で使うスキルを選ぶ。
+- `plugins/site-skills/skills/` の中の、`site-skills` 以外のスキルは手で直さない。元のリポジトリ（`sources.json`）で直し、`tools/sync.sh` で写す。
+- 集め直しを頼まれたら `SYNC.md` の手順に従う。
+- 種類を足すときは、`sources.json`・選ぶスキルの表（`plugins/site-skills/skills/site-skills/SKILL.md`）・`README.md` の表をそろえて直す。
+- push 前に `node tools/catalog.js --check` を通す。このリポジトリは main に直接 push してよい。

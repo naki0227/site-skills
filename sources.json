@@ -1,0 +1,9 @@
+[
+  { "repo": "naki0227/lp-anatomy", "prefix": "lp", "kind": "LP・特設ページ・ブランドサイトのトップ" },
+  { "repo": "naki0227/ec-anatomy", "prefix": "ec", "kind": "EC（通販）" },
+  { "repo": "naki0227/game-anatomy", "prefix": "game", "kind": "ゲーム・エンタメ公式" },
+  { "repo": "naki0227/corporate-anatomy", "prefix": "corporate", "kind": "コーポレート（会社・採用）" },
+  { "repo": "naki0227/saas-anatomy", "prefix": "saas", "kind": "SaaS・プロダクト" },
+  { "repo": "naki0227/media-anatomy", "prefix": "media", "kind": "メディア・読みもの" },
+  { "repo": "naki0227/booking-anatomy", "prefix": "booking", "kind": "予約（宿・飲食・チケット）" }
+]
