@@ -1,6 +1,6 @@
 {
   "name": "site-skills",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "実在サイトの解剖から育てた、種類ごと（LP・EC・ゲーム・コーポレート・SaaS・メディア・予約）のWebサイト品質基準と、どれを使うかを選ぶスキル",
   "author": { "name": "naki0227" }
 }

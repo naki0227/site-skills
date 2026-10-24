@@ -19,7 +19,7 @@ description: SaaS・ソフトウェア・アプリの製品サイトを作る・
 | 下位タイプ | 向く題材 | 見本（解剖したサイト） | ファイル |
 |---|---|---|---|
 | 開発者向け | API、開発ツール、インフラ | （まだ無い） | `types/devtools.md` |
-| 業務SaaS | 営業・人事・会計・社内ツール | （まだ無い） | `types/business.md` |
+| 業務SaaS | 営業・人事・会計・社内ツール | Backlog | `types/business.md` |
 | AIプロダクト | 生成AI・AIを中心にした製品 | （まだ無い） | `types/ai.md` |
 | 個人向けアプリ | スマホ・PC のアプリ | （まだ無い） | `types/app.md` |
 
