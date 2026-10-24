@@ -1,5 +1,6 @@
 # site-skills
 
+- 目的は、AIっぽくない質の高いスキルを集めること。集めたスキルに、出典（どのサイトの値か）の無い一般論が混ざっていたら、元のリポジトリで直すよう報告する。
 - Webサイト・ページ・画面を作る・直すときは、まず `.claude/skills/site-skills/SKILL.md` で使うスキルを選ぶ。
 - `plugins/site-skills/skills/` の中の、`site-skills` 以外のスキルは手で直さない。元のリポジトリ（`sources.json`）で直し、`tools/sync.sh` で写す。
 - 集め直しを頼まれたら `SYNC.md` の手順に従う。
