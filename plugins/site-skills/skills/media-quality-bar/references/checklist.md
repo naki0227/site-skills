@@ -22,5 +22,11 @@
 - [ ] 本文の段落の間を行間より広く取る（ProPublica：PC 32px・SP 24px、字下げ無し。行間は PC 1.6）
 - [ ] 画面の下に固定する帯（購読・同意）は閉じられ、高さを決める（ProPublica：PC 135px・SP 217px。閉じると transform .2s）
 - [ ] 長い調査記事に目次を付け、いま読む節を示す（ProPublica は高さ 21,446px でも無し）
+- [ ] 広告枠に min-height を先に置き、中身が届いても本文が動かない（ProPublica は min-height 0 で 170px → 約330px、記事 PC の CLS 0.0885）
+- [ ] 読者のページに編集画面の JS（WordPress なら wp-includes/js/dist の editor 系）を読ませていない（ProPublica は 2.8MB を全ページで読む）
+- [ ] フォームの防御（reCAPTCHA など）はフォームに触れたときに1回だけ読む（ProPublica は 834KB×3）
+- [ ] 色を役割名のトークン（題・リード・本文・罫）で持ち、ダークは明暗の対で切り替える（ProPublica：light-dark() 73回、Auto／Light／Dark を選べる）
+- [ ] ホバーの変化を `@media (hover:hover)` で囲む（ProPublica は :hover 159か所に対し 0か所）
+- [ ] 白文字を赤・橙の地に載せるボタンは 4.5:1 を計算で確かめる（ProPublica の Donate：#fff／#ff4c3c で 3.31:1）
 
 解剖で裏づけた項目が増えたら、ここに足す（どのサイトで確かめたかを添える）。

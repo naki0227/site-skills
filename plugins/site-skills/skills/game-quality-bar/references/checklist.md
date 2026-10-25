@@ -24,5 +24,9 @@
 - [ ] 日付タブに `role="tablist"`・矢印キー・URL（日ごと）がある（Lollapalooza の `<a href="#">` は無し）
 - [ ] 終了後・販売前でも、チケットのページに「次に何ができるか」（次回登録・販売開始日）が出る。JSON-LD の eventStatus と h1 が現在の状態に合っている（Lollapalooza は開催後も EventScheduled・h1 が物販）
 - [ ] 使わない動画（別の画面幅用・見えていない区画）を読み込み時に取得しない（Z-A・Lollapalooza の2サイトで取得していた）
+- [ ] スクロール演出が長いとき（Lollapalooza は約7,800px）、ヘッダー直下に進捗バーを貼り、残りが見える
+- [ ] フォーカス枠を消していない（Lollapalooza は 991px 以下で `*:focus{outline:none}`）。枠は地との比 3 以上の色で
+- [ ] 小さく出すロゴ・サムネイルの `sizes` が表示幅になっている（Lollapalooza は 112px のロゴに `sizes="100vw"` で 1,328KB）
+- [ ] タブで切り替える中身（日ごとの時間割など）は、選ばれた分だけ読む（Lollapalooza は4日分を eager）
 
 解剖で裏づけた項目が増えたら、ここに足す（どのサイトで確かめたかを添える）。
