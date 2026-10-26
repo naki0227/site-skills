@@ -117,13 +117,12 @@ section{padding:clamp(56px,7vw,96px) 0}
 .navy{background:var(--navy);color:#fff}
 .navy .sh p{color:var(--navy-sub)}
 
-/* 写真の枠：撮るべき写真を書いておく。絵でごまかさない */
-.ph{margin:0;background:#dfe2dd;color:#3d454e;display:flex;flex-direction:column;justify-content:flex-end;padding:14px 16px 16px;font-size:var(--t1);line-height:1.6;position:relative}
-.ph::before{content:"写真";position:absolute;top:10px;left:12px;font-size:var(--t1);font-weight:700;background:#3d454e;color:#fff;padding:0 8px}
-.ph--wide{aspect-ratio:3/2}
-.ph--tall{aspect-ratio:4/5}
-.floor .ph{background:#cfd8d1;color:#22382a}
-.floor .ph::before{background:#22382a}
+/* 写真：Wikimedia Commons の自由に使える実写（よその工場・道具）。河内精機の物として見せず、何が写っているかと出典を書く */
+.photo{margin:0}
+.photo img{display:block;width:100%;height:auto;object-fit:cover;background:#cfd8d1}
+.photo figcaption{margin-top:8px;font-size:var(--t1);line-height:1.6;color:var(--sub)}
+.photo figcaption a{color:inherit}
+.floor .photo figcaption{color:var(--floor-sub)}
 
 /* ── 紙（検査記録票・作業日報） */
 .sheet{background:var(--paper);color:var(--ink);box-shadow:4px 4px 0 rgba(0,0,0,.28)}
@@ -138,7 +137,8 @@ section{padding:clamp(56px,7vw,96px) 0}
 
 /* 仕事：部品のタブ（記録票の綴じのつまみ）＋検査記録票 */
 .work-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:40px;align-items:start}
-.work-grid .ph{margin-bottom:16px}
+.work-grid .photo{margin-bottom:20px}
+.work-grid .photo img{aspect-ratio:16/9}
 .work-grid .lead p{margin:0 0 14px}
 .work-grid .lead p:last-child{margin:0}
 @media (max-width:899px){ .work-grid{grid-template-columns:minmax(0,1fr)} }
@@ -188,20 +188,21 @@ section{padding:clamp(56px,7vw,96px) 0}
 /* ── 人：全幅の行（LayerX 1行 192〜196px・内側 28px） */
 .people{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
 .person{border-bottom:1px solid var(--rule)}
-.person .row{display:grid;grid-template-columns:150px minmax(0,13em) minmax(0,1fr) auto;gap:16px 32px;align-items:center;min-height:196px;padding:28px 0}
-.person .ph{width:150px;font-size:var(--t1);padding:10px;line-height:1.5}
+.person .row{display:grid;grid-template-columns:200px minmax(0,13em) minmax(0,1fr) auto;gap:16px 32px;align-items:center;min-height:196px;padding:28px 0}
+.person .photo{width:200px}
+.person .photo img{aspect-ratio:4/3}
 .who b{display:block;font-size:var(--t3);font-weight:800;line-height:1.3}
 .who span{display:block;font-size:var(--t1);color:var(--sub)}
 .person blockquote{margin:0;font-size:var(--t3);font-weight:700;line-height:1.6}
 .more{min-height:48px;border:2px solid var(--ink);background:transparent;cursor:pointer;padding:0 16px;font-size:var(--t1);font-weight:700;white-space:nowrap}
-.qa{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 32px;padding:0 0 32px 182px;opacity:0;transition:opacity .2s ease}
+.qa{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 32px;padding:0 0 32px 232px;opacity:0;transition:opacity .2s ease}
 .qa.is-open{opacity:1}
 .qa[hidden]{display:none}
 .qa h4{margin:0 0 4px;font-size:var(--t1);font-weight:800}
 .qa p{margin:0;font-size:var(--t2);line-height:1.85}
 @media (max-width:959px){
-  .person .row{grid-template-columns:110px minmax(0,1fr);min-height:0;align-items:start}
-  .person .ph{width:110px;grid-row:span 3}
+  .person .row{grid-template-columns:128px minmax(0,1fr);min-height:0;align-items:start}
+  .person .photo{width:128px;grid-row:span 3}
   .person .row .more{justify-self:start}
   .qa{grid-template-columns:1fr;padding-left:0}
 }
@@ -399,7 +400,7 @@ dialog.skills::backdrop{background:rgba(31,45,74,.6)}
     <div class="sh"><h2 id="h-work">仕事の中身</h2><p>機械に材料をつかませ、刃物を付け、最初の1個を測る。合っていれば量産し、2時間ごとに抜き取って測る。仕事の半分は「測る」です。</p></div>
     <div class="work-grid">
       <div class="lead">
-        <figure class="ph ph--wide">旋盤の前に立つ入社3年目の辻本さん。紺の作業着・安全メガネ。機械の扉を開け、チャックと刃物が見える角度。横3:2、工場の蛍光灯のまま。</figure>
+        <figure class="photo"><img src="photos/chuck-in-use.jpg" width="960" height="540" loading="lazy" alt="旋盤の3つ爪のチャックにつかんだ丸棒を、刃物で削っているところ。台の上に切りくずが散っている"><figcaption>旋盤で丸棒を削っているところ（よその工場）。河内精機のNC旋盤も、チャックで材料をつかんで刃物を当てるところは同じです。<br>写真：<a href="https://commons.wikimedia.org/w/index.php?curid=64980189" target="_blank" rel="noopener">David English</a>／Wikimedia Commons／CC BY-SA 4.0</figcaption></figure>
         <p>削っているのは、油圧バルブ、半導体の製造装置、医療用ポンプに入る部品です。1個だけの試作から、2,000個の量産まで。</p>
         <p>記録票は、実際に書いているのと同じ形です。測った値を手で書き、班長が確認の判を押します。</p>
       </div>
@@ -685,16 +686,16 @@ dialog.skills::backdrop{background:rgba(31,45,74,.6)}
 
   /* ── 人 */
   const PEOPLE=[
-    {n:'辻本 航大',y:'2023年入社・22歳',r:'NC旋盤／前は工業高校の機械科',ph:'辻本さん。3号機の前でマイクロメーターを当てている手元と顔。縦4:5',q:'最初の3か月は、測るだけで終わりました。',
+    {n:'辻本 航大',y:'2023年入社・22歳',r:'NC旋盤／前は工業高校の機械科',img:['photos/lathe-chuck.jpg',400,400,'旋盤の6つ爪のチャックを正面から見たところ','旋盤のチャック（よその工場）','Andrew Magill','https://commons.wikimedia.org/w/index.php?curid=2977616','CC BY 2.0'],q:'最初の3か月は、測るだけで終わりました。',
      a:[['入った理由','高校の見学で、削った面に指を当てさせてもらった。鏡みたいにつるつるで、これを自分で出したいと思った。'],['きつかったこと','1年目の夏。空調が入る前で、工場は31℃あった。いまは27℃くらい。'],['いまの目標','来年、普通旋盤の2級。森下さんの「刃物の音で減りがわかる」がまだわからない。']]},
-    {n:'浅田 美咲',y:'2021年入社・27歳',r:'マシニングセンタ／前はドラッグストアの販売',ph:'浅田さん。マシニングセンタの操作盤の前、図面を左手に。縦4:5',q:'図面の記号は、昼休みに班長の横で覚えました。',
+    {n:'浅田 美咲',y:'2021年入社・27歳',r:'マシニングセンタ／前はドラッグストアの販売',img:['photos/machining-center.jpg',400,300,'マシニングセンタと、刃物の番号を書いたホワイトボード','マシニングセンタ（よその工場）','Psychlist1972','https://commons.wikimedia.org/w/index.php?curid=193560471','CC BY 2.0'],q:'図面の記号は、昼休みに班長の横で覚えました。',
      a:[['入った理由','立ち仕事は慣れていた。土日に休める仕事を探していて、ハローワークで見つけた。'],['きつかったこと','最初に削った30個のうち、4個が0.03大きかった。全部やり直しになって、測る順番を自分で紙に書いた。'],['いまの目標','5軸を任されること。いまは段取りまでで、プログラムは金城さんに見てもらっている。']]},
-    {n:'金城 拓海',y:'2019年入社・31歳',r:'5軸マシニングセンタのプログラム／前は自動車の整備',ph:'金城さん。事務所の隅のCAMのパソコンの前、作業着のまま。縦4:5',q:'車は直す仕事、ここは最初の1個を作る仕事です。',
+    {n:'金城 拓海',y:'2019年入社・31歳',r:'5軸マシニングセンタのプログラム／前は自動車の整備',img:['photos/five-axis.jpg',400,267,'展示会に置かれた5軸のマシニングセンタ','5軸のマシニングセンタ（展示会）','TurnOnTheNight','https://commons.wikimedia.org/w/index.php?curid=190307528','CC BY-SA 4.0'],q:'車は直す仕事、ここは最初の1個を作る仕事です。',
      a:[['入った理由','整備で部品を替えるたびに、この部品はどこで作っているのかと思っていた。'],['きつかったこと','CAMの画面。3か月、毎晩30分だけ会社のパソコンで練習させてもらった。'],['いまの目標','見積のときに「この形なら何分で削れる」を営業に言えるようになる。']]},
-    {n:'森下 和義',y:'1988年入社・57歳',r:'製造部長／教える側',ph:'森下さん。若手の横で、ノギスの当て方を見せているところ。縦4:5',q:'怒るより先に、なぜ0.01ずれたかを一緒に考えます。',
+    {n:'森下 和義',y:'1988年入社・57歳',r:'製造部長／教える側',img:['photos/vernier.jpg',400,293,'白い台の上のノギス','ノギス','Al Riaz Uddin Ripon','https://commons.wikimedia.org/w/index.php?curid=130406704','CC BY-SA 4.0'],q:'怒るより先に、なぜ0.01ずれたかを一緒に考えます。',
      a:[['教えるときに決めていること','最初の1か月は機械のボタンを押させない。チャックと刃物の名前、測り方、危ないところだけ。'],['若い人に言いたいこと','わからないまま押すのがいちばん危ない。聞かれて嫌な顔をする人はうちにはいない。'],['この会社のいいところ','社長も昼に工場で弁当を食べている。困っていることがすぐ上に届く。']]}
   ];
-  $('#peopleList').innerHTML=PEOPLE.map((p,i)=>`<li class="person"><div class="row"><figure class="ph ph--tall">${p.ph}</figure><div class="who"><b>${p.n}</b><span class="tab">${p.y}</span><span>${p.r}</span></div><blockquote>「${p.q}」</blockquote><button class="more" type="button" aria-expanded="false" aria-controls="qa${i}">話を読む</button></div><div class="qa" id="qa${i}" hidden>${p.a.map(([h,t])=>`<div><h4>${h}</h4><p>${t}</p></div>`).join('')}</div></li>`).join('');
+  $('#peopleList').innerHTML=PEOPLE.map((p,i)=>`<li class="person"><div class="row"><figure class="photo"><img src="${p.img[0]}" width="${p.img[1]}" height="${p.img[2]}" loading="lazy" alt="${p.img[3]}"><figcaption>${p.img[4]}<br>写真：<a href="${p.img[6]}" target="_blank" rel="noopener">${p.img[5]}</a>／Wikimedia Commons／${p.img[7]}</figcaption></figure><div class="who"><b>${p.n}</b><span class="tab">${p.y}</span><span>${p.r}</span></div><blockquote>「${p.q}」</blockquote><button class="more" type="button" aria-expanded="false" aria-controls="qa${i}">話を読む</button></div><div class="qa" id="qa${i}" hidden>${p.a.map(([h,t])=>`<div><h4>${h}</h4><p>${t}</p></div>`).join('')}</div></li>`).join('');
   document.querySelectorAll('.more').forEach(b=>b.addEventListener('click',()=>{const qa=document.getElementById(b.getAttribute('aria-controls')),open=b.getAttribute('aria-expanded')!=='true';b.setAttribute('aria-expanded',open);b.textContent=open?'閉じる':'話を読む';
     if(open){qa.hidden=false;requestAnimationFrame(()=>requestAnimationFrame(()=>qa.classList.add('is-open')))}else{qa.classList.remove('is-open');setTimeout(()=>{if(b.getAttribute('aria-expanded')==='false')qa.hidden=true},reduce?0:200)}}));
 
@@ -769,7 +770,7 @@ dialog.skills::backdrop{background:rgba(31,45,74,.6)}
     ['色','自分で決めた（ai-tells「題材の現場の色」）','作業着の紺 #1f2d4a、床塗装の緑 #3f6650、安全表示の黄 #f5c400／黒、記録票の紙と検査印の朱。どのサイトの実測値でもない。'],
     ['文字','site-skills・ai-tells.md','太いゴシック（見出し）、手書きの書体（ボード・測定値・日報のメモ）、等幅（図番・寸法・時刻）の3つで対比。'],
     ['検査記録票・作業日報','site-skills・ai-tells.md','「写真に頼らず見せられるもの（図面・表）を主役にする」。部品の図面は記録票の中に入れた。'],
-    ['写真の枠','site-skills・ai-tells.md','絵で描かず、撮るべき写真を書いた枠（旋盤の前の辻本さん 横3:2、人ごとに縦4:5）。'],
+    ['写真','site-skills・ai-tells.md／make.md 6','灰色の枠をやめ、Wikimedia Commons の自由に使える実写（よその工場の旋盤・チャック・マシニングセンタ・ノギス）に。人の章は架空の社員なので顔の写る写真は使わず、道具と機械の写真に「何が写っているか」と出典を書いた。'],
     ['ヘッダー','corporate・startup.md／enterprise.md','LayerX：ナビ5つ＋右端に採用の入口。Valmont：下へは隠し、上へ高さの半分戻すと出す（76px→64px、38px→32px）。'],
     ['トップに数字の帯を置かない','corporate・rules.md 5／ai-tells','数字は「給料・休み・残業」の表の、それを確かめる行に置いた（4つの横並びをやめた）。'],
     ['人の行','corporate・rules.md 6','LayerX：カードでなく全幅の行、内側 28px・1行 196px。'],
