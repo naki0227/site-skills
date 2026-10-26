@@ -4,7 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>三日月珈琲 オンラインストア</title>
-<meta name="description" content="福岡・薬院の小さな焙煎所、三日月珈琲の通販。豆は12種類、200gと500g、挽き方を選べます。毎週月・水・金に焙煎して翌日発送。">
+<meta name="description" content="福岡・薬院の小さな焙煎所、三日月珈琲の通販。豆は12種類、200gと500g、挽き方を選べます。毎週 月・水・金に焙煎して翌日発送。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
 {"@type":"ListItem","position":1,"name":"三日月珈琲","item":"https://example.com/"},
@@ -12,288 +15,319 @@
 </script>
 <style>
 /*
-  配色：温かい飲食（lp-quality-bar・びっくりドンキー）の「紙色2色を交互・文字と影は茶系」を出発点に、
-  色はロゴの3色（焦げ茶・月の黄・焙煎の赤）だけ。イラストも同じ3色で描く。
-  文字の大きさ・ボタン・ホバー・イージングは ec-quality-bar（とらや）の実測値。
+  地は白（ec 食品・ギフト：とらやの #fff）。色は焙煎の現場から：
+  焦げ茶（焙煎機と予定表の黒板）、クラフト紙（豆のラベル）、朱のスタンプ（焙煎日の判）。
+  文字は3種：名前は明朝、ラベルの数値は等幅、焙煎記録と味の言葉は手書きの書体（Klee One）。
+  文字の大きさ・一覧の列・sticky の列はとらやの実測値。
 */
 :root{
-  --paper1:#efebea;   /* 地1（びっくりドンキー） */
-  --paper2:#e7dacb;   /* 地2（びっくりドンキー） */
-  --ink:#3b201b;      /* 文字・焦げ茶（びっくりドンキー） */
-  --ink2:#6b5149;     /* 補助の文字（paper2 の上で 5.3:1） */
-  --line:#cdbcad;     /* 罫 */
-  --moon:#e3b448;     /* 月の黄（ロゴ） */
-  --roast:#a8321e;    /* 焙煎の赤（ロゴ）。白文字で 6.7:1 */
-  --white:#fffdf9;
+  --bg:#fff;
+  --ink:#2b1a14;      /* 焦げ茶 */
+  --ink2:#6a5448;     /* 補助の文字（白の上で 7.0:1） */
+  --rule:#d8cfc6;     /* 罫 */
+  --kraft:#d9bf98;    /* ラベルのクラフト紙 */
+  --kraft2:#ecdcc2;   /* 薄いクラフト（記録用紙） */
+  --stamp:#8f1d14;    /* 朱のスタンプ（クラフトの上で 5.9:1） */
   --ease:cubic-bezier(.25,.46,.45,.94);   /* とらや */
-  --ease-row:cubic-bezier(.19,1,.22,1);   /* びっくりドンキー（一覧の行） */
   --serif:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",serif;
   --sans:"Hiragino Sans","Yu Gothic","YuGothic","Noto Sans JP",system-ui,sans-serif;
+  --mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,"Osaka-Mono",monospace;
+  --hand:"Klee One","Hiragino Maru Gothic ProN",var(--sans);
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--paper1);color:var(--ink);font:16px/1.6 var(--sans)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--sans)}
 a{color:inherit}
 button,select,input{font:inherit;color:inherit}
-img,svg{display:block}
-:focus-visible{outline:3px solid var(--roast);outline-offset:2px}
+:focus-visible{outline:3px solid var(--stamp);outline-offset:2px}
 .vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .wrap{max-width:1100px;margin:0 auto;padding:0 15px}
+.mono{font-family:var(--mono)}
 
-/* ヘッダー：PC 72px・SP 54px（とらやの SP 54px） */
-.hd{position:sticky;top:0;z-index:30;background:var(--paper1);border-bottom:1px solid var(--line)}
+/* ヘッダー：PC 72px・SP 54px（とらや） */
+.hd{position:sticky;top:0;z-index:30;background:var(--bg);border-bottom:1px solid var(--ink)}
 .hd .wrap{display:flex;align-items:center;gap:24px;height:72px}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.logo svg{width:34px;height:34px}
-.logo b{font:400 20px/1 var(--serif);letter-spacing:.04em}
-.logo small{display:block;font-size:12px;color:var(--ink2);margin-top:4px;letter-spacing:.08em}
-.hd nav{display:flex;gap:20px;margin-left:auto;font-size:14px}
+.logo{display:flex;align-items:baseline;gap:12px;text-decoration:none}
+.logo b{font:600 22px/1 var(--serif);letter-spacing:.06em}
+.logo small{font:12px/1 var(--mono);color:var(--ink2)}
+.hd nav{display:flex;gap:22px;margin-left:auto;font-size:14px}
 .hd nav a{text-decoration:none;padding:6px 0}
-.cartbtn{position:relative;display:flex;align-items:center;gap:6px;border:0;background:none;padding:8px;cursor:pointer;font-size:14px}
-.cartbtn svg{width:26px;height:26px}
-.count{position:absolute;top:0;right:-4px;min-width:22px;height:22px;border-radius:11px;background:var(--roast);color:#fff;font-size:12px;font-weight:700;line-height:22px;text-align:center;padding:0 5px}
+.cartbtn{position:relative;display:flex;align-items:center;gap:8px;border:1px solid var(--ink);background:none;height:40px;padding:0 12px;cursor:pointer;font-size:14px}
+.count{font:700 12px/20px var(--mono);min-width:20px;height:20px;background:var(--stamp);color:#fff;text-align:center;padding:0 4px}
 .count[hidden]{display:none}
-@media (hover:hover) and (pointer:fine){
-  .logo:hover svg{animation:sway .75s var(--ease) 1}
-}
-@keyframes sway{25%{transform:rotate(-3deg)}75%{transform:rotate(3deg)}}
 
-/* パンくず（とらや：12px・薄い面） */
-.crumb{background:var(--paper2);font-size:12px}
+.crumb{font-size:12px;border-bottom:1px solid var(--rule)}
 .crumb ol{list-style:none;margin:0 auto;padding:8px 15px;max-width:1100px;display:flex;gap:6px;flex-wrap:wrap}
 .crumb li+li::before{content:"/";margin-right:6px;color:var(--ink2)}
 
 /* 一覧の頭 */
-.lead{padding:40px 0 28px}
+.lead{display:flex;justify-content:space-between;align-items:flex-end;gap:12px 40px;flex-wrap:wrap;padding:32px 0 20px}
 .lead h1{font:400 32px/1.5 var(--serif);margin:0}
-.lead p{margin:6px 0 0;font-size:14px;color:var(--ink2);max-width:36em}
-.notice{margin-top:18px;border:1px solid var(--line);border-radius:20px;padding:14px 18px;font-size:14px;display:flex;gap:10px 22px;flex-wrap:wrap;background:var(--white)}
-.notice b{font-weight:700}
+.lead p{margin:0;font-size:14px;color:var(--ink2);max-width:30em}
+
+/* これからの焙煎予定（黒板） */
+.board{background:var(--ink);color:var(--kraft2);padding:20px 24px 22px}
+.board-hd{display:flex;justify-content:space-between;align-items:baseline;gap:8px 20px;flex-wrap:wrap;border-bottom:1px solid rgba(236,220,194,.35);padding-bottom:12px}
+.board-hd h2{font:400 20px/1.5 var(--serif);margin:0;color:#fff}
+.board-hd label{font-size:14px;display:flex;align-items:center;gap:8px}
+.board-hd select{height:34px;background:var(--ink);color:#fff;border:1px solid var(--kraft2);padding:0 8px}
+.days{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:4px}
+.day{padding:14px 18px 6px 0}
+.day+.day{border-left:1px solid rgba(236,220,194,.35);padding-left:18px}
+.day h3{margin:0;font:600 18px/1.4 var(--hand);color:#fff}
+.day h3 .mono{font:400 12px var(--mono);color:var(--kraft2);margin-left:8px}
+.day .kama{font:12px/1.5 var(--mono);margin:4px 0 8px}
+.day .kama b{color:#fff;font-weight:700}
+.day ul{list-style:none;margin:0;padding:0;font:15px/1.75 var(--hand)}
+.day li a{text-decoration:none}
+.day li a:hover{text-decoration:underline}
+.day .arr{font:12px/1.5 var(--mono);margin-top:8px;color:#fff}
+.board .foot{font-size:12px;margin:12px 0 0;color:var(--kraft2)}
 
 /* 絞り込み・並べ替え */
-.tools{display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px 28px;padding:0 0 24px;border-bottom:1px solid var(--line)}
+.tools{display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px 28px;padding:24px 0 20px;border-bottom:1px solid var(--ink)}
 .tools fieldset{border:0;margin:0;padding:0;min-width:0}
 .tools legend{font-size:12px;color:var(--ink2);margin-bottom:6px;padding:0}
-.chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{border:1px solid var(--ink);background:transparent;border-radius:17px;height:34px;padding:0 14px;font-size:14px;cursor:pointer;transition:background-color .2s var(--ease),color .2s var(--ease)}
-.chip[aria-pressed="true"]{background:var(--ink);color:var(--white)}
-.chip:active{transform:translateY(1px)}
-@media (hover:hover) and (pointer:fine){.chip:hover:not([aria-pressed="true"]){background:var(--paper2)}}
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.chip{border:1px solid var(--ink);background:transparent;height:34px;padding:0 12px;font-size:14px;cursor:pointer;transition:background-color .1s var(--ease),color .1s var(--ease)}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff}
+@media (hover:hover) and (pointer:fine){.chip:hover:not([aria-pressed="true"]){background:var(--kraft2)}}
 .sortbox{margin-left:auto;display:flex;align-items:center;gap:10px;font-size:14px}
-.sortbox select{width:150px;height:34px;border:1px solid var(--line);border-radius:4px;background:var(--white);padding:0 8px}
-.result{display:flex;justify-content:space-between;align-items:baseline;padding:18px 0 22px;font-size:14px}
+.sortbox select{width:150px;height:34px;border:1px solid var(--ink);background:#fff;padding:0 8px}
+.result{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:16px 0 20px;font-size:14px}
 .result strong{font-size:32px;font-weight:700;margin-right:4px}
 
-/* 一覧：PC 4列 245px・列間40・行間60、SP 2列・16/40（とらや） */
-.grid{list-style:none;margin:0;padding:0 0 80px;display:grid;grid-template-columns:repeat(4,1fr);gap:60px 40px}
-.card a{display:block;text-decoration:none}
-.thumb{position:relative;aspect-ratio:1;border-radius:120px 120px 20px 20px;background:var(--paper2);overflow:hidden}
-.thumb svg{width:100%;height:100%;transition:transform .2s var(--ease),opacity .2s var(--ease)}
-.card .nm{margin-top:14px;font-size:16px;line-height:1.5}
-.card .og{font-size:12px;color:var(--ink2);margin-top:2px}
-.card .pr{margin-top:6px;font-size:16px}
+/* 一覧：PC 4列・列間40・行間60、SP 2列・16/40（とらや）。カードは豆ごとのラベル */
+.grid{list-style:none;margin:0;padding:0 0 72px;display:grid;grid-template-columns:repeat(4,1fr);gap:60px 40px}
+.card a{display:flex;flex-direction:column;height:100%;text-decoration:none}
+.label{position:relative;flex:1;background:var(--kraft);padding:14px 16px 12px;display:flex;flex-direction:column;transition:opacity .2s var(--ease),transform .2s var(--ease)}
+.label .no{display:flex;justify-content:space-between;font:12px/1 var(--mono);border-bottom:1px solid var(--ink);padding-bottom:8px}
+.label .cty{font:600 26px/1.25 var(--serif);margin:12px 0 2px;letter-spacing:.02em}
+.label .nm{font-size:14px;font-weight:700;line-height:1.45}
+.label dl{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;margin:10px 0 0;font:12px/1.5 var(--mono)}
+.label dd{margin:0}
+.ratio{display:flex;height:16px;margin-top:10px;border:1px solid var(--ink)}
+.ratio span{display:block;height:100%;border-right:1px solid var(--ink)}
+.ratio span:last-child{border-right:0}
+.ratiokey{font:11px/1.5 var(--mono);margin-top:4px}
+.taste{font:16px/1.5 var(--hand);margin:10px 0 0}
+.roastline{display:flex;align-items:center;gap:8px;margin-top:auto;padding:12px 64px 0 0;font:12px/1.35 var(--mono)}
+.roastline i{width:28px;height:14px;display:block;border:1px solid var(--ink);flex:none}
+.stamp{position:absolute;right:10px;bottom:10px;border:2px solid var(--stamp);color:var(--stamp);font:700 11px/1.25 var(--mono);padding:3px 5px;text-align:center;transform:rotate(-4deg);background:rgba(217,191,152,.6)}
+.card .pr{margin-top:12px;font-size:16px}
 .card .pr small{font-size:12px}
-.meter{display:flex;align-items:center;gap:6px;margin-top:6px;font-size:12px;color:var(--ink2)}
-.meter i{display:inline-flex;gap:2px}
-.meter i b{width:8px;height:11px;border-radius:50%;border:1.5px solid var(--ink);display:block}
-.meter i b.on{background:var(--ink)}
-.tag{position:absolute;left:10px;bottom:10px;font-size:12px;font-weight:700;line-height:1;padding:6px 8px;border-radius:4px;background:var(--white);color:var(--ink);border:1px solid var(--ink)}
-.tag.moon{background:var(--moon);border-color:var(--moon)}
+.card .warn{font:700 12px/1.4 var(--sans);color:var(--stamp);margin-top:2px}
 @media (hover:hover) and (pointer:fine){
-  .card a:hover svg{opacity:.8;transform:scale(1.03)}
-  .card a:hover .nm{color:var(--ink2)}
+  .card a:hover .label{opacity:.8;transform:scale(1.03)}
+  .card a:hover .pr{color:var(--ink2)}
 }
-.empty{grid-column:1/-1;text-align:center;padding:60px 15px;border:1px dashed var(--ink2);border-radius:20px}
+.empty{grid-column:1/-1;padding:48px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
 .empty p{margin:0 0 14px}
 
-/* 定期便の帯：境目は楕円のカーブ（びっくりドンキー） */
-.teiki{background:var(--paper2);border-radius:140vw 140vw 0 0/30vw 30vw 0 0;padding:72px 0 64px}
-.teiki h2{font:400 24px/1.5 var(--serif);margin:0 0 10px}
-.teiki dl{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:24px 0 0}
-.teiki dt{font-weight:700;font-size:14px}
-.teiki dd{margin:4px 0 0;font-size:14px;color:var(--ink2)}
-.teiki .n{font:400 32px/1 var(--serif);color:var(--roast);display:block;margin-bottom:8px}
+/* 定期便の条件 */
+.teiki{border-top:1px solid var(--ink);padding:40px 0 64px}
+.teiki h2{font:400 24px/1.5 var(--serif);margin:0 0 4px}
+.teiki p{margin:0 0 16px;font-size:14px;color:var(--ink2)}
+.cond{width:100%;max-width:760px;border-collapse:collapse;font-size:14px}
+.cond th,.cond td{border-top:1px solid var(--rule);padding:10px 0;text-align:left;vertical-align:top}
+.cond th{width:9em;font-weight:700}
 
-/* 詳細：左 625px の絵・右 340px の列を sticky（とらや） */
-.pd{display:grid;grid-template-columns:625px 340px;grid-template-areas:"img buy" "body buy";justify-content:space-between;gap:0 40px;padding:32px 0 80px}
-.pd-img{grid-area:img}
-.body{grid-area:body}
-.pd-img{aspect-ratio:1;border-radius:300px 300px 30px 30px;background:var(--paper2);overflow:hidden}
-.pd-img svg{width:100%;height:100%}
+/* 詳細：左 625px・右 340px の列を sticky（とらや） */
+.pd{display:grid;grid-template-columns:625px 340px;grid-template-areas:"lbl buy" "body buy";justify-content:space-between;gap:0 40px;padding:28px 0 80px}
+.big{grid-area:lbl;background:var(--kraft);padding:24px 28px 26px;position:relative}
+.big .no{display:flex;justify-content:space-between;font:12px/1 var(--mono);border-bottom:1px solid var(--ink);padding-bottom:10px}
+.big .cty{font:600 44px/1.2 var(--serif);margin:18px 0 4px;letter-spacing:.03em}
+.big .nm{font-size:18px;font-weight:700}
+.big dl{display:grid;grid-template-columns:7em 1fr;gap:4px 14px;margin:18px 0 0;font:14px/1.6 var(--mono);border-top:1px dashed var(--ink);padding-top:14px}
+.big dd{margin:0}
+.big .taste{font-size:22px;margin-top:16px}
+.big .stamp{bottom:auto;top:56px;right:24px;font-size:13px;padding:5px 8px}
+.big .ratio{height:22px;max-width:420px}
+.body{grid-area:body;max-width:625px}
+.body h2{font:400 24px/1.5 var(--serif);margin:44px 0 12px}
+.body p{margin:0 0 12px}
 .buy{grid-area:buy;position:sticky;top:96px;align-self:start}
-.buy .og{font-size:14px;color:var(--ink2)}
-.buy h1{font:400 32px/1.5 var(--serif);margin:2px 0 8px}
+.buy .og{font:12px/1.5 var(--mono);color:var(--ink2)}
+.buy h1{font:400 32px/1.5 var(--serif);margin:2px 0 6px}
 .price{font-size:18px}
 .price small{font-size:14px;color:var(--ink2)}
 .price s{font-size:14px;color:var(--ink2);margin-right:6px}
-.opt{border:0;margin:20px 0 0;padding:0}
+.opt{border:0;margin:18px 0 0;padding:0}
 .opt legend{font-size:14px;font-weight:700;padding:0;margin-bottom:8px;width:100%;display:flex;justify-content:space-between}
-.opt legend span{font-weight:400;color:var(--ink2);font-size:12px}
-.seg{display:grid;gap:6px}
+.opt legend span{font-weight:400;color:var(--stamp);font-size:12px}
+.seg{display:grid;gap:4px}
 .seg.c2{grid-template-columns:1fr 1fr}
 .seg.c3{grid-template-columns:repeat(3,1fr)}
-.seg button{position:relative;min-height:46px;border:1px solid var(--line);background:var(--white);border-radius:8px;cursor:pointer;font-size:14px;line-height:1.3;padding:6px 4px;transition:border-color .1s var(--ease)}
+.seg button{min-height:46px;border:1px solid var(--rule);background:#fff;cursor:pointer;font-size:14px;line-height:1.3;padding:6px 4px}
 .seg button small{display:block;font-size:12px;color:var(--ink2)}
-.seg button[aria-pressed="true"]{border:2px solid var(--ink);font-weight:700}
-.seg button.out{color:var(--ink2);background:repeating-linear-gradient(135deg,transparent 0 9px,rgba(59,32,27,.13) 9px 10px),var(--white)}
-.seg button.out small{color:var(--roast);font-weight:700}
+.seg button[aria-pressed="true"]{border:2px solid var(--ink);font-weight:700;background:var(--kraft2)}
+.seg button.out{color:var(--ink2);background:repeating-linear-gradient(135deg,#fff 0 9px,var(--rule) 9px 10px)}
+.seg button.out small{color:var(--stamp);font-weight:700}
 @media (hover:hover) and (pointer:fine){.seg button:hover{border-color:var(--ink)}}
 .teiki-opt{margin-top:8px;font-size:12px;color:var(--ink2)}
-.teiki-opt select{height:34px;border:1px solid var(--line);border-radius:4px;background:var(--white);margin-left:6px}
-.row-buy{display:flex;gap:10px;margin-top:20px}
-.qty{width:80px;height:46px;border:1px solid var(--line);border-radius:4px;background:var(--white);padding:0 8px}
-.cta{flex:1;height:46px;border-radius:23px;border:2px solid var(--ink);background:var(--ink);color:var(--white);font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background-color .2s var(--ease),color .2s var(--ease)}
+.teiki-opt select{height:34px;border:1px solid var(--ink);background:#fff;margin-left:6px}
+.row-buy{display:flex;gap:8px;margin-top:20px}
+.qty{width:80px;height:46px;border:1px solid var(--ink);background:#fff;padding:0 8px}
+/* 寸法はとらや（高さ46・枠2px・14px太字・ホバーで白黒が入れ替わる）。角は丸めずラベルと同じ四角に */
+.cta{flex:1;height:46px;border:2px solid var(--ink);background:var(--ink);color:#fff;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background-color .2s var(--ease),color .2s var(--ease)}
 .cta svg{width:16px;height:16px}
-.cta:active{transform:scale(.98)}
-.cta[aria-disabled="true"]{background:transparent;color:var(--ink2);border-color:var(--line);cursor:not-allowed}
-.cta.notify{background:var(--white);color:var(--ink)}
-@media (hover:hover) and (pointer:fine){.cta:not([aria-disabled="true"]):hover{background:var(--white);color:var(--ink)}}
-.ship{margin-top:16px;font-size:14px;border-top:1px solid var(--line);padding-top:14px}
-.ship b{font-size:16px}
-.ship label{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;margin-top:6px;font-size:12px;color:var(--ink2)}
-.ship select{height:34px;border:1px solid var(--line);border-radius:4px;background:var(--white);font-size:14px}
+.cta:active{transform:translateY(1px)}
+.cta[aria-disabled="true"]{background:#fff;color:var(--ink2);border-color:var(--rule);cursor:not-allowed}
+.cta.notify{background:#fff;color:var(--ink)}
+@media (hover:hover) and (pointer:fine){.cta:not([aria-disabled="true"]):hover{background:#fff;color:var(--ink)}}
+.ship{margin-top:16px;font-size:14px;border-top:1px solid var(--ink);padding-top:12px}
+.ship .when{font:14px/1.7 var(--mono)}
+.ship .when b{font-size:16px}
+.ship label{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;margin-top:8px;font-size:12px;color:var(--ink2)}
+.ship select{height:34px;border:1px solid var(--ink);background:#fff;font-size:14px}
 .ship .fresh{margin-top:6px;font-size:12px;color:var(--ink2)}
-.guide{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:4px 20px;font-size:14px}
-.guide button{background:none;border:0;padding:6px 0;cursor:pointer;text-decoration:underline;text-underline-offset:3px;text-align:left;display:block;transition:transform .5s var(--ease-row)}
-@media (hover:hover) and (pointer:fine){.guide button:hover{transform:translateX(10px)}}
-.notifyform{margin-top:12px;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--white);font-size:14px}
+.guide{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:2px 20px;font-size:14px}
+.guide button{background:none;border:0;padding:6px 0;cursor:pointer;text-decoration:underline;text-underline-offset:3px;text-align:left}
+.notifyform{margin-top:12px;padding:14px;border:1px solid var(--ink);background:#fff;font-size:14px}
 .notifyform label{display:block;font-size:12px;color:var(--ink2);margin-bottom:6px}
 .notifyform .f{display:flex;gap:6px}
-.notifyform input{flex:1;min-width:0;height:40px;border:1px solid var(--line);border-radius:4px;padding:0 10px;background:var(--white)}
-.notifyform input[aria-invalid="true"]{border:2px solid var(--roast)}
-.notifyform button{height:40px;border-radius:20px;border:0;background:var(--ink);color:var(--white);padding:0 16px;font-weight:700;font-size:14px;cursor:pointer}
-.err{color:var(--roast);font-size:12px;font-weight:700;margin:6px 0 0}
+.notifyform input{flex:1;min-width:0;height:40px;border:1px solid var(--ink);padding:0 10px;background:#fff}
+.notifyform input[aria-invalid="true"]{border:2px solid var(--stamp)}
+.notifyform button{height:40px;border:0;background:var(--ink);color:#fff;padding:0 16px;font-weight:700;font-size:14px;cursor:pointer}
+.err{color:var(--stamp);font-size:12px;font-weight:700;margin:6px 0 0}
 .ok{font-size:14px;margin:0}
 
-.body{max-width:625px}
-.body h2{font:400 24px/1.5 var(--serif);margin:48px 0 12px}
-.notes{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
-.notes li{border:1px solid var(--ink);border-radius:17px;padding:4px 14px;font-size:14px}
-.spec{width:100%;border-collapse:collapse;font-size:14px}
-.spec th,.spec td{border-top:1px solid var(--line);padding:10px 0;text-align:left;vertical-align:top}
-.spec th{width:8em;font-weight:400;color:var(--ink2)}
-.brew{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:0;padding:0;list-style:none}
-.brew li{background:var(--paper2);border-radius:20px;padding:16px;font-size:14px}
-.brew b{display:block;font-size:16px;margin-bottom:4px}
-.voice{font-size:14px;border-left:3px solid var(--moon);padding:4px 0 4px 14px;margin:0}
-.back{display:inline-block;margin-top:40px;font-size:14px}
-
-/* SP の固定バー（とらや：sticky bottom、紙色95%） */
+/* 焙煎記録（記録用紙の罫に手書き） */
+.log{background:var(--kraft2) repeating-linear-gradient(transparent 0 31px,#cdb592 31px 32px);padding:0 18px;font:17px/32px var(--hand)}
+.log table{width:100%;border-collapse:collapse}
+.log th{font:12px/32px var(--mono);text-align:left;width:9em;color:var(--ink2);font-weight:400}
+.log td{font-weight:600;line-height:32px}
+.log td,.log th{padding:0;vertical-align:bottom}
+.log .sig{text-align:right;margin:0;font-size:15px;line-height:32px}
+.photo{border:1px dashed var(--ink);aspect-ratio:3/2;display:flex;flex-direction:column;justify-content:flex-end;padding:16px;font-size:14px;background:#fff;margin-top:20px}
+.photo b{font:12px/1.5 var(--mono);display:block;color:var(--ink2)}
+.brewt{width:100%;border-collapse:collapse;font-size:14px}
+.brewt th,.brewt td{border-top:1px solid var(--rule);padding:9px 8px 9px 0;text-align:left}
+.brewt thead th{font:12px var(--mono);color:var(--ink2);font-weight:400}
+.voice{border-left:3px solid var(--ink);padding:2px 0 2px 14px;font:16px/1.8 var(--hand)}
+.back{display:inline-block;margin-top:36px;font-size:14px}
 .spbar{display:none}
 
 /* かごのドロワー：PC 530px・SP 全画面（Allbirds） */
-.scrim{position:fixed;inset:0;background:rgba(59,32,27,.4);z-index:40;opacity:0;pointer-events:none;transition:opacity .4s var(--ease)}
+.scrim{position:fixed;inset:0;background:rgba(43,26,20,.45);z-index:40;opacity:0;pointer-events:none;transition:opacity .4s var(--ease)}
 .scrim.on{opacity:1;pointer-events:auto}
-.drawer{position:fixed;top:0;right:0;bottom:0;width:530px;max-width:100%;background:var(--paper1);z-index:41;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .4s var(--ease);visibility:hidden}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:530px;max-width:100%;background:#fff;z-index:41;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .4s var(--ease);visibility:hidden;border-left:1px solid var(--ink)}
 .drawer.on{transform:none;visibility:visible}
-.dr-hd{padding:18px 20px 16px;border-bottom:1px solid var(--line)}
+.dr-hd{padding:16px 20px 14px;border-bottom:1px solid var(--ink)}
 .dr-hd .t{display:flex;justify-content:space-between;align-items:center}
 .dr-hd h2{font:400 20px/1.5 var(--serif);margin:0}
-.x{width:44px;height:44px;border:0;background:none;cursor:pointer;display:grid;place-items:center;border-radius:50%}
+.x{width:44px;height:44px;border:0;background:none;cursor:pointer;display:grid;place-items:center}
 .x svg{width:20px;height:20px}
-.free{margin-top:10px;font-size:14px}
-.free b{color:var(--roast)}
-.bar{height:8px;border-radius:4px;background:var(--paper2);overflow:hidden;margin-top:8px}
+.free{margin-top:8px;font-size:14px}
+.free b{color:var(--stamp)}
+.bar{height:8px;background:var(--kraft2);overflow:hidden;margin-top:8px}
 .bar i{display:block;height:100%;background:var(--ink);transform-origin:left;transition:transform .2s var(--ease)}
 .dr-body{flex:1;overflow:auto;padding:0 20px}
-.line{display:grid;grid-template-columns:72px 1fr;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)}
-.line .mini{width:72px;height:72px;border-radius:36px 36px 8px 8px;background:var(--paper2);overflow:hidden}
-.line .mini svg{width:100%;height:100%}
+.line{display:grid;grid-template-columns:64px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--rule)}
+.mini{width:64px;height:64px;background:var(--kraft);display:flex;flex-direction:column;justify-content:space-between;padding:6px;font:10px/1.2 var(--mono)}
+.mini b{font:600 12px/1.2 var(--serif)}
 .line h3{font-size:14px;margin:0;font-weight:700}
 .line .v{font-size:12px;color:var(--ink2);margin-top:2px}
 .line .lp{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
-.step{display:flex;align-items:center;border:1px solid var(--line);border-radius:20px;background:var(--white)}
+.step{display:flex;align-items:center;border:1px solid var(--ink)}
 .step button{width:40px;height:36px;border:0;background:none;cursor:pointer;display:grid;place-items:center}
 .step button svg{width:16px;height:16px}
 .step button[disabled]{opacity:.35;cursor:not-allowed}
-.step output{min-width:26px;text-align:center;font-size:14px}
-.wrapopt{border:0;padding:0;margin:12px 0 0}
-.wrapopt legend{font-size:12px;padding:0;margin-bottom:4px}
-.wrapopt legend em{font-style:normal;color:var(--white);background:var(--roast);border-radius:3px;padding:1px 5px;margin-left:6px;font-weight:700}
+.step output{min-width:26px;text-align:center;font:14px var(--mono)}
+.wrapopt{border:0;padding:0;margin:10px 0 0}
+.wrapopt legend{font-size:12px;padding:0;margin-bottom:2px}
+.wrapopt legend em{font-style:normal;color:#fff;background:var(--stamp);padding:1px 5px;margin-left:6px;font-weight:700}
 .wrapopt label{display:inline-flex;align-items:center;gap:4px;font-size:12px;margin-right:12px;cursor:pointer;min-height:32px}
-.wrapopt.need legend{color:var(--roast);font-weight:700}
-.dr-ft{border-top:1px solid var(--line);padding:16px 20px 20px;background:var(--white)}
+.wrapopt.need legend{color:var(--stamp);font-weight:700}
+.dr-ft{border-top:1px solid var(--ink);padding:14px 20px 20px}
 .sum{display:grid;grid-template-columns:1fr auto;gap:4px 0;font-size:14px;margin:0}
-.sum dd{margin:0;text-align:right;padding-left:10px}
-.sum .tot{font-size:18px;font-weight:700;border-top:1px solid var(--line);padding-top:8px;margin-top:4px}
-.sum select{height:30px;border:1px solid var(--line);border-radius:4px;background:var(--white);font-size:12px;margin-left:6px}
+.sum dd{margin:0;text-align:right;padding-left:10px;font-family:var(--mono)}
+.sum .tot{font-size:18px;font-weight:700;border-top:1px solid var(--ink);padding-top:8px;margin-top:4px}
+.sum select{height:30px;border:1px solid var(--ink);background:#fff;font-size:12px;margin-left:6px}
+.dr-ft .note{font:12px/1.5 var(--mono);color:var(--ink2);margin:8px 0 0}
 .dr-ft .cta{width:100%;margin-top:12px}
-.why{font-size:12px;color:var(--roast);font-weight:700;margin:6px 0 0;text-align:center}
-.cartempty{padding:48px 0;text-align:center}
+.why{font-size:12px;color:var(--stamp);font-weight:700;margin:6px 0 0}
+.cartempty{padding:40px 0}
 .cartempty p{margin:0 0 14px}
-.pill{display:inline-flex;align-items:center;height:46px;padding:0 24px;border-radius:23px;border:2px solid var(--ink);background:transparent;font-weight:700;font-size:14px;cursor:pointer;text-decoration:none}
+.btn2{display:inline-flex;align-items:center;height:46px;padding:0 22px;border:2px solid var(--ink);background:#fff;font-weight:700;font-size:14px;cursor:pointer;text-decoration:none}
 
-/* 知らせる帯（とらや：上から下りる・role=status） */
-.toast{position:fixed;left:0;right:0;top:0;z-index:50;height:72px;background:var(--ink);color:var(--white);display:flex;align-items:center;justify-content:center;gap:16px;font-size:14px;transform:translateY(-100%);transition:transform .3s var(--ease)}
+.toast{position:fixed;left:0;right:0;top:0;z-index:50;height:72px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;font-size:14px;transform:translateY(-100%);transition:transform .3s var(--ease)}
 .toast.on{transform:none}
-.toast button{color:var(--white);background:none;border:1px solid var(--white);border-radius:17px;height:34px;padding:0 14px;cursor:pointer}
+.toast button{color:#fff;background:none;border:1px solid #fff;height:34px;padding:0 14px;cursor:pointer}
 
-/* 案内の窓・使ったスキルの窓 */
-dialog{border:0;padding:0;background:var(--paper1);color:var(--ink);border-radius:20px;max-width:min(560px,calc(100vw - 30px));max-height:calc(100vh - 60px);box-shadow:none}
-dialog::backdrop{background:rgba(59,32,27,.4)}
+dialog{border:1px solid var(--ink);padding:0;background:#fff;color:var(--ink);max-width:min(560px,calc(100vw - 30px));max-height:calc(100vh - 60px)}
+dialog::backdrop{background:rgba(43,26,20,.45)}
 dialog[open]{animation:pop .2s var(--ease)}
 @keyframes pop{from{opacity:0;transform:translateY(8px)}}
-.dlg{padding:22px 24px 26px;overflow:auto;max-height:calc(100vh - 60px)}
+.dlg{padding:20px 24px 24px;overflow:auto;max-height:calc(100vh - 60px)}
 .dlg .t{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .dlg h2{font:400 20px/1.5 var(--serif);margin:0}
 .dlg p,.dlg li,.dlg td,.dlg th{font-size:14px}
 .dlg table{width:100%;border-collapse:collapse;margin-top:10px}
-.dlg th,.dlg td{border-top:1px solid var(--line);padding:6px 0;text-align:left;font-weight:400}
-.dlg td:last-child{text-align:right}
+.dlg th,.dlg td{border-top:1px solid var(--rule);padding:6px 0;text-align:left;font-weight:400}
+.dlg td:last-child{text-align:right;font-family:var(--mono)}
 
-.skillbtn{position:fixed;right:16px;bottom:16px;z-index:35;height:40px;padding:0 16px;border-radius:20px;border:1px solid var(--ink);background:var(--moon);color:var(--ink);font-size:13px;font-weight:700;cursor:pointer}
-#skills{max-width:min(720px,calc(100vw - 30px))}
+.skillbtn{position:fixed;right:16px;bottom:16px;z-index:35;height:38px;padding:0 14px;border:2px solid var(--ink);background:#fff;color:var(--ink);font-size:13px;font-weight:700;cursor:pointer}
+#skills{max-width:min(760px,calc(100vw - 30px))}
 .sk{width:100%;border-collapse:collapse}
-.sk th,.sk td{font-size:12px!important;text-align:left!important;vertical-align:top;padding:8px 6px 8px 0!important;border-top:1px solid var(--line)}
+.sk th,.sk td{font-size:12px!important;text-align:left!important;vertical-align:top;padding:8px 6px 8px 0!important;border-top:1px solid var(--rule)}
 .sk th{font-weight:700!important;width:7.5em}
-.sk code{font-size:11px;background:var(--paper2);padding:0 3px;border-radius:3px}
+.sk td:last-child{font-family:var(--sans)!important}
+.sk code{font:11px var(--mono);background:var(--kraft2);padding:0 3px}
 
-.ft{background:var(--ink);color:var(--paper1);font-size:12px;padding:40px 0 90px}
-.ft .wrap{display:flex;flex-wrap:wrap;gap:16px 40px}
-.ft b{font:400 16px/1.5 var(--serif);display:block;margin-bottom:6px}
+.ft{background:var(--ink);color:var(--kraft2);font-size:12px;padding:36px 0 90px}
+.ft .wrap{display:flex;flex-wrap:wrap;gap:16px 48px}
+.ft b{font:600 16px/1.5 var(--serif);display:block;margin-bottom:6px;color:#fff}
 .ft button{background:none;border:0;color:inherit;padding:4px 0;cursor:pointer;text-decoration:underline;font-size:12px;display:block}
 
-/* タブレット */
-@media (max-width:1180px){
-  .pd{grid-template-columns:1fr 340px}
-  .pd-img{max-width:625px}
-}
+@media (max-width:1180px){.pd{grid-template-columns:1fr 340px}}
 @media (max-width:860px){
   .grid{grid-template-columns:repeat(3,1fr);gap:48px 20px}
-  .pd{grid-template-columns:1fr;grid-template-areas:"img" "buy" "body";gap:20px}
+  .pd{grid-template-columns:1fr;grid-template-areas:"lbl" "buy" "body";gap:20px}
   .buy{position:static}
-  .teiki dl{grid-template-columns:1fr}
+  .days{grid-template-columns:1fr}
+  .day+.day{border-left:0;border-top:1px solid rgba(236,220,194,.35);padding-left:0}
 }
-/* SP */
 @media (max-width:600px){
   .hd .wrap{height:54px;gap:10px}
   .hd nav{display:none}
-  .logo svg{width:28px;height:28px}
-  .logo b{font-size:18px}
   .logo small{display:none}
-  .cartbtn{margin-left:auto}
-  .cartbtn span.lbl{display:none}
-  .lead{padding:24px 0 20px}
+  .logo b{font-size:19px}
+  .cartbtn{margin-left:auto;height:36px}
+  .lead{padding:20px 0 14px}
   .lead h1{font-size:28px}
+  .lead p{display:none}
+  .board{margin:0 -15px;padding:16px 15px 18px}
+  .day{padding:10px 0 8px}
+  .day ul{display:flex;flex-wrap:wrap;gap:0 12px;font-size:14px}
   .grid{grid-template-columns:repeat(2,1fr);gap:40px 16px}
+  .label{padding:10px}
+  .label .cty{font-size:20px;margin-top:8px}
+  .label .nm{font-size:12px}
+  .label dl{grid-template-columns:1fr;gap:0;font-size:11px}
+  .label dt{display:none}
+  .label .taste{font-size:14px}
+  .label .no{font-size:11px}
+  .label .roastline{font-size:11px}
+  .stamp{position:static;transform:none;display:inline-block;margin-top:8px;align-self:flex-start;font-size:11px}
+  .roastline{padding-right:0}
   .sortbox{margin-left:0}
-  .tools{gap:14px}
-  .chips{gap:6px}
-  .teiki{border-radius:140vw 140vw 0 0/12vw 12vw 0 0;padding:48px 0}
-  .pd{padding:0 0 40px}
-  .pd-img{border-radius:0;margin:0 -15px;width:calc(100% + 30px)}
+  .pd{padding:12px 0 40px}
+  .big{margin:0 -15px;padding:16px 15px 18px}
+  .big .cty{font-size:32px;margin-top:12px}
+  .big .nm{font-size:16px}
+  .big dl{grid-template-columns:6em 1fr;font-size:12px;margin-top:12px;padding-top:10px}
+  .big .taste{font-size:18px;margin-top:10px}
+  .big .stamp{position:absolute;top:40px;right:15px;margin:0;transform:rotate(-4deg)}
   .buy h1{font-size:28px}
   .row-buy.main{display:none}
-  .brew{grid-template-columns:1fr}
-  .guide{grid-template-columns:1fr 1fr}
-  .spbar{display:block;position:sticky;bottom:0;z-index:20;background:rgba(239,235,234,.95);border-top:1px solid var(--line);padding:10px 15px 12px;margin:0 -15px}
-  .spbar .d{font-size:12px;margin-bottom:8px;display:flex;justify-content:space-between;gap:8px}
-  .spbar .d b{font-size:12px}
+  .spbar{display:block;position:sticky;bottom:0;z-index:20;background:rgba(255,255,255,.95);border-top:1px solid var(--ink);padding:10px 15px 12px;margin:0 -15px}
+  .spbar .d{font:12px/1.5 var(--mono);margin-bottom:8px;display:flex;justify-content:space-between;gap:8px}
   .spbar .row-buy{margin-top:0}
-  .drawer{width:100%}
+  .drawer{width:100%;border-left:0}
   .toast{height:54px;font-size:13px}
-  .skillbtn{bottom:12px;right:12px;height:36px;font-size:12px}
-  body.detail .skillbtn{bottom:118px;height:32px;padding:0 12px}
+  .skillbtn{bottom:12px;right:12px;height:34px;font-size:12px}
+  body.detail .skillbtn{bottom:118px;height:30px;padding:0 10px}
   .ft{padding-bottom:70px}
 }
 @media (prefers-reduced-motion:reduce){
@@ -305,20 +339,14 @@ dialog[open]{animation:pop .2s var(--ease)}
 <a class="vh" href="#main">本文へ</a>
 <header class="hd">
   <div class="wrap">
-    <a class="logo" href="#/" aria-label="三日月珈琲 コーヒー豆の一覧へ">
-      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#3b201b"/><path d="M24 8a12 12 0 1 0 8 19A10 10 0 1 1 24 8z" fill="#e3b448"/><ellipse cx="17" cy="21" rx="3.2" ry="4.4" fill="#a8321e" transform="rotate(-20 17 21)"/><path d="M15.6 17.6c1.6 1.4 1.4 5.2 2.8 6.8" stroke="#3b201b" stroke-width="1" fill="none"/></svg>
-      <span><b>三日月珈琲</b><small>MIKAZUKI COFFEE ROASTERS ・ 福岡 薬院</small></span>
-    </a>
+    <a class="logo" href="#/" aria-label="三日月珈琲 コーヒー豆の一覧へ"><b>三日月珈琲</b><small>焙煎所・福岡 薬院</small></a>
     <nav aria-label="お店の案内">
       <a href="#/">コーヒー豆</a>
       <a href="#teiki" data-jump="teiki">定期便</a>
       <a href="#" data-dlg="ship">送料とお届け</a>
     </nav>
     <button class="cartbtn" type="button" id="openCart" aria-haspopup="dialog" aria-controls="drawer">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a1 1 0 0 1-1 .8H7.2a1 1 0 0 1-1-.8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>
-      <span class="lbl">かご</span>
-      <span class="count" id="count" hidden>0</span>
-      <span class="vh" id="countText">かごは空です</span>
+      かご<span class="count" id="count" hidden>0</span><span class="vh" id="countText">かごは空です</span>
     </button>
   </div>
 </header>
@@ -343,13 +371,14 @@ dialog[open]{animation:pop .2s var(--ease)}
 
 <dialog id="dlg-ship" aria-labelledby="h-ship"><div class="dlg">
   <div class="t"><h2 id="h-ship">送料とお届け</h2><button class="x" type="button" data-close aria-label="閉じる"><svg viewBox="0 0 20 20" stroke="currentColor" stroke-width="1.6"><path d="M4 4l12 12M16 4L4 16"/></svg></button></div>
-  <p>焙煎は毎週 月・水・金。ご注文の前日21時までのぶんを焼いて、焼いた翌日にヤマト運輸で発送します。商品の合計が <b>4,800円（税込）以上で送料無料</b>。定期便も同じ条件です。</p>
+  <p>焙煎は毎週 月・水・金で、豆ごとに焼く曜日が決まっています。前日21時までのご注文をその日の釜に入れ、焼いた翌日にヤマト運輸で発送します。曜日の違う豆をいっしょに頼むと、遅いほうの焙煎日にそろえて送ります。</p>
+  <p>商品の合計が <b>4,800円（税込）以上で送料無料</b>。定期便も同じ条件です。</p>
   <table id="shipTable"><thead><tr><th>地域</th><th>発送から</th><td>送料（税込）</td></tr></thead><tbody></tbody></table>
   <p>ギフト箱は1袋ごとに165円。のし・メッセージカードは承っていません。</p>
 </div></dialog>
 <dialog id="dlg-return" aria-labelledby="h-return"><div class="dlg">
   <div class="t"><h2 id="h-return">返品・交換について</h2><button class="x" type="button" data-close aria-label="閉じる"><svg viewBox="0 0 20 20" stroke="currentColor" stroke-width="1.6"><path d="M4 4l12 12M16 4L4 16"/></svg></button></div>
-  <p><b>袋の破れ・挽き方の間違い・ご注文と違う豆</b>は、到着から8日以内にご連絡ください。送料はこちらの負担で、焙煎し直した豆をお送りします。</p>
+  <p><b>袋の破れ・挽き方の間違い・ご注文と違う豆</b>は、到着から8日以内にご連絡ください。送料はこちらの負担で、焼き直した豆をお送りします。</p>
   <p>食品のため、開封後とお客様のご都合（味が好みと違った等）での返品はお受けできません。迷ったら、まず200gでお試しください。</p>
   <p>連絡先：order@mikazuki-coffee.example（平日10〜17時に返信）。手続きの窓口はこのメール1つだけです。</p>
 </div></dialog>
@@ -372,14 +401,14 @@ dialog[open]{animation:pop .2s var(--ease)}
 
 <dialog id="skills" aria-labelledby="h-skills"><div class="dlg">
   <div class="t"><h2 id="h-skills">このページに使ったスキル</h2><button class="x" type="button" data-close aria-label="閉じる"><svg viewBox="0 0 20 20" stroke="currentColor" stroke-width="1.6"><path d="M4 4l12 12M16 4L4 16"/></svg></button></div>
-  <p>主：<b>ec-quality-bar</b>（下位タイプ「食品・ギフト」＝とらや、Allbirds も参照）／副：<b>lp-quality-bar</b>（雰囲気「温かい飲食」＝びっくりドンキー）。食い違いは主を優先。</p>
+  <p>主：<b>ec-quality-bar</b>（下位タイプ「食品・ギフト」＝とらや、Allbirds も参照）／副：<b>lp-quality-bar</b>（雰囲気「温かい飲食」＝びっくりドンキー。作り直しで紙色の地・アーチ・楕円の境目は外した）／仕上げ：<b>site-skills の ai-tells.md</b>。</p>
   <table class="sk"><thead><tr><th>部品</th><th>当てた型と値（出典）</th></tr></thead><tbody id="skrows"></tbody></table>
 </div></dialog>
 <button class="skillbtn" type="button" id="skillBtn" aria-haspopup="dialog">使ったスキル</button>
 
 <footer class="ft">
   <div class="wrap">
-    <div><b>三日月珈琲</b>福岡市中央区薬院の焙煎所。店は土・日の11〜18時だけ開けています。<br>焙煎機：富士ローヤル 5kg 釜（2019年から）</div>
+    <div><b>三日月珈琲</b>福岡市中央区薬院の焙煎所。店は土・日の11〜18時だけ開けています。<br>焙煎機：富士ローヤル 5kg 釜（2019年から）・焙煎：吉住</div>
     <div>
       <button type="button" data-dlg="ship">送料とお届け</button>
       <button type="button" data-dlg="return">返品・交換について</button>
@@ -394,45 +423,61 @@ dialog[open]{animation:pop .2s var(--ease)}
 (function(){
 "use strict";
 /* ---------- データ ---------- */
-var ROAST = ["浅煎り","中煎り","中深煎り","深煎り","深煎り"];
+var ROAST = ["浅煎り","中煎り","中深煎り","深煎り","深煎り（強め）"];
+/* 焙煎度ごとの、焼き上がりの豆の色の見本 */
+var RCOL = ["#9a6a3d","#7a4e2b","#5b3720","#3d2416","#2a1810"];
+var DAYS = {1:"月",3:"水",5:"金"};
+var KAMA = {1:4.6,3:2.1,5:3.8}; /* 5kg 釜の、次の回の空き */
 var BEANS = [
- {id:"mikazuki",nm:"三日月ブレンド",og:"ブラジル・コロンビア・エチオピア",kind:"blend",r:3,p200:1380,p500:3180,rank:1,
+ {id:"mikazuki",no:"01",cty:"三日月",nm:"三日月ブレンド",og:"ブラジル・コロンビア・エチオピア",kind:"blend",r:3,day:3,ag:52,p200:1380,p500:3180,rank:1,
+  mix:[["ブラジル",50],["コロンビア",30],["エチオピア",20]],
   notes:["ミルクチョコ","くるみ","黒糖"],desc:"開店した2019年から配合を3回だけ変えた、店でいちばん出る豆。ブラジルの甘さを土台に、エチオピアを2割入れて香りを持ち上げています。",
-  spec:{"配合":"ブラジル 50%・コロンビア 30%・エチオピア 20%","焙煎度":"中深煎り（2ハゼの入り口）"},
+  log:{in:"200℃",y:"5:40",c:"8:55",d:"11:20",dt:"218℃"},
   voice:"毎朝ペーパーで1杯。冷めても苦くならないのが助かります。（糸島市・40代）"},
- {id:"muromi",nm:"室見ブレンド",og:"エチオピア・ケニア・グアテマラ",kind:"blend",r:2,p200:1480,p500:3420,rank:4,
-  notes:["オレンジ","紅茶","はちみつ"],desc:"室見川の朝の明るさをイメージした、軽めの配合。アイスにしても香りが残ります。",
-  spec:{"配合":"エチオピア 40%・ケニア 30%・グアテマラ 30%","焙煎度":"中煎り"}},
- {id:"yofuke",nm:"夜更けブレンド",og:"インドネシア・ブラジル",kind:"blend",r:5,p200:1430,p500:3290,rank:3,
+ {id:"muromi",no:"02",cty:"室見",nm:"室見ブレンド",og:"エチオピア・ケニア・グアテマラ",kind:"blend",r:2,day:1,ag:61,p200:1480,p500:3420,rank:4,
+  mix:[["エチオピア",40],["ケニア",30],["グアテマラ",30]],
+  notes:["オレンジ","紅茶","はちみつ"],desc:"室見川の朝に飲む、軽めの配合。アイスにしても香りが残ります。",
+  log:{in:"205℃",y:"5:10",c:"8:12",d:"9:58",dt:"209℃"}},
+ {id:"yofuke",no:"03",cty:"夜更け",nm:"夜更けブレンド",og:"インドネシア・ブラジル",kind:"blend",r:5,day:5,ag:38,p200:1430,p500:3290,rank:3,
+  mix:[["インドネシア",60],["ブラジル",40]],
   notes:["ビターチョコ","杉","カラメル"],desc:"カフェオレ用に焼いている深煎り。牛乳に負けない苦さと、後に残る甘さ。",
-  spec:{"配合":"インドネシア 60%・ブラジル 40%","焙煎度":"深煎り（2ハゼのピーク）"}},
- {id:"kochere",nm:"イルガチェフェ コチャレ G1",og:"エチオピア・ウォッシュト",kind:"single",r:1,p200:1840,p500:4250,rank:5,
+  log:{in:"195℃",y:"6:05",c:"9:20",d:"12:45",dt:"229℃"}},
+ {id:"kochere",no:"04",cty:"エチオピア",nm:"イルガチェフェ コチャレ G1",og:"エチオピア・ウォッシュト",kind:"single",r:1,day:1,ag:68,p200:1840,p500:4250,rank:5,
+  area:"イルガチェフェ地区 コチャレ",alt:"1,900–2,100m",vari:"在来種",proc:"ウォッシュト",
   notes:["レモン","ジャスミン","白桃"],desc:"今年の新豆。冷めるほどに花の香りが立つので、少しずつ飲んでください。",
-  spec:{"地域":"イルガチェフェ地区 コチャレ","標高":"1,900〜2,100m","品種":"エチオピア在来種","精製":"ウォッシュト"}},
- {id:"guji",nm:"グジ ハンベラ ナチュラル",og:"エチオピア・ナチュラル",kind:"single",r:1,p200:1980,p500:4590,rank:6,tag:"残りわずか",
+  log:{in:"210℃",y:"4:50",c:"7:48",d:"9:12",dt:"204℃"}},
+ {id:"guji",no:"05",cty:"エチオピア",nm:"グジ ハンベラ ナチュラル",og:"エチオピア・ナチュラル",kind:"single",r:1,day:1,ag:66,p200:1980,p500:4590,rank:6,warn:"今季の残り 12kg",
+  area:"グジ ハンベラ",alt:"2,000–2,250m",vari:"在来種",proc:"ナチュラル",
   notes:["ブルーベリー","赤ワイン","カカオ"],desc:"果実ごと乾かしたナチュラル。赤いベリーの香りがはっきり出ます。今季の入荷は60kgで、残りは12kgほど。",
-  spec:{"地域":"グジ ハンベラ","標高":"2,000〜2,250m","品種":"エチオピア在来種","精製":"ナチュラル"}},
- {id:"gachatha",nm:"ニエリ ガチャタ AA",og:"ケニア・ウォッシュト",kind:"single",r:2,p200:2160,p500:4980,rank:7,
+  log:{in:"208℃",y:"4:55",c:"7:55",d:"9:20",dt:"205℃"}},
+ {id:"gachatha",no:"06",cty:"ケニア",nm:"ニエリ ガチャタ AA",og:"ケニア・ウォッシュト",kind:"single",r:2,day:1,ag:60,p200:2160,p500:4980,rank:7,
+  area:"ニエリ ガチャタ農協",alt:"1,750m",vari:"SL28・SL34",proc:"ウォッシュト",
   notes:["カシス","グレープフルーツ","黒糖"],desc:"酸の強さとコクの両方がある、ケニアらしい1杯。中煎りで止めて酸を残しています。",
-  spec:{"地域":"ニエリ ガチャタ農協","標高":"1,750m","品種":"SL28・SL34","精製":"ウォッシュト"}},
- {id:"huila",nm:"ウィラ サンアグスティン",og:"コロンビア・ウォッシュト",kind:"single",r:2,p200:1620,p500:3740,rank:8,
+  log:{in:"205℃",y:"5:15",c:"8:20",d:"10:10",dt:"210℃"}},
+ {id:"huila",no:"07",cty:"コロンビア",nm:"ウィラ サンアグスティン",og:"コロンビア・ウォッシュト",kind:"single",r:2,day:1,ag:59,p200:1620,p500:3740,rank:8,
+  area:"ウィラ県 サンアグスティン",alt:"1,650–1,800m",vari:"カトゥーラ他",proc:"ウォッシュト",
   notes:["りんご","キャラメル","ナッツ"],desc:"小さな農家12軒の豆をまとめたロット。癖が少なく、初めての方に勧めています。",
-  spec:{"地域":"ウィラ県 サンアグスティン","標高":"1,650〜1,800m","品種":"カトゥーラ・カスティージョ","精製":"ウォッシュト"}},
- {id:"antigua",nm:"アンティグア サンタクララ",og:"グアテマラ・ウォッシュト",kind:"single",r:3,p200:1690,p500:3890,rank:9,
+  log:{in:"203℃",y:"5:20",c:"8:30",d:"10:15",dt:"211℃"}},
+ {id:"antigua",no:"08",cty:"グアテマラ",nm:"アンティグア サンタクララ",og:"グアテマラ・ウォッシュト",kind:"single",r:3,day:3,ag:50,p200:1690,p500:3890,rank:9,
+  area:"サンタクララ農園",alt:"1,550m",vari:"ブルボン",proc:"ウォッシュト",
   notes:["ココア","オレンジピール","アーモンド"],desc:"火山の土で育った豆。中深煎りでココアの香りを引き出しました。",
-  spec:{"地域":"アンティグア サンタクララ農園","標高":"1,550m","品種":"ブルボン","精製":"ウォッシュト"}},
- {id:"daterra",nm:"セラード ダテーラ農園",og:"ブラジル・パルプドナチュラル",kind:"single",r:3,p200:1540,p500:3560,rank:10,
+  log:{in:"200℃",y:"5:35",c:"8:50",d:"11:05",dt:"217℃"}},
+ {id:"daterra",no:"09",cty:"ブラジル",nm:"セラード ダテーラ農園",og:"ブラジル・パルプドナチュラル",kind:"single",r:3,day:3,ag:53,p200:1540,p500:3560,rank:10,
+  area:"ミナスジェライス州",alt:"1,150m",vari:"ムンドノーボ",proc:"パルプドナチュラル",
   notes:["ピーナッツ","ミルクチョコ","黒糖"],desc:"三日月ブレンドの土台にしている豆を単品で。甘くて丸い。",
-  spec:{"地域":"ミナスジェライス州 セラード","標高":"1,150m","品種":"ムンドノーボ","精製":"パルプドナチュラル"}},
- {id:"mandheling",nm:"マンデリン トバコ G1",og:"インドネシア・スマトラ式",kind:"single",r:4,p200:1760,p500:4060,rank:11,
+  log:{in:"198℃",y:"5:45",c:"9:00",d:"11:15",dt:"216℃"}},
+ {id:"mandheling",no:"10",cty:"インドネシア",nm:"マンデリン トバコ G1",og:"インドネシア・スマトラ式",kind:"single",r:4,day:5,ag:44,p200:1760,p500:4060,rank:11,
+  area:"北スマトラ トバ湖周辺",alt:"1,400–1,600m",vari:"アテン・ティピカ",proc:"スマトラ式",
   notes:["ハーブ","黒こしょう","ダークチョコ"],desc:"トバ湖のほとりの豆。深煎りでも重たくなりすぎない、すっとした後味。",
-  spec:{"地域":"北スマトラ トバ湖周辺","標高":"1,400〜1,600m","品種":"アテン・ティピカ","精製":"スマトラ式"}},
- {id:"geisha",nm:"ボケテ ゲイシャ",og:"パナマ・ウォッシュト",kind:"single",r:1,p200:4980,p500:11800,rank:2,tag:"500g 品切れ",out500:true,
+  log:{in:"196℃",y:"6:00",c:"9:15",d:"12:10",dt:"224℃"}},
+ {id:"geisha",no:"11",cty:"パナマ",nm:"ボケテ ゲイシャ",og:"パナマ・ウォッシュト",kind:"single",r:1,day:1,ag:70,p200:4980,p500:11800,rank:2,warn:"500g 品切れ（11月中旬に戻る）",out500:true,
+  area:"チリキ県 ボケテ",alt:"1,700m",vari:"ゲイシャ",proc:"ウォッシュト",
   notes:["ベルガモット","ライチ","はちみつ"],desc:"年に1度だけ仕入れる豆。今季は30kg。500gは11月中旬の焙煎で戻ります。",
-  spec:{"地域":"チリキ県 ボケテ","標高":"1,700m","品種":"ゲイシャ","精製":"ウォッシュト"}},
- {id:"decaf",nm:"デカフェ チアパス",og:"メキシコ・マウンテンウォーター",kind:"decaf",r:3,p200:1650,p500:3810,rank:12,
+  log:{in:"212℃",y:"4:40",c:"7:35",d:"8:58",dt:"202℃"}},
+ {id:"decaf",no:"12",cty:"メキシコ",nm:"デカフェ チアパス",og:"メキシコ・マウンテンウォーター",kind:"decaf",r:3,day:3,ag:51,p200:1650,p500:3810,rank:12,
+  area:"チアパス州",alt:"1,300–1,700m",vari:"ブルボン・ティピカ",proc:"水でカフェイン99.9%除去",
   notes:["ミルクチョコ","アーモンド","メープル"],desc:"水だけでカフェインを99.9%抜いた豆。夜に飲みたい方、妊娠中の方からの注文が多い豆です。",
-  spec:{"地域":"チアパス州","標高":"1,300〜1,700m","品種":"ブルボン・ティピカ","精製":"マウンテンウォーター（脱カフェイン）"}}
+  log:{in:"200℃",y:"5:30",c:"8:40",d:"10:55",dt:"215℃"}}
 ];
 var GRINDS = [
  {k:"whole",nm:"豆のまま",s:"挽かずに"},
@@ -453,16 +498,12 @@ var REGIONS = [
 ];
 var FREE = 4800, MAXQ = 10, TEIKI_OFF = 0.08, GIFT = 165, BEST_DAYS = 90;
 var INTERVALS = [{k:2,nm:"2週ごと"},{k:3,nm:"3週ごと"},{k:4,nm:"4週ごと"}];
+var KINDS = {single:"シングル",blend:"ブレンド",decaf:"デカフェ"};
 
 /* ---------- 状態 ---------- */
 var store = {get:function(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},
              set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
-var state = {
-  roast:"all", kind:"all", sort:"rec",
-  region: store.get("mk-region") || "kyushu",
-  cart: store.get("mk-cart") || [],
-  sel:null
-};
+var state = {roast:"all", kind:"all", sort:"rec", region: store.get("mk-region") || "kyushu", cart: store.get("mk-cart") || [], sel:null};
 
 /* ---------- 小道具 ---------- */
 var $ = function(s,r){return (r||document).querySelector(s)};
@@ -472,65 +513,64 @@ var byId = function(id){for(var i=0;i<BEANS.length;i++) if(BEANS[i].id===id) ret
 var region = function(){for(var i=0;i<REGIONS.length;i++) if(REGIONS[i].k===state.region) return REGIONS[i]; return REGIONS[0]};
 var WD = "日月火水木金土";
 var md = function(d){return (d.getMonth()+1)+"月"+d.getDate()+"日（"+WD[d.getDay()]+"）"};
+var sl = function(d){return (d.getMonth()+1)+"/"+d.getDate()+"（"+WD[d.getDay()]+"）"};
 var addDays = function(d,n){var x=new Date(d);x.setDate(x.getDate()+n);return x};
 var teikiPrice = function(p){return Math.floor(p*(1-TEIKI_OFF)/10)*10};
 
-/* 焙煎は月・水・金。前日21時までの注文をその日に焼き、翌日発送 */
-function schedule(){
+/* 豆ごとに焼く曜日が決まっている。前日21時までの注文をその日の釜に入れ、翌日発送 */
+function nextRoast(dow){
   var now = new Date(), d = addDays(new Date(now.getFullYear(),now.getMonth(),now.getDate()), now.getHours()>=21 ? 2 : 1);
-  while([1,3,5].indexOf(d.getDay())<0) d = addDays(d,1);
-  var ship = addDays(d,1), arrive = addDays(ship, region().days);
-  var left = BEST_DAYS - Math.round((arrive - d)/864e5);
-  return {roast:d, ship:ship, arrive:arrive, left:left};
+  while(d.getDay()!==dow) d = addDays(d,1);
+  return d;
 }
-
-/* 豆の袋の絵（ロゴの3色＋紙色だけ） */
-function bag(b, big){
-  var label = b.kind==="blend" ? "#e3b448" : b.kind==="decaf" ? "#efebea" : "#a8321e";
-  var txt = b.kind==="single" ? "#fffdf9" : "#3b201b";
-  var sh = b.id.length%3; /* 袋ごとに少しだけ傾きを変える */
-  var rot = [-4,2,-1][sh];
-  var beans = "";
-  var pos = [[62,160],[78,168],[136,166],[150,158],[46,170],[160,171]];
-  var col = ["#c99a6b","#a8743f","#7b4a2a","#5b3320","#3b201b"][b.r-1];
-  for(var i=0;i<pos.length;i++){
-    beans += '<g transform="translate('+pos[i][0]+' '+pos[i][1]+') rotate('+(i*37%90-40)+')"><ellipse rx="7" ry="9.5" fill="'+col+'"/><path d="M-1 -8 C 2 -3, -2 3, 1 8" stroke="#efebea" stroke-width="1.2" fill="none" opacity=".7"/></g>';
-  }
-  var short = b.nm.replace(/ブレンド$/,"").split(" ")[0];
-  return '<svg viewBox="0 0 200 200" role="img" aria-label="'+esc(b.nm)+'の袋の絵">'+
-    '<g transform="rotate('+rot+' 100 110)">'+
-    '<path d="M58 44 L142 44 L150 160 Q150 168 142 168 L58 168 Q50 168 50 160 Z" fill="#f6efe6" stroke="#3b201b" stroke-width="2"/>'+
-    '<path d="M58 44 L142 44 L139 30 L61 30 Z" fill="#e7dacb" stroke="#3b201b" stroke-width="2"/>'+
-    '<path d="M64 37 H136" stroke="#3b201b" stroke-width="1.5" stroke-dasharray="3 3"/>'+
-    '<rect x="66" y="70" width="68" height="64" rx="6" fill="'+label+'" stroke="#3b201b" stroke-width="1.5"/>'+
-    '<path d="M103 78a9 9 0 1 0 6 14.5A7.2 7.2 0 1 1 103 78z" fill="'+txt+'"/>'+
-    '<text x="100" y="114" text-anchor="middle" font-size="'+(short.length>6?9:11)+'" fill="'+txt+'" font-family="serif">'+esc(short)+'</text>'+
-    '<text x="100" y="127" text-anchor="middle" font-size="7" fill="'+txt+'" letter-spacing="1">'+(b.kind==="blend"?"BLEND":b.kind==="decaf"?"DECAF":"SINGLE")+'</text>'+
-    '</g>'+beans+'</svg>';
+function plan(roastDate){
+  var ship = addDays(roastDate,1), arrive = addDays(ship, region().days);
+  return {roast:roastDate, ship:ship, arrive:arrive, left: BEST_DAYS - Math.round((arrive - roastDate)/864e5)};
 }
-function meter(r){
-  var s=""; for(var i=1;i<=5;i++) s+='<b class="'+(i<=r?"on":"")+'"></b>';
-  return '<span class="meter"><i aria-hidden="true">'+s+'</i>'+ROAST[r-1]+(r===5?"（強め）":"")+'</span>';
+function stampHtml(b){var d=nextRoast(b.day);return '<span class="stamp">次の焙煎<br>'+(d.getMonth()+1)+'/'+d.getDate()+' '+DAYS[b.day]+'</span>'}
+function ratioHtml(b){
+  var cols=["#2b1a14","#8a6a4a","#f4e9d8"];
+  return '<div class="ratio" aria-hidden="true">'+b.mix.map(function(m,i){return '<span style="width:'+m[1]+'%;background:'+cols[i]+'"></span>'}).join("")+'</div>'+
+    '<div class="ratiokey">'+b.mix.map(function(m){return m[0]+' '+m[1]+'%'}).join(" / ")+'</div>';
 }
+function labelRows(b){
+  return '<dl><dt>産地</dt><dd>'+esc(b.area)+'</dd><dt>標高</dt><dd>'+b.alt+'</dd><dt>精製</dt><dd>'+esc(b.proc)+'</dd></dl>';
+}
+function roastLine(b){return '<div class="roastline"><i style="background:'+RCOL[b.r-1]+'"></i><span>'+ROAST[b.r-1].replace("（強め）","＋")+'<br>Agtron '+b.ag+'</span></div>'}
 var ICON_CHECK = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg>';
 var ICON_MINUS = '<svg viewBox="0 0 16 16" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10"/></svg>';
 var ICON_PLUS = '<svg viewBox="0 0 16 16" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M8 3v10"/></svg>';
 var ICON_TRASH = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 4.5h10M6.5 4.5V3h3v1.5M4.5 4.5l.6 8.5h5.8l.6-8.5"/></svg>';
+var regionSel = function(){return '<select data-region aria-label="お届け先の地域">'+REGIONS.map(function(x){return '<option value="'+x.k+'"'+(x.k===state.region?" selected":"")+'>'+x.nm+'</option>'}).join("")+'</select>'};
 
 /* ---------- 一覧 ---------- */
 function renderList(){
   document.body.classList.remove("detail");
   $("#crumb").innerHTML = '<li><a href="#/">三日月珈琲</a></li><li aria-current="page">コーヒー豆</li>';
   document.title = "コーヒー豆の一覧｜三日月珈琲";
-  var r = region(), sc = schedule();
+  var r = region();
+  var days = [1,3,5].map(function(dw){
+    var d = nextRoast(dw);
+    return {dw:dw, d:d, p:plan(d), list:BEANS.filter(function(b){return b.day===dw}).sort(function(a,b){return b.ag-a.ag})};
+  }).sort(function(a,b){return a.d-b.d});
   var roastBtns = [["all","すべて"],["1","浅煎り"],["2","中煎り"],["3","中深煎り"],["4","深煎り"]];
   var kindBtns = [["all","すべて"],["single","シングル"],["blend","ブレンド"],["decaf","デカフェ"]];
   var chip = function(group,v,l){return '<button type="button" class="chip" data-'+group+'="'+v+'" aria-pressed="'+(state[group]===v)+'">'+l+'</button>'};
   $("#main").innerHTML =
    '<div class="wrap">'+
-   '<div class="lead"><h1>コーヒー豆</h1>'+
-   '<p>薬院の焙煎所で、毎週 月・水・金に焼いています。どの豆も200gと500g、挽き方は5通りから選べます。</p>'+
-   '<div class="notice"><span>次の焙煎 <b>'+md(sc.roast)+'</b></span><span>'+r.nm+'へは <b>'+md(sc.arrive)+'</b> 着の予定</span><span>送料 '+yen(r.fee)+'円・<b>4,800円以上で無料</b></span></div></div>'+
+   '<div class="lead"><h1>コーヒー豆 12種</h1>'+
+   '<p>どの豆も200gと500g、挽き方は5通り。豆ごとに焼く曜日が決まっていて、焼いた翌日に発送します。</p></div>'+
+   '<section class="board" aria-labelledby="h-board"><div class="board-hd"><h2 id="h-board">これからの焙煎予定</h2>'+
+     '<label>お届け先 '+regionSel()+'</label></div>'+
+     '<div class="days">'+days.map(function(x){
+       var kg = KAMA[x.dw];
+       return '<div class="day"><h3>'+md(x.d)+'<span class="mono">'+x.list.length+'種</span></h3>'+
+         '<div class="kama">5kg 釜の空き <b>'+kg.toFixed(1)+'kg</b>（200g で約'+Math.floor(kg/0.2)+'袋）</div>'+
+         '<ul>'+x.list.map(function(b){return '<li><a href="#/beans/'+b.id+'">'+esc(b.nm)+'</a></li>'}).join("")+'</ul>'+
+         '<div class="arr">→ '+r.nm+'へ '+sl(x.p.arrive)+' 着</div></div>';
+     }).join("")+'</div>'+
+     '<p class="foot">前日21時までの注文がその日の釜に入ります。送料 '+yen(r.fee)+'円（'+r.nm+'）、4,800円以上で無料。</p>'+
+   '</section>'+
    '<div class="tools" role="group" aria-label="絞り込み">'+
      '<fieldset><legend>焙煎度</legend><div class="chips">'+roastBtns.map(function(x){return chip("roast",x[0],x[1])}).join("")+'</div></fieldset>'+
      '<fieldset><legend>種類</legend><div class="chips">'+kindBtns.map(function(x){return chip("kind",x[0],x[1])}).join("")+'</div></fieldset>'+
@@ -540,14 +580,17 @@ function renderList(){
      '</select></label>'+
    '</div>'+
    '<div class="result"><p style="margin:0" aria-live="polite"><strong id="num"></strong>点の豆</p><span id="cond" style="color:var(--ink2)"></span></div>'+
-   '<ul class="grid" id="grid"></ul></div>'+
-   '<section class="teiki" id="teiki" aria-labelledby="h-teiki"><div class="wrap">'+
-     '<h2 id="h-teiki">定期便は、どの豆でも8%引き</h2>'+
-     '<p style="margin:0;font-size:14px;max-width:40em">豆の詳細で「定期便」を選ぶと、2・3・4週ごとに焼きたてを届けます。回数の縛りはありません。</p>'+
-     '<dl><div><dt><span class="n">8%</span>毎回の値引き</dt><dd>200gの三日月ブレンドなら 1,380円 → '+yen(teikiPrice(1380))+'円。送料の条件はふつうの注文と同じです。</dd></div>'+
-     '<div><dt><span class="n">5日前</span>までスキップ・解約</dt><dd>次の発送の5日前まで、届いたメールのリンクから。1回目のあとすぐ解約しても手数料はかかりません。</dd></div>'+
-     '<div><dt><span class="n">2回目</span>から豆を替えられる</dt><dd>同じ値段の範囲で、季節の豆に替えられます。替えないときは同じ豆が届きます。</dd></div></dl>'+
-   '</div></section>';
+   '<ul class="grid" id="grid"></ul>'+
+   '<section class="teiki" id="teiki" aria-labelledby="h-teiki">'+
+     '<h2 id="h-teiki">定期便の条件</h2><p>豆の詳細で「定期便」を選ぶと申し込めます。</p>'+
+     '<table class="cond"><tbody>'+
+     '<tr><th>値段</th><td>どの豆も毎回8%引き。200gの三日月ブレンドなら 1,380円 → '+yen(teikiPrice(1380))+'円</td></tr>'+
+     '<tr><th>間隔</th><td>2週・3週・4週ごと。その豆の焙煎日に焼いて翌日発送</td></tr>'+
+     '<tr><th>スキップ・解約</th><td>次の発送の5日前まで、届いたメールのリンクから。回数の縛りはなく、1回目のあとすぐ解約しても手数料はかかりません</td></tr>'+
+     '<tr><th>豆の変更</th><td>2回目から、同じ値段の範囲で替えられます。替えないときは同じ豆が届きます</td></tr>'+
+     '<tr><th>送料</th><td>ふつうの注文と同じ（4,800円以上で無料）</td></tr>'+
+     '</tbody></table></section>'+
+   '</div>';
   drawGrid();
 }
 function filtered(){
@@ -556,7 +599,7 @@ function filtered(){
     return (state.roast==="all" || String(rr)===state.roast) && (state.kind==="all" || b.kind===state.kind);
   });
   var f = {rec:function(a,b){return a.rank-b.rank},cheap:function(a,b){return a.p200-b.p200},high:function(a,b){return b.p200-a.p200},
-           light:function(a,b){return a.r-b.r||a.rank-b.rank},dark:function(a,b){return b.r-a.r||a.rank-b.rank}}[state.sort];
+           light:function(a,b){return b.ag-a.ag},dark:function(a,b){return a.ag-b.ag}}[state.sort];
   return list.sort(f);
 }
 function drawGrid(){
@@ -564,18 +607,23 @@ function drawGrid(){
   $("#num").textContent = list.length;
   var conds = [];
   if(state.roast!=="all") conds.push(["浅煎り","中煎り","中深煎り","深煎り"][+state.roast-1]);
-  if(state.kind!=="all") conds.push({single:"シングル",blend:"ブレンド",decaf:"デカフェ"}[state.kind]);
+  if(state.kind!=="all") conds.push(KINDS[state.kind]);
   $("#cond").textContent = conds.length ? "条件：" + conds.join("・") : "";
   if(!list.length){
-    $("#grid").innerHTML = '<li class="empty"><p>この組み合わせの豆は、いま焼いていません。</p><button class="pill" type="button" id="reset">条件をはずす</button></li>';
+    $("#grid").innerHTML = '<li class="empty"><p>この組み合わせの豆は、いま焼いていません。デカフェは中深煎りの1種だけです。</p><button class="btn2" type="button" id="reset">条件をはずす</button></li>';
     $("#reset").onclick = function(){state.roast="all";state.kind="all";renderList()};
     return;
   }
   $("#grid").innerHTML = list.map(function(b){
-    return '<li class="card"><a href="#/beans/'+b.id+'">'+
-      '<div class="thumb">'+bag(b)+(b.tag?'<span class="tag'+(b.tag==="残りわずか"?" moon":"")+'">'+b.tag+'</span>':"")+'</div>'+
-      '<div class="nm">'+esc(b.nm)+'</div><div class="og">'+esc(b.og)+'</div>'+meter(b.r)+
-      '<div class="pr">'+yen(b.p200)+'<small>円（税込）／200g</small></div></a></li>';
+    return '<li class="card"><a href="#/beans/'+b.id+'"><div class="label">'+
+      '<div class="no"><span>No.'+b.no+'</span><span>'+KINDS[b.kind]+'</span></div>'+
+      stampHtml(b)+
+      '<div class="cty">'+esc(b.cty)+'</div><div class="nm">'+esc(b.nm)+'</div>'+
+      (b.kind==="blend"?ratioHtml(b):labelRows(b))+
+      '<p class="taste">'+b.notes.join("・")+'</p>'+
+      roastLine(b)+
+      '</div><div class="pr">'+yen(b.p200)+'<small>円（税込）／200g</small></div>'+
+      (b.warn?'<div class="warn">'+b.warn+'</div>':'')+'</a></li>';
   }).join("");
 }
 
@@ -587,24 +635,40 @@ function renderItem(id){
   if(!state.sel || state.sel.id!==id) state.sel = {id:id,size:null,grind:null,plan:"once",every:3,qty:1};
   document.title = b.nm+"｜三日月珈琲";
   $("#crumb").innerHTML = '<li><a href="#/">三日月珈琲</a></li><li><a href="#/">コーヒー豆</a></li><li aria-current="page">'+esc(b.nm)+'</li>';
-  var specRows = '';
-  for(var k in b.spec) specRows += '<tr><th>'+k+'</th><td>'+esc(b.spec[k])+'</td></tr>';
+  var dl = b.kind==="blend"
+    ? ''
+    : '<dt>産地</dt><dd>'+esc(b.area)+'</dd><dt>標高</dt><dd>'+b.alt+'</dd><dt>品種</dt><dd>'+esc(b.vari)+'</dd><dt>精製</dt><dd>'+esc(b.proc)+'</dd>';
+  var t = b.ag>=60 ? 92 : b.ag>=48 ? 89 : 85;
   $("#main").innerHTML =
    '<div class="wrap"><div class="pd">'+
-    '<div class="pd-img">'+bag(b,true)+'</div>'+
+    '<div class="big" aria-label="豆のラベル">'+
+      '<div class="no"><span>No.'+b.no+' · '+{single:"シングルオリジン",blend:"ブレンド",decaf:"デカフェ"}[b.kind]+'</span><span>'+DAYS[b.day]+'曜焙煎</span></div>'+
+      stampHtml(b)+
+      '<div class="cty">'+esc(b.cty)+'</div><div class="nm">'+esc(b.nm)+'</div>'+
+      (b.kind==="blend"?ratioHtml(b):'')+
+      '<dl>'+dl+'<dt>焙煎度</dt><dd>'+ROAST[b.r-1]+' · Agtron '+b.ag+'</dd><dt>賞味期限</dt><dd>焙煎日から90日</dd></dl>'+
+      '<p class="taste">'+b.notes.join("・")+'</p>'+
+    '</div>'+
     '<div class="buy" id="buy"></div>'+
     '<div class="body">'+
-      '<h2>味のメモ</h2><ul class="notes">'+b.notes.map(function(n){return '<li>'+n+'</li>'}).join("")+'</ul>'+
-      '<p>'+esc(b.desc)+'</p>'+
+      '<h2>焙煎記録</h2>'+
+      '<div class="log"><table><tbody>'+
+        '<tr><th>投入温度</th><td>'+b.log.in+'</td></tr>'+
+        '<tr><th>色づき</th><td>'+b.log.y+'</td></tr>'+
+        '<tr><th>1ハゼ</th><td>'+b.log.c+'</td></tr>'+
+        '<tr><th>煎り止め</th><td>'+b.log.d+'　'+b.log.dt+'</td></tr>'+
+        '<tr><th>1回の量</th><td>4.0kg 投入 → 3.4kg</td></tr>'+
+      '</tbody></table><p class="sig">— 吉住</p></div>'+
+      '<h2>この豆のこと</h2><p>'+esc(b.desc)+'</p>'+
       (b.voice?'<p class="voice">'+esc(b.voice)+'</p>':'')+
-      '<h2>豆のこと</h2><table class="spec"><tbody>'+specRows+
-        '<tr><th>焙煎度</th><td>'+ROAST[b.r-1]+'</td></tr>'+
-        '<tr><th>賞味期限</th><td>焙煎日から90日。<span id="leftDays"></span></td></tr>'+
-        '<tr><th>保存</th><td>袋のチャックを閉めて常温で。2週間で飲みきれないときは冷凍庫へ。</td></tr></tbody></table>'+
-      '<h2>淹れ方の目安</h2><ul class="brew">'+
-        '<li><b>ペーパー</b>豆15g・お湯240ml・'+(b.r<=2?"92":"88")+'℃。中挽きで2分半。</li>'+
-        '<li><b>フレンチプレス</b>豆17g・お湯280ml・4分。粗挽きで。</li>'+
-        '<li><b>アイス</b>豆20g・お湯150mlで濃く落とし、氷100gに直接。</li></ul>'+
+      '<div class="photo" role="img" aria-label="写真の枠（撮影予定）"><b>写真の枠：撮る写真</b>'+
+        esc(b.nm)+'の生豆と焼いた豆を、麻袋の上に並べて真上から。横3:2、北窓の自然光。左に生豆、右に焼き上がり。</div>'+
+      '<h2>淹れ方の目安</h2>'+
+      '<table class="brewt"><thead><tr><th>道具</th><th>豆</th><th>湯</th><th>温度</th><th>時間</th></tr></thead><tbody>'+
+        '<tr><td>ペーパー（中挽き）</td><td>15g</td><td>240ml</td><td>'+t+'℃</td><td>2分30秒</td></tr>'+
+        '<tr><td>フレンチプレス（粗挽き）</td><td>17g</td><td>280ml</td><td>'+(t+2)+'℃</td><td>4分</td></tr>'+
+        '<tr><td>アイス（中細挽き）</td><td>20g</td><td>150ml＋氷100g</td><td>'+t+'℃</td><td>2分</td></tr>'+
+      '</tbody></table>'+
       '<a class="back" href="#/">← 豆の一覧へもどる</a>'+
     '</div>'+
    '</div><div class="spbar" id="spbar"></div></div>';
@@ -613,7 +677,7 @@ function renderItem(id){
 }
 function lineUnit(b,s){var p = s.size==="500"?b.p500:b.p200; return s.plan==="teiki"?teikiPrice(p):p}
 function drawBuy(){
-  var b = byId(state.sel.id), s = state.sel, sc = schedule(), r = region();
+  var b = byId(state.sel.id), s = state.sel, sc = plan(nextRoast(b.day)), r = region();
   var sizeBtn = function(v){
     var out = v==="500" && b.out500;
     return '<button type="button" data-size="'+v+'" aria-pressed="'+(s.size===v)+'" class="'+(out?"out":"")+'">'+v+'g<small>'+(out?"品切れ・入荷通知あり":yen(v==="500"?b.p500:b.p200)+"円")+'</small></button>';
@@ -633,11 +697,9 @@ function drawBuy(){
     return '<div class="row-buy '+cls+'"><label class="vh" for="q-'+cls+'">数量</label><select class="qty" id="q-'+cls+'" data-qty>'+qtyOpts+'</select>'+
       '<button type="button" class="cta'+(notify?" notify":"")+'" data-add aria-disabled="'+dis+'">'+label+'</button></div>';
   };
-  var regionSel = '<select data-region aria-label="お届け先の地域">'+REGIONS.map(function(x){return '<option value="'+x.k+'"'+(x.k===state.region?" selected":"")+'>'+x.nm+'</option>'}).join("")+'</select>';
   $("#buy").innerHTML =
     '<div class="og">'+esc(b.og)+'</div><h1>'+esc(b.nm)+'</h1>'+
     '<div class="price">'+(s.plan==="teiki"?'<s>'+yen(base)+'円</s>':'')+yen(unit)+'円<small>（税込・'+(s.size||"200")+'g'+(s.plan==="teiki"?"・定期便":"")+'）</small></div>'+
-    meter(b.r)+
     '<fieldset class="opt"><legend>容量'+(s.size?"":"<span>未選択</span>")+'</legend><div class="seg c2">'+sizeBtn("200")+sizeBtn("500")+'</div></fieldset>'+
     '<fieldset class="opt"><legend>挽き方'+(s.grind?"":"<span>未選択</span>")+'</legend><div class="seg c3">'+GRINDS.map(grindBtn).join("")+'</div></fieldset>'+
     '<fieldset class="opt"><legend>買い方</legend><div class="seg c2">'+
@@ -647,18 +709,15 @@ function drawBuy(){
     '</fieldset>'+
     ctaHtml("main")+
     (notify?'<form class="notifyform" id="notify" novalidate><label for="nmail">'+esc(b.nm)+' 500g が戻ったら、メールで1通だけ知らせます</label><div class="f"><input id="nmail" type="email" autocomplete="email" placeholder="you@example.jp" aria-describedby="nerr"><button type="submit">登録</button></div><p class="err" id="nerr" hidden></p></form>':'')+
-    '<div class="ship"><div>最短 <b>'+md(sc.arrive)+'</b> お届け</div>'+
-      '<div style="font-size:12px;color:var(--ink2)">'+md(sc.roast)+'に焙煎 → 翌日発送</div>'+
-      '<label><span>お届け先</span>'+regionSel+'<span>送料 '+yen(r.fee)+'円（4,800円以上で無料）</span></label>'+
+    '<div class="ship"><div class="when">'+sl(sc.roast)+' 焙煎<br>'+sl(sc.ship)+' 発送<br><b>'+sl(sc.arrive)+' 着</b>（'+r.nm+'）</div>'+
+      '<label><span>お届け先</span>'+regionSel()+'<span>送料 '+yen(r.fee)+'円（4,800円以上で無料）</span></label>'+
       '<div class="fresh">届いた日から賞味期限まで約'+sc.left+'日。</div></div>'+
     '<ul class="guide">'+
       '<li><button type="button" data-dlg="ship">送料とお届け</button></li>'+
       '<li><button type="button" data-dlg="return">返品・交換</button></li>'+
       '<li><button type="button" data-dlg="pay">お支払い方法</button></li>'+
-      '<li><button type="button" data-dlg="law">特定商取引法の表記</button></li></ul>'+
-    '';
-  $("#spbar").innerHTML = '<div class="d"><span>最短 <b>'+md(sc.arrive)+'</b> 着（'+r.nm+'）</span><span>送料 '+yen(r.fee)+'円・4,800円以上無料</span></div>'+ctaHtml("sp");
-  var ld = $("#leftDays"); if(ld) ld.textContent = r.nm+"へ"+md(sc.arrive)+"に届くと、残りは約"+sc.left+"日です。";
+      '<li><button type="button" data-dlg="law">特定商取引法の表記</button></li></ul>';
+  $("#spbar").innerHTML = '<div class="d"><span>'+sl(sc.roast)+'焙煎 → <b>'+sl(sc.arrive)+'着</b></span><span>送料'+yen(r.fee)+'円</span></div>'+ctaHtml("sp");
 }
 
 /* ---------- かご ---------- */
@@ -675,7 +734,7 @@ function drawCart(){
   var st = subtotal(), r = region();
   if(!state.cart.length){
     $("#freeArea").innerHTML = '<p class="free">4,800円（税込）以上で送料無料です。</p>';
-    $("#lines").innerHTML = '<div class="cartempty"><p>かごは空です。</p><a class="pill" href="#/" data-closecart>豆を選ぶ</a></div>';
+    $("#lines").innerHTML = '<div class="cartempty"><p>かごは空です。</p><a class="btn2" href="#/" data-closecart>豆を選ぶ</a></div>';
     $("#drFoot").innerHTML = "";
     return;
   }
@@ -685,25 +744,30 @@ function drawCart(){
   $("#lines").innerHTML = state.cart.map(function(l,i){
     var b = byId(l.id), g = GRINDS.filter(function(x){return x.k===l.grind})[0];
     var max = l.qty>=MAXQ;
-    return '<div class="line"><div class="mini">'+bag(b)+'</div><div>'+
-      '<h3>'+esc(b.nm)+'</h3><div class="v">'+l.size+'g・'+g.nm+(l.plan==="teiki"?'・定期便（'+l.every+'週ごと）':'')+'</div>'+
+    return '<div class="line"><div class="mini" aria-hidden="true"><span>No.'+b.no+'</span><b>'+esc(b.cty)+'</b></div><div>'+
+      '<h3>'+esc(b.nm)+'</h3><div class="v">'+l.size+'g・'+g.nm+(l.plan==="teiki"?'・定期便（'+l.every+'週ごと）':'')+'・'+DAYS[b.day]+'曜焙煎</div>'+
       '<div class="lp"><div class="step">'+
         '<button type="button" data-dec="'+i+'" aria-label="'+(l.qty===1?"かごから外す":"1袋へらす")+'">'+(l.qty===1?ICON_TRASH:ICON_MINUS)+'</button>'+
         '<output aria-live="polite">'+l.qty+'</output>'+
         '<button type="button" data-inc="'+i+'" aria-label="1袋ふやす"'+(max?" disabled":"")+'>'+ICON_PLUS+'</button></div>'+
-        '<b>'+yen(lineUnit(b,l)*l.qty)+'円</b></div>'+
+        '<b class="mono">'+yen(lineUnit(b,l)*l.qty)+'円</b></div>'+
       (max?'<p class="err">1回の注文は1種類10袋までです（1回の焙煎で焼ける量の都合）。</p>':'')+
       '<fieldset class="wrapopt'+(l.wrap?"":" need")+'"><legend>包装<em>必須</em></legend>'+
         '<label><input type="radio" name="w'+i+'" value="home" data-wrap="'+i+'"'+(l.wrap==="home"?" checked":"")+'>自宅用（袋のまま）</label>'+
         '<label><input type="radio" name="w'+i+'" value="gift" data-wrap="'+i+'"'+(l.wrap==="gift"?" checked":"")+'>ギフト箱 +'+GIFT+'円</label></fieldset>'+
     '</div></div>';
   }).join("");
+  /* 曜日の違う豆は、いちばん遅い焙煎日にそろえて送る */
+  var last = state.cart.map(function(l){return nextRoast(byId(l.id).day)}).sort(function(a,b){return b-a})[0];
+  var pl = plan(last);
+  var days = {}; state.cart.forEach(function(l){days[byId(l.id).day]=1});
   var fee = st>=FREE ? 0 : r.fee, gift = giftTotal();
   var need = state.cart.filter(function(l){return !l.wrap}).length;
   $("#drFoot").innerHTML = '<dl class="sum"><dt>商品</dt><dd>'+yen(st)+'円</dd>'+
     (gift?'<dt>ギフト箱</dt><dd>'+yen(gift)+'円</dd>':'')+
-    '<dt>送料 <select data-region aria-label="お届け先の地域">'+REGIONS.map(function(x){return '<option value="'+x.k+'"'+(x.k===state.region?" selected":"")+'>'+x.nm+'</option>'}).join("")+'</select></dt><dd>'+(fee?yen(fee)+'円':'<s>'+yen(r.fee)+'円</s> 0円')+'</dd>'+
+    '<dt>送料 '+regionSel()+'</dt><dd>'+(fee?yen(fee)+'円':'<s>'+yen(r.fee)+'円</s> 0円')+'</dd>'+
     '<dt class="tot">合計（税込）</dt><dd class="tot">'+yen(st+gift+fee)+'円</dd></dl>'+
+    '<p class="note">'+sl(pl.roast)+'焙煎 → '+sl(pl.ship)+'発送 → '+sl(pl.arrive)+'着'+(Object.keys(days).length>1?'（焙煎日の違う豆を、遅いほうにそろえて送ります）':'')+'</p>'+
     '<button type="button" class="cta" id="checkout" aria-disabled="'+(need>0)+'" aria-describedby="why">ご購入手続きへ</button>'+
     '<p class="why" id="why">'+(need?'包装が未選択の豆が'+need+'つあります。自宅用かギフト箱を選んでください。':'')+'</p>';
 }
@@ -729,7 +793,7 @@ function toast(msg, withBtn){
   $("#toast").classList.add("on");
   clearTimeout(toastT); toastT = setTimeout(function(){$("#toast").classList.remove("on")},4000);
 }
-function addToCart(btn){
+function addToCart(){
   var s = state.sel, b = byId(s.id);
   var same = state.cart.filter(function(l){return l.id===s.id&&l.size===s.size&&l.grind===s.grind&&l.plan===s.plan&&(l.plan!=="teiki"||l.every===s.every)})[0];
   if(same){
@@ -738,7 +802,7 @@ function addToCart(btn){
   } else state.cart.push({id:s.id,size:s.size,grind:s.grind,plan:s.plan,every:s.every,qty:s.qty,wrap:null});
   save();
   document.querySelectorAll("[data-add]").forEach(function(x){x.innerHTML = ICON_CHECK+"かごに入れました"});
-  setTimeout(function(){ if(byId(s.id) && state.sel===s) drawBuy(); }, 2000);
+  setTimeout(function(){ if(state.sel===s && $("#buy")) drawBuy(); }, 2000);
   /* ドロワーが開くので、帯は出さずに読み上げだけ知らせる（帯がドロワーの頭を隠すため） */
   $("#sr").textContent = b.nm+" "+s.size+"g をかごに入れました。かごの合計 "+yen(subtotal())+"円";
   openCart();
@@ -755,18 +819,17 @@ document.addEventListener("click", function(e){
   if(d.plan){ state.sel.plan=d.plan; drawBuy(); $('[data-plan="'+d.plan+'"]').focus(); return; }
   if(d.add!==undefined){
     if(t.getAttribute("aria-disabled")==="true"){
-      var miss = !state.sel.size ? '[data-size]' : '[data-grind]';
-      var el = $(miss); if(el){ el.closest("fieldset").scrollIntoView({block:"center"}); el.focus(); }
+      var el = $(!state.sel.size ? '[data-size]' : '[data-grind]'); if(el){ el.closest("fieldset").scrollIntoView({block:"center"}); el.focus(); }
       return;
     }
     if(t.classList.contains("notify")){ var m=$("#nmail"); if(m){ m.scrollIntoView({block:"center"}); m.focus(); } return; }
-    addToCart(t); return;
+    addToCart(); return;
   }
   if(d.dec!==undefined){ var l=state.cart[+d.dec]; if(l.qty===1) state.cart.splice(+d.dec,1); else l.qty--; save(); drawCart(); return; }
   if(d.inc!==undefined){ var l2=state.cart[+d.inc]; if(l2.qty<MAXQ) l2.qty++; save(); drawCart(); var nb=$('[data-inc="'+d.inc+'"]'); if(nb && !nb.disabled) nb.focus(); else { var db=$('[data-dec="'+d.inc+'"]'); if(db) db.focus(); } return; }
   if(d.dlg){ e.preventDefault(); var dl=$("#dlg-"+d.dlg); if(dl && dl.showModal) dl.showModal(); return; }
   if(d.close!==undefined){ t.closest("dialog").close(); return; }
-  if(d.jump){ e.preventDefault(); if(!/^#\/?$/.test(location.hash)&&location.hash){ location.hash="#/"; setTimeout(function(){var j=$("#teiki");if(j)j.scrollIntoView()},30);} else { var j=$("#teiki"); if(j) j.scrollIntoView(); } return; }
+  if(d.jump){ e.preventDefault(); if(location.hash && !/^#\/?$/.test(location.hash)){ location.hash="#/"; setTimeout(function(){var j=$("#teiki");if(j)j.scrollIntoView()},30);} else { var j=$("#teiki"); if(j) j.scrollIntoView(); } return; }
   if(d.closecart!==undefined){ closeCart(); return; }
   if(t.id==="checkout"){
     if(t.getAttribute("aria-disabled")==="true"){ var w=$(".wrapopt.need input"); if(w){ w.focus(); w.closest(".line").scrollIntoView({block:"nearest"}); } return; }
@@ -781,9 +844,8 @@ document.addEventListener("change", function(e){
   if(d.region!==undefined){
     state.region=t.value; save();
     var inDrawer = !!t.closest("#drawer");
-    if(inDrawer) drawCart(); else if(state.sel && $("#buy")) drawBuy();
+    if(inDrawer) drawCart(); else if($("#buy")) drawBuy(); else renderList();
     var again = (inDrawer?$("#drawer"):document).querySelector("[data-region]"); if(again) again.focus();
-    if(!inDrawer && !$("#buy")) renderList();
     return;
   }
   if(d.wrap!==undefined){ state.cart[+d.wrap].wrap=t.value; save(); var idx=d.wrap, v=t.value; drawCart(); var r=$('input[name="w'+idx+'"][value="'+v+'"]'); if(r) r.focus(); return; }
@@ -810,43 +872,38 @@ document.addEventListener("keydown", function(e){
     else if(!e.shiftKey && document.activeElement===f[f.length-1]){ e.preventDefault(); f[0].focus(); }
   }
 });
-document.querySelectorAll("dialog").forEach(function(dl){
-  dl.addEventListener("click", function(e){ if(e.target===dl) dl.close(); });
-});
+document.querySelectorAll("dialog").forEach(function(dl){ dl.addEventListener("click", function(e){ if(e.target===dl) dl.close(); }); });
 
-/* 送料の表 */
 $("#shipTable tbody").innerHTML = REGIONS.map(function(x){return '<tr><th>'+x.nm+'</th><th>'+x.days+'日</th><td>'+yen(x.fee)+'円</td></tr>'}).join("");
 
 /* 使ったスキル */
 var SK = [
- ["選び方","site-skills の表で「商品を探して買ってもらう」→ 主 ec-quality-bar。見た目の雰囲気も要るので副に lp-quality-bar（最大2つ）。"],
- ["下位タイプ","ec：食品・ギフト（types/food-gift.md・とらや）。定期便は単品・D2C の問いだが見本が無いので、自分で決めた。lp：温かい飲食（types/food.md・びっくりドンキー）。"],
- ["配色","lp 温かい飲食：地は紙色2色 <code>#efebea</code>/<code>#e7dacb</code>、文字は焦げ茶 <code>#3b201b</code>（びっくりドンキー）。色はロゴの3色だけ、イラストも同じ3色（同）。かごの数の赤い丸はとらやの <code>#b30000</code> 26px を焙煎の赤 22px に。"],
- ["文字","ec 食品・ギフト：名前は明朝 32px（SP 28px）、本文 16px/1.6、補足 12px、大きさは 12/14/16/18/20/24/32（とらや）。字間は触らない（とらや）。"],
- ["一覧のグリッド","PC 4列・列間40・行間60、SP 2列・16/40（とらや）。12点をページ送りなしで1ページ（rules 4：Allbirds・とらや）。"],
- ["カード","正方形の絵→14pxあけて名前16px→「1,380」16px＋「円（税込）」12px（とらや）。上辺をアーチにした角（lp 温かい飲食：メニューカードの上辺をアーチ）。焙煎度の目盛りと産地は自分で足した。"],
- ["カードのホバー","絵が opacity .8・scale(1.03)、名前が補助色、.2s <code>cubic-bezier(.25,.46,.45,.94)</code>、hover:hover かつ pointer:fine のときだけ（とらや・lp rules 7）。"],
- ["絞り込み","12点・通信なしなので選ぶたびに反映。結果の上に件数32px太字と「条件：…」（とらや「9 点の商品」・rules 6 の並べ直し）。0件のときは空の表示と「条件をはずす」。"],
- ["並べ替え","select 150×34、初期値おすすめ順（とらや）。"],
- ["詳細のファーストビュー","PC は左に正方形の絵 625px、右に 340px の列を sticky top:96px（とらや：625×625・幅340・top:114px）。名前→価格18px＋（税込）14px→選択→数量→ボタン→最短お届け日（とらや）。"],
- ["容量・挽き方","文字のボタン。未選択ならボタンの文字が「容量と挽き方を選んでください」（ec checklist・Allbirds の SELECT A SIZE）。"],
- ["品切れ","ゲイシャ500gは消さず斜線＋薄く、押せる。押すとボタンが「入荷したら知らせる」になりメールの欄が出る（Allbirds の NOTIFY ME）。"],
- ["カートボタン","340×46・角丸23・枠2px・14px太字、ホバーで白黒が入れ替わる .2s（とらや）。地は #111 でなく焦げ茶。"],
- ["SP の固定バー","sticky bottom:0・紙色95%（とらや）。上に最短お届け日と送料の1行を入れた（ec checklist：とらやの反面教師 y=2352）。"],
- ["お届け日","地域を選ぶだけ。郵便番号は聞かない（ec checklist・とらやの反面教師）。賞味期限は「届いた日から約○日」で出す（ec checklist・とらや）。"],
- ["かごに入れる","ページを移らず右からドロワー PC 530px・SP 全画面（Allbirds・rules 1）。知らせは role=status で読み上げ（とらや）。とらやの上から下りる帯は、開いたドロワーの頭を隠したので、かごの上限エラーのときだけ使う。ボタンは2秒「かごに入れました」に（とらやの「✓ 追加しました」）。"],
- ["送料無料まで","ドロワーの頭に「あと○円で送料無料」と太いバー、数量を変えるとすぐ言い直す（Allbirds）。数量1の − はごみ箱（Allbirds）。送料はかごの中で金額にする（とらやの反面教師）。"],
- ["包装","かごで商品ごとに「必須」。未選択だと手続きのボタンが押せず、理由をボタンの下に書く（ec checklist・とらや）。ギフト箱の165円は合計に別の行で出し、ボタンの金額に黙って込みにしない（Allbirds の反面教師）。"],
- ["案内の窓","送料・返品・支払い・特商法を詳細から1手の窓に（rules 3・ec checklist）。返品の条件と連絡先（手続きの窓口）を分けた（Allbirds の反面教師）。行のホバーは右へ10px .5s <code>cubic-bezier(.19,1,.22,1)</code>（lp 温かい飲食）。"],
- ["定期便の帯","境目を楕円のカーブ <code>border-radius:140vw … /30vw</code>（lp 温かい飲食）。数字の約束3つは自分で決めた。"],
- ["ロゴの揺れ","ホバーで ±3°・.75s（lp 温かい飲食）。ブランドの遊びはこれ1つ（lp rules 5）。"],
- ["データ","BreadcrumbList と、詳細ごとの Product＋Offer（価格・在庫）を JSON-LD で（ec rules 5：Allbirds・とらやは BreadcrumbList が無い）。"],
- ["重さ","外部のスクリプト・フォント・写真なし。絵はすべて SVG（ec rules 7・lp common 6-1）。同意バーも出さない（とらやの反面教師）。"],
- ["動き","transform と opacity だけ。時間は .1 / .2 / .4s（とらや）＋行の .5s。prefers-reduced-motion で全部止める（とらやには無い・lp common）。"]
+ ["選び方","site-skills の表で「商品を探して買ってもらう」→ 主 ec-quality-bar。雰囲気のために副 lp-quality-bar。仕上げに site-skills の references/ai-tells.md を全部当てはめて作り直した。"],
+ ["焙煎予定表","題材でしか成り立たない部品（ai-tells「最後の問い」）。豆ごとの焙煎曜日・5kg 釜の空き・地域ごとの着日を最初の画面に黒板として置く。スキルに型は無く自分で決めた。着日を地域の選択で出すのは ec checklist（とらやの反面教師：郵便番号）。"],
+ ["一覧のグリッド","PC 4列・列間40・行間60、SP 2列・16/40（とらや）。12点をページ送りなしで1ページ（ec rules 4：Allbirds・とらや）。"],
+ ["カード＝豆のラベル","絵をやめ、産地・農園・標高・精製・焙煎度・味の言葉を文字で組んだクラフト紙のラベルを主役に（ai-tells「絵と写真」）。ブレンドは配合の帯、シングルは標高と精製、と種類で組みを変える。価格16px＋「円（税込）」12px はとらや。"],
+ ["カードのホバー","ラベルが opacity .8・scale(1.03)、価格が補助色、.2s <code>cubic-bezier(.25,.46,.45,.94)</code>、hover:hover かつ pointer:fine のときだけ（とらや・lp rules 7）。"],
+ ["焙煎日の判","「次の焙煎 11/2 月」を朱の枠で。文字と地の比 5.9（ec checklist：札は 4.5 以上。とらやの順位札 2.37 は反面教師）。"],
+ ["絞り込み","12点・通信なしなので選ぶたびに反映。件数32px太字と「条件：…」（とらや「9 点の商品」・ec rules 6）。0件の表示と「条件をはずす」。"],
+ ["並べ替え","select 150×34、初期値おすすめ順（とらや）。浅い順・深い順は Agtron の値で並べる。"],
+ ["詳細のファーストビュー","左 625px にラベルを大きく、右 340px の列を sticky top:96px（とらや：625×625・幅340・top:114px）。名前は明朝32px、価格18px＋（税込）14px（とらや）。"],
+ ["容量・挽き方","文字のボタン。未選択ならボタンの文字で「容量と挽き方を選んでください」（ec checklist・Allbirds の SELECT A SIZE）。"],
+ ["品切れ","ゲイシャ500gは消さず斜線＋薄く、押せる。押すと「入荷したら知らせる」とメール欄（Allbirds の NOTIFY ME）。"],
+ ["カートボタン","高さ46・枠2px・14px太字、ホバーで白黒が入れ替わる .2s（とらや）。とらやの角丸23px のピルは、ai-tells の指摘で四角に変えた。"],
+ ["お届けの3行","焙煎日→発送日→着日を等幅で3行。焙煎してから送る店の流れで、スキルに型は無い。賞味期限は「届いた日から約○日」（ec checklist・とらや）。"],
+ ["SP の固定バー","sticky bottom:0・白95%（とらや）。上に焙煎日→着日と送料の1行（ec checklist：とらやの反面教師 y=2352）。"],
+ ["焙煎記録","投入温度・1ハゼ・煎り止めを、記録用紙の罫に手書きの書体（Klee One）で。題材でしか成り立たない部品。スキルに型は無い。"],
+ ["写真の枠","写真が入る場所は絵で埋めず、撮る写真を書いた枠に（ai-tells「絵と写真」）。"],
+ ["かごに入れる","ページを移らず右からドロワー PC 530px・SP 全画面（ec rules 1：Allbirds）。知らせは role=status（とらや）。ボタンは2秒「かごに入れました」（とらやの「✓ 追加しました」）。"],
+ ["送料無料まで","ドロワーの頭に「あと○円で送料無料」と太いバー、数量で言い直す、数量1の − はごみ箱（Allbirds）。送料はかごの中で金額に（とらやの反面教師）。焙煎日の違う豆は遅いほうにそろえる、と着日を出すのは自分で決めた。"],
+ ["包装","商品ごとに「必須」、未選択だと理由をボタンの下に（ec checklist・とらや）。ギフト箱165円は別の行（Allbirds の反面教師）。"],
+ ["案内の窓","送料・返品・支払い・特商法を詳細から1手の窓に（ec rules 3）。返品の条件と連絡先を分ける（Allbirds の反面教師）。"],
+ ["色と文字","地は白（とらや #fff）。焦げ茶・クラフト紙・朱は焙煎の現場から（ai-tells「色と文字」）。名前は明朝、ラベルの数値は等幅、記録と味は手書き。lp 温かい飲食の紙色2色の地・アーチ・楕円の境目は「やわらかい無難な地」に当たるので外した。"],
+ ["データ","BreadcrumbList と、詳細ごとに Product＋Offer（ec rules 5）。"],
+ ["重さ・動き","外部は Google Fonts の Klee One だけ。動きは transform と opacity、.1/.2/.4s（とらや）。prefers-reduced-motion で全部止める。"]
 ];
 $("#skrows").innerHTML = SK.map(function(r){return '<tr><th>'+r[0]+'</th><td>'+r[1]+'</td></tr>'}).join("");
 
-/* 詳細の構造化データ */
 function ldProduct(b){
   var old = $("#ld-product"); if(old) old.remove();
   if(!b) return;
@@ -857,7 +914,6 @@ function ldProduct(b){
   document.head.appendChild(sc);
 }
 
-/* ---------- 道順 ---------- */
 function route(){
   var m = location.hash.match(/^#\/beans\/([a-z0-9-]+)/);
   if(m){ renderItem(m[1]); ldProduct(byId(m[1])); }
