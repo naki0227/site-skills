@@ -66,7 +66,7 @@ button,select,input{font:inherit;color:inherit}
 .lead p{margin:4px 0 0;font-size:16px;color:var(--ink2);max-width:40em}
 
 /* これからの焙煎予定（黒板） */
-.board{background:var(--ink);color:var(--kraft2);padding:16px 24px 18px}
+.board{background:var(--ink);color:var(--kraft2);padding:18px 24px 24px}
 .board-hd{display:flex;justify-content:space-between;align-items:baseline;gap:8px 20px;flex-wrap:wrap;border-bottom:1px solid rgba(236,220,194,.35);padding-bottom:12px}
 .board-hd h2{font:400 20px/1.5 var(--serif);margin:0;color:#fff}
 .board-hd label{font-size:14px;display:flex;align-items:center;gap:8px}
@@ -104,7 +104,7 @@ button,select,input{font:inherit;color:inherit}
 /* 一覧：PC 4列・列間40・行間60、SP 2列・16/40（とらや）。カードは豆ごとのラベル */
 .grid{list-style:none;margin:0;padding:0 0 72px;display:grid;grid-template-columns:repeat(4,1fr);gap:60px 40px}
 .card a{display:flex;flex-direction:column;height:100%;text-decoration:none}
-.label{position:relative;flex:1;background:var(--kraft);padding:14px 16px 12px;display:flex;flex-direction:column;transition:opacity .2s var(--ease),transform .2s var(--ease)}
+.label{position:relative;flex:1;background:var(--kraft);padding:16px 16px 18px;display:flex;flex-direction:column;transition:opacity .2s var(--ease),transform .2s var(--ease)}
 .label .no{display:flex;justify-content:space-between;font:13px/1 var(--mono)}
 .label .cty{font:600 26px/1.25 var(--serif);margin:12px 0 2px;letter-spacing:.02em}
 .label .nm{font-size:14px;font-weight:700;line-height:1.45}
@@ -140,7 +140,7 @@ button,select,input{font:inherit;color:inherit}
 
 /* 詳細：左 625px・右 340px の列を sticky（とらや） */
 .pd{display:grid;grid-template-columns:625px 340px;grid-template-areas:"lbl buy" "body buy";justify-content:space-between;gap:0 40px;padding:28px 0 80px}
-.big{grid-area:lbl;background:var(--kraft);padding:24px 28px 26px;position:relative}
+.big{grid-area:lbl;background:var(--kraft);padding:24px 28px 30px;position:relative}
 .big .no{display:flex;justify-content:space-between;font:14px/1 var(--mono)}
 .big .cty{font:600 44px/1.2 var(--serif);margin:18px 0 4px;letter-spacing:.03em}
 .big .nm{font-size:18px;font-weight:700}
@@ -304,11 +304,11 @@ dialog[open]{animation:pop .2s var(--ease)}
   .lead{padding:20px 0 14px}
   .lead h1{font-size:28px}
   .lead p{display:none}
-  .board{margin:0 -15px;padding:16px 15px 18px}
+  .board{margin:0 -15px;padding:16px 15px 20px}
   .day{padding:10px 0 8px}
   .day ul{font-size:15px}
   .grid{grid-template-columns:repeat(2,1fr);gap:40px 16px}
-  .label{padding:10px}
+  .label{padding:12px 10px 14px}
   .label .cty{font-size:20px;margin-top:8px}
   .label .nm{font-size:14px}
   .label dl{grid-template-columns:1fr;gap:0;font-size:13px}
@@ -320,7 +320,7 @@ dialog[open]{animation:pop .2s var(--ease)}
   .roastline{padding-right:0}
   .sortbox{margin-left:0}
   .pd{padding:12px 0 40px}
-  .big{margin:0 -15px;padding:16px 15px 18px}
+  .big{margin:0 -15px;padding:16px 15px 20px}
   .big .cty{font-size:32px;margin-top:12px}
   .big .nm{font-size:16px}
   .big dl{grid-template-columns:6em 1fr;font-size:13px;margin-top:12px;padding-top:10px}
