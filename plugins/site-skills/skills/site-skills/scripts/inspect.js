@@ -27,7 +27,7 @@ function probe() {
   const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return +((x + .05) / (y + .05)).toFixed(2); };
   const bgOf = el => { for (let e = el; e; e = e.parentElement) { const s = getComputedStyle(e); if (s.backgroundImage !== 'none' && !/gradient/.test(s.backgroundImage)) return null; const c = rgb(s.backgroundColor); if (c[3] === undefined || c[3] > .9) return c; } return [255, 255, 255, 1]; };
 
-  const m = { chars: 0, runChars: 0, runSizes: {}, runTiny: 0, runCenter: 0, hues: {}, pills: 0, softRadius: 0, sizes: {}, tiny: 0, families: {}, lowContrast: [], unreadable: [], eyebrows: [], numbering: [], bordered: 0, boxes: 0, gradients: 0, gradientText: 0, softShadows: 0, emoji: [], headings: [], svgHero: 0, statRows: 0, bodyBg: getComputedStyle(document.body).backgroundColor };
+  const m = { chars: 0, runChars: 0, runSizes: {}, runTiny: 0, runCenter: 0, tightBottom: [], hues: {}, pills: 0, softRadius: 0, sizes: {}, tiny: 0, families: {}, lowContrast: [], unreadable: [], eyebrows: [], numbering: [], bordered: 0, boxes: 0, gradients: 0, gradientText: 0, softShadows: 0, emoji: [], headings: [], svgHero: 0, statRows: 0, bodyBg: getComputedStyle(document.body).backgroundColor };
   const textEls = [];
   for (const el of document.body.querySelectorAll('*')) {
     if (!visible(el)) continue;
@@ -91,6 +91,23 @@ function probe() {
     if (fs <= 15 && k <= 28 && nextIsHead && !exempt(el) && (/^[A-Z0-9 &.\/·—-]{3,}$/.test(own) || ls / fs >= .08)) m.eyebrows.push(own);
     // 飾りの通し番号（01 / 02、(001)、STEP 02）
     if (/^(\(?0\d{1,2}\)?|No\.\s?\d+|STEP\s?\d+|\d{2}\s?\/)$/i.test(own) && !el.closest('ol,table,time') && !exempt(el)) m.numbering.push(own);
+  }
+  // 箱の中の余白のつり合い：枠か地の色のある箱で、中の文字の下の空き（見た目）が、上の空きや左右の空きより狭いもの
+  // （ユーザーの A/B 判定：上下 10px・左右 14px の箱は「下が小さすぎて気持ち悪い」。下は上と同じか少し広く、左右より狭くしない）
+  for (const el of document.body.querySelectorAll('*')) {
+    if (!visible(el) || exempt(el) || /^(BUTTON|A|INPUT|SELECT|TEXTAREA|IMG|SVG|svg)$/.test(el.tagName)) continue;
+    const s = getComputedStyle(el); const r = el.getBoundingClientRect();
+    if (r.height < 40 || r.width < 80 || r.height > vh * 1.2) continue;
+    const framed = ['Top', 'Right', 'Bottom', 'Left'].every(d => parseFloat(s['border' + d + 'Width']) > 0 && s['border' + d + 'Style'] !== 'none') || (rgb(s.backgroundColor)[3] > .9 && s.backgroundColor !== getComputedStyle(el.parentElement || el).backgroundColor);
+    if (!framed) continue;
+    // 中身の端：中の要素の箱（枠・罫を含む）と文字の行の箱。箱の内側（枠線の内側）から測る
+    const inner = { top: r.top + parseFloat(s.borderTopWidth), bottom: r.bottom - parseFloat(s.borderBottomWidth), left: r.left + parseFloat(s.borderLeftWidth) };
+    const parts = [...el.querySelectorAll('*')].filter(c => { const cs = getComputedStyle(c); return cs.position !== 'absolute' && cs.position !== 'fixed' && visible(c); }).map(c => c.getBoundingClientRect());
+    const rng = document.createRange(); rng.selectNodeContents(el); parts.push(...[...rng.getClientRects()].filter(x => x.width > 2 && x.height > 4));
+    if (!parts.length) continue;
+    const gT = Math.min(...parts.map(x => x.top)) - inner.top, gB = inner.bottom - Math.max(...parts.map(x => x.bottom)), gL = Math.min(...parts.map(x => x.left)) - inner.left;
+    if (gT < 0 || gB < 0 || gL < 0) continue;
+    if (gL >= 8 && (gB + 1 < gT * .8 || gB + 1 < gL * .8)) m.tightBottom.push(`${el.tagName.toLowerCase()}「${el.innerText.replace(/\s+/g, ' ').slice(0, 12)}」上${Math.round(gT)}・下${Math.round(gB)}・左${Math.round(gL)}`);
   }
   // 見出しの行数
   for (const h of document.querySelectorAll('h1,h2,h3')) {
@@ -163,6 +180,7 @@ function judge(m, width) {
   if (hueN > 4) add('WARN', 'many-hues', `彩りのある色相が ${hueN} 系統`, '色は1色を広い面で。状態の色は小さな点だけ');
   if (m.pills >= 3) add('WARN', 'pill-chips', `丸いラベル（短い語のピル）が ${m.pills} 個`, '言葉を文の中に戻すか、文字の色だけにする');
   if (m.softRadius >= 4) add('WARN', 'soft-radius', `9〜16px の角丸の面が ${m.softRadius} 個`, '角は「四角」か「まる」に1回で決める。カードを丸めて浮かせない');
+  if (m.tightBottom.length >= 2) add('WARN', 'tight-bottom', `下の余白が上や左右より狭い箱が ${m.tightBottom.length} 個（${m.tightBottom.slice(0, 2).join('、')}）`, '箱の中の余白は、下を上と同じか少し広く、左右より狭くしない（最後の要素の margin-bottom も確かめる）');
   // ai-tells：淡いベージュ・ピンクの無難な地。taste-skill：黄みのクリーム地（WARN）
   const [r, g, b] = m.bodyBgRgb; const mx = Math.max(r, g, b), mn = Math.min(r, g, b);
   if (mx > 235 && mx - mn >= 8 && mx - mn <= 40 && r >= g && g >= b) add('WARN', 'cream-ground', `地が淡いベージュ（${m.bodyBg}）`, '地は白か、題材の現場の色から');
@@ -180,7 +198,7 @@ function judge(m, width) {
     if (out) { fs.mkdirSync(out, { recursive: true }); await p.screenshot({ path: path.join(out, `${name}-top.png`) }); await p.screenshot({ path: path.join(out, `${name}-full.png`), fullPage: true }); }
     const m = await p.evaluate(probe);
     all.push(...judge(m, vp.width));
-    console.log(`${name} ${vp.width}px  本文 ${m.bodySize}px・本文の13px未満 ${m.runChars ? Math.round(m.runTiny / m.runChars * 100) : 0}%・大きさ ${m.sizeCount}段・書体 ${m.familyCount}・枠線 ${m.bordered}・箱 ${m.boxes}・影 ${m.softShadows}・グラデ ${m.gradients}・小ラベル ${m.eyebrows.length}・番号 ${m.numbering.length}・中央 ${m.runChars ? Math.round(m.runCenter / m.runChars * 100) : 0}%・色相 ${Object.values(m.hues).filter(v => v >= 2).length}・ピル ${m.pills}・角丸 ${m.softRadius}`);
+    console.log(`${name} ${vp.width}px  本文 ${m.bodySize}px・本文の13px未満 ${m.runChars ? Math.round(m.runTiny / m.runChars * 100) : 0}%・大きさ ${m.sizeCount}段・書体 ${m.familyCount}・枠線 ${m.bordered}・箱 ${m.boxes}・影 ${m.softShadows}・グラデ ${m.gradients}・小ラベル ${m.eyebrows.length}・番号 ${m.numbering.length}・中央 ${m.runChars ? Math.round(m.runCenter / m.runChars * 100) : 0}%・色相 ${Object.values(m.hues).filter(v => v >= 2).length}・ピル ${m.pills}・角丸 ${m.softRadius}・下が詰まった箱 ${m.tightBottom.length}`);
     await p.close();
   }
   await b.close();
