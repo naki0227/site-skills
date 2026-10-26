@@ -19,7 +19,7 @@ description: 予約サイト（宿・飲食・チケット・体験）の画面�
 | 下位タイプ | 向く題材 | 見本（解剖したサイト） | ファイル |
 |---|---|---|---|
 | 宿 | ホテル、旅館、民泊 | じゃらんnet | `types/stay.md` |
-| 飲食 | レストラン、カフェの席予約 | （まだ無い） | `types/restaurant.md` |
+| 飲食 | レストラン、カフェの席予約 | TableCheck | `types/restaurant.md` |
 | チケット・イベント | 公演、展示、スポーツ | DICE | `types/ticket-event.md` |
 | レンタル・体験 | 体験、レンタル、教室 | （まだ無い） | `types/rental-activity.md` |
 

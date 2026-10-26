@@ -10,7 +10,7 @@ description: LP・特設ページ・ブランドサイトのトップを作る�
 
 ## 使い方
 1. 下の表で、作るものに一番近い雰囲気を1つ選ぶ（迷ったら2つまで。混ぜるのは配色と動きのどちらか片方だけ）。
-2. `references/common.md`（全タイプ共通の基礎）を読む。
+2. `references/common.md`（2つ以上のサイトで確かめた共通の基礎）を読む。
 3. 選んだ雰囲気の `references/types/<slug>.md` を読み、その数値を出発点にする。値を並べて比べたいときは `references/compare.md`。
 4. `references/rules.md`（サイトをまたいで効いていること）に反していないか確かめながら作る。
 5. 仕上げに `references/checklist.md` を全部確かめる。
