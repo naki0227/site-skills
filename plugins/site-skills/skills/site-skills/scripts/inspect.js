@@ -27,7 +27,7 @@ function probe() {
   const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return +((x + .05) / (y + .05)).toFixed(2); };
   const bgOf = el => { for (let e = el; e; e = e.parentElement) { const s = getComputedStyle(e); if (s.backgroundImage !== 'none' && !/gradient/.test(s.backgroundImage)) return null; const c = rgb(s.backgroundColor); if (c[3] === undefined || c[3] > .9) return c; } return [255, 255, 255, 1]; };
 
-  const m = { chars: 0, runChars: 0, runSizes: {}, runTiny: 0, sizes: {}, tiny: 0, families: {}, lowContrast: [], unreadable: [], eyebrows: [], numbering: [], bordered: 0, boxes: 0, gradients: 0, gradientText: 0, softShadows: 0, emoji: [], headings: [], svgHero: 0, statRows: 0, bodyBg: getComputedStyle(document.body).backgroundColor };
+  const m = { chars: 0, runChars: 0, runSizes: {}, runTiny: 0, runCenter: 0, hues: {}, pills: 0, softRadius: 0, sizes: {}, tiny: 0, families: {}, lowContrast: [], unreadable: [], eyebrows: [], numbering: [], bordered: 0, boxes: 0, gradients: 0, gradientText: 0, softShadows: 0, emoji: [], headings: [], svgHero: 0, statRows: 0, bodyBg: getComputedStyle(document.body).backgroundColor };
   const textEls = [];
   for (const el of document.body.querySelectorAll('*')) {
     if (!visible(el)) continue;
@@ -47,6 +47,23 @@ function probe() {
       }
     }
     if (s.webkitBackgroundClip === 'text' || s.backgroundClip === 'text') m.gradientText++;
+    // 色相の数：彩度のある文字色・地の色を 30° ごとに数える（写真・本物の画面の部品は除く）
+    if (!exempt(el) && !/^(IMG|VIDEO|CANVAS|PICTURE)$/.test(el.tagName)) {
+      for (const c of [s.color, s.backgroundColor]) {
+        const [r, g, b, a] = rgb(c); if (a === 0) continue;
+        const mx = Math.max(r, g, b) / 255, mn = Math.min(r, g, b) / 255, l = (mx + mn) / 2, d = mx - mn;
+        const sat = d === 0 ? 0 : d / (1 - Math.abs(2 * l - 1));
+        if (sat < .35 || l < .12 || l > .93) continue;
+        let h = mx === r / 255 ? ((g - b) / 255 / d) % 6 : mx === g / 255 ? (b - r) / 255 / d + 2 : (r - g) / 255 / d + 4; h = Math.round((h * 60 + 360) % 360 / 30);
+        m.hues[h % 12] = (m.hues[h % 12] || 0) + 1;
+      }
+      const rad = parseFloat(s.borderTopLeftRadius) || 0, r0 = el.getBoundingClientRect();
+      const filled = rgb(s.backgroundColor)[3] !== 0 || parseFloat(s.borderTopWidth) > 0;
+      // 丸いラベル（「お得」「営業中」のような短い語のピル）
+      if (filled && r0.height < 30 && rad >= r0.height / 2 - 1 && el.innerText.trim().length <= 8 && !/^(BUTTON|A|INPUT)$/.test(el.tagName)) m.pills++;
+      // 中くらいの角丸（9〜16px）の面：taste-skill の調査で上位のボタン 6%・下位 24%
+      if (filled && rad >= 9 && rad <= 16 && r0.width > 120 && r0.height > 60) m.softRadius++;
+    }
     // 文字
     let own = ''; for (const n of el.childNodes) if (n.nodeType === 3) own += n.textContent;
     own = own.replace(/\s+/g, ' ').trim();
@@ -58,7 +75,7 @@ function probe() {
     m.chars += k; m.sizes[fs] = (m.sizes[fs] || 0) + k; m.families[fam] = (m.families[fam] || 0) + k;
     // 本文＝ナビ・フッター以外の、30字以上の文（実サイトはフッターやナビに12px の小さな文字が多く、それを数えると本文を見誤る）
     const chrome = el.closest('nav,footer,header,[role=navigation],[role=contentinfo]');
-    if (!chrome && !exempt(el) && k >= 30 && !/^H[1-6]$/.test(el.tagName)) { m.runChars += k; m.runSizes[fs] = (m.runSizes[fs] || 0) + k; if (fs < 13) m.runTiny += k; }
+    if (!chrome && !exempt(el) && k >= 30 && !/^H[1-6]$/.test(el.tagName)) { m.runChars += k; m.runSizes[fs] = (m.runSizes[fs] || 0) + k; if (fs < 13) m.runTiny += k; if (s.textAlign === 'center') m.runCenter += k; }
     const bg = bgOf(el);
     if (bg && k > 1) {
       const r = ratio(rgb(s.color), bg); const large = fs >= 24 || (fs >= 19 && +s.fontWeight >= 700);
@@ -139,6 +156,13 @@ function judge(m, width) {
   if (m.statRows) add('WARN', 'stat-row', '最初の画面の近くに、大きな数字の横並びがある', '数字はそれを確かめたい場所（料金・募集要項・時刻表）へ');
   const longH = m.headings.filter(h => h.size >= 24 && h.lines > (sp ? 3 : 2));
   if (longH.length) add('WARN', 'headline-lines', '行の多い見出し：' + longH.slice(0, 3).map(h => `${h.tag}「${h.text}」${h.lines}行`).join('、'), '見出しは題。文にしない。続きは本文へ');
+  // 以下はユーザーの A/B 判定（2026-10-26、十条湯の見本9組で7組が想定どおり）で AI っぽいと選ばれた側
+  const centerPct = m.runChars ? Math.round(m.runCenter / m.runChars * 100) : 0;
+  if (centerPct > 40) add('WARN', 'centered', `本文の ${centerPct}% が中央揃え`, '本文は左揃え。中央にするのは1か所（題か一文）だけ');
+  const hueN = Object.values(m.hues).filter(v => v >= 2).length;
+  if (hueN > 4) add('WARN', 'many-hues', `彩りのある色相が ${hueN} 系統`, '色は1色を広い面で。状態の色は小さな点だけ');
+  if (m.pills >= 3) add('WARN', 'pill-chips', `丸いラベル（短い語のピル）が ${m.pills} 個`, '言葉を文の中に戻すか、文字の色だけにする');
+  if (m.softRadius >= 4) add('WARN', 'soft-radius', `9〜16px の角丸の面が ${m.softRadius} 個`, '角は「四角」か「まる」に1回で決める。カードを丸めて浮かせない');
   // ai-tells：淡いベージュ・ピンクの無難な地。taste-skill：黄みのクリーム地（WARN）
   const [r, g, b] = m.bodyBgRgb; const mx = Math.max(r, g, b), mn = Math.min(r, g, b);
   if (mx > 235 && mx - mn >= 8 && mx - mn <= 40 && r >= g && g >= b) add('WARN', 'cream-ground', `地が淡いベージュ（${m.bodyBg}）`, '地は白か、題材の現場の色から');
@@ -156,7 +180,7 @@ function judge(m, width) {
     if (out) { fs.mkdirSync(out, { recursive: true }); await p.screenshot({ path: path.join(out, `${name}-top.png`) }); await p.screenshot({ path: path.join(out, `${name}-full.png`), fullPage: true }); }
     const m = await p.evaluate(probe);
     all.push(...judge(m, vp.width));
-    console.log(`${name} ${vp.width}px  本文 ${m.bodySize}px・本文の13px未満 ${m.runChars ? Math.round(m.runTiny / m.runChars * 100) : 0}%・大きさ ${m.sizeCount}段・書体 ${m.familyCount}・枠線 ${m.bordered}・箱 ${m.boxes}・影 ${m.softShadows}・グラデ ${m.gradients}・小ラベル ${m.eyebrows.length}・番号 ${m.numbering.length}`);
+    console.log(`${name} ${vp.width}px  本文 ${m.bodySize}px・本文の13px未満 ${m.runChars ? Math.round(m.runTiny / m.runChars * 100) : 0}%・大きさ ${m.sizeCount}段・書体 ${m.familyCount}・枠線 ${m.bordered}・箱 ${m.boxes}・影 ${m.softShadows}・グラデ ${m.gradients}・小ラベル ${m.eyebrows.length}・番号 ${m.numbering.length}・中央 ${m.runChars ? Math.round(m.runCenter / m.runChars * 100) : 0}%・色相 ${Object.values(m.hues).filter(v => v >= 2).length}・ピル ${m.pills}・角丸 ${m.softRadius}`);
     await p.close();
   }
   await b.close();
