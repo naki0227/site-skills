@@ -85,7 +85,7 @@ ul,ol{padding:0;list-style:none}
 .photo b{display:block;font-size:13px;letter-spacing:.1em;color:var(--muted);margin-bottom:4px}
 
 /* ---------- トップ：最初の画面 ---------- */
-.hero{padding:36px 0 56px}
+.hero{padding:40px 0 96px}
 .hero-top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px 40px;flex-wrap:wrap;margin-bottom:22px}
 .hero h1{font-size:34px;font-weight:800;line-height:1.45;letter-spacing:.01em;text-wrap:balance;word-break:auto-phrase}
 .kicker{font-size:16px;font-weight:700;color:var(--muted);margin-bottom:6px}
@@ -94,13 +94,13 @@ ul,ol{padding:0;list-style:none}
 .hero-cta{display:grid;justify-items:center;gap:6px}
 
 /* ホワイトボード */
-.wb-wrap{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:24px;align-items:start}
+.wb-wrap{display:block}
 .wb{border:10px solid var(--frame);border-radius:6px;background:var(--board);box-shadow:inset 0 0 0 1px var(--frame-d);position:relative}
 .wb-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px;padding:12px 18px 4px;font-family:var(--hand);font-size:20px;line-height:1.6}
 .wb-head .date{font-weight:600;font-size:20px}
 .wb-head .down{color:var(--blue)}
 .wb-head .down span{margin-right:12px;white-space:nowrap}
-.wb-cols{display:grid;grid-template-columns:1.25fr 1fr 1fr;min-height:250px}
+.wb-cols{display:grid;grid-template-columns:1.25fr 1fr 1fr;min-height:300px}
 .wb-col{padding:8px 14px 16px;border-left:2px solid #2a2d31}
 .wb-col:first-child{border-left:0}
 .wb-col h2{font-family:var(--hand);font-weight:600;font-size:20px;line-height:1.5;display:flex;align-items:baseline;gap:8px;margin-bottom:8px;border-bottom:2px solid currentColor;padding-bottom:2px}
@@ -120,6 +120,8 @@ ul,ol{padding:0;list-style:none}
 .wb-note{font-family:var(--hand);font-size:13px;color:var(--red);margin-top:10px;line-height:1.6}
 .asks{display:grid;gap:6px;margin-top:12px}
 .ask{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;line-height:1.5}
+.ask .reply{font-family:var(--hand);font-size:16px;line-height:1.6}
+.ask .reply b{font-family:var(--font);font-size:13px;display:block;color:var(--blue)}
 .ask .btn{min-height:34px;padding:2px 10px;font-size:13px}
 .absent{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;padding:8px 18px 12px;border-top:1px dashed var(--frame);font-size:13px}
 .absent b{font-family:var(--hand);color:var(--red);font-size:16px}
@@ -419,6 +421,12 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
   .x:hover{background:#f3f4f5}
 }
 
+@media (min-width:993px){
+  .mag{font-size:20px;padding:8px 14px 9px;gap:2px 8px;border-radius:6px}
+  .mags{gap:12px}
+  .wb-col{padding:12px 20px 20px}
+  .wb-head{font-size:20px;padding:16px 22px 6px}
+}
 @media (max-width:1200px){.plans{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:992px){
   .nav{display:none}
@@ -530,9 +538,8 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
     <div class="wrap">
       <div class="hero-top">
         <div>
-          <p class="kicker">放課後児童クラブの出欠と連絡のアプリ</p>
-          <h1 id="h-top" tabindex="-1">ホワイトボードの出欠表を、下校時刻を知っているアプリに</h1>
-          <p class="sub">学校の下校時刻表を登録しておくと、下校から20分たっても入室の記録がない子が赤くなります。下のボードは触れます。時刻を進めてみてください。</p>
+                    <h1 id="h-top" tabindex="-1">学童のホワイトボードの出欠表を、下校時刻を知っているアプリに</h1>
+          <p class="sub">下校時刻表を入れておくと、下校から20分たっても来ない子が赤くなります。下のボードで時刻を進めてみてください。</p>
         </div>
         <div class="hero-cta">
           <button class="btn btn-main btn-lg" type="button" data-open="trial"><small>支払い情報の入力不要</small>30日間 無料で試す</button>
@@ -556,12 +563,7 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
               <p class="wb-status" id="wb-status" role="status"></p>
             </div>
           </div>
-          <p class="wb-hint">名前のマグネットを押すと「来所」「帰宅」へ動きます（QRカードを忘れた子を職員が入れるときの操作）。赤い子には、ボードから保護者に確認を送れます。名前・時刻は例です。</p>
         </div>
-        <aside class="notebook" aria-labelledby="nb-h" data-ui>
-          <h2 id="nb-h">きょうの連絡 <span id="nb-count" class="num"></span></h2>
-          <ol class="nb-list" id="nb-list" aria-live="polite"></ol>
-        </aside>
       </div>
     </div>
   </section>
@@ -584,16 +586,12 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
         </div>
         <ul class="notes">
           <li>10月29日（水）は個人面談のため、全学年 <b style="color:var(--red)">13:30</b> 下校です。</li>
-          <li>台風などによる臨時の下校は、学校からのメールでお知らせします。</li>
         </ul>
       </div>
       <div>
         <h2 class="h2" id="h-time">学校から配られる下校時刻表を、月の初めに1回入れます</h2>
-        <div class="points" style="margin-top:22px">
-          <div><h3>学年と曜日ごとに、表のまま入れる</h3><p>紙の表と同じ並びの入力欄に、学年×曜日の時刻を打ち込みます。先月の表を写して直すこともできます。</p></div>
-          <div><h3>個人面談・短縮授業の日だけ変える</h3><p>表の※印にあたる日は、その日だけ時刻を変えます。台風の臨時下校は、当日の朝に全学年をまとめて変えられます。</p></div>
-          <div><h3>赤くするまでの時間は、クラブごとに決める</h3><p>学校からクラブまで歩いて何分かで変えられます。初めは20分です。</p></div>
-        </div>
+        <p class="lead" style="margin-top:16px">紙の表と同じ並び（学年×曜日）で打ち込みます。※印の個人面談や台風の臨時下校は、その日だけ時刻を変えます。赤くするまでの20分は、学校からの道のりに合わせてクラブごとに変えられます。</p>
+</div>
       </div>
     </div>
   </section>
@@ -602,11 +600,14 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
     <div class="wrap">
       <div class="sec-head">
         <h2 class="h2" id="h-call">欠席とお迎えの変更は、電話ではなく保護者のスマホから届きます</h2>
-        <p class="lead">保護者は「欠席」「お迎えの変更」「早く帰す」を選び、ひとこと書いて送ります。届いた連絡は上の「きょうの連絡」に並び、職員が開くと既読がつきます。</p>
+        <p class="lead">保護者がスマホから送ると、左の「きょうの連絡」に届きます。右の画面から送ってみてください。</p>
       </div>
       <div class="calls">
         <div>
-          <div class="photo"><div><b>写真の枠</b>おやつの時間の事務室。鳴っている固定電話と、その横の壁に貼られた手書きのお迎えメモ（付せん4〜5枚）。横3:2、室内の自然光、職員の顔は写さない。</div></div>
+<aside class="notebook" aria-labelledby="nb-h" data-ui>
+          <h2 id="nb-h">きょうの連絡 <span id="nb-count" class="num"></span></h2>
+          <ol class="nb-list" id="nb-list" aria-live="polite"></ol>
+        </aside>
           <dl class="evid">
             <dt>11.3<small>件 → </small>2.1<small>件</small></dt><dd>保護者からの電話（1日平均）。みなと第二小学校区 放課後児童クラブの記録、導入前2か月と導入後6か月目の比較</dd>
           </dl>
@@ -643,15 +644,12 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
       <article class="letter" aria-label="クラブだよりの例">
         <p class="ttl">ひまわりクラブだより</p>
         <p class="meta"><span>令和8年11月号</span><span>みなと第二小学校区 放課後児童クラブ</span></p>
-        <p>朝晩が冷えるようになりました。上着を1枚、ロッカーに置いておいてください。</p>
         <h3>遠足のお知らせ</h3>
         <table><tbody>
           <tr><td>日にち</td><td>11月15日（土）雨天中止</td></tr>
           <tr><td>行き先</td><td>みなと中央公園（徒歩25分）</td></tr>
           <tr><td>持ちもの</td><td>弁当・水筒・敷物・雨具</td></tr>
         </tbody></table>
-        <h3>おやつ代の集金</h3>
-        <p>10月分は 1,650円（22日分）です。11月5日に引き落とします。</p>
       </article>
     </div>
   </section>
@@ -677,12 +675,12 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
       </div>
       <div class="table-x">
         <table class="ptable">
-          <thead><tr><th scope="col">プラン</th><th scope="col">登録児童数</th><th scope="col">主にできること</th><th scope="col" style="text-align:right">月額（税抜）</th></tr></thead>
+          <thead><tr><th scope="col">プラン</th><th scope="col">登録児童数</th><th scope="col" style="text-align:right">月額（税抜）</th></tr></thead>
           <tbody>
-            <tr><th scope="row">ライト</th><td>40人まで</td><td>出欠ボード・連絡・出席簿</td><td class="yen">￥6,980<small>/月</small></td></tr>
-            <tr><th scope="row">スタンダード</th><td>70人まで</td><td>＋長期休みの申し込み・集金</td><td class="yen">￥11,480<small>/月</small></td></tr>
-            <tr><th scope="row">ワイド</th><td>120人まで</td><td>＋支援の単位ごとのボード・申請</td><td class="yen">￥17,800<small>/月</small></td></tr>
-            <tr><th scope="row">法人・自治体</th><td>3施設から</td><td>＋複数クラブの一覧・実績報告</td><td class="yen">￥9,860<small>/月・1施設</small></td></tr>
+            <tr><th scope="row">ライト</th><td>40人まで</td><td class="yen">￥6,980<small>/月</small></td></tr>
+            <tr><th scope="row">スタンダード</th><td>70人まで</td><td class="yen">￥11,480<small>/月</small></td></tr>
+            <tr><th scope="row">ワイド</th><td>120人まで</td><td class="yen">￥17,800<small>/月</small></td></tr>
+            <tr><th scope="row">法人・自治体</th><td>3施設から</td><td class="yen">￥9,860<small>/月・1施設</small></td></tr>
           </tbody>
         </table>
       </div>
@@ -1154,16 +1152,18 @@ function wbRender() {
   const waitOrder = (a, b) => (isLate(b) - isLate(a)) || (a.g - b.g);
   ['wait', 'in', 'out'].forEach(s => kids.filter(k => k.st === s).sort(s === 'wait' ? waitOrder : (a, b) => (b.arr || 0) - (a.arr || 0)).forEach(k => cols[s].appendChild(magEl(k, true))));
   ['wait', 'in', 'out'].forEach(s => $('#n-' + s).textContent = kids.filter(k => k.st === s).length + '人');
-  $('#out-note').textContent = kids.some(k => k.st === 'out') ? '' : 'はると 17:40 祖母がお迎え';
+  $('#out-note').hidden = true;
+  $('#wb-reset').hidden = now === START && !kids.some(k => k.asked);
   const abs = $('#absent'); abs.innerHTML = '<b>欠席</b>';
   [{ name: 'めい', g: 4, note: '通院（連絡あり）', st: 'absent' }, ...kids.filter(k => k.st === 'absent').map(k => ({ name: k.name, g: k.g, note: '歯医者（確認ずみ）', st: 'absent' }))].forEach(a => {
     const s = document.createElement('span'); s.style.cssText = 'display:inline-flex;align-items:center;gap:6px';
     s.append(magEl(a, false), a.note); abs.appendChild(s);
   });
   const asks = $('#asks'); asks.innerHTML = '';
-  kids.filter(isLate).forEach(k => {
+  kids.filter(k => isLate(k) || k.asked).forEach(k => {
     const row = document.createElement('div'); row.className = 'ask';
-    if (k.asked) row.innerHTML = `<span><b>${k.name}</b>：確認を送りました。返事を待っています</span>`;
+    if (k.replied) row.innerHTML = `<span class="reply"><b>${k.name}の保護者</b>「${k.reply}」</span>`;
+    else if (k.asked) row.innerHTML = `<span><b>${k.name}</b>：確認を送りました。返事を待っています</span>`;
     else { const btn = document.createElement('button'); btn.type = 'button'; btn.className = 'btn btn-line'; btn.textContent = `${k.name}の保護者に確認を送る`; btn.addEventListener('click', () => ask(k)); row.appendChild(btn); }
     asks.appendChild(row);
   });
@@ -1213,7 +1213,7 @@ $('#parent').addEventListener('submit', e => {
   sent.style.color = '';
   nb.push({ who: `さえき はると（1年）の母【${kind}】`, at: hm(now), text, read: '', isNew: true });
   renderNb();
-  sent.textContent = `送りました。最初の画面の「きょうの連絡」に届いています（${hm(now)}）。`;
+  sent.textContent = `送りました。左の「きょうの連絡」に届いています（${hm(now)}）。`;
 });
 
 /* おたよりの既読 */
