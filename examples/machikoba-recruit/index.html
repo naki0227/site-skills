@@ -93,7 +93,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 
 /* ホワイトボード */
 .wb{background:var(--alu);padding:10px 10px 22px;position:relative;box-shadow:0 2px 0 #8e9399}
-.wb-in{background:var(--wb);color:var(--black);padding:20px 22px 18px;font-family:var(--hand)}
+.wb-in{background:var(--wb);color:var(--black);padding:20px 22px 24px;font-family:var(--hand)}
 .wb .mag{position:absolute;top:-4px;width:18px;height:18px;border-radius:50%;background:var(--mk-r);box-shadow:0 1px 0 #7a1a1a}
 .wb h2{margin:0 0 4px;font-size:var(--t3);font-weight:600;line-height:1.3}
 .wb .who{margin:0 0 12px;font-size:var(--t1);color:var(--mk-b)}
@@ -118,7 +118,7 @@ section{padding:clamp(56px,7vw,96px) 0}
 .navy .sh p{color:var(--navy-sub)}
 
 /* 写真の枠：撮るべき写真を書いておく。絵でごまかさない */
-.ph{margin:0;background:#dfe2dd;color:#3d454e;display:flex;flex-direction:column;justify-content:flex-end;padding:14px 16px;font-size:var(--t1);line-height:1.6;position:relative}
+.ph{margin:0;background:#dfe2dd;color:#3d454e;display:flex;flex-direction:column;justify-content:flex-end;padding:14px 16px 16px;font-size:var(--t1);line-height:1.6;position:relative}
 .ph::before{content:"写真";position:absolute;top:10px;left:12px;font-size:var(--t1);font-weight:700;background:#3d454e;color:#fff;padding:0 8px}
 .ph--wide{aspect-ratio:3/2}
 .ph--tall{aspect-ratio:4/5}
@@ -148,7 +148,7 @@ section{padding:clamp(56px,7vw,96px) 0}
 .insp .fig{display:grid;grid-template-columns:minmax(0,1fr) 13em}
 .insp .fig svg{width:100%;height:auto;padding:8px}
 .insp svg .dimT{font-size:var(--t3)} .insp svg .lenT{font-size:var(--t2)}
-.insp .meta{margin:0;padding:12px 14px;font-size:var(--t1);line-height:1.5;background:#eff0ea}
+.insp .meta{margin:0;padding:12px 14px 14px;font-size:var(--t1);line-height:1.5;background:#eff0ea}
 .insp .meta div{padding:4px 0}
 .insp .meta dt{color:var(--sub);font-size:var(--t1)}
 .insp .meta dd{margin:0;font-weight:700}
@@ -216,7 +216,7 @@ section{padding:clamp(56px,7vw,96px) 0}
 .seg{display:inline-flex;flex-wrap:wrap;background:#dfe2da;padding:3px;margin:0 0 10px}
 .seg button{min-height:44px;padding:0 14px;border:0;background:transparent;cursor:pointer;font-size:var(--t1);font-weight:700}
 .seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
-.teacher{margin-top:36px;background:#e6e9e1;border-left:6px solid var(--ink);padding:20px 24px}
+.teacher{margin-top:36px;background:#e6e9e1;border-left:6px solid var(--ink);padding:20px 24px 24px}
 .teacher h3{margin:0 0 6px;font-size:var(--t2);font-weight:800}
 .teacher p{margin:0;font-size:var(--t2)}
 
@@ -281,7 +281,7 @@ fieldset.f{border:0;margin:0;padding:0;min-width:0}
 .count.over{color:var(--err)}
 .fact{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:28px;padding-top:22px;border-top:1px solid var(--rule)}
 .fact .sum{font-size:var(--t1);color:var(--sub);margin-right:auto}
-.errsum{border:2px solid var(--err);background:#fff;padding:14px 16px;margin:0 0 24px;font-size:var(--t1);color:var(--err)}
+.errsum{border:2px solid var(--err);background:#fff;padding:14px 16px 16px;margin:0 0 24px;font-size:var(--t1);color:var(--err)}
 .errsum[hidden]{display:none}
 .errsum ul{margin:6px 0 0;padding-left:1.2em}
 .errsum a{color:var(--err)}
