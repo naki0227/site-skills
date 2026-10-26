@@ -97,7 +97,8 @@ function probe() {
   for (const el of document.body.querySelectorAll('*')) {
     if (!visible(el) || exempt(el) || /^(BUTTON|A|INPUT|SELECT|TEXTAREA|IMG|SVG|svg)$/.test(el.tagName)) continue;
     const s = getComputedStyle(el); const r = el.getBoundingClientRect();
-    if (r.height < 40 || r.width < 80 || r.height > vh * 1.2) continue;
+    // ボタン・ラベルのような1行の部品は、左右を広く取るのが普通なので数えない（2行以上の中身を持つ箱だけ）
+    if (r.height < 56 || r.width < 120 || r.height > vh * 1.2 || /^inline/.test(s.display)) continue;
     const framed = ['Top', 'Right', 'Bottom', 'Left'].every(d => parseFloat(s['border' + d + 'Width']) > 0 && s['border' + d + 'Style'] !== 'none') || (rgb(s.backgroundColor)[3] > .9 && s.backgroundColor !== getComputedStyle(el.parentElement || el).backgroundColor);
     if (!framed) continue;
     // 中身の端：中の要素の箱（枠・罫を含む）と文字の行の箱。箱の内側（枠線の内側）から測る
@@ -107,7 +108,22 @@ function probe() {
     if (!parts.length) continue;
     const gT = Math.min(...parts.map(x => x.top)) - inner.top, gB = inner.bottom - Math.max(...parts.map(x => x.bottom)), gL = Math.min(...parts.map(x => x.left)) - inner.left;
     if (gT < 0 || gB < 0 || gL < 0) continue;
+    const lhPx = parseFloat(s.lineHeight) || parseFloat(s.fontSize) * 1.5; if (r.height - gT - gB < lhPx * 1.8) continue;
     if (gL >= 8 && (gB + 1 < gT * .8 || gB + 1 < gL * .8)) m.tightBottom.push(`${el.tagName.toLowerCase()}「${el.innerText.replace(/\s+/g, ' ').slice(0, 12)}」上${Math.round(gT)}・下${Math.round(gB)}・左${Math.round(gL)}`);
+  }
+  // 情報の密度：画面1枚（高さ1画面分）ごとの、文字数と塊（段落・項目・セル・見出し・ボタン）の数。ヘッダー・ナビ・フッター、隠れている物は数えない
+  {
+    const H = document.documentElement.scrollHeight, n = Math.max(1, Math.ceil(H / vh)); const ch = Array(n).fill(0), bl = Array(n).fill(0);
+    for (const el of document.body.querySelectorAll('*')) {
+      if (!visible(el) || el.closest('footer,nav,header,[aria-hidden="true"],[hidden]')) continue;
+      let own = ''; for (const c of el.childNodes) if (c.nodeType === 3) own += c.textContent; own = own.replace(/\s+/g, ''); if (!own) continue;
+      const rc = el.getBoundingClientRect(); if (rc.right <= 0 || rc.left >= vw) continue;
+      let clip = false; for (let a = el.parentElement; a; a = a.parentElement) { const as = getComputedStyle(a); if (as.overflow !== 'visible') { const ar = a.getBoundingClientRect(); if (ar.width < 2 || ar.height < 2 || rc.bottom < ar.top || rc.top > ar.bottom || rc.right < ar.left || rc.left > ar.right) { clip = true; break; } } } if (clip) continue;
+      const i = Math.min(n - 1, Math.max(0, Math.floor((rc.top + scrollY) / vh))); ch[i] += own.length;
+      if (/^(P|LI|TD|DD|DT|H1|H2|H3|H4|BUTTON|A|LABEL|FIGCAPTION|BLOCKQUOTE)$/.test(el.tagName)) bl[i]++;
+    }
+    const med = a => [...a].sort((x, y) => x - y)[Math.floor(a.length / 2)];
+    m.density = { screens: n, medChars: med(ch), medBlocks: med(bl), firstChars: ch[0], firstBlocks: bl[0] };
   }
   // 見出しの行数
   for (const h of document.querySelectorAll('h1,h2,h3')) {
@@ -182,6 +198,11 @@ function judge(m, width) {
   if (m.pills >= 3) add('WARN', 'pill-chips', `丸いラベル（短い語のピル）が ${m.pills} 個`, '言葉を文の中に戻すか、文字の色だけにする');
   if (m.softRadius >= 4) add('WARN', 'soft-radius', `9〜16px の角丸の面が ${m.softRadius} 個`, '角は「四角」か「まる」に1回で決める。カードを丸めて浮かせない');
   if (m.tightBottom.length >= 2) add('WARN', 'tight-bottom', `下の余白が上や左右より狭い箱が ${m.tightBottom.length} 個（${m.tightBottom.slice(0, 2).join('、')}）`, '箱の中の余白は、下を上と同じか少し広く、左右より狭くしない（最後の要素の margin-bottom も確かめる）');
+  // 情報の密度（2026-10-26 の計測）：実サイトの画面1枚あたりの塊は中央値 3〜6（とらや4・ほぼ日3・Apple 3・Linear 3・SmartHR 6。宿の検索のじゃらん は21）、
+  // 最初の画面の文字は 56〜368字。使用例は塊 8〜36・最初の画面 331〜756字で、小さな物を1画面に詰めすぎていた
+  const d = m.density;
+  if (d && d.medBlocks > 12) add('WARN', 'dense-screen', `画面1枚あたりの塊が中央値 ${d.medBlocks} 個（実サイトは 3〜6、宿の検索結果で 21）`, '1画面に主役を1つ。塊を減らし、残した物を大きくする。一覧・検索結果なら理由を書いて残す');
+  if (d && !sp && d.firstChars > 450) add('WARN', 'dense-first', `最初の画面の文字が ${d.firstChars} 字（実サイトは 56〜368 字）`, '最初の画面は、題・何かを言う1文・主な行動・主役の物だけ。説明は下の章へ');
   // ai-tells：淡いベージュ・ピンクの無難な地。taste-skill：黄みのクリーム地（WARN）
   const [r, g, b] = m.bodyBgRgb; const mx = Math.max(r, g, b), mn = Math.min(r, g, b);
   if (mx > 235 && mx - mn >= 8 && mx - mn <= 40 && r >= g && g >= b) add('WARN', 'cream-ground', `地が淡いベージュ（${m.bodyBg}）`, '地は白か、題材の現場の色から');
@@ -199,7 +220,7 @@ function judge(m, width) {
     if (out) { fs.mkdirSync(out, { recursive: true }); await p.screenshot({ path: path.join(out, `${name}-top.png`) }); await p.screenshot({ path: path.join(out, `${name}-full.png`), fullPage: true }); }
     const m = await p.evaluate(probe);
     all.push(...judge(m, vp.width));
-    console.log(`${name} ${vp.width}px  本文 ${m.bodySize}px・本文の13px未満 ${m.runChars ? Math.round(m.runTiny / m.runChars * 100) : 0}%・大きさ ${m.sizeCount}段・書体 ${m.familyCount}・枠線 ${m.bordered}・箱 ${m.boxes}・影 ${m.softShadows}・グラデ ${m.gradients}・小ラベル ${m.eyebrows.length}・番号 ${m.numbering.length}・中央 ${m.runChars ? Math.round(m.runCenter / m.runChars * 100) : 0}%・色相 ${Object.values(m.hues).filter(v => v >= 2).length}・ピル ${m.pills}・角丸 ${m.softRadius}・下が詰まった箱 ${m.tightBottom.length}`);
+    console.log(`${name} ${vp.width}px  本文 ${m.bodySize}px・本文の13px未満 ${m.runChars ? Math.round(m.runTiny / m.runChars * 100) : 0}%・大きさ ${m.sizeCount}段・書体 ${m.familyCount}・枠線 ${m.bordered}・箱 ${m.boxes}・影 ${m.softShadows}・グラデ ${m.gradients}・小ラベル ${m.eyebrows.length}・番号 ${m.numbering.length}・中央 ${m.runChars ? Math.round(m.runCenter / m.runChars * 100) : 0}%・色相 ${Object.values(m.hues).filter(v => v >= 2).length}・ピル ${m.pills}・角丸 ${m.softRadius}・下が詰まった箱 ${m.tightBottom.length}・塊/画面 ${m.density?.medBlocks}・最初の画面 ${m.density?.firstChars}字`);
     await p.close();
   }
   await b.close();
