@@ -112,7 +112,8 @@ function probe() {
   // 見出しの行数
   for (const h of document.querySelectorAll('h1,h2,h3')) {
     if (!visible(h)) continue; const s = getComputedStyle(h); const lh = parseFloat(s.lineHeight) || parseFloat(s.fontSize) * 1.4;
-    m.headings.push({ tag: h.tagName.toLowerCase(), text: h.innerText.replace(/\s+/g, ' ').slice(0, 30), lines: Math.round(h.getBoundingClientRect().height / lh), size: Math.round(parseFloat(s.fontSize)) });
+    const vertical = /^vertical/.test(s.writingMode); // 縦書きの行は横に並ぶので、幅で数える
+    m.headings.push({ tag: h.tagName.toLowerCase(), text: h.innerText.replace(/\s+/g, ' ').slice(0, 30), lines: Math.round((vertical ? h.getBoundingClientRect().width : h.getBoundingClientRect().height) / lh), size: Math.round(parseFloat(s.fontSize)) });
   }
   // 最初の画面の主役が SVG の絵になっていないか
   for (const sv of document.querySelectorAll('svg')) {
