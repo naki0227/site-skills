@@ -2,7 +2,7 @@
 
 東京・北区の架空の銭湯「十条湯」のサウナを、60分ごとの枠で予約する画面。男女別・定員6名・当日割あり。日付・時間帯・人数を選んで空きを見て、予約の前（内容の確認）までを作った。
 
-- 画面：[`index.html`](index.html)（1枚の HTML・スクリプトの外部読み込みなし。書体だけ Google Fonts から使う字を切り出して読む。合計 約82KB）
+- 画面：[`index.html`](index.html)（1枚の HTML・スクリプトの外部読み込みなし。書体だけ Google Fonts から使う字を切り出して読む。写真2枚は `photos/`、出典は `photos/credits.json`）
 - Artifact：https://claude.ai/artifact/D3258zrg71QARRVdxwiot7（非公開。見せるには Artifact の共有メニューで共有する）
 - 作った日：2026-10-26
 
@@ -251,3 +251,16 @@ CLAUDE.md の決まりに従い、使ったファイルのうち、どのサイ�
 3. スマホのアクセスで、20px のまま「営業時間」の行が5行に折れていた（sp-full）。→ スマホは16px
 残った問題：PC の伝票の下が左の列より短く、右下に空きが残る。写真の枠は本物の写真が入るまでの仮。
 ```
+
+### 5回目の直し：写真の枠を実写に（site-skills 0.2.7、2026-10-26）
+ユーザーが4案（灰色の枠／色の面と大きな数字／題材の図／自由に使える実写＋出典）を見比べて「実写＋出典」を選んだので、「サウナと水風呂」の灰色の写真の枠2つを、`scripts/photos.js` で探した Wikimedia Commons の写真に替えた。
+
+| 写真 | 何が写っているか（画面のキャプション） | 出典 |
+|---|---|---|
+| `photos/A-Japanese-public-bath-in-museum---Flickr---odako1.jpg`（960×640） | 博物館に移された、昔の銭湯の洗い場。奥の壁に富士山のペンキ絵。十条湯の写真ではない | Koichi Oda／[Wikimedia Commons](https://commons.wikimedia.org/w/index.php?curid=55885722)／CC BY-SA 2.0 |
+| `photos/Shoes-boxes-at-a-Sento---Tokyo-area---Dec-22-2021.jpg`（960×720） | 東京近郊の銭湯の下足箱。番号の木札が鍵になる。このページの時間の札の元の形 | Nesnad／[Wikimedia Commons](https://commons.wikimedia.org/w/index.php?curid=113582446)／CC BY 4.0 |
+
+- 探した語：`sento bathhouse`・`sauna japan`・`public bath tiles`・`japanese public bath`・`sento tokyo`・`sauna interior`。日本の銭湯のサウナ室・水風呂そのものの自由な写真は見つからなかった（`sauna japan` はサウナ施設の外観、`sauna interior` はフィンランドやロシアのサウナ）。そこで、銭湯の「まわりの世界」から、ペンキ絵とタイルの洗い場、下足箱の木札を選んだ。下足箱は、このページの考え（下足札が時間を選ぶ部品になる）の元の物なので、キャプションでそう書いた。
+- サウナ室と水風呂の数字（92℃・16.5℃・2段・6名・地下水・外気浴4脚）は、写真のキャプションから外して、写真の上の1行に大きな数字で置いた。
+- `photos.js get` は、ときどき Wikimedia の画像の取得に失敗した（curl の 22。続けて取ると失敗しやすい）。少し置いて取り直すと取れた。
+- inspect：FAIL 0 / WARN 0、写真 2・灰色の枠 0（PC の塊/画面 11、スマホ 6）。

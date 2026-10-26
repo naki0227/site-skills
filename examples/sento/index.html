@@ -191,10 +191,12 @@ h1,h2,h3{font-family:var(--mincho);font-weight:400;line-height:1.5;margin:0}
 .photos dl{grid-column:1 / -1}
 @media (max-width:600px){.photos{grid-template-columns:1fr}}
 .ph{margin:0;min-width:0}
-.ph .frame{aspect-ratio:3 / 2;background:#ddd;display:grid;align-content:center;gap:4px;padding:16px;font-size:16px;color:var(--sub);max-width:100%}
-.ph .frame b{font-size:14px;color:var(--ink)}
+/* 写真は Wikimedia Commons の自由に使える実写（credits.json）。十条湯の物としては見せない */
+.ph img{display:block;width:100%;height:auto;aspect-ratio:4 / 3;object-fit:cover;background:#ddd;max-width:100%}
 .ph figcaption{font-size:16px;margin-top:10px}
-.ph figcaption .big{font-family:var(--mincho);font-size:32px;line-height:1.2}
+.ph figcaption small{display:block;font-size:14px;color:var(--sub);margin-top:4px}
+.temps{display:flex;flex-wrap:wrap;gap:8px 32px;margin:0 0 24px;align-items:baseline}
+.temps .big{font-family:var(--mincho);font-size:32px;line-height:1.2}
 .spec{margin:8px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-flow:column;grid-template-rows:auto auto;column-gap:24px}
 @media (max-width:600px){.spec{grid-template-columns:1fr;grid-auto-flow:row;grid-template-rows:none}}
 .spec dt,.spec dd{margin:0}
@@ -371,15 +373,16 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
 <section class="sec alt" id="room" aria-labelledby="room-h">
   <div class="wrap">
     <h2 id="room-h">サウナと水風呂</h2>
-    <p class="sub">男湯・女湯とも同じつくりです。外気浴は裏庭のベンチ4脚。</p>
+    <p class="sub">男湯・女湯とも同じつくりです。</p>
+    <p class="temps"><span><span class="big">92</span>℃前後　サウナ室（2段・6名・ガス遠赤外線）</span><span><span class="big">16.5</span>℃前後　水風呂（地下水）</span><span>外気浴は裏庭のベンチ4脚</span></p>
     <div class="photos">
       <figure class="ph">
-        <div class="frame" role="img" aria-label="写真の枠：サウナ室"><b>写真の枠</b>サウナ室の中を入口から。2段のひな壇に、番号の付いたマットが6枚並ぶ。右奥にガスの遠赤ストーブと 92℃ を指す温度計。人は入れない。横3:2、室内の照明のまま。</div>
-        <figcaption><span class="big">92</span>℃前後　サウナ室・2段・6名・ガス遠赤外線</figcaption>
+        <img src="photos/A-Japanese-public-bath-in-museum---Flickr---odako1.jpg" width="960" height="640" loading="lazy" alt="博物館に移された昔の銭湯の洗い場。白いタイルの壁にカランが並び、奥の壁一面に富士山と湖のペンキ絵。">
+        <figcaption>博物館に移された、昔の銭湯の洗い場。奥の壁に富士山のペンキ絵。十条湯の写真ではありません。<small>写真：Koichi Oda／<a href="https://commons.wikimedia.org/w/index.php?curid=55885722" target="_blank" rel="noopener">Wikimedia Commons</a>／CC BY-SA 2.0</small></figcaption>
       </figure>
       <figure class="ph">
-        <div class="frame" role="img" aria-label="写真の枠：水風呂"><b>写真の枠</b>タイル張りの水風呂を斜め上から。水色のタイルの底が透ける水面、縁に掛かった木の手桶。奥の壁に富士山のペンキ絵の裾。横3:2。</div>
-        <figcaption><span class="big">16.5</span>℃前後　水風呂・地下水・2名ほど</figcaption>
+        <img src="photos/Shoes-boxes-at-a-Sento---Tokyo-area---Dec-22-2021.jpg" width="960" height="720" loading="lazy" alt="東京近郊の銭湯の下足箱。番号の付いた木札の鍵が縦横に並ぶ。">
+        <figcaption>東京近郊の銭湯の下足箱。番号の木札が鍵になる。このページの時間の札は、この木札の形から取りました。<small>写真：Nesnad／<a href="https://commons.wikimedia.org/w/index.php?curid=113582446" target="_blank" rel="noopener">Wikimedia Commons</a>／CC BY 4.0</small></figcaption>
       </figure>
     </div>
   </div>
@@ -706,7 +709,7 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
     ['番台の料金板・営業時間の札', 'ai', 'site-skills／ai-tells.md', '「木札のような料金表や営業時間の札を、文字の組み方で作る」「手書きの文字（画像でなく書体）」。書体 Klee One は自分で選んだ。'],
     ['区切りは余白と地の色・本文16px', 'ai', 'site-skills／ai-tells.md・inspect.js', '四辺を囲む箱や罫をやめ、白と #f2f2f2 の1段の差で分けた（最初の3画面の枠線 73→9 個。実サイトは 7〜27 個）。本文16px・注記14px（13px未満 38%→0%）。'],
     ['情報の密度（最初の画面は予約の部品だけ）', 'ai', 'site-skills／ai-tells.md「1画面に主役を1つ」・inspect.js', '最初の画面は題・1文・予約の部品と伝票だけ。木札から終わりの時刻と値段（その日どの枠も同じ）を外し、料金板・設備・注意書きは下の章へ。PC の塊/画面 27→12、最初の画面 660→442字。選ぶための画面なので、最初の画面だけは塊19（じゃらんの検索 21 と同じ理由）。'],
-    ['写真の枠（サウナ室・水風呂）', 'ai', 'site-skills／ai-tells.md', '「SVG の絵を主役にしない」「撮るべき写真を具体的に書く」。最初の画面には置かず、予約の下に。'],
+    ['実写の写真（よその銭湯の洗い場・下足箱）', 'ai', 'site-skills／ai-tells.md「絵と写真」・make.md 6・photos.js', '灰色の写真の枠を、Wikimedia Commons の自由に使える実写に替えた。十条湯の物としては見せず、何が写っているかと出典（作者・ライセンス）を画面に書く。下足箱の写真は、時間の木札の元の形。'],
     ['見出しをそのまま書く', 'ai', 'site-skills／ai-tells.md', '「十条湯 サウナの予約」。格言調・英字の小見出し・丸数字をやめた。'],
     ['枠の長さ・料金・きまり', 'own', '自分で決めた（スキルに無い）', '60分のうち10分を清掃、当日割160円、遅刻15分で次へ回す、構造化データ（LocalBusiness＋Offer）。']
   ];
