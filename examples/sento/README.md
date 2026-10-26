@@ -3,7 +3,7 @@
 東京・北区の架空の銭湯「十条湯」のサウナを、60分ごとの枠で予約する画面。男女別・定員6名・当日割あり。日付・時間帯・人数を選んで空きを見て、予約の前（内容の確認）までを作った。
 
 - 画面：[`index.html`](index.html)（1枚の HTML・外部ファイルなし・約56KB）
-- Artifact：（公開後に追記）
+- Artifact：https://claude.ai/artifact/D3258zrg71QARRVdxwiot7（非公開。見せるには Artifact の共有メニューで共有する）
 - 作った日：2026-10-26
 
 ## 決めた4つ（site-skills「作る前に決めること」）
