@@ -13,7 +13,16 @@ const [cmd, a, b, c] = process.argv.slice(2);
 
 // Node の fetch がプロキシを通らない環境があるので、curl に任せる
 const curlJSON = u => JSON.parse(execSync(`curl -s -m 30 -A ${JSON.stringify(UA)} ${JSON.stringify(u)}`).toString());
-const curlFile = (u, f) => execSync(`curl -s -m 60 -f -A ${JSON.stringify(UA)} -o ${JSON.stringify(f)} ${JSON.stringify(u)}`);
+// Wikimedia は続けて取ると 429（取りすぎ）を返すので、2・4・8・16秒あけて4回まで取り直す
+const sleep = s => execSync(`sleep ${s}`);
+function curlFile(u, f) {
+  for (let i = 0; ; i++) {
+    const code = execSync(`curl -s -m 60 -A ${JSON.stringify(UA)} -o ${JSON.stringify(f)} -w "%{http_code}" ${JSON.stringify(u)}`).toString().trim();
+    if (code === '200') return;
+    if ((code === '429' || code.startsWith('5')) && i < 4) { sleep(2 ** (i + 1)); continue; }
+    throw new Error(`${code} ${u}`);
+  }
+}
 
 // Wikimedia の元画像の URL から、指定の幅の縮小版の URL を作る
 function thumb(url, w) {
