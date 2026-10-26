@@ -19,7 +19,7 @@ description: ゲーム・アニメ・音楽・イベントの公式サイトを�
 | 下位タイプ | 向く題材 | 見本（解剖したサイト） | ファイル |
 |---|---|---|---|
 | 家庭用・PCゲーム | 据え置き・携帯機・PC のゲーム | Pokémon LEGENDS Z-A（2026-10-24） | `types/console.md` |
-| スマホゲーム | iOS・Android のゲーム | （まだ無い） | `types/mobile.md` |
+| スマホゲーム | iOS・Android のゲーム | ウマ娘 プリティーダービー 公式ポータル（2026-10-26） | `types/mobile.md` |
 | アニメ・音楽・映画 | 作品・アーティストの公式 | （まだ無い） | `types/anime-music.md` |
 | イベント・ライブ | フェス、ライブ、展示、eスポーツ | Lollapalooza（2026-10-25） | `types/event.md` |
 

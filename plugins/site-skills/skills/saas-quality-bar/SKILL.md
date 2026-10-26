@@ -20,7 +20,7 @@ description: SaaS・ソフトウェア・アプリの製品サイトを作る・
 |---|---|---|---|
 | 開発者向け | API、開発ツール、インフラ | Resend | `types/devtools.md` |
 | 業務SaaS | 営業・人事・会計・社内ツール | Backlog | `types/business.md` |
-| AIプロダクト | 生成AI・AIを中心にした製品 | （まだ無い） | `types/ai.md` |
+| AIプロダクト | 生成AI・AIを中心にした製品 | Nani翻訳 | `types/ai.md` |
 | 個人向けアプリ | スマホ・PC のアプリ | （まだ無い） | `types/app.md` |
 
 ## このスキルの範囲
