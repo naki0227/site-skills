@@ -3,8 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>機械オペレーター採用 | 河内精機</title>
-<meta name="description" content="東大阪・高井田の切削加工の町工場、河内精機の採用サイト。NC旋盤・マシニングセンタの機械オペレーターを2名募集。未経験可、工場見学から受け付けます。">
+<title>機械オペレーター募集（未経験可）| 河内精機 採用</title>
+<meta name="description" content="東大阪・高井田の切削加工の町工場、河内精機。NC旋盤・マシニングセンタの機械オペレーターを2名募集。月給21万3,400円から（高卒）、土日祝休み、未経験可。工場見学から受け付けます。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@600&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
 {"@type":"Organization","name":"株式会社河内精機","foundingDate":"1965","numberOfEmployees":{"@type":"QuantitativeValue","value":38},"address":{"@type":"PostalAddress","addressRegion":"大阪府","addressLocality":"東大阪市","streetAddress":"高井田西4丁目"},"description":"精密な金属部品の切削加工（架空の会社。site-skills の使用例）"},
@@ -12,295 +15,312 @@
 ]}
 </script>
 <style>
-/* 配色表（lp-quality-bar ミニマル・ハードウェア＝teenage engineering の実測から）
-   墨 #0f0e12 / 文字 #f5f5f5 / 補助 #7f7f7f（墨の上だけ）/ 線 #4d4d4d〜#272727
-   明るい灰 #f5f5f5 の章では補助を #5c5c5c に（#7f7f7f は 3.67:1 で不足するため）
-   色は「部品」が持つ：鋼 #8f979e / ステンレス #c9c9c2 / 黄銅 #c29a55。UIに色は足さない。 */
+/* 色は工場の現場から決めた（どのサイトの実測値でもない。README「スキルで足りなかったこと」）
+   作業着の紺 #1f2d4a ／ 床塗装の緑 #3f6650 ／ 安全表示の黄 #f5c400 と黒 #1a1a1a
+   検査記録票の紙 #fbfbf6・罫 #aab2bb・検査印の朱 #c8322d ／ ホワイトボード #f7f8f5・枠のアルミ #b9bec3・マーカーの黒 赤 青
+   コントラスト（計算済み）：白/紺 13.7、白/床 6.51、黒/黄 10.59、#5a6470/紙 5.79、朱/紙 5.12 */
 :root{
-  --ink:#0f0e12; --paper:#f5f5f5; --white:#fff;
-  --sub-d:#8a8a8a; --sub-l:#5c5c5c;
-  --line-d:#4d4d4d; --line-dd:#272727; --line-l:#cfcfcf;
-  --err:#b30000;
-  /* 寸法は基準幅の比率（teenage engineering：PC 980／SP 490）。上限 1080px で止め、文字には下限をつける */
-  --u:calc(min(100vw,1080px)/980);
-  --f9:max(12px,calc(var(--u)*13*.8));
-  --f13:max(13px,calc(var(--u)*13));
-  --f18:max(16px,calc(var(--u)*18));
-  --f27:max(21px,calc(var(--u)*27));
-  --f36:max(26px,calc(var(--u)*36));
+  --navy:#1f2d4a; --navy-sub:#b9c3cf; --floor:#3f6650; --floor-sub:#d9e3dc;
+  --yellow:#f5c400; --black:#1a1a1a;
+  --paper:#fbfbf6; --rule:#aab2bb; --rule-l:#d6dbe0; --ink:#1f2d4a; --sub:#5a6470; --stamp:#c8322d;
+  --wb:#f7f8f5; --alu:#b9bec3; --mk-r:#c62828; --mk-b:#2456a6;
+  --err:#c62828;
+  --hand:"Klee One","Yu Kyokasho","YuKyokasho",cursive;
+  --mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,"Noto Sans Mono CJK JP",monospace;
   --wrap:1132px;
-  --ease:ease;
+  --f-body:clamp(16px,1.25vw,18px);
+  --f-small:clamp(13px,.97vw,14px);
+  --f-h2:clamp(26px,2.6vw,38px);
 }
-@media (max-width:767px){ :root{ --u:calc(100vw/490); } }
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:80px;-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--ink);color:var(--paper);font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Noto Sans JP","Noto Sans CJK JP",Meiryo,sans-serif;font-size:var(--f18);line-height:1.5;font-weight:400;font-feature-settings:"palt" 0}
-img,svg{display:block;max-width:100%}
+html{scroll-behavior:smooth;scroll-padding-top:72px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","BIZ UDPGothic","Yu Gothic UI","Noto Sans JP","Noto Sans CJK JP",Meiryo,sans-serif;font-size:var(--f-body);line-height:1.75}
+svg{display:block;max-width:100%}
 a{color:inherit}
 button,input,select,textarea{font:inherit;color:inherit}
-.num{font-variant-numeric:tabular-nums;font-family:"Helvetica Neue",Arial,"Hiragino Sans",sans-serif}
-.wrap{max-width:var(--wrap);margin:0 auto;padding:0 max(16px,calc(var(--u)*28))}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 clamp(16px,2.5vw,28px)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-:focus-visible{outline:3px solid #f5f5f5;outline-offset:3px}
-.light :focus-visible{outline-color:var(--ink)}
-.skip{position:absolute;left:8px;top:-60px;background:#fff;color:var(--ink);padding:8px 12px;z-index:100}
+.tab{font-variant-numeric:tabular-nums}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:2px;box-shadow:0 0 0 6px var(--black)}
+.skip{position:absolute;left:8px;top:-60px;background:var(--yellow);color:var(--black);padding:8px 12px;z-index:100}
 .skip:focus{top:8px}
 
-/* ── ヘッダー：LayerX の「ナビ5つ＋右端の採用ボタン」、隠し方は Valmont（76px 過ぎで translateY(-100%)、上へ 38px 戻すと出す） */
-.hd{position:fixed;inset:0 0 auto 0;height:76px;z-index:40;background:var(--ink);border-bottom:1px solid var(--line-dd);transition:transform .2s ease-out .2s}
+/* 床のトラテープ（安全表示の黄黒）。章の境目にだけ使う */
+.tape{height:12px;background:repeating-linear-gradient(-45deg,var(--yellow) 0 14px,var(--black) 14px 28px)}
+
+/* ボタン：主な行動は「工場見学を申し込む」の1つだけ。安全表示の黄に黒文字 */
+.go{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 26px;background:var(--yellow);color:var(--black);border:2px solid var(--black);font-weight:800;font-size:clamp(16px,1.25vw,18px);text-decoration:none;cursor:pointer;box-shadow:4px 4px 0 var(--black);transition:transform .1s ease-out}
+.go:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--black)}
+.go small{font-weight:500;font-size:var(--f-small)}
+@media (max-width:599px){ .hero .go{width:100%;flex-direction:column;gap:0;padding:8px 16px;min-height:64px} }
+.go--s{min-height:44px;padding:0 16px;font-size:15px;box-shadow:3px 3px 0 var(--black)}
+.go--s:active{transform:translate(3px,3px)}
+.plain{display:inline-flex;align-items:center;min-height:48px;padding:0 18px;border:2px solid var(--ink);background:transparent;cursor:pointer;font-weight:700;font-size:var(--f-small)}
+.go[disabled],.plain[disabled]{opacity:.5;cursor:not-allowed}
+.go[aria-busy="true"]{opacity:.7;cursor:progress}
+
+/* ── ヘッダー：LayerX（ナビ5つ＋右端に採用の入口）、隠し方は Valmont（76px→ここでは 64px、上へ高さの半分で戻す） */
+.hd{position:fixed;inset:0 0 auto 0;height:64px;z-index:40;background:var(--navy);color:#fff;transition:transform .2s ease-out .2s}
 .hd.is-hidden{transform:translateY(-100%)}
-.hd .wrap{height:100%;display:flex;align-items:center;gap:24px}
-.logo{display:flex;align-items:baseline;gap:10px;text-decoration:none;white-space:nowrap}
-.logo b{font-size:var(--f27);font-weight:600;letter-spacing:.04em}
-.logo span{font-size:var(--f13);color:var(--sub-d)}
+.hd .wrap{height:100%;display:flex;align-items:center;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;white-space:nowrap}
+.logo .mark{width:30px;height:30px;border:2px solid #fff;display:grid;place-items:center;font-weight:800;font-size:15px}
+.logo b{font-size:20px;font-weight:800;letter-spacing:.06em}
+.logo span{font-size:13px;color:var(--navy-sub)}
 .gnav{margin-left:auto}
-.gnav ul{display:flex;gap:calc(var(--u)*22);list-style:none;margin:0;padding:0}
-.gnav a{display:block;padding:10px 2px;text-decoration:none;font-size:var(--f13);position:relative}
-.gnav a::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .2s var(--ease)}
-.gnav a.is-current::after{transform:scaleX(1)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border:1px solid var(--paper);background:var(--paper);color:var(--ink);font-size:var(--f13);font-weight:600;text-decoration:none;cursor:pointer;border-radius:0;transition:transform .15s var(--ease),opacity .15s var(--ease)}
-.btn:active{transform:scale(.97)}
-.btn--ghost{background:transparent;color:inherit;border-color:currentColor}
-.light .btn{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.light .btn--ghost{background:transparent;color:var(--ink)}
-.btn[disabled]{opacity:.45;cursor:not-allowed}
-.btn[aria-busy="true"]{opacity:.6;cursor:progress}
-.burger{display:none;margin-left:auto;width:48px;height:48px;border:1px solid var(--line-d);background:transparent;cursor:pointer;position:relative}
-.burger i{position:absolute;left:13px;right:13px;height:1px;background:var(--paper);transition:transform .2s var(--ease),opacity .15s var(--ease)}
-.burger i:nth-child(1){top:18px}.burger i:nth-child(2){top:24px}.burger i:nth-child(3){top:30px}
-.burger[aria-expanded="true"] i:nth-child(1){transform:translateY(6px) rotate(45deg)}
-.burger[aria-expanded="true"] i:nth-child(2){opacity:0}
-.burger[aria-expanded="true"] i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
-.spmenu{position:fixed;inset:76px 0 0 0;background:var(--ink);z-index:39;padding:24px 16px 40px;opacity:0;transform:translateY(-8px);pointer-events:none;transition:opacity .2s var(--ease),transform .2s var(--ease);overflow:auto}
-.spmenu.is-open{opacity:1;transform:none;pointer-events:auto}
-.spmenu ol{list-style:none;margin:0 0 28px;padding:0;counter-reset:m}
-.spmenu li a{display:flex;gap:16px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--line-dd);text-decoration:none;font-size:var(--f27)}
-.spmenu li a span{font-size:var(--f13);color:var(--sub-d)}
-@media (max-width:899px){ .gnav,.hd .btn{display:none} .burger{display:block} }
+.gnav ul{display:flex;gap:4px;list-style:none;margin:0;padding:0}
+.gnav a{display:block;padding:8px 12px;text-decoration:none;font-size:15px;border-bottom:3px solid transparent}
+.gnav a.is-current{border-color:var(--yellow)}
+.burger{display:none;margin-left:auto;min-width:56px;height:44px;border:2px solid #fff;background:transparent;color:#fff;cursor:pointer;font-size:13px;font-weight:700}
+.spmenu{position:fixed;inset:64px 0 0 0;background:var(--navy);color:#fff;z-index:39;padding:16px 16px 40px;opacity:0;pointer-events:none;transition:opacity .2s ease;overflow:auto}
+.spmenu.is-open{opacity:1;pointer-events:auto}
+.spmenu ul{list-style:none;margin:0 0 24px;padding:0}
+.spmenu li a{display:block;padding:16px 0;border-bottom:1px solid #3a4a68;text-decoration:none;font-size:20px;font-weight:700}
+@media (max-width:959px){ .gnav,.hd .go{display:none} .burger{display:block} }
 
-/* ── 章の型：番号 → 題 → リード（Valmont の入口「01 About Us」の番号つき、teenage の「名前を大きく・行き先を小さく」） */
-section{padding:calc(var(--u)*96) 0}
-.light{background:var(--paper);color:var(--ink)}
-.light .sub{color:var(--sub-l)}
-.sub{color:var(--sub-d)}
-.sh{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:16px 40px;align-items:end;margin-bottom:calc(var(--u)*56);border-bottom:1px solid var(--line-d);padding-bottom:20px}
-.light .sh{border-color:var(--line-l)}
-.sh .no{font-size:var(--f13);display:block;margin-bottom:8px}
-.sh h2{margin:0;font-size:var(--f36);font-weight:300;line-height:1.25;letter-spacing:.02em}
-.sh p{margin:0;font-size:var(--f18);max-width:34em}
-@media (max-width:767px){ .sh{grid-template-columns:1fr} }
-
-/* ── 最初の画面 */
-.hero{padding:calc(76px + var(--u)*72) 0 0;min-height:min(100svh,920px);display:flex;flex-direction:column}
-.hero .wrap{flex:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:40px;align-items:center}
-.kicker{font-size:var(--f13);display:flex;flex-wrap:wrap;gap:6px 16px;margin:0 0 24px}
-.kicker b{font-weight:600;border:1px solid var(--line-d);padding:2px 10px}
-.hero h1{margin:0 0 28px;font-weight:300;font-size:clamp(38px,5.3125vw,76.5px);line-height:1.25;letter-spacing:0}
-.hero h1 .num{font-weight:300}
+/* ── 最初の画面：紺（作業着）の地に、募集の中身をそのまま見出しにする。右は事務所前のホワイトボード（見学の空き） */
+.hero{background:var(--navy);color:#fff;padding:104px 0 56px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px;align-items:start}
+.hero .co{margin:0 0 14px;font-size:15px;color:var(--navy-sub)}
+.hero h1{margin:0 0 24px;font-size:clamp(32px,4.1vw,58px);line-height:1.3;font-weight:800;letter-spacing:.01em}
 .hero h1 .nb{display:inline-block}
-.hero .lead{margin:0 0 36px;max-width:26em}
-.hero .acts{display:flex;flex-wrap:wrap;gap:12px}
-.draw{position:relative;border:1px solid var(--line-dd);aspect-ratio:600/380;width:100%}
-.draw svg{width:100%;height:100%}
-.draw figcaption{position:absolute;left:12px;bottom:10px;font-size:var(--f9);color:var(--sub-d)}
-@media (max-width:899px){ .hero{min-height:auto} .hero .wrap{grid-template-columns:1fr;gap:32px} }
+.facts{list-style:none;margin:0 0 32px;padding:0;border-top:1px solid #3a4a68}
+.facts li{display:grid;grid-template-columns:7em 1fr;gap:12px;padding:12px 0;border-bottom:1px solid #3a4a68;align-items:baseline}
+.facts span{color:var(--navy-sub);font-size:var(--f-small)}
+.facts b{font-weight:700;font-size:clamp(17px,1.4vw,20px)}
+.hero .after{margin:16px 0 0;font-size:var(--f-small);color:var(--navy-sub)}
+@media (max-width:899px){ .hero{padding-top:88px} .hero .wrap{grid-template-columns:minmax(0,1fr);gap:36px} .facts li{grid-template-columns:4em 1fr} }
 
-/* ── 流れる帯：teenage engineering の marquee（12s linear・すき間40px・2コピー・ホバーで停止）。これがページで唯一「常に動く」もの */
-.band{margin-top:calc(var(--u)*72);border-top:1px solid var(--line-dd);border-bottom:1px solid var(--line-dd);display:flex;align-items:stretch}
-.band .vp{overflow:hidden;flex:1;display:flex}
-.band .track{display:flex;gap:40px;padding:14px 20px;white-space:nowrap;animation:mq 24s linear infinite;font-size:var(--f13)}
-.band .track span{color:var(--sub-d)}.band .track b{font-weight:400;margin-right:8px}
-.band:hover .track,.band.is-paused .track{animation-play-state:paused}
-.band button{flex:none;border:0;border-left:1px solid var(--line-dd);background:transparent;padding:0 16px;min-width:48px;cursor:pointer;font-size:var(--f9)}
-@keyframes mq{to{transform:translateX(-50%)}}
+/* ホワイトボード */
+.wb{background:var(--wb);color:var(--black);border:10px solid var(--alu);border-bottom-width:22px;padding:20px 22px 18px;position:relative;font-family:var(--hand);box-shadow:0 2px 0 #8e9399}
+.wb .mag{position:absolute;top:-4px;width:18px;height:18px;border-radius:50%;background:var(--mk-r);box-shadow:0 1px 0 #7a1a1a}
+.wb h2{margin:0 0 4px;font-size:clamp(22px,2vw,28px);font-weight:600;line-height:1.3}
+.wb .who{margin:0 0 12px;font-size:15px;color:var(--mk-b)}
+.wb ul{list-style:none;margin:0;padding:0}
+.wb li+li{border-top:1px dashed #c7ccd1}
+.wb button{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;width:100%;min-height:48px;align-items:center;background:transparent;border:0;padding:6px 4px;text-align:left;cursor:pointer;font-family:var(--hand);font-size:clamp(18px,1.5vw,21px);font-weight:600}
+.wb .left{color:var(--mk-b);font-size:.86em}
+.wb .full{color:var(--mk-r)}
+.wb button[aria-disabled="true"]{cursor:not-allowed}
+.wb button[aria-disabled="true"] .d{text-decoration:line-through;text-decoration-color:var(--mk-r);text-decoration-thickness:2px;color:#5d6166}
+.wb button.is-picked{background:#fff3b0}
+.wb .note{margin:12px 0 0;font-size:15px;color:var(--mk-r)}
 
-/* ── 01 仕事：部品を選ぶ */
-.parts{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px}
-.tabs{display:flex;border:1px solid var(--line-d);margin-bottom:20px}
-.tabs button{flex:1;min-height:52px;padding:8px 10px;background:transparent;border:0;border-right:1px solid var(--line-d);cursor:pointer;font-size:var(--f13);text-align:left;line-height:1.35}
-.tabs button:last-child{border-right:0}
-.tabs button[aria-selected="true"]{background:var(--paper);color:var(--ink)}
-.tabs button small{display:block;color:var(--sub-d);font-size:var(--f9)}
-.tabs button[aria-selected="true"] small{color:var(--sub-l)}
-.panel .draw{transition:opacity .15s var(--ease)}
-.panel.is-swap .draw{opacity:0}
-.spec{margin:0;display:grid;grid-template-columns:auto 1fr;border-top:1px solid var(--line-d)}
-.spec dt,.spec dd{margin:0;padding:12px 0;border-bottom:1px solid var(--line-d);font-size:var(--f13)}
-.spec dt{color:var(--sub-d);padding-right:20px;white-space:nowrap}
-.spec dd .num{font-size:var(--f18)}
-.parts .say{font-size:var(--f18);margin:20px 0 0}
-.day{margin-top:calc(var(--u)*80)}
-.day h3,.hist h3,.co h3{font-size:var(--f27);font-weight:300;margin:0 0 6px}
-.day ol{list-style:none;margin:24px 0 0;padding:0;border-top:1px solid var(--line-d)}
-.day li{display:grid;grid-template-columns:5.5em minmax(0,14em) minmax(0,1fr);gap:8px 24px;padding:16px 0;border-bottom:1px solid var(--line-d);font-size:var(--f13)}
-.day li time{font-size:var(--f18)}
-.day li b{font-weight:600;font-size:var(--f18);line-height:1.35}
-@media (max-width:767px){ .parts{grid-template-columns:1fr} .day li{grid-template-columns:4.2em 1fr} .day li p{grid-column:2} }
-.day li p{margin:0}
+/* ── 章の頭：題はそのまま書く。太いゴシック＋リード */
+section{padding:clamp(56px,7vw,96px) 0}
+.sh{margin-bottom:clamp(28px,3.5vw,44px);max-width:46em}
+.sh h2{margin:0 0 10px;font-size:var(--f-h2);line-height:1.35;font-weight:800}
+.sh p{margin:0;color:var(--sub)}
+.floor{background:var(--floor);color:#fff}
+.floor .sh p{color:var(--floor-sub)}
+.navy{background:var(--navy);color:#fff}
+.navy .sh p{color:var(--navy-sub)}
 
-/* ── 02 人：カードを並べず全幅の行（LayerX 1行192〜196px・内側28px、Valmont 1行210px） */
-.people{list-style:none;margin:0;padding:0}
-.person{border-bottom:1px solid var(--line-l)}
-.person .row{display:grid;grid-template-columns:minmax(0,15em) minmax(0,1fr) auto;gap:16px 40px;align-items:center;min-height:196px;padding:28px 0}
-.who b{display:block;font-size:var(--f27);font-weight:400;line-height:1.3}
-.who span{display:block;font-size:var(--f13)}
-.person q{font-size:var(--f27);font-weight:300;line-height:1.5;quotes:"「" "」"}
-.more{min-width:48px;min-height:48px;border:1px solid var(--ink);background:transparent;cursor:pointer;padding:0 16px;font-size:var(--f13);display:inline-flex;align-items:center;gap:10px;white-space:nowrap}
-.more i{display:inline-block;width:10px;height:10px;position:relative}
-.more i::before,.more i::after{content:"";position:absolute;left:0;right:0;top:4.5px;height:1px;background:currentColor;transition:transform .2s var(--ease)}
-.more i::after{transform:rotate(90deg)}
-.more[aria-expanded="true"] i::after{transform:rotate(0)}
-.qa{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px 40px;padding:0 0 36px;opacity:0;transform:translateY(-6px);transition:opacity .2s var(--ease),transform .2s var(--ease)}
-.qa.is-open{opacity:1;transform:none}
+/* 写真の枠：撮るべき写真を書いておく。絵でごまかさない */
+.ph{margin:0;background:#dfe2dd;color:#3d454e;border:1px dashed #6d757d;display:flex;flex-direction:column;justify-content:flex-end;padding:14px 16px;font-size:var(--f-small);line-height:1.6;position:relative}
+.ph::before{content:"写真";position:absolute;top:10px;left:12px;font-size:12px;font-weight:700;border:1px solid currentColor;padding:0 6px}
+.ph--wide{aspect-ratio:3/2}
+.ph--tall{aspect-ratio:4/5}
+.floor .ph{background:#cfd8d1;border-color:#2b4a37;color:#22382a}
+
+/* ── 紙（検査記録票・作業日報） */
+.sheet{background:var(--paper);color:var(--ink);border:1px solid #7f8892;box-shadow:3px 3px 0 rgba(0,0,0,.25)}
+.sheet-h{display:flex;flex-wrap:wrap;align-items:stretch;border-bottom:2px solid var(--ink)}
+.sheet-h > *{padding:8px 12px;border-right:1px solid var(--rule);font-size:13px;line-height:1.4}
+.sheet-h > *:last-child{border-right:0}
+.sheet-h .ttl{font-weight:800;font-size:17px;letter-spacing:.2em;display:flex;align-items:center}
+.sheet-h .cell span{display:block;color:var(--sub);font-size:11px}
+.sheet-h .cell b{font-weight:700}
+.mono{font-family:var(--mono)}
+.stamp{display:inline-grid;place-items:center;width:40px;height:40px;border:2px solid var(--stamp);border-radius:50%;color:var(--stamp);font-weight:800;font-size:13px;line-height:1.1;text-align:center;transform:rotate(-8deg)}
+.stamp--sq{border-radius:3px;width:auto;height:auto;padding:2px 6px;font-size:12px;transform:rotate(-4deg)}
+
+/* 仕事：部品のタブ（記録票の綴じのつまみ）＋検査記録票 */
+.work-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:40px;align-items:start}
+.work-grid .ph{margin-bottom:16px}
+.work-grid .lead p{margin:0 0 14px}
+.work-grid .lead p:last-child{margin:0}
+@media (max-width:899px){ .work-grid{grid-template-columns:minmax(0,1fr)} }
+.tabs{display:flex;gap:4px;margin:0 0 -1px 8px;position:relative;z-index:1}
+.tabs button{min-height:44px;padding:6px 14px;background:#d7ddd8;color:var(--ink);border:1px solid #7f8892;border-bottom:0;cursor:pointer;font-size:14px;font-weight:700;line-height:1.3}
+.tabs button[aria-selected="true"]{background:var(--paper);padding-bottom:7px}
+.insp .fig{display:grid;grid-template-columns:minmax(0,1fr) 13em;border-bottom:1px solid var(--rule)}
+.insp .fig svg{width:100%;height:auto;padding:8px;border-right:1px solid var(--rule)}
+.insp .meta{margin:0;padding:10px 12px;font-size:13px;line-height:1.5}
+.insp .meta div{padding:4px 0;border-bottom:1px dotted var(--rule)}
+.insp .meta div:last-child{border:0}
+.insp .meta dt{color:var(--sub);font-size:11px}
+.insp .meta dd{margin:0;font-weight:700}
+@media (max-width:599px){ .insp .fig{grid-template-columns:1fr} .insp .fig svg{border-right:0;border-bottom:1px solid var(--rule)} }
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.mt{width:100%;border-collapse:collapse;font-size:13px;min-width:560px}
+.mt th,.mt td{border:1px solid var(--rule);padding:6px 8px;text-align:center;line-height:1.35;white-space:nowrap}
+.mt thead th{background:#eef0ea;font-weight:700;font-size:12px}
+.mt td.item{text-align:left;font-weight:700}
+.mt td.v{font-family:var(--hand);font-size:16px;color:#23324f}
+.insp .foot{display:flex;flex-wrap:wrap;gap:10px 24px;align-items:center;padding:10px 12px;font-size:13px}
+.insp .foot .say{flex:1 1 18em;margin:0;font-family:var(--hand);font-size:16px;color:#23324f;line-height:1.6}
+.insp .foot .sign{display:flex;gap:12px;align-items:center}
+.insp .foot .sign > span{display:flex;flex-direction:column;align-items:center;font-size:11px;color:var(--sub);gap:2px}
+.panel{transition:opacity .15s ease}
+.panel.is-swap{opacity:0}
+.hint-scroll{display:none;font-size:12px;color:var(--sub);padding:4px 12px 0;margin:0}
+@media (max-width:599px){ .hint-scroll{display:block} }
+
+/* 作業日報 */
+.nippo{margin-top:clamp(48px,6vw,72px)}
+.nippo h3{font-size:clamp(20px,1.8vw,24px);font-weight:800;margin:0 0 6px}
+.nippo > p{margin:0 0 18px;color:var(--floor-sub)}
+.dr{width:100%;border-collapse:collapse;font-size:var(--f-small)}
+.dr th,.dr td{border-bottom:1px solid var(--rule-l);padding:10px 12px;vertical-align:top;text-align:left;line-height:1.6}
+.dr thead th{font-size:12px;color:var(--sub);font-weight:700;border-bottom:2px solid var(--ink)}
+.dr td.t{font-family:var(--mono);white-space:nowrap;width:5.5em}
+.dr td.w{font-weight:700;width:12em}
+.dr td.memo{font-family:var(--hand);font-weight:600;font-size:16px;color:#23324f}
+@media (max-width:599px){
+  .dr thead{display:none} .dr,.dr tbody,.dr td{display:block;width:auto!important}
+  .dr tr{display:grid;grid-template-columns:4.2em 1fr;padding:10px 12px;border-bottom:1px solid var(--rule-l)}
+  .dr td{border:0;padding:0} .dr td.memo{grid-column:2;margin-top:4px}
+}
+.dr-sum{display:flex;flex-wrap:wrap;gap:6px 20px;padding:10px 12px;font-size:13px;border-top:2px solid var(--ink)}
+
+/* ── 人：全幅の行（LayerX 1行 192〜196px・内側 28px） */
+.people{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.person{border-bottom:1px solid var(--rule)}
+.person .row{display:grid;grid-template-columns:150px minmax(0,13em) minmax(0,1fr) auto;gap:16px 32px;align-items:center;min-height:196px;padding:28px 0}
+.person .ph{width:150px;font-size:12px;padding:10px;line-height:1.5}
+.who b{display:block;font-size:22px;font-weight:800;line-height:1.3}
+.who span{display:block;font-size:var(--f-small);color:var(--sub)}
+.person blockquote{margin:0;font-size:clamp(18px,1.6vw,22px);font-weight:700;line-height:1.6}
+.more{min-height:48px;border:2px solid var(--ink);background:transparent;cursor:pointer;padding:0 16px;font-size:14px;font-weight:700;white-space:nowrap}
+.qa{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 32px;padding:0 0 32px 182px;opacity:0;transition:opacity .2s ease}
+.qa.is-open{opacity:1}
 .qa[hidden]{display:none}
-.qa h4{margin:0 0 6px;font-size:var(--f13);font-weight:600}
-.qa p{margin:0;font-size:var(--f13);line-height:1.8}
-@media (max-width:899px){ .person .row{grid-template-columns:1fr;min-height:0;gap:12px} .person .row .more{justify-self:start} .qa{grid-template-columns:1fr} }
+.qa h4{margin:0 0 4px;font-size:14px;font-weight:800}
+.qa p{margin:0;font-size:var(--f-small);line-height:1.85}
+@media (max-width:959px){
+  .person .row{grid-template-columns:110px minmax(0,1fr);min-height:0;align-items:start}
+  .person .ph{width:110px;grid-row:span 3}
+  .person .row .more{justify-self:start}
+  .qa{grid-template-columns:1fr;padding-left:0}
+}
 
-/* ── 03 数字：Valmont の会社ページ「数字4列（列幅 325px）・説明は小さな灰」。灰は 4.5:1 以上に直した */
-.figs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line-d);border-left:1px solid var(--line-d)}
-.fig{border-right:1px solid var(--line-d);border-bottom:1px solid var(--line-d);padding:24px 20px 28px}
-.fig dt{font-size:var(--f13);margin-bottom:18px;min-height:2.6em}
-.fig dd{margin:0}
-.fig .big{font-size:calc(var(--f36)*1.3);font-weight:300;line-height:1.05;letter-spacing:-.03em}
-.fig .big small{font-size:var(--f18);letter-spacing:0;margin-left:4px}
-.fig p{margin:12px 0 0;font-size:var(--f13);color:var(--sub-d);line-height:1.7}
-@media (max-width:899px){ .figs{grid-template-columns:repeat(2,minmax(0,1fr))} }
-@media (max-width:420px){ .fig{padding:18px 14px 20px} }
-.hist{margin-top:calc(var(--u)*80)}
-/* 年表：Valmont「年を横一列（間 21.6px）、選ぶと1文が替わる」。選んでいない年は Valmont の #c0c0c0（1.82:1）でなく 4.5:1 以上に */
-.years{display:flex;gap:4px 21.6px;flex-wrap:wrap;list-style:none;margin:20px 0 0;padding:0;border-bottom:1px solid var(--line-d)}
-.years button{background:transparent;border:0;padding:10px 0 12px;min-height:48px;cursor:pointer;font-size:var(--f18);color:var(--sub-d);position:relative}
-.years button[aria-selected="true"]{color:var(--paper)}
-.years button::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:3px;background:var(--paper);transform:scaleX(0);transition:transform .2s var(--ease)}
-.years button[aria-selected="true"]::after{transform:scaleX(1)}
-.yr{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 40px;padding:28px 0;align-items:baseline;transition:opacity .15s var(--ease)}
-.yr.is-swap{opacity:0}
-.yr .y{font-size:calc(var(--f36)*1.3);font-weight:300;letter-spacing:-.03em}
-.yr p{margin:0;max-width:30em}
-@media (max-width:767px){ .yr{grid-template-columns:1fr} }
-.co{margin-top:calc(var(--u)*80)}
-.tbl{width:100%;border-collapse:collapse;margin-top:20px;font-size:var(--f13)}
-.tbl th,.tbl td{text-align:left;vertical-align:top;padding:14px 0;border-bottom:1px solid var(--line-d);line-height:1.8}
-.tbl th{width:11em;font-weight:400;color:var(--sub-d);padding-right:20px}
-.light .tbl th,.light .tbl td{border-color:var(--line-l)}
-.light .tbl th{color:var(--sub-l)}
-@media (max-width:599px){ .tbl th,.tbl td{display:block;width:auto;border:0;padding:0} .tbl th{padding-top:14px} .tbl td{padding:2px 0 14px;border-bottom:1px solid var(--line-d)} .light .tbl td{border-color:var(--line-l)} }
+/* ── 給料・休み・残業：記録票と同じ罫の表。数字は、確かめたい行の中に置く */
+.tbl{width:100%;border-collapse:collapse;font-size:var(--f-small);border-top:2px solid var(--ink)}
+.tbl th,.tbl td{text-align:left;vertical-align:top;padding:16px 0;border-bottom:1px solid var(--rule);line-height:1.8}
+.tbl th{width:10em;font-weight:800;padding-right:20px}
+.tbl .big{font-size:clamp(24px,2.2vw,30px);font-weight:800;line-height:1.3;display:block}
+.tbl .note{display:block;color:var(--sub)}
+@media (max-width:599px){ .tbl th,.tbl td{display:block;width:auto;padding:0;border:0} .tbl th{padding-top:16px} .tbl td{padding:4px 0 16px;border-bottom:1px solid var(--rule)} }
+.seg{display:inline-flex;flex-wrap:wrap;border:2px solid var(--ink);margin:0 0 10px}
+.seg button{min-height:44px;padding:0 14px;border:0;background:transparent;cursor:pointer;font-size:14px;font-weight:700}
+.seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.teacher{margin-top:36px;background:#e6e9e1;border-left:6px solid var(--ink);padding:20px 24px}
+.teacher h3{margin:0 0 6px;font-size:17px;font-weight:800}
+.teacher p{margin:0;font-size:var(--f-small)}
 
-/* ── 04 募集要項 */
-.seg{display:inline-flex;border:1px solid var(--ink);margin:0 0 4px;flex-wrap:wrap}
-.seg button{min-height:44px;padding:0 16px;border:0;background:transparent;cursor:pointer;font-size:var(--f13)}
-.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
-.pay .num{font-size:var(--f27);font-weight:300}
-.pay .note{display:block;color:var(--sub-l)}
-.teacher{margin-top:40px;border:1px solid var(--line-l);padding:24px;display:grid;grid-template-columns:auto 1fr;gap:8px 24px}
-.teacher h3{margin:0;font-size:var(--f18);font-weight:600}
-.teacher p{margin:0;font-size:var(--f13);line-height:1.8}
-@media (max-width:599px){ .teacher{grid-template-columns:1fr} }
+/* ── 会社 */
+.co-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:48px}
+.co-grid h3{font-size:20px;font-weight:800;margin:0 0 12px}
+.hist{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.hist li{display:grid;grid-template-columns:3.5em 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--rule);font-size:var(--f-small);line-height:1.7}
+.hist b{font-family:var(--mono);font-weight:700}
+@media (max-width:899px){ .co-grid{grid-template-columns:minmax(0,1fr)} }
 
-/* ── 05 応募の流れ */
-.steps{list-style:none;margin:0 0 calc(var(--u)*72);padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line-d)}
-.steps li{padding:20px 20px 24px 0;border-bottom:1px solid var(--line-d);position:relative}
-.steps li+li{padding-left:20px;border-left:1px solid var(--line-d)}
-.steps .n{font-size:var(--f13);color:var(--sub-d)}
-.steps b{display:block;font-size:var(--f18);font-weight:600;margin:6px 0}
-.steps p{margin:0;font-size:var(--f13);line-height:1.8}
-@media (max-width:899px){ .steps{grid-template-columns:1fr} .steps li+li{padding-left:0;border-left:0} }
-.route{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border:1px solid var(--line-d);margin-bottom:40px}
-.route a{display:block;padding:16px 18px;text-decoration:none;font-size:var(--f13);border-right:1px solid var(--line-d);min-height:48px}
-.route a:last-child{border-right:0}
-.route a b{display:block;font-size:var(--f18);font-weight:400}
-@media (max-width:767px){ .route{grid-template-columns:1fr} .route a{border-right:0;border-bottom:1px solid var(--line-d)} .route a:last-child{border-bottom:0} }
+/* ── 応募：見学から内定までを工程表で */
+.koutei{width:100%;border-collapse:collapse;font-size:var(--f-small);border-top:2px solid #fff;margin-bottom:clamp(40px,5vw,64px)}
+.koutei th,.koutei td{text-align:left;vertical-align:top;padding:14px 16px 14px 0;border-bottom:1px solid #3a4a68;line-height:1.75}
+.koutei th{font-weight:800;font-size:16px;width:13em}
+.koutei td.when{font-family:var(--mono);color:var(--navy-sub);white-space:nowrap;width:9em}
+@media (max-width:599px){ .koutei tr{display:grid;grid-template-columns:1fr;padding:12px 0;border-bottom:1px solid #3a4a68} .koutei th,.koutei td{display:block;width:auto;border:0;padding:0} }
+.route{display:flex;flex-wrap:wrap;gap:8px 24px;margin:0 0 16px;font-size:var(--f-small);color:var(--navy-sub)}
+.route a{color:#fff;font-weight:700}
 
-/* フォーム：LayerX の「入力→確認→完了」の3段 */
-.form{background:var(--paper);color:var(--ink);padding:max(20px,calc(var(--u)*48))}
-.prog{display:flex;list-style:none;margin:0 0 32px;padding:0;gap:4px;font-size:var(--f13)}
-.prog li{flex:1;padding-top:10px;border-top:3px solid var(--line-l);color:var(--sub-l)}
-.prog li[aria-current="step"]{border-color:var(--ink);color:var(--ink);font-weight:600}
-.prog li.done{border-color:var(--ink);color:var(--ink)}
-.fgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 32px}
+/* フォーム：LayerX の入力→確認→完了。紙の上に書く */
+.form{padding:clamp(20px,4vw,44px)}
+.prog{display:flex;list-style:none;margin:0 0 28px;padding:0;gap:4px;font-size:14px}
+.prog li{flex:1;padding-top:8px;border-top:4px solid var(--rule-l);color:var(--sub)}
+.prog li[aria-current="step"],.prog li.done{border-color:var(--ink);color:var(--ink);font-weight:800}
+.fgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 28px}
 .fgrid .full{grid-column:1/-1}
 @media (max-width:767px){ .fgrid{grid-template-columns:1fr} }
-.f label,.f legend{display:block;font-size:var(--f13);font-weight:600;margin-bottom:8px;padding:0}
-.f .req{font-weight:400;font-size:var(--f9);border:1px solid var(--ink);padding:0 5px;margin-left:8px}
-.f .opt{font-weight:400;font-size:var(--f9);color:var(--sub-l);margin-left:8px}
-.f input[type=text],.f input[type=tel],.f input[type=email],.f input[type=number],.f select,.f textarea{width:100%;min-height:48px;padding:10px 12px;border:1px solid #8a8a8a;background:#fff;border-radius:0;font-size:16px}
-.f textarea{min-height:120px;resize:vertical;line-height:1.7}
-.f input::placeholder,.f textarea::placeholder{color:#6b6b6b}
-.f .hint{display:block;font-size:var(--f9);color:var(--sub-l);margin-top:6px}
-.f .err{display:none;font-size:var(--f13);color:var(--err);margin-top:6px}
-.f.is-err input,.f.is-err select,.f.is-err textarea{border-color:var(--err);border-width:2px}
+.f label,.f legend{display:block;font-size:15px;font-weight:800;margin-bottom:8px;padding:0}
+.f .req{font-weight:700;font-size:12px;background:var(--ink);color:#fff;padding:1px 6px;margin-left:8px}
+.f .opt{font-weight:400;font-size:12px;color:var(--sub);margin-left:8px}
+.f input[type=text],.f input[type=tel],.f input[type=email],.f input[type=number],.f select,.f textarea{width:100%;min-height:50px;padding:10px 12px;border:1px solid #6d757d;background:#fff;border-radius:0;font-size:16px}
+.f textarea{min-height:110px;resize:vertical;line-height:1.7}
+.f input::placeholder,.f textarea::placeholder{color:#6d757d}
+.f .hint{display:block;font-size:13px;color:var(--sub);margin-top:6px}
+.f .err{display:none;font-size:14px;font-weight:700;color:var(--err);margin-top:6px}
+.f.is-err input,.f.is-err select,.f.is-err textarea{border:2px solid var(--err)}
 .f.is-err .err{display:block}
 fieldset.f{border:0;margin:0;padding:0;min-width:0}
 .choices{display:flex;flex-wrap:wrap;gap:8px}
-.choices label{display:flex;align-items:center;gap:10px;min-height:48px;padding:0 16px;border:1px solid #8a8a8a;background:#fff;font-weight:400;margin:0;cursor:pointer}
+.choices label{display:flex;align-items:center;gap:10px;min-height:50px;padding:0 16px;border:1px solid #6d757d;background:#fff;font-weight:600;margin:0;cursor:pointer;font-size:15px}
 .choices input{width:18px;height:18px;accent-color:var(--ink)}
-.choices label:has(input:checked){border:2px solid var(--ink);padding:0 15px}
+.choices label:has(input:checked){border:2px solid var(--ink);padding:0 15px;background:#fff3b0}
 .f.is-err .choices label{border-color:var(--err)}
-.agree{display:flex;gap:10px;align-items:flex-start;font-size:var(--f13);font-weight:400!important;cursor:pointer}
-.agree input{width:20px;height:20px;margin-top:2px;flex:none;accent-color:var(--ink)}
-.count{float:right;font-weight:400;font-size:var(--f9);color:var(--sub-l)}
+.agree{display:flex!important;gap:10px;align-items:flex-start;font-size:14px;font-weight:500!important;cursor:pointer}
+.agree input{width:20px;height:20px;margin-top:3px;flex:none;accent-color:var(--ink)}
+.count{float:right;font-weight:400;font-size:12px;color:var(--sub)}
 .count.over{color:var(--err)}
-.fact{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:32px;padding-top:24px;border-top:1px solid var(--line-l)}
-.fact .sum{font-size:var(--f13);color:var(--sub-l);margin-right:auto}
-.errsum{border:2px solid var(--err);padding:14px 16px;margin:0 0 24px;font-size:var(--f13);color:var(--err)}
+.fact{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:28px;padding-top:22px;border-top:1px solid var(--rule)}
+.fact .sum{font-size:14px;color:var(--sub);margin-right:auto}
+.errsum{border:2px solid var(--err);background:#fff;padding:14px 16px;margin:0 0 24px;font-size:14px;color:var(--err)}
 .errsum[hidden]{display:none}
 .errsum ul{margin:6px 0 0;padding-left:1.2em}
 .errsum a{color:var(--err)}
-.conf{margin:0;display:grid;grid-template-columns:minmax(0,10em) 1fr;border-top:1px solid var(--line-l)}
-.conf dt,.conf dd{margin:0;padding:12px 0;border-bottom:1px solid var(--line-l);font-size:var(--f13)}
-.conf dt{color:var(--sub-l);padding-right:16px}
-.conf dd.empty{color:var(--sub-l)}
+.conf{margin:0;display:grid;grid-template-columns:minmax(0,10em) 1fr;border-top:2px solid var(--ink)}
+.conf dt,.conf dd{margin:0;padding:12px 0;border-bottom:1px solid var(--rule);font-size:14px}
+.conf dt{color:var(--sub);padding-right:16px}
+.conf dd.empty{color:var(--sub)}
 @media (max-width:599px){ .conf{grid-template-columns:1fr} .conf dt{border:0;padding-bottom:0} }
-.done-box h3{font-size:var(--f27);font-weight:300;margin:0 0 12px}
-.done-box p{margin:0 0 12px;font-size:var(--f13);line-height:1.9}
-.done-box .num{font-size:var(--f18)}
+.done-box h3{font-size:24px;font-weight:800;margin:0 0 12px}
+.done-box p{margin:0 0 12px;font-size:15px}
 .step[hidden]{display:none}
 
-/* ── お知らせ：全幅の行・日付つき・外のサイトには ↗ */
-.news{list-style:none;margin:0;padding:0}
-.news a{display:grid;grid-template-columns:7em 6em minmax(0,1fr) auto;gap:6px 20px;padding:20px 0;border-bottom:1px solid var(--line-l);text-decoration:none;font-size:var(--f13);align-items:baseline}
-.news time{color:var(--sub-l)}
-.news .cat{border:1px solid var(--line-l);padding:0 6px;justify-self:start}
-.news .t{font-size:var(--f18)}
-@media (max-width:767px){ .news a{grid-template-columns:auto 1fr} .news .t{grid-column:1/-1} .news .ext{grid-column:1/-1} }
+/* ── お知らせ */
+.news{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.news a{display:grid;grid-template-columns:7.5em 4em minmax(0,1fr) auto;gap:4px 18px;padding:18px 0;border-bottom:1px solid var(--rule);text-decoration:none;font-size:var(--f-small);align-items:baseline}
+.news time{font-family:var(--mono);color:var(--sub)}
+.news .cat{font-weight:700}
+.news .t{font-size:var(--f-body);font-weight:700}
+.news .ext{color:var(--sub)}
+@media (max-width:767px){ .news a{grid-template-columns:auto 1fr} .news .t,.news .ext{grid-column:1/-1} }
 
-/* ── フッター */
-.ft{padding:56px 0 120px;font-size:var(--f13);border-top:1px solid var(--line-dd)}
-.ft .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px}
+.ft{background:var(--navy);color:#fff;padding:40px 0 112px;font-size:var(--f-small)}
+.ft .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px}
 .ft p{margin:0 0 6px}
-.ft .fic{color:var(--sub-d)}
+.ft .fic{color:var(--navy-sub)}
 
-/* ── 使ったスキル：右下に固定 */
-.skillbtn{position:fixed;right:16px;bottom:16px;z-index:50;min-height:48px;padding:0 18px;background:var(--paper);color:var(--ink);border:1px solid var(--ink);cursor:pointer;font-size:var(--f13);font-weight:600;box-shadow:2px 2px 0 var(--ink);transition:transform .1s ease-out}
-.skillbtn:active{transform:translate(2px,2px)}
-dialog.skills{width:min(920px,calc(100vw - 24px));max-height:calc(100svh - 24px);padding:0;border:1px solid var(--ink);background:var(--paper);color:var(--ink)}
-dialog.skills::backdrop{background:rgba(15,14,18,.6)}
-.skills header{position:sticky;top:0;background:var(--paper);display:flex;align-items:center;gap:16px;padding:16px 20px;border-bottom:1px solid var(--line-l)}
-.skills header h2{margin:0;font-size:var(--f18);font-weight:600;margin-right:auto}
-.skills .close{min-width:48px;min-height:48px;border:1px solid var(--ink);background:transparent;cursor:pointer}
-.skills .body{padding:8px 20px 24px;font-size:var(--f13);line-height:1.75}
+/* ── 使ったスキル */
+.skillbtn{position:fixed;right:16px;bottom:16px;z-index:50;min-height:48px;padding:0 18px;background:#fff;color:var(--ink);border:2px solid var(--ink);cursor:pointer;font-size:14px;font-weight:800;box-shadow:3px 3px 0 var(--ink);transition:transform .1s ease-out}
+.skillbtn:active{transform:translate(3px,3px)}
+dialog.skills{width:min(940px,calc(100vw - 24px));max-height:calc(100svh - 24px);padding:0;border:2px solid var(--ink);background:var(--paper);color:var(--ink)}
+dialog.skills::backdrop{background:rgba(31,45,74,.6)}
+.skills header{position:sticky;top:0;z-index:1;background:var(--paper);display:flex;align-items:center;gap:16px;padding:14px 20px;border-bottom:2px solid var(--ink)}
+.skills header h2{margin:0;font-size:18px;font-weight:800;margin-right:auto}
+.skills .close{min-width:48px;min-height:48px;border:2px solid var(--ink);background:transparent;cursor:pointer;font-size:18px}
+.skills .body{padding:8px 20px 24px;font-size:14px;line-height:1.75}
 .skills .body > p{margin:12px 0}
 .skills table{width:100%;border-collapse:collapse}
-.skills th,.skills td{text-align:left;vertical-align:top;padding:12px 12px 12px 0;border-bottom:1px solid var(--line-l)}
-.skills thead th{font-weight:400;color:var(--sub-l);position:sticky;top:0}
-.skills td:first-child{font-weight:600;white-space:nowrap}
-.skills code{font-size:.95em;background:#e6e6e6;padding:0 4px}
-@media (max-width:767px){ .skills thead{display:none} .skills tr{display:block;border-bottom:1px solid var(--line-l);padding:10px 0} .skills td{display:block;border:0;padding:2px 0} .skills td:first-child{white-space:normal} }
+.skills th,.skills td{text-align:left;vertical-align:top;padding:12px 12px 12px 0;border-bottom:1px solid var(--rule)}
+.skills thead th{font-weight:700;color:var(--sub)}
+.skills td:first-child{font-weight:800;white-space:nowrap}
+.skills code{font-family:var(--mono);font-size:.92em;background:#e8ebe4;padding:0 4px}
+@media (max-width:767px){ .skills thead{display:none} .skills tr{display:block;border-bottom:1px solid var(--rule);padding:10px 0} .skills td{display:block;border:0;padding:2px 0} .skills td:first-child{white-space:normal} }
 
-/* ホバーはマウス端末だけ（lp rules 7：とらや） */
+/* ホバーはマウスの端末だけ（lp rules 7：とらや） */
 @media (hover:hover) and (pointer:fine){
-  .gnav a:hover::after{transform:scaleX(1)}
-  .btn:hover,.more:hover,.route a:hover,.news a:hover .t,.skillbtn:hover{opacity:.72}
-  .tabs button:not([aria-selected="true"]):hover,.years button:not([aria-selected="true"]):hover{opacity:.72}
+  .gnav a:hover{border-color:var(--navy-sub)}
+  .plain:hover,.more:hover,.skillbtn:hover,.news a:hover .t,.route a:hover{opacity:.72}
+  .wb button:not([aria-disabled="true"]):hover .d{text-decoration:underline;text-decoration-color:var(--mk-b)}
+  .tabs button:not([aria-selected="true"]):hover{opacity:.8}
 }
-/* 動きは「足す」でなく、reduced-motion と saveData で全部止める */
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important}
-  .band .track{animation:none}
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;transition-delay:0s!important}
 }
-.save-data .band .track{animation:none}
 </style>
 </head>
 <body>
@@ -308,180 +328,183 @@ dialog.skills::backdrop{background:rgba(15,14,18,.6)}
 
 <header class="hd" id="hd">
   <div class="wrap">
-    <a class="logo" href="#top"><b>河内精機</b><span>採用</span></a>
+    <a class="logo" href="#top"><span class="mark" aria-hidden="true">河</span><b>河内精機</b><span>採用</span></a>
     <nav class="gnav" aria-label="ページ内">
       <ul>
         <li><a href="#work">仕事</a></li>
         <li><a href="#people">人</a></li>
-        <li><a href="#numbers">数字</a></li>
-        <li><a href="#terms">募集要項</a></li>
+        <li><a href="#pay">給料と休み</a></li>
+        <li><a href="#company">会社</a></li>
         <li><a href="#apply">応募の流れ</a></li>
       </ul>
     </nav>
-    <a class="btn" href="#form">工場見学・応募</a>
-    <button class="burger" id="burger" aria-expanded="false" aria-controls="spmenu" aria-label="メニュー"><i></i><i></i><i></i></button>
+    <a class="go go--s" href="#form">工場見学を申し込む</a>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="spmenu">メニュー</button>
   </div>
 </header>
 <nav class="spmenu" id="spmenu" aria-label="メニュー" hidden>
-  <ol>
-    <li><a href="#work"><span class="num">01</span>仕事</a></li>
-    <li><a href="#people"><span class="num">02</span>人</a></li>
-    <li><a href="#numbers"><span class="num">03</span>数字</a></li>
-    <li><a href="#terms"><span class="num">04</span>募集要項</a></li>
-    <li><a href="#apply"><span class="num">05</span>応募の流れ</a></li>
-  </ol>
-  <a class="btn" href="#form" style="width:100%">工場見学・応募</a>
+  <ul>
+    <li><a href="#work">仕事</a></li><li><a href="#people">人</a></li><li><a href="#pay">給料と休み</a></li><li><a href="#company">会社</a></li><li><a href="#apply">応募の流れ</a></li>
+  </ul>
+  <a class="go" href="#form" style="width:100%">工場見学を申し込む</a>
 </nav>
 
 <main id="main">
 <section class="hero" id="top" aria-labelledby="h1">
   <div class="wrap">
     <div>
-      <p class="kicker"><b>機械オペレーター 2名募集</b><span>未経験可・35歳未満</span><span>東大阪市 高井田</span></p>
-      <h1 id="h1"><span class="nb">髪の毛の</span><span class="nb"><span class="num">7</span>分の<span class="num">1</span>を、</span><span class="nb">削り分ける。</span></h1>
-      <p class="lead">河内精機は、油圧バルブや半導体装置に入る金属部品を、1個から2,000個まで削っている町工場です。NC旋盤とマシニングセンタを動かす人を探しています。図面が読めなくても、最初の3か月は測るところから教えます。</p>
-      <div class="acts">
-        <a class="btn" href="#form">まず工場を見に行く（60分）</a>
-        <a class="btn btn--ghost" href="#terms">給料と休みを見る</a>
-      </div>
+      <p class="co">東大阪市高井田の町工場・河内精機（金属部品の切削、従業員38名）</p>
+      <h1 id="h1"><span class="nb">機械オペレーターを</span><span class="nb">2名募集しています</span></h1>
+      <ul class="facts">
+        <li><span>仕事</span><b>NC旋盤とマシニングセンタで、金属の部品を削って測る</b></li>
+        <li><span>給料</span><b class="tab">月給 21万3,400円から（高校新卒）</b></li>
+        <li><span>休み</span><b>土日祝。年間117日、夜勤なし</b></li>
+        <li><span>経験</span><b>なくていい。最初の3か月は測り方から</b></li>
+        <li><span>場所</span><b>Osaka Metro 高井田駅から歩いて9分</b></li>
+      </ul>
+      <a class="go" href="#form">工場見学を申し込む<small>60分・私服で可・交通費あり</small></a>
+      <p class="after">見学のあとで応募するか決めてかまいません。</p>
     </div>
-    <figure class="draw" style="margin:0">
-      <svg id="heroSvg" viewBox="0 0 600 380" role="img" aria-labelledby="heroCap"></svg>
-      <figcaption id="heroCap">油圧バルブのスプール（SCM435）。いちばん太いところの外径 φ11.98、許される差は ±0.005mm。</figcaption>
-    </figure>
-  </div>
-  <div class="band" id="band">
-    <div class="vp" aria-hidden="true"><div class="track" id="track">
-      <span><b>S45C</b>機械構造用炭素鋼</span><span><b>SCM435</b>クロムモリブデン鋼</span><span><b>SUS304</b>ステンレス</span><span><b>SUS440C</b>焼入れできるステンレス</span><span><b>C3604</b>快削黄銅</span><span><b>A5052</b>アルミ</span><span><b>A2017</b>ジュラルミン</span><span><b>POM</b>樹脂</span>
-    </div></div>
-    <p class="sr">削っている材料：S45C、SCM435、SUS304、SUS440C、C3604、A5052、A2017、POM。</p>
-    <button type="button" id="bandBtn" aria-pressed="false">止める</button>
+    <div class="wb" role="region" aria-labelledby="wbT">
+      <span class="mag" style="left:22px" aria-hidden="true"></span><span class="mag" style="right:22px;background:var(--mk-b);box-shadow:0 1px 0 #13306a" aria-hidden="true"></span>
+      <h2 id="wbT">工場見学できる日</h2>
+      <p class="who">事務所前のボード。1回3人まで（西岡）</p>
+      <ul id="wbList"></ul>
+      <p class="note">日を押すと、申し込みの欄に入ります。</p>
+    </div>
   </div>
 </section>
+<div class="tape" aria-hidden="true"></div>
 
-<section id="work" aria-labelledby="h-work">
+<section id="work" class="floor" aria-labelledby="h-work">
   <div class="wrap">
-    <div class="sh"><div><span class="no num sub">01</span><h2 id="h-work">仕事</h2></div><p class="sub">機械に材料をつかませ、刃物を付け、最初の1個を測る。合っていれば量産し、2時間ごとに抜き取って測る。仕事の半分は「測る」です。</p></div>
-    <div class="parts">
-      <div class="panel" id="partPanel">
-        <div class="tabs" role="tablist" aria-label="削っている部品">
-          <button role="tab" id="t-spool" aria-controls="partPanel" aria-selected="true" tabindex="0">スプール<small>油圧バルブ</small></button>
-          <button role="tab" id="t-flange" aria-controls="partPanel" aria-selected="false" tabindex="-1">フランジ<small>半導体装置</small></button>
-          <button role="tab" id="t-joint" aria-controls="partPanel" aria-selected="false" tabindex="-1">ジョイント<small>医療用ポンプ</small></button>
+    <div class="sh"><h2 id="h-work">仕事の中身</h2><p>機械に材料をつかませ、刃物を付け、最初の1個を測る。合っていれば量産し、2時間ごとに抜き取って測る。仕事の半分は「測る」です。</p></div>
+    <div class="work-grid">
+      <div class="lead">
+        <figure class="ph ph--wide">旋盤の前に立つ入社3年目の辻本さん。紺の作業着・安全メガネ。機械の扉を開け、チャックと刃物が見える角度。横3:2、工場の蛍光灯のまま。</figure>
+        <p>削っているのは、油圧バルブ、半導体の製造装置、医療用ポンプに入る部品です。1個だけの試作から、2,000個の量産まで。</p>
+        <p>記録票は、実際に書いているのと同じ形です。測った値を手で書き、班長が確認の判を押します。</p>
+      </div>
+      <div>
+        <div class="tabs" role="tablist" aria-label="部品を選ぶ">
+          <button role="tab" id="t-spool" aria-controls="insp" aria-selected="true" tabindex="0">スプール</button>
+          <button role="tab" id="t-flange" aria-controls="insp" aria-selected="false" tabindex="-1">フランジ</button>
+          <button role="tab" id="t-joint" aria-controls="insp" aria-selected="false" tabindex="-1">ジョイント</button>
         </div>
-        <figure class="draw" style="margin:0"><svg id="partSvg" viewBox="0 0 600 380" role="img" aria-labelledby="partCap"></svg><figcaption id="partCap"></figcaption></figure>
-      </div>
-      <div aria-live="polite">
-        <dl class="spec" id="partSpec"></dl>
-        <p class="say" id="partSay"></p>
+        <div class="sheet insp panel" id="insp" role="tabpanel" aria-live="polite"></div>
       </div>
     </div>
 
-    <div class="day">
-      <h3>辻本さん（入社3年目）の1日</h3>
-      <p class="sub" style="margin:0;font-size:var(--f13)">NC旋盤の担当。今週はスプールを1日に約160本。</p>
-      <ol>
-        <li><time class="num">8:15</time><b>朝礼と危険予知</b><p>その日に動かす機械と、気をつけること（切りくずの巻きつき、チャックの締め忘れ）を班で1つずつ言う。</p></li>
-        <li><time class="num">8:30</time><b>段取り</b><p>チャックの爪を替え、刃物を付け、プログラムを呼び出す。ロットが替わる日は、ここで1時間かかる。</p></li>
-        <li><time class="num">9:30</time><b>初品を測る</b><p>1本目をマイクロメーターと三次元測定機で測り、班長の森下さんに見せる。合格が出るまで量産しない。</p></li>
-        <li><time class="num">10:00</time><b>量産</b><p>機械が削っている間に、次の材料の準備と、仕上がった部品のバリ取り。1本 2分40秒。</p></li>
-        <li><time class="num">12:00</time><b>昼休み 60分</b><p>2階の休憩室。仕出し弁当は会社が補助して1食230円。</p></li>
-        <li><time class="num">13:00</time><b>量産と抜き取り測定</b><p>2時間ごとに5本抜いて測る。刃物が減ると径が太くなっていくので、数字を見て補正を入れる。</p></li>
-        <li><time class="num">16:30</time><b>刃物の点検と日報</b><p>刃先をルーペで見て、替える時期を日報に書く。明日の段取りを夜勤のない分、ここで決めておく。</p></li>
-        <li><time class="num">17:10</time><b>終業</b><p>今月の残業は7時間。月末に納期が重なる週だけ、1日1時間ほど残る。</p></li>
-      </ol>
+    <div class="nippo">
+      <h3>1日の流れ（辻本さんの作業日報から）</h3>
+      <p>NC旋盤の担当、入社3年目。スプールを1日に約160本。</p>
+      <div class="sheet">
+        <div class="sheet-h">
+          <span class="ttl">作業日報</span>
+          <span class="cell"><span>日付</span><b class="tab">2026年10月21日（水）</b></span>
+          <span class="cell"><span>氏名</span><b>辻本 航大</b></span>
+          <span class="cell"><span>機械</span><b>NC旋盤 3号機</b></span>
+        </div>
+        <table class="dr">
+          <thead><tr><th>時刻</th><th>作業</th><th>メモ（本人が手で書く欄）</th></tr></thead>
+          <tbody>
+            <tr><td class="t">8:15</td><td class="w">朝礼・危険予知</td><td class="memo">切りくずの巻きつきに注意。3号機のチャック、締め直し確認</td></tr>
+            <tr><td class="t">8:30</td><td class="w">段取り</td><td class="memo">爪を替えて刃物2本。プログラム O2031 呼び出し。55分</td></tr>
+            <tr><td class="t">9:25</td><td class="w">初品の測定</td><td class="memo">外径 11.981。森下さんOK</td></tr>
+            <tr><td class="t">9:40</td><td class="w">量産</td><td class="memo">削っている間にバリ取り。1本 2分40秒</td></tr>
+            <tr><td class="t">12:00</td><td class="w">昼休み 60分</td><td class="memo">仕出し弁当 230円</td></tr>
+            <tr><td class="t">13:00</td><td class="w">量産・抜き取り</td><td class="memo">15時 外径 11.984 → 太ってきた。補正 −0.003</td></tr>
+            <tr><td class="t">16:30</td><td class="w">刃物の点検・日報</td><td class="memo">仕上げの刃先、あと1日もつ。明日の朝替える</td></tr>
+            <tr><td class="t">17:10</td><td class="w">終業</td><td class="memo">今日 162本、不良 0</td></tr>
+          </tbody>
+        </table>
+        <div class="dr-sum"><span>今月の残業 <b class="tab">7</b> 時間</span><span>月末に納期が重なる週だけ、1日1時間ほど残る</span></div>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="people" class="light" aria-labelledby="h-people">
+<section id="people" aria-labelledby="h-people">
   <div class="wrap">
-    <div class="sh"><div><span class="no num sub">02</span><h2 id="h-people">人</h2></div><p class="sub">製造の29人のうち、20代は9人。工業高校から来た人も、まったく別の仕事から来た人もいます。</p></div>
+    <div class="sh"><h2 id="h-people">一緒に働く人</h2><p>製造の29人のうち、20代は9人。工業高校から来た人も、まったく別の仕事から来た人もいます。</p></div>
     <ul class="people" id="peopleList"></ul>
   </div>
 </section>
 
-<section id="numbers" aria-labelledby="h-num">
+<section id="pay" aria-labelledby="h-pay" style="background:#f1f2ec">
   <div class="wrap">
-    <div class="sh"><div><span class="no num sub">03</span><h2 id="h-num">数字</h2></div><p class="sub">いいところだけでなく、聞かれることが多い数字を出しています。2025年度（2025年4月〜2026年3月）の実績です。</p></div>
-    <dl class="figs">
-      <div class="fig"><dt>月の残業（製造・平均）</dt><dd><span class="big num">11.4<small>時間</small></span><p>多い月は2月の19.8時間。少ない月は8月の4.1時間。</p></dd></div>
-      <div class="fig"><dt>年間休日</dt><dd><span class="big num">117<small>日</small></span><p>土日祝が休み。会社カレンダーで年6回だけ土曜に出る日があります。</p></dd></div>
-      <div class="fig"><dt>2021年以降に入った人で、いまも働いている人</dt><dd><span class="big num">8<small>/ 9人</small></span><p>辞めた1人は、実家の農業を継ぐため。</p></dd></div>
-      <div class="fig"><dt>技能検定に受かった人（会社が受験料を負担）</dt><dd><span class="big num">14<small>人</small></span><p>普通旋盤とマシニングセンタ作業の1級・2級。合格すると月5,000〜10,000円の手当。</p></dd></div>
-    </dl>
-
-    <div class="hist">
-      <h3>沿革</h3>
-      <p class="sub" style="margin:0;font-size:var(--f13)">年を選ぶと、その年にあったことが出ます。</p>
-      <ul class="years" role="tablist" aria-label="沿革の年" id="years"></ul>
-      <div class="yr" id="yr" role="tabpanel" aria-live="polite"><span class="y num" id="yrY"></span><p id="yrT"></p></div>
-    </div>
-
-    <div class="co" id="company">
-      <h3>会社概要</h3>
-      <table class="tbl">
-        <tr><th scope="row">会社名</th><td>株式会社 河内精機</td></tr>
-        <tr><th scope="row">創業</th><td><span class="num">1965</span>年（法人にしたのは<span class="num">1971</span>年）</td></tr>
-        <tr><th scope="row">代表</th><td>代表取締役 河内 雅之（2代目）</td></tr>
-        <tr><th scope="row">従業員</th><td><span class="num">38</span>名（製造 <span class="num">29</span>名・品質保証 <span class="num">4</span>名・事務と営業 <span class="num">5</span>名）／平均年齢 <span class="num">41.6</span>歳</td></tr>
-        <tr><th scope="row">資本金</th><td><span class="num">1,000</span>万円</td></tr>
-        <tr><th scope="row">売上</th><td><span class="num">6</span>億<span class="num">8,400</span>万円（2025年度）</td></tr>
-        <tr><th scope="row">設備</th><td>NC旋盤 <span class="num">14</span>台、主軸移動形自動旋盤 <span class="num">4</span>台、マシニングセンタ <span class="num">9</span>台（うち5軸 <span class="num">2</span>台）、三次元測定機 <span class="num">2</span>台</td></tr>
-        <tr><th scope="row">主な取引先の業種</th><td>油圧機器、半導体製造装置、医療機器、食品機械（取引先は <span class="num">63</span>社。いちばん大きい1社で売上の <span class="num">22</span>%）</td></tr>
-        <tr><th scope="row">認証</th><td>ISO 9001（2011年から）</td></tr>
-        <tr><th scope="row">所在地</th><td>大阪府東大阪市高井田西4丁目<br>Osaka Metro 中央線「高井田」駅から歩いて9分。車・バイク・自転車での通勤も可（駐輪場あり、駐車場は1台 月3,000円）</td></tr>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section id="terms" class="light" aria-labelledby="h-terms">
-  <div class="wrap">
-    <div class="sh"><div><span class="no num sub">04</span><h2 id="h-terms">募集要項</h2></div><p class="sub">高校を卒業する人も、転職の人も同じ仕事です。給料は入り方で変わります。</p></div>
+    <div class="sh"><h2 id="h-pay">給料・休み・残業</h2><p>聞かれることが多い順に並べました。数字は2025年度（2025年4月〜2026年3月）の実績です。</p></div>
     <table class="tbl">
-      <tr><th scope="row">職種</th><td>機械オペレーター（NC旋盤・マシニングセンタ）　<span class="num">2</span>名</td></tr>
-      <tr><th scope="row">仕事の中身</th><td>金属部品の切削。材料の取り付け、刃物の交換、初品の測定、量産、抜き取り測定、刃物の補正。慣れたらプログラムの修正と段取り替えも。</td></tr>
       <tr><th scope="row">給料</th><td>
         <div class="seg" role="group" aria-label="入り方を選ぶ" id="paySeg">
           <button type="button" aria-pressed="true" data-k="hs">高校新卒</button><button type="button" aria-pressed="false" data-k="new">転職・未経験</button><button type="button" aria-pressed="false" data-k="exp">転職・経験あり</button>
         </div>
-        <div class="pay" aria-live="polite" id="pay"></div>
+        <div aria-live="polite" id="payOut"></div>
       </td></tr>
-      <tr><th scope="row">賞与・昇給</th><td>賞与 年2回（2025年度は合わせて基本給の <span class="num">3.1</span>か月分）。昇給 年1回（2025年度の平均 <span class="num">+6,300</span>円）</td></tr>
-      <tr><th scope="row">手当</th><td>通勤（月 <span class="num">31,600</span>円まで）、技能検定（2級 月 <span class="num">5,000</span>円・1級 月 <span class="num">10,000</span>円）、家族、皆勤、残業</td></tr>
-      <tr><th scope="row">時間</th><td><span class="num">8:15〜17:10</span>（休憩 昼60分・午前と午後に10分ずつ）。夜勤なし</td></tr>
-      <tr><th scope="row">休み</th><td>土日祝（会社カレンダー。土曜出勤 年6回）、夏 <span class="num">5</span>日、年末年始 <span class="num">6</span>日。年間 <span class="num">117</span>日。有給は入社6か月後から <span class="num">10</span>日（2025年度の取得 平均 <span class="num">11.2</span>日）</td></tr>
-      <tr><th scope="row">応募できる人</th><td><span class="num">35</span>歳未満（長く勤めて技能を身につけてもらうため。雇用対策法施行規則の例外 3号イ）。学歴・経験・免許は問いません</td></tr>
-      <tr><th scope="row">そのほか</th><td>社会保険、退職金（勤続3年から）、作業服の貸与と洗濯、安全靴を年2足、空調のある工場（2024年から）、昼食の補助</td></tr>
-      <tr><th scope="row">試用期間</th><td><span class="num">3</span>か月（給料・条件は同じ）</td></tr>
+      <tr><th scope="row">残業</th><td><span class="big tab">月 平均11.4時間</span><span class="note">多い月は2月の19.8時間、少ない月は8月の4.1時間。夜勤はありません。</span></td></tr>
+      <tr><th scope="row">休み</th><td><span class="big tab">年間 117日</span><span class="note">土日祝（会社カレンダーで土曜出勤が年6回）、夏5日、年末年始6日。有給は入社6か月後から10日、2025年度の取得は平均11.2日。</span></td></tr>
+      <tr><th scope="row">時間</th><td class="tab">8:15〜17:10（昼60分、午前と午後に10分ずつ休憩）</td></tr>
+      <tr><th scope="row">賞与・昇給</th><td class="tab">賞与 年2回（2025年度は合わせて基本給の3.1か月分）。昇給 年1回（2025年度の平均 +6,300円）</td></tr>
+      <tr><th scope="row">手当</th><td class="tab">通勤（月31,600円まで）、技能検定（2級 月5,000円・1級 月10,000円、受験料は会社が払う。いま14人が合格）、家族、皆勤、残業</td></tr>
+      <tr><th scope="row">続いているか</th><td><span class="big tab">9人中 8人</span><span class="note">2021年以降に入った人のうち、いまも働いている人。辞めた1人は実家の農業を継ぐため。</span></td></tr>
+      <tr><th scope="row">応募できる人</th><td>35歳未満（長く勤めて技能を身につけてもらうため。雇用対策法施行規則の例外 3号イ）。学歴・経験・免許は問いません</td></tr>
+      <tr><th scope="row">そのほか</th><td>社会保険、退職金（勤続3年から）、作業着の貸与と洗濯、安全靴を年2足、工場全体に空調（2024年から。夏の室温 平均31.2℃→27.4℃）、試用期間3か月（条件は同じ）</td></tr>
     </table>
     <div class="teacher" id="teacher">
       <h3>進路指導の先生へ</h3>
-      <p>高校生の応募は、学校を通して受け付けます。求人票はハローワーク布施に出しています（求人番号は下の「お知らせ」）。7月から10月まで、平日16時からの見学をいつでも受けています。先生だけの下見も歓迎します。</p>
+      <p>高校生の応募は学校を通して受け付けます。求人票はハローワーク布施に出しています（求人番号 27100-38411061）。7月から10月までは、平日16時からの見学をいつでも受けています。先生だけの下見も歓迎します。</p>
     </div>
   </div>
 </section>
 
-<section id="apply" aria-labelledby="h-apply">
+<section id="company" aria-labelledby="h-co">
   <div class="wrap">
-    <div class="sh"><div><span class="no num sub">05</span><h2 id="h-apply">応募の流れ</h2></div><p class="sub">応募から内定まで、だいたい2週間。いきなり面接ではなく、先に工場を見てもらいます。</p></div>
-    <ol class="steps">
-      <li><span class="n num">1</span><b>フォームか電話</b><p>見学だけでも、応募でも。2営業日以内に、採用担当の西岡から電話します。</p></li>
-      <li><span class="n num">2</span><b>工場見学 60分</b><p>私服で大丈夫。機械が動いているところと、休憩室・更衣室まで見てもらいます。交通費を出します。</p></li>
-      <li><span class="n num">3</span><b>面接 1回</b><p>社長と製造部長の森下。小学校で習う計算（割合・小数）の問題を10問だけ解いてもらいます。</p></li>
-      <li><span class="n num">4</span><b>内定</b><p>面接から1週間以内に電話で。入社日は相談して決めます。</p></li>
-    </ol>
+    <div class="sh"><h2 id="h-co">会社のこと</h2><p>1965年に布施の長屋で、旋盤2台・3人で始めた会社です。いまは2代目の河内 雅之が社長です。</p></div>
+    <div class="co-grid">
+      <div>
+        <h3>会社概要</h3>
+        <table class="tbl">
+          <tr><th scope="row">会社名</th><td>株式会社 河内精機</td></tr>
+          <tr><th scope="row">創業</th><td class="tab">1965年（法人にしたのは1971年）</td></tr>
+          <tr><th scope="row">従業員</th><td class="tab">38名（製造29・品質保証4・事務と営業5）／平均年齢41.6歳</td></tr>
+          <tr><th scope="row">資本金・売上</th><td class="tab">1,000万円・6億8,400万円（2025年度）</td></tr>
+          <tr><th scope="row">設備</th><td class="tab">NC旋盤14台、主軸移動形自動旋盤4台、マシニングセンタ9台（うち5軸2台）、三次元測定機2台</td></tr>
+          <tr><th scope="row">取引先</th><td class="tab">63社（油圧機器、半導体製造装置、医療機器、食品機械）。いちばん大きい1社で売上の22%</td></tr>
+          <tr><th scope="row">認証</th><td>ISO 9001（2011年から）</td></tr>
+          <tr><th scope="row">所在地</th><td>大阪府東大阪市高井田西4丁目。Osaka Metro 中央線「高井田」駅から歩いて9分。車・バイク・自転車の通勤も可（駐輪場あり、駐車場は月3,000円）</td></tr>
+        </table>
+      </div>
+      <div>
+        <h3>沿革</h3>
+        <ol class="hist">
+          <li><b>1965</b><span>先代の河内 正一が布施で創業。最初の仕事は自転車のハブの軸</span></li>
+          <li><b>1974</b><span>油圧機器メーカーと取引開始。いまもいちばん長い取引先</span></li>
+          <li><b>1982</b><span>高井田のいまの場所へ。床は振動に強い厚さ30cmのコンクリート</span></li>
+          <li><b>1997</b><span>初めてのNC旋盤を2台。プログラムは当時30歳の森下が独学で覚えた</span></li>
+          <li><b>2011</b><span>ISO 9001。測定の記録をどの機械の何本目かまで追えるように</span></li>
+          <li><b>2019</b><span>5軸マシニングセンタを入れ、半導体装置の部品を始める</span></li>
+          <li><b>2024</b><span>工場全体に空調</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tape" aria-hidden="true"></div>
+<section id="apply" class="navy" aria-labelledby="h-apply">
+  <div class="wrap">
+    <div class="sh"><h2 id="h-apply">見学から内定まで</h2><p>だいたい2週間です。いきなり面接ではなく、先に工場を見てもらいます。</p></div>
+    <table class="koutei">
+      <tr><td class="when">申し込んだ日</td><th scope="row">このページのフォームか電話</th><td>見学だけでも、応募でも。</td></tr>
+      <tr><td class="when">2営業日以内</td><th scope="row">採用担当の西岡から電話</th><td>06で始まる番号からかけます。見学の日をここで決めます。</td></tr>
+      <tr><td class="when">見学の日</td><th scope="row">工場見学 60分</th><td>機械が動いているところと、休憩室・更衣室まで見てもらいます。私服で大丈夫、交通費を出します。</td></tr>
+      <tr><td class="when">見学から1週間</td><th scope="row">面接 1回</th><td>社長と製造部長の森下。小学校で習う計算（割合・小数）を10問だけ解いてもらいます。</td></tr>
+      <tr><td class="when">面接から1週間</td><th scope="row">内定の連絡</th><td>電話で伝えます。入社日は相談して決めます。</td></tr>
+    </table>
 
     <div id="form">
-      <p class="sub" style="font-size:var(--f13);margin:0 0 10px">このフォームは採用の窓口です。ほかのご用件はこちらへ。</p>
-      <nav class="route" aria-label="ほかの窓口">
-        <a href="#company"><b>取引・見積の相談</b>会社概要と電話番号へ</a>
-        <a href="#teacher"><b>進路指導の先生</b>学校からの応募のしかた</a>
-        <a href="#news"><b>ハローワークの求人票</b>求人番号はお知らせに</a>
-      </nav>
-
-      <div class="form light" id="formBox">
+      <p class="route">採用のほかの用件は：<a href="#company">取引・見積の相談（会社概要）</a><a href="#teacher">進路指導の先生</a></p>
+      <div class="sheet form" id="formBox">
         <ol class="prog" id="prog" aria-label="申し込みの段階">
           <li aria-current="step">1 入力</li><li>2 確認</li><li>3 完了</li>
         </ol>
@@ -500,90 +523,47 @@ dialog.skills::backdrop{background:rgba(15,14,18,.6)}
             </fieldset>
             <div class="f full" id="f-date">
               <label for="date">見学の希望日<span class="req">必須</span></label>
-              <select id="date" name="date" aria-describedby="e-date h-date">
-                <option value="">選んでください</option>
-              </select>
-              <span class="hint" id="h-date">平日は16:00から、土曜は10:00から。合わない日は「聞きたいこと」に書いてください。</span>
+              <select id="date" name="date" aria-describedby="e-date h-date"><option value="">選んでください</option></select>
+              <span class="hint" id="h-date">ホワイトボードと同じ日です。満員の日は選べません。</span>
               <span class="err" id="e-date">見学の希望日を選んでください。</span>
             </div>
-            <div class="f" id="f-name">
-              <label for="name">お名前<span class="req">必須</span></label>
-              <input type="text" id="name" name="name" autocomplete="name" placeholder="辻本 航大" aria-describedby="e-name">
-              <span class="err" id="e-name">お名前を入れてください。</span>
-            </div>
-            <div class="f" id="f-kana">
-              <label for="kana">ふりがな<span class="req">必須</span></label>
-              <input type="text" id="kana" name="kana" placeholder="つじもと こうだい" aria-describedby="e-kana">
-              <span class="err" id="e-kana">ひらがなで入れてください。</span>
-            </div>
-            <div class="f" id="f-age">
-              <label for="age">年齢<span class="req">必須</span></label>
-              <input type="number" id="age" name="age" inputmode="numeric" min="15" max="99" placeholder="19" aria-describedby="e-age">
-              <span class="err" id="e-age">15から99までの数字で入れてください。</span>
-            </div>
-            <div class="f" id="f-now">
-              <label for="now">いまの状況<span class="req">必須</span></label>
-              <select id="now" name="now" aria-describedby="e-now">
-                <option value="">選んでください</option>
-                <option>高校生</option><option>専門学校・大学の学生</option><option>働いている</option><option>仕事を探している</option>
-              </select>
-              <span class="err" id="e-now">いまの状況を選んでください。</span>
-            </div>
-            <div class="f" id="f-tel">
-              <label for="tel">電話番号<span class="req">必須</span></label>
-              <input type="tel" id="tel" name="tel" autocomplete="tel" placeholder="090-1234-5678" aria-describedby="e-tel h-tel">
-              <span class="hint" id="h-tel">担当の西岡から 06 で始まる番号でかけます。</span>
-              <span class="err" id="e-tel">10けたか11けたの電話番号を入れてください（ハイフンはあってもなくても）。</span>
-            </div>
-            <div class="f" id="f-mail">
-              <label for="mail">メール<span class="opt">なくても可</span></label>
-              <input type="email" id="mail" name="mail" autocomplete="email" placeholder="tsujimoto@example.jp" aria-describedby="e-mail">
-              <span class="err" id="e-mail">メールの形（〇〇@〇〇）になっていません。</span>
-            </div>
-            <div class="f full" id="f-q">
-              <label for="q">聞きたいこと<span class="opt">なくても可</span><span class="count num" id="qCount">0 / 400</span></label>
-              <textarea id="q" name="q" placeholder="例：自転車で通えますか。視力が悪くても大丈夫ですか。" aria-describedby="e-q"></textarea>
-              <span class="err" id="e-q">400字までにしてください。</span>
-            </div>
-            <div class="f full" id="f-agree">
-              <label class="agree"><input type="checkbox" id="agree" name="agree" aria-describedby="e-agree">入れた内容は、採用の連絡にだけ使います。採用しなかった人の情報は6か月後に消します。これに同意します。</label>
-              <span class="err" id="e-agree">同意にチェックを入れてください。</span>
-            </div>
+            <div class="f" id="f-name"><label for="name">お名前<span class="req">必須</span></label><input type="text" id="name" name="name" autocomplete="name" placeholder="辻本 航大" aria-describedby="e-name"><span class="err" id="e-name">お名前を入れてください。</span></div>
+            <div class="f" id="f-kana"><label for="kana">ふりがな<span class="req">必須</span></label><input type="text" id="kana" name="kana" placeholder="つじもと こうだい" aria-describedby="e-kana"><span class="err" id="e-kana">ひらがなで入れてください。</span></div>
+            <div class="f" id="f-age"><label for="age">年齢<span class="req">必須</span></label><input type="number" id="age" name="age" inputmode="numeric" min="15" max="99" placeholder="19" aria-describedby="e-age"><span class="err" id="e-age">15から99までの数字で入れてください。</span></div>
+            <div class="f" id="f-now"><label for="now">いまの状況<span class="req">必須</span></label><select id="now" name="now" aria-describedby="e-now"><option value="">選んでください</option><option>高校生</option><option>専門学校・大学の学生</option><option>働いている</option><option>仕事を探している</option></select><span class="err" id="e-now">いまの状況を選んでください。</span></div>
+            <div class="f" id="f-tel"><label for="tel">電話番号<span class="req">必須</span></label><input type="tel" id="tel" name="tel" autocomplete="tel" placeholder="090-1234-5678" aria-describedby="e-tel"><span class="err" id="e-tel">10けたか11けたの電話番号を入れてください（ハイフンはあってもなくても）。</span></div>
+            <div class="f" id="f-mail"><label for="mail">メール<span class="opt">なくても可</span></label><input type="email" id="mail" name="mail" autocomplete="email" placeholder="tsujimoto@example.jp" aria-describedby="e-mail"><span class="err" id="e-mail">メールの形（〇〇@〇〇）になっていません。</span></div>
+            <div class="f full" id="f-q"><label for="q">聞きたいこと<span class="opt">なくても可</span><span class="count tab" id="qCount">0 / 400</span></label><textarea id="q" name="q" placeholder="例：自転車で通えますか。視力が悪くても大丈夫ですか。" aria-describedby="e-q"></textarea><span class="err" id="e-q">400字までにしてください。</span></div>
+            <div class="f full" id="f-agree"><label class="agree"><input type="checkbox" id="agree" name="agree" aria-describedby="e-agree">入れた内容は、採用の連絡にだけ使います。採用しなかった人の情報は6か月後に消します。これに同意します。</label><span class="err" id="e-agree">同意にチェックを入れてください。</span></div>
           </div>
-          <div class="fact">
-            <span class="sum" id="filled">必須 8項目のうち 0 項目を入れました</span>
-            <button class="btn" type="submit">確認する</button>
-          </div>
+          <div class="fact"><span class="sum" id="filled">必須 8項目のうち 0 項目を入れました</span><button class="go" type="submit">確認する</button></div>
         </form>
 
         <div class="step" id="step2" hidden>
-          <h3 tabindex="-1" id="h-step2" style="font-size:var(--f18);margin:0 0 16px">この内容で送ります</h3>
+          <h3 tabindex="-1" id="h-step2" style="font-size:20px;font-weight:800;margin:0 0 16px">この内容で送ります</h3>
           <dl class="conf" id="conf"></dl>
-          <div class="fact">
-            <button class="btn btn--ghost" type="button" id="back">直す</button>
-            <button class="btn" type="button" id="send">送る</button>
-          </div>
+          <div class="fact"><button class="plain" type="button" id="back">直す</button><button class="go" type="button" id="send">送る</button></div>
         </div>
 
         <div class="step done-box" id="step3" hidden>
           <h3 tabindex="-1" id="h-step3">受け付けました</h3>
-          <p>受付番号 <span class="num" id="rid"></span></p>
+          <p>受付番号 <b class="mono" id="rid"></b></p>
           <p id="doneMsg"></p>
-          <p class="sub">この画面は使用例です。実際には送信していません。</p>
-          <button class="btn btn--ghost" type="button" id="again">もう一度入れる</button>
+          <p style="color:var(--sub)">この画面は使用例です。実際には送信していません。</p>
+          <button class="plain" type="button" id="again">もう一度入れる</button>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="news" class="light" aria-labelledby="h-news">
+<section id="news" aria-labelledby="h-news">
   <div class="wrap">
-    <div class="sh"><div><span class="no num sub">06</span><h2 id="h-news">お知らせ</h2></div><p class="sub">見学会と求人の更新だけを載せています。</p></div>
+    <div class="sh"><h2 id="h-news">お知らせ</h2><p>見学会と求人の更新だけを載せています。</p></div>
     <ul class="news">
-      <li><a href="#form"><time class="num" datetime="2026-10-19">2026.10.19</time><span class="cat">見学</span><span class="t">11月の見学日を5日追加しました（水曜4回・土曜1回）</span><span></span></a></li>
-      <li><a href="https://www.hellowork.mhlw.go.jp/" target="_blank" rel="noopener"><time class="num" datetime="2026-10-02">2026.10.02</time><span class="cat">求人</span><span class="t">ハローワーク布施に求人を出しました（求人番号 27100-38411061）</span><span class="ext sub">ハローワーク ↗<span class="sr">（別のサイトが開きます）</span></span></a></li>
-      <li><a href="#numbers"><time class="num" datetime="2026-08-28">2026.08.28</time><span class="cat">見学</span><span class="t">夏休みの見学会に、高校生14人と先生3人が来てくれました</span><span></span></a></li>
+      <li><a href="#top"><time datetime="2026-10-19">2026.10.19</time><span class="cat">見学</span><span class="t">11月の見学日を5日追加しました（水曜4回・土曜1回）</span><span></span></a></li>
+      <li><a href="https://www.hellowork.mhlw.go.jp/" target="_blank" rel="noopener"><time datetime="2026-10-02">2026.10.02</time><span class="cat">求人</span><span class="t">ハローワーク布施に求人を出しました（求人番号 27100-38411061）</span><span class="ext">ハローワーク ↗<span class="sr">（別のサイトが開きます）</span></span></a></li>
+      <li><a href="#people"><time datetime="2026-08-28">2026.08.28</time><span class="cat">見学</span><span class="t">夏休みの見学会に、高校生14人と先生3人が来てくれました</span><span></span></a></li>
     </ul>
   </div>
 </section>
@@ -604,9 +584,9 @@ dialog.skills::backdrop{background:rgba(15,14,18,.6)}
 <dialog class="skills" id="skills" aria-labelledby="skillsTitle">
   <header><h2 id="skillsTitle">使ったスキル</h2><button class="close" type="button" id="skillsClose" aria-label="閉じる">×</button></header>
   <div class="body">
-    <p>主：<code>corporate-quality-bar</code>（採用サイト）／副：<code>lp-quality-bar</code>（ミニマル・ハードウェア）。<br>corporate の「採用サイト」「中小・地域企業」はまだ見本が無いので、近い見本の LayerX（startup.md）と Valmont（enterprise.md、機械加工の写真を持つメーカー）の値を出発点にした。</p>
+    <p>主：<code>corporate-quality-bar</code>（採用サイト）。見本が無いので LayerX（startup.md）と Valmont（enterprise.md）の型を使った。<br>副の <code>lp-quality-bar</code> は、合う雰囲気が無いので型は使わず、rules（ホバー・動き・軽さ）だけ当てた。仕上げに <code>site-skills</code> の <code>ai-tells.md</code> を通して作り直した。</p>
     <table>
-      <thead><tr><th>部品</th><th>スキル・型</th><th>当てた値（どのサイトの値か）</th></tr></thead>
+      <thead><tr><th>部品</th><th>スキル・型</th><th>当てた値・決め方</th></tr></thead>
       <tbody id="skillRows"></tbody>
     </table>
   </div>
@@ -616,110 +596,94 @@ dialog.skills::backdrop{background:rgba(15,14,18,.6)}
 (() => {
   const $ = s => document.querySelector(s);
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (navigator.connection && navigator.connection.saveData) document.documentElement.classList.add('save-data');
+  const form=$('#step1');
+  const touched=new Set();
 
-  /* ── 部品の図：段ごとの [長さ, 外径] から側面図を描く。寸法を入れる段に mark */
-  const PARTS = {
-    spool: {name:'油圧バルブのスプール', color:'#8f979e', seg:[[14,8],[22,11.98,1],[14,7],[20,11.98],[14,7],[22,11.98],[18,6]],
-      dim:'φ11.98 ±0.005', len:'124.0',
-      spec:[['材料','SCM435（クロムモリブデン鋼）'],['機械','NC旋盤'],['いちばん厳しい寸法','外径 <span class="num">φ11.98</span>、差は <span class="num">±0.005</span>mm'],['1ロット','<span class="num">400</span>本・1本 <span class="num">2</span>分<span class="num">40</span>秒']],
-      say:'5ミクロン違うと、バルブの中で油が漏れる。太いところ3か所を全部測る。',
-      cap:'油圧バルブのスプール（SCM435）。いちばん太いところの外径 φ11.98、許される差は ±0.005mm。'},
-    flange: {name:'半導体製造装置のフランジ', color:'#c9c9c2', seg:[[10,86,1],[22,52],[8,40]],
-      dim:'φ86.0 平面度 0.02', len:'40.0',
-      spec:[['材料','SUS304（ステンレス）'],['機械','マシニングセンタ（5軸）'],['いちばん厳しい寸法','当たり面の平面度 <span class="num">0.02</span>mm'],['1ロット','<span class="num">30</span>個・1個 <span class="num">18</span>分']],
-      say:'ステンレスは削ると熱で伸びる。測るのは、冷めるのを10分待ってから。',
-      cap:'半導体製造装置のフランジ（SUS304）。外径 φ86、当たり面の平面度 0.02mm。'},
-    joint: {name:'医療用ポンプのジョイント', color:'#c29a55', seg:[[6,4.2],[8,6,1],[5,8.1],[9,5.2]],
-      dim:'φ6.00 −0.01', len:'28.0',
-      spec:[['材料','C3604（快削黄銅）'],['機械','主軸移動形自動旋盤'],['いちばん厳しい寸法','外径 <span class="num">φ6.00</span>、差は <span class="num">−0.01</span>mm'],['1ロット','<span class="num">2,000</span>個・1個 <span class="num">46</span>秒']],
-      say:'小さすぎて手では測れない。投影機に映して、影の太さで見る。',
-      cap:'医療用ポンプのジョイント（C3604 黄銅）。外径 φ6.00、許される差は −0.01mm。'}
+  /* ── 見学できる日：今日より先の水曜16時と土曜10時を6つ。残りの人数はボードと選択肢で同じ */
+  const WD='日月火水木金土';
+  const SLOTS=(()=>{const out=[],d=new Date();d.setHours(0,0,0,0);const left=[2,0,3,1,3,2];let n=0;
+    while(out.length<6){d.setDate(d.getDate()+1);const w=d.getDay();if(w===3||w===6){const t=w===3?'16:00':'10:00';out.push({label:`${d.getMonth()+1}/${d.getDate()}（${WD[w]}）${t}〜`,value:`${d.getMonth()+1}月${d.getDate()}日（${WD[w]}）${t}〜`,left:left[n++]})}}
+    return out})();
+  const wb=$('#wbList'),sel=$('#date');
+  wb.innerHTML=SLOTS.map((s,i)=>`<li><button type="button" data-i="${i}" ${s.left?'':'aria-disabled="true"'}><span class="d">${s.label}</span>${s.left?`<span class="left">あと${s.left}人</span>`:'<span class="full">満</span>'}</button></li>`).join('');
+  SLOTS.forEach(s=>{const o=document.createElement('option');o.value=s.value;o.textContent=s.value+(s.left?`　あと${s.left}人`:'　満員');o.disabled=!s.left;sel.appendChild(o)});
+  {const o=document.createElement('option');o.value='ほかの日を相談したい';o.textContent='ほかの日を相談したい';sel.appendChild(o)}
+  wb.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const s=SLOTS[b.dataset.i];
+    if(!s.left)return;
+    wb.querySelectorAll('button').forEach(x=>x.classList.toggle('is-picked',x===b));
+    sel.value=s.value;if(!form.elements.kind.value)form.querySelector('input[value="見学してから応募"]').checked=true;
+    syncDate();touched.add('date');touched.add('kind');check('date');check('kind');count();
+    $('#formBox').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});setTimeout(()=>sel.focus({preventScroll:true}),reduce?0:400)});
+
+  /* ── 部品の図（題材の図面）：段ごとの [長さ, 外径] から側面図を描く */
+  const PARTS={
+    spool:{no:'KS-H-2031',name:'スプール（油圧バルブ）',mat:'SCM435',qty:'400本',mc:'NC旋盤 3号機',time:'1本 2分40秒',tool:'外側マイクロメーター（0.001mm）',color:'#aeb4ba',
+      seg:[[14,8],[22,11.98,1],[14,7],[20,11.98],[14,7],[22,11.98],[18,6]],dim:'φ11.98±0.005',len:'124.0',
+      rows:[['外径 A','φ11.980','±0.005',['11.981','11.979','11.982','11.980','11.983']],['外径 B','φ11.980','±0.005',['11.980','11.978','11.981','11.979','11.982']],['全長','124.00','±0.05',['124.01','124.02','123.99','124.01','124.00']]],
+      say:'5ミクロン違うと、バルブの中で油が漏れる。太いところ3か所を全部測る。'},
+    flange:{no:'KS-S-0718',name:'フランジ（半導体製造装置）',mat:'SUS304',qty:'30個',mc:'5軸マシニングセンタ',time:'1個 18分',tool:'三次元測定機',color:'#d4d4cc',
+      seg:[[10,86,1],[22,52],[8,40]],dim:'φ86.0  平面度0.02',len:'40.0',
+      rows:[['外径','φ86.00','±0.02',['86.01','86.00','85.99','86.01','86.00']],['平面度','0.02 以下','—',['0.012','0.015','0.011','0.018','0.014']],['穴ピッチ','70.00','±0.01',['70.004','69.998','70.006','70.002','69.997']]],
+      say:'ステンレスは削ると熱で伸びる。測るのは、冷めるのを10分待ってから。'},
+    joint:{no:'KS-M-1142',name:'ジョイント（医療用ポンプ）',mat:'C3604 黄銅',qty:'2,000個',mc:'主軸移動形自動旋盤',time:'1個 46秒',tool:'投影機・ピンゲージ',color:'#cfab6a',
+      seg:[[6,4.2],[8,6,1],[5,8.1],[9,5.2]],dim:'φ6.00 −0.01',len:'28.0',
+      rows:[['外径','φ6.000','0/−0.010',['5.996','5.994','5.997','5.995','5.996']],['ねじ','M5×0.5','ゲージ',['通','通','通','通','通']],['全長','28.00','±0.05',['28.02','27.99','28.01','28.00','28.01']]],
+      say:'小さすぎて手では測りにくい。投影機に映して、影の太さで見る。'}
   };
   const NS='http://www.w3.org/2000/svg';
-  function el(t,a,p){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p&&p.appendChild(e);return e}
-  function drawPart(svg,p,dark){
-    svg.textContent='';
-    const W=600,H=380,cy=180,line=dark?'#f5f5f5':'#f5f5f5',sub='#8a8a8a';
+  const el=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p&&p.appendChild(e);return e};
+  function drawPart(svg,p){
+    svg.textContent='';const W=600,cy=140,ln='#1f2d4a',sub='#5a6470';
     const total=p.seg.reduce((s,a)=>s+a[0],0),maxD=Math.max(...p.seg.map(a=>a[1]));
-    const sc=Math.min(500/total,200/maxD),x0=(W-total*sc)/2;
-    // 方眼（図面の地）
-    const g=el('g',{stroke:'#272727','stroke-width':1},svg);
-    for(let x=20;x<W;x+=40)el('line',{x1:x,y1:0,x2:x,y2:H},g);
-    for(let y=20;y<H;y+=40)el('line',{x1:0,y1:y,x2:W,y2:y},g);
-    let x=x0,mark=null;
-    p.seg.forEach(([l,d,m])=>{const w=l*sc,h=d*sc;el('rect',{x,y:cy-h/2,width:w,height:h,fill:p.color,stroke:line,'stroke-width':1.2},svg);if(m)mark={x,w,h};x+=w});
-    el('line',{x1:x0-24,y1:cy,x2:x+24,y2:cy,stroke:sub,'stroke-dasharray':'14 4 3 4','stroke-width':1},svg);
-    // 外径の寸法（縦）
-    if(mark){const dx=mark.x+mark.w/2,t=cy-mark.h/2,b=cy+mark.h/2;
-      el('line',{x1:dx,y1:t-48,x2:dx,y2:t,stroke:line,'stroke-width':1},svg);
-      el('path',{d:`M${dx-4} ${t-9}L${dx} ${t}L${dx+4} ${t-9}`,fill:'none',stroke:line},svg);
-      const tx=el('text',{x:dx+8,y:t-36,fill:line,'font-size':17,'font-family':'Helvetica Neue,Arial,sans-serif'},svg);tx.textContent=p.dim}
-    // 全長の寸法（横）
-    const yb=cy+maxD*sc/2+40;
-    el('line',{x1:x0,y1:yb,x2:x,y2:yb,stroke:line,'stroke-width':1},svg);
-    el('line',{x1:x0,y1:yb-10,x2:x0,y2:yb+10,stroke:line},svg);el('line',{x1:x,y1:yb-10,x2:x,y2:yb+10,stroke:line},svg);
-    const tl=el('text',{x:(x0+x)/2,y:yb+26,fill:line,'font-size':15,'text-anchor':'middle','font-family':'Helvetica Neue,Arial,sans-serif'},svg);tl.textContent=p.len;
+    const sc=Math.min(470/total,170/maxD),x0=(W-total*sc)/2;let x=x0,mark=null;
+    p.seg.forEach(([l,d,m])=>{const w=l*sc,h=d*sc;el('rect',{x,y:cy-h/2,width:w,height:h,fill:p.color,stroke:ln,'stroke-width':1.4},svg);if(m)mark={x,w,h};x+=w});
+    el('line',{x1:x0-20,y1:cy,x2:x+20,y2:cy,stroke:sub,'stroke-dasharray':'16 4 3 4','stroke-width':1},svg);
+    if(mark){const dx=mark.x+mark.w/2,t=cy-mark.h/2;el('line',{x1:dx,y1:t-40,x2:dx,y2:t,stroke:ln},svg);el('path',{d:`M${dx-4} ${t-9}L${dx} ${t}L${dx+4} ${t-9}`,fill:'none',stroke:ln},svg);
+      const tx=el('text',{x:dx+8,y:t-28,fill:ln,'font-size':17,'font-family':'ui-monospace,Menlo,Consolas,monospace'},svg);tx.textContent=p.dim}
+    const yb=cy+maxD*sc/2+34;el('line',{x1:x0,y1:yb,x2:x,y2:yb,stroke:ln},svg);el('line',{x1:x0,y1:yb-9,x2:x0,y2:yb+9,stroke:ln},svg);el('line',{x1:x,y1:yb-9,x2:x,y2:yb+9,stroke:ln},svg);
+    const tl=el('text',{x:(x0+x)/2,y:yb+24,fill:ln,'font-size':15,'text-anchor':'middle','font-family':'ui-monospace,Menlo,Consolas,monospace'},svg);tl.textContent=p.len;
   }
-  drawPart($('#heroSvg'),PARTS.spool,true);
-
+  const insp=$('#insp');
+  function renderSheet(p){
+    insp.innerHTML=`<div class="sheet-h"><span class="ttl">検査記録票</span><span class="cell"><span>図番</span><b class="mono">${p.no}</b></span><span class="cell"><span>品名</span><b>${p.name}</b></span><span class="cell"><span>材質</span><b class="mono">${p.mat}</b></span><span class="cell"><span>数量</span><b class="tab">${p.qty}</b></span></div>
+    <div class="fig"><svg viewBox="0 0 600 300" role="img" aria-label="${p.name}の側面図。${p.dim}、全長${p.len}"></svg>
+    <dl class="meta"><div><dt>機械</dt><dd>${p.mc}</dd></div><div><dt>加工時間</dt><dd class="tab">${p.time}</dd></div><div><dt>測定器</dt><dd>${p.tool}</dd></div></dl></div>
+    <p class="hint-scroll">表は横に動かして見られます</p>
+    <div class="scroll" tabindex="0" role="region" aria-label="測定値の表"><table class="mt"><thead><tr><th>測定項目</th><th>図面寸法</th><th>公差</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>判定</th></tr></thead>
+    <tbody>${p.rows.map(r=>`<tr><td class="item">${r[0]}</td><td class="mono">${r[1]}</td><td class="mono">${r[2]}</td>${r[3].map(v=>`<td class="v">${v}</td>`).join('')}<td><span class="stamp stamp--sq">合</span></td></tr>`).join('')}</tbody></table></div>
+    <div class="foot"><p class="say">${p.say}</p><div class="sign"><span><span class="stamp" aria-label="検査 辻本の印">辻本</span>検査</span><span><span class="stamp" aria-label="確認 森下の印">森下</span>確認</span></div></div>`;
+    drawPart(insp.querySelector('svg'),p);
+  }
   const tabs=[...document.querySelectorAll('.tabs [role=tab]')];
-  const panel=$('#partPanel');
-  function showPart(key,focus){
-    const p=PARTS[key];
-    tabs.forEach(t=>{const on=t.id==='t-'+key;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;if(on&&focus)t.focus()});
-    const apply=()=>{drawPart($('#partSvg'),p,true);$('#partCap').textContent=p.cap;
-      $('#partSpec').innerHTML=p.spec.map(([k,v])=>`<dt>${k}</dt><dd>${v}</dd>`).join('');$('#partSay').textContent=p.say;panel.classList.remove('is-swap')};
-    if(reduce||!$('#partSvg').childNodes.length){apply();return}
-    panel.classList.add('is-swap');setTimeout(apply,150);
-  }
+  function showPart(key,focus){tabs.forEach(t=>{const on=t.id==='t-'+key;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;if(on&&focus)t.focus()});
+    if(reduce||!insp.childNodes.length){renderSheet(PARTS[key]);return}
+    insp.classList.add('is-swap');setTimeout(()=>{renderSheet(PARTS[key]);insp.classList.remove('is-swap')},150)}
   tabs.forEach((t,i)=>{t.addEventListener('click',()=>showPart(t.id.slice(2)));
     t.addEventListener('keydown',e=>{let j=null;if(e.key==='ArrowRight')j=(i+1)%tabs.length;if(e.key==='ArrowLeft')j=(i-1+tabs.length)%tabs.length;if(e.key==='Home')j=0;if(e.key==='End')j=tabs.length-1;if(j!==null){e.preventDefault();showPart(tabs[j].id.slice(2),true)}})});
   showPart('spool');
 
-  /* ── 流れる帯：2コピーにして止めるボタン */
-  const tr=$('#track');tr.innerHTML+=tr.innerHTML;
-  $('#bandBtn').addEventListener('click',e=>{const b=e.currentTarget,on=b.getAttribute('aria-pressed')!=='true';b.setAttribute('aria-pressed',on);b.textContent=on?'動かす':'止める';$('#band').classList.toggle('is-paused',on)});
-  if(reduce){$('#bandBtn').hidden=true}
-
   /* ── 人 */
   const PEOPLE=[
-    {n:'辻本 航大',y:'2023年入社・22歳',r:'NC旋盤／前は工業高校の機械科',q:'最初の3か月は、測るだけで終わりました。',
+    {n:'辻本 航大',y:'2023年入社・22歳',r:'NC旋盤／前は工業高校の機械科',ph:'辻本さん。3号機の前でマイクロメーターを当てている手元と顔。縦4:5',q:'最初の3か月は、測るだけで終わりました。',
      a:[['入った理由','高校の見学で、削った面に指を当てさせてもらった。鏡みたいにつるつるで、これを自分で出したいと思った。'],['きつかったこと','1年目の夏。空調が入る前で、工場は31℃あった。いまは27℃くらい。'],['いまの目標','来年、普通旋盤の2級。森下さんの「刃物の音で減りがわかる」がまだわからない。']]},
-    {n:'浅田 美咲',y:'2021年入社・27歳',r:'マシニングセンタ／前はドラッグストアの販売',q:'図面の記号は、昼休みに班長の横で覚えました。',
-     a:[['入った理由','立ち仕事は慣れていた。土日に休める仕事を探していて、ハローワークで見つけた。'],['きつかったこと','最初に削った30個のうち、4個が0.03大きかった。全部やり直しになって、測る順番を自分で紙に書いた。'],['いまの目標','5軸を任されること。いまは段取りまで、プログラムは金城さんに見てもらっている。']]},
-    {n:'金城 拓海',y:'2019年入社・31歳',r:'5軸マシニングセンタのプログラム／前は自動車の整備',q:'車は直す仕事、ここは最初の1個を作る仕事です。',
-     a:[['入った理由','整備で部品を替えるたびに、この部品はどこで作っているのかと思っていた。'],['きつかったこと','CAMの画面。3か月、毎晩30分だけ会社のPCで練習させてもらった。'],['いまの目標','見積のときに「この形なら何分で削れる」を営業に言えるようになる。']]},
-    {n:'森下 和義',y:'1988年入社・57歳',r:'製造部長／教える側',q:'怒るより先に、なぜ0.01ずれたかを一緒に考えます。',
+    {n:'浅田 美咲',y:'2021年入社・27歳',r:'マシニングセンタ／前はドラッグストアの販売',ph:'浅田さん。マシニングセンタの操作盤の前、図面を左手に。縦4:5',q:'図面の記号は、昼休みに班長の横で覚えました。',
+     a:[['入った理由','立ち仕事は慣れていた。土日に休める仕事を探していて、ハローワークで見つけた。'],['きつかったこと','最初に削った30個のうち、4個が0.03大きかった。全部やり直しになって、測る順番を自分で紙に書いた。'],['いまの目標','5軸を任されること。いまは段取りまでで、プログラムは金城さんに見てもらっている。']]},
+    {n:'金城 拓海',y:'2019年入社・31歳',r:'5軸マシニングセンタのプログラム／前は自動車の整備',ph:'金城さん。事務所の隅のCAMのパソコンの前、作業着のまま。縦4:5',q:'車は直す仕事、ここは最初の1個を作る仕事です。',
+     a:[['入った理由','整備で部品を替えるたびに、この部品はどこで作っているのかと思っていた。'],['きつかったこと','CAMの画面。3か月、毎晩30分だけ会社のパソコンで練習させてもらった。'],['いまの目標','見積のときに「この形なら何分で削れる」を営業に言えるようになる。']]},
+    {n:'森下 和義',y:'1988年入社・57歳',r:'製造部長／教える側',ph:'森下さん。若手の横で、ノギスの当て方を見せているところ。縦4:5',q:'怒るより先に、なぜ0.01ずれたかを一緒に考えます。',
      a:[['教えるときに決めていること','最初の1か月は機械のボタンを押させない。チャックと刃物の名前、測り方、危ないところだけ。'],['若い人に言いたいこと','わからないまま押すのがいちばん危ない。聞かれて嫌な顔をする人はうちにはいない。'],['この会社のいいところ','社長も昼に工場で弁当を食べている。困っていることがすぐ上に届く。']]}
   ];
-  $('#peopleList').innerHTML=PEOPLE.map((p,i)=>`<li class="person"><div class="row"><div class="who"><b>${p.n}</b><span class="num">${p.y}</span><span class="sub">${p.r}</span></div><q>${p.q}</q><button class="more" type="button" aria-expanded="false" aria-controls="qa${i}">話を読む<i aria-hidden="true"></i></button></div><div class="qa" id="qa${i}" hidden>${p.a.map(([h,t])=>`<div><h4>${h}</h4><p>${t}</p></div>`).join('')}</div></li>`).join('');
-  document.querySelectorAll('.more').forEach(b=>b.addEventListener('click',()=>{const qa=document.getElementById(b.getAttribute('aria-controls')),open=b.getAttribute('aria-expanded')!=='true';b.setAttribute('aria-expanded',open);b.firstChild.textContent=open?'閉じる':'話を読む';
+  $('#peopleList').innerHTML=PEOPLE.map((p,i)=>`<li class="person"><div class="row"><figure class="ph ph--tall">${p.ph}</figure><div class="who"><b>${p.n}</b><span class="tab">${p.y}</span><span>${p.r}</span></div><blockquote>「${p.q}」</blockquote><button class="more" type="button" aria-expanded="false" aria-controls="qa${i}">話を読む</button></div><div class="qa" id="qa${i}" hidden>${p.a.map(([h,t])=>`<div><h4>${h}</h4><p>${t}</p></div>`).join('')}</div></li>`).join('');
+  document.querySelectorAll('.more').forEach(b=>b.addEventListener('click',()=>{const qa=document.getElementById(b.getAttribute('aria-controls')),open=b.getAttribute('aria-expanded')!=='true';b.setAttribute('aria-expanded',open);b.textContent=open?'閉じる':'話を読む';
     if(open){qa.hidden=false;requestAnimationFrame(()=>requestAnimationFrame(()=>qa.classList.add('is-open')))}else{qa.classList.remove('is-open');setTimeout(()=>{if(b.getAttribute('aria-expanded')==='false')qa.hidden=true},reduce?0:200)}}));
 
-  /* ── 沿革 */
-  const HIST=[['1965','先代の河内 正一が、布施の長屋で旋盤2台・3人で始める。最初の仕事は自転車のハブの軸。'],['1974','油圧機器のメーカーと取引が始まる。いまも売上の22%を占める、いちばん長い取引先。'],['1982','高井田のいまの場所へ移る。工場の床を、振動に強い厚さ30cmのコンクリートにした。'],['1997','初めてのNC旋盤を2台入れる。プログラムは当時30歳の森下が独学で覚えた。'],['2011','ISO 9001 を取る。測定の記録を紙からPCに移し、どの機械の何本目かまで追えるようにした。'],['2019','5軸のマシニングセンタを入れ、半導体製造装置の部品を始める。'],['2024','工場全体に空調を入れる。夏の工場の平均室温が31.2℃から27.4℃に下がった。']];
-  const ys=$('#years');ys.innerHTML=HIST.map(([y],i)=>`<li role="presentation"><button role="tab" type="button" class="num" aria-selected="${i===HIST.length-1}" tabindex="${i===HIST.length-1?0:-1}" aria-controls="yr" data-i="${i}">${y}</button></li>`).join('');
-  const ybs=[...ys.querySelectorAll('button')];
-  function showYear(i,focus){ybs.forEach((b,j)=>{b.setAttribute('aria-selected',j===i);b.tabIndex=j===i?0:-1});if(focus)ybs[i].focus();
-    const yr=$('#yr'),set=()=>{$('#yrY').textContent=HIST[i][0];$('#yrT').textContent=HIST[i][1];yr.classList.remove('is-swap')};
-    if(reduce||!$('#yrY').textContent){set();return}yr.classList.add('is-swap');setTimeout(set,150)}
-  ybs.forEach((b,i)=>{b.addEventListener('click',()=>showYear(i));b.addEventListener('keydown',e=>{let j=null;if(e.key==='ArrowRight')j=Math.min(i+1,ybs.length-1);if(e.key==='ArrowLeft')j=Math.max(i-1,0);if(j!==null){e.preventDefault();showYear(j,true)}})});
-  showYear(HIST.length-1);
-
-  /* ── 給料の切り替え */
-  const PAY={hs:['月給 <span class="num">213,400</span>円','基本給 205,400円＋皆勤手当 8,000円。2026年3月卒の実績。'],new:['月給 <span class="num">224,000</span>円から','前の仕事の年数で決めます。製造が初めてでもこの額から。'],exp:['月給 <span class="num">252,000</span>円から','NC旋盤・マシニングセンタの経験による。技能検定を持っていれば手当を足します。']};
+  /* ── 給料 */
+  const PAY={hs:['月給 213,400円','基本給 205,400円＋皆勤手当 8,000円。2026年3月卒の実績。'],new:['月給 224,000円から','前の仕事の年数で決めます。製造が初めてでもこの額から。'],exp:['月給 252,000円から','NC旋盤・マシニングセンタの経験によります。技能検定を持っていれば手当を足します。']};
   const segBtns=[...document.querySelectorAll('#paySeg button')];
-  function showPay(k){segBtns.forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===k));$('#pay').innerHTML=`<span class="num">${PAY[k][0]}</span><span class="note">${PAY[k][1]}</span>`}
+  function showPay(k){segBtns.forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===k));$('#payOut').innerHTML=`<span class="big tab">${PAY[k][0]}</span><span class="note">${PAY[k][1]}</span>`}
   segBtns.forEach(b=>b.addEventListener('click',()=>showPay(b.dataset.k)));showPay('hs');
 
-  /* ── 見学日：今日より先の水曜16時と土曜10時を6つ */
-  (function(){const sel=$('#date'),wd='日月火水木金土',d=new Date();d.setHours(0,0,0,0);let n=0;
-    while(n<6){d.setDate(d.getDate()+1);const w=d.getDay();if(w===3||w===6){const t=w===3?'16:00':'10:00',v=`${d.getMonth()+1}月${d.getDate()}日（${wd[w]}）${t}〜`;const o=document.createElement('option');o.textContent=v;o.value=v;sel.appendChild(o);n++}}
-    const o=document.createElement('option');o.value='ほかの日を相談したい';o.textContent='ほかの日を相談したい';sel.appendChild(o)})();
-
   /* ── フォーム：入力 → 確認 → 完了 */
-  const form=$('#step1');
   const val=k=>{const e=form.elements[k];return e instanceof RadioNodeList?e.value:(e.type==='checkbox'?e.checked:e.value.trim())};
   const RULES={
     kind:()=>!!val('kind'),
@@ -728,83 +692,73 @@ dialog.skills::backdrop{background:rgba(15,14,18,.6)}
     kana:()=>/^[ぁ-ゖー\s　]+$/.test(val('kana')),
     age:()=>{const a=Number(val('age'));return val('age')!==''&&Number.isInteger(a)&&a>=15&&a<=99},
     now:()=>!!val('now'),
-    tel:()=>{const t=val('tel').replace(/[-‐ー－\s]/g,'');return /^0\d{9,10}$/.test(t)},
+    tel:()=>/^0\d{9,10}$/.test(val('tel').replace(/[-‐ー－\s]/g,'')),
     mail:()=>val('mail')===''||/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val('mail')),
     q:()=>val('q').length<=400,
     agree:()=>val('agree')===true
   };
   const LABEL={kind:'申し込む内容',date:'見学の希望日',name:'お名前',kana:'ふりがな',age:'年齢',now:'いまの状況',tel:'電話番号',mail:'メール',q:'聞きたいこと',agree:'同意'};
-  const touched=new Set();
   function check(k,show){const ok=RULES[k](),box=$('#f-'+k);if(show||touched.has(k)){box.classList.toggle('is-err',!ok);const inp=form.elements[k];if(inp&&inp.setAttribute)inp.setAttribute('aria-invalid',!ok)}return ok}
   function syncDate(){const skip=val('kind')==='すぐ応募';$('#f-date').hidden=skip;if(skip)$('#f-date').classList.remove('is-err')}
   function count(){const req=['kind','date','name','kana','age','now','tel','agree'].filter(k=>!(k==='date'&&val('kind')==='すぐ応募'));const done=req.filter(k=>RULES[k]()).length;$('#filled').textContent=`必須 ${req.length}項目のうち ${done} 項目を入れました`;const l=val('q').length,c=$('#qCount');c.textContent=`${l} / 400`;c.classList.toggle('over',l>400)}
   form.addEventListener('input',e=>{const k=e.target.name;if(k==='kind')syncDate();if(k&&touched.has(k))check(k);count()});
-  form.addEventListener('change',e=>{const k=e.target.name;if(k){touched.add(k);check(k)}count()});
+  form.addEventListener('change',e=>{const k=e.target.name;if(k){touched.add(k);check(k)}if(k==='date')wb.querySelectorAll('button').forEach(x=>x.classList.toggle('is-picked',SLOTS[x.dataset.i].value===sel.value));count()});
   form.addEventListener('focusout',e=>{const k=e.target.name;if(k&&e.target.type!=='radio'&&e.target.value!==''){touched.add(k);check(k)}});
   const prog=[...document.querySelectorAll('#prog li')];
-  function go(n){[1,2,3].forEach(i=>{$('#step'+i).hidden=i!==n});prog.forEach((li,i)=>{li.toggleAttribute('aria-current',i===n-1);if(i===n-1)li.setAttribute('aria-current','step');li.classList.toggle('done',i<n-1)});
+  function go(n){[1,2,3].forEach(i=>{$('#step'+i).hidden=i!==n});prog.forEach((li,i)=>{if(i===n-1)li.setAttribute('aria-current','step');else li.removeAttribute('aria-current');li.classList.toggle('done',i<n-1)});
     const f=n===1?form.querySelector('input'):$('#h-step'+n);$('#formBox').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});setTimeout(()=>f&&f.focus({preventScroll:true}),reduce?0:300)}
-  form.addEventListener('submit',e=>{e.preventDefault();syncDate();const bad=Object.keys(RULES).filter(k=>{touched.add(k);return !check(k,true)});
-    const es=$('#errsum');
+  form.addEventListener('submit',e=>{e.preventDefault();syncDate();const bad=Object.keys(RULES).filter(k=>{touched.add(k);return !check(k,true)});const es=$('#errsum');
     if(bad.length){es.hidden=false;es.innerHTML=`<b>${bad.length}か所 直してください</b><ul>${bad.map(k=>`<li><a href="#f-${k}" data-k="${k}">${LABEL[k]}</a></li>`).join('')}</ul>`;es.focus();
-      es.querySelectorAll('a').forEach(a=>a.addEventListener('click',ev=>{ev.preventDefault();const k=a.dataset.k,inp=form.elements[k];(inp.length?inp[0]:inp).focus()}));return}
+      es.querySelectorAll('a').forEach(a=>a.addEventListener('click',ev=>{ev.preventDefault();const inp=form.elements[a.dataset.k];(inp instanceof RadioNodeList?inp[0]:inp).focus()}));return}
     es.hidden=true;
     const rows=[['申し込む内容',val('kind')],['見学の希望日',val('kind')==='すぐ応募'?'（見学なし）':val('date')],['お名前',val('name')+'（'+val('kana')+'）'],['年齢',val('age')+'歳'],['いまの状況',val('now')],['電話番号',val('tel')],['メール',val('mail')],['聞きたいこと',val('q')]];
-    $('#conf').innerHTML='';rows.forEach(([k,v])=>{const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=k;dd.textContent=v||'（なし）';if(!v)dd.className='empty';$('#conf').append(dt,dd)});
-    go(2)});
+    const c=$('#conf');c.innerHTML='';rows.forEach(([k,v])=>{const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=k;dd.textContent=v||'（なし）';if(!v)dd.className='empty';c.append(dt,dd)});go(2)});
   $('#back').addEventListener('click',()=>go(1));
   $('#send').addEventListener('click',e=>{const b=e.currentTarget;b.setAttribute('aria-busy','true');b.disabled=true;b.textContent='送っています…';
     setTimeout(()=>{b.removeAttribute('aria-busy');b.disabled=false;b.textContent='送る';
-      const d=new Date(),id=`KS-${String(d.getFullYear()).slice(2)}${String(d.getMonth()+1).padStart(2,'0')}-${String(Math.floor(Math.random()*9000)+1000)}`;
-      $('#rid').textContent=id;
-      $('#doneMsg').textContent=`${val('name')}さん、ありがとうございます。2営業日以内に、採用担当の西岡から ${val('tel')} に電話します。06 で始まる知らない番号からかかってきます。`+(val('kind')!=='すぐ応募'?`見学の希望日（${val('date')}）は、電話で決めます。`:'');
+      const d=new Date();$('#rid').textContent=`KS-${String(d.getFullYear()).slice(2)}${String(d.getMonth()+1).padStart(2,'0')}-${Math.floor(Math.random()*9000)+1000}`;
+      $('#doneMsg').textContent=`${val('name')}さん、ありがとうございます。2営業日以内に、採用担当の西岡から ${val('tel')} に電話します。06で始まる知らない番号からかかってきます。`+(val('kind')!=='すぐ応募'?`見学の日（希望：${val('date')}）は、その電話で決めます。`:'');
       go(3)},900)});
-  $('#again').addEventListener('click',()=>{form.reset();touched.clear();form.querySelectorAll('.is-err').forEach(x=>x.classList.remove('is-err'));form.querySelectorAll('[aria-invalid]').forEach(x=>x.removeAttribute('aria-invalid'));syncDate();count();go(1)});
+  $('#again').addEventListener('click',()=>{form.reset();touched.clear();form.querySelectorAll('.is-err').forEach(x=>x.classList.remove('is-err'));form.querySelectorAll('[aria-invalid]').forEach(x=>x.removeAttribute('aria-invalid'));wb.querySelectorAll('.is-picked').forEach(x=>x.classList.remove('is-picked'));syncDate();count();go(1)});
   count();
 
-  /* ── ヘッダー：Valmont（76px を過ぎて下へは隠す、上へ 38px 戻したら出す） */
+  /* ── ヘッダー：Valmont（高さを過ぎて下へは隠す、上へ高さの半分戻したら出す） */
   const hd=$('#hd');let last=scrollY,up=0;
   addEventListener('scroll',()=>{const y=scrollY,dy=y-last;last=y;if(document.body.classList.contains('menu-open'))return;
-    if(y<76){hd.classList.remove('is-hidden');up=0;return}
-    if(dy>0){up=0;if(!hd.contains(document.activeElement))hd.classList.add('is-hidden')}else{up-=dy;if(up>=38)hd.classList.remove('is-hidden')}},{passive:true});
+    if(y<64){hd.classList.remove('is-hidden');up=0;return}
+    if(dy>0){up=0;if(!hd.contains(document.activeElement))hd.classList.add('is-hidden')}else{up-=dy;if(up>=32)hd.classList.remove('is-hidden')}},{passive:true});
   hd.addEventListener('focusin',()=>hd.classList.remove('is-hidden'));
-
-  /* 現在地 */
   const navA=[...document.querySelectorAll('.gnav a')];
   const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting)navA.forEach(a=>a.classList.toggle('is-current',a.getAttribute('href')==='#'+en.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
-  ['work','people','numbers','terms','apply'].forEach(id=>io.observe(document.getElementById(id)));
-
-  /* SPメニュー */
+  ['work','people','pay','company','apply'].forEach(id=>io.observe(document.getElementById(id)));
   const bg=$('#burger'),sm=$('#spmenu');
-  function menu(open){bg.setAttribute('aria-expanded',open);document.body.classList.toggle('menu-open',open);if(open){sm.hidden=false;requestAnimationFrame(()=>sm.classList.add('is-open'));sm.querySelector('a').focus()}else{sm.classList.remove('is-open');setTimeout(()=>{if(bg.getAttribute('aria-expanded')==='false')sm.hidden=true},reduce?0:200)}document.body.style.overflow=open?'hidden':''}
+  function menu(open){bg.setAttribute('aria-expanded',open);bg.textContent=open?'閉じる':'メニュー';document.body.classList.toggle('menu-open',open);document.body.style.overflow=open?'hidden':'';
+    if(open){sm.hidden=false;requestAnimationFrame(()=>sm.classList.add('is-open'));sm.querySelector('a').focus()}else{sm.classList.remove('is-open');setTimeout(()=>{if(bg.getAttribute('aria-expanded')==='false')sm.hidden=true},reduce?0:200)}}
   bg.addEventListener('click',()=>menu(bg.getAttribute('aria-expanded')!=='true'));
   sm.addEventListener('click',e=>{if(e.target.closest('a'))menu(false)});
   addEventListener('keydown',e=>{if(e.key==='Escape'&&bg.getAttribute('aria-expanded')==='true'){menu(false);bg.focus()}});
-  matchMedia('(min-width:900px)').addEventListener('change',m=>{if(m.matches)menu(false)});
+  matchMedia('(min-width:960px)').addEventListener('change',m=>{if(m.matches)menu(false)});
 
   /* ── 使ったスキル */
   const SK=[
-    ['作る前に決めること','site-skills','行動＝工場見学（そのまま応募も可）の申し込み。相手＝東大阪・八尾の10代後半〜20代（求人票のQR・学校・Instagram から）。動かない理由＝きつい・汚いの印象／未経験の不安／給料と休みが見えない。証拠＝残業・休日・定着の実数、先輩の声、設備台数。'],
-    ['ヘッダーのナビ','corporate・startup.md','LayerX：ナビ5つ＋右端に採用ボタン。こちらは「仕事／人／数字／募集要項／応募の流れ」＋「工場見学・応募」。'],
-    ['ヘッダーの隠し方','corporate・enterprise.md／rules.md 4','Valmont：高さ 76px、76px を過ぎて下へは translateY(-100%)（200ms ease-out・200ms 遅れ）、上へ 38px 戻すと出す。フォーカスが入っても出す。'],
-    ['SPメニュー','corporate・enterprise.md','Valmont：SP はロゴとハンバーガーだけ、同じ中身を全画面の開閉で出す。Esc で閉じる。'],
-    ['配色','lp・minimal-hardware.md','teenage engineering：地 #0f0e12、文字 #f5f5f5、補助 #7f7f7f、線 #4d4d4d〜#272727、墨と明るい灰 #f5f5f5 の章を交互（compare.md）。UIに色を足さず、色は部品の図（鋼・ステンレス・黄銅）に持たせた。明るい章の補助は #7f7f7f だと 3.67:1 なので #5c5c5c に（corporate checklist の 4.5:1）。'],
-    ['寸法と文字','lp・minimal-hardware.md／rules.md 8','teenage engineering：基準幅 980／SP 490 の比率で 9・13・18・27・36px。上限 1080px、文字は max() で下限。日本語は端末のフォント、見出しは細く 300。'],
-    ['本文','corporate・enterprise.md／startup.md','本文 18px・行間 1.5（Valmont）。本文幅 1132px（LayerX）。'],
-    ['最初の画面の見出し','corporate・enterprise.md','Valmont：h1 76.5px（1440px）。clamp(38px, 5.3125vw, 76.5px) にした。行間 1.05 は和文で重なるので 1.25。'],
-    ['トップに数字の帯を置かない','corporate・rules.md 5','LayerX・Valmont：トップに数字の帯なし。最初の画面は1文と見学の入口だけにし、数字は 03 の章へ。'],
-    ['流れる帯','lp・minimal-hardware.md','teenage engineering：marquee 12s linear・すき間 40px・2コピー・ホバーで停止。文字が長いので 24s に。止めるボタンを足した（本家には無い）。ページで唯一の常に動くもの（lp rules 4）。'],
-    ['部品を選ぶタブ','lp・minimal-hardware.md／rules.md 9','teenage engineering：製品が主役で UI は黒子、opacity .15s。色は内容（部品）に持たせる（ほぼ日 rules 9）。'],
-    ['人の並べ方','corporate・rules.md 6','LayerX：カードでなく全幅の行、内側 28px・1行 192〜196px。こちらは min-height 196px・上下 28px。'],
-    ['数字4つ','corporate・enterprise.md／checklist','Valmont：数字4列・46.8px、説明 14.5px #828282（3.84:1 で不足）。説明の灰は 4.5:1 以上にした。'],
-    ['沿革','corporate・enterprise.md','Valmont：年を横一列（間 21.6px）、選ぶと1文が替わる。選んでいない年は #c0c0c0（1.82:1）でなく #8a8a8a（墨の上で 5.6:1）。'],
-    ['会社概要の表','corporate・checklist','LayerX に社員数・資本金が無かった反省：設立・従業員・資本金・売上・設備・拠点を表で。'],
-    ['応募の流れとフォーム','corporate・startup.md／rules.md 1','LayerX：入力→確認→完了の3段、フォームの前で別の窓口へ振り分け（LayerX は5つ、こちらは3つ）。採用の入口はヘッダーとトップの本文の両方。'],
-    ['お知らせ','corporate・checklist','LayerX：日付・分類。Valmont の反省：最新が古すぎない（2026.10.19）。外のサイト（求人票）に印。'],
-    ['データ','corporate・checklist','Valmont の反省：lang="ja"、Organization と JobPosting の構造化データ。'],
-    ['重さ','corporate・rules.md 3／lp common 6-1','採用ページが一番重くなる（LayerX 6.51MB・Valmont 14.85MB）の反対に、写真を使わず図は SVG。1ファイル・外部読み込みなし。'],
-    ['ホバー','lp・rules.md 7','とらや：@media (hover:hover) and (pointer:fine) の中だけ。'],
-    ['動きを止める','lp・rules.md 10／corporate checklist','prefers-reduced-motion と saveData で、帯・切り替え・ヘッダーの動きを全部止める（Valmont は最初の画面しか止めない）。']
+    ['作る前に決めること','site-skills','行動＝工場見学の申し込み（同じフォームで応募も可）。相手＝東大阪・八尾の10代後半〜20代（求人票・学校・Instagram から）。動かない理由＝暑い・きついの印象／未経験の不安／給料と休みが見えない。証拠＝給料・残業・休日・定着の実数、先輩の声、記録票と日報。'],
+    ['見出し','site-skills・ai-tells.md','格言調をやめ、知りたいことをそのまま：「機械オペレーターを2名募集しています」＋仕事・給料・休み・経験・場所の5行。'],
+    ['最初の画面の行動','site-skills・ai-tells.md','ボタンは「工場見学を申し込む」の1つだけ（2つ並びをやめた）。'],
+    ['ホワイトボード（見学できる日）','自分で決めた（ai-tells「題材でしか成り立たない部品」）','事務所前の予定ボードを手書きの書体（Klee One）で組む。押すとフォームの日付に入る。満員は線で消す。'],
+    ['色','自分で決めた（ai-tells「題材の現場の色」）','作業着の紺 #1f2d4a、床塗装の緑 #3f6650、安全表示の黄 #f5c400／黒、記録票の紙と検査印の朱。どのサイトの実測値でもない。'],
+    ['文字','site-skills・ai-tells.md','太いゴシック（見出し）、手書きの書体（ボード・測定値・日報のメモ）、等幅（図番・寸法・時刻）の3つで対比。'],
+    ['検査記録票・作業日報','site-skills・ai-tells.md','「写真に頼らず見せられるもの（図面・表）を主役にする」。部品の図面は記録票の中に入れた。'],
+    ['写真の枠','site-skills・ai-tells.md','絵で描かず、撮るべき写真を書いた枠（旋盤の前の辻本さん 横3:2、人ごとに縦4:5）。'],
+    ['ヘッダー','corporate・startup.md／enterprise.md','LayerX：ナビ5つ＋右端に採用の入口。Valmont：下へは隠し、上へ高さの半分戻すと出す（76px→64px、38px→32px）。'],
+    ['トップに数字の帯を置かない','corporate・rules.md 5／ai-tells','数字は「給料・休み・残業」の表の、それを確かめる行に置いた（4つの横並びをやめた）。'],
+    ['人の行','corporate・rules.md 6','LayerX：カードでなく全幅の行、内側 28px・1行 196px。'],
+    ['会社概要','corporate・checklist','LayerX に社員数・資本金が無かった反省：設立・従業員・資本金・売上・設備を表で。'],
+    ['応募の流れ','corporate・startup.md／ai-tells','丸数字の4段をやめ、いつ・何が起きるかの工程表に。フォームは LayerX の入力→確認→完了、前に別の窓口への振り分け。'],
+    ['お知らせ','corporate・checklist','日付と分類、外のサイトに ↗。最新は 2026.10.19。'],
+    ['データ','corporate・checklist','lang="ja"、Organization と JobPosting。'],
+    ['ホバー','lp・rules.md 7','とらや：(hover:hover) and (pointer:fine) の中だけ。'],
+    ['動き','lp・rules.md 4・10／ai-tells','流れる帯を外した。常に動くものは無し。reduced-motion で切り替えも止める。'],
+    ['重さ','corporate・rules.md 3','写真は枠だけ。HTML 1枚＋書体1つ（Google Fonts の Klee One、使う文字の分だけ読まれる）。']
   ];
   $('#skillRows').innerHTML=SK.map(r=>`<tr><td>${r[0]}</td><td><code>${r[1]}</code></td><td>${r[2]}</td></tr>`).join('');
   const dlg=$('#skills');
