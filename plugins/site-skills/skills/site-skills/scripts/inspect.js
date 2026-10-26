@@ -27,7 +27,7 @@ function probe() {
   const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return +((x + .05) / (y + .05)).toFixed(2); };
   const bgOf = el => { for (let e = el; e; e = e.parentElement) { const s = getComputedStyle(e); if (s.backgroundImage !== 'none' && !/gradient/.test(s.backgroundImage)) return null; const c = rgb(s.backgroundColor); if (c[3] === undefined || c[3] > .9) return c; } return [255, 255, 255, 1]; };
 
-  const m = { chars: 0, runChars: 0, runSizes: {}, runTiny: 0, runCenter: 0, tightBottom: [], hues: {}, pills: 0, softRadius: 0, sizes: {}, tiny: 0, families: {}, lowContrast: [], unreadable: [], eyebrows: [], numbering: [], bordered: 0, boxes: 0, gradients: 0, gradientText: 0, softShadows: 0, emoji: [], headings: [], svgHero: 0, statRows: 0, bodyBg: getComputedStyle(document.body).backgroundColor };
+  const m = { chars: 0, runChars: 0, runSizes: {}, runTiny: 0, runCenter: 0, tightBottom: [], greySlots: [], photos: 0, hues: {}, pills: 0, softRadius: 0, sizes: {}, tiny: 0, families: {}, lowContrast: [], unreadable: [], eyebrows: [], numbering: [], bordered: 0, boxes: 0, gradients: 0, gradientText: 0, softShadows: 0, emoji: [], headings: [], svgHero: 0, statRows: 0, bodyBg: getComputedStyle(document.body).backgroundColor };
   const textEls = [];
   for (const el of document.body.querySelectorAll('*')) {
     if (!visible(el)) continue;
@@ -111,6 +111,18 @@ function probe() {
     const lhPx = parseFloat(s.lineHeight) || parseFloat(s.fontSize) * 1.5; if (r.height - gT - gB < lhPx * 1.8) continue;
     if (gL >= 8 && (gB + 1 < gT * .8 || gB + 1 < gL * .8)) m.tightBottom.push(`${el.tagName.toLowerCase()}「${el.innerText.replace(/\s+/g, ' ').slice(0, 12)}」上${Math.round(gT)}・下${Math.round(gB)}・左${Math.round(gL)}`);
   }
+  // 写真の枠のまま残った箱：「写真の枠」「撮る写真」と書かれ（aria-label・文字・::before）、中に写真・動画が無いもの
+  // （ユーザーの見比べ 2026-10-26：灰色の写真の枠より、自由に使える実在の写真＋出典を選んだ。tools/photos.js で探す）
+  for (const el of document.body.querySelectorAll('div,figure,section,aside,span,p')) {
+    if (!visible(el) || exempt(el)) continue; const r = el.getBoundingClientRect(); if (r.width * r.height < vw * vh * .04) continue;
+    if (el.querySelector('img,video,canvas,picture') || /url\(/.test(getComputedStyle(el).backgroundImage)) continue;
+    const label = (el.getAttribute('aria-label') || '') + ' ' + (getComputedStyle(el, '::before').content || '');
+    const own = [...el.childNodes].map(n => n.nodeType === 3 ? n.textContent : (n.children?.length ? '' : n.textContent)).join('');
+    if (!/写真/.test(label) && !/写真の枠|撮る写真|撮るべき写真|ここに写真/.test(own)) continue;
+    if (el.parentElement?.closest('[aria-label*="写真"]')) continue; // 外側の枠だけ数える
+    m.greySlots.push((el.innerText || label).replace(/\s+/g, ' ').trim().slice(0, 24));
+  }
+  for (const im of document.images) if (visible(im) && im.naturalWidth >= 300 && !/\.svg/.test(im.currentSrc)) m.photos++;
   // 情報の密度：画面1枚（高さ1画面分）ごとの、文字数と塊（段落・項目・セル・見出し・ボタン）の数。ヘッダー・ナビ・フッター、隠れている物は数えない
   {
     const H = document.documentElement.scrollHeight, n = Math.max(1, Math.ceil(H / vh)); const ch = Array(n).fill(0), bl = Array(n).fill(0);
@@ -203,6 +215,7 @@ function judge(m, width) {
   const d = m.density;
   if (d && d.medBlocks > 12) add('WARN', 'dense-screen', `画面1枚あたりの塊が中央値 ${d.medBlocks} 個（実サイトは 3〜6、宿の検索結果で 21）`, '1画面に主役を1つ。塊を減らし、残した物を大きくする。一覧・検索結果なら理由を書いて残す');
   if (d && !sp && d.firstChars > 450) add('WARN', 'dense-first', `最初の画面の文字が ${d.firstChars} 字（実サイトは 56〜368 字）`, '最初の画面は、題・何かを言う1文・主な行動・主役の物だけ。説明は下の章へ');
+  if (m.greySlots.length) add('WARN', 'grey-slot', `写真の入っていない写真の枠が ${m.greySlots.length} 個（${m.greySlots.slice(0, 2).map(t => '「' + t + '」').join('')}）`, '題材のまわりの世界の本物の写真（tools/photos.js、出典を画面に書く）か、題材の情報そのもの（図・表）に替える');
   // ai-tells：淡いベージュ・ピンクの無難な地。taste-skill：黄みのクリーム地（WARN）
   const [r, g, b] = m.bodyBgRgb; const mx = Math.max(r, g, b), mn = Math.min(r, g, b);
   if (mx > 235 && mx - mn >= 8 && mx - mn <= 40 && r >= g && g >= b) add('WARN', 'cream-ground', `地が淡いベージュ（${m.bodyBg}）`, '地は白か、題材の現場の色から');
@@ -220,7 +233,7 @@ function judge(m, width) {
     if (out) { fs.mkdirSync(out, { recursive: true }); await p.screenshot({ path: path.join(out, `${name}-top.png`) }); await p.screenshot({ path: path.join(out, `${name}-full.png`), fullPage: true }); }
     const m = await p.evaluate(probe);
     all.push(...judge(m, vp.width));
-    console.log(`${name} ${vp.width}px  本文 ${m.bodySize}px・本文の13px未満 ${m.runChars ? Math.round(m.runTiny / m.runChars * 100) : 0}%・大きさ ${m.sizeCount}段・書体 ${m.familyCount}・枠線 ${m.bordered}・箱 ${m.boxes}・影 ${m.softShadows}・グラデ ${m.gradients}・小ラベル ${m.eyebrows.length}・番号 ${m.numbering.length}・中央 ${m.runChars ? Math.round(m.runCenter / m.runChars * 100) : 0}%・色相 ${Object.values(m.hues).filter(v => v >= 2).length}・ピル ${m.pills}・角丸 ${m.softRadius}・下が詰まった箱 ${m.tightBottom.length}・塊/画面 ${m.density?.medBlocks}・最初の画面 ${m.density?.firstChars}字`);
+    console.log(`${name} ${vp.width}px  本文 ${m.bodySize}px・本文の13px未満 ${m.runChars ? Math.round(m.runTiny / m.runChars * 100) : 0}%・大きさ ${m.sizeCount}段・書体 ${m.familyCount}・枠線 ${m.bordered}・箱 ${m.boxes}・影 ${m.softShadows}・グラデ ${m.gradients}・小ラベル ${m.eyebrows.length}・番号 ${m.numbering.length}・中央 ${m.runChars ? Math.round(m.runCenter / m.runChars * 100) : 0}%・色相 ${Object.values(m.hues).filter(v => v >= 2).length}・ピル ${m.pills}・角丸 ${m.softRadius}・下が詰まった箱 ${m.tightBottom.length}・写真 ${m.photos}・灰色の枠 ${m.greySlots.length}・塊/画面 ${m.density?.medBlocks}・最初の画面 ${m.density?.firstChars}字`);
     await p.close();
   }
   await b.close();
