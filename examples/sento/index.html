@@ -67,6 +67,7 @@ h1,h2,h3{font-family:var(--mincho);font-weight:400;line-height:1.5;margin:0}
 .fuda{margin:0;font-family:var(--hand);font-weight:600;background:var(--wood);color:var(--wood-ink);border:1px solid var(--wood-edge);padding:4px 12px;font-size:14px;line-height:1.4;white-space:nowrap}
 @media (max-width:860px){.nav{display:none}}
 @media (max-width:600px){.brand b{font-size:24px}.brand span{display:none}.fuda{font-size:12px;padding:3px 8px}}
+@media (max-width:374px){.fuda{display:none}}
 
 /* 予約（最初の画面の主役） */
 .top{padding-block:24px 40px}
@@ -157,8 +158,8 @@ h1,h2,h3{font-family:var(--mincho);font-weight:400;line-height:1.5;margin:0}
 .sum .terms{margin:10px 16px 16px;padding:8px 10px;background:var(--face);font-size:12px}
 .sum .terms b{display:block}
 .sum .go{margin:0 16px 16px}
-/* ボタンはとらやのピル（高さ46・角23・縁2px・太字14px）。墨ベタはホバーで白黒反転 */
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;border-radius:23px;border:2px solid var(--ink);background:var(--ink);color:#fff;font-weight:700;font-size:14px;padding:0 24px;transition:background-color .2s var(--ease),color .2s var(--ease)}
+/* ボタンはとらやの寸法（高さ46・縁2px・太字14px）。角はほかの部品（木札・伝票・のれん）にそろえて丸めない。墨ベタはホバーで白黒反転 */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;border-radius:0;border:2px solid var(--ink);background:var(--ink);color:#fff;font-weight:700;font-size:14px;padding:0 24px;transition:background-color .2s var(--ease),color .2s var(--ease)}
 .btn:disabled{background:var(--off);border-color:var(--off);color:var(--off-ink);cursor:not-allowed}
 .btn.wide{width:100%}
 .btn.line{background:#fff;color:var(--ink)}
@@ -227,8 +228,11 @@ footer .wrap{padding-block:24px 32px}
 footer p{margin:0 0 4px}
 
 /* 使ったスキル */
-.skills-btn{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;min-height:40px;border-radius:20px;border:2px solid var(--ink);background:#fff;padding:0 16px;font-weight:700;font-size:12px;transition:background-color .2s var(--ease),color .2s var(--ease)}
-@media (max-width:960px){.skills-btn{bottom:calc(86px + env(safe-area-inset-bottom,0px))}}
+.skills-btn{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;min-height:40px;border-radius:0;border:2px solid var(--ink);background:#fff;padding:0 16px;font-weight:700;font-size:12px;transition:background-color .2s var(--ease),color .2s var(--ease)}
+/* SP では下の帯と重ならないよう、固定のボタンを消してヘッダーの中に出す */
+.skills-mini{display:none;border:1px solid #fff;background:transparent;color:#fff;font-size:12px;padding:3px 8px;line-height:1.4;white-space:nowrap}
+.hd-right{display:flex;align-items:center;gap:8px}
+@media (max-width:960px){.skills-btn{display:none}.skills-mini{display:inline-block}}
 dialog{border:0;padding:0;background:transparent;color:var(--ink);max-width:none;max-height:none}
 dialog::backdrop{background:rgba(17,17,17,.5)}
 .sheet{opacity:0;transform:translateY(16px);transition:opacity .2s var(--ease),transform .2s var(--ease)}
@@ -288,7 +292,7 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
     <nav class="nav" aria-label="ページ内">
       <a href="#book">サウナの予約</a><a href="#room">サウナと水風呂</a><a href="#price">料金</a><a href="#flow">当日の流れ</a><a href="#access">アクセス</a>
     </nav>
-    <p class="fuda" id="todayOpen">本日 15:00〜24:30</p>
+    <div class="hd-right"><p class="fuda" id="todayOpen">本日 15:00〜24:30</p><button type="button" class="skills-mini" data-open-skills aria-haspopup="dialog">使ったスキル</button></div>
   </div>
 </header>
 
@@ -720,7 +724,7 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
     ['地・文字・罫の色', 'lp', 'lp／和・上質＝とらや', '地 #fff・文字 #111・罫 #ccc・薄い面 #f2f2f2・ホバー #777。赤 #b30000 は当日割と満員の印だけ。'],
     ['色はのれんだけ（藍と紅）', 'lp', 'lp／和・上質＝とらや ＋ ai-tells', 'とらや「UIは無彩色、色は商品写真の地に任せる」を、銭湯では「色はのれんに任せる」に置き換え。男湯の藍・女湯の紅は ai-tells の「現場の色」。'],
     ['見出しは明朝 400・文字は6段', 'lp', 'lp／和・上質＝とらや', '12 / 14 / 16 / 20 / 24 / 32px、見出しは明朝・行間1.5、本文はゴシック・行間1.6、字間は触らない。'],
-    ['ボタン（ピル・墨ベタはホバーで反転）', 'lp', 'lp／和・上質＝とらや', '高さ46・角23・縁2px・太字14px。'],
+    ['ボタン（墨ベタはホバーで反転）', 'lp', 'lp／和・上質＝とらや', '高さ46・縁2px・太字14px。とらやは角23のピルだが、木札・伝票・のれんの角ばった部品にそろえて角を丸めない。'],
     ['動き（transition だけ・.1/.2/.4s）', 'lp', 'lp／和・上質＝とらや・rules 7', 'cubic-bezier(.25,.46,.45,.94) の1つ。演出の keyframes は持たない。ホバーはマウス端末だけ。reduced-motion で止まる（とらやには無い）。'],
     ['番台の料金板・営業時間の札', 'ai', 'site-skills／ai-tells.md', '「木札のような料金表や営業時間の札を、文字の組み方で作る」「手書きの文字（画像でなく書体）」。書体 Klee One は自分で選んだ。'],
     ['写真の枠（サウナ室・水風呂）', 'ai', 'site-skills／ai-tells.md', '「SVG の絵を主役にしない」「撮るべき写真を具体的に書く」。最初の画面には置かず、予約の下に。'],
@@ -733,7 +737,7 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
     li.innerHTML = `<b>${part}</b><span class="src ${k}">${src}</span><span class="v">${v}</span>`;
     ul.appendChild(li);
   }
-  $('#skillsBtn').addEventListener('click', () => open($('#skillsD')));
+  document.querySelectorAll('#skillsBtn,[data-open-skills]').forEach(b => b.addEventListener('click', () => open($('#skillsD'))));
 
   render();
 })();
