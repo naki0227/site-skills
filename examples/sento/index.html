@@ -32,7 +32,9 @@
 <style>
 /* 地と文字は lp-quality-bar 和・上質（とらや）の無彩色：地 #fff・文字 #111・罫 #ccc・ホバーの文字 #777・薄い面 #f2f2f2。
    色は「のれん」だけが持つ（とらやの「色は商品写真の地に任せる」の置き換え）：男湯の藍・女湯の紅。木札の木色は時間帯の札だけ。
-   文字の大きさは 12/14/16/20/24/32 の6段、見出しは明朝 400・行間1.5、本文はゴシック・行間1.6、字間は触らない。
+   文字の大きさは とらや の6段（12/14/16/20/24/32）から 12 を除いた5段。本文16px・注記14px（site-skills ai-tells：本文16px以上・注記13px以上）。
+   見出しは明朝 400・行間1.5、本文はゴシック、字間は触らない。
+   区切りは枠線でなく、余白と地の色の1段の差（白 #fff と #f2f2f2）。縁を持つのは現場の物（料金板）と押せる物だけ。
    料金表と営業時間の札だけ、番台の手書きに寄せた書体（Klee One）。
    動きは transition だけ、イージング cubic-bezier(.25,.46,.45,.94)、.1 / .2 / .4s。 */
 :root{
@@ -47,7 +49,7 @@
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.6;overflow-x:hidden;font-variant-numeric:tabular-nums}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7;overflow-x:hidden;font-variant-numeric:tabular-nums}
 a{color:inherit}
 button,input{font:inherit;color:inherit}
 button{cursor:pointer}
@@ -61,101 +63,103 @@ h1,h2,h3{font-family:var(--mincho);font-weight:400;line-height:1.5;margin:0}
 .noren .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
 .brand{display:flex;align-items:baseline;gap:12px;text-decoration:none}
 .brand b{font-family:var(--mincho);font-weight:700;font-size:32px;line-height:1.2;letter-spacing:.08em}
-.brand span{font-size:12px;opacity:.85}
+.brand span{font-size:14px;opacity:.85}
 .nav{display:flex;gap:24px;font-size:14px}
 .nav a{text-decoration:none;opacity:.9;border-bottom:1px solid transparent;transition:border-color .2s var(--ease)}
-.fuda{margin:0;font-family:var(--hand);font-weight:600;background:var(--wood);color:var(--wood-ink);border:1px solid var(--wood-edge);padding:4px 12px;font-size:14px;line-height:1.4;white-space:nowrap}
+.fuda{margin:0;font-family:var(--hand);font-weight:600;background:var(--wood);color:var(--wood-ink);padding:4px 12px;font-size:14px;line-height:1.4;white-space:nowrap}
 @media (max-width:860px){.nav{display:none}}
-@media (max-width:600px){.brand b{font-size:24px}.brand span{display:none}.fuda{font-size:12px;padding:3px 8px}}
+@media (max-width:600px){.brand b{font-size:24px}.brand span{display:none}.fuda{font-size:14px;padding:2px 8px}}
 @media (max-width:374px){.fuda{display:none}}
 
 /* 予約（最初の画面の主役） */
 .top{padding-block:24px 40px}
-.top h1{font-size:24px}
+.top h1{font-size:32px}
 .top .lead{margin:4px 0 20px;color:var(--sub)}
 .top .lead b{color:var(--mark);font-weight:700}
 .book{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:32px;align-items:start}
 @media (max-width:960px){.book{grid-template-columns:minmax(0,1fr)}}
 .pick{display:grid;gap:20px;min-width:0}
-.lbl{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-bottom:1px solid var(--ink);padding-bottom:4px;margin:0 0 8px;font-size:14px;font-weight:700}
-.lbl span{font-weight:400;font-size:12px;color:var(--sub)}
-.lbl span.main{font-weight:700;font-size:14px;color:var(--ink)}
+.lbl{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:0 0 8px;font-size:16px;font-weight:700}
+.lbl span{font-weight:400;font-size:14px;color:var(--sub)}
+.lbl span.main{font-weight:700;font-size:16px;color:var(--ink)}
 .row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:start}
-@media (max-width:600px){.row{grid-template-columns:1fr;gap:20px}}
+@media (max-width:600px){.row{grid-template-columns:1fr;gap:16px}.row > div:last-child{display:flex;justify-content:space-between;align-items:center}.row > div:last-child .lbl{margin:0}}
 
 /* 男女：のれん2枚 */
 .sexes{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .sex{position:relative;border:2px solid var(--c);background:#fff;color:var(--c);padding:8px 12px 10px;text-align:left;display:grid;grid-template-columns:auto 1fr;column-gap:12px;align-items:center;transition:background-color .2s var(--ease),color .2s var(--ease)}
 .sex.m{--c:var(--ai)} .sex.f{--c:var(--beni)}
 .sex .k{font-family:var(--mincho);font-size:32px;line-height:1.2;grid-row:span 2}
-.sex .t{font-size:14px;font-weight:700}
-.sex .s{font-size:12px}
+.sex .t{font-size:16px;font-weight:700}
+.sex .s{font-size:14px}
 .sex[aria-pressed="true"]{background:var(--c);color:#fff}
-.sex[aria-pressed="true"]::after{content:"選択中";position:absolute;top:6px;right:8px;font-size:12px}
+.sex[aria-pressed="true"]::after{content:"選択中";position:absolute;top:6px;right:8px;font-size:14px}
 @media (max-width:600px){.sex{padding:8px}.sex .k{font-size:24px}.sex .s{display:none}.sex[aria-pressed="true"]::after{display:none}}
 
-.stepper{display:flex;align-items:center;border:1px solid var(--ink);width:max-content}
-.stepper button{width:48px;height:48px;border:0;background:#fff;font-size:20px;line-height:1;transition:background-color .1s var(--ease)}
-.stepper button:active:not(:disabled){background:var(--face)}
-.stepper button:disabled{color:#999;background:var(--face);cursor:not-allowed}
-.stepper output{min-width:72px;text-align:center;font-family:var(--mincho);font-size:24px;border-left:1px solid var(--ink);border-right:1px solid var(--ink);line-height:48px}
+.stepper{display:flex;align-items:center;gap:4px;width:max-content}
+.stepper button{width:48px;height:48px;border:0;background:var(--face);font-size:20px;line-height:1;transition:background-color .1s var(--ease)}
+.stepper button:active:not(:disabled){background:var(--line)}
+.stepper button:disabled{color:var(--off-ink);background:#fff;cursor:not-allowed}
+.stepper output{min-width:72px;text-align:center;font-family:var(--mincho);font-size:24px;line-height:48px}
 .stepper output small{font-size:14px}
-.hint{font-size:12px;color:var(--sub);margin:-12px 0 0}
+.hint{font-size:14px;color:var(--sub);margin:-12px 0 0}
 
 /* 日付 */
-.wk{display:flex;align-items:center;justify-content:space-between;margin:0 0 6px;font-size:12px}
-.wk button{border:1px solid var(--line);background:#fff;padding:4px 10px;font-size:12px}
-.wk button:disabled{color:#999;background:var(--face);cursor:not-allowed}
-.days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
-.day{border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff;padding:6px 2px;display:grid;justify-items:center;line-height:1.3;transition:background-color .1s var(--ease)}
-.day .w{font-size:12px}
+.wk{display:flex;align-items:center;justify-content:space-between;margin:0 0 6px;font-size:14px}
+.wk button{border:0;background:var(--face);padding:6px 12px;font-size:14px}
+.wk button:disabled{color:var(--off-ink);background:#fff;cursor:not-allowed}
+.days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px}
+.day{border:0;background:var(--face);padding:6px 2px;display:grid;justify-items:center;line-height:1.3;transition:background-color .1s var(--ease)}
+.day .w{font-size:14px}
 .day .d{font-family:var(--mincho);font-size:20px}
 .day .m{font-size:14px;height:20px}
-.day .tag{font-size:12px;color:var(--mark);white-space:nowrap;height:16px;line-height:16px}
+.day .tag{font-size:14px;color:var(--mark);white-space:nowrap;height:16px;line-height:16px}
 .day.sat .w{color:var(--ai)} .day.sun .w{color:var(--beni)}
 .day[aria-pressed="true"]{background:var(--ink);color:#fff}
 .day[aria-pressed="true"] .w,.day[aria-pressed="true"] .tag{color:#fff}
-.day.closed{background:var(--face);color:#777;cursor:not-allowed}
-@media (max-width:430px){.day .tag{font-size:10px}}
-.legend{display:flex;flex-wrap:wrap;gap:2px 16px;margin:6px 0 0;padding:0;list-style:none;font-size:12px;color:var(--sub)}
+.day.closed{background:#fff;color:var(--off-ink);cursor:not-allowed}
+@media (max-width:430px){.day .tag{font-size:13px}}
+.legend{display:flex;flex-wrap:wrap;gap:2px 16px;margin:6px 0 0;padding:0;list-style:none;font-size:14px;color:var(--sub)}
 .legend b{color:var(--ink);margin-right:2px}
 
 /* 時間帯：下足札のような木札 */
-.fudas{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}
-.slot{width:100%;height:100%;border:1px solid var(--wood-edge);background:var(--wood);color:var(--wood-ink);padding:8px 6px;display:grid;justify-items:center;align-content:start;gap:2px;line-height:1.3;transition:transform .2s var(--ease),background-color .1s var(--ease)}
+/* 1日の枠が1〜2行にちょうど収まる列数（JS が --cols を入れる）。穴を残さない */
+.fudas{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(var(--cols,9),minmax(0,1fr));gap:6px}
+@media (max-width:600px){.fudas{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}}
+.slot{width:100%;height:100%;border:0;background:var(--wood);color:var(--wood-ink);padding:8px 6px;display:grid;justify-items:center;align-content:start;gap:2px;line-height:1.3;transition:transform .2s var(--ease),background-color .1s var(--ease)}
 .slot .h{font-family:var(--mincho);font-size:32px;line-height:1.1}
 .slot .h small{font-size:14px}
-.slot .e{font-size:12px}
-.slot .dots{display:flex;gap:3px;margin:2px 0}
-.slot .dots i{width:9px;height:9px;border-radius:50%;border:1px solid currentColor;background:transparent}
+.slot .e{font-size:14px}
+.slot .dots{display:flex;gap:2px;margin:2px 0}
+.slot .dots i{width:8px;height:8px;border-radius:50%;border:1px solid currentColor;background:transparent}
 .slot .dots i.free{background:currentColor}
-.slot .left{font-size:12px;font-weight:700}
-.slot .p{font-size:14px;font-weight:700}
-.slot .am{font-size:12px;border:1px solid currentColor;padding:0 4px;line-height:1.4}
-.slot[aria-pressed="true"]{background:var(--sel);border-color:var(--sel);color:#fff}
-.slot:disabled{background:var(--off);border-color:var(--line);color:var(--off-ink);cursor:not-allowed}
-.slot .stamp{font-family:var(--mincho);font-size:14px;color:var(--mark);border:1px solid var(--mark);padding:0 4px;line-height:1.5;margin-top:4px}
-.slot .why{font-size:12px;text-align:center}
-.empty{border:1px solid var(--ink);padding:16px;grid-column:1 / -1}
+.slot .left{font-size:14px;font-weight:700}
+.slot .p{font-size:16px;font-weight:700}
+.slot .am{font-size:14px;font-weight:700;line-height:1.4}
+.slot[aria-pressed="true"]{background:var(--sel);color:#fff}
+.slot:disabled{background:var(--off);color:var(--off-ink);cursor:not-allowed}
+.slot .stamp{font-family:var(--mincho);font-size:16px;color:var(--mark);border:1px solid var(--mark);padding:0 4px;line-height:1.5;margin-top:4px}
+.slot .why{font-size:14px;text-align:center}
+.empty{background:var(--face);padding:16px;grid-column:1 / -1}
 .empty p{margin:0 0 10px}
 .empty .acts{display:flex;flex-wrap:wrap;gap:8px}
 
 /* 番台の伝票 */
-.sum{position:sticky;top:16px;border:1px solid var(--ink);background:#fff}
+.sum{position:sticky;top:16px;background:var(--face)}
 .sum h2{font-size:16px;background:var(--ink);color:#fff;padding:8px 16px}
 .sum dl{margin:12px 16px 0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px}
-.sum dt{color:var(--sub);font-size:12px;padding-top:2px}
+.sum dt{color:var(--sub);font-size:14px;padding-top:2px}
 .sum dd{margin:0;text-align:right;font-weight:700}
 .sum dd.none{color:var(--off-ink);font-weight:400}
-.sum .lines{margin:12px 16px 0;padding-top:10px;border-top:1px dashed var(--line);display:grid;gap:2px;font-size:14px}
+.sum .lines{margin:16px 16px 0;display:grid;gap:2px;font-size:16px}
 .sum .lines div{display:flex;justify-content:space-between;gap:8px}
 .sum .lines .disc{color:var(--mark)}
-.sum .total{margin:8px 16px 0;display:flex;justify-content:space-between;align-items:baseline;gap:8px;border-top:1px solid var(--ink);padding-top:8px}
-.sum .total span{font-size:12px;color:var(--sub)}
+.sum .total{margin:8px 16px 0;display:grid;justify-items:end;border-top:1px solid var(--ink);padding-top:8px}
+.sum .total span{font-size:14px;color:var(--sub);justify-self:start}
 .sum .total b{font-family:var(--mincho);font-weight:700;font-size:32px;line-height:1.2}
-.sum .per{margin:0 16px;text-align:right;font-size:12px;color:var(--sub)}
-.sum .nomore{margin:6px 16px 0;font-size:12px;font-weight:700}
-.sum .terms{margin:10px 16px 16px;padding:8px 10px;background:var(--face);font-size:12px}
+.sum .per{margin:0 16px;text-align:right;font-size:14px;color:var(--sub)}
+.sum .nomore{margin:6px 16px 0;font-size:14px;font-weight:700}
+.sum .terms{margin:12px 16px 16px;padding:10px 12px;background:#fff;font-size:14px}
 .sum .terms b{display:block}
 .sum .go{margin:0 16px 16px}
 /* ボタンはとらやの寸法（高さ46・縁2px・太字14px）。角はほかの部品（木札・伝票・のれん）にそろえて丸めない。墨ベタはホバーで白黒反転 */
@@ -163,32 +167,33 @@ h1,h2,h3{font-family:var(--mincho);font-weight:400;line-height:1.5;margin:0}
 .btn:disabled{background:var(--off);border-color:var(--off);color:var(--off-ink);cursor:not-allowed}
 .btn.wide{width:100%}
 .btn.line{background:#fff;color:var(--ink)}
-.go .reason{display:block;text-align:center;font-size:12px;color:var(--sub);margin-top:4px;min-height:1.6em}
+.go .reason{display:block;text-align:center;font-size:14px;color:var(--sub);margin-top:4px;min-height:1.6em}
 
 /* SP の下の帯（DICE：画面下に固定・74px） */
 .bar{position:fixed;left:0;right:0;bottom:0;z-index:20;min-height:74px;background:#fff;border-top:1px solid var(--ink);display:none;align-items:center;gap:12px;padding:0 max(16px,env(safe-area-inset-right,0px)) env(safe-area-inset-bottom,0px) max(16px,env(safe-area-inset-left,0px))}
 .bar .bt{flex:1;min-width:0;line-height:1.3}
 .bar .bt b{font-family:var(--mincho);font-weight:700;font-size:24px}
-.bar .bt small{display:block;font-size:12px;color:var(--sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar .bt small{display:block;font-size:14px;color:var(--sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .bar .btn{flex:none;padding:0 18px}
 @media (max-width:960px){.bar{display:flex} body{padding-bottom:74px} .sum .go{display:none} .sum{position:static}}
 
 /* 章 */
-.sec{border-top:1px solid var(--ink);padding-block:40px}
+.sec{padding-block:48px}
+.sec.alt{background:var(--face)}
 .sec h2{font-size:24px;margin-bottom:4px}
-.sec .sub{margin:0 0 20px;color:var(--sub)}
+.sec .sub{margin:0 0 24px;color:var(--sub)}
 
 /* 写真の枠 */
 .photos{display:grid;grid-template-columns:1fr 1fr 280px;gap:16px;align-items:start}
 @media (max-width:960px){.photos{grid-template-columns:1fr 1fr}.photos dl{grid-column:1 / -1}}
 @media (max-width:600px){.photos{grid-template-columns:1fr}}
 .ph{margin:0;min-width:0}
-.ph .frame{aspect-ratio:3 / 2;border:1px dashed #888;background:var(--face);display:grid;align-content:center;gap:4px;padding:16px;font-size:12px;color:var(--sub);max-width:100%}
-.ph .frame b{font-size:12px;color:var(--ink)}
-.ph figcaption{font-size:14px;margin-top:6px}
-.spec{margin:0;display:grid;grid-template-columns:auto 1fr;border-top:1px solid var(--line)}
-.spec dt,.spec dd{margin:0;padding:8px 0;border-bottom:1px solid var(--line)}
-.spec dt{color:var(--sub);font-size:12px;padding-right:16px;padding-top:10px}
+.ph .frame{aspect-ratio:3 / 2;background:#ddd;display:grid;align-content:center;gap:4px;padding:16px;font-size:16px;color:var(--sub);max-width:100%}
+.ph .frame b{font-size:14px;color:var(--ink)}
+.ph figcaption{font-size:16px;margin-top:6px}
+.spec{margin:0;display:grid;grid-template-columns:auto 1fr;row-gap:2px}
+.spec dt,.spec dd{margin:0;padding:8px 12px;background:#fff}
+.spec dt{color:var(--sub);font-size:14px;padding-top:10px}
 .spec dd{text-align:right}
 .spec dd b{font-family:var(--mincho);font-size:20px;font-weight:400}
 
@@ -204,11 +209,11 @@ h1,h2,h3{font-family:var(--mincho);font-weight:400;line-height:1.5;margin:0}
 .board tr.red th,.board tr.red td{color:var(--mark)}
 .board tr.sum2 th,.board tr.sum2 td{border-bottom:0}
 .board p{margin:8px 0 0;font-size:14px;text-align:right}
-.notes{margin:0;padding-left:1.2em;display:grid;gap:8px}
+.notes{margin:0;padding-left:1.2em;display:grid;gap:10px}
 
 /* 当日の流れ */
-.flow{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
-.flow li{display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}
+.flow{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.flow li{display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;padding:14px 16px;background:#fff}
 .flow time{font-family:var(--mincho);font-size:20px;line-height:1.3}
 .flow b{display:block}
 .flow p{margin:0;color:var(--sub)}
@@ -217,20 +222,20 @@ h1,h2,h3{font-family:var(--mincho);font-weight:400;line-height:1.5;margin:0}
 /* アクセス */
 .access{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
 @media (max-width:860px){.access{grid-template-columns:1fr}}
-.access dl{margin:0;display:grid;grid-template-columns:7em 1fr;border-top:1px solid var(--line)}
-.access dt,.access dd{margin:0;padding:8px 0;border-bottom:1px solid var(--line)}
-.access dt{color:var(--sub);font-size:12px;padding-top:10px}
-.map{border:1px solid var(--line)}
+.access dl{margin:0;display:grid;grid-template-columns:7em 1fr;row-gap:12px}
+.access dt,.access dd{margin:0}
+.access dt{color:var(--sub);font-size:14px;padding-top:2px}
+.map{background:var(--face)}
 .map svg{display:block;width:100%;height:auto;max-width:100%}
 
-footer{background:var(--ink);color:#ddd;font-size:12px}
+footer{background:var(--ink);color:#ddd;font-size:14px}
 footer .wrap{padding-block:24px 32px}
 footer p{margin:0 0 4px}
 
 /* 使ったスキル */
-.skills-btn{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;min-height:40px;border-radius:0;border:2px solid var(--ink);background:#fff;padding:0 16px;font-weight:700;font-size:12px;transition:background-color .2s var(--ease),color .2s var(--ease)}
+.skills-btn{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;min-height:40px;border-radius:0;border:2px solid var(--ink);background:#fff;padding:0 16px;font-weight:700;font-size:14px;transition:background-color .2s var(--ease),color .2s var(--ease)}
 /* SP では下の帯と重ならないよう、固定のボタンを消してヘッダーの中に出す */
-.skills-mini{display:none;border:1px solid #fff;background:transparent;color:#fff;font-size:12px;padding:3px 8px;line-height:1.4;white-space:nowrap}
+.skills-mini{display:none;border:1px solid #fff;background:transparent;color:#fff;font-size:14px;padding:3px 8px;line-height:1.4;white-space:nowrap}
 .hd-right{display:flex;align-items:center;gap:8px}
 @media (max-width:960px){.skills-btn{display:none}.skills-mini{display:inline-block}}
 dialog{border:0;padding:0;background:transparent;color:var(--ink);max-width:none;max-height:none}
@@ -241,12 +246,12 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
 .skills-d .sheet{background:#fff;border:1px solid var(--ink);max-height:calc(100vh - 32px);display:flex;flex-direction:column;overflow:hidden}
 .skills-d header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--ink)}
 .skills-d h2{font-size:16px}
-.skills-d .body{overflow:auto;padding:4px 16px 16px;font-size:12px}
+.skills-d .body{overflow:auto;padding:4px 16px 16px;font-size:14px}
 .skills-d .body p.meta{color:var(--sub);margin:12px 0;font-size:14px}
 .skills-d ul{list-style:none;margin:0;padding:0}
 .skills-d li{padding:10px 0;border-bottom:1px solid var(--line)}
 .skills-d li b{display:block;font-size:14px}
-.skills-d .src{display:inline-block;font-size:12px;font-weight:700;padding:0 6px;margin:4px 6px 2px 0;border:1px solid currentColor}
+.skills-d .src{display:inline-block;font-size:14px;font-weight:700;padding:0 6px;margin:4px 6px 2px 0;border:1px solid currentColor}
 .src.bk{color:var(--ai)} .src.lp{color:var(--wood-ink)} .src.own{color:var(--beni)} .src.ai{color:#444}
 .skills-d li span.v{display:block;color:var(--sub);line-height:1.6}
 .x{width:40px;height:40px;border:1px solid var(--line);background:#fff;font-size:20px;line-height:1}
@@ -254,25 +259,25 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
 .confirm-d{margin:auto;width:min(480px,calc(100vw - 32px))}
 .confirm-d .sheet{background:#fff;border:1px solid var(--ink);padding:24px}
 .confirm-d h2{font-size:20px}
-.confirm-d .sub{margin:0 0 12px;font-size:12px;color:var(--sub)}
+.confirm-d .sub{margin:0 0 12px;font-size:14px;color:var(--sub)}
 .confirm-d dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 16px}
-.confirm-d dt{color:var(--sub);font-size:12px;padding-top:2px}
+.confirm-d dt{color:var(--sub);font-size:14px;padding-top:2px}
 .confirm-d dd{margin:0;font-weight:700}
-.confirm-d .rules{margin:12px 0;padding:10px 12px;background:var(--face);font-size:12px}
+.confirm-d .rules{margin:12px 0;padding:10px 12px;background:var(--face);font-size:14px}
 .confirm-d .rules ul{margin:4px 0 0;padding-left:1.2em}
 .check{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border:1px solid transparent}
 .check input{width:22px;height:22px;margin:0;accent-color:var(--ink);flex:none}
 .check.err{border-color:var(--mark);background:#fbeaea}
-.errmsg{color:var(--mark);font-size:12px;font-weight:700;margin:4px 0 0;min-height:1.6em}
+.errmsg{color:var(--mark);font-size:14px;font-weight:700;margin:4px 0 0;min-height:1.6em}
 .confirm-d .acts{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:8px}
-.done{display:none;margin-top:12px;padding:10px 12px;background:var(--ai-face);font-size:12px}
+.done{display:none;margin-top:12px;padding:10px 12px;background:var(--ai-face);font-size:14px}
 .done.show{display:block}
 
 /* ホバーはマウスの端末だけ（lp rules 7＝とらや） */
 @media (hover:hover) and (pointer:fine){
   .nav a:hover{border-color:#fff}
   .sex[aria-pressed="false"]:hover{background:var(--face)}
-  .day:not(:disabled):not([aria-pressed="true"]):hover{background:var(--face)}
+  .day:not(:disabled):not([aria-pressed="true"]):hover{background:var(--line)}
   .slot:not(:disabled):not([aria-pressed="true"]):hover{transform:translateY(-3px)}
   .btn:not(:disabled):hover{background:#fff;color:var(--ink)}
   .btn.line:hover{background:var(--ink);color:#fff}
@@ -300,7 +305,7 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
 <section class="top" id="book" aria-labelledby="book-h">
   <div class="wrap">
     <h1 id="book-h">十条湯 サウナの予約</h1>
-    <p class="lead">男湯・女湯それぞれ6名まで、60分ごとの枠です。予約は14日先まで、お支払いは当日番台で。<b>当日の予約はサウナ料金が160円引き。</b></p>
+    <p class="lead">男湯・女湯それぞれ6名まで、60分ごとの枠です。<b>当日の予約はサウナ料金が160円引き。</b></p>
 
     <div class="book">
       <div class="pick">
@@ -324,7 +329,7 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
         <p class="hint" id="numHint">中学生以上。1回の予約で6名（その枠の定員）まで。</p>
 
         <div>
-          <p class="lbl">日<span id="weekLabel"></span></p>
+          <p class="lbl">日<span>14日先まで　<span id="weekLabel"></span></span></p>
           <div class="wk">
             <button type="button" id="prevW">‹ 前の7日</button>
             <button type="button" id="nextW">次の7日 ›</button>
@@ -373,7 +378,7 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
   </div>
 </section>
 
-<section class="sec" id="room" aria-labelledby="room-h">
+<section class="sec alt" id="room" aria-labelledby="room-h">
   <div class="wrap">
     <h2 id="room-h">サウナと水風呂</h2>
     <p class="sub">男湯・女湯とも同じつくりです。</p>
@@ -428,7 +433,7 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
   </div>
 </section>
 
-<section class="sec" id="flow" aria-labelledby="flow-h">
+<section class="sec alt" id="flow" aria-labelledby="flow-h">
   <div class="wrap">
     <h2 id="flow-h">当日の流れ（19時の枠の場合）</h2>
     <p class="sub">はじめての方へ。</p>
@@ -456,7 +461,7 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
       </dl>
       <div class="map" role="img" aria-label="十条駅北口から十条湯までの道順の略図。商店街を東へ抜け、仲原の路地を南へ。徒歩6分、約450m。">
         <svg viewBox="0 0 480 240">
-          <rect width="480" height="240" fill="#fff"/>
+          <rect width="480" height="240" fill="#f2f2f2"/>
           <path d="M0 50 H480" stroke="#111" stroke-width="6"/>
           <path d="M0 50 H480" stroke="#fff" stroke-width="2" stroke-dasharray="12 10"/>
           <text x="12" y="34" font-size="12" fill="#111" font-family="sans-serif">JR埼京線</text>
@@ -607,6 +612,7 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
   function renderSlots() {
     const ul = $('#slots'); ul.innerHTML = '';
     const d = st.date, list = slotsOf(d), per = priceOf(d);
+    ul.style.setProperty('--cols', list.length > 9 ? Math.ceil(list.length / 2) : list.length);
     const sel = st.sex === 'm' ? 'var(--ai)' : 'var(--beni)';
     $('#slotsTitle').textContent = `時間　${fmtDate(d)}・${sexName()}`;
     const okN = list.filter(s => s.ok).length;
@@ -727,6 +733,7 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
     ['ボタン（墨ベタはホバーで反転）', 'lp', 'lp／和・上質＝とらや', '高さ46・縁2px・太字14px。とらやは角23のピルだが、木札・伝票・のれんの角ばった部品にそろえて角を丸めない。'],
     ['動き（transition だけ・.1/.2/.4s）', 'lp', 'lp／和・上質＝とらや・rules 7', 'cubic-bezier(.25,.46,.45,.94) の1つ。演出の keyframes は持たない。ホバーはマウス端末だけ。reduced-motion で止まる（とらやには無い）。'],
     ['番台の料金板・営業時間の札', 'ai', 'site-skills／ai-tells.md', '「木札のような料金表や営業時間の札を、文字の組み方で作る」「手書きの文字（画像でなく書体）」。書体 Klee One は自分で選んだ。'],
+    ['区切りは余白と地の色・本文16px', 'ai', 'site-skills／ai-tells.md・inspect.js', '四辺を囲む箱や罫をやめ、白と #f2f2f2 の1段の差で分けた（最初の3画面の枠線 73→9 個。実サイトは 7〜27 個）。本文16px・注記14px（13px未満 38%→0%）。'],
     ['写真の枠（サウナ室・水風呂）', 'ai', 'site-skills／ai-tells.md', '「SVG の絵を主役にしない」「撮るべき写真を具体的に書く」。最初の画面には置かず、予約の下に。'],
     ['見出しをそのまま書く', 'ai', 'site-skills／ai-tells.md', '「十条湯 サウナの予約」。格言調・英字の小見出し・丸数字をやめた。'],
     ['枠の長さ・料金・きまり', 'own', '自分で決めた（スキルに無い）', '60分のうち10分を清掃、当日割160円、遅刻15分で次へ回す、構造化データ（LocalBusiness＋Offer）。']
