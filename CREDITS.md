@@ -13,4 +13,7 @@
 - [elayadesign/ai-design-skills](https://github.com/elayadesign/ai-design-skills) — Copyright (c) 2026 Elaya。「作る前に決めること」の最初の形と、作例の決まり（本物らしい中身・状態の網羅・動かすのは transform と opacity だけ）。
 
 ## 写真
-まだ無い。
+| 使用例 | ファイル | 題 | 作者 | ライセンス | 元のページ |
+|---|---|---|---|---|---|
+| `toukiichi` | `photos/Arita-tokichi-200804.jpg` | Arita tokichi 200804 | user:Atsasebo | CC BY-SA 3.0 | https://commons.wikimedia.org/w/index.php?curid=9228610 |
+| `toukiichi` | `photos/Noborigama-Tokoname-01.jpg` | Noborigama Tokoname 01 | Gryffindor | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=63887246 |
