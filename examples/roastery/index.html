@@ -17,7 +17,7 @@
 /*
   地は白（ec 食品・ギフト：とらやの #fff）。色は焙煎の現場から：
   焦げ茶（焙煎機と予定表の黒板）、クラフト紙（豆のラベル）、朱のスタンプ（焙煎日の判）。
-  文字は3種：名前は明朝、ラベルの数値は等幅、焙煎記録と味の言葉は手書きの書体（Klee One）。
+  文字は3種：名前は明朝、本文と数値はゴシック（tabular-nums で桁をそろえる）、焙煎記録と味の言葉は手書きの書体（Klee One）。
   文字の大きさ・一覧の列・sticky の列はとらやの実測値。
 */
 :root{
@@ -31,12 +31,12 @@
   --ease:cubic-bezier(.25,.46,.45,.94);   /* とらや */
   --serif:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",serif;
   --sans:"Hiragino Sans","Yu Gothic","YuGothic","Noto Sans JP",system-ui,sans-serif;
-  --mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,"Osaka-Mono",monospace;
+  --mono:var(--sans);
   --hand:"Klee One","Hiragino Maru Gothic ProN",var(--sans);
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--sans)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--sans);font-variant-numeric:tabular-nums}
 a{color:inherit}
 button,select,input{font:inherit;color:inherit}
 :focus-visible{outline:3px solid var(--stamp);outline-offset:2px}
@@ -49,47 +49,51 @@ button,select,input{font:inherit;color:inherit}
 .hd .wrap{display:flex;align-items:center;gap:24px;height:72px}
 .logo{display:flex;align-items:baseline;gap:12px;text-decoration:none}
 .logo b{font:600 22px/1 var(--serif);letter-spacing:.06em}
-.logo small{font:12px/1 var(--mono);color:var(--ink2)}
+.logo small{font:13px/1 var(--mono);color:var(--ink2)}
 .hd nav{display:flex;gap:22px;margin-left:auto;font-size:14px}
 .hd nav a{text-decoration:none;padding:6px 0}
 .cartbtn{position:relative;display:flex;align-items:center;gap:8px;border:1px solid var(--ink);background:none;height:40px;padding:0 12px;cursor:pointer;font-size:14px}
-.count{font:700 12px/20px var(--mono);min-width:20px;height:20px;background:var(--stamp);color:#fff;text-align:center;padding:0 4px}
+.count{font:700 13px/20px var(--mono);min-width:20px;height:20px;background:var(--stamp);color:#fff;text-align:center;padding:0 4px}
 .count[hidden]{display:none}
 
-.crumb{font-size:12px;border-bottom:1px solid var(--rule)}
+.crumb{font-size:13px}
 .crumb ol{list-style:none;margin:0 auto;padding:8px 15px;max-width:1100px;display:flex;gap:6px;flex-wrap:wrap}
 .crumb li+li::before{content:"/";margin-right:6px;color:var(--ink2)}
 
 /* 一覧の頭 */
-.lead{display:flex;justify-content:space-between;align-items:flex-end;gap:12px 40px;flex-wrap:wrap;padding:32px 0 20px}
-.lead h1{font:400 32px/1.5 var(--serif);margin:0}
-.lead p{margin:0;font-size:14px;color:var(--ink2);max-width:30em}
+.lead{padding:28px 0 18px}
+.lead h1{font:400 32px/1.4 var(--serif);margin:0}
+.lead p{margin:4px 0 0;font-size:16px;color:var(--ink2);max-width:40em}
 
 /* これからの焙煎予定（黒板） */
-.board{background:var(--ink);color:var(--kraft2);padding:20px 24px 22px}
+.board{background:var(--ink);color:var(--kraft2);padding:16px 24px 18px}
 .board-hd{display:flex;justify-content:space-between;align-items:baseline;gap:8px 20px;flex-wrap:wrap;border-bottom:1px solid rgba(236,220,194,.35);padding-bottom:12px}
 .board-hd h2{font:400 20px/1.5 var(--serif);margin:0;color:#fff}
 .board-hd label{font-size:14px;display:flex;align-items:center;gap:8px}
 .board-hd select{height:34px;background:var(--ink);color:#fff;border:1px solid var(--kraft2);padding:0 8px}
-.days{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:4px}
-.day{padding:14px 18px 6px 0}
-.day+.day{border-left:1px solid rgba(236,220,194,.35);padding-left:18px}
+.days{margin-top:2px}
+/* 焙煎日ごとに1行：日付と釜の空き｜その日に焼く豆｜着日。列にすると豆の数の差で穴があく */
+.day{display:grid;grid-template-columns:250px 1fr 170px;grid-template-areas:"h ul arr" "k ul arr";gap:0 24px;align-items:start;padding:14px 0 6px}
+.day h3{grid-area:h}
+.day .kama{grid-area:k}
+.day ul{grid-area:ul;padding-top:2px!important}
+.day .arr{grid-area:arr;text-align:right;margin-top:2px!important}
 .day h3{margin:0;font:600 18px/1.4 var(--hand);color:#fff}
-.day h3 .mono{font:400 12px var(--mono);color:var(--kraft2);margin-left:8px}
-.day .kama{font:12px/1.5 var(--mono);margin:4px 0 8px}
+.day h3 .mono{font:400 13px var(--mono);color:var(--kraft2);margin-left:8px}
+.day .kama{font:13px/1.5 var(--mono);margin:2px 0 6px}
 .day .kama b{color:#fff;font-weight:700}
-.day ul{list-style:none;margin:0;padding:0;font:15px/1.75 var(--hand)}
+.day ul{list-style:none;margin:0;padding:0;font:16px/1.7 var(--hand);display:flex;flex-wrap:wrap;gap:0 14px}
 .day li a{text-decoration:none}
 .day li a:hover{text-decoration:underline}
-.day .arr{font:12px/1.5 var(--mono);margin-top:8px;color:#fff}
-.board .foot{font-size:12px;margin:12px 0 0;color:var(--kraft2)}
+.day .arr{font:14px/1.5 var(--mono);margin-top:6px;color:#fff}
+.board .foot{font-size:16px;margin:10px 0 0;color:var(--kraft2)}
 
 /* 絞り込み・並べ替え */
-.tools{display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px 28px;padding:24px 0 20px;border-bottom:1px solid var(--ink)}
+.tools{display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px 28px;padding:28px 0 8px}
 .tools fieldset{border:0;margin:0;padding:0;min-width:0}
-.tools legend{font-size:12px;color:var(--ink2);margin-bottom:6px;padding:0}
+.tools legend{font-size:13px;color:var(--ink2);margin-bottom:6px;padding:0}
 .chips{display:flex;flex-wrap:wrap;gap:4px}
-.chip{border:1px solid var(--ink);background:transparent;height:34px;padding:0 12px;font-size:14px;cursor:pointer;transition:background-color .1s var(--ease),color .1s var(--ease)}
+.chip{border:0;background:var(--kraft2);height:34px;padding:0 12px;font-size:14px;cursor:pointer;transition:background-color .1s var(--ease),color .1s var(--ease)}
 .chip[aria-pressed="true"]{background:var(--ink);color:#fff}
 @media (hover:hover) and (pointer:fine){.chip:hover:not([aria-pressed="true"]){background:var(--kraft2)}}
 .sortbox{margin-left:auto;display:flex;align-items:center;gap:10px;font-size:14px}
@@ -101,31 +105,33 @@ button,select,input{font:inherit;color:inherit}
 .grid{list-style:none;margin:0;padding:0 0 72px;display:grid;grid-template-columns:repeat(4,1fr);gap:60px 40px}
 .card a{display:flex;flex-direction:column;height:100%;text-decoration:none}
 .label{position:relative;flex:1;background:var(--kraft);padding:14px 16px 12px;display:flex;flex-direction:column;transition:opacity .2s var(--ease),transform .2s var(--ease)}
-.label .no{display:flex;justify-content:space-between;font:12px/1 var(--mono);border-bottom:1px solid var(--ink);padding-bottom:8px}
+.label .no{display:flex;justify-content:space-between;font:13px/1 var(--mono)}
 .label .cty{font:600 26px/1.25 var(--serif);margin:12px 0 2px;letter-spacing:.02em}
 .label .nm{font-size:14px;font-weight:700;line-height:1.45}
-.label dl{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;margin:10px 0 0;font:12px/1.5 var(--mono)}
+.label dl{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;margin:10px 0 0;font:14px/1.5 var(--mono)}
 .label dd{margin:0}
-.ratio{display:flex;height:16px;margin-top:10px;border:1px solid var(--ink)}
-.ratio span{display:block;height:100%;border-right:1px solid var(--ink)}
-.ratio span:last-child{border-right:0}
-.ratiokey{font:11px/1.5 var(--mono);margin-top:4px}
+.ratio{display:flex;gap:2px;height:16px;margin-top:10px}
+.ratio span{display:block;height:100%}
+.ratiokey{font:14px/1.5 var(--mono);margin-top:6px}
+.ratiokey span{display:flex;align-items:center;gap:6px}
+.ratiokey i{width:10px;height:10px;display:block;flex:none}
 .taste{font:16px/1.5 var(--hand);margin:10px 0 0}
-.roastline{display:flex;align-items:center;gap:8px;margin-top:auto;padding:12px 64px 0 0;font:12px/1.35 var(--mono)}
-.roastline i{width:28px;height:14px;display:block;border:1px solid var(--ink);flex:none}
-.stamp{position:absolute;right:10px;bottom:10px;border:2px solid var(--stamp);color:var(--stamp);font:700 11px/1.25 var(--mono);padding:3px 5px;text-align:center;transform:rotate(-4deg);background:rgba(217,191,152,.6)}
+.taste span{white-space:nowrap}
+.roastline{display:flex;align-items:center;gap:8px;margin-top:auto;padding:12px 64px 0 0;font:13px/1.35 var(--mono)}
+.roastline i{width:28px;height:14px;display:block;flex:none}
+.stamp{position:absolute;right:10px;bottom:10px;border:2px solid var(--stamp);color:var(--stamp);font:700 13px/1.25 var(--mono);padding:3px 5px;text-align:center;transform:rotate(-4deg);background:rgba(217,191,152,.6)}
 .card .pr{margin-top:12px;font-size:16px}
-.card .pr small{font-size:12px}
-.card .warn{font:700 12px/1.4 var(--sans);color:var(--stamp);margin-top:2px}
+.card .pr small{font-size:13px}
+.card .warn{font:700 13px/1.4 var(--sans);color:var(--stamp);margin-top:2px}
 @media (hover:hover) and (pointer:fine){
   .card a:hover .label{opacity:.8;transform:scale(1.03)}
   .card a:hover .pr{color:var(--ink2)}
 }
-.empty{grid-column:1/-1;padding:48px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.empty{grid-column:1/-1;padding:48px 24px;background:var(--kraft2)}
 .empty p{margin:0 0 14px}
 
 /* 定期便の条件 */
-.teiki{border-top:1px solid var(--ink);padding:40px 0 64px}
+.teiki{background:var(--kraft2);padding:40px 0 64px}
 .teiki h2{font:400 24px/1.5 var(--serif);margin:0 0 4px}
 .teiki p{margin:0 0 16px;font-size:14px;color:var(--ink2)}
 .cond{width:100%;max-width:760px;border-collapse:collapse;font-size:14px}
@@ -135,7 +141,7 @@ button,select,input{font:inherit;color:inherit}
 /* 詳細：左 625px・右 340px の列を sticky（とらや） */
 .pd{display:grid;grid-template-columns:625px 340px;grid-template-areas:"lbl buy" "body buy";justify-content:space-between;gap:0 40px;padding:28px 0 80px}
 .big{grid-area:lbl;background:var(--kraft);padding:24px 28px 26px;position:relative}
-.big .no{display:flex;justify-content:space-between;font:12px/1 var(--mono);border-bottom:1px solid var(--ink);padding-bottom:10px}
+.big .no{display:flex;justify-content:space-between;font:14px/1 var(--mono)}
 .big .cty{font:600 44px/1.2 var(--serif);margin:18px 0 4px;letter-spacing:.03em}
 .big .nm{font-size:18px;font-weight:700}
 .big dl{display:grid;grid-template-columns:7em 1fr;gap:4px 14px;margin:18px 0 0;font:14px/1.6 var(--mono);border-top:1px dashed var(--ink);padding-top:14px}
@@ -147,24 +153,24 @@ button,select,input{font:inherit;color:inherit}
 .body h2{font:400 24px/1.5 var(--serif);margin:44px 0 12px}
 .body p{margin:0 0 12px}
 .buy{grid-area:buy;position:sticky;top:96px;align-self:start}
-.buy .og{font:12px/1.5 var(--mono);color:var(--ink2)}
+.buy .og{font:13px/1.5 var(--mono);color:var(--ink2)}
 .buy h1{font:400 32px/1.5 var(--serif);margin:2px 0 6px}
 .price{font-size:18px}
 .price small{font-size:14px;color:var(--ink2)}
 .price s{font-size:14px;color:var(--ink2);margin-right:6px}
 .opt{border:0;margin:18px 0 0;padding:0}
 .opt legend{font-size:14px;font-weight:700;padding:0;margin-bottom:8px;width:100%;display:flex;justify-content:space-between}
-.opt legend span{font-weight:400;color:var(--stamp);font-size:12px}
+.opt legend span{font-weight:400;color:var(--stamp);font-size:13px}
 .seg{display:grid;gap:4px}
 .seg.c2{grid-template-columns:1fr 1fr}
 .seg.c3{grid-template-columns:repeat(3,1fr)}
 .seg button{min-height:46px;border:1px solid var(--rule);background:#fff;cursor:pointer;font-size:14px;line-height:1.3;padding:6px 4px}
-.seg button small{display:block;font-size:12px;color:var(--ink2)}
+.seg button small{display:block;font-size:13px;color:var(--ink2)}
 .seg button[aria-pressed="true"]{border:2px solid var(--ink);font-weight:700;background:var(--kraft2)}
 .seg button.out{color:var(--ink2);background:repeating-linear-gradient(135deg,#fff 0 9px,var(--rule) 9px 10px)}
 .seg button.out small{color:var(--stamp);font-weight:700}
 @media (hover:hover) and (pointer:fine){.seg button:hover{border-color:var(--ink)}}
-.teiki-opt{margin-top:8px;font-size:12px;color:var(--ink2)}
+.teiki-opt{margin-top:8px;font-size:13px;color:var(--ink2)}
 .teiki-opt select{height:34px;border:1px solid var(--ink);background:#fff;margin-left:6px}
 .row-buy{display:flex;gap:8px;margin-top:20px}
 .qty{width:80px;height:46px;border:1px solid var(--ink);background:#fff;padding:0 8px}
@@ -178,32 +184,32 @@ button,select,input{font:inherit;color:inherit}
 .ship{margin-top:16px;font-size:14px;border-top:1px solid var(--ink);padding-top:12px}
 .ship .when{font:14px/1.7 var(--mono)}
 .ship .when b{font-size:16px}
-.ship label{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;margin-top:8px;font-size:12px;color:var(--ink2)}
+.ship label{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;margin-top:8px;font-size:13px;color:var(--ink2)}
 .ship select{height:34px;border:1px solid var(--ink);background:#fff;font-size:14px}
-.ship .fresh{margin-top:6px;font-size:12px;color:var(--ink2)}
+.ship .fresh{margin-top:6px;font-size:13px;color:var(--ink2)}
 .guide{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:2px 20px;font-size:14px}
 .guide button{background:none;border:0;padding:6px 0;cursor:pointer;text-decoration:underline;text-underline-offset:3px;text-align:left}
 .notifyform{margin-top:12px;padding:14px;border:1px solid var(--ink);background:#fff;font-size:14px}
-.notifyform label{display:block;font-size:12px;color:var(--ink2);margin-bottom:6px}
+.notifyform label{display:block;font-size:13px;color:var(--ink2);margin-bottom:6px}
 .notifyform .f{display:flex;gap:6px}
 .notifyform input{flex:1;min-width:0;height:40px;border:1px solid var(--ink);padding:0 10px;background:#fff}
 .notifyform input[aria-invalid="true"]{border:2px solid var(--stamp)}
 .notifyform button{height:40px;border:0;background:var(--ink);color:#fff;padding:0 16px;font-weight:700;font-size:14px;cursor:pointer}
-.err{color:var(--stamp);font-size:12px;font-weight:700;margin:6px 0 0}
+.err{color:var(--stamp);font-size:13px;font-weight:700;margin:6px 0 0}
 .ok{font-size:14px;margin:0}
 
 /* 焙煎記録（記録用紙の罫に手書き） */
 .log{background:var(--kraft2) repeating-linear-gradient(transparent 0 31px,#cdb592 31px 32px);padding:0 18px;font:17px/32px var(--hand)}
 .log table{width:100%;border-collapse:collapse}
-.log th{font:12px/32px var(--mono);text-align:left;width:9em;color:var(--ink2);font-weight:400}
+.log th{font:13px/32px var(--mono);text-align:left;width:9em;color:var(--ink2);font-weight:400}
 .log td{font-weight:600;line-height:32px}
 .log td,.log th{padding:0;vertical-align:bottom}
 .log .sig{text-align:right;margin:0;font-size:15px;line-height:32px}
-.photo{border:1px dashed var(--ink);aspect-ratio:3/2;display:flex;flex-direction:column;justify-content:flex-end;padding:16px;font-size:14px;background:#fff;margin-top:20px}
-.photo b{font:12px/1.5 var(--mono);display:block;color:var(--ink2)}
+.photo{border:1px dashed var(--ink);aspect-ratio:3/2;display:flex;flex-direction:column;justify-content:flex-end;padding:16px;font-size:16px;background:#fff;margin-top:20px}
+.photo b{font:13px/1.5 var(--mono);display:block;color:var(--ink2)}
 .brewt{width:100%;border-collapse:collapse;font-size:14px}
 .brewt th,.brewt td{border-top:1px solid var(--rule);padding:9px 8px 9px 0;text-align:left}
-.brewt thead th{font:12px var(--mono);color:var(--ink2);font-weight:400}
+.brewt thead th{font:13px var(--mono);color:var(--ink2);font-weight:400}
 .voice{border-left:3px solid var(--ink);padding:2px 0 2px 14px;font:16px/1.8 var(--hand)}
 .back{display:inline-block;margin-top:36px;font-size:14px}
 .spbar{display:none}
@@ -224,10 +230,10 @@ button,select,input{font:inherit;color:inherit}
 .bar i{display:block;height:100%;background:var(--ink);transform-origin:left;transition:transform .2s var(--ease)}
 .dr-body{flex:1;overflow:auto;padding:0 20px}
 .line{display:grid;grid-template-columns:64px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--rule)}
-.mini{width:64px;height:64px;background:var(--kraft);display:flex;flex-direction:column;justify-content:space-between;padding:6px;font:10px/1.2 var(--mono)}
-.mini b{font:600 12px/1.2 var(--serif)}
+.mini{width:64px;height:64px;background:var(--kraft);display:flex;flex-direction:column;justify-content:space-between;padding:6px;font:13px/1.2 var(--mono)}
+.mini b{font:600 13px/1.2 var(--serif)}
 .line h3{font-size:14px;margin:0;font-weight:700}
-.line .v{font-size:12px;color:var(--ink2);margin-top:2px}
+.line .v{font-size:13px;color:var(--ink2);margin-top:2px}
 .line .lp{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
 .step{display:flex;align-items:center;border:1px solid var(--ink)}
 .step button{width:40px;height:36px;border:0;background:none;cursor:pointer;display:grid;place-items:center}
@@ -235,18 +241,18 @@ button,select,input{font:inherit;color:inherit}
 .step button[disabled]{opacity:.35;cursor:not-allowed}
 .step output{min-width:26px;text-align:center;font:14px var(--mono)}
 .wrapopt{border:0;padding:0;margin:10px 0 0}
-.wrapopt legend{font-size:12px;padding:0;margin-bottom:2px}
+.wrapopt legend{font-size:13px;padding:0;margin-bottom:2px}
 .wrapopt legend em{font-style:normal;color:#fff;background:var(--stamp);padding:1px 5px;margin-left:6px;font-weight:700}
-.wrapopt label{display:inline-flex;align-items:center;gap:4px;font-size:12px;margin-right:12px;cursor:pointer;min-height:32px}
+.wrapopt label{display:inline-flex;align-items:center;gap:4px;font-size:13px;margin-right:12px;cursor:pointer;min-height:32px}
 .wrapopt.need legend{color:var(--stamp);font-weight:700}
 .dr-ft{border-top:1px solid var(--ink);padding:14px 20px 20px}
 .sum{display:grid;grid-template-columns:1fr auto;gap:4px 0;font-size:14px;margin:0}
 .sum dd{margin:0;text-align:right;padding-left:10px;font-family:var(--mono)}
 .sum .tot{font-size:18px;font-weight:700;border-top:1px solid var(--ink);padding-top:8px;margin-top:4px}
-.sum select{height:30px;border:1px solid var(--ink);background:#fff;font-size:12px;margin-left:6px}
-.dr-ft .note{font:12px/1.5 var(--mono);color:var(--ink2);margin:8px 0 0}
+.sum select{height:30px;border:1px solid var(--ink);background:#fff;font-size:13px;margin-left:6px}
+.dr-ft .note{font:13px/1.5 var(--mono);color:var(--ink2);margin:8px 0 0}
 .dr-ft .cta{width:100%;margin-top:12px}
-.why{font-size:12px;color:var(--stamp);font-weight:700;margin:6px 0 0}
+.why{font-size:13px;color:var(--stamp);font-weight:700;margin:6px 0 0}
 .cartempty{padding:40px 0}
 .cartempty p{margin:0 0 14px}
 .btn2{display:inline-flex;align-items:center;height:46px;padding:0 22px;border:2px solid var(--ink);background:#fff;font-weight:700;font-size:14px;cursor:pointer;text-decoration:none}
@@ -270,23 +276,24 @@ dialog[open]{animation:pop .2s var(--ease)}
 .skillbtn{position:fixed;right:16px;bottom:16px;z-index:35;height:38px;padding:0 14px;border:2px solid var(--ink);background:#fff;color:var(--ink);font-size:13px;font-weight:700;cursor:pointer}
 #skills{max-width:min(760px,calc(100vw - 30px))}
 .sk{width:100%;border-collapse:collapse}
-.sk th,.sk td{font-size:12px!important;text-align:left!important;vertical-align:top;padding:8px 6px 8px 0!important;border-top:1px solid var(--rule)}
+.sk th,.sk td{font-size:13px!important;text-align:left!important;vertical-align:top;padding:8px 6px 8px 0!important;border-top:1px solid var(--rule)}
 .sk th{font-weight:700!important;width:7.5em}
 .sk td:last-child{font-family:var(--sans)!important}
-.sk code{font:11px var(--mono);background:var(--kraft2);padding:0 3px}
+.sk code{font:13px var(--mono);background:var(--kraft2);padding:0 3px}
 
-.ft{background:var(--ink);color:var(--kraft2);font-size:12px;padding:36px 0 90px}
+.ft{background:var(--ink);color:var(--kraft2);font-size:13px;padding:36px 0 90px}
 .ft .wrap{display:flex;flex-wrap:wrap;gap:16px 48px}
 .ft b{font:600 16px/1.5 var(--serif);display:block;margin-bottom:6px;color:#fff}
-.ft button{background:none;border:0;color:inherit;padding:4px 0;cursor:pointer;text-decoration:underline;font-size:12px;display:block}
+.ft button{background:none;border:0;color:inherit;padding:4px 0;cursor:pointer;text-decoration:underline;font-size:13px;display:block}
 
 @media (max-width:1180px){.pd{grid-template-columns:1fr 340px}}
 @media (max-width:860px){
   .grid{grid-template-columns:repeat(3,1fr);gap:48px 20px}
   .pd{grid-template-columns:1fr;grid-template-areas:"lbl" "buy" "body";gap:20px}
   .buy{position:static}
-  .days{grid-template-columns:1fr}
-  .day+.day{border-left:0;border-top:1px solid rgba(236,220,194,.35);padding-left:0}
+  .day{display:block}
+  .day .arr{text-align:left}
+  .day+.day{margin-top:6px}
 }
 @media (max-width:600px){
   .hd .wrap{height:54px;gap:10px}
@@ -299,34 +306,34 @@ dialog[open]{animation:pop .2s var(--ease)}
   .lead p{display:none}
   .board{margin:0 -15px;padding:16px 15px 18px}
   .day{padding:10px 0 8px}
-  .day ul{display:flex;flex-wrap:wrap;gap:0 12px;font-size:14px}
+  .day ul{font-size:15px}
   .grid{grid-template-columns:repeat(2,1fr);gap:40px 16px}
   .label{padding:10px}
   .label .cty{font-size:20px;margin-top:8px}
-  .label .nm{font-size:12px}
-  .label dl{grid-template-columns:1fr;gap:0;font-size:11px}
+  .label .nm{font-size:14px}
+  .label dl{grid-template-columns:1fr;gap:0;font-size:13px}
   .label dt{display:none}
   .label .taste{font-size:14px}
-  .label .no{font-size:11px}
-  .label .roastline{font-size:11px}
-  .stamp{position:static;transform:none;display:inline-block;margin-top:8px;align-self:flex-start;font-size:11px}
+  .label .no{font-size:13px}
+  .label .roastline{font-size:13px}
+  .stamp{position:static;transform:none;display:inline-block;margin-top:8px;align-self:flex-start;font-size:13px}
   .roastline{padding-right:0}
   .sortbox{margin-left:0}
   .pd{padding:12px 0 40px}
   .big{margin:0 -15px;padding:16px 15px 18px}
   .big .cty{font-size:32px;margin-top:12px}
   .big .nm{font-size:16px}
-  .big dl{grid-template-columns:6em 1fr;font-size:12px;margin-top:12px;padding-top:10px}
+  .big dl{grid-template-columns:6em 1fr;font-size:13px;margin-top:12px;padding-top:10px}
   .big .taste{font-size:18px;margin-top:10px}
   .big .stamp{position:absolute;top:40px;right:15px;margin:0;transform:rotate(-4deg)}
   .buy h1{font-size:28px}
   .row-buy.main{display:none}
   .spbar{display:block;position:sticky;bottom:0;z-index:20;background:rgba(255,255,255,.95);border-top:1px solid var(--ink);padding:10px 15px 12px;margin:0 -15px}
-  .spbar .d{font:12px/1.5 var(--mono);margin-bottom:8px;display:flex;justify-content:space-between;gap:8px}
+  .spbar .d{font:13px/1.5 var(--mono);margin-bottom:8px;display:flex;justify-content:space-between;gap:8px}
   .spbar .row-buy{margin-top:0}
   .drawer{width:100%;border-left:0}
   .toast{height:54px;font-size:13px}
-  .skillbtn{bottom:12px;right:12px;height:34px;font-size:12px}
+  .skillbtn{bottom:12px;right:12px;height:34px;font-size:13px}
   body.detail .skillbtn{bottom:118px;height:30px;padding:0 10px}
   .ft{padding-bottom:70px}
 }
@@ -531,7 +538,7 @@ function stampHtml(b){var d=nextRoast(b.day);return '<span class="stamp">次の�
 function ratioHtml(b){
   var cols=["#2b1a14","#8a6a4a","#f4e9d8"];
   return '<div class="ratio" aria-hidden="true">'+b.mix.map(function(m,i){return '<span style="width:'+m[1]+'%;background:'+cols[i]+'"></span>'}).join("")+'</div>'+
-    '<div class="ratiokey">'+b.mix.map(function(m){return m[0]+' '+m[1]+'%'}).join(" / ")+'</div>';
+    '<div class="ratiokey">'+b.mix.map(function(m,i){return '<span><i style="background:'+cols[i]+'"></i>'+m[0]+' '+m[1]+'%</span>'}).join("")+'</div>';
 }
 function labelRows(b){
   return '<dl><dt>産地</dt><dd>'+esc(b.area)+'</dd><dt>標高</dt><dd>'+b.alt+'</dd><dt>精製</dt><dd>'+esc(b.proc)+'</dd></dl>';
@@ -559,7 +566,7 @@ function renderList(){
   $("#main").innerHTML =
    '<div class="wrap">'+
    '<div class="lead"><h1>コーヒー豆 12種</h1>'+
-   '<p>どの豆も200gと500g、挽き方は5通り。豆ごとに焼く曜日が決まっていて、焼いた翌日に発送します。</p></div>'+
+   '<p>どの豆も200gと500g、挽き方は5通り。豆ごとに焼く曜日が決まっています。</p></div>'+
    '<section class="board" aria-labelledby="h-board"><div class="board-hd"><h2 id="h-board">これからの焙煎予定</h2>'+
      '<label>お届け先 '+regionSel()+'</label></div>'+
      '<div class="days">'+days.map(function(x){
@@ -580,8 +587,8 @@ function renderList(){
      '</select></label>'+
    '</div>'+
    '<div class="result"><p style="margin:0" aria-live="polite"><strong id="num"></strong>点の豆</p><span id="cond" style="color:var(--ink2)"></span></div>'+
-   '<ul class="grid" id="grid"></ul>'+
-   '<section class="teiki" id="teiki" aria-labelledby="h-teiki">'+
+   '<ul class="grid" id="grid"></ul></div>'+
+   '<section class="teiki" id="teiki" aria-labelledby="h-teiki"><div class="wrap">'+
      '<h2 id="h-teiki">定期便の条件</h2><p>豆の詳細で「定期便」を選ぶと申し込めます。</p>'+
      '<table class="cond"><tbody>'+
      '<tr><th>値段</th><td>どの豆も毎回8%引き。200gの三日月ブレンドなら 1,380円 → '+yen(teikiPrice(1380))+'円</td></tr>'+
@@ -589,8 +596,7 @@ function renderList(){
      '<tr><th>スキップ・解約</th><td>次の発送の5日前まで、届いたメールのリンクから。回数の縛りはなく、1回目のあとすぐ解約しても手数料はかかりません</td></tr>'+
      '<tr><th>豆の変更</th><td>2回目から、同じ値段の範囲で替えられます。替えないときは同じ豆が届きます</td></tr>'+
      '<tr><th>送料</th><td>ふつうの注文と同じ（4,800円以上で無料）</td></tr>'+
-     '</tbody></table></section>'+
-   '</div>';
+     '</tbody></table></div></section>';
   drawGrid();
 }
 function filtered(){
@@ -616,11 +622,11 @@ function drawGrid(){
   }
   $("#grid").innerHTML = list.map(function(b){
     return '<li class="card"><a href="#/beans/'+b.id+'"><div class="label">'+
-      '<div class="no"><span>No.'+b.no+'</span><span>'+KINDS[b.kind]+'</span></div>'+
+      '<div class="no"><span>'+KINDS[b.kind]+'</span><span>'+DAYS[b.day]+'曜焙煎</span></div>'+
       stampHtml(b)+
       '<div class="cty">'+esc(b.cty)+'</div><div class="nm">'+esc(b.nm)+'</div>'+
       (b.kind==="blend"?ratioHtml(b):labelRows(b))+
-      '<p class="taste">'+b.notes.join("・")+'</p>'+
+      '<p class="taste">'+b.notes.map(function(n){return '<span>'+n+'</span>'}).join("・")+'</p>'+
       roastLine(b)+
       '</div><div class="pr">'+yen(b.p200)+'<small>円（税込）／200g</small></div>'+
       (b.warn?'<div class="warn">'+b.warn+'</div>':'')+'</a></li>';
@@ -642,7 +648,7 @@ function renderItem(id){
   $("#main").innerHTML =
    '<div class="wrap"><div class="pd">'+
     '<div class="big" aria-label="豆のラベル">'+
-      '<div class="no"><span>No.'+b.no+' · '+{single:"シングルオリジン",blend:"ブレンド",decaf:"デカフェ"}[b.kind]+'</span><span>'+DAYS[b.day]+'曜焙煎</span></div>'+
+      '<div class="no"><span>'+{single:"シングルオリジン",blend:"ブレンド",decaf:"デカフェ"}[b.kind]+'</span><span>'+DAYS[b.day]+'曜焙煎</span></div>'+
       stampHtml(b)+
       '<div class="cty">'+esc(b.cty)+'</div><div class="nm">'+esc(b.nm)+'</div>'+
       (b.kind==="blend"?ratioHtml(b):'')+
@@ -744,7 +750,7 @@ function drawCart(){
   $("#lines").innerHTML = state.cart.map(function(l,i){
     var b = byId(l.id), g = GRINDS.filter(function(x){return x.k===l.grind})[0];
     var max = l.qty>=MAXQ;
-    return '<div class="line"><div class="mini" aria-hidden="true"><span>No.'+b.no+'</span><b>'+esc(b.cty)+'</b></div><div>'+
+    return '<div class="line"><div class="mini" aria-hidden="true"><span>'+DAYS[b.day]+'曜</span><b>'+esc(b.cty)+'</b></div><div>'+
       '<h3>'+esc(b.nm)+'</h3><div class="v">'+l.size+'g・'+g.nm+(l.plan==="teiki"?'・定期便（'+l.every+'週ごと）':'')+'・'+DAYS[b.day]+'曜焙煎</div>'+
       '<div class="lp"><div class="step">'+
         '<button type="button" data-dec="'+i+'" aria-label="'+(l.qty===1?"かごから外す":"1袋へらす")+'">'+(l.qty===1?ICON_TRASH:ICON_MINUS)+'</button>'+
@@ -890,7 +896,7 @@ var SK = [
  ["容量・挽き方","文字のボタン。未選択ならボタンの文字で「容量と挽き方を選んでください」（ec checklist・Allbirds の SELECT A SIZE）。"],
  ["品切れ","ゲイシャ500gは消さず斜線＋薄く、押せる。押すと「入荷したら知らせる」とメール欄（Allbirds の NOTIFY ME）。"],
  ["カートボタン","高さ46・枠2px・14px太字、ホバーで白黒が入れ替わる .2s（とらや）。とらやの角丸23px のピルは、ai-tells の指摘で四角に変えた。"],
- ["お届けの3行","焙煎日→発送日→着日を等幅で3行。焙煎してから送る店の流れで、スキルに型は無い。賞味期限は「届いた日から約○日」（ec checklist・とらや）。"],
+ ["お届けの3行","焙煎日→発送日→着日を桁をそろえて3行。焙煎してから送る店の流れで、スキルに型は無い。賞味期限は「届いた日から約○日」（ec checklist・とらや）。"],
  ["SP の固定バー","sticky bottom:0・白95%（とらや）。上に焙煎日→着日と送料の1行（ec checklist：とらやの反面教師 y=2352）。"],
  ["焙煎記録","投入温度・1ハゼ・煎り止めを、記録用紙の罫に手書きの書体（Klee One）で。題材でしか成り立たない部品。スキルに型は無い。"],
  ["写真の枠","写真が入る場所は絵で埋めず、撮る写真を書いた枠に（ai-tells「絵と写真」）。"],
@@ -898,7 +904,7 @@ var SK = [
  ["送料無料まで","ドロワーの頭に「あと○円で送料無料」と太いバー、数量で言い直す、数量1の − はごみ箱（Allbirds）。送料はかごの中で金額に（とらやの反面教師）。焙煎日の違う豆は遅いほうにそろえる、と着日を出すのは自分で決めた。"],
  ["包装","商品ごとに「必須」、未選択だと理由をボタンの下に（ec checklist・とらや）。ギフト箱165円は別の行（Allbirds の反面教師）。"],
  ["案内の窓","送料・返品・支払い・特商法を詳細から1手の窓に（ec rules 3）。返品の条件と連絡先を分ける（Allbirds の反面教師）。"],
- ["色と文字","地は白（とらや #fff）。焦げ茶・クラフト紙・朱は焙煎の現場から（ai-tells「色と文字」）。名前は明朝、ラベルの数値は等幅、記録と味は手書き。lp 温かい飲食の紙色2色の地・アーチ・楕円の境目は「やわらかい無難な地」に当たるので外した。"],
+ ["色と文字","地は白（とらや #fff）。焦げ茶・クラフト紙・朱は焙煎の現場から（ai-tells「色と文字」）。名前は明朝、本文と数値はゴシック（tabular-nums）、記録と味は手書き（書体は3つまで：site-skills の inspect.js）。lp 温かい飲食の紙色2色の地・アーチ・楕円の境目は「やわらかい無難な地」に当たるので外した。"],
  ["データ","BreadcrumbList と、詳細ごとに Product＋Offer（ec rules 5）。"],
  ["重さ・動き","外部は Google Fonts の Klee One だけ。動きは transform と opacity、.1/.2/.4s（とらや）。prefers-reduced-motion で全部止める。"]
 ];
