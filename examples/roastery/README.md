@@ -4,7 +4,7 @@ site-skills が「AIっぽくない質の高いスキル」になっているか
 
 - 依頼：福岡市の小さなコーヒー焙煎所「三日月珈琲」の通販サイト。豆は12種類、200g と 500g、挽き方を選べる。定期便あり。商品一覧 → 商品詳細 → カートまで。
 - 成果物：`index.html`（1枚・依存なし・約66KB。画像は全部 SVG）
-- 公開：（Artifact の URL をここに書く）
+- 公開：https://claude.ai/artifact/ExdgusUQzC4gUZcihJdrLw（Artifact。非公開なので、見せる相手には Share から共有する）
 - 作成：2026年10月26日
 
 ## 作る前に決めた4つ
