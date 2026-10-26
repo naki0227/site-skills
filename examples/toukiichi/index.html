@@ -147,8 +147,16 @@ section.ch{padding:96px 0 0}
 .route .clear{background:none;border:0;padding:0;margin-top:10px;font-size:14px;text-decoration:underline;cursor:pointer}
 
 /* 写真の枠 */
-.photo{background:var(--pale);display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding:16px;font-size:14px;color:#333;margin:0}
-.photo::before{content:"写真の枠（撮るもの）";font-weight:700;color:var(--sumi)}
+/* 写真：題材のまわりの世界の実写（Wikimedia Commons）。題材の物としては見せず、何が写っているかと出典を書く */
+.band{margin:0}
+.band img{display:block;width:100%;height:auto;object-fit:cover}
+.band figcaption{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 24px;padding:12px 0 0;font-size:16px}
+.band .credit{font-size:13px;color:#4a4540}
+.band .credit a{color:inherit}
+.band--street img{height:min(62vh,640px);object-position:50% 62%}
+.band--street figcaption{padding-left:var(--pad);padding-right:var(--pad);max-width:1440px;margin:0 auto}
+.band--kiln{margin-top:48px}
+.band--kiln img{aspect-ratio:16/7}
 
 /* 催し */
 .ev-grid{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:32px;align-items:start}
@@ -248,6 +256,8 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
   .map-hint{display:inline}
   .sp-only{display:inline}.pc-only{display:none}
   .fuda{transform:none}
+  .band--kiln img{aspect-ratio:4/3}
+  .band--street img{height:46vh}
   .lead{grid-template-columns:1fr}
   .lead .pill{grid-column:1;grid-row:auto;margin-top:12px;width:100%}
   .when-big{font-size:32px}
@@ -365,6 +375,12 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
     </div>
   </div>
 
+  <!-- 町の通りの実写（陶器市のまわりの世界） -->
+  <figure class="band band--street">
+    <img src="photos/Arita-tokichi-200804.jpg" width="960" height="720" loading="lazy" alt="有田陶器市の通り。軒先に器を並べた店の前を、袋を提げた人が歩いている">
+    <figcaption><span>有田陶器市の通り（佐賀県有田町、2008年4月）。瀬戸ノ口でも、本町通りの B の12軒は、こうして軒下に器を並べます。</span><span class="credit">写真：Atsasebo／<a href="https://commons.wikimedia.org/w/index.php?curid=9228610">Wikimedia Commons</a>／CC BY-SA 3.0</span></figcaption>
+  </figure>
+
   <div class="wrap">
     <!-- 窯元 -->
     <section class="ch" id="kilns" aria-labelledby="h-kilns">
@@ -404,7 +420,10 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
         <table class="list" id="day-0504"><caption>4日（火・祝）9:00〜15:00</caption><tbody id="tt-0504"></tbody></table>
       </div>
       <p class="ev-links"><button type="button" id="ics">この2日をカレンダーに入れる（.ics）</button></p>
-      <figure class="photo" style="aspect-ratio:3/2;max-width:560px;margin-top:40px">この春に焚いた共同登窯の窯出し。窯の口から、軍手で茶碗を一つずつ手渡す朝の様子。横3:2、窯の中の暗さと朝の斜光の両方が入る位置から</figure>
+      <figure class="band band--kiln">
+        <img src="photos/Noborigama-Tokoname-01.jpg" width="1280" height="742" loading="lazy" alt="常滑の登り窯。れんがの窯が斜面に沿って上へ続き、左に階段、右に焚き口の板が並ぶ">
+        <figcaption><span>常滑（愛知県）の登り窯。部屋が斜面に沿って階段のように続きます。3日の朝に開ける瀬戸ノ口の共同登窯も、同じつくりの窯です。</span><span class="credit">写真：Gryffindor／<a href="https://commons.wikimedia.org/w/index.php?curid=63887246">Wikimedia Commons</a>／CC BY-SA 4.0</span></figcaption>
+      </figure>
     </section>
 
     <!-- 行き方 -->
@@ -577,7 +596,7 @@ var SKILLS=[
  ['窯元の一覧','game-quality-bar／イベント・ライブ','Lollapalooza の反面教師（ラインナップを画像1枚・alt 空）から、41軒を文字で、地図と同じ番号で組む'],
  ['窯元1軒の URL','game-quality-bar／checklist','Pokémon LEGENDS Z-A：キャラクター1人を URL で指せる型を窯元に（<code>#kiln-B3</code>）'],
  ['2日の時刻表','game-quality-bar／checklist','Lollapalooza の反面教師（時間割を日ごとの画像・タブに隠す）から、2日を並べて文字で。日ごとの URL <code>#day-0503</code>'],
- ['写真の枠','ai-tells.md','絵で埋めず、撮るべき写真（窯出し・値札の飯碗）を枠に書く'],
+ ['写真','ai-tells.md・make.md 6','灰色の枠をやめ、陶器市のまわりの世界の実写（有田陶器市の通り、常滑の登り窯）を Wikimedia Commons から。何が写っているかと出典（作者・ライセンス）を画面に書く'],
  ['前日のお知らせ登録','game-quality-bar／イベント・ライブ','Lollapalooza：「次のお知らせ登録」を残す'],
  ['JSON-LD','game-quality-bar／イベント・ライブ','Lollapalooza の反面教師から：Event の eventStatus を今の状態に'],
  ['フォーカス枠','lp-quality-bar／旅・宿泊','星野リゾート：<code>0 0 0 4px</code> の墨。Lollapalooza のように消さない'],
