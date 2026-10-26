@@ -275,6 +275,15 @@ ul,ol{padding:0;list-style:none}
 .pick .contract{margin-top:10px;font-size:13px}
 .corp-line{margin-top:24px;font-size:16px;line-height:1.9;color:var(--muted)}
 .corp-line b{color:var(--ink)}
+.incl{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:28px 56px;margin-top:28px}
+.incl h3{font-size:20px;line-height:1.5;margin-bottom:12px}
+.ticklist li{position:relative;padding:8px 0 8px 26px;border-bottom:1px solid var(--line);line-height:1.7}
+.ticklist li::before{content:"";position:absolute;left:3px;top:1.1em;width:13px;height:7px;border-left:3px solid var(--blue);border-bottom:3px solid var(--blue);transform:rotate(-45deg)}
+.steps div{padding:10px 0;border-bottom:1px solid var(--line)}
+.steps dt{font-weight:800;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.steps dt .num{margin-left:auto;font-weight:300;font-size:20px}
+.steps dd{margin:2px 0 0 26px;color:var(--muted);line-height:1.7}
+.mk{display:inline-block;width:18px;height:12px;border-radius:2px;background:var(--c);box-shadow:inset 0 -2px 0 rgba(0,0,0,.12)}
 /* ---------- 機能 ---------- */
 .page-head{padding:56px 0 8px}
 .page-head h1{font-size:34px;font-weight:800;line-height:1.45;text-wrap:balance;word-break:auto-phrase}
@@ -334,22 +343,6 @@ input[type=range]{width:100%;margin:10px 0 0;accent-color:var(--blue);height:28p
 .result h4{font-size:20px;line-height:1.6}
 .result ul{margin:8px 0 14px;font-size:16px}
 .result li::before{content:"・"}
-.cmp{width:100%;border-collapse:collapse;font-size:13px;line-height:1.7}
-.cmp caption{text-align:left;font-size:13px;color:var(--muted);padding-bottom:8px}
-.cmp th,.cmp td{border-bottom:1px solid var(--line);padding:9px 8px;text-align:center}
-.cmp thead th{position:sticky;top:68px;background:#fff;border-bottom:2px solid var(--ink);z-index:2}
-.cmp thead th.on{color:var(--blue)}
-.cmp tbody th{text-align:left;font-weight:600}
-.cmp .grp th{background:#f3f4f5;font-weight:800;text-align:left;padding:9px 12px}
-.cmp td.no{color:#9aa0a5}
-.cmp-sp{display:none}
-.cmp-sp details{border-bottom:1px solid var(--line)}
-.cmp-sp summary{padding:13px 2px;font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:8px;line-height:1.6}
-.cmp-sp summary::after{content:"＋";color:var(--blue)}
-.cmp-sp details[open] summary::after{content:"－"}
-.cmp-sp dl{display:grid;grid-template-columns:1fr auto;gap:2px 12px;padding:0 2px 14px;font-size:13px}
-.cmp-sp dd{margin:0;text-align:right;font-weight:600}
-.cmp-sp .grp-h{margin:22px 0 4px;font-weight:800;color:var(--blue)}
 .estimate{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;padding:24px;border:2px dashed var(--frame);border-radius:6px}
 .estimate select,.estimate input{border:2px solid var(--line);border-radius:6px;padding:8px 10px;background:#fff;min-height:44px}
 .flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;counter-reset:st}
@@ -485,9 +478,8 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
   .day li:nth-child(3){border-left:0}
   .day li:nth-child(n+3){border-top:2px solid #2a2d31}
   .pick{grid-template-columns:1fr}
-  .cmp{display:none}
-  .cmp-sp{display:block}
-  .flow{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .incl{grid-template-columns:1fr}
+      .flow{grid-template-columns:repeat(2,minmax(0,1fr))}
   .estimate{grid-template-columns:1fr}
   .wb-col{padding:8px 8px 14px}
 }
@@ -513,6 +505,12 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
   .mag{font-size:13px;padding:4px 8px 5px}
   .absent{padding:8px 10px 10px}
       .day{grid-template-columns:1fr}
+  .mtable{min-width:0}
+  .mtable thead{display:none}
+  .mtable,.mtable tbody,.mtable tr,.mtable th,.mtable td{display:block;width:100%}
+  .mtable tr{padding:14px 0;border-bottom:1px solid var(--line)}
+  .mtable th,.mtable td{padding:2px 0;border:0}
+  .mtable td::before{content:attr(data-l);display:block;font-size:13px;font-weight:700;color:var(--muted)}
   .day li{border-left:0;border-top:2px solid #2a2d31}
   .day li:first-child{border-top:0}
   .letter-big{padding:30px 18px 24px}
@@ -525,8 +523,7 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
     .flow{grid-template-columns:1fr}
   .flist div{grid-template-columns:1fr;gap:2px}
   .ba{grid-template-columns:1fr}
-  .cmp thead th{top:62px}
-  .ft .wrap{grid-template-columns:1fr}
+    .ft .wrap{grid-template-columns:1fr}
   .print{padding:20px 14px}
   .letter{padding:22px 16px}
   .citem{grid-template-columns:1fr;gap:6px}
@@ -744,8 +741,8 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
 <div class="page" data-page="features" hidden>
   <section class="page-head">
     <div class="wrap">
-      <h1 id="h-features" tabindex="-1">支援員・施設長・保護者・市区町村の担当課が、同じ記録をそれぞれの画面で見ます</h1>
-      <p class="lead">入力するのは、入口のQRカードと保護者のスマホだけです。</p>
+      <h1 id="h-features" tabindex="-1">おかえりノートでできること</h1>
+      <p class="lead">支援員・施設長・保護者・市区町村の担当課が、同じ記録をそれぞれの画面で見ます。入力するのは、入口のQRカードと保護者のスマホだけです。</p>
       <ul class="roles" aria-label="使っている人">
         <li style="--c:var(--m1)">放課後児童支援員・補助員</li><li style="--c:var(--m2)">施設長・主任</li><li style="--c:var(--m3)">運営法人の本部</li><li style="--c:var(--m4)">保護者・祖父母</li><li style="--c:var(--frame)">市区町村の子ども家庭課</li>
       </ul>
@@ -790,10 +787,10 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
         <table class="mtable">
           <thead><tr><th scope="col">仕事</th><th scope="col">これまで</th><th scope="col">おかえりノートでは</th></tr></thead>
           <tbody>
-            <tr><th scope="row">夏休み41日分の利用日と弁当</th><td>紙の申込書を週末に数える</td><td>保護者がカレンダーから申し込み、日ごとの人数・弁当の数・足りない職員の数が出る（例：8月18日 67人、1人足りない）</td></tr>
-            <tr><th scope="row">おやつ代と延長料金</th><td>出席簿から手で計算し、現金で集める</td><td>出席日数（1日75円）と退室の時刻（30分200円）から計算し、口座振替のデータ（全銀形式）を出す</td></tr>
-            <tr><th scope="row">出席簿と実績報告</th><td>閉所後に紙へ写す</td><td>市区町村の様式で出力。法人・自治体プランは複数クラブをまとめて</td></tr>
-            <tr><th scope="row">入所・継続の申請</th><td>紙の申請書を受け取り、入力し直す</td><td>アプリで受け付け、紙の申請書と同じ項目で保存（ワイド以上）</td></tr>
+            <tr><th scope="row">夏休み41日分の利用日と弁当</th><td data-l="これまで">紙の申込書を週末に数える</td><td data-l="おかえりノートでは">保護者がカレンダーから申し込み、日ごとの人数・弁当の数・足りない職員の数が出る（例：8月18日 67人、1人足りない）</td></tr>
+            <tr><th scope="row">おやつ代と延長料金</th><td data-l="これまで">出席簿から手で計算し、現金で集める</td><td data-l="おかえりノートでは">出席日数（1日75円）と退室の時刻（30分200円）から計算し、口座振替のデータ（全銀形式）を出す</td></tr>
+            <tr><th scope="row">出席簿と実績報告</th><td data-l="これまで">閉所後に紙へ写す</td><td data-l="おかえりノートでは">市区町村の様式で出力。法人・自治体プランは複数クラブをまとめて</td></tr>
+            <tr><th scope="row">入所・継続の申請</th><td data-l="これまで">紙の申請書を受け取り、入力し直す</td><td data-l="おかえりノートでは">アプリで受け付け、紙の申請書と同じ項目で保存（ワイド以上）</td></tr>
           </tbody>
         </table>
       </div>
@@ -801,7 +798,7 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
   </section>
   <section class="sec sec-tray" aria-labelledby="h-fl">
     <div class="wrap">
-      <div class="sec-head"><h2 class="h2" id="h-fl">そのほかの機能</h2><p class="lead">プランごとに使えるかは、料金ページの比較表にあります。</p></div>
+      <div class="sec-head"><h2 class="h2" id="h-fl">そのほかの機能</h2><p class="lead">プランごとに使えるかは、料金ページの「段で変わるもの」にあります。</p></div>
       <dl class="flist">
         <div class="mig"><dt>紙の名簿・Excelからの移し替え</dt><dd>児童名簿のExcelを読み込み、学年・下校班・お迎えの人を一度に登録します。法人・自治体プランは担当者が代わりに設定します。</dd></div>
         <div><dt>QRカードの入退室</dt><dd>入口のタブレット1台で記録します。カードを忘れた子は、職員がボードの名前を押して入れます。</dd></div>
@@ -823,7 +820,7 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
     <div class="wrap">
       <h1 id="h-pricing" tabindex="-1">料金プラン</h1>
       <p class="lead">プランは正式に申し込むときに選びます。30日間のお試しは、どのボタンから申し込んでも同じ内容（ワイドプランのすべての機能）です。</p>
-      <nav class="toc" aria-label="このページの中"><a href="#cmp-h">プランを比べる</a><a href="#estimate">見積書をつくる</a><a href="#flow-h">導入までの流れ</a><a href="#faq-h">よくある質問</a></nav>
+      <nav class="toc" aria-label="このページの中"><a href="#cmp-h">段で変わるもの</a><a href="#estimate">見積書をつくる</a><a href="#flow-h">導入までの流れ</a><a href="#faq-h">よくある質問</a></nav>
       <div class="p-board">
         <div class="p-head">
           <div class="slider-box">
@@ -844,7 +841,7 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
       </div>
       <article class="pick" id="pick" aria-live="polite"></article>
       <p class="corp-line">3施設以上をまとめて契約するなら <b>法人・自治体</b>　<span class="num">￥9,860</span>/月・1施設（税抜）。ワイドのすべてに、複数クラブの一覧と実績報告、初期設定の代行がつきます。<button class="link" type="button" data-contract="corp">法人・自治体で申し込む</button></p>
-      <p class="p-note" style="margin-top:14px">価格はすべて税抜・日本円（￥）、1施設あたりの月額です。児童10人・職員2人まで、出欠だけを使えるフリープランもあります（比較表の左の列）。</p>
+      <p class="p-note" style="margin-top:14px">価格はすべて税抜・日本円（￥）、1施設あたりの月額です。児童10人・職員2人まで、出欠だけを使えるフリープランもあります。</p>
       <div class="diag" aria-labelledby="diag-h">
         <div><h3 id="diag-h">どのプランか迷ったら</h3><p class="p-note">4つの質問に答えると、合うプランと月額を出します。答えは保存しません。</p></div>
         <div id="diag" aria-live="polite"></div>
@@ -853,9 +850,29 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
   </section>
   <section class="sec" aria-labelledby="cmp-h">
     <div class="wrap">
-      <div class="sec-head"><h2 class="h2" id="cmp-h">プランを比べる</h2><p class="lead">5つの区分、26項目。スマホでは項目ごとに開いて見られます。</p></div>
-      <div class="table-x"><table class="cmp" id="cmp"></table></div>
-      <div class="cmp-sp" id="cmp-sp"></div>
+      <h2 class="h2" id="cmp-h">どの段にも入っているもの、段で変わるもの</h2>
+      <div class="incl">
+        <div>
+          <h3>どの段にも入っているもの</h3>
+          <ul class="ticklist">
+            <li>QRカードの入退室と、まだ来ていない子の表示（下校時刻と照らす）</li>
+            <li>欠席・お迎えの変更の連絡と、お知らせの既読</li>
+            <li>月の出席簿（市区町村の様式）</li>
+            <li>職員と保護者のアカウントは人数無制限</li>
+            <li>メール・電話のサポート、保護者向けの案内チラシ</li>
+          </ul>
+        </div>
+        <div>
+          <h3>段で変わるもの</h3>
+          <dl class="steps">
+            <div><dt><span class="mk" style="--c:var(--m1)"></span>ライト（40人まで）<span class="num">￥6,980</span></dt><dd>上の「どの段にも」だけ。操作ログ1年</dd></div>
+            <div><dt><span class="mk" style="--c:var(--m2)"></span>スタンダード（70人まで）<span class="num">￥11,480</span></dt><dd>＋長期休みの申し込みと弁当の集計、おやつ代・延長料金の集金、2段階認証の必須化、やさしい日本語と4か国語の翻訳</dd></div>
+            <div><dt><span class="mk" style="--c:var(--m3)"></span>ワイド（120人まで）<span class="num">￥17,800</span></dt><dd>＋支援の単位ごとの出欠ボード、入所・継続申請の受け付け、操作ログ3年</dd></div>
+            <div><dt><span class="mk" style="--c:var(--frame)"></span>法人・自治体（3施設から）<span class="num">￥9,860</span>／1施設</dt><dd>＋複数クラブの一覧と実績報告、担当者による初期設定の代行、操作ログ5年</dd></div>
+          </dl>
+          <p class="p-note" style="margin-top:12px">月額・税抜・日本円（￥）、1施設あたり。児童10人・職員2人まで出欠だけを使えるフリープランもあります。</p>
+        </div>
+      </div>
     </div>
   </section>
   <section class="sec" aria-labelledby="est-h" id="estimate">
@@ -1284,28 +1301,6 @@ document.addEventListener('click', e => {
   $('#trial').addEventListener('close', () => $('#trial-h').textContent = '30日間の無料お試し', { once: true });
 });
 
-const CMP = [
-  ['出欠・入退室', [['QRカードの入退室', '○', '○', '○', '○', '○'], ['まだ来ていない子の表示（下校時刻と照合）', '—', '○', '○', '○', '○'], ['学年別の下校時刻・行事カレンダー', '—', '○', '○', '○', '○'], ['長期休みの利用申し込み', '—', '—', '○', '○', '○'], ['支援の単位ごとの出欠ボード', '—', '—', '—', '○', '○'], ['月の出席簿（市区町村の様式）', '○', '○', '○', '○', '○']]],
-  ['保護者との連絡', [['保護者アカウント', '10人まで', '人数無制限', '人数無制限', '人数無制限', '人数無制限'], ['欠席・お迎えの変更の連絡', '—', '○', '○', '○', '○'], ['お知らせ配信と既読の確認', '—', '○', '○', '○', '○'], ['連絡の受付時間の設定', '—', '○', '○', '○', '○'], ['やさしい日本語と4か国語の翻訳', '—', '—', '○', '○', '○']]],
-  ['集金・書類', [['おやつ代・延長料金の計算', '—', '—', '○', '○', '○'], ['口座振替データ（全銀形式）', '—', '—', '○', '○', '○'], ['入所・継続申請の受け付け', '—', '—', '—', '○', '○'], ['ヒヤリハット・事故報告の下書き', '—', '○', '○', '○', '○'], ['複数クラブの実績報告', '—', '—', '—', '—', '○']]],
-  ['管理・セキュリティ', [['職員アカウント', '2人まで', '人数無制限', '人数無制限', '人数無制限', '人数無制限'], ['配慮事項の閲覧権限', '—', '○', '○', '○', '○'], ['2段階認証の必須化', '—', '—', '○', '○', '○'], ['操作ログの保存', '30日', '1年', '1年', '3年', '5年'], ['写真の保存容量', '1GB', '10GB', '30GB', '60GB', '1施設 60GB']]],
-  ['サポート', [['メール・チャット', '○', '○', '○', '○', '○'], ['電話（平日 9:30〜18:00）', '—', '○', '○', '○', '○'], ['オンライン導入説明会', '—', '○', '○', '○', '○'], ['保護者向け案内チラシ', '○', '○', '○', '○', '○'], ['担当者による初期設定の代行', '—', '—', '—', '—', '○']]]
-];
-const COLS = ['フリー', 'ライト', 'スタンダード', 'ワイド', '法人・自治体'];
-(function renderCmp() {
-  const priceRow = ['月払い料金（税抜・1施設）', '￥0', ...PLANS.map(p => '￥' + yen(p.m))];
-  let h = `<caption>価格は税抜・日本円（￥）、1施設あたりの月額。○は使える、—は使えない。</caption><thead><tr><th scope="col"><span class="sr">項目</span></th>${COLS.map((c, i) => `<th scope="col"${i === 2 ? ' class="on"' : ''}>${c}</th>`).join('')}</tr></thead><tbody>`;
-  h += `<tr><th scope="row">${priceRow[0]}</th>${priceRow.slice(1).map(v => `<td class="num"><b>${v}</b></td>`).join('')}</tr>`;
-  CMP.forEach(([g, rows]) => {
-    h += `<tr class="grp"><th colspan="6" scope="colgroup">${g}</th></tr>`;
-    rows.forEach(r => { h += `<tr><th scope="row">${r[0]}</th>${r.slice(1).map(v => `<td${v === '—' ? ' class="no"' : ''}>${v === '—' ? '<span aria-label="なし">—</span>' : v === '○' ? '<span aria-label="あり">○</span>' : v}</td>`).join('')}</tr>`; });
-  });
-  $('#cmp').innerHTML = h + '</tbody>';
-  const dl = r => `<dl>${COLS.map((c, i) => `<dt>${c}</dt><dd>${r[i + 1] === '○' ? 'あり' : r[i + 1] === '—' ? 'なし' : r[i + 1]}</dd>`).join('')}</dl>`;
-  let s = `<details open><summary>${priceRow[0]}</summary>${dl(priceRow)}</details>`;
-  CMP.forEach(([g, rows]) => { s += `<p class="grp-h">${g}</p>` + rows.map(r => `<details><summary>${r[0]}</summary>${dl(r)}</details>`).join(''); });
-  $('#cmp-sp').innerHTML = s;
-})();
 
 const QS = [
   { q: '運営しているクラブ（施設）はいくつですか。', a: [['1〜2施設', 0], ['3施設以上', 'corp']] },
@@ -1453,8 +1448,8 @@ const SKILLS = [
   ['料金', '料金はカードを並べず、児童数のマグネットを並べたボードの段で見せる。赤い線（40・70・120人）で区切った段の下に、プラン名と月額。合う段だけ濃く、ほかは .45', 'tells', 'critique.md 見方3：考えを料金まで運ぶ', '—', 'Backlog の有料4カードの並びをやめた。合うプランの詳しい中身は、段の下に1つだけ出す（Resend の「SP は合うカードだけ」を全幅に広げた形。自分で決めた）。'],
   ['料金', 'フリーは注記と比較表の1列だけ', 'saas', '業務SaaS・料金表', 'Backlog', ''],
   ['料金', '月払い／年払いは radio 2つ、「(5%オフ)」、年払いのときだけ年額の行', 'saas', '業務SaaS・料金表／checklist', 'Backlog', 'ボードの段の月額も、切り替えで変わる。'],
-  ['料金', '「￥」「/月」「税抜」をカードと比較表の両方に', 'saas', 'checklist', 'Backlog', ''],
-  ['料金', 'ページ内目次4つ、比較表5区分（PC は全部開く／SP は details で料金だけ開く）', 'saas', '業務SaaS・料金表／rules 2', 'Backlog', ''],
+  ['料金', '「￥」「/月」「税抜」を、段の月額・選んだプラン・段で変わるものの3か所に', 'saas', 'checklist', 'Backlog', '比較表はやめたので、checklist の「カードと比較表の両方に」は、この3か所で満たす。'],
+  ['料金', '比較表（Backlog 5区分35行）をやめ、「どの段にも入っているもの」と「段で変わるもの」を短く', 'tells', 'critique.md 見方3：考えを料金まで運ぶ', '—', 'saas の rules 2（比較表は5〜6区分）からは外れる。段で増えるものだけを書けば、26行を見比べなくてよい（自分で決めた）。'],
   ['料金', '児童数スライダー：label・aria-valuetext・目盛りも押せる。札は見出しの外', 'saas', '開発者向け・料金表／checklist', 'Resend', 'Resend の反面教師（label なし・札を h3 の中）を避けた。'],
   ['料金', '最適プラン診断4問、戻る／やり直す', 'saas', '業務SaaS・選べない人へ', 'Backlog', ''],
   ['料金', '「試す」はどこから押しても同じお試し、プラン別は「すぐに契約を始める」だけ', 'saas', 'rules 3', 'Backlog・Resend', ''],
