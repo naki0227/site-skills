@@ -72,7 +72,7 @@ h1,h2,h3{font-family:var(--mincho);font-weight:400;line-height:1.5;margin:0}
 @media (max-width:374px){.fuda{display:none}}
 
 /* 予約（最初の画面の主役） */
-.top{padding-block:24px 40px}
+.top{padding-block:24px 72px}
 .top h1{font-size:32px}
 .top .lead{margin:4px 0 20px;color:var(--sub)}
 .top .lead b{color:var(--mark);font-weight:700}
@@ -119,7 +119,7 @@ h1,h2,h3{font-family:var(--mincho);font-weight:400;line-height:1.5;margin:0}
 .day[aria-pressed="true"] .w,.day[aria-pressed="true"] .tag{color:#fff}
 .day.closed{background:#fff;color:var(--off-ink);cursor:not-allowed}
 @media (max-width:430px){.day .tag{font-size:13px}}
-.legend{display:flex;flex-wrap:wrap;gap:2px 16px;margin:6px 0 0;padding:0;list-style:none;font-size:14px;color:var(--sub)}
+.legend{margin:8px 0 0;font-size:14px;color:var(--sub)}
 .legend b{color:var(--ink);margin-right:2px}
 
 /* 時間帯：下足札のような木札 */
@@ -127,11 +127,11 @@ h1,h2,h3{font-family:var(--mincho);font-weight:400;line-height:1.5;margin:0}
 .fudas{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(var(--cols,9),minmax(0,1fr));gap:6px}
 @media (max-width:600px){.fudas{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}}
 .slot{width:100%;height:100%;border:0;background:var(--wood);color:var(--wood-ink);padding:8px 6px;display:grid;justify-items:center;align-content:start;gap:2px;line-height:1.3;transition:transform .2s var(--ease),background-color .1s var(--ease)}
-.slot .h{font-family:var(--mincho);font-size:32px;line-height:1.1}
+.slot .h{font-family:var(--mincho);font-size:32px;line-height:1.1;padding-block:6px 4px}
 .slot .h small{font-size:14px}
 .slot .e{font-size:14px}
 .slot .dots{display:flex;gap:2px;margin:2px 0}
-.slot .dots i{width:8px;height:8px;border-radius:50%;border:1px solid currentColor;background:transparent}
+.slot .dots i{width:9px;height:9px;border-radius:50%;border:1px solid currentColor;background:transparent}
 .slot .dots i.free{background:currentColor}
 .slot .left{font-size:14px;font-weight:700}
 .slot .p{font-size:16px;font-weight:700}
@@ -158,7 +158,10 @@ h1,h2,h3{font-family:var(--mincho);font-weight:400;line-height:1.5;margin:0}
 .sum .total span{font-size:14px;color:var(--sub);justify-self:start}
 .sum .total b{font-family:var(--mincho);font-weight:700;font-size:32px;line-height:1.2}
 .sum .per{margin:0 16px;text-align:right;font-size:14px;color:var(--sub)}
-.sum .nomore{margin:6px 16px 0;font-size:14px;font-weight:700}
+.sum .pickline{margin:16px 16px 0;font-size:16px;line-height:1.6}
+.sum .pickline b{font-family:var(--mincho);font-size:24px;font-weight:400}
+.sum .pickline .none{color:var(--off-ink)}
+.sum .nomore{margin:10px 16px 16px;font-size:14px}
 .sum .terms{margin:12px 16px 16px;padding:12px 12px 14px;background:#fff;font-size:14px}
 .sum .terms b{display:block}
 .sum .go{margin:0 16px 16px}
@@ -184,27 +187,30 @@ h1,h2,h3{font-family:var(--mincho);font-weight:400;line-height:1.5;margin:0}
 .sec .sub{margin:0 0 24px;color:var(--sub)}
 
 /* 写真の枠 */
-.photos{display:grid;grid-template-columns:1fr 1fr 280px;gap:16px;align-items:start}
-@media (max-width:960px){.photos{grid-template-columns:1fr 1fr}.photos dl{grid-column:1 / -1}}
+.photos{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+.photos dl{grid-column:1 / -1}
 @media (max-width:600px){.photos{grid-template-columns:1fr}}
 .ph{margin:0;min-width:0}
 .ph .frame{aspect-ratio:3 / 2;background:#ddd;display:grid;align-content:center;gap:4px;padding:16px;font-size:16px;color:var(--sub);max-width:100%}
 .ph .frame b{font-size:14px;color:var(--ink)}
-.ph figcaption{font-size:16px;margin-top:6px}
-.spec{margin:0;display:grid;grid-template-columns:auto 1fr;row-gap:2px}
-.spec dt,.spec dd{margin:0;padding:10px 12px 12px;background:#fff}
-.spec dt{color:var(--sub);font-size:14px;padding-top:10px}
-.spec dd{text-align:right}
-.spec dd b{font-family:var(--mincho);font-size:20px;font-weight:400}
+.ph figcaption{font-size:16px;margin-top:10px}
+.ph figcaption .big{font-family:var(--mincho);font-size:32px;line-height:1.2}
+.spec{margin:8px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-flow:column;grid-template-rows:auto auto;column-gap:24px}
+@media (max-width:600px){.spec{grid-template-columns:1fr;grid-auto-flow:row;grid-template-rows:none}}
+.spec dt,.spec dd{margin:0}
+.spec dt{color:var(--sub);font-size:14px}
+.spec dd{font-size:16px}
+@media (max-width:600px){.spec dd{margin-bottom:12px}}
+.spec dd b{font-family:var(--mincho);font-size:32px;font-weight:400;line-height:1.2}
 
 /* 番台の料金表（手書きの板） */
 .price{display:grid;grid-template-columns:minmax(0,440px) minmax(0,1fr);gap:32px;align-items:start}
 @media (max-width:860px){.price{grid-template-columns:1fr}}
 .board{border:4px solid var(--ink);background:#fff;padding:18px 20px 22px;font-family:var(--hand);font-weight:600}
 .board h3{font-family:var(--hand);font-weight:600;font-size:20px;text-align:center;border-bottom:2px solid var(--ink);padding-bottom:4px;margin-bottom:6px}
-.board table{width:100%;border-collapse:collapse;font-size:16px}
+.board table{width:100%;border-collapse:collapse;font-size:20px}
 .board th,.board td{padding:6px 0;text-align:left;font-weight:600;border-bottom:1px solid #ddd}
-.board td{text-align:right;font-size:20px;white-space:nowrap}
+.board td{text-align:right;font-size:24px;white-space:nowrap}
 .board .in{padding-left:4em}
 .board tr.red th,.board tr.red td{color:var(--mark)}
 .board tr.sum2 th,.board tr.sum2 td{border-bottom:0}
@@ -214,7 +220,7 @@ h1,h2,h3{font-family:var(--mincho);font-weight:400;line-height:1.5;margin:0}
 /* 当日の流れ */
 .flow{list-style:none;margin:0;padding:0;display:grid;gap:2px}
 .flow li{display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;padding:14px 16px 18px;background:#fff}
-.flow time{font-family:var(--mincho);font-size:20px;line-height:1.3}
+.flow time{font-family:var(--mincho);font-size:24px;line-height:1.3}
 .flow b{display:block}
 .flow p{margin:0;color:var(--sub)}
 @media (max-width:430px){.flow li{grid-template-columns:64px minmax(0,1fr);gap:12px}}
@@ -222,7 +228,8 @@ h1,h2,h3{font-family:var(--mincho);font-weight:400;line-height:1.5;margin:0}
 /* アクセス */
 .access{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
 @media (max-width:860px){.access{grid-template-columns:1fr}}
-.access dl{margin:0;display:grid;grid-template-columns:7em 1fr;row-gap:12px}
+@media (max-width:600px){.access dl{font-size:16px;grid-template-columns:5.5em 1fr}}
+.access dl{margin:0;display:grid;grid-template-columns:6em 1fr;row-gap:16px;font-size:20px}
 .access dt,.access dd{margin:0}
 .access dt{color:var(--sub);font-size:14px;padding-top:2px}
 .map{background:var(--face)}
@@ -313,8 +320,8 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
           <div>
             <p class="lbl">サウナ</p>
             <div class="sexes" role="group" aria-label="男湯か女湯か">
-              <button type="button" class="sex m" data-sex="m" aria-pressed="true"><span class="k">男</span><span class="t">男湯のサウナ</span><span class="s">藍ののれん・左の入口</span></button>
-              <button type="button" class="sex f" data-sex="f" aria-pressed="false"><span class="k">女</span><span class="t">女湯のサウナ</span><span class="s">紅ののれん・右の入口</span></button>
+              <button type="button" class="sex m" data-sex="m" aria-pressed="true"><span class="k">男</span><span class="t">男湯のサウナ</span></button>
+              <button type="button" class="sex f" data-sex="f" aria-pressed="false"><span class="k">女</span><span class="t">女湯のサウナ</span></button>
             </div>
           </div>
           <div>
@@ -326,7 +333,7 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
             </div>
           </div>
         </div>
-        <p class="hint" id="numHint">中学生以上。1回の予約で6名（その枠の定員）まで。</p>
+        <p class="hint" id="numHint">中学生以上、6名まで。</p>
 
         <div>
           <p class="lbl">日<span>14日先まで　<span id="weekLabel"></span></span></p>
@@ -335,40 +342,23 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
             <button type="button" id="nextW">次の7日 ›</button>
           </div>
           <div class="days" id="days" role="group" aria-label="日付"></div>
-          <ul class="legend" aria-label="日付の印">
-            <li><b>○</b>選んだ人数で入れる枠が4つ以上</li>
-            <li><b>△</b>1〜3枠</li>
-            <li><b>×</b>空きなし</li>
-            <li><b>休</b>火曜は定休日</li>
-          </ul>
+          <p class="legend"><b>○</b>入れる枠4つ以上　<b>△</b>1〜3枠　<b>×</b>なし　<b>休</b>火曜</p>
         </div>
 
         <div>
           <p class="lbl"><span class="main" id="slotsTitle">時間</span><span id="slotsCount"></span></p>
           <ul class="fudas" id="slots" aria-label="時間帯"></ul>
-          <ul class="legend">
-            <li><b>●</b>空いている席　<b>○</b>予約済みの席</li>
-            <li>1枠60分。最後の10分は入れ替えの清掃です</li>
-          </ul>
+          <p class="legend"><b>●</b>空き席　<b>○</b>予約済み</p>
         </div>
       </div>
 
       <aside class="sum" aria-labelledby="sum-h">
         <h2 id="sum-h">ご予約の内容</h2>
-        <dl>
-          <dt>サウナ</dt><dd id="sSex">男湯</dd>
-          <dt>日</dt><dd id="sDate"></dd>
-          <dt>時間</dt><dd id="sTime" class="none">まだ選んでいません</dd>
-          <dt>人数</dt><dd id="sNum">1名</dd>
-        </dl>
+        <p class="pickline" id="sPick"></p>
         <div class="lines" id="sLines"></div>
         <div class="total"><span>合計（税込・入浴料込み）</span><b id="sTotal"></b></div>
         <p class="per" id="sPer"></p>
-        <p class="nomore">表示の合計から増えません。タオル・サウナマット込み。</p>
-        <div class="terms">
-          <b>キャンセル・お支払い</b>
-          開始1時間前までこの画面か電話で無料。お支払いは当日番台で（現金・交通系IC・PayPay）。予約のときのお支払いはありません。
-        </div>
+        <p class="nomore">あとから増えません。支払いは当日番台、1時間前まで取消無料。</p>
         <div class="go">
           <button type="button" class="btn wide" id="goBtn" disabled>この内容で予約へ進む</button>
           <span class="reason" id="goReason">時間を選ぶと進めます</span>
@@ -381,24 +371,16 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
 <section class="sec alt" id="room" aria-labelledby="room-h">
   <div class="wrap">
     <h2 id="room-h">サウナと水風呂</h2>
-    <p class="sub">男湯・女湯とも同じつくりです。</p>
+    <p class="sub">男湯・女湯とも同じつくりです。外気浴は裏庭のベンチ4脚。</p>
     <div class="photos">
       <figure class="ph">
         <div class="frame" role="img" aria-label="写真の枠：サウナ室"><b>写真の枠</b>サウナ室の中を入口から。2段のひな壇に、番号の付いたマットが6枚並ぶ。右奥にガスの遠赤ストーブと 92℃ を指す温度計。人は入れない。横3:2、室内の照明のまま。</div>
-        <figcaption>サウナ室（2段・6名）</figcaption>
+        <figcaption><span class="big">92</span>℃前後　サウナ室・2段・6名・ガス遠赤外線</figcaption>
       </figure>
       <figure class="ph">
         <div class="frame" role="img" aria-label="写真の枠：水風呂"><b>写真の枠</b>タイル張りの水風呂を斜め上から。水色のタイルの底が透ける水面、縁に掛かった木の手桶。奥の壁に富士山のペンキ絵の裾。横3:2。</div>
-        <figcaption>水風呂（地下水・2名ほど）</figcaption>
+        <figcaption><span class="big">16.5</span>℃前後　水風呂・地下水・2名ほど</figcaption>
       </figure>
-      <dl class="spec">
-        <dt>サウナ室</dt><dd><b>92</b>℃前後</dd>
-        <dt>ストーブ</dt><dd>ガス遠赤外線</dd>
-        <dt>水風呂</dt><dd><b>16.5</b>℃前後・地下水</dd>
-        <dt>外気浴</dt><dd>裏庭のベンチ 4脚</dd>
-        <dt>ロウリュ</dt><dd>ありません</dd>
-        <dt>テレビ</dt><dd>ありません</dd>
-      </dl>
     </div>
   </div>
 </section>
@@ -413,8 +395,6 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
         <table>
           <tbody>
             <tr><th scope="row">入浴料　大人</th><td>550円</td></tr>
-            <tr><th scope="row" class="in">小学生</th><td>200円</td></tr>
-            <tr><th scope="row" class="in">未就学</th><td>100円</td></tr>
             <tr><th scope="row">サウナ　60分</th><td>680円</td></tr>
             <tr class="red"><th scope="row">当日割（その日の予約）</th><td>−160円</td></tr>
             <tr><th scope="row">入浴＋サウナ</th><td>1,230円</td></tr>
@@ -425,9 +405,7 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
       </div>
       <ul class="notes">
         <li>当日割は、予約したその日の枠に付きます。前日までの予約は通常の680円です。</li>
-        <li>大判タオル・フェイスタオル・サウナマットは番台でお渡しします。シャンプー・ボディソープは浴場にあります。</li>
-        <li>サウナは中学生以上です。</li>
-        <li>回数券（入浴料10回分 5,000円）は入浴料の分だけ使えます。サウナ料金は別にお支払いください。</li>
+        <li>タオルとサウナマットは番台で。サウナは中学生以上（小学生の入浴は200円・未就学100円）。</li>
       </ul>
     </div>
   </div>
@@ -449,15 +427,13 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
 <section class="sec" id="access" aria-labelledby="access-h">
   <div class="wrap">
     <h2 id="access-h">アクセス・営業時間</h2>
-    <p class="sub">十条銀座商店街を抜けて、仲原の路地へ。</p>
+    <p class="sub">十条銀座商店街を抜けて、仲原の路地へ。電話 03-3908-4126。自転車は8台、車の駐車場はありません。</p>
     <div class="access">
       <dl>
         <dt>住所</dt><dd>東京都北区十条仲原1-27-4</dd>
         <dt>電車</dt><dd>JR埼京線 十条駅 北口から徒歩6分</dd>
         <dt>営業時間</dt><dd>15:00〜24:30（受付は24:00まで）<br>日曜は朝湯 8:00〜12:00 も</dd>
         <dt>定休日</dt><dd>火曜（祝日の場合は翌日）</dd>
-        <dt>電話</dt><dd>03-3908-4126（営業時間内）</dd>
-        <dt>駐輪</dt><dd>自転車8台。車の駐車場はありません。</dd>
       </dl>
       <div class="map" role="img" aria-label="十条駅北口から十条湯までの道順の略図。商店街を東へ抜け、仲原の路地を南へ。徒歩6分、約450m。">
         <svg viewBox="0 0 480 240">
@@ -614,9 +590,9 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
     const d = st.date, list = slotsOf(d), per = priceOf(d);
     ul.style.setProperty('--cols', list.length > 9 ? Math.ceil(list.length / 2) : list.length);
     const sel = st.sex === 'm' ? 'var(--ai)' : 'var(--beni)';
-    $('#slotsTitle').textContent = `時間　${fmtDate(d)}・${sexName()}`;
+    $('#slotsTitle').textContent = `時間（60分）・${d.getMonth() + 1}/${d.getDate()}・${sexName()}`;
     const okN = list.filter(s => s.ok).length;
-    $('#slotsCount').textContent = `${st.n}名で入れる枠 ${okN} / ${list.length}`;
+    $('#slotsCount').textContent = `入れる枠 ${okN}/${list.length}`;
     if (!okN) {
       const li = document.createElement('li');
       li.className = 'empty';
@@ -638,9 +614,9 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
       const word = s.over ? '受付終了' : s.left === 0 ? '満員' : `残り${s.left}席`;
       const why = s.over ? '' : s.left > 0 && s.left < st.n ? `${st.n}名分の空きなし` : '';
       b.setAttribute('aria-label', `${s.h}時から60分 ${word}${why ? '、' + why : ''}${s.ok ? `、${st.n}名 合計${yen(per * st.n)}` : ''}`);
-      b.innerHTML = `${s.h <= 10 ? '<span class="am">朝湯</span>' : ''}<span class="h">${s.h}<small>時</small></span><span class="e">〜${s.h}:50</span>` +
+      b.innerHTML = `${s.h <= 10 ? '<span class="am">朝湯</span>' : ''}<span class="h">${s.h}<small>時</small></span>` +
         (s.over || s.left === 0 ? `<span class="stamp">${s.over ? '受付終了' : '満'}</span>` : `<span class="dots" aria-hidden="true">${dots}</span><span class="left">${word}</span>`) +
-        (s.ok ? `<span class="p">${yen(per * st.n)}</span>` : why ? `<span class="why">${why}</span>` : '');
+        (why ? `<span class="why">${why}</span>` : '');
       b.addEventListener('click', () => { st.hour = s.h; render(); });
       li.appendChild(b); ul.appendChild(li);
     }
@@ -648,18 +624,13 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
 
   function renderSum() {
     const d = st.date, per = priceOf(d), has = !isNaN(st.hour);
-    $('#sSex').textContent = `${sexName()}のサウナ`;
-    $('#sDate').textContent = fmtDate(d);
-    const t = $('#sTime');
-    t.textContent = has ? `${st.hour}:00〜${st.hour}:50` : 'まだ選んでいません';
-    t.classList.toggle('none', !has);
-    $('#sNum').textContent = `${st.n}名`;
+    $('#sPick').innerHTML = `${fmtDate(d)}　${has ? `<b>${st.hour}:00〜${st.hour}:50</b>` : '<span class="none">時間はまだ選んでいません</span>'}<br>${sexName()}のサウナ・${st.n}名`;
     $('#sLines').innerHTML =
       `<div><span>入浴料 550円 × ${st.n}</span><span>${yen(BATH * st.n)}</span></div>` +
       `<div><span>サウナ 680円 × ${st.n}</span><span>${yen(SAUNA * st.n)}</span></div>` +
       (isToday(d) ? `<div class="disc"><span>当日割 −160円 × ${st.n}</span><span>−${yen(SAMEDAY * st.n)}</span></div>` : '');
     $('#sTotal').textContent = yen(per * st.n);
-    $('#sPer').textContent = `1名あたり ${yen(per)}`;
+    $('#sPer').textContent = st.n > 1 ? `1名あたり ${yen(per)}` : '';
     $('#goBtn').disabled = !has; $('#goReason').textContent = has ? '' : '時間を選ぶと進めます';
     $('#bGo').disabled = !has;
     $('#bTotal').textContent = yen(per * st.n);
@@ -669,7 +640,7 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
   function renderNum() {
     $('#num').innerHTML = `${st.n}<small>名</small>`;
     $('#minus').disabled = st.n <= 1; $('#plus').disabled = st.n >= CAP;
-    $('#numHint').textContent = st.n >= CAP ? '6名でその枠が貸し切りになります（定員6名）。' : '中学生以上。1回の予約で6名（その枠の定員）まで。';
+    $('#numHint').textContent = st.n >= CAP ? '6名でその枠は貸し切りです。' : '中学生以上、6名まで。';
   }
 
   function render() {
@@ -734,6 +705,7 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
     ['動き（transition だけ・.1/.2/.4s）', 'lp', 'lp／和・上質＝とらや・rules 7', 'cubic-bezier(.25,.46,.45,.94) の1つ。演出の keyframes は持たない。ホバーはマウス端末だけ。reduced-motion で止まる（とらやには無い）。'],
     ['番台の料金板・営業時間の札', 'ai', 'site-skills／ai-tells.md', '「木札のような料金表や営業時間の札を、文字の組み方で作る」「手書きの文字（画像でなく書体）」。書体 Klee One は自分で選んだ。'],
     ['区切りは余白と地の色・本文16px', 'ai', 'site-skills／ai-tells.md・inspect.js', '四辺を囲む箱や罫をやめ、白と #f2f2f2 の1段の差で分けた（最初の3画面の枠線 73→9 個。実サイトは 7〜27 個）。本文16px・注記14px（13px未満 38%→0%）。'],
+    ['情報の密度（最初の画面は予約の部品だけ）', 'ai', 'site-skills／ai-tells.md「1画面に主役を1つ」・inspect.js', '最初の画面は題・1文・予約の部品と伝票だけ。木札から終わりの時刻と値段（その日どの枠も同じ）を外し、料金板・設備・注意書きは下の章へ。PC の塊/画面 27→12、最初の画面 660→442字。選ぶための画面なので、最初の画面だけは塊19（じゃらんの検索 21 と同じ理由）。'],
     ['写真の枠（サウナ室・水風呂）', 'ai', 'site-skills／ai-tells.md', '「SVG の絵を主役にしない」「撮るべき写真を具体的に書く」。最初の画面には置かず、予約の下に。'],
     ['見出しをそのまま書く', 'ai', 'site-skills／ai-tells.md', '「十条湯 サウナの予約」。格言調・英字の小見出し・丸数字をやめた。'],
     ['枠の長さ・料金・きまり', 'own', '自分で決めた（スキルに無い）', '60分のうち10分を清掃、当日割160円、遅刻15分で次へ回す、構造化データ（LocalBusiness＋Offer）。']
