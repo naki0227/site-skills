@@ -24,7 +24,7 @@
 }
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:calc(var(--head) + 8px)}
-body{margin:0;background:var(--paper);color:var(--sumi);font:14px/1.6 var(--gothic);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--sumi);font:16px/1.7 var(--gothic);-webkit-text-size-adjust:100%}
 svg{display:block}
 a{color:inherit}
 button,input,select{font:inherit;color:inherit}
@@ -33,7 +33,7 @@ button,input,select{font:inherit;color:inherit}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* 告知帯 */
-.status{background:var(--sumi);color:#fff;font-size:12px}
+.status{background:var(--sumi);color:#fff;font-size:14px}
 .status .wrap{display:flex;gap:12px;align-items:center;min-height:32px;padding-top:6px;padding-bottom:6px}
 .status b{flex:none;white-space:nowrap;font-weight:700;display:inline-flex;gap:6px;align-items:center}
 .status b::before{content:"";width:8px;height:8px;border-radius:50%;background:#fff}
@@ -44,7 +44,7 @@ button,input,select{font:inherit;color:inherit}
 .head .wrap{display:flex;align-items:center;gap:16px;height:100%}
 .logo{display:flex;align-items:center;gap:14px;text-decoration:none}
 .logo strong{font:800 20px/1 var(--mincho);white-space:nowrap}
-.logo .when{border-left:1px solid var(--sumi);padding-left:14px;font-size:12px;line-height:1.45;white-space:nowrap}
+.logo .when{border-left:1px solid var(--sumi);padding-left:14px;font-size:14px;line-height:1.4;white-space:nowrap}
 .when .s{display:none}
 .gnav{margin-left:auto;display:flex;gap:20px;font-size:14px}
 .gnav a{text-decoration:none;padding:6px 0}
@@ -55,13 +55,13 @@ button,input,select{font:inherit;color:inherit}
 .head .pill{height:40px;padding:0 18px}
 
 /* 最初の画面：チラシの面 */
-.sheet{display:grid;grid-template-columns:132px minmax(0,1fr) 380px;border-bottom:1px solid var(--sumi)}
+.sheet{display:grid;grid-template-columns:132px minmax(0,1fr) 448px}
 .nobori{background:var(--oribe);color:#fff;display:flex;justify-content:center;padding:24px 0}
 .nobori h1{writing-mode:vertical-rl;margin:0;font:800 56px/1.05 var(--mincho);letter-spacing:.06em}
 .nobori h1 small{display:block;font-size:20px;letter-spacing:.2em;margin-left:12px}
 .nobori .v-date{writing-mode:vertical-rl;font:600 16px/1.4 var(--mincho);margin-top:auto;letter-spacing:.08em}
 .nobori-in{display:flex;flex-direction:column;align-items:center;gap:20px}
-.map-col{padding:16px 20px 16px;border-right:1px solid var(--sumi);min-width:0}
+.map-col{padding:20px 24px;min-width:0}
 .map-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin-bottom:10px}
 .map-bar h2{font:800 20px/1.3 var(--mincho);margin:0;margin-right:auto}
 .seg{display:inline-flex;border:2px solid var(--sumi);border-radius:18px;overflow:hidden}
@@ -79,133 +79,132 @@ button,input,select{font:inherit;color:inherit}
 .map-box[data-mode="rain"] .moves{opacity:.22}
 .moves{transition:opacity var(--t3) var(--ease)}
 .map-foot{display:flex;gap:16px;align-items:flex-start;margin-top:10px;min-height:76px}
-.legend{font-size:12px;color:var(--mute);margin:0;flex:1}
+.legend{font-size:14px;color:#4a4540;margin:0;flex:1}
 .map-hint{display:none}
 .sp-only{display:none}
 
 /* 値札（選んだ窯元） */
-.fuda{position:relative;flex:none;width:260px;border:1px solid var(--sumi);background:#fff;padding:8px 12px 8px 30px;font-family:var(--hand);transform:rotate(-1.5deg)}
+.fuda{position:relative;flex:none;width:300px;border:1px solid var(--sumi);background:#fff;padding:8px 12px 8px 30px;font-family:var(--hand);transform:rotate(-1.5deg)}
 .fuda::before{content:"";position:absolute;left:10px;top:50%;width:9px;height:9px;margin-top:-5px;border:1px solid var(--sumi);border-radius:50%}
-.fuda .no{font-size:12px;color:var(--mute)}
+.fuda .no{font-size:14px;color:#4a4540}
 .fuda b{display:block;font-size:20px;line-height:1.3}
-.fuda span{display:block;font-size:14px}
+.fuda span{display:block;font-size:16px}
 .fuda .price{font-size:20px;color:var(--shu)}
-.fuda .rn{font:12px var(--gothic);color:var(--shu)}
-.fuda button{margin-top:6px;font:700 12px var(--gothic);background:none;border:0;border-bottom:1px solid var(--sumi);padding:0;cursor:pointer}
+.fuda .rn{font:14px var(--gothic);color:var(--shu)}
+.fuda button{margin-top:6px;font:700 14px var(--gothic);background:none;border:0;text-decoration:underline;text-underline-offset:3px;padding:0;cursor:pointer}
 .fuda.is-empty{transform:none;border-style:dashed;color:var(--mute)}
 
-.side{padding:16px 20px;display:flex;flex-direction:column;gap:14px}
+.side{padding:20px 24px;display:flex;flex-direction:column;gap:16px;background:var(--pale)}
 .days-head{font:800 32px/1.25 var(--mincho);margin:0}
 .days-head span{display:block;font-size:14px;font-weight:600}
-.hours{margin:0;font-size:14px}
+.hours{margin:0;font-size:16px}
 .hours b{font:800 20px var(--mincho)}
-.tt{display:grid;grid-template-columns:1fr 1fr;border-top:2px solid var(--sumi)}
-.tt section{padding:6px 0 0}
-.tt section+section{border-left:1px solid var(--sumi);padding-left:10px}
-.tt h3{font:800 16px/1.4 var(--mincho);margin:0 0 4px}
-.tt ol{list-style:none;margin:0;padding:0}
-.tt li{display:grid;grid-template-columns:38px 1fr;gap:4px;padding:3px 0;border-bottom:1px dotted #999;font-size:12px;line-height:1.45}
-.tt time{font-weight:700;font-variant-numeric:tabular-nums}
-.tt .r{color:var(--shu)}
-.rainline{border:2px solid var(--shu);padding:8px 10px;font-size:12px}
-.rainline b{color:var(--shu);font-size:14px}
-.side-links{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px}
-.side-links a,.side-links button{background:none;border:0;padding:0;border-bottom:1px solid var(--sumi);cursor:pointer;text-decoration:none;font-size:12px}
+.tt{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.tt table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.45}
+.tt caption{text-align:left;font:800 20px/1.4 var(--mincho);padding-bottom:4px;border-bottom:2px solid var(--sumi)}
+.tt th,.tt td{text-align:left;vertical-align:top;padding:4px 0;border-bottom:1px solid var(--rule)}
+.tt th{width:48px;padding-right:6px;font-weight:700;font-variant-numeric:tabular-nums}
+.tt .r{color:var(--shu);font-weight:700}
+.rainline{margin:0;font-size:14px}
+.rainline b{color:var(--shu);font-size:16px}
+.side-links{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px}
+.side-links a,.side-links button{background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px;font-size:14px}
 
 /* 章 */
-section.ch{padding:64px 0 0}
-.ch-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px;border-bottom:2px solid var(--sumi);padding-bottom:8px;margin-bottom:20px}
+section.ch{padding:96px 0 0}
+.ch-head{margin-bottom:28px}
 .ch-head h2{font:800 32px/1.3 var(--mincho);margin:0}
 .ch-head h2::before{content:"";display:inline-block;width:14px;height:14px;background:var(--shu);margin-right:10px;vertical-align:.12em}
-.ch-head p{margin:0;color:#333;font-size:14px}
+.ch-head p{margin:8px 0 0;color:#333;font-size:16px;max-width:44em}
 
 /* 窯元一覧 */
 .filters{display:grid;grid-template-columns:minmax(0,1fr) 180px auto auto auto;gap:10px 16px;align-items:end;margin-bottom:12px}
-.field label{display:block;font-size:12px;margin-bottom:2px}
+.field label{display:block;font-size:14px;margin-bottom:2px}
 .field input,.field select{width:100%;height:40px;border:1px solid var(--sumi);border-radius:0;background:#fff;padding:0 10px;font-size:16px}
-.check{display:flex;align-items:center;gap:6px;height:40px;font-size:14px;cursor:pointer;white-space:nowrap}
+.check{display:flex;align-items:center;gap:6px;height:40px;font-size:16px;cursor:pointer;white-space:nowrap}
 .check input{width:18px;height:18px;accent-color:var(--sumi)}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
-.chip{appearance:none;border:1px solid var(--sumi);background:#fff;border-radius:2px;height:30px;padding:0 10px;font-size:12px;cursor:pointer}
+.chip{appearance:none;border:0;background:var(--pale);border-radius:2px;height:36px;padding:0 12px;font-size:14px;cursor:pointer}
 .chip[aria-pressed="true"],.chip[aria-checked="true"]{background:var(--sumi);color:#fff}
 .k-grid{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:32px;align-items:start}
-.count{font-size:12px;margin:0 0 4px}
-.kilns{list-style:none;margin:0;padding:0;columns:3 280px;column-gap:28px;column-rule:1px solid var(--rule)}
+.count{font-size:14px;margin:0 0 4px;color:#4a4540}
+.kilns{list-style:none;margin:0;padding:0;columns:3 300px;column-gap:40px}
 .kilns li{break-inside:avoid}
-.area-h{font:800 16px/1.4 var(--mincho);padding:10px 0 4px;border-bottom:1px solid var(--sumi)}
-.area-h small{font:12px var(--gothic);color:var(--mute);margin-left:6px}
-.kiln{display:grid;grid-template-columns:32px minmax(0,1fr) auto;gap:2px 8px;align-items:baseline;padding:6px 0;border-bottom:1px dotted #999}
-.kiln .id{font-weight:700;font-size:12px}
-.kiln .nm{appearance:none;background:none;border:0;padding:0;text-align:left;cursor:pointer;font:600 16px/1.35 var(--mincho)}
-.kiln .pr{font:600 16px/1.2 var(--hand);color:var(--shu);white-space:nowrap}
-.kiln .ds{grid-column:2/4;font-size:12px;color:#333;display:flex;justify-content:space-between;gap:8px}
-.kiln .tag{font-size:12px;color:var(--shu);border:1px solid var(--shu);padding:0 4px;margin-left:4px;line-height:18px;display:inline-block}
-.go{appearance:none;flex:none;border:1px solid var(--sumi);background:#fff;font-size:12px;padding:0 6px;height:24px;cursor:pointer}
+.area-h{font:800 20px/1.4 var(--mincho);padding:20px 0 4px}
+.area-h:first-child{padding-top:0}
+.area-h small{font:14px var(--gothic);color:var(--shu);margin-left:8px}
+.kiln{display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:0 8px;align-items:baseline;padding:7px 0}
+.kiln .id{font-weight:700;font-size:14px}
+.kiln .nm{appearance:none;background:none;border:0;padding:0;text-align:left;cursor:pointer;font:600 20px/1.35 var(--mincho)}
+.kiln .pr{font:600 20px/1.2 var(--hand);color:var(--shu);white-space:nowrap}
+.kiln .ds{grid-column:2/4;font-size:14px;color:#333;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.kiln .tag{font-size:14px;font-weight:700;color:var(--shu);margin-left:6px}
+.go{appearance:none;flex:none;border:0;background:var(--pale);font-size:13px;font-weight:700;padding:0 10px;height:28px;border-radius:14px;cursor:pointer;font-size:14px}
 .go[aria-pressed="true"]{background:var(--sumi);color:#fff}
 .no-hit{padding:24px 0}
-.no-hit p{margin:0 0 10px;font-size:14px}
-.route{position:sticky;top:calc(var(--head) + 12px);border:2px solid var(--sumi);padding:14px 16px;background:#fff}
+.no-hit p{margin:0 0 10px;font-size:16px}
+.route{position:sticky;top:calc(var(--head) + 12px);padding:18px 20px;background:var(--pale)}
 .route h3{font:800 20px/1.4 var(--mincho);margin:0}
-.route .sub{font-size:12px;margin:0 0 6px;color:var(--mute)}
-.route ol{margin:6px 0 0;padding-left:1.6em;font-size:14px}
+.route .sub{font-size:14px;margin:0 0 6px;color:#4a4540}
+.route ol{margin:6px 0 0;padding-left:1.6em;font-size:16px}
 .route li{padding:2px 0}
 .route li span{font:600 14px var(--hand);color:var(--shu);margin-left:4px}
-.route .empty{font-size:12px;margin:6px 0 0}
-.route .clear{background:none;border:0;padding:0;margin-top:10px;font-size:12px;border-bottom:1px solid var(--sumi);cursor:pointer}
+.route .empty{font-size:14px;margin:6px 0 0}
+.route .clear{background:none;border:0;padding:0;margin-top:10px;font-size:14px;text-decoration:underline;cursor:pointer}
 
 /* 写真の枠 */
-.photo{border:1px dashed var(--mute);background:var(--pale);display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding:12px;font-size:12px;color:#444;margin:0}
+.photo{background:var(--pale);display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding:16px;font-size:14px;color:#333;margin:0}
 .photo::before{content:"写真の枠（撮るもの）";font-weight:700;color:var(--sumi)}
 
 /* 催し */
 .ev-grid{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:32px;align-items:start}
-table.list{width:100%;border-collapse:collapse;font-size:14px}
+table.list{width:100%;border-collapse:collapse;font-size:16px}
 .list th,.list td{text-align:left;vertical-align:top;padding:10px 12px 10px 0;border-bottom:1px solid var(--rule)}
-.list thead th{font-size:12px;font-weight:400;border-bottom:2px solid var(--sumi)}
+.list thead th{font-size:14px;font-weight:400;border-bottom:2px solid var(--sumi)}
 .list td.t{font:800 16px var(--mincho);white-space:nowrap;font-variant-numeric:tabular-nums}
-.list .r{display:block;font-size:12px;color:var(--shu)}
+.list .r{display:block;font-size:14px;color:var(--shu)}
 
 /* 行き方 */
 .acc-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px}
 .line{list-style:none;margin:12px 0 0;padding:0;border-left:4px solid var(--sumi)}
-.line li{position:relative;padding:4px 0 14px 18px}
+.line li{position:relative;padding:4px 0 14px 20px}
 .line li::before{content:"";position:absolute;left:-9px;top:8px;width:10px;height:10px;border:2px solid var(--sumi);background:#fff;border-radius:50%}
-.line li.ride{padding-top:0;padding-bottom:12px;color:#333;font-size:12px}
+.line li.ride{padding-top:0;padding-bottom:12px;color:#333;font-size:14px}
 .line li.ride::before{display:none}
-.line b{font:800 16px var(--mincho)}
+.line b{font:800 20px var(--mincho)}
 .total{font:800 20px/1.4 var(--mincho);margin:4px 0 0}
-.tip{margin:12px 0 0;font-size:14px;border-left:3px solid var(--shu);padding-left:10px}
+.tip{margin:14px 0 0;font-size:16px}
 
 /* 雨の日 */
 .rain-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:start}
 
 /* お知らせ登録 */
-.mail{border-top:2px solid var(--sumi);border-bottom:2px solid var(--sumi);margin-top:64px;padding:28px 0}
+.mail{background:var(--pale);margin-top:96px;padding:40px var(--pad)}
 .mail-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 40px;align-items:start}
-.mail h2{font:800 24px/1.4 var(--mincho);margin:0 0 6px}
+.mail h2{font:800 32px/1.3 var(--mincho);margin:0 0 6px}
 .mail p{margin:0}
 .mail form{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 10px}
-.mail input[type=email]{height:46px;border:1px solid var(--sumi);padding:0 12px;font-size:16px;width:100%;border-radius:0}
+.mail input[type=email]{height:46px;border:1px solid #8a847e;padding:0 12px;font-size:16px;width:100%;border-radius:0}
 .mail input[aria-invalid="true"]{border:2px solid var(--shu)}
 .mail .opts{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:0 16px}
-.mail .err{grid-column:1/-1;color:var(--shu);font-size:14px;margin:0;min-height:1.6em}
-.mail .done{font-size:14px}
+.mail .err{grid-column:1/-1;color:var(--shu);font-size:16px;margin:0;min-height:1.6em}
+.mail .done{font-size:16px}
 
-footer{padding:28px 0 88px;font-size:12px;color:#333}
+footer{padding:40px 0 88px;font-size:14px;color:#333}
 footer .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 footer p{margin:0 0 4px}
 footer h2{font:800 16px var(--mincho);margin:0 0 6px}
-footer .fic{margin-top:20px;border-top:1px solid var(--rule);padding-top:10px;color:var(--mute)}
+footer .fic{margin-top:24px;color:#4a4540}
 
 /* 使ったスキル */
-.skills-btn{position:fixed;right:12px;bottom:12px;z-index:40;height:36px;padding:0 14px;border-radius:18px;border:2px solid var(--sumi);background:#fff;font:700 12px/1 var(--gothic);cursor:pointer}
+.skills-btn{position:fixed;right:12px;bottom:12px;z-index:40;height:36px;padding:0 14px;border-radius:18px;border:2px solid var(--sumi);background:#fff;font:700 14px/1 var(--gothic);cursor:pointer}
 .skills-btn:active{opacity:.6}
 dialog.skills{width:min(900px,calc(100vw - 24px));max-height:min(84vh,820px);padding:0;border:2px solid var(--sumi);border-radius:0}
 dialog.skills::backdrop{background:rgba(26,23,20,.5)}
 .skills-in{padding:20px 24px 24px;overflow:auto;max-height:inherit}
 .skills h2{font:800 24px/1.4 var(--mincho);margin:0 0 4px}
-.skills .lead{font-size:12px;margin:0 0 12px}
-.skills table{width:100%;border-collapse:collapse;font-size:12px}
+.skills .lead{font-size:14px;margin:0 0 12px}
+.skills table{width:100%;border-collapse:collapse;font-size:14px}
 .skills th,.skills td{text-align:left;vertical-align:top;padding:8px 8px 8px 0;border-bottom:1px solid var(--rule)}
 .skills th{font-weight:400;border-bottom:2px solid var(--sumi)}
 .skills td:first-child{font-weight:700;width:20%}
@@ -233,9 +232,9 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
   .nobori h1,.nobori .v-date{writing-mode:horizontal-tb}
   .nobori h1{font-size:32px;letter-spacing:.02em}
   .nobori h1 small{display:inline;font-size:16px;margin:0 8px 0 0;letter-spacing:.05em}
-  .nobori .v-date{margin:0;font-size:16px}
-  .map-col{border-right:0;padding:12px var(--pad)}
-  .side{border-top:1px solid var(--sumi);padding:16px var(--pad)}
+  .nobori .v-date{margin:0;font-size:20px}
+  .map-col{padding:16px var(--pad)}
+  .side{padding:20px var(--pad)}
   .days-head{display:none}
   .k-grid,.ev-grid,.acc-grid,.rain-grid,.mail-in{grid-template-columns:1fr}
   .route{position:static}
@@ -267,7 +266,7 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
 @media (max-width:430px){
   .when .l{display:none}.when .s{display:inline}
   .logo strong{font-size:16px}
-  .logo{gap:10px}.logo .when{padding-left:10px}
+  .logo{gap:8px}.logo .when{padding-left:8px;font-size:13px}
   .head .pill{padding:0 12px;font-size:12px}
   .head .pill .full{display:none}
   .nobori h1{font-size:28px}
@@ -309,13 +308,13 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
 
     <div class="map-col" id="map">
       <div class="map-bar">
-        <h2>会場マップ　駅から登り窯跡まで歩いて12分</h2>
+        <h2>会場マップ<span class="pc-only">　駅から登り窯跡まで歩いて12分</span></h2>
         <div class="seg" role="group" aria-label="地図の表示">
           <button type="button" id="mode-fine" aria-pressed="true">晴れの日</button>
           <button type="button" id="mode-rain" aria-pressed="false">雨の日</button>
         </div>
       </div>
-      <div class="map-box" id="mapBox" data-mode="fine">
+      <div class="map-box" id="mapBox" data-mode="fine" data-ui>
         <svg viewBox="0 0 800 500" id="mapSvg" aria-labelledby="mapTitle">
           <title id="mapTitle">会場図。瀬戸ノ口駅前の A 駅前広場、B 本町通り、C 窯垣の小径、D 旧瀬戸ノ口小学校の校庭、E 登り窯跡広場。番号は窯元の番号</title>
           <defs><pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="#ccc" stroke-width="2"/></pattern></defs>
@@ -364,8 +363,8 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
       <p class="days-head">5月3日・4日<span>月曜・火曜の祝日</span></p>
       <p class="hours"><b>9:00〜16:00</b>　4日は15:00まで　入場無料</p>
       <div class="tt" id="timetable">
-        <section id="day-0503" aria-labelledby="d1"><h3 id="d1">3日（月・祝）</h3><ol id="tt-0503"></ol></section>
-        <section id="day-0504" aria-labelledby="d2"><h3 id="d2">4日（火・祝）</h3><ol id="tt-0504"></ol></section>
+        <table id="day-0503"><caption>3日（月・祝）</caption><tbody id="tt-0503"></tbody></table>
+        <table id="day-0504"><caption>4日（火・祝）</caption><tbody id="tt-0504"></tbody></table>
       </div>
       <p class="rainline"><b>雨の日</b>　小雨は決行。C・D の17軒は体育館へ、E の4軒は公民館へ移り、窯出しと小径歩きは中止。判断は各日 6:30。</p>
       <div class="side-links">
@@ -609,7 +608,7 @@ var SKILLS=[
 
 /* 告知帯の下のヘッダー：日付は常に。最初の画面の時刻表 */
 ['0503','0504'].forEach(function(d){
-  $('#tt-'+d).innerHTML=EV.filter(function(e){return e[0]===d}).map(function(e){return '<li><time>'+e[1]+'</time><span>'+e[2]+(e[3]?'（'+e[3]+'）':'')+(e[4]?' <span class="r">雨'+(e[4]==='中止'?'中止':'→'+e[4])+'</span>':'')+'</span></li>'}).join('');
+  $('#tt-'+d).innerHTML=EV.filter(function(e){return e[0]===d}).map(function(e){return '<tr><th scope="row">'+e[1]+'</th><td>'+e[2]+(/^[A-E]/.test(e[3])?'（'+e[3]+'）':'')+(e[4]?' <span class="r">雨'+(e[4]==='中止'?'中止':'→'+e[4])+'</span>':'')+'</td></tr>'}).join('');
 });
 $('#evRows').innerHTML=EV.filter(function(e){return e[5]}).map(function(e){return '<tr><td class="t">'+(e[0]==='0503'?'3日':'4日')+' '+e[1]+'</td><td><b>'+e[2]+'</b><br>'+e[5]+'</td><td>'+e[3]+(e[4]?'<span class="r">雨の日は'+(e[4]==='中止'?'中止':e[4])+'</span>':'')+'</td></tr>'}).join('');
 
@@ -632,13 +631,13 @@ K.forEach(function(k){
   g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(k.id)}});
   dotsG.appendChild(g);
 });
-function pick(id,scroll){
+function pick(id,scroll,quiet){
   sel=id;var k=byId(id),inR=route.indexOf(id)>-1;
   [].forEach.call(dotsG.children,function(g){g.classList.toggle('is-sel',g.dataset.id===id)});
   var f=$('#fuda');f.classList.remove('is-empty');
   f.innerHTML='<span class="no">'+k.id+'　'+AREAS[k.area]+'</span><b>'+k.name+'</b><span>'+k.kind+'・'+k.item+'</span><span class="price">'+k.price+'</span>'+(mode==='rain'&&RAIN[k.area]?'<span class="rn">雨の日は'+RAIN[k.area]+'に移ります</span>':'')+'<button type="button" data-route="'+k.id+'">'+(inR?'回る窯元から外す':'回る窯元に入れる')+'</button>';
   if(scroll)$('#map').scrollIntoView();
-  if(history.replaceState)history.replaceState(null,'','#kiln-'+id);
+  if(!quiet&&history.replaceState)history.replaceState(null,'','#kiln-'+id);
 }
 $('#fuda').addEventListener('click',function(e){var b=e.target.closest('[data-route]');if(b){toggleRoute(b.dataset.route);pick(b.dataset.route)}});
 function setMode(m){
@@ -684,7 +683,9 @@ function renderRoute(){
   var c=$('#clearRoute');if(c)c.addEventListener('click',function(){route=[];store.set('toukiichi-route',route);render();renderRoute()});
 }
 render();renderRoute();
-var km=location.hash.match(/^#kiln-([A-E]\d{1,2})$/);if(km&&byId(km[1]))pick(km[1],true);
+var km=location.hash.match(/^#kiln-([A-E]\d{1,2})$/);if(km&&byId(km[1]))pick(km[1],true);else{pick('E1',false,true)}
+/* スマホの地図は、会場の真ん中（本町通りと小径の分かれ目）から見せる */
+if(mapBox.scrollWidth>mapBox.clientWidth)mapBox.scrollLeft=(mapBox.scrollWidth-mapBox.clientWidth)/2;
 
 /* 行き方 */
 var fromKey='nagoya';
