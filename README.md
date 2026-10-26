@@ -22,7 +22,6 @@
   /plugin marketplace add naki0227/site-skills
   /plugin install site-skills@site-skills
   ```
-  private リポジトリなので、GitHub に git でアクセスできる環境で入れる。
 - **1つのプロジェクトにだけ入れる**：`plugins/site-skills/skills/` の中のフォルダを、そのプロジェクトの `.claude/skills/` にコピーする。`site-skills` と使いたいスキルを一緒に入れる。
 
 ## 中身
@@ -32,6 +31,7 @@
 - `sources.json`：集める元のリポジトリと接頭辞。種類を足すときはここに1行足し、選ぶスキルの表にも1行足す。
 - `SYNC.md`：毎日の集め直しの手順。
 
-## 参考にしたもの
-- 選ぶスキルの「作る前に決めること」（`references/make.md`）、作った後の批評（`references/critique.md`）、自動チェック（`scripts/inspect.js`）の組み立ては、[Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill)（MIT License, Copyright (c) 2026 Leonxlnx）の「the run」・`critique.md`・`inspect.mjs` と 247 サイトの調査を参考に、日本語のページと使用例の計測で確かめて書き直したもの。しきい値は、使用例5つと実サイト（とらや・ほぼ日・Linear・teamLab・Apple・星野リゾート）を同じ測り方で測った値から決めた。taste-skill の「色・書体を配る」仕組みと見た目の決まり（グラデーション・等幅・罫をすべて禁止、など）は、実測値でスキルを作る方針とぶつかるので取り入れていない（値は種類ごとのスキルが持つ）。
-- 「作る前に決めること」の最初の形と、各 anatomy リポジトリの作例の決まり（本物らしい中身・状態の網羅・動かすのは transform と opacity だけ）は、[elayadesign/ai-design-skills](https://github.com/elayadesign/ai-design-skills) の `landing-page-design`（MIT License, Copyright (c) 2026 Elaya）を参考に、日本語で書き直したもの。フォント・余白・色を固定する見た目の決まりは、同じ理由で取り入れていない。
+## ライセンスと出典
+- スキル・道具・使用例の HTML は MIT License（`LICENSE`）。
+- 使用例の写真（`examples/*/photos/`）は MIT ではなく、それぞれの Creative Commons ライセンス（CC0・CC BY・CC BY-SA）で使っている。一覧は `CREDITS.md`。
+- 参考にしたスキル（[Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill)、[elayadesign/ai-design-skills](https://github.com/elayadesign/ai-design-skills)、どちらも MIT）と、何を取り入れたか・取り入れなかったかも `CREDITS.md` に書いている。taste-skill の「色・書体を配る」仕組みと見た目の決まり、ai-design-skills のフォント・余白・色を固定する決まりは、実測値でスキルを作る方針とぶつかるので取り入れていない。

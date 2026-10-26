@@ -14,5 +14,7 @@ jobs:
         run: for f in tools/*.js plugins/site-skills/skills/site-skills/scripts/*.js; do node --check "$f"; done && bash -n tools/sync.sh
       - name: カタログが最新で、選ぶスキルの表に全部のスキルが載っている
         run: node tools/catalog.js --check
+      - name: 写真の出典がそろっていて、CREDITS.md が最新
+        run: node tools/credits.js --check
       - name: JSON の形
         run: for f in sources.json .claude-plugin/marketplace.json plugins/site-skills/.claude-plugin/plugin.json; do node -e "JSON.parse(require('fs').readFileSync('$f','utf8'))"; done
