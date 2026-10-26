@@ -55,15 +55,21 @@ button,input,select{font:inherit;color:inherit}
 .head .pill{height:40px;padding:0 18px}
 
 /* 最初の画面：チラシの面 */
-.sheet{display:grid;grid-template-columns:132px minmax(0,1fr) 448px}
+.sheet{display:grid;grid-template-columns:132px minmax(0,1fr)}
 .nobori{background:var(--oribe);color:#fff;display:flex;justify-content:center;padding:24px 0}
 .nobori h1{writing-mode:vertical-rl;margin:0;font:800 56px/1.05 var(--mincho);letter-spacing:.06em}
 .nobori h1 small{display:block;font-size:20px;letter-spacing:.2em;margin-left:12px}
 .nobori .v-date{writing-mode:vertical-rl;font:600 16px/1.4 var(--mincho);margin-top:auto;letter-spacing:.08em}
 .nobori-in{display:flex;flex-direction:column;align-items:center;gap:20px}
-.map-col{padding:20px 24px;min-width:0}
-.map-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin-bottom:10px}
-.map-bar h2{font:800 20px/1.3 var(--mincho);margin:0;margin-right:auto}
+.stage{padding:28px 40px 32px;min-width:0}
+.lead{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 32px;align-items:end;margin-bottom:20px}
+.when-big{grid-column:1;margin:0;font:800 32px/1.3 var(--mincho)}
+.lead-1{grid-column:1;margin:0;font-size:20px;line-height:1.6}
+.lead .pill{grid-column:2;grid-row:1/3;height:52px;padding:0 28px;font-size:16px;border-radius:26px}
+.stage-main{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:32px;align-items:end}
+.map-wrap{position:relative;min-width:0}
+.map-wrap .seg{position:absolute;right:12px;top:12px}
+.map-box{max-width:calc((100svh - 300px) * 1.6);min-width:min(100%,560px)}
 .seg{display:inline-flex;border:2px solid var(--sumi);border-radius:18px;overflow:hidden}
 .seg button{appearance:none;border:0;background:#fff;height:32px;padding:0 14px;font-weight:700;font-size:12px;cursor:pointer}
 .seg button[aria-pressed="true"]{background:var(--sumi);color:#fff}
@@ -78,13 +84,11 @@ button,input,select{font:inherit;color:inherit}
 .map-box[data-mode="rain"] .rain-g{opacity:1}
 .map-box[data-mode="rain"] .moves{opacity:.22}
 .moves{transition:opacity var(--t3) var(--ease)}
-.map-foot{display:flex;gap:16px;align-items:flex-start;margin-top:10px;min-height:76px}
-.legend{font-size:14px;color:#4a4540;margin:0;flex:1}
 .map-hint{display:none}
 .sp-only{display:none}
 
 /* 値札（選んだ窯元） */
-.fuda{position:relative;flex:none;width:300px;border:1px solid var(--sumi);background:#fff;padding:16px 16px 24px 28px;font-family:var(--hand);transform:rotate(-1.5deg)}
+.fuda{position:relative;width:100%;border:1px solid var(--sumi);background:#fff;padding:16px 16px 24px 28px;font-family:var(--hand);transform:rotate(-1.5deg)}
 .fuda::before{content:"";position:absolute;left:10px;top:50%;width:9px;height:9px;margin-top:-5px;border:1px solid var(--sumi);border-radius:50%}
 .fuda .no{font-size:14px;color:#4a4540}
 .fuda b{display:block;font-size:20px;line-height:1.3}
@@ -94,21 +98,11 @@ button,input,select{font:inherit;color:inherit}
 .fuda button{margin-top:6px;font:700 14px var(--gothic);background:none;border:0;text-decoration:underline;text-underline-offset:3px;padding:0;cursor:pointer}
 .fuda.is-empty{transform:none;border-style:dashed;color:var(--mute)}
 
-.side{padding:20px 24px;display:flex;flex-direction:column;gap:16px;background:var(--pale)}
-.days-head{font:800 32px/1.25 var(--mincho);margin:0}
-.days-head span{display:block;font-size:14px;font-weight:600}
-.hours{margin:0;font-size:16px}
-.hours b{font:800 20px var(--mincho)}
-.tt{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.tt table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.45}
-.tt caption{text-align:left;font:800 20px/1.4 var(--mincho);padding-bottom:4px;border-bottom:2px solid var(--sumi)}
-.tt th,.tt td{text-align:left;vertical-align:top;padding:4px 0;border-bottom:1px solid var(--rule)}
-.tt th{width:48px;padding-right:6px;font-weight:700;font-variant-numeric:tabular-nums}
-.tt .r{color:var(--shu);font-weight:700}
-.rainline{margin:0;font-size:14px}
-.rainline b{color:var(--shu);font-size:16px}
-.side-links{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px}
-.side-links a,.side-links button{background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px;font-size:14px}
+.tt{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.tt caption{text-align:left;font:800 20px/1.4 var(--mincho);padding-bottom:6px;border-bottom:2px solid var(--sumi)}
+.tt td:last-child{width:9em}
+.ev-links{margin:16px 0 0}
+.ev-links button{background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px;font-size:16px}
 
 /* 章 */
 section.ch{padding:96px 0 0}
@@ -160,6 +154,7 @@ section.ch{padding:96px 0 0}
 .ev-grid{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:32px;align-items:start}
 table.list{width:100%;border-collapse:collapse;font-size:16px}
 .list th,.list td{text-align:left;vertical-align:top;padding:10px 12px 10px 0;border-bottom:1px solid var(--rule)}
+.list td:first-child,.list th:first-child{white-space:nowrap}
 .list thead th{font-size:14px;font-weight:400;border-bottom:2px solid var(--sumi)}
 .list td.t{font:800 16px var(--mincho);white-space:nowrap;font-variant-numeric:tabular-nums}
 .list .r{display:block;font-size:14px;color:var(--shu)}
@@ -213,14 +208,16 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
 
 @media (hover:hover) and (pointer:fine){
   .pill:hover{opacity:.75}
-  .gnav a:hover,.side-links a:hover,.side-links button:hover{color:var(--mute)}
+  .gnav a:hover,.ev-links button:hover{color:var(--mute)}
   .kiln .nm:hover{color:var(--oribe)}
   .dot:hover .ring{opacity:1}
   .chip:hover,.go:hover{opacity:.75}
   .skills-btn:hover{opacity:.7}
 }
 @media (max-width:1200px){
-  .sheet{grid-template-columns:96px minmax(0,1fr) 340px}
+  .sheet{grid-template-columns:96px minmax(0,1fr)}
+  .stage{padding:24px 28px}
+  .stage-main{grid-template-columns:minmax(0,1fr) 260px}
   .nobori h1{font-size:44px}
 }
 @media (max-width:992px){
@@ -233,10 +230,10 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
   .nobori h1{font-size:32px;letter-spacing:.02em}
   .nobori h1 small{display:inline;font-size:16px;margin:0 8px 0 0;letter-spacing:.05em}
   .nobori .v-date{margin:0;font-size:20px}
-  .map-col{padding:16px var(--pad)}
-  .side{padding:20px var(--pad)}
-  .days-head{display:none}
-  .k-grid,.ev-grid,.acc-grid,.rain-grid,.mail-in{grid-template-columns:1fr}
+  .stage{padding:20px var(--pad) 28px}
+  .stage-main{grid-template-columns:1fr;gap:16px}
+  .map-box{max-width:none}
+  .k-grid,.tt,.acc-grid,.rain-grid,.mail-in{grid-template-columns:1fr}
   .route{position:static}
   .filters{grid-template-columns:1fr 1fr}
   .filters .field:first-child{grid-column:1/-1}
@@ -250,8 +247,13 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
   .map-box svg{width:640px;max-width:none}
   .map-hint{display:inline}
   .sp-only{display:inline}.pc-only{display:none}
-  .map-foot{flex-direction:column}
-  .fuda{width:100%;transform:none}
+  .fuda{transform:none}
+  .lead{grid-template-columns:1fr}
+  .lead .pill{grid-column:1;grid-row:auto;margin-top:12px;width:100%}
+  .when-big{font-size:32px}
+  .when-big .dw{font-size:16px}
+  .lead-1{font-size:16px}
+  .map-wrap .seg{position:static;margin-top:10px}
   .filters{grid-template-columns:1fr 1fr}
   .filters .field:nth-child(2){grid-column:1/-1}
   .ch-head h2{font-size:24px}
@@ -297,7 +299,7 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
 </header>
 
 <main id="top">
-  <!-- 最初の画面：チラシの表面（のぼり・会場マップ・2日間の時刻表） -->
+  <!-- 最初の画面：題（のぼり）・いつどこで・1文・主な行動・主役の会場図 -->
   <div class="sheet">
     <div class="nobori">
       <div class="nobori-in">
@@ -306,15 +308,15 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
       </div>
     </div>
 
-    <div class="map-col" id="map">
-      <div class="map-bar">
-        <h2>会場マップ<span class="pc-only">　駅から登り窯跡まで歩いて12分</span></h2>
-        <div class="seg" role="group" aria-label="地図の表示">
-          <button type="button" id="mode-fine" aria-pressed="true">晴れの日</button>
-          <button type="button" id="mode-rain" aria-pressed="false">雨の日</button>
-        </div>
+    <div class="stage" id="map">
+      <div class="lead">
+        <p class="when-big">5月3日<span class="dw">（月・祝）</span>・4日<span class="dw">（火・祝）</span></p>
+        <p class="lead-1">瀬戸ノ口駅前から登り窯跡まで、窯元41軒が5つの会場に並びます。9:00から、入場無料。</p>
+        <a class="pill" href="#access">行き方を調べる</a>
       </div>
-      <div class="map-box" id="mapBox" data-mode="fine" data-ui>
+      <div class="stage-main">
+        <div class="map-wrap">
+          <div class="map-box" id="mapBox" data-mode="fine" data-ui>
         <svg viewBox="0 0 800 500" id="mapSvg" aria-labelledby="mapTitle">
           <title id="mapTitle">会場図。瀬戸ノ口駅前の A 駅前広場、B 本町通り、C 窯垣の小径、D 旧瀬戸ノ口小学校の校庭、E 登り窯跡広場。番号は窯元の番号</title>
           <defs><pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="#ccc" stroke-width="2"/></pattern></defs>
@@ -352,25 +354,13 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
           </g>
           <g id="dots"></g>
         </svg>
-      </div>
-      <div class="map-foot">
-        <p class="legend"><span class="map-hint">地図は横に動かせます。</span>番号は窯元の番号。押すと<span class="pc-only">右</span><span class="sp-only">下</span>の値札に出ます。P 臨時駐車場、本部は案内・配送受付・救護。</p>
-        <div class="fuda is-empty" id="fuda" aria-live="polite"><span>地図の番号か、下の一覧の窯元名を押してください</span></div>
-      </div>
-    </div>
-
-    <div class="side">
-      <p class="days-head">5月3日・4日<span>月曜・火曜の祝日</span></p>
-      <p class="hours"><b>9:00〜16:00</b>　4日は15:00まで　入場無料</p>
-      <div class="tt" id="timetable">
-        <table id="day-0503"><caption>3日（月・祝）</caption><tbody id="tt-0503"></tbody></table>
-        <table id="day-0504"><caption>4日（火・祝）</caption><tbody id="tt-0504"></tbody></table>
-      </div>
-      <p class="rainline"><b>雨の日</b>　小雨は決行。C・D の17軒は体育館へ、E の4軒は公民館へ移り、窯出しと小径歩きは中止。判断は各日 6:30。</p>
-      <div class="side-links">
-        <button type="button" id="ics">この2日をカレンダーに入れる（.ics）</button>
-        <a href="#events">催しの詳しい案内</a>
-        <a href="#mail">前の日にメールで知らせてもらう</a>
+          </div>
+          <div class="seg" role="group" aria-label="地図の表示">
+            <button type="button" id="mode-fine" aria-pressed="true">晴れの日</button>
+            <button type="button" id="mode-rain" aria-pressed="false">雨の日</button>
+          </div>
+        </div>
+        <div class="fuda is-empty" id="fuda" aria-live="polite"><span>地図の番号を押してください</span></div>
       </div>
     </div>
   </div>
@@ -406,20 +396,15 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
     <!-- 催し -->
     <section class="ch" id="events" aria-labelledby="h-events">
       <div class="ch-head">
-        <h2 id="h-events">2日間の催し</h2>
-        <p>登り窯の窯出しは3日の朝だけ。4日は15時に閉め、14時半から一部の窯元が値下げをします。</p>
+        <h2 id="h-events">2日間の催しと時刻</h2>
+        <p>登り窯の窯出しは3日の朝だけ。4日は15時に閉め、14時半から一部の窯元が値下げをします。雨の日に変わる催しは朱で書いています。</p>
       </div>
-      <div class="ev-grid">
-        <table class="list">
-          <caption class="vh">2日間の催しの時刻と場所</caption>
-          <thead><tr><th scope="col">日・時刻</th><th scope="col">催し</th><th scope="col">場所・申し込み</th></tr></thead>
-          <tbody id="evRows"></tbody>
-        </table>
-        <div>
-          <figure class="photo" style="aspect-ratio:3/2">この春に焚いた共同登窯の窯出し。窯の口から、軍手で茶碗を一つずつ手渡す朝の様子。横3:2、窯の中の暗さと朝の斜光の両方が入る位置から</figure>
-          <figure class="photo" style="aspect-ratio:3/2;margin-top:12px">本町通りの軒下に並ぶ訳ありの飯碗。手書きの値札「3つで1,000円」が読める距離で。横3:2、曇りの日の自然光</figure>
-        </div>
+      <div class="tt">
+        <table class="list" id="day-0503"><caption>3日（月・祝）9:00〜16:00</caption><tbody id="tt-0503"></tbody></table>
+        <table class="list" id="day-0504"><caption>4日（火・祝）9:00〜15:00</caption><tbody id="tt-0504"></tbody></table>
       </div>
+      <p class="ev-links"><button type="button" id="ics">この2日をカレンダーに入れる（.ics）</button></p>
+      <figure class="photo" style="aspect-ratio:3/2;max-width:560px;margin-top:40px">この春に焚いた共同登窯の窯出し。窯の口から、軍手で茶碗を一つずつ手渡す朝の様子。横3:2、窯の中の暗さと朝の斜光の両方が入る位置から</figure>
     </section>
 
     <!-- 行き方 -->
@@ -444,8 +429,7 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
               <tr><td><b>P3 旧JA倉庫跡</b></td><td>160台</td><td>歩いて9分</td></tr>
             </tbody>
           </table>
-          <p class="tip">協力金は1日500円（P1〜P3 共通）。会場のまわりの道は2日とも8:00〜17:00 車が入れません。</p>
-          <p class="tip">買った器は本部で家まで送れます（送料は大きさと地域で変わります）。駅のコインロッカーは12個だけです。</p>
+          <p class="tip">協力金は1日500円（P1〜P3 共通）。会場のまわりの道は2日とも8:00〜17:00 車が入れません。買った器は駅前の本部で家まで送れます（送料は大きさと地域で変わります）。駅のコインロッカーは12個だけです。</p>
         </div>
       </div>
     </section>
@@ -470,12 +454,9 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
           <caption class="vh">雨の日に変わること</caption>
           <thead><tr><th scope="col">変わること</th><th scope="col">くわしく</th></tr></thead>
           <tbody>
-            <tr><td><b>C・D の17軒</b></td><td>旧瀬戸ノ口小の体育館へ。土足では入れないので、入口で靴袋を配ります</td></tr>
-            <tr><td><b>E の4軒</b></td><td>公民館の大ホールへ</td></tr>
-            <tr><td><b>A・B の20軒</b></td><td>そのまま（駅前はテント、本町通りは軒下）</td></tr>
-            <tr><td><b>シャトルバス</b></td><td>12分おきを8分おきに</td></tr>
+            <tr><td><b>窯元の場所</b></td><td>C・D の17軒は旧瀬戸ノ口小の体育館（入口で靴袋を配ります）、E の4軒は公民館へ。A・B の20軒はそのまま</td></tr>
+            <tr><td><b>バスと体験</b></td><td>シャトルバスは8分おきに。絵付け・箸置きづくりは公民館の和室で</td></tr>
             <tr><td><b>持ち帰り</b></td><td>各窯元が新聞紙で包みます。本部で大きなビニール袋を1枚10円で</td></tr>
-            <tr><td><b>体験</b></td><td>絵付け・箸置きづくりは公民館の和室で</td></tr>
           </tbody>
         </table>
       </div>
@@ -585,7 +566,7 @@ var FROM={
 };
 
 var SKILLS=[
- ['最初の画面の組み方','site-skills／ai-tells.md','「写真に頼らず見せられるもの（時刻表・地図）を、それ自体きちんと組んで主役にする」。のぼり・会場マップ・2日の時刻表をチラシの表面のように1面に'],
+ ['最初の画面の組み方','site-skills／ai-tells.md','「写真に頼らず見せられるもの（地図）を主役に」「1画面に主役を1つ」。題（のぼり）・いつどこで・1文・行き方のボタン・主役の会場図だけ。時刻表は下の章へ'],
  ['会場・日付を常に見せる','game-quality-bar／イベント・ライブ','Lollapalooza：告知帯 → 固定ヘッダー。ロゴの横に縦線で区切って日付・会場、右端にボタン1つ'],
  ['のぼりの色','ai-tells.md（題材の現場の色）','陶器市ののぼり・織部釉の緑 <code>#2f5a41</code>（白文字 7.9:1）。スキルに実測値は無く、自分で決めた'],
  ['地・文字・罫','lp-quality-bar／和・上質','とらや：地 <code>#fff</code>・罫 <code>#ccc</code>・薄い面 <code>#f2f2f2</code>。文字は純黒にしない（<code>#1a1714</code>、common.md の「赤みのある黒」）'],
@@ -608,9 +589,8 @@ var SKILLS=[
 
 /* 告知帯の下のヘッダー：日付は常に。最初の画面の時刻表 */
 ['0503','0504'].forEach(function(d){
-  $('#tt-'+d).innerHTML=EV.filter(function(e){return e[0]===d}).map(function(e){return '<tr><th scope="row">'+e[1]+'</th><td>'+e[2]+(/^[A-E]/.test(e[3])?'（'+e[3]+'）':'')+(e[4]?' <span class="r">雨'+(e[4]==='中止'?'中止':'→'+e[4])+'</span>':'')+'</td></tr>'}).join('');
+  $('#tt-'+d).innerHTML=EV.filter(function(e){return e[0]===d}).map(function(e){return '<tr><td class="t">'+e[1]+'</td><td><b>'+e[2]+'</b>'+(e[5]?'<br>'+e[5]:'')+'</td><td>'+e[3]+(e[4]?'<span class="r">雨の日は'+(e[4]==='中止'?'中止':e[4])+'</span>':'')+'</td></tr>'}).join('');
 });
-$('#evRows').innerHTML=EV.filter(function(e){return e[5]}).map(function(e){return '<tr><td class="t">'+(e[0]==='0503'?'3日':'4日')+' '+e[1]+'</td><td><b>'+e[2]+'</b><br>'+e[5]+'</td><td>'+e[3]+(e[4]?'<span class="r">雨の日は'+(e[4]==='中止'?'中止':e[4])+'</span>':'')+'</td></tr>'}).join('');
 
 /* カレンダー */
 $('#ics').addEventListener('click',function(){
