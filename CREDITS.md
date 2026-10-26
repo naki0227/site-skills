@@ -15,5 +15,7 @@
 ## 写真
 | 使用例 | ファイル | 題 | 作者 | ライセンス | 元のページ |
 |---|---|---|---|---|---|
+| `sento` | `photos/A-Japanese-public-bath-in-museum---Flickr---odako1.jpg` | A Japanese public bath in museum - Flickr - odako1 | Koichi Oda | CC BY-SA 2.0 | https://commons.wikimedia.org/w/index.php?curid=55885722 |
+| `sento` | `photos/Shoes-boxes-at-a-Sento---Tokyo-area---Dec-22-2021.jpg` | Shoes boxes at a Sento - Tokyo area - Dec 22 2021 | Nesnad | CC BY 4.0 | https://commons.wikimedia.org/w/index.php?curid=113582446 |
 | `toukiichi` | `photos/Arita-tokichi-200804.jpg` | Arita tokichi 200804 | user:Atsasebo | CC BY-SA 3.0 | https://commons.wikimedia.org/w/index.php?curid=9228610 |
 | `toukiichi` | `photos/Noborigama-Tokoname-01.jpg` | Noborigama Tokoname 01 | Gryffindor | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=63887246 |
