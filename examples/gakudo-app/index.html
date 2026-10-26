@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>おかえりノート｜放課後児童クラブの出欠と保護者連絡</title>
+<title>おかえりノート</title>
 <meta name="description" content="放課後児童クラブ（学童保育）の入退室・出欠と、保護者からの欠席・お迎え変更の連絡を1つにまとめるアプリ。下校したのに来所していない子を一覧で確かめられます。30日間無料、支払い情報の入力は不要です。">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"おかえりノート","applicationCategory":"BusinessApplication","operatingSystem":"iOS, Android, Web","offers":[{"@type":"Offer","name":"ライト","price":"6980","priceCurrency":"JPY"},{"@type":"Offer","name":"スタンダード","price":"11480","priceCurrency":"JPY"},{"@type":"Offer","name":"ワイド","price":"17800","priceCurrency":"JPY"},{"@type":"Offer","name":"法人・自治体","price":"9860","priceCurrency":"JPY"}]}
@@ -36,6 +36,7 @@
 }
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:auto;-webkit-text-size-adjust:100%}
+:root{color-scheme:light}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:16px;line-height:2.1;letter-spacing:.04em;overflow-x:clip}
 img,svg{display:block;max-width:100%}
 a{color:var(--green-d)}
@@ -786,6 +787,7 @@ dialog::backdrop{background:rgba(34,24,21,.55)}
           <span class="err" id="est-err" role="alert"></span>
         </div>
         <button class="btn btn-ghost" type="submit">見積書をダウンロード（テキスト）</button>
+        <div id="est-out-box" hidden style="grid-column:1 / -1"><p class="p-note">ダウンロードできない画面のときは、下の内容をコピーしてお使いください。</p><pre id="est-out" style="white-space:pre-wrap;background:var(--tint2);border-radius:10px;padding:14px;font-size:14px;line-height:1.8;margin:6px 0 0;overflow-x:auto" tabindex="0"></pre></div>
       </form>
     </div>
   </section>
@@ -1389,6 +1391,7 @@ $('#est-form').addEventListener('submit', e => {
   a.href = URL.createObjectURL(new Blob([txt], { type: 'text/plain;charset=utf-8' }));
   a.download = `okaeri-note-mitsumori-${r.p.id}.txt`;
   document.body.appendChild(a); a.click(); a.remove();
+  $('#est-out').textContent = txt; $('#est-out-box').hidden = false;
 });
 
 /* FAQ と FAQPage */
