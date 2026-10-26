@@ -31,3 +31,6 @@
 - `SYNCED.md`：どのコミットから写したか。
 - `sources.json`：集める元のリポジトリと接頭辞。種類を足すときはここに1行足し、選ぶスキルの表にも1行足す。
 - `SYNC.md`：毎日の集め直しの手順。
+
+## 参考にしたもの
+- 選ぶスキルの「作る前に決めること」と、各 anatomy リポジトリの作例の決まり（本物らしい中身・状態の網羅・動かすのは transform と opacity だけ）は、[elayadesign/ai-design-skills](https://github.com/elayadesign/ai-design-skills) の `landing-page-design`（MIT License, Copyright (c) 2026 Elaya）を参考に、日本語で書き直したもの。フォント・余白・色を固定する見た目の決まりは、実測値でスキルを作る方針とぶつかるので取り入れていない。
