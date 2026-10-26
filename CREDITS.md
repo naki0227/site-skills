@@ -15,6 +15,7 @@
 ## 写真
 | 使用例 | ファイル | 題 | 作者 | ライセンス | 元のページ |
 |---|---|---|---|---|---|
+| `gakudo-app` | `photos/Schoolkids-wearing-hats-and-randoseru-in-Kugayama-Japan-Janu.jpg` | Schoolkids wearing hats and randoseru in Kugayama, Japan; January 2010 | Mr. Brian | CC BY 2.0 | https://commons.wikimedia.org/w/index.php?curid=45335693 |
 | `machikoba-recruit` | `photos/chuck-in-use.jpg` | 3 Jaw Chuck in Use | David English | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=64980189 |
 | `machikoba-recruit` | `photos/five-axis.jpg` | SMTCL VMC0656e 5-axis machining center 20260331123404 | TurnOnTheNight | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=190307528 |
 | `machikoba-recruit` | `photos/lathe-chuck.jpg` | Lathe Chuck | Andrew Magill from Boulder, USA | CC BY 2.0 | https://commons.wikimedia.org/w/index.php?curid=2977616 |

@@ -213,6 +213,68 @@ ul,ol{padding:0;list-style:none}
 .ptable td.yen small{font-size:13px;font-weight:600;color:var(--muted)}
 .price-foot{display:flex;gap:16px 28px;align-items:center;flex-wrap:wrap;margin-top:22px}
 
+
+/* トップ：下校の写真と、全幅の時刻表 */
+.walk{margin:0 0 28px}
+.walk img{width:100%;height:auto;max-height:520px;object-fit:cover;border-radius:4px}
+.walk figcaption{margin-top:10px;font-size:16px;line-height:1.8;max-width:46em}
+.credit{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.print-wide{max-width:none}
+.print-wide .dtable{font-size:20px}
+.print-wide .dtable th,.print-wide .dtable td{padding:12px 8px}
+/* おたより：中央の大きな紙と、その下の一覧 */
+.center-head{text-align:left;max-width:760px;margin-inline:auto}
+.letter-big{position:relative;max-width:760px;margin:0 auto;padding:44px 48px 40px}
+.letter-big .ttl{font-size:34px}
+.letter-big h3{font-size:20px}
+.letter-big table{font-size:16px}
+.stamp{position:absolute;right:28px;top:-18px;transform:rotate(4deg);background:#fff;color:var(--red);border:3px solid var(--red);border-radius:4px;padding:2px 12px;font-family:var(--hand);font-size:20px;font-weight:600}
+.reads-row{max-width:760px;margin:24px auto 0;display:flex;flex-wrap:wrap;align-items:center;gap:10px 24px}
+.reads-row ul{display:flex;flex-wrap:wrap;gap:6px 20px;width:100%}
+.reads-row li{font-size:16px}
+.reads-row .no{color:var(--red);font-weight:700;margin-left:6px}
+.reads-row .msg{font-size:13px;color:var(--blue);font-weight:700}
+/* 機能：ボードの上の1日 */
+.day{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:28px;border:10px solid var(--frame);border-radius:6px;background:#fff}
+.day li{padding:20px 22px 24px;border-left:2px solid #2a2d31;display:flex;flex-direction:column;gap:8px}
+.day li:first-child{border-left:0}
+.day .dt{font-family:var(--hand);font-weight:600;font-size:26px;color:var(--blue);line-height:1.2}
+.day h3{font-size:20px;line-height:1.5}
+.day p{color:var(--muted)}
+.day .mini{margin-top:auto;padding-top:10px}
+.day .mini .hand{font-family:var(--hand);color:var(--ink);font-size:16px}
+.day .mag{cursor:default}
+.mtable{width:100%;border-collapse:collapse;font-size:16px;line-height:1.7;min-width:640px}
+.mtable th,.mtable td{text-align:left;vertical-align:top;padding:16px 12px;border-bottom:1px solid var(--line)}
+.mtable thead th{border-bottom:2px solid var(--ink);font-size:13px}
+.mtable td:nth-child(2){color:var(--muted)}
+.sec-tray{background:var(--tray)}
+/* 料金：ボードの段 */
+.p-board{border:10px solid var(--frame);border-radius:6px;background:#fff;padding:20px 22px 16px;margin:8px 0 28px}
+.p-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:end}
+.zones{display:flex;margin:26px 0 12px}
+.zone{flex:var(--n) 1 0;min-width:0;padding:0 8px;border-right:3px solid var(--red)}
+.zone:last-child{border-right:0}
+.zone .cols{display:flex;gap:4px}
+.zone .c{flex:1 1 0;min-width:0;display:grid;grid-template-rows:repeat(10,12px);gap:3px}
+.zone .c i{height:12px;border-radius:2px;background:var(--mc);box-shadow:inset 0 -2px 0 rgba(0,0,0,.12)}
+.zone .c i.o{background:#eef0f1;box-shadow:none}
+.zl{margin-top:12px;font-family:var(--hand);font-size:16px;line-height:1.5}
+.zl b{display:block;font-size:20px;font-weight:600}
+.zl .zp{display:block;font-family:var(--font);font-size:20px;font-weight:300;font-variant-numeric:tabular-nums}
+.zl .zp small{font-size:13px;font-weight:700;color:var(--muted)}
+.zone:not(.on) .zl{opacity:.45}
+.zone.on .zl b{color:var(--red)}
+.pick{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 48px;border-top:3px solid var(--ink);padding-top:20px}
+.pick .badge{display:inline-block;background:var(--m1);font-size:13px;font-weight:800;padding:2px 10px;border-radius:4px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.12)}
+.pick h3{font-size:26px;line-height:1.5;margin-top:8px}
+.pick .cap{font-size:16px;color:var(--muted)}
+.pick ul{font-size:16px;line-height:1.9;margin-bottom:16px}
+.pick li{padding-left:16px;position:relative}
+.pick li::before{content:"";position:absolute;left:2px;top:.8em;width:6px;height:6px;background:var(--blue)}
+.pick .contract{margin-top:10px;font-size:13px}
+.corp-line{margin-top:24px;font-size:16px;line-height:1.9;color:var(--muted)}
+.corp-line b{color:var(--ink)}
 /* ---------- 機能 ---------- */
 .page-head{padding:56px 0 8px}
 .page-head h1{font-size:34px;font-weight:800;line-height:1.45;text-wrap:balance;word-break:auto-phrase}
@@ -244,19 +306,10 @@ ul,ol{padding:0;list-style:none}
 /* ---------- 料金 ---------- */
 .toc{display:flex;gap:6px 20px;flex-wrap:wrap;margin:14px 0 28px;font-size:13px;font-weight:700}
 .p-note{font-size:13px;color:var(--muted);line-height:1.85}
-.p-tools{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:end;margin:8px 0 24px;padding:20px 22px;border:2px solid var(--ink);border-radius:8px}
 .slider-box label{font-weight:800;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
 .slider-box output{font-size:34px;font-weight:300;font-variant-numeric:tabular-nums}
 .slider-box output small{font-size:13px;font-weight:700}
 input[type=range]{width:100%;margin:10px 0 0;accent-color:var(--blue);height:28px}
-.capboard{display:flex;align-items:flex-end;gap:4px;margin:16px 0 8px;padding:70px 14px 12px;border:6px solid var(--frame);border-radius:4px;overflow-x:auto;min-height:170px}
-.capboard .c{display:grid;grid-template-rows:repeat(10,10px);gap:3px;flex:1 1 0;min-width:10px}
-.capboard .c i{width:100%;height:10px;border-radius:2px;background:var(--mc);box-shadow:inset 0 -2px 0 rgba(0,0,0,.12)}
-.capboard .c i.o{background:transparent;box-shadow:none}
-.capboard .ln{position:relative;align-self:stretch;flex:none;width:0;border-left:3px solid var(--red);margin:calc(var(--y) - 62px) 3px 0}
-.capboard .ln span{position:absolute;top:-4px;right:5px;white-space:nowrap;font-family:var(--hand);font-size:13px;color:var(--red);line-height:1.3}
-.capboard .ln span em{font-style:normal}
-.capboard .ln.on span{font-weight:600;background:var(--red);color:#fff;padding:0 5px;border-radius:3px}
 .ticks{display:flex;justify-content:space-between}
 .ticks button{background:none;border:0;padding:4px 2px;font-size:13px;color:var(--muted);cursor:pointer;font-variant-numeric:tabular-nums;min-width:28px}
 .ticks button[aria-pressed="true"]{color:var(--blue);font-weight:800}
@@ -266,25 +319,11 @@ input[type=range]{width:100%;margin:10px 0 0;accent-color:var(--blue);height:28p
 .bill input:checked+label{background:var(--blue);color:#fff}
 .bill input:focus-visible+label{outline:3px solid var(--blue);outline-offset:2px}
 .legend{font-size:13px;color:var(--muted);margin-bottom:4px}
-.plans{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
-.plan{position:relative;display:flex;flex-direction:column;border:2px solid var(--line);border-radius:8px;padding:24px 18px 20px;background:#fff}
-.plan.reco{border-color:var(--blue)}
-.plan.reco::before{content:"";position:absolute;left:-2px;right:-2px;top:-2px;height:8px;background:var(--blue);border-radius:8px 8px 0 0}
-.plan .badge{position:absolute;top:-13px;right:12px;background:var(--m1);font-size:13px;font-weight:800;padding:3px 9px;border-radius:4px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.12)}
-.plan h3{font-size:20px;line-height:1.6}
-.plan .cap{font-size:13px;color:var(--muted)}
 .price{margin:12px 0 0;display:flex;align-items:baseline;gap:2px;flex-wrap:wrap}
 .price .yen{font-size:16px;font-weight:700}
 .price .v{font-size:34px;font-weight:300;line-height:1.2;font-variant-numeric:tabular-nums}
 .price .per{font-size:13px;font-weight:700;color:var(--muted)}
 .yearly{font-size:13px;color:var(--blue);font-weight:700;min-height:1.9em}
-.plan ul{margin:10px 0 18px;font-size:13px;line-height:1.8}
-.plan li{padding-left:16px;position:relative;margin-bottom:3px}
-.plan li::before{content:"";position:absolute;left:2px;top:.75em;width:6px;height:6px;background:var(--blue)}
-.plan .btn{margin-top:auto;width:100%}
-.plan .contract{margin-top:10px;text-align:center;font-size:13px}
-.plans.filtered .plan:not(.match){opacity:.4}
-.show-all-p{display:none}
 .diag{margin-top:48px;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:36px;padding:28px;border:2px solid var(--frame);border-radius:6px}
 .diag h3{font-size:20px;line-height:1.6}
 .q{font-weight:800;font-size:16px;line-height:1.8;margin-bottom:12px}
@@ -371,7 +410,6 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
 .done p{color:var(--muted);font-size:16px}
 .spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.5);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;vertical-align:-3px;margin-right:6px}
 @keyframes spin{to{transform:rotate(360deg)}}
-.cd .photo{aspect-ratio:16/8;margin-bottom:16px}
 .cd h3{font-size:20px;line-height:1.6}
 .cd .org{font-size:13px;color:var(--muted);margin:4px 0 16px}
 .ba{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-bottom:18px}
@@ -417,8 +455,7 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
   .mag:not([disabled]):hover{transform:translateY(-2px)}
   .citem:hover{background:#f7f8f9}
   .citem:hover .ttl{text-decoration:underline;text-underline-offset:4px}
-  .plans.filtered .plan:not(.match):hover{opacity:.8}
-  .x:hover{background:#f3f4f5}
+    .x:hover{background:#f3f4f5}
 }
 
 @media (min-width:993px){
@@ -427,7 +464,6 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
   .wb-col{padding:12px 20px 20px}
   .wb-head{font-size:20px;padding:16px 22px 6px}
 }
-@media (max-width:1200px){.plans{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:992px){
   .nav{display:none}
   .menu-btn{display:block;margin-left:0}
@@ -444,7 +480,11 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
   .sec{padding:60px 0}
   .blk{grid-template-columns:1fr;gap:24px;padding:40px 0}
   .blk:nth-of-type(even) .blk-txt{order:0}
-  .p-tools{grid-template-columns:1fr}
+  .p-head{grid-template-columns:1fr}
+  .day{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .day li:nth-child(3){border-left:0}
+  .day li:nth-child(n+3){border-top:2px solid #2a2d31}
+  .pick{grid-template-columns:1fr}
   .cmp{display:none}
   .cmp-sp{display:block}
   .flow{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -472,11 +512,17 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
   .wb-col h2{font-size:20px}
   .mag{font-size:13px;padding:4px 8px 5px}
   .absent{padding:8px 10px 10px}
-  .plans{grid-template-columns:1fr}
-  .plans.filtered:not(.show-all) .plan:not(.match){display:none}
-  .show-all-p{display:block}
-  .capboard .ln span em{display:none}
-  .flow{grid-template-columns:1fr}
+      .day{grid-template-columns:1fr}
+  .day li{border-left:0;border-top:2px solid #2a2d31}
+  .day li:first-child{border-top:0}
+  .letter-big{padding:30px 18px 24px}
+  .letter-big .ttl{font-size:26px}
+  .zl{display:none}
+  .print-wide .dtable{font-size:16px}
+  .print-wide .dtable th,.print-wide .dtable td{padding:8px 4px}
+  .zone{padding:0 3px}
+  .p-board{padding:14px 10px 12px;border-width:7px}
+    .flow{grid-template-columns:1fr}
   .flist div{grid-template-columns:1fr;gap:2px}
   .ba{grid-template-columns:1fr}
   .cmp thead th{top:62px}
@@ -569,8 +615,16 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
   </section>
 
   <section class="sec" aria-labelledby="h-time">
-    <div class="wrap split">
-      <div class="print" aria-label="下校時刻表の例">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="h2" id="h-time">学校から配られる下校時刻表を、月の初めに1回入れます</h2>
+        <p class="lead">紙の表と同じ並び（学年×曜日）で打ち込みます。※印の個人面談や台風の臨時下校は、その日だけ時刻を変えます。赤くするまでの20分は、学校からの道のりに合わせてクラブごとに変えられます。</p>
+      </div>
+      <figure class="walk">
+        <img src="photos/Schoolkids-wearing-hats-and-randoseru-in-Kugayama-Japan-Janu.jpg" alt="黄色い帽子をかぶり、黄色いカバーをつけたランドセルで下校する1年生の列を、うしろから写した写真" width="960" height="720" loading="lazy">
+        <figcaption>黄色い帽子は1年生のしるし。1年生は14:40、4年生は15:30と、学年で下校の時刻がちがいます。<span class="credit">写真：Mr. Brian／Wikimedia Commons／CC BY 2.0（実在の小学生の下校。おかえりノートの利用者ではありません）</span></figcaption>
+      </figure>
+      <div class="print print-wide" aria-label="下校時刻表の例">
         <p class="ttl">令和8年度　10月　下校時刻表</p>
         <p class="from">みなと第二小学校</p>
         <div class="table-x">
@@ -584,14 +638,7 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
             </tbody>
           </table>
         </div>
-        <ul class="notes">
-          <li>10月29日（水）は個人面談のため、全学年 <b style="color:var(--red)">13:30</b> 下校です。</li>
-        </ul>
-      </div>
-      <div>
-        <h2 class="h2" id="h-time">学校から配られる下校時刻表を、月の初めに1回入れます</h2>
-        <p class="lead" style="margin-top:16px">紙の表と同じ並び（学年×曜日）で打ち込みます。※印の個人面談や台風の臨時下校は、その日だけ時刻を変えます。赤くするまでの20分は、学校からの道のりに合わせてクラブごとに変えられます。</p>
-</div>
+        <ul class="notes"><li>10月29日（水）は個人面談のため、全学年 <b style="color:var(--red)">13:30</b> 下校です。</li></ul>
       </div>
     </div>
   </section>
@@ -631,17 +678,12 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
   </section>
 
   <section class="sec" aria-labelledby="h-letter">
-    <div class="wrap split">
-      <div>
+    <div class="wrap">
+      <div class="sec-head center-head">
         <h2 class="h2" id="h-letter">紙のおたよりはそのまま配信し、読んでいない家庭がわかります</h2>
-        <p class="lead">いつものクラブだよりをPDFか写真で載せるだけです。読んだ家庭に印がつくので、遠足の持ちものなど大事な知らせは、読んでいない家庭にだけもう一度届けられます。スマホが無い家庭には、紙で渡した印をつけます。</p>
-        <div class="reads" style="margin-top:24px">
-          <h3>11月のクラブだより <span class="num">既読 38 / 43世帯</span></h3>
-          <ul id="unread"></ul>
-          <div class="acts"><button class="btn btn-line btn-sm" type="button" id="renotify">読んでいない家庭にもう一度通知する</button><p class="msg" id="renotify-msg" role="status"></p></div>
-        </div>
+        <p class="lead">いつものクラブだよりをPDFか写真で載せるだけです。大事な知らせは、読んでいない家庭にだけもう一度届けます。スマホが無い家庭には、紙で渡した印をつけます。</p>
       </div>
-      <article class="letter" aria-label="クラブだよりの例">
+      <article class="letter letter-big" aria-label="クラブだよりの例">
         <p class="ttl">ひまわりクラブだより</p>
         <p class="meta"><span>令和8年11月号</span><span>みなと第二小学校区 放課後児童クラブ</span></p>
         <h3>遠足のお知らせ</h3>
@@ -650,7 +692,13 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
           <tr><td>行き先</td><td>みなと中央公園（徒歩25分）</td></tr>
           <tr><td>持ちもの</td><td>弁当・水筒・敷物・雨具</td></tr>
         </tbody></table>
+        <span class="stamp" aria-hidden="true">既読 <b class="num">38</b> / 43世帯</span>
       </article>
+      <div class="reads-row">
+        <ul id="unread"></ul>
+        <button class="btn btn-line btn-sm" type="button" id="renotify">読んでいない家庭にもう一度通知する</button>
+        <p class="msg" id="renotify-msg" role="status"></p>
+      </div>
     </div>
   </section>
 
@@ -703,80 +751,55 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
       </ul>
     </div>
   </section>
-  <section style="padding:24px 0 40px" aria-label="困りごとごとの機能">
+  <section class="sec" style="padding-top:40px" aria-labelledby="h-day">
     <div class="wrap">
-      <article class="blk" style="--acc:var(--red)">
-        <div class="blk-txt">
-          <p class="kick">所在の確認</p>
-          <h2>下校したのに来ていない子に、15時の時点で気づく</h2>
-          <p>学年ごとの下校時刻から決まった時間（初めは20分）を過ぎても入室の記録がない子が、まだの欄に赤く残ります。欠席の連絡が来ている子は最初から除かれるので、残った子だけを確かめればすみます。</p>
-          <ul class="checks"><li>個人面談・短縮授業・台風の臨時下校も、その日だけ時刻を変えられる</li><li>赤い子の保護者へ、ボードから1回の操作で確認を送る</li><li>何時に誰が確認したかが記録に残る</li></ul>
-          <button class="link" type="button" data-goto="top" data-anchor="board">トップの出欠ボードを触る</button>
-        </div>
-        <div class="screen" aria-hidden="true">
-          <p class="bar">まだ来ていない子　10月26日（月）15:26</p>
-          <div class="body">
-            <div class="row"><span>2年 たかはし ゆいな</span><span class="chip chip-r">下校から 36分</span></div>
-            <div class="row"><span>3年 もりや こうき</span><span class="chip chip-r">下校から 26分</span></div>
-            <div class="row"><span>1年 いのうえ たける</span><span class="chip chip-b">確認ずみ：歯医者で欠席</span></div>
-            <div class="row"><span>4年 くどう めい</span><span class="chip chip-k">欠席の連絡あり（通院）</span></div>
-          </div>
-        </div>
-      </article>
-      <article class="blk" style="--acc:var(--blue)">
-        <div class="blk-txt">
-          <p class="kick">保護者との連絡</p>
-          <h2>欠席・お迎えの変更の電話を、既読のつく連絡に置き換える</h2>
-          <p>保護者は種類を選んで、ひとこと書いて送ります。受け付ける時間をクラブが決められるので、夜に職員の携帯へ届くことはありません。お知らせは、誰が読んでいないかがわかります。</p>
-          <ul class="checks"><li>お迎えの人は、事前に登録した人（祖父母・ファミリーサポートなど）から選ぶ</li><li>やさしい日本語・英語・中国語・ポルトガル語・ベトナム語に訳して送る</li><li>スマホが無い家庭には、同じ内容を紙で印刷できる</li></ul>
-        </div>
-        <div class="screen" aria-hidden="true">
-          <p class="bar">きょうの連絡　8件</p>
-          <div class="body">
-            <div class="row"><span>1年 さえき はると</span><span class="chip chip-b">お迎え：祖母 17:40</span></div>
-            <div class="row"><span>2年 にしだ そうた</span><span class="chip chip-b">早く帰す：16:00 スイミング</span></div>
-            <div class="row"><span>4年 くどう めい</span><span class="chip chip-k">欠席：通院</span></div>
-            <div class="row"><span>11月のクラブだより</span><span class="chip chip-r">未読 5世帯</span></div>
-          </div>
-        </div>
-      </article>
-      <article class="blk" style="--acc:#7a5d00">
-        <div class="blk-txt">
-          <p class="kick">長期休みの一日利用</p>
-          <h2>夏休み41日分の利用日と弁当の数を、申し込みの時点で集計する</h2>
-          <p>学校休業日の利用日、弁当か注文か、朝の開所時刻を、保護者がカレンダーから申し込みます。日ごとの人数と、必要な職員数の目安がその場で出るので、シフトを組む前に足りない日がわかります。</p>
-          <ul class="checks"><li>申し込みの締め切りと、締め切り後の変更の受け付けを分けられる</li><li>弁当業者へ渡す日ごとの注文数をCSVで出力</li></ul>
-        </div>
-        <div class="screen" aria-hidden="true">
-          <p class="bar">8月の利用申し込み　締め切り 7月10日</p>
-          <div class="body">
-            <div class="row"><span>8月4日（月）</span><span>62人　<span class="chip chip-k">弁当注文 18</span></span></div>
-            <div class="row"><span>8月5日（火）</span><span>59人　<span class="chip chip-k">弁当注文 21</span></span></div>
-            <div class="row"><span>8月13日（水）</span><span>31人　<span class="chip chip-b">職員 3人で足りる</span></span></div>
-            <div class="row"><span>8月18日（月）</span><span>67人　<span class="chip chip-r">職員 1人足りない</span></span></div>
-          </div>
-        </div>
-      </article>
-      <article class="blk" style="--acc:var(--ink)">
-        <div class="blk-txt">
-          <p class="kick">集金と書類</p>
-          <h2>おやつ代と延長料金を、入退室の記録から計算する</h2>
-          <p>延長利用は退室の時刻から、おやつ代は出席日数から月ごとに計算します。口座振替用のデータと、市区町村の様式に合わせた出席簿・実績報告を、締めた記録からそのまま出力します。</p>
-          <ul class="checks"><li>現金で集める場合は、受け取りの記録と領収書の印刷</li><li>入所・継続の申請をアプリで受け付け、紙の申請書と同じ項目で保存</li></ul>
-        </div>
-        <div class="screen" aria-hidden="true">
-          <p class="bar">9月の集金　締め日 9月30日</p>
-          <div class="body">
-            <div class="row"><span>おやつ代（1日 75円 × 出席日数）</span><span class="num">￥96,075</span></div>
-            <div class="row"><span>延長利用（30分 200円）</span><span class="num">￥18,400</span></div>
-            <div class="row"><span>口座振替データ（全銀形式）</span><span class="chip chip-b">出力できます</span></div>
-            <div class="row"><span>まだ払われていない</span><span class="chip chip-r">2世帯 ￥3,150</span></div>
-          </div>
-        </div>
-      </article>
+      <h2 class="h2" id="h-day">ボードの上で、1日にこう起きます</h2>
+      <ol class="day" aria-label="1日の流れ">
+        <li>
+          <p class="dt">月の初め</p>
+          <h3>下校時刻表を入れる</h3>
+          <p>学年×曜日の表のまま入れます。個人面談・短縮授業・台風の臨時下校は、その日だけ変えます。</p>
+          <p class="mini" aria-hidden="true"><span class="hand">1年 14:40　2年 14:50　3年 15:00　4年 15:30</span></p>
+        </li>
+        <li>
+          <p class="dt">15:00</p>
+          <h3>来ない子が赤くなる</h3>
+          <p>下校から20分たっても入室の記録がない子が、まだの欄に赤く残ります。欠席の連絡が来ている子は最初から除きます。</p>
+          <p class="mini" aria-hidden="true"><span class="mag late" style="--c:var(--m1)"><span>たける</span><span class="g">1年</span><span class="t">下校から20分</span></span></p>
+        </li>
+        <li>
+          <p class="dt">15:02</p>
+          <h3>ボードから保護者に確認する</h3>
+          <p>赤い子を押して、確認を送ります。返事はボードに出て、何時に誰が確かめたかが残ります。</p>
+          <p class="mini" aria-hidden="true"><span class="hand">母「歯医者で休みます。連絡を忘れていました」</span></p>
+        </li>
+        <li>
+          <p class="dt">17:40</p>
+          <h3>お迎えの人を確かめて帰宅へ</h3>
+          <p>朝に保護者が送った「祖母が迎えに」を見てから、マグネットを帰宅へ動かします。退室の時刻が延長料金と出席簿になります。</p>
+          <p class="mini" aria-hidden="true"><span class="mag" style="--c:var(--m1)"><span>はると</span><span class="g">1年</span><span class="t">祖母 17:40</span></span></p>
+        </li>
+      </ol>
+      <p style="margin-top:20px"><button class="link" type="button" data-goto="top" data-anchor="board">トップの出欠ボードで、時刻を進めてみる</button></p>
     </div>
   </section>
-  <section class="sec" aria-labelledby="h-fl">
+  <section class="sec" aria-labelledby="h-month">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="h2" id="h-month">月末と長期休みの仕事も、ボードの記録から</h2><p class="lead">入退室の記録が、そのまま次の仕事の材料になります。</p></div>
+      <div class="table-x">
+        <table class="mtable">
+          <thead><tr><th scope="col">仕事</th><th scope="col">これまで</th><th scope="col">おかえりノートでは</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">夏休み41日分の利用日と弁当</th><td>紙の申込書を週末に数える</td><td>保護者がカレンダーから申し込み、日ごとの人数・弁当の数・足りない職員の数が出る（例：8月18日 67人、1人足りない）</td></tr>
+            <tr><th scope="row">おやつ代と延長料金</th><td>出席簿から手で計算し、現金で集める</td><td>出席日数（1日75円）と退室の時刻（30分200円）から計算し、口座振替のデータ（全銀形式）を出す</td></tr>
+            <tr><th scope="row">出席簿と実績報告</th><td>閉所後に紙へ写す</td><td>市区町村の様式で出力。法人・自治体プランは複数クラブをまとめて</td></tr>
+            <tr><th scope="row">入所・継続の申請</th><td>紙の申請書を受け取り、入力し直す</td><td>アプリで受け付け、紙の申請書と同じ項目で保存（ワイド以上）</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <section class="sec sec-tray" aria-labelledby="h-fl">
     <div class="wrap">
       <div class="sec-head"><h2 class="h2" id="h-fl">そのほかの機能</h2><p class="lead">プランごとに使えるかは、料金ページの比較表にあります。</p></div>
       <dl class="flist">
@@ -801,24 +824,26 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
       <h1 id="h-pricing" tabindex="-1">料金プラン</h1>
       <p class="lead">プランは正式に申し込むときに選びます。30日間のお試しは、どのボタンから申し込んでも同じ内容（ワイドプランのすべての機能）です。</p>
       <nav class="toc" aria-label="このページの中"><a href="#cmp-h">プランを比べる</a><a href="#estimate">見積書をつくる</a><a href="#flow-h">導入までの流れ</a><a href="#faq-h">よくある質問</a></nav>
-      <div class="p-tools">
-        <div class="slider-box">
-          <label for="kids">1施設の登録児童数 <output id="kids-out" for="kids">55<small>人</small></output></label>
-          <input type="range" id="kids" min="0" max="7" step="1" value="3" aria-valuetext="55人" aria-describedby="kids-hint">
-          <div class="ticks" id="ticks"></div>
-          <div class="capboard" id="capboard" aria-hidden="true"></div>
-          <p class="p-note" id="kids-hint">マグネット1つが児童1人。赤い線が各プランの上限で、合うプランに札がつきます。1つの支援の単位は、国の基準でおおむね40人まで。121人以上は支援の単位を足す形になります。</p>
-        </div>
-        <div>
-          <p class="legend" id="bill-l">支払いの間隔</p>
-          <div class="bill" role="radiogroup" aria-labelledby="bill-l">
-            <input type="radio" name="bill" id="bill-m" value="m" checked><label for="bill-m">月払い</label>
-            <input type="radio" name="bill" id="bill-y" value="y"><label for="bill-y">年払い（5%オフ）</label>
+      <div class="p-board">
+        <div class="p-head">
+          <div class="slider-box">
+            <label for="kids">1施設の登録児童数 <output id="kids-out" for="kids">55<small>人</small></output></label>
+            <input type="range" id="kids" min="0" max="7" step="1" value="3" aria-valuetext="55人" aria-describedby="kids-hint">
+            <div class="ticks" id="ticks"></div>
+          </div>
+          <div>
+            <p class="legend" id="bill-l">支払いの間隔</p>
+            <div class="bill" role="radiogroup" aria-labelledby="bill-l">
+              <input type="radio" name="bill" id="bill-m" value="m" checked><label for="bill-m">月払い</label>
+              <input type="radio" name="bill" id="bill-y" value="y"><label for="bill-y">年払い（5%オフ）</label>
+            </div>
           </div>
         </div>
+        <div class="zones" id="zones"></div>
+        <p class="p-note" id="kids-hint">マグネット1つが児童1人。赤い線（40・70・120人）までが、ライト・スタンダード・ワイドで登録できる人数です。1つの支援の単位は、国の基準でおおむね40人まで。121人以上は支援の単位を足す形になります。</p>
       </div>
-      <div class="plans filtered" id="plans"></div>
-      <p class="show-all-p" style="margin-top:12px"><button class="link" type="button" id="show-all">ほかのプランも表示する</button></p>
+      <article class="pick" id="pick" aria-live="polite"></article>
+      <p class="corp-line">3施設以上をまとめて契約するなら <b>法人・自治体</b>　<span class="num">￥9,860</span>/月・1施設（税抜）。ワイドのすべてに、複数クラブの一覧と実績報告、初期設定の代行がつきます。<button class="link" type="button" data-contract="corp">法人・自治体で申し込む</button></p>
       <p class="p-note" style="margin-top:14px">価格はすべて税抜・日本円（￥）、1施設あたりの月額です。児童10人・職員2人まで、出欠だけを使えるフリープランもあります（比較表の左の列）。</p>
       <div class="diag" aria-labelledby="diag-h">
         <div><h3 id="diag-h">どのプランか迷ったら</h3><p class="p-note">4つの質問に答えると、合うプランと月額を出します。答えは保存しません。</p></div>
@@ -1218,7 +1243,7 @@ $('#parent').addEventListener('submit', e => {
 
 /* おたよりの既読 */
 const UNREAD = [['いのうえ', '1年', 'アプリ未登録・紙で渡す'], ['グエン', '2年', '訳つきで通知ずみ'], ['もりや', '3年', '未読'], ['あべ', '3年', '未読'], ['ふじた', '4年', '未読']];
-function renderUnread(sent) { $('#unread').innerHTML = UNREAD.map(u => `<li><span>${u[0]}さん（${u[1]}）</span><span class="no">${sent && u[2] === '未読' ? 'もう一度通知した' : u[2]}</span></li>`).join(''); }
+function renderUnread(sent) { $('#unread').innerHTML = UNREAD.map(u => `<li>${u[0]}さん（${u[1]}）<span class="no">${sent && u[2] === '未読' ? 'もう一度通知した' : u[2]}</span></li>`).join(''); }
 $('#renotify').addEventListener('click', e => {
   renderUnread(true); e.currentTarget.disabled = true;
   $('#renotify-msg').textContent = '未読の3世帯にもう一度通知しました。紙で渡す家庭は、印刷の一覧に入れました。';
@@ -1226,44 +1251,30 @@ $('#renotify').addEventListener('click', e => {
 
 /* ---------- 料金 ---------- */
 const KIDSN = [20, 30, 40, 55, 70, 90, 120, 138];
-let kidsIdx = 3, bill = 'm', showAll = false;
-function renderCap(n) {
-  const cols = Math.ceil(Math.max(n, 120) / 10) + (n > 120 ? 0 : 0), lines = { 4: ['ライト', 40], 7: ['スタンダード', 70], 12: ['ワイド', 120] };
-  const fit = planFor(n); let h = '';
-  for (let c = 0; c < Math.ceil(Math.max(n, 130) / 10); c++) {
-    h += '<div class="c">' + Array.from({ length: 10 }, (_, r) => { const k = c * 10 + r; return `<i class="${k < n ? '' : 'o'}" style="--mc:${['var(--m1)', 'var(--m2)', 'var(--m3)', 'var(--m4)'][k % 4]}"></i>`; }).join('') + '</div>';
-    const L = lines[c + 1];
-    if (L) h += `<div style="--y:${[0, 20, 40][[40, 70, 120].indexOf(L[1])]}px" class="ln${PLANS.find(p => p.name === L[0]).id === fit ? ' on' : ''}"><span><em>${L[0]} </em>${L[1]}人まで</span></div>`;
-  }
-  $('#capboard').innerHTML = h;
-}
+let kidsIdx = 3, bill = 'm';
+const ZONES = [{ id: 'light', cols: 4, from: 0 }, { id: 'std', cols: 3, from: 40 }, { id: 'wide', cols: 5, from: 70 }, { id: 'over', cols: 2, from: 120 }];
 function renderPlans() {
-  const n = KIDSN[kidsIdx], fit = planFor(n);
-  renderCap(n);
-  $('#plans').innerHTML = PLANS.map(p => {
-    const match = p.id === fit, price = bill === 'm' ? p.m : Math.floor(yearly(p.m) / 12);
-    return `<article class="plan${p.id === 'std' ? ' reco' : ''}${match ? ' match' : ''}" aria-labelledby="pl-${p.id}">
-      <p class="badge"${match ? '' : ' hidden'}>${n > 120 ? '支援の単位を足して' : n + '人なら'}これ</p>
-      <h3 id="pl-${p.id}">${p.name}</h3>${p.id === 'std' ? '<p class="sr">（いちばん多くのクラブが選んでいるプラン）</p>' : ''}
-      <p class="cap">${p.cap}</p>
-      <p class="price"><span class="yen">￥</span><span class="v">${yen(price)}</span><span class="per">/月${p.per ? '・' + p.per : ''}（税抜）</span></p>
-      <p class="yearly">${bill === 'y' ? `年額 ￥${yen(yearly(p.m))}（税抜）` : ''}</p>
-      <ul>${p.feats.map(f => `<li>${f}</li>`).join('')}</ul>
-      <button class="btn btn-main" type="button" data-open="trial"><small>支払い情報の入力不要</small>まずは無料で試す</button>
-      <p class="contract"><button class="link" type="button" data-contract="${p.id}">すぐに契約を始める</button></p>
-    </article>`;
+  const n = KIDSN[kidsIdx], fit = planFor(n), over = n > 120;
+  const priceOf = p => bill === 'm' ? p.m : Math.floor(yearly(p.m) / 12);
+  $('#zones').innerHTML = ZONES.map(z => {
+    let cols = '';
+    for (let c = 0; c < z.cols; c++) cols += '<span class="c">' + Array.from({ length: 10 }, (_, r) => { const k = z.from + c * 10 + r; return `<i class="${k < n ? '' : 'o'}" style="--mc:${['var(--m1)', 'var(--m2)', 'var(--m3)', 'var(--m4)'][k % 4]}"></i>`; }).join('') + '</span>';
+    const p = PLANS.find(x => x.id === z.id), on = z.id === fit && !over || (over && z.id === 'over');
+    const label = p ? `<b>${p.name}</b>${p.cap.replace('登録児童 ', '')}<span class="zp">￥${yen(priceOf(p))}<small>/月（税抜）</small></span>` : '<b>121人〜</b>支援の単位を足す';
+    return `<div class="zone${on ? ' on' : ''}" style="--n:${z.cols}" aria-hidden="true"><span class="cols">${cols}</span><p class="zl">${label}</p></div>`;
   }).join('');
-  $('#plans').classList.toggle('show-all', showAll);
-  $('#show-all').hidden = showAll;
-  $('#kids-out').innerHTML = `${n > 120 ? '121' : n}<small>人${n > 120 ? '以上' : ''}</small>`;
-  $('#kids').setAttribute('aria-valuetext', n > 120 ? '121人以上' : n + '人');
+  const p = PLANS.find(x => x.id === fit);
+  $('#pick').innerHTML = `<div><p class="badge">${over ? '121人以上は、ワイドに支援の単位を足して' : n + '人なら'}これ</p><h3>${p.name}プラン</h3><p class="cap">${p.cap}</p>
+    <p class="price"><span class="yen">￥</span><span class="v">${yen(priceOf(p))}</span><span class="per">/月（税抜）</span></p><p class="yearly">${bill === 'y' ? `年額 ￥${yen(yearly(p.m))}（税抜）` : '年払いにすると5%オフ'}</p></div>
+    <div><ul>${p.feats.map(f => `<li>${f}</li>`).join('')}</ul><button class="btn btn-main" type="button" data-open="trial"><small>支払い情報の入力不要</small>まずは無料で試す</button><p class="contract"><button class="link" type="button" data-contract="${p.id}">${p.name}ですぐに契約を始める</button></p></div>`;
+  $('#kids-out').innerHTML = `${over ? '121' : n}<small>人${over ? '以上' : ''}</small>`;
+  $('#kids').setAttribute('aria-valuetext', over ? '121人以上' : n + '人');
   $$('#ticks button').forEach((b, i) => b.setAttribute('aria-pressed', String(i === kidsIdx)));
 }
 $('#ticks').innerHTML = KIDSN.map((k, i) => `<button type="button" data-k="${i}" aria-label="${i === KIDSN.length - 1 ? '121人以上' : k + '人'}">${i === KIDSN.length - 1 ? '121+' : k}</button>`).join('');
 $('#ticks').addEventListener('click', e => { const b = e.target.closest('[data-k]'); if (!b) return; kidsIdx = +b.dataset.k; $('#kids').value = kidsIdx; renderPlans(); });
 $('#kids').addEventListener('input', e => { kidsIdx = +e.target.value; renderPlans(); });
 $$('input[name=bill]').forEach(r => r.addEventListener('change', e => { bill = e.target.value; renderPlans(); }));
-$('#show-all').addEventListener('click', () => { showAll = true; renderPlans(); });
 document.addEventListener('click', e => {
   const c = e.target.closest('[data-contract]');
   if (!c) return;
@@ -1367,37 +1378,31 @@ $('#faq-ld').textContent = JSON.stringify({ '@context': 'https://schema.org', '@
 const CASES = [
   { id: 'minato', type: '公設民営', size: '41〜70人', uses: ['出欠', '保護者連絡'], area: '関東・政令市', big: '11.3→2.1件', bigL: '1日の保護者からの電話',
     title: '15時台に重なっていた電話が、ほとんど鳴らなくなった', org: 'みなと第二小学校区 放課後児童クラブ（運営：NPO法人 みなとの子ども会）', kids: 68, staff: 9,
-    photo: '入口の棚に置いたタブレットに、ランドセルを背負った1年生がQRカードをかざす手元。横2:1、夕方の室内、子どもの顔は写さない。',
     before: ['15時台に欠席・お迎えの変更の電話が重なり、来所の確認が止まる', '短縮授業の日を職員が知らず、下校を待ってしまう', '紙の出席簿を閉所後に30分かけて写す'],
     after: ['電話は1日平均2.1件（導入後6か月目）', '15時台の所在確認が23分から6分に', '出席簿を写す作業が無くなり、遅番の退勤が平均34分早く'],
     talk: [['なぜ入れたのですか', '去年の6月、下校した2年生が来所せずに公園にいたことがありました。電話を受けていた職員が名簿を見られなかったんです。電話を減らすことが先だと思いました。'], ['保護者の登録は進みましたか', '4月の保護者会でチラシを配って、2週間で68世帯のうち61世帯が登録しました。残りの家庭は、電話の内容を職員が入れています。']], by: '施設長 宮下 敦子さん' },
   { id: 'hidamari', type: '民設民営', size: '71人〜', uses: ['集金', '長期休み'], area: '中部・中核市', big: '41日分', bigL: '夏休みの弁当集計が自動に',
     title: '夏休みの弁当の数を、申込書を数えずに業者へ渡せる', org: '第二ひだまりクラブ（NPO法人 ひだまりの会）', kids: 104, staff: 14,
-    photo: '7月の土曜、事務机に積まれた夏休みの利用申込書の束と、手書きの集計表。横2:1、真上から。',
     before: ['弁当の注文を紙の申込書で集め、毎週末に手で数える', '人数の多い日に職員が足りないと前日に気づく'],
     after: ['日ごとの弁当注文数を、業者へCSVで送るだけに', '職員が足りない日が、申し込みの締め切り日にわかる', '注文の数えまちがいが夏休みで0件'],
     talk: [['どこが一番楽になりましたか', '7月の土日に申込書を数えていた作業が、まるごと無くなりました。8月18日だけ人が足りないとわかったので、OBの大学生に頼めました。']], by: '事務局長 長尾 誠さん' },
   { id: 'mizuho', type: '民設民営', size: '41〜70人', uses: ['集金'], area: '近畿・一般市', big: '17→0件', bigL: '年間のおやつ代の集金ミス',
     title: 'おやつ代を出席日数から計算し、集金のまちがいが無くなった', org: 'みずほ台児童クラブ（社会福祉法人 みずほ会）', kids: 52, staff: 7,
-    photo: '集金袋（茶封筒）が学年ごとに輪ゴムでまとめられた引き出し。横2:1、手元だけ。',
     before: ['現金で集めるおやつ代を、出席簿から手で計算する', '月に1〜2件、金額のまちがいで返金や追加の連絡'],
     after: ['出席日数からおやつ代と延長料金を自動で計算', '口座振替に切り替え、現金の受け渡しが無くなった'],
     talk: [['口座振替への切り替えは大変でしたか', '保護者に依頼書を書いてもらうところは紙のままです。金額の計算と振替データを作るところは、締めのボタンを押すだけになりました。']], by: '主任支援員 坂口 由美子さん' },
   { id: 'kawara', type: '公設公営', size: '〜40人', uses: ['出欠', '保護者連絡'], area: '東北・町村', big: '1人→0人', bigL: '電話番に取られる職員（職員4人中）',
     title: '職員4人のクラブで、電話番に1人取られなくなった', org: '川原町 放課後児童クラブ（町の直営）', kids: 31, staff: 4,
-    photo: '雪の日の夕方、玄関で長靴をはき替える子どもたちの足もと。横2:1。',
     before: ['職員4人のうち1人が電話番になり、子どもを見る人が減る', '冬の臨時下校の日、保護者全員に電話で連絡'],
     after: ['臨時下校のお知らせを1回の配信で全世帯へ。既読で確かめる', '電話番がいらなくなり、職員3人で子どもを見られる'],
     talk: [['町の直営で、手続きは難しくなかったですか', '町の情報担当とセキュリティのチェックシートをやりとりして、2か月で導入できました。回答書が最初からあったのは助かりました。']], by: '子ども家庭課 主査 佐藤 健一さん' },
   { id: 'tsubame', type: '保護者会', size: '〜40人', uses: ['保護者連絡', '集金'], area: '関東・一般市', big: '毎年→0回', bigL: '連絡網の作り直し',
     title: '役員が交代しても、連絡網と会計を作り直さなくてよくなった', org: 'つばめ学童保育所（保護者会運営）', kids: 38, staff: 5,
-    photo: '4月の役員引き継ぎ会。机の上に会計の帳簿ファイルと印鑑、ノートパソコン。横2:1、人は手元だけ。',
     before: ['連絡網が役員個人のLINEで、年度ごとに作り直し', '会計の帳簿がExcelで、引き継ぎのたびに数式が壊れる'],
     after: ['連絡はクラブのアカウントから送るので、役員が変わっても同じ', '集金の記録がアプリに残り、監査の資料をそのまま出せる'],
     talk: [['保護者会運営ならではの使い方は', '役員の権限を年度ごとに付け替えています。前の役員は、自分の子どもの連絡だけ見られる保護者に戻ります。']], by: '保護者会 会計 石田 美穂さん' },
   { id: 'harunoki', type: '民設民営', size: '71人〜', uses: ['出欠', '保護者連絡', '長期休み'], area: '関東・特別区', big: '8→1世帯', bigL: '長期休みの申し込みの未提出',
     title: '外国籍の家庭へのお知らせを、訳つきで1回に', org: 'キッズベース桜通り（株式会社ハルノキ）', kids: 87, staff: 12,
-    photo: '掲示板に貼られた、日本語とベトナム語を並べた手書きのお知らせ。横2:1。',
     before: ['外国籍の8世帯に、お知らせを職員が口頭で説明し直していた', '長期休みの申し込みの書き方がわからず、未提出が出る'],
     after: ['お知らせを、やさしい日本語・英語・中国語・ベトナム語で同時に配信', '長期休みの未提出が、8世帯から1世帯に'],
     talk: [['訳の質はどうですか', '送る前に訳を並べて見られるので、行事の名前など固有の言葉だけ職員が直しています。保護者からの返信も日本語に訳されて届きます。']], by: 'エリアマネージャー グエン・ティ・ハンさん' }
@@ -1419,7 +1424,7 @@ function renderCases() {
 $('#filters').addEventListener('change', renderCases);
 function openCase(id) {
   const c = CASES.find(x => x.id === id);
-  $('#cd-body').innerHTML = `<div class="photo"><div><b>写真の枠</b>${c.photo}</div></div><p style="font-size:13px;color:var(--muted)">${c.type}・登録児童 ${c.kids}人・職員 ${c.staff}人・${c.area}</p><h3>${c.title}</h3><p class="org">${c.org}</p>
+  $('#cd-body').innerHTML = `<p style="font-size:13px;color:var(--muted)">${c.type}・登録児童 ${c.kids}人・職員 ${c.staff}人・${c.area}</p><h3>${c.title}</h3><p class="org">${c.org}</p>
   <div class="ba"><div><h4>導入前に困っていたこと</h4><ul>${c.before.map(x => `<li>${x}</li>`).join('')}</ul></div><div class="a2"><h4>導入して変わったこと</h4><ul>${c.after.map(x => `<li>${x}</li>`).join('')}</ul></div></div>
   <div class="interview">${c.talk.map(([q, a]) => `<p><b>${q}</b>${a}</p>`).join('')}<p style="font-size:13px;color:var(--muted)">お話：${c.by}（人名・団体名は架空）</p></div>
   <p style="margin-top:10px"><button class="btn btn-main" type="button" data-open="trial"><small>支払い情報の入力不要</small>まずは無料で試す</button></p>`;
@@ -1436,24 +1441,23 @@ const SKILLS = [
   ['最初の画面', '行動は1つ（30日間 無料で試す）、ボタンの中に支払い情報の要否', 'saas', '業務SaaS・最初の画面／checklist／ai-tells', 'Backlog', '上段の小さな理由は Backlog。副ボタン（資料）は ai-tells に合わせてヘッダーの文字リンクへ。'],
   ['最初の画面', '実績の数字3つを最初の画面から外し、導入事例のページの文中へ', 'tells', '部品と並び：数字3つの横並びをやめる', '—', '時点と数え方の注記（Backlog、saas の checklist）は事例ページで残した。'],
   ['最初の画面', '連絡帳（罫の紙・手書きの書体）にきょうの連絡が並び、確認への返事が届く', 'own', '—', '—', '連絡帳の罫と手書きの書体は、スキルに無い。現場の物から自分で決めた。'],
-  ['トップ', '下校時刻表を学校の配布物の体裁（明朝・罫線の表・※の注記）で組む', 'tells', '絵と写真：写真に頼らず見せられるもの（時刻表）を主役に', '—', '表の体裁は自分で決めた。'],
-  ['トップ', '写真が入る場所は「写真の枠」にし、撮るべき写真を書く', 'tells', '絵と写真：SVG の絵を主役にしない', '—', '1回目の事例の SVG の部屋の絵（同じ形を色違いで並べたもの）をやめた。'],
+  ['トップ', '章ごとに並べ方を変える：全面のボード／写真と全幅の時刻表／連絡帳とスマホの左右／中央の大きなおたより／事例の帯／料金の表', 'tells', 'critique.md 見方10：同じ並べ方を3回続けない', '—', '時刻表は学校の配布物の体裁（明朝・罫線・※の注記）。'],
+  ['トップ', '下校する1年生の実在の写真（黄色い帽子とランドセルのカバー）を、時刻表の上に。出典を画面に書く', 'tells', 'ai-tells 絵と写真／scripts/photos.js', 'Wikimedia Commons（Mr. Brian、CC BY 2.0）', '題材の「まわりの世界」の写真。架空のクラブの利用者としては見せない、と書き添えた。'],
   ['トップ', '保護者のスマホの画面（種類を選ぶ→ひとこと→送ると連絡帳に届く）', 'own', '—', '—', '保護者側の型は saas の types/app.md が空で、出発点が無かった。'],
   ['トップ', 'おたよりを学校の印刷物の体裁で見せ、既読と再通知を動かす', 'own', '—', '—', ''],
   ['トップ', '事例の数字は、その事例の横に置く', 'tells', '部品と並び：数字はそれを確かめたい場所に', '—', ''],
   ['トップ', '料金は表で（登録児童数・できること・月額）', 'tells', '絵と写真：数値の表を組む', 'Backlog（税抜・1施設・月額の書き方）', ''],
-  ['機能', '機能の画面例もホワイトボードの枠と手書きの見出しにそろえた', 'tells', 'critique.md 見方3：考えを下まで運ぶ', '—', ''],
+  ['機能', '機能は「ボードの上で1日に起きる順」（月の初め→15:00→15:02→17:40）を1枚のボードの4列で見せる', 'tells', 'critique.md 見方3・10：考えを機能まで運ぶ／同じ並べ方を続けない', '—', 'Backlog の「課題別4ブロック・左右交互」をやめた。月末と長期休みの仕事は、これまで／おかえりノートの表に。'],
   ['機能', 'h1 で使う人の広さを先に言う', 'saas', '業務SaaS・機能の並べ方', 'Backlog', 'Backlog 機能ページの h1「開発からマーケティング、人事・総務まで様々な職種で使われている」。'],
-  ['機能', '困りごとごとの4ブロック（小見出し→成果の見出し→3〜4文→チェック2〜3行→リンク＋画面、左右交互）', 'saas', '業務SaaS・機能の並べ方', 'Backlog', ''],
   ['機能', 'そのほかの機能は、アイコンのカードでなく見出しと説明の一覧に。1つ目を「移し替え」に', 'saas', '業務SaaS・機能の並べ方／ai-tells', 'Backlog', 'Backlog は機能カード8枚のうち1枚を「Jira・Redmineからの移行」に。同じ形のアイコンのカード8枚は ai-tells に当たるので一覧にした。'],
-  ['料金', '児童数をマグネットで並べ、プランの上限を赤マーカーの線で引くボード（スライダーと連動）', 'tells', 'site-skills／SKILL.md 3-2：最初の画面の考えを料金まで運ぶ', '—', '料金カードが「Backlog の型のまま」だったのを、ホワイトボードの考えで崩した（自分で決めた）。'],
-  ['料金', '有料4カード、フリーは注記と比較表の1列だけ。強調1枚は枠と帯の色だけ', 'saas', '業務SaaS・料金表', 'Backlog', ''],
-  ['料金', '月払い／年払いは radio 2つ、「(5%オフ)」、年払いのときだけ年額の行', 'saas', '業務SaaS・料金表／checklist', 'Backlog', ''],
+  ['料金', '料金はカードを並べず、児童数のマグネットを並べたボードの段で見せる。赤い線（40・70・120人）で区切った段の下に、プラン名と月額。合う段だけ濃く、ほかは .45', 'tells', 'critique.md 見方3：考えを料金まで運ぶ', '—', 'Backlog の有料4カードの並びをやめた。合うプランの詳しい中身は、段の下に1つだけ出す（Resend の「SP は合うカードだけ」を全幅に広げた形。自分で決めた）。'],
+  ['料金', 'フリーは注記と比較表の1列だけ', 'saas', '業務SaaS・料金表', 'Backlog', ''],
+  ['料金', '月払い／年払いは radio 2つ、「(5%オフ)」、年払いのときだけ年額の行', 'saas', '業務SaaS・料金表／checklist', 'Backlog', 'ボードの段の月額も、切り替えで変わる。'],
   ['料金', '「￥」「/月」「税抜」をカードと比較表の両方に', 'saas', 'checklist', 'Backlog', ''],
   ['料金', 'ページ内目次4つ、比較表5区分（PC は全部開く／SP は details で料金だけ開く）', 'saas', '業務SaaS・料金表／rules 2', 'Backlog', ''],
-  ['料金', '児童数スライダー：合うプランに札・ほかは opacity .4（SP は隠す）、label・aria-valuetext・目盛りも押せる', 'saas', '開発者向け・料金表／checklist', 'Resend', 'Resend の反面教師（label なし・札を h3 の中）を避けた。'],
+  ['料金', '児童数スライダー：label・aria-valuetext・目盛りも押せる。札は見出しの外', 'saas', '開発者向け・料金表／checklist', 'Resend', 'Resend の反面教師（label なし・札を h3 の中）を避けた。'],
   ['料金', '最適プラン診断4問、戻る／やり直す', 'saas', '業務SaaS・選べない人へ', 'Backlog', ''],
-  ['料金', '全カード同じお試し、プラン別は「すぐに契約を始める」だけ', 'saas', 'rules 3', 'Backlog・Resend', ''],
+  ['料金', '「試す」はどこから押しても同じお試し、プラン別は「すぐに契約を始める」だけ', 'saas', 'rules 3', 'Backlog・Resend', ''],
   ['料金', '見積書を料金ページでつくる', 'saas', '業務SaaS・料金表', 'Backlog', 'Artifact ではファイルを保存できないので、文面を画面にも出す。'],
   ['料金', 'FAQ 11問と FAQPage', 'saas', 'rules 1', 'Backlog・Resend', ''],
   ['導入事例', '絞り込みと0件のとき。一覧は成果の数字を左に置いた行', 'saas', '業務SaaS・事例と信頼／ai-tells', 'Backlog', 'Backlog の一覧はカード。絵入りカードを等間隔に並べると ai-tells に当たるので、行の一覧にした。'],
