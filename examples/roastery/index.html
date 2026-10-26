@@ -65,37 +65,30 @@ button,select,input{font:inherit;color:inherit}
 .lead h1{font:400 32px/1.4 var(--serif);margin:0}
 .lead p{margin:4px 0 0;font-size:16px;color:var(--ink2);max-width:40em}
 
-/* これからの焙煎予定（黒板） */
-.board{background:var(--ink);color:var(--kraft2);padding:18px 24px 24px}
-.board-hd{display:flex;justify-content:space-between;align-items:baseline;gap:8px 20px;flex-wrap:wrap;border-bottom:1px solid rgba(236,220,194,.35);padding-bottom:12px}
-.board-hd h2{font:400 20px/1.5 var(--serif);margin:0;color:#fff}
+/* 次の焙煎（黒板）。最初の画面の主役は、いちばん近い焙煎日の1回だけ */
+.board{background:var(--ink);color:var(--kraft2);padding:24px 28px 28px}
+.board-hd{display:flex;justify-content:space-between;align-items:flex-end;gap:8px 20px;flex-wrap:wrap}
+.board-hd h2{font:600 34px/1.3 var(--hand);margin:0;color:#fff}
+.board-hd h2 small{display:block;font:400 16px/1.5 var(--sans);color:var(--kraft2)}
 .board-hd label{font-size:14px;display:flex;align-items:center;gap:8px}
-.board-hd select{height:34px;background:var(--ink);color:#fff;border:1px solid var(--kraft2);padding:0 8px}
-.days{margin-top:2px}
-/* 焙煎日ごとに1行：日付と釜の空き｜その日に焼く豆｜着日。列にすると豆の数の差で穴があく */
-.day{display:grid;grid-template-columns:250px 1fr 170px;grid-template-rows:auto 1fr;grid-template-areas:"h ul arr" "k ul arr";gap:0 24px;align-items:start;padding:14px 0 6px}
-.day h3{grid-area:h}
-.day .beans{grid-area:ul}
-.quick{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin-top:10px}
-.quick label{font-size:14px;color:#fff;width:100%}
-.quick select{height:46px;background:var(--ink);color:#fff;border:1px solid var(--kraft2);padding:0 8px;font-size:16px;width:220px;max-width:100%}
-.qbtn{height:46px;padding:0 14px;border:0;background:var(--kraft);color:var(--ink);font-size:14px;font-weight:700;cursor:pointer;transition:background-color .2s var(--ease)}
+.board-hd select{height:40px;background:var(--ink);color:#fff;border:1px solid var(--kraft2);padding:0 8px;font-size:16px}
+.kama{font-size:16px;margin:10px 0 0}
+.kama b{color:#fff}
+.quick{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:18px}
+.quick select{height:52px;background:var(--ink);color:#fff;border:1px solid var(--kraft2);padding:0 10px;font-size:16px;width:280px;max-width:100%}
+.qbtn{height:52px;padding:0 22px;border:0;background:var(--kraft);color:var(--ink);font-size:16px;font-weight:700;cursor:pointer;transition:background-color .2s var(--ease)}
 .qbtn:active{transform:translateY(1px)}
 @media (hover:hover) and (pointer:fine){.qbtn:hover{background:#fff}}
-.more{display:none}
+.more{display:block;margin-top:14px;background:none;border:0;color:#fff;text-decoration:underline;text-underline-offset:3px;padding:8px 0;font-size:14px;cursor:pointer}
+.later{display:none;margin-top:6px}
+.board.open .later{display:block}
 .toolsbtn{display:none}
-.day .kama{grid-area:k}
-.day ul{padding-top:2px!important}
-.day .arr{grid-area:arr;text-align:right;margin-top:2px!important}
-.day h3{margin:0;font:600 18px/1.4 var(--hand);color:#fff}
-.day h3 .mono{font:400 13px var(--mono);color:var(--kraft2);margin-left:8px}
-.day .kama{font:13px/1.5 var(--mono);margin:2px 0 6px}
-.day .kama b{color:#fff;font-weight:700}
-.day ul{list-style:none;margin:0;padding:0;font:16px/1.7 var(--hand);display:flex;flex-wrap:wrap;gap:0 14px}
+.day{padding:12px 0 4px}
+.day h3{margin:0;font:600 20px/1.4 var(--hand);color:#fff}
+.day p{margin:2px 0 0;font-size:14px}
+.day ul{list-style:none;margin:4px 0 0;padding:0;font:16px/1.7 var(--hand);display:flex;flex-wrap:wrap;gap:0 14px}
 .day li a{text-decoration:none}
 .day li a:hover{text-decoration:underline}
-.day .arr{font:14px/1.5 var(--mono);margin-top:6px;color:#fff}
-.board .foot{font-size:16px;margin:10px 0 0;color:var(--kraft2)}
 
 /* 絞り込み・並べ替え */
 .tools{display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px 28px;padding:28px 0 8px}
@@ -117,13 +110,11 @@ button,select,input{font:inherit;color:inherit}
 .label .no{display:flex;justify-content:space-between;font:13px/1 var(--mono)}
 .label .cty{font:600 26px/1.25 var(--serif);margin:12px 0 2px;letter-spacing:.02em}
 .label .nm{font-size:14px;font-weight:700;line-height:1.45}
+.label .spec{font-size:14px;margin:8px 0 0}
 .label dl{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;margin:10px 0 0;font:14px/1.5 var(--mono)}
 .label dd{margin:0}
 .ratio{display:flex;gap:2px;height:16px;margin-top:10px}
 .ratio span{display:block;height:100%}
-.ratiokey{font:14px/1.5 var(--mono);margin-top:6px}
-.ratiokey span{display:flex;align-items:center;gap:6px}
-.ratiokey i{width:10px;height:10px;display:block;flex:none}
 .taste{font:16px/1.5 var(--hand);margin:10px 0 0}
 .taste span{white-space:nowrap}
 .roastline{display:flex;align-items:center;gap:8px;margin-top:auto;padding:12px 64px 0 0;font:13px/1.35 var(--mono)}
@@ -300,9 +291,6 @@ dialog[open]{animation:pop .2s var(--ease)}
   .grid{grid-template-columns:repeat(3,1fr);gap:48px 20px}
   .pd{grid-template-columns:1fr;grid-template-areas:"lbl" "buy" "body";gap:20px}
   .buy{position:static}
-  .day{display:block}
-  .day .arr{text-align:left}
-  .day+.day{margin-top:6px}
 }
 @media (max-width:600px){
   .hd .wrap{height:54px;gap:10px}
@@ -313,20 +301,9 @@ dialog[open]{animation:pop .2s var(--ease)}
   .lead{padding:20px 0 14px}
   .lead h1{font-size:28px}
   .lead p{font-size:16px}
-  .board{margin:0 -15px;padding:16px 15px 20px}
-  .day{padding:10px 0 8px}
-  .day ul{font-size:15px}
-  .board:not(.open) .day.later{display:none}
-  .more{display:block;margin-top:10px;background:none;border:0;color:#fff;text-decoration:underline;text-underline-offset:3px;padding:8px 0;font-size:14px;cursor:pointer}
+  .board{margin:0 -15px;padding:20px 15px 20px}
+  .board-hd h2{font-size:28px}
   .quick select,.qbtn{width:100%}
-  /* スマホでは、いちばん近い回の豆の名前は選ぶ欄と同じなので、欄だけにする */
-  .day:not(.later) ul{display:none}
-  .quick{margin-top:4px}
-  .board-hd{flex-wrap:nowrap;align-items:center}
-  .board-hd h2{font-size:18px;white-space:nowrap}
-  .board-hd label{font-size:13px;gap:6px;white-space:nowrap}
-  .board-hd select{width:88px}
-  .board .foot{display:none}
   .toolsbtn{display:block;width:100%;height:46px;margin-top:16px;border:0;background:var(--kraft2);font-size:16px;font-weight:700;cursor:pointer}
   .tools{display:none}
   .tools.open{display:flex}
@@ -562,10 +539,10 @@ function stampHtml(b){var d=nextRoast(b.day);return '<span class="stamp">次の�
 function ratioHtml(b){
   var cols=["#2b1a14","#8a6a4a","#f4e9d8"];
   return '<div class="ratio" aria-hidden="true">'+b.mix.map(function(m,i){return '<span style="width:'+m[1]+'%;background:'+cols[i]+'"></span>'}).join("")+'</div>'+
-    '<div class="ratiokey">'+b.mix.map(function(m,i){return '<span><i style="background:'+cols[i]+'"></i>'+m[0]+' '+m[1]+'%</span>'}).join("")+'</div>';
+    '<p class="spec">'+b.mix.map(function(m){return m[0]+m[1]}).join("・")+'（%）</p>';
 }
 function labelRows(b){
-  return '<dl><dt>産地</dt><dd>'+esc(b.area)+'</dd><dt>標高</dt><dd>'+b.alt+'</dd><dt>精製</dt><dd>'+esc(b.proc)+'</dd></dl>';
+  return '<p class="spec">'+b.alt+'・'+esc(b.proc)+'</p>';
 }
 function roastLine(b){return '<div class="roastline"><i style="background:'+RCOL[b.r-1]+'"></i><span>'+ROAST[b.r-1].replace("（強め）","＋")+'<br>Agtron '+b.ag+'</span></div>'}
 var ICON_CHECK = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg>';
@@ -592,21 +569,19 @@ function renderList(){
    '<div class="wrap">'+
    '<div class="lead"><h1>コーヒー豆 12種</h1>'+
    '<p>どの豆も200gと500g、挽き方は5通り。豆ごとに焼く曜日が決まっています。</p></div>'+
-   '<section class="board" aria-labelledby="h-board"><div class="board-hd"><h2 id="h-board">これからの焙煎予定</h2>'+
-     '<label>お届け先 '+regionSel()+'</label></div>'+
-     '<div class="days">'+days.map(function(x,i){
-       var kg = KAMA[x.dw];
-       var quick = i ? '' :
-         '<div class="quick"><label for="quickBean">この回の釜に入れる</label>'+
-         '<select id="quickBean" data-quick>'+x.list.map(function(b){return '<option value="'+b.id+'">'+esc(b.nm)+'</option>'}).join("")+'</select>'+
-         '<button type="button" class="qbtn" id="quickAdd">'+quickLabel(x.list[0])+'</button></div>';
-       return '<div class="day'+(i?' later':'')+'"><h3>'+md(x.d)+'<span class="mono">'+x.list.length+'種</span></h3>'+
-         '<div class="kama">5kg 釜の空き <b>'+kg.toFixed(1)+'kg</b>（200g で約'+Math.floor(kg/0.2)+'袋）</div>'+
-         '<div class="beans"><ul>'+x.list.map(function(b){return '<li><a href="#/beans/'+b.id+'">'+esc(b.nm)+'</a></li>'}).join("")+'</ul>'+quick+'</div>'+
-         '<div class="arr">→ '+r.nm+'へ '+sl(x.p.arrive)+' 着</div></div>';
-     }).join("")+'</div>'+
-     '<button type="button" class="more" id="moreDays" aria-expanded="false">ほかの焙煎日 '+(days.length-1)+'回分を見る</button>'+
-     '<p class="foot">前日21時までの注文がその日の釜に入ります。送料 '+yen(r.fee)+'円（'+r.nm+'）、4,800円以上で無料。</p>'+
+   '<section class="board" aria-labelledby="h-board">'+(function(){
+     var x = days[0], kg = KAMA[x.dw];
+     return '<div class="board-hd"><h2 id="h-board"><small>次の焙煎</small>'+md(x.d)+'</h2><label>お届け先 '+regionSel()+'</label></div>'+
+       '<p class="kama">5kg 釜の空き <b>'+kg.toFixed(1)+'kg</b>（200g で約'+Math.floor(kg/0.2)+'袋）。'+r.nm+'へ <b>'+sl(x.p.arrive)+'</b> 着</p>'+
+       '<div class="quick"><label class="vh" for="quickBean">この回の釜で焼く豆</label>'+
+       '<select id="quickBean" data-quick>'+x.list.map(function(b){return '<option value="'+b.id+'">'+esc(b.nm)+'</option>'}).join("")+'</select>'+
+       '<button type="button" class="qbtn" id="quickAdd">'+quickLabel(x.list[0])+'</button></div>'+
+       '<button type="button" class="more" id="moreDays" aria-expanded="false" aria-controls="laterDays">ほかの焙煎日 '+(days.length-1)+'回分を見る</button>'+
+       '<div class="later" id="laterDays">'+days.slice(1).map(function(y){
+         return '<div class="day"><h3>'+md(y.d)+'</h3><p>5kg 釜の空き '+KAMA[y.dw].toFixed(1)+'kg。'+r.nm+'へ '+sl(y.p.arrive)+' 着</p>'+
+           '<ul>'+y.list.map(function(b){return '<li><a href="#/beans/'+b.id+'">'+esc(b.nm)+'</a></li>'}).join("")+'</ul></div>';
+       }).join("")+'</div>';
+   })()+
    '</section>'+
    '<button type="button" class="toolsbtn" id="toolsBtn" aria-expanded="'+!!state.toolsOpen+'" aria-controls="tools">絞り込み・並べ替え'+(state.roast!=="all"||state.kind!=="all"||state.sort!=="rec"?'（選択中）':'')+'</button>'+
    '<div class="tools'+(state.toolsOpen?' open':'')+'" id="tools" role="group" aria-label="絞り込み">'+
@@ -653,7 +628,6 @@ function drawGrid(){
   }
   $("#grid").innerHTML = list.map(function(b){
     return '<li class="card"><a href="#/beans/'+b.id+'"><div class="label">'+
-      '<div class="no"><span>'+KINDS[b.kind]+'</span><span>'+DAYS[b.day]+'曜焙煎</span></div>'+
       stampHtml(b)+
       '<div class="cty">'+esc(b.cty)+'</div><div class="nm">'+esc(b.nm)+'</div>'+
       (b.kind==="blend"?ratioHtml(b):labelRows(b))+
@@ -874,7 +848,7 @@ document.addEventListener("click", function(e){
     addToCart(); state.sel = null; return;
   }
   if(t.id==="toolsBtn"){ var op = t.getAttribute("aria-expanded")!=="true"; t.setAttribute("aria-expanded",op); state.toolsOpen=op; $("#tools").classList.toggle("open",op); return; }
-  if(t.id==="moreDays"){ var open = t.getAttribute("aria-expanded")!=="true"; t.setAttribute("aria-expanded",open); $(".board").classList.toggle("open",open); t.textContent = open ? "ほかの焙煎日をたたむ" : t.textContent; if(!open) renderList(); return; }
+  if(t.id==="moreDays"){ var open = t.getAttribute("aria-expanded")!=="true"; t.setAttribute("aria-expanded",open); $(".board").classList.toggle("open",open); t.textContent = open ? "ほかの焙煎日をたたむ" : "ほかの焙煎日 2回分を見る"; return; }
   if(t.id==="checkout"){
     if(t.getAttribute("aria-disabled")==="true"){ var w=$(".wrapopt.need input"); if(w){ w.focus(); w.closest(".line").scrollIntoView({block:"nearest"}); } return; }
     $("#why").textContent = "見本のため、ここから先の手続きはありません。"; return;
@@ -924,11 +898,11 @@ $("#shipTable tbody").innerHTML = REGIONS.map(function(x){return '<tr><th>'+x.nm
 /* 使ったスキル */
 var SK = [
  ["選び方","site-skills の表で「商品を探して買ってもらう」→ 主 ec-quality-bar。雰囲気のために副 lp-quality-bar。仕上げに site-skills の references/ai-tells.md を全部当てはめて作り直した。"],
- ["焙煎予定表","題材でしか成り立たない部品（ai-tells「最後の問い」）。豆ごとの焙煎曜日・5kg 釜の空き・地域ごとの着日を最初の画面に黒板として置く。スキルに型は無く自分で決めた。着日を地域の選択で出すのは ec checklist（とらやの反面教師：郵便番号）。"],
+ ["次の焙煎（黒板）","題材でしか成り立たない部品（ai-tells「最後の問い」）。最初の画面の主役は、いちばん近い焙煎日・5kg 釜の空き・地域への着日と「この回の釜に入れる」だけ（ai-tells「情報の密度：1画面に主役を1つ」）。ほかの焙煎日は「ほかの焙煎日 2回分を見る」で開く。型はスキルに無く自分で決めた。"],
  ["この回の釜に入れる","最初の画面の本物のボタン（site-skills critique.md：最初の画面に主な行動のボタン）。黒板のいちばん近い焙煎日の行で豆を選び、200g・中挽きでそのままかごへ（容量と挽き方は、かごに入った後でなく詳細で変えられる）。型はスキルに無く自分で決めた。"],
- ["スマホの黒板","いちばん近い焙煎日だけを出し、ほかの回は「ほかの焙煎日 2回分を見る」で開く。絞り込みは「絞り込み・並べ替え」の1つのボタンにたたむ（Allbirds の SP：全画面のフォームで適用）。黒板の下に商品が見える。"],
+ ["スマホ","絞り込みは「絞り込み・並べ替え」の1つのボタンにたたむ（Allbirds の SP：全画面のフォームで適用）。黒板の下に商品が見える。"],
  ["一覧のグリッド","PC 4列・列間40・行間60、SP 2列・16/40（とらや）。12点をページ送りなしで1ページ（ec rules 4：Allbirds・とらや）。"],
- ["カード＝豆のラベル","絵をやめ、産地・農園・標高・精製・焙煎度・味の言葉を文字で組んだクラフト紙のラベルを主役に（ai-tells「絵と写真」）。ブレンドは配合の帯、シングルは標高と精製、と種類で組みを変える。価格16px＋「円（税込）」12px はとらや。"],
+ ["カード＝豆のラベル","絵をやめ、国名・名前・標高と精製（ブレンドは配合の帯と割合）・味の言葉・焙煎度の色と Agtron・次の焙煎日の判を、文字で組んだクラフト紙のラベルに（ai-tells「絵と写真」）。比べるための一覧なので1画面の塊は多いが、1枚の行は7つまでに減らした。価格16px＋「円（税込）」12px はとらや。"],
  ["カードのホバー","ラベルが opacity .8・scale(1.03)、価格が補助色、.2s <code>cubic-bezier(.25,.46,.45,.94)</code>、hover:hover かつ pointer:fine のときだけ（とらや・lp rules 7）。"],
  ["焙煎日の判","「次の焙煎 11/2 月」を朱の枠で。文字と地の比 5.9（ec checklist：札は 4.5 以上。とらやの順位札 2.37 は反面教師）。"],
  ["絞り込み","12点・通信なしなので選ぶたびに反映。件数32px太字と「条件：…」（とらや「9 点の商品」・ec rules 6）。0件の表示と「条件をはずす」。"],
