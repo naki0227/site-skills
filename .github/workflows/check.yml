@@ -11,7 +11,7 @@ jobs:
         with:
           node-version: '22'
       - name: スクリプトの構文
-        run: for f in tools/*.js; do node --check "$f"; done && bash -n tools/sync.sh
+        run: for f in tools/*.js plugins/site-skills/skills/site-skills/scripts/*.js; do node --check "$f"; done && bash -n tools/sync.sh
       - name: カタログが最新で、選ぶスキルの表に全部のスキルが載っている
         run: node tools/catalog.js --check
       - name: JSON の形
