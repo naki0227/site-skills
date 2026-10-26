@@ -1,0 +1,1512 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>おかえりノート｜放課後児童クラブの出欠と保護者連絡</title>
+<meta name="description" content="放課後児童クラブ（学童保育）の入退室・出欠と、保護者からの欠席・お迎え変更の連絡を1つにまとめるアプリ。下校したのに来所していない子を一覧で確かめられます。30日間無料、支払い情報の入力は不要です。">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"おかえりノート","applicationCategory":"BusinessApplication","operatingSystem":"iOS, Android, Web","offers":[{"@type":"Offer","name":"ライト","price":"6980","priceCurrency":"JPY"},{"@type":"Offer","name":"スタンダード","price":"11480","priceCurrency":"JPY"},{"@type":"Offer","name":"ワイド","price":"17800","priceCurrency":"JPY"},{"@type":"Offer","name":"法人・自治体","price":"9860","priceCurrency":"JPY"}]}
+</script>
+<script type="application/ld+json" id="faq-ld"></script>
+<style>
+/* 配色表（lp-quality-bar / ポップ・参加型 の「ベース1色＋ティント＋4前後のアクセント＋文字色」を、学童の夕方に置き換えた） */
+:root{
+  --green:#0b7a52;     /* ベース：ロゴ・ナビ・見出しのアイコン（白地で 5.3:1） */
+  --green-d:#075c3d;
+  --tint:#d6ecdf;      /* 英字ラベル・薄い面 */
+  --tint2:#f2f8f4;
+  --orange:#b4500e;    /* 主の行動（試す）だけ。白文字で 4.9:1 */
+  --orange-d:#933f08;
+  --orange-l:#fbe9dc;
+  --sky:#1d74a8;       /* 保護者連絡の章 */
+  --sky-l:#e1eff8;
+  --peach:#bf3f55;     /* 未来所・エラー */
+  --peach-l:#fbe4e8;
+  --yellow:#f0b429;    /* 一日の流れの章（面だけに使い、文字には使わない） */
+  --yellow-l:#fdf3d6;
+  --ink:#221815;       /* 純黒でなく赤みのある黒 */
+  --ink2:#5d524e;
+  --line:#e6dfdb;
+  --paper:#fff;
+  --ease:cubic-bezier(.65,0,.35,1); /* easeInOutCubic */
+  --shadow:-6px 6px 0 0 var(--green);
+  --font:system-ui,-apple-system,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic","Noto Sans JP",sans-serif;
+  --latin:"Avenir Next","Century Gothic","Futura","Helvetica Neue",system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:auto;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:16px;line-height:2.1;letter-spacing:.04em;overflow-x:clip}
+img,svg{display:block;max-width:100%}
+a{color:var(--green-d)}
+button,input,select,textarea{font:inherit;color:inherit;letter-spacing:inherit}
+h1,h2,h3,h4,p,ul,ol,dl,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+:focus-visible{outline:3px solid var(--sky);outline-offset:3px;border-radius:6px}
+[tabindex="-1"]:focus{outline:none}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{width:min(1140px,100% - 32px);margin-inline:auto}
+.skip{position:absolute;left:8px;top:-60px;background:var(--ink);color:#fff;padding:8px 14px;border-radius:6px;z-index:100}
+.skip:focus{top:8px}
+
+/* ---------- ヘッダー ---------- */
+.hd{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line)}
+.hd .wrap{display:flex;align-items:center;gap:24px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:800;letter-spacing:.12em;font-size:18px;white-space:nowrap}
+.logo svg{flex:none}
+.nav{display:flex;gap:4px;margin-left:8px}
+.nav a{display:block;padding:6px 14px;border-radius:999px;text-decoration:none;color:var(--ink);font-size:15px;font-weight:600;letter-spacing:.1em;line-height:1.8}
+.nav a[aria-current="page"]{background:var(--tint);color:var(--green-d)}
+.hd-cta{margin-left:auto;display:flex;gap:10px;align-items:center}
+.menu-btn{display:none;margin-left:auto;width:44px;height:44px;border:0;border-radius:8px;background:var(--green);color:#fff;cursor:pointer}
+.menu-btn span,.menu-btn span::before,.menu-btn span::after{display:block;width:20px;height:2px;background:#fff;margin:auto;position:relative;content:""}
+.menu-btn span::before{position:absolute;top:-6px}.menu-btn span::after{position:absolute;top:6px}
+
+/* ---------- ボタン ---------- */
+.btn{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:0;min-height:48px;padding:8px 22px;border-radius:10px;border:2px solid transparent;font-weight:700;letter-spacing:.1em;text-decoration:none;cursor:pointer;line-height:1.4;text-align:center}
+.btn small{font-size:12px;font-weight:600;letter-spacing:.06em;opacity:.95}
+.btn-main{background:var(--orange);color:#fff}
+.btn-sub{background:#fff;color:var(--orange-d);border-color:var(--orange)}
+.btn-ghost{background:transparent;color:var(--green-d);border-color:var(--green)}
+.btn-sm{min-height:40px;padding:4px 16px;font-size:14px}
+.btn:active{transform:translateY(2px)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.btn-lg{min-height:60px;padding:10px 30px;font-size:17px}
+.link{background:none;border:0;padding:0;color:var(--green-d);font-weight:700;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+
+/* ---------- 見出しの型（全セクション共通：アイコン → 細い英字 → 太い和文 → リード1行） ---------- */
+.sh{display:grid;justify-items:start;gap:4px;margin-bottom:40px}
+.sh .ic{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--acc,var(--green));color:#fff}
+.sh .en{font-family:var(--latin);font-weight:200;font-size:clamp(40px,6vw,72px);line-height:1;letter-spacing:.02em;color:var(--acc-l,var(--tint));margin-top:6px}
+.sh h2,.sh h1{font-size:clamp(22px,2.4vw,28px);font-weight:800;letter-spacing:.12em;line-height:1.6;margin-top:-6px}
+.sh .lead{color:var(--ink2);max-width:40em}
+.sec{padding:96px 0;position:relative}
+.sec-tint{background:var(--tint2)}
+
+/* 手描きの線（セクションの境目） */
+.squiggle{display:block;width:100%;height:18px;color:var(--acc,var(--green))}
+
+/* ---------- ページ切り替え ---------- */
+.page[hidden]{display:none}
+
+/* ---------- ヒーロー ---------- */
+.hero{padding:64px 0 72px;overflow:clip}
+.hero .wrap{display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(26px,3.3vw,40px);font-weight:800;letter-spacing:.1em;line-height:1.6}
+.hero h1 .nm{display:inline-flex;align-items:center;gap:8px;color:var(--green-d);white-space:nowrap}
+.hero .sub{margin-top:18px;color:var(--ink2);max-width:30em}
+.hero .acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.hero .acts .btn{min-width:230px}
+.hero .demo-link{margin-top:16px;display:inline-flex;align-items:center;gap:8px}
+.stats{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:28px;margin-top:36px;padding-top:24px;border-top:1px dashed var(--line)}
+.stats dt{font-size:13px;color:var(--ink2);letter-spacing:.08em;line-height:1.6}
+.stats dd{margin:0;font-family:var(--latin);font-weight:300;font-size:34px;line-height:1.2;font-variant-numeric:tabular-nums}
+.stats dd span{font-family:var(--font);font-size:14px;font-weight:700;margin-left:2px}
+.stats-note{font-size:12px;color:var(--ink2);line-height:1.8;margin-top:10px}
+
+/* 製品のモック（DOM で描く） */
+.mock{position:relative;padding:0 0 132px 48px}
+.tablet{background:#fff;border:2px solid var(--ink);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+.tb-top{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--line);font-size:13px;line-height:1.6;background:var(--tint2)}
+.tb-top b{font-size:14px;letter-spacing:.08em}
+.tb-top .clock{margin-left:auto;font-variant-numeric:tabular-nums;color:var(--ink2)}
+.board{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.col{padding:12px 10px 14px;border-right:1px solid var(--line);min-height:236px}
+.col:last-child{border-right:0}
+.col h3{font-size:12px;letter-spacing:.1em;line-height:1.6;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.col h3 .n{font-family:var(--latin);font-size:20px;font-weight:400;font-variant-numeric:tabular-nums}
+.col.c-miss h3{color:var(--peach)}
+.kid{display:flex;align-items:center;gap:8px;padding:6px 8px;margin-bottom:6px;border-radius:8px;background:#fff;border:1px solid var(--line);font-size:13px;line-height:1.5}
+.kid .g{font-size:11px;color:var(--ink2);margin-left:auto;white-space:nowrap}
+.kid .av{width:22px;height:22px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:11px;color:#fff;font-weight:700}
+.c-miss .kid{border-color:#f0b6c0;background:var(--peach-l)}
+.kid.arrive{animation:arrive 1s var(--ease) both}
+@keyframes arrive{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+.phone{position:absolute;left:0;bottom:0;width:190px;background:#fff;border:2px solid var(--ink);border-radius:24px;padding:14px 10px 12px;box-shadow:-6px 6px 0 0 var(--sky);transform:rotate(-3deg)}
+.phone .ph-h{font-size:11px;color:var(--ink2);text-align:center;line-height:1.6;margin-bottom:8px}
+.bubble{background:var(--sky-l);border-radius:12px 12px 12px 4px;padding:8px 10px;font-size:12px;line-height:1.7}
+.bubble b{display:block;font-size:11px;color:var(--sky)}
+.phone .read{font-size:10px;color:var(--ink2);text-align:right;margin-top:4px;line-height:1.4}
+.toast{position:absolute;right:-8px;top:-18px;background:var(--ink);color:#fff;font-size:12px;line-height:1.6;padding:6px 12px;border-radius:8px;opacity:0;transform:translateY(6px)}
+.toast.show{opacity:1;transform:none;transition:opacity .3s ease,transform .3s ease}
+.sticker{position:absolute;right:16px;bottom:96px;background:var(--yellow);color:var(--ink);font-weight:800;font-size:13px;letter-spacing:.08em;line-height:1.5;padding:6px 12px;border-radius:6px;transform:rotate(4deg)}
+
+/* ---------- 一日の流れ（トップ） ---------- */
+.day{--acc:#b98200;--acc-l:#f6e0a6;background:var(--yellow-l)}
+.day .sh .ic{background:var(--yellow);color:var(--ink)}
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.timeline::before{content:"";position:absolute;left:0;right:0;top:27px;border-top:2px dashed #d9b04a}
+.tl{padding-right:24px;position:relative}
+.tl time{display:inline-block;font-family:var(--latin);font-weight:300;font-size:38px;line-height:1.4;background:var(--yellow-l);padding-right:12px;font-variant-numeric:tabular-nums}
+.tl h3{font-size:17px;letter-spacing:.1em;line-height:1.7;margin:10px 0 6px}
+.tl p{font-size:15px;color:var(--ink2);line-height:2}
+.tl .before{display:block;margin-top:10px;font-size:13px;line-height:1.8;color:var(--ink2);border-left:3px solid var(--yellow);padding-left:10px}
+
+/* ---------- 事例（トップの1件） ---------- */
+.case-hero{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+.case-art{aspect-ratio:4/3;border-radius:16px;border:2px solid var(--ink);box-shadow:-6px 6px 0 0 var(--peach);overflow:hidden;background:var(--peach-l)}
+.quote{font-size:clamp(19px,2vw,23px);font-weight:800;letter-spacing:.08em;line-height:1.9}
+.quote-by{margin-top:14px;font-size:14px;color:var(--ink2);line-height:1.8}
+.nums{display:flex;gap:32px;margin:24px 0;flex-wrap:wrap}
+.nums div{border-top:3px solid var(--peach);padding-top:8px}
+.nums b{display:block;font-family:var(--latin);font-weight:300;font-size:36px;line-height:1.2;font-variant-numeric:tabular-nums}
+.nums span{font-size:13px;color:var(--ink2)}
+
+/* ---------- 最後の誘い ---------- */
+.final{background:var(--green);color:#fff;text-align:center;padding:88px 0;position:relative}
+.final h2{font-size:clamp(22px,2.6vw,30px);letter-spacing:.12em;line-height:1.7}
+.final p{opacity:.92;margin-top:10px}
+.final .acts{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.final .btn-sub{border-color:#fff}
+
+/* ---------- 機能ページ ---------- */
+.f-hero{padding:72px 0 24px}
+.roles{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.roles li{border:1px solid var(--line);border-radius:999px;padding:2px 14px;font-size:14px;font-weight:600}
+.blk{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;padding:56px 0;border-top:1px solid var(--line)}
+.blk:nth-of-type(even) .blk-txt{order:2}
+.blk .kick{font-size:13px;font-weight:700;letter-spacing:.14em;color:var(--acc);line-height:1.6}
+.blk h3{font-size:clamp(20px,2.2vw,25px);font-weight:800;letter-spacing:.1em;line-height:1.7;margin:6px 0 14px}
+.blk .checks{margin:16px 0 14px}
+.blk .checks li{position:relative;padding-left:28px;font-weight:600;line-height:1.9;margin-bottom:4px}
+.blk .checks li::before{content:"";position:absolute;left:2px;top:.55em;width:16px;height:9px;border-left:3px solid var(--acc);border-bottom:3px solid var(--acc);transform:rotate(-45deg)}
+.screen{background:#fff;border:2px solid var(--ink);border-radius:14px;box-shadow:-6px 6px 0 0 var(--acc);overflow:hidden;font-size:13px;line-height:1.6}
+.screen .bar{padding:8px 14px;background:var(--tint2);border-bottom:1px solid var(--line);font-weight:700;display:flex;gap:8px;align-items:center}
+.screen .bar i{width:8px;height:8px;border-radius:50%;background:var(--acc);display:inline-block}
+.screen .body{padding:14px}
+.row{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.row:last-child{border-bottom:0}
+.chip{display:inline-block;border-radius:999px;padding:0 10px;font-size:12px;font-weight:700;line-height:1.9;white-space:nowrap}
+.chip-r{background:var(--peach-l);color:var(--peach)}
+.chip-g{background:var(--tint);color:var(--green-d)}
+.chip-b{background:var(--sky-l);color:var(--sky)}
+.chip-y{background:var(--yellow-l);color:#7a5600}
+.fcards{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:2px solid var(--ink);border-left:1px solid var(--line)}
+.fc{padding:22px 20px 24px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.fc h3{font-size:16px;letter-spacing:.08em;line-height:1.7;margin:10px 0 6px}
+.fc p{font-size:14px;color:var(--ink2);line-height:1.9}
+.fc svg{color:var(--green)}
+.fc.mig{background:var(--orange-l)}
+.fc.mig svg{color:var(--orange)}
+
+/* ---------- 料金ページ ---------- */
+.toc{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 32px}
+.toc a{display:inline-block;padding:4px 14px;border:1px solid var(--line);border-radius:999px;text-decoration:none;font-size:14px;font-weight:600;color:var(--ink)}
+.p-note{font-size:14px;color:var(--ink2);line-height:1.9}
+.p-tools{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end;margin:28px 0 20px;padding:24px;border:2px solid var(--ink);border-radius:14px}
+.slider-box label{font-weight:800;letter-spacing:.1em;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.slider-box output{font-family:var(--latin);font-size:30px;font-weight:300;font-variant-numeric:tabular-nums}
+.slider-box output small{font-family:var(--font);font-size:14px;font-weight:700}
+input[type=range]{width:100%;margin:10px 0 0;accent-color:var(--green);height:28px}
+.ticks{display:flex;justify-content:space-between;margin-top:2px}
+.ticks button{background:none;border:0;padding:4px 2px;font-size:12px;color:var(--ink2);cursor:pointer;font-variant-numeric:tabular-nums;line-height:1.4;min-width:28px}
+.ticks button[aria-pressed="true"]{color:var(--green-d);font-weight:800}
+.bill{display:inline-flex;border:2px solid var(--green);border-radius:999px;padding:3px;position:relative}
+.bill input{position:absolute;opacity:0;width:1px;height:1px}
+.bill label{padding:6px 16px;border-radius:999px;font-weight:700;font-size:14px;line-height:1.6;cursor:pointer;white-space:nowrap}
+.bill input:checked+label{background:var(--green);color:#fff}
+.bill input:focus-visible+label{outline:3px solid var(--sky);outline-offset:2px}
+.legend{font-size:13px;color:var(--ink2);margin-bottom:6px;line-height:1.6}
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:stretch}
+.plan{position:relative;display:flex;flex-direction:column;border:2px solid var(--line);border-radius:14px;padding:26px 20px 22px;background:#fff}
+.plan.reco{border-color:var(--green);box-shadow:var(--shadow)}
+.plan.reco::before{content:"";position:absolute;left:-2px;right:-2px;top:-2px;height:10px;background:var(--green);border-radius:14px 14px 0 0}
+.plan .badge{position:absolute;top:-14px;right:14px;background:var(--yellow);color:var(--ink);font-size:12px;font-weight:800;letter-spacing:.06em;line-height:1.5;padding:4px 10px;border-radius:6px}
+.plan h3{font-size:19px;letter-spacing:.12em;line-height:1.6}
+.plan .cap{font-size:13px;color:var(--ink2);line-height:1.7}
+.price{margin:14px 0 2px;display:flex;align-items:baseline;gap:2px;flex-wrap:wrap}
+.price .yen{font-size:18px;font-weight:700}
+.price .v{font-family:var(--latin);font-size:36px;font-weight:300;line-height:1.2;font-variant-numeric:tabular-nums}
+.price .per{font-size:13px;font-weight:700;color:var(--ink2)}
+.yearly{font-size:13px;color:var(--green-d);font-weight:700;line-height:1.7;min-height:1.7em}
+.plan ul{margin:14px 0 18px;font-size:14px;line-height:1.8}
+.plan li{padding-left:18px;position:relative;margin-bottom:4px}
+.plan li::before{content:"";position:absolute;left:2px;top:.75em;width:7px;height:7px;border-radius:50%;background:var(--green)}
+.plan .btn{margin-top:auto;width:100%}
+.plan .contract{margin-top:10px;text-align:center;font-size:13px}
+.plans.filtered .plan:not(.match){opacity:.4}
+.show-all-p{display:none}
+.free-note{margin-top:14px;font-size:14px;color:var(--ink2);line-height:1.9}
+.diag{margin-top:56px;display:grid;grid-template-columns:.8fr 1.2fr;gap:40px;padding:32px;background:var(--tint2);border-radius:16px}
+.diag h3{font-size:20px;letter-spacing:.1em;line-height:1.7}
+.q{font-weight:800;font-size:17px;letter-spacing:.06em;line-height:1.8;margin-bottom:14px}
+.q-step{font-size:13px;color:var(--ink2);line-height:1.6}
+.opts{display:flex;flex-wrap:wrap;gap:10px}
+.opts button{border:2px solid var(--green);background:#fff;color:var(--green-d);font-weight:700;border-radius:10px;padding:10px 18px;cursor:pointer;line-height:1.5;min-height:48px}
+.q-nav{display:flex;gap:18px;margin-top:16px;font-size:14px}
+.result h4{font-size:22px;letter-spacing:.12em;line-height:1.6}
+.result ul{margin:10px 0 16px;font-size:15px;line-height:1.9}
+.result li::before{content:"・"}
+.cmp{width:100%;border-collapse:collapse;font-size:14px;line-height:1.7;margin-top:8px}
+.cmp caption{text-align:left;font-size:13px;color:var(--ink2);padding-bottom:8px}
+.cmp th,.cmp td{border-bottom:1px solid var(--line);padding:10px 8px;text-align:center;vertical-align:middle}
+.cmp thead th{position:sticky;top:68px;background:#fff;border-bottom:2px solid var(--ink);font-size:14px;letter-spacing:.08em;z-index:2}
+.cmp thead th.on{color:var(--green-d)}
+.cmp tbody th{text-align:left;font-weight:600}
+.cmp .grp th{background:var(--tint2);font-weight:800;letter-spacing:.12em;text-align:left;padding:10px 12px}
+.cmp td.no{color:#b0a6a2}
+.cmp-sp{display:none}
+.cmp-sp details{border-bottom:1px solid var(--line)}
+.cmp-sp summary{padding:14px 4px;font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:8px;line-height:1.6}
+.cmp-sp summary::after{content:"＋";color:var(--green)}
+.cmp-sp details[open] summary::after{content:"－"}
+.cmp-sp dl{display:grid;grid-template-columns:1fr auto;gap:2px 12px;padding:0 4px 14px;font-size:14px;line-height:1.8}
+.cmp-sp dd{margin:0;text-align:right;font-weight:600}
+.cmp-sp .grp-h{margin:22px 0 4px;font-weight:800;letter-spacing:.12em;color:var(--green-d)}
+.estimate{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:28px;border:2px dashed var(--green);border-radius:14px}
+.estimate select{border:2px solid var(--line);border-radius:8px;padding:8px 10px;background:#fff;min-height:44px}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:st}
+.flow li{position:relative;padding:20px 24px 0 0;counter-increment:st}
+.flow li::before{content:"STEP " counter(st);font-family:var(--latin);font-size:13px;letter-spacing:.14em;color:var(--green);font-weight:600}
+.flow li::after{content:"";position:absolute;top:31px;left:72px;right:12px;border-top:2px dotted var(--green)}
+.flow li:last-child::after{display:none}
+.flow h3{font-size:17px;letter-spacing:.1em;line-height:1.7;margin:4px 0}
+.flow p{font-size:14px;color:var(--ink2);line-height:1.9}
+.faq details{border-top:1px solid var(--line)}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:18px 40px 18px 34px;position:relative;font-weight:700;line-height:1.8}
+.faq summary::before{content:"Q";position:absolute;left:4px;top:16px;font-family:var(--latin);font-size:20px;color:var(--green);font-weight:400}
+.faq summary::after{content:"";position:absolute;right:12px;top:28px;width:10px;height:10px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(45deg)}
+.faq details[open] summary::after{transform:rotate(-135deg);top:32px}
+.faq .a{padding:0 12px 20px 34px;color:var(--ink2)}
+
+/* ---------- 導入事例ページ ---------- */
+.filters{display:grid;gap:14px;padding:20px 0 28px;border-bottom:1px solid var(--line);margin-bottom:28px}
+.fg{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.fg > span{font-size:13px;font-weight:800;letter-spacing:.1em;min-width:5.5em}
+.fg label{position:relative}
+.fg input{position:absolute;opacity:0;width:1px;height:1px}
+.fg label span{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 14px;font-size:14px;cursor:pointer;line-height:1.9}
+.fg input:checked+span{background:var(--ink);color:#fff;border-color:var(--ink)}
+.fg input:focus-visible+span{outline:3px solid var(--sky);outline-offset:2px}
+.count{font-size:14px;color:var(--ink2);margin-bottom:16px}
+.cases{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px}
+.case{display:flex;flex-direction:column;text-align:left;background:none;border:0;padding:0;cursor:pointer}
+.case .art{aspect-ratio:16/10;border-radius:12px;border:2px solid var(--ink);overflow:hidden;width:100%}
+.case .meta{display:block;font-size:12px;color:var(--ink2);margin-top:12px;line-height:1.6;letter-spacing:.06em}
+.case .ttl{display:block;font-weight:800;font-size:17px;letter-spacing:.06em;line-height:1.7;margin-top:4px}
+.case .org{display:block;font-size:13px;color:var(--ink2);margin-top:6px;line-height:1.6}
+.case.big{grid-column:span 2}
+.empty{padding:56px 24px;text-align:center;border:2px dashed var(--line);border-radius:14px}
+.empty p{color:var(--ink2);margin-bottom:12px}
+
+/* ---------- ダイアログ ---------- */
+dialog{border:2px solid var(--ink);border-radius:16px;padding:0;width:min(640px,100% - 24px);max-height:calc(100dvh - 32px);color:var(--ink);box-shadow:-8px 8px 0 0 var(--green)}
+dialog::backdrop{background:rgba(34,24,21,.55)}
+.dlg-h{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:1}
+.dlg-h h2{font-size:18px;letter-spacing:.1em;line-height:1.6}
+.x{margin-left:auto;width:40px;height:40px;border-radius:50%;border:2px solid var(--ink);background:#fff;cursor:pointer;font-size:18px;line-height:1}
+.dlg-b{padding:20px}
+.field{margin-bottom:16px}
+.field label,.field legend{display:block;font-weight:700;font-size:14px;letter-spacing:.08em;line-height:1.7;margin-bottom:4px}
+.field .req{color:var(--peach);font-size:12px;margin-left:6px}
+.field input[type=text],.field input[type=email],.field input[type=tel],.field input[type=number],.field select,.field textarea{width:100%;border:2px solid var(--line);border-radius:8px;padding:10px 12px;background:#fff;min-height:48px;line-height:1.5}
+.field input:focus,.field select:focus{border-color:var(--green);outline:none;box-shadow:0 0 0 3px var(--tint)}
+.field [aria-invalid="true"]{border-color:var(--peach)!important;background:var(--peach-l)}
+.err{display:block;color:var(--peach);font-size:13px;font-weight:700;line-height:1.6;margin-top:4px}
+.err:empty{display:none}
+.radios{display:flex;flex-wrap:wrap;gap:8px;border:0;padding:0;margin:0}
+.radios label{display:flex;align-items:center;gap:6px;border:2px solid var(--line);border-radius:8px;padding:6px 12px;font-weight:600;font-size:14px;cursor:pointer;margin:0}
+.radios input{accent-color:var(--green)}
+.form-note{font-size:13px;color:var(--ink2);line-height:1.8;margin:6px 0 16px}
+.done{text-align:center;padding:16px 0 8px}
+.done h3{font-size:20px;letter-spacing:.1em;line-height:1.7;margin:12px 0 8px}
+.done p{color:var(--ink2);font-size:15px}
+.spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.5);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;vertical-align:-3px;margin-right:6px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* デモ */
+#demo{width:min(980px,100% - 24px)}
+.demo-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.demo-bar .alert{font-weight:800;color:var(--peach);font-size:14px}
+.demo-bar .alert.ok{color:var(--green-d)}
+.d-board{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.d-col{border:1px solid var(--line);border-radius:12px;padding:10px;min-height:200px;background:var(--tint2)}
+.d-col h3{font-size:13px;letter-spacing:.1em;line-height:1.6;margin-bottom:8px;display:flex;justify-content:space-between}
+.d-col.c-miss{background:var(--peach-l);border-color:#f0b6c0}
+.d-kid{width:100%;display:grid;grid-template-columns:auto 1fr auto;gap:2px 8px;align-items:center;text-align:left;border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;margin-bottom:8px;cursor:pointer;font-size:14px;line-height:1.5}
+.d-kid .g{font-size:12px;color:var(--ink2)}
+.d-kid .st{grid-column:1 / -1;font-size:12px;color:var(--ink2)}
+.d-kid .ask{grid-column:1 / -1;justify-self:start;margin-top:4px}
+.d-log{margin-top:14px;border-top:1px solid var(--line);padding-top:10px;font-size:13px;line-height:1.8;max-height:140px;overflow:auto}
+.d-log li{padding:2px 0}
+.d-log time{font-variant-numeric:tabular-nums;color:var(--ink2);margin-right:8px}
+
+/* 事例詳細 */
+.cd .art{aspect-ratio:16/7;border-radius:12px;border:2px solid var(--ink);overflow:hidden;margin-bottom:16px}
+.cd h3{font-size:clamp(19px,2.4vw,24px);letter-spacing:.06em;line-height:1.7}
+.cd .org{font-size:14px;color:var(--ink2);margin:4px 0 16px}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
+.ba div{border-radius:12px;padding:14px 16px}
+.ba .b{background:#f6f2f0}
+.ba .a2{background:var(--tint2)}
+.ba h4{font-size:14px;letter-spacing:.12em;line-height:1.6;margin-bottom:6px}
+.ba li{font-size:14px;line-height:1.8;padding-left:14px;position:relative}
+.ba li::before{content:"・";position:absolute;left:0}
+.interview p{margin-bottom:14px}
+.interview b{display:block;font-size:14px;color:var(--green-d)}
+
+/* 使ったスキル */
+.skills-btn{position:fixed;right:16px;bottom:16px;z-index:60;display:flex;align-items:center;gap:8px;background:var(--ink);color:#fff;border:0;border-radius:999px;padding:10px 18px;font-weight:700;letter-spacing:.08em;cursor:pointer;line-height:1.4;box-shadow:-4px 4px 0 0 var(--yellow)}
+.totop{position:fixed;right:20px;bottom:72px;z-index:59;width:44px;height:44px;border-radius:50%;border:2px solid var(--ink);background:#fff;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(8px)}
+.totop.show{opacity:1;pointer-events:auto;transform:none}
+#skills{width:min(760px,100% - 24px)}
+.sk-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.sk-tabs button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:2px 12px;font-size:13px;cursor:pointer;line-height:1.9}
+.sk-tabs button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.sk{border-top:1px solid var(--line);padding:12px 0;font-size:14px;line-height:1.8}
+.sk h3{font-size:15px;letter-spacing:.06em;line-height:1.6}
+.sk .src{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0}
+.sk .src span{font-size:12px;border-radius:4px;padding:0 8px;background:var(--tint2);border:1px solid var(--line)}
+.sk .src .s1{background:var(--tint);border-color:var(--tint)}
+.sk .src .s2{background:var(--yellow-l);border-color:var(--yellow-l)}
+.sk p{color:var(--ink2)}
+.sk .own{color:var(--peach);font-weight:700}
+
+/* フッター */
+.ft{background:var(--ink);color:#e9e2df;padding:56px 0 96px;font-size:14px;line-height:2}
+.ft .wrap{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:32px}
+.ft h3{font-size:13px;letter-spacing:.14em;color:#fff;margin-bottom:6px}
+.ft a,.ft button.link{color:#e9e2df;font-weight:400;text-decoration:none}
+.ft .copy{grid-column:1 / -1;border-top:1px solid #4a3f3b;padding-top:16px;font-size:12px;color:#bdb2ae}
+.status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#5fcf8f;margin-right:6px}
+
+/* 登場（動きは許された環境にだけ足す） */
+.motion .rv{opacity:0;transform:translateX(var(--from,0)) translateY(var(--fromy,24px))}
+.motion .rv.in{opacity:1;transform:none;transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.motion .rv.l{--from:-40px;--fromy:0px}
+.motion .rv.r{--from:40px;--fromy:0px}
+
+/* ホバーはマウス端末だけ */
+@media (hover:hover) and (pointer:fine){
+  .btn,.nav a,.toc a,.opts button,.case .art,.fc,.ticks button,.fg label span,.sk-tabs button,.x,.d-kid{transition:background-color .3s ease,color .3s ease,border-color .3s ease,opacity .3s ease,transform .3s ease}
+  .btn-main:hover{background:var(--orange-d)}
+  .btn-sub:hover{background:var(--orange-l)}
+  .btn-ghost:hover{background:var(--tint)}
+  .nav a:hover{background:var(--tint2)}
+  .toc a:hover,.fg label span:hover{border-color:var(--ink)}
+  .opts button:hover{background:var(--tint)}
+  .case:hover .art{transform:translate(4px,-4px)}
+  .case:hover .ttl{text-decoration:underline;text-underline-offset:4px}
+  .plans.filtered .plan:not(.match):hover{opacity:.8}
+  .d-kid:hover{border-color:var(--ink)}
+  .x:hover{background:var(--tint)}
+}
+
+/* ---------- レスポンシブ（1200/992/768/600/430） ---------- */
+@media (max-width:1200px){
+  .plans{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:992px){
+  .nav{display:none}
+  .hd-cta .btn-ghost{display:none}
+  .hero .wrap{grid-template-columns:1fr}
+  .mock{max-width:620px}
+  .case-hero{grid-template-columns:1fr;gap:32px}
+  .timeline{grid-template-columns:repeat(2,1fr);gap:28px 0}
+  .timeline::before{display:none}
+  .fcards{grid-template-columns:repeat(2,1fr)}
+  .diag{grid-template-columns:1fr}
+  .ft .wrap{grid-template-columns:1fr 1fr}
+  .cases{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:768px){
+  .sec{padding:72px 0}
+  .blk{grid-template-columns:1fr;gap:28px;padding:44px 0}
+  .blk:nth-of-type(even) .blk-txt{order:0}
+  .p-tools{grid-template-columns:1fr}
+  .cmp{display:none}
+  .cmp-sp{display:block}
+  .flow{grid-template-columns:1fr 1fr;gap:20px 0}
+  .flow li::after{display:none}
+  .estimate{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(3,1fr);gap:16px}
+  .stats dd{font-size:28px}
+}
+@media (max-width:600px){
+  .hd .wrap{height:60px;gap:12px}
+  .hd-cta{display:none}
+  .menu-btn{display:block}
+  .hero{padding:36px 0 48px}
+  .hero .acts .btn{width:100%;min-width:0}
+  .mock{padding:0 0 150px 0}
+  .phone{width:168px;left:-4px}
+  .sticker{display:none}
+  .plans{grid-template-columns:1fr}
+  .plans.filtered:not(.show-all) .plan:not(.match){display:none}
+  .show-all-p{display:block}
+  .timeline{grid-template-columns:1fr}
+  .fcards{grid-template-columns:1fr}
+  .cases{grid-template-columns:1fr}
+  .case.big{grid-column:auto}
+  .ba{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr}
+  .board .col{min-height:220px;padding:10px 6px}
+  .kid{padding:5px 6px;gap:6px;font-size:12px}
+  .kid .g{display:none}
+  .cmp thead th{top:60px}
+  .ft .wrap{grid-template-columns:1fr}
+  .d-board{grid-template-columns:1fr}
+  .final .btn{width:100%}
+  .cmp-sp summary{padding:14px 2px}
+}
+@media (max-width:430px){
+  .stats{grid-template-columns:1fr 1fr}
+  .stats div:last-child{grid-column:1 / -1}
+  .tb-top{font-size:12px;padding:8px 10px}
+  .skills-btn{padding:8px 14px;font-size:13px}
+}
+/* SP メニュー */
+.sp-nav{display:none}
+@media (max-width:992px){
+  .sp-nav.open{display:block;position:fixed;inset:60px 0 auto 0;background:#fff;border-bottom:2px solid var(--ink);z-index:39;padding:12px 16px 20px}
+  .sp-nav a{display:block;padding:12px 4px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink);font-weight:700;letter-spacing:.1em}
+  .sp-nav .btn{width:100%;margin-top:14px}
+  .menu-btn{display:block}
+}
+@media (max-width:992px) and (min-width:601px){
+  .hd-cta{margin-left:auto}
+  .menu-btn{margin-left:0}
+  .sp-nav.open{inset:68px 0 auto 0}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="hd">
+  <div class="wrap">
+    <a class="logo" href="#top" data-route="top" aria-label="おかえりノート トップ">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect x="3" y="4" width="26" height="27" rx="5" fill="#0b7a52"/><rect x="7" y="4" width="2" height="27" fill="#075c3d"/><path d="M12 18.5l3.6 3.6L23.5 13" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="27" cy="7" r="5" fill="#f0b429"/></svg>
+      おかえりノート
+    </a>
+    <nav class="nav" aria-label="メイン">
+      <a href="#top" data-route="top">トップ</a>
+      <a href="#features" data-route="features">機能</a>
+      <a href="#pricing" data-route="pricing">料金</a>
+      <a href="#cases" data-route="cases">導入事例</a>
+    </nav>
+    <div class="hd-cta">
+      <button class="btn btn-ghost btn-sm" type="button" data-open="doc">資料をダウンロード</button>
+      <button class="btn btn-main btn-sm" type="button" data-open="trial">無料で試す</button>
+    </div>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="sp-nav" aria-label="メニューを開く"><span></span></button>
+  </div>
+</header>
+<nav class="sp-nav" id="sp-nav" aria-label="メニュー">
+  <a href="#top" data-route="top">トップ</a>
+  <a href="#features" data-route="features">機能</a>
+  <a href="#pricing" data-route="pricing">料金</a>
+  <a href="#cases" data-route="cases">導入事例</a>
+  <button class="btn btn-main" type="button" data-open="trial"><small>支払い情報の入力不要</small>まずは30日間 無料で試す</button>
+  <button class="btn btn-sub" type="button" data-open="doc">資料をダウンロード</button>
+</nav>
+
+<main id="main">
+
+<!-- =============== トップ =============== -->
+<div class="page" id="p-top" data-page="top">
+  <section class="hero" aria-labelledby="h-top">
+    <div class="wrap">
+      <div>
+        <h1 id="h-top" tabindex="-1">放課後児童クラブの<br>出欠と保護者連絡なら<br><span class="nm"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect x="3" y="4" width="26" height="27" rx="5" fill="#0b7a52"/><rect x="7" y="4" width="2" height="27" fill="#075c3d"/><path d="M12 18.5l3.6 3.6L23.5 13" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="27" cy="7" r="5" fill="#f0b429"/></svg>おかえりノート</span></h1>
+        <p class="sub">学校の下校時刻と入室の記録を突き合わせて、「下校したのにまだ来ていない子」を一覧にします。欠席やお迎えの変更は、電話ではなくアプリの連絡で届きます。</p>
+        <div class="acts">
+          <button class="btn btn-main btn-lg" type="button" data-open="trial"><small>支払い情報の入力不要</small>まずは30日間 無料で試す</button>
+          <button class="btn btn-sub btn-lg" type="button" data-open="doc"><small>職員会議でそのまま配れる</small>資料をダウンロード</button>
+        </div>
+        <button class="link demo-link" type="button" data-open="demo">
+          <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 6.5l5 3.5-5 3.5z" fill="currentColor"/></svg>
+          登録せずに出欠ボードを触ってみる
+        </button>
+        <dl class="stats">
+          <div><dt>導入施設数</dt><dd>1,284<span>施設</span></dd></div>
+          <div><dt>登録済みの保護者</dt><dd>61,907<span>人</span></dd></div>
+          <div><dt>継続率</dt><dd>98.6<span>%</span></dd></div>
+        </dl>
+        <p class="stats-note">2026年9月末時点。導入施設数は有料契約の施設（支援の単位ではなく所在地）の数。保護者は招待を受けて登録を済ませた人数。継続率は2025年10月〜2026年9月の月次継続率の平均。</p>
+      </div>
+      <div class="mock" aria-label="職員のタブレットに出る出欠ボードと、保護者のスマホに出る連絡の画面例" role="img">
+        <div class="tablet">
+          <div class="tb-top"><b>出欠ボード</b><span>みなと第二小クラブ</span><span class="clock" id="hero-clock">10月26日（月）15:12</span></div>
+          <div class="board">
+            <div class="col c-miss"><h3>未来所 <span class="n" id="n-miss">3</span></h3><div id="col-miss"></div></div>
+            <div class="col"><h3>来所 <span class="n" id="n-in">24</span></h3><div id="col-in"></div></div>
+            <div class="col"><h3>帰宅 <span class="n" id="n-out">2</span></h3><div id="col-out"></div></div>
+          </div>
+        </div>
+        <div class="phone">
+          <p class="ph-h">保護者のスマホ</p>
+          <p class="bubble"><b>佐伯 はるとの母</b>今日は17:40に祖母が迎えに行きます。メガネをかけた女性です。</p>
+          <p class="read">クラブ既読 14:52</p>
+        </div>
+        <p class="toast" id="hero-toast" aria-hidden="true"></p>
+        <p class="sticker">1年生の下校 14:40</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec day rv" aria-labelledby="h-day">
+    <div class="wrap">
+      <div class="sh">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11 6v5.5l3.5 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        <p class="en" aria-hidden="true">After School</p>
+        <h2 id="h-day">放課後の4時間で、変わること</h2>
+        <p class="lead">支援員さんの手が一番ふさがる時間に、電話と紙の転記が入らないようにしました。</p>
+      </div>
+      <ol class="timeline">
+        <li class="tl"><time>14:40</time><h3>下校時刻を先に知っている</h3><p>学年ごとの下校時刻と学校行事を月の初めに登録。短縮授業の日も、その日の予定として出ます。</p><span class="before">これまで：学校だよりを見て、ホワイトボードに書き写す</span></li>
+        <li class="tl"><time>15:05</time><h3>来ていない子が赤く残る</h3><p>入口のQRカードで入室すると来所に移動。下校から20分たっても来ない子だけが、未来所に赤く残ります。</p><span class="before">これまで：名簿に指で印をつけて数える</span></li>
+        <li class="tl"><time>16:20</time><h3>お迎えの変更は文字で届く</h3><p>「今日は祖母が迎えに」「習いごとで16時に帰す」は、保護者がアプリから送ります。既読がつくので言った・言わないになりません。</p><span class="before">これまで：おやつの最中に電話が鳴る</span></li>
+        <li class="tl"><time>18:30</time><h3>出席簿は締めるだけ</h3><p>退室の記録がそのまま月の出席簿になります。延長利用の時間とおやつ代も、同じ記録から集計します。</p><span class="before">これまで：閉所後に紙の出席簿を転記する</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec rv" aria-labelledby="h-case-top" style="--acc:var(--peach);--acc-l:#f4c4cd">
+    <div class="wrap">
+      <div class="sh">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M4 5h14v9H9l-4 4v-4H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+        <p class="en" aria-hidden="true">Story</p>
+        <h2 id="h-case-top">導入したクラブの声</h2>
+        <p class="lead">公設民営・登録児童68人のクラブで、電話の数がどう変わったか。</p>
+      </div>
+      <div class="case-hero">
+        <div class="case-art" id="art-top"></div>
+        <div>
+          <p class="quote">「15時台に3本、4本と重なっていた電話が、ほとんど鳴らなくなりました。子どもの顔を見ながら来所を確認できます。」</p>
+          <div class="nums">
+            <div><b>11.3<small>→</small>2.1</b><span>1日あたりの保護者からの電話（件）</span></div>
+            <div><b>23<small>→</small>6</b><span>15時台の所在確認にかかる時間（分）</span></div>
+          </div>
+          <p class="quote-by">みなと第二小学校区 放課後児童クラブ／施設長 宮下 敦子さん<br>（2025年4月導入。数字は導入前2か月と導入後6か月目の比較、クラブの記録による）</p>
+          <p style="margin-top:18px"><button class="link" type="button" data-case="minato">この事例をくわしく読む</button>　<a href="#cases" data-route="cases">ほかの事例を見る</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-tint rv" aria-labelledby="h-price-top">
+    <div class="wrap">
+      <div class="sh">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M5 4l6 8 6-8M5 12h12M5 16h12M11 12v7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        <p class="en" aria-hidden="true">Pricing</p>
+        <h2 id="h-price-top">料金は、登録児童数で決まります</h2>
+        <p class="lead">1施設あたり月額 ￥6,980（税抜）から。職員アカウントと保護者アカウントは人数で増えません。</p>
+      </div>
+      <p><a class="btn btn-ghost" href="#pricing" data-route="pricing">料金とプランの比較を見る</a>　<button class="link" type="button" data-goto="pricing" data-anchor="estimate">補助金申請用の見積書をつくる</button></p>
+    </div>
+  </section>
+</div>
+
+<!-- =============== 機能 =============== -->
+<div class="page" id="p-features" data-page="features" hidden>
+  <section class="f-hero">
+    <div class="wrap">
+      <div class="sh" style="margin-bottom:12px">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="12" y="3" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="12" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="12" y="12" width="7" height="7" rx="1.5" fill="currentColor"/></svg></span>
+        <p class="en" aria-hidden="true">Features</p>
+        <h1 id="h-features" tabindex="-1">支援員、施設長、保護者、<br>市区町村の担当課まで使っています</h1>
+        <p class="lead">同じ記録を、それぞれが必要な形で見ます。入力は入口のQRカードと保護者のスマホだけです。</p>
+      </div>
+      <ul class="roles" aria-label="使っている人">
+        <li>放課後児童支援員・補助員</li><li>施設長・主任</li><li>運営法人の本部</li><li>保護者・祖父母</li><li>市区町村の子ども家庭課</li>
+      </ul>
+    </div>
+  </section>
+  <section class="sec" style="padding-top:24px" aria-label="課題ごとの機能">
+    <div class="wrap">
+      <article class="blk rv" style="--acc:var(--peach)">
+        <div class="blk-txt">
+          <p class="kick">所在の確認</p>
+          <h3>下校したのに来ていない子に、<br>15時の時点で気づける</h3>
+          <p>学年ごとの下校時刻を登録しておくと、下校から決まった時間（初期は20分）を過ぎても入室の記録がない子が、未来所として赤く残ります。欠席の連絡が来ている子は最初から除かれるので、残った子だけを確かめればすみます。</p>
+          <ul class="checks"><li>学校行事・短縮授業・台風の臨時下校も、その日だけ時刻を変えられる</li><li>未来所の子の保護者へ、ボードから1回の操作で確認の連絡</li><li>何時に誰が確認したかが記録に残る</li></ul>
+          <button class="link" type="button" data-open="demo">出欠ボードを触ってみる</button>
+        </div>
+        <div class="screen" aria-hidden="true">
+          <p class="bar"><i></i>未来所アラート　10月26日（月）</p>
+          <div class="body">
+            <div class="row"><span>2年 たかはし ゆいな</span><span class="chip chip-r">下校から 26分</span></div>
+            <div class="row"><span>3年 もりや こうき</span><span class="chip chip-r">下校から 21分</span></div>
+            <div class="row"><span>1年 いのうえ たける</span><span class="chip chip-y">確認の連絡ずみ・既読</span></div>
+            <div class="row"><span>4年 くどう めい</span><span class="chip chip-g">欠席連絡あり（通院）</span></div>
+          </div>
+        </div>
+      </article>
+      <article class="blk rv" style="--acc:var(--sky)">
+        <div class="blk-txt">
+          <p class="kick">保護者との連絡</p>
+          <h3>欠席・お迎え変更の電話を、<br>既読のつく連絡に置き換える</h3>
+          <p>保護者は「欠席」「お迎えの人が変わる」「早く帰す」を、選んで送るだけ。自由に書く欄もあります。連絡は受付時間を決められるので、夜の職員の携帯に届くことはありません。お知らせは誰が読んでいないかがわかります。</p>
+          <ul class="checks"><li>お迎えの人は、事前に登録した人（祖父母・ファミサポなど）から選ぶ</li><li>やさしい日本語・英語・中国語・ポルトガル語・ベトナム語に自動で訳す</li><li>スマホが無い家庭には、同じ内容を紙で印刷できる</li></ul>
+        </div>
+        <div class="screen" aria-hidden="true">
+          <p class="bar"><i></i>きょうの連絡　8件</p>
+          <div class="body">
+            <div class="row"><span>1年 さえき はると</span><span class="chip chip-b">お迎え：祖母 17:40</span></div>
+            <div class="row"><span>2年 にしだ そうた</span><span class="chip chip-b">早退：16:00 スイミング</span></div>
+            <div class="row"><span>4年 くどう めい</span><span class="chip chip-g">欠席：通院</span></div>
+            <div class="row"><span>お知らせ「11月の遠足」</span><span class="chip chip-y">未読 5世帯</span></div>
+          </div>
+        </div>
+      </article>
+      <article class="blk rv" style="--acc:#b98200">
+        <div class="blk-txt">
+          <p class="kick">長期休みと一日利用</p>
+          <h3>夏休み41日分の弁当と利用日を、<br>申し込みの時点で集計する</h3>
+          <p>学校休業日の利用日、弁当か給食の注文か、朝の開所時刻を、保護者がカレンダーから申し込みます。日ごとの人数と、必要な職員数の目安がその場で出るので、シフトを組む前に足りない日がわかります。</p>
+          <ul class="checks"><li>申し込みの締め切りと、締め切り後の変更の受け付けを分けられる</li><li>弁当業者へ渡す日別の注文数をCSVで出力</li></ul>
+        </div>
+        <div class="screen" aria-hidden="true">
+          <p class="bar"><i></i>8月の利用申し込み　締め切り 7月10日</p>
+          <div class="body">
+            <div class="row"><span>8月4日（月）</span><span>62人　<span class="chip chip-y">弁当注文 18</span></span></div>
+            <div class="row"><span>8月5日（火）</span><span>59人　<span class="chip chip-y">弁当注文 21</span></span></div>
+            <div class="row"><span>8月13日（水）</span><span>31人　<span class="chip chip-g">職員 3人で足りる</span></span></div>
+            <div class="row"><span>8月18日（月）</span><span>67人　<span class="chip chip-r">職員 1人不足</span></span></div>
+          </div>
+        </div>
+      </article>
+      <article class="blk rv" style="--acc:var(--green)">
+        <div class="blk-txt">
+          <p class="kick">集金と書類</p>
+          <h3>おやつ代と延長料金を、<br>入退室の記録から計算する</h3>
+          <p>延長利用は退室の時刻から、おやつ代は出席日数から月ごとに計算します。口座振替用のデータと、市区町村の様式に合わせた出席簿・実績報告を、締めた記録からそのまま出力できます。</p>
+          <ul class="checks"><li>現金で集める場合は、受け取りの記録と領収書の印刷</li><li>入所・継続の申請をアプリで受け付け、紙の申請書と同じ項目で保存</li></ul>
+        </div>
+        <div class="screen" aria-hidden="true">
+          <p class="bar"><i></i>9月の集金　締め日 9月30日</p>
+          <div class="body">
+            <div class="row"><span>おやつ代（1日 75円 × 出席日数）</span><span>￥96,075</span></div>
+            <div class="row"><span>延長利用（30分 200円）</span><span>￥18,400</span></div>
+            <div class="row"><span>口座振替データ（全銀形式）</span><span class="chip chip-g">出力できます</span></div>
+            <div class="row"><span>未収</span><span class="chip chip-r">2世帯 ￥3,150</span></div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+  <section class="sec sec-tint" aria-labelledby="h-fl">
+    <div class="wrap">
+      <div class="sh">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M4 6h14M4 11h14M4 16h9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        <p class="en" aria-hidden="true">All Features</p>
+        <h2 id="h-fl">そのほかの機能</h2>
+        <p class="lead">どのプランでも使えるかは、料金ページの比較表で確かめられます。</p>
+      </div>
+      <ul class="fcards">
+        <li class="fc mig rv"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><path d="M5 9h14l-4-4M23 19H9l4 4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>紙の名簿・Excelからの移行</h3><p>児童名簿のExcelを読み込み、学年・下校班・お迎えの人を一度に登録。初期設定の代行もあります。</p></li>
+        <li class="fc rv"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect x="5" y="5" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M9 9h4v4H9zM15 15h4v4h-4z" fill="currentColor"/></svg><h3>QRカードの入退室</h3><p>入口のタブレット1台で記録。カードを忘れた子は、職員が名前から押します。</p></li>
+        <li class="fc rv"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><path d="M7 21V9l7-4 7 4v12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M11 21v-6h6v6" fill="none" stroke="currentColor" stroke-width="2.4"/></svg><h3>複数クラブの一覧</h3><p>法人の本部や市区町村の担当課が、所管のクラブの在籍数と利用状況を一画面で見ます。</p></li>
+        <li class="fc rv"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="10" r="4" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M6 23c1-5 4.5-7 8-7s7 2 8 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><h3>アレルギーと配慮の記録</h3><p>食物アレルギー・持病・配慮事項を、権限のある職員だけが見られる欄に。おやつの準備画面に印が出ます。</p></li>
+        <li class="fc rv"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><path d="M5 7h18v12H5z" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M5 7l9 7 9-7" fill="none" stroke="currentColor" stroke-width="2.4"/></svg><h3>職員の連絡ノート</h3><p>早番から遅番への申し送りを、児童ごとに残します。保護者には見えません。</p></li>
+        <li class="fc rv"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect x="6" y="5" width="16" height="19" rx="2" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M10 11h8M10 15h8M10 19h5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><h3>ヒヤリハットの記録</h3><p>けが・トラブルを写真つきで記録し、保護者への報告と市への事故報告の下書きを作ります。</p></li>
+        <li class="fc rv"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="9" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M5 14h18M14 5c3 3 3 15 0 18M14 5c-3 3-3 15 0 18" fill="none" stroke="currentColor" stroke-width="2"/></svg><h3>やさしい日本語と翻訳</h3><p>お知らせを書くと、やさしい日本語と4か国語の訳を並べて確かめてから送れます。</p></li>
+        <li class="fc rv"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect x="7" y="12" width="14" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M10 12V9a4 4 0 018 0v3" fill="none" stroke="currentColor" stroke-width="2.4"/></svg><h3>2段階認証と操作ログ</h3><p>職員のログインに2段階認証を必須にでき、誰がいつ児童の情報を見たかを残します。</p></li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<!-- =============== 料金 =============== -->
+<div class="page" id="p-pricing" data-page="pricing" hidden>
+  <section class="sec" style="padding-top:64px">
+    <div class="wrap">
+      <div class="sh" style="margin-bottom:16px">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M5 4l6 8 6-8M5 12h12M5 16h12M11 12v7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        <p class="en" aria-hidden="true">Pricing</p>
+        <h1 id="h-pricing" tabindex="-1">料金プラン</h1>
+        <p class="lead">プランは正式に申し込むときに選びます。30日間のお試しは、どのボタンからでも同じ内容（ワイドプランの全機能）です。</p>
+      </div>
+      <nav class="toc" aria-label="このページの中">
+        <a href="#cmp-h">プランを比べる</a><a href="#estimate">見積書をつくる</a><a href="#flow-h">導入までの流れ</a><a href="#faq-h">よくある質問</a>
+      </nav>
+
+      <div class="p-tools">
+        <div class="slider-box">
+          <label for="kids">1施設の登録児童数 <output id="kids-out" for="kids">55<small>人</small></output></label>
+          <input type="range" id="kids" min="0" max="7" step="1" value="3" aria-valuetext="55人" aria-describedby="kids-hint">
+          <div class="ticks" id="ticks" aria-label="児童数をえらぶ"></div>
+          <p class="p-note" id="kids-hint">合うプランに札がつきます。国の基準で1つの支援の単位はおおむね40人まで。121人以上は、支援の単位を足す形になります。</p>
+        </div>
+        <div>
+          <p class="legend" id="bill-l">支払いの間隔</p>
+          <div class="bill" role="radiogroup" aria-labelledby="bill-l">
+            <input type="radio" name="bill" id="bill-m" value="m" checked><label for="bill-m">月払い</label>
+            <input type="radio" name="bill" id="bill-y" value="y"><label for="bill-y">年払い（5%オフ）</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="plans filtered" id="plans"></div>
+      <p class="show-all-p" style="margin-top:12px"><button class="link" type="button" id="show-all" hidden>ほかのプランも表示する</button></p>
+      <p class="free-note">価格はすべて税抜・日本円（￥）、1施設あたりの月額です。児童10人・職員2人まで、出欠だけを使えるフリープランもあります（比較表の左の列）。</p>
+
+      <div class="diag" aria-labelledby="diag-h">
+        <div>
+          <h3 id="diag-h">どのプランか迷ったら</h3>
+          <p class="p-note">4つの質問に答えると、合うプランと月額を出します。答えは保存しません。</p>
+        </div>
+        <div id="diag" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-tint" aria-labelledby="cmp-h" style="padding-top:72px">
+    <div class="wrap">
+      <div class="sh">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M4 5h14M4 11h14M4 17h14M9 3v16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        <p class="en" aria-hidden="true">Compare</p>
+        <h2 id="cmp-h">プランを比べる</h2>
+        <p class="lead">5つの区分、26項目。スマホでは項目ごとに開いて見られます。</p>
+      </div>
+      <table class="cmp" id="cmp"></table>
+      <div class="cmp-sp" id="cmp-sp"></div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="est-h" id="estimate">
+    <div class="wrap">
+      <div class="sh">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M6 3h7l4 4v12H6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 11h5M9 15h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        <p class="en" aria-hidden="true">Estimate</p>
+        <h2 id="est-h">見積書をつくる</h2>
+        <p class="lead">補助金の申請や、運営委員会・法人の決裁にそのまま使える見積書を、このページで作れます。</p>
+      </div>
+      <form class="estimate" id="est-form">
+        <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:end">
+          <div class="field" style="margin:0"><label for="est-plan">プラン</label><select id="est-plan"></select></div>
+          <div class="field" style="margin:0"><label for="est-n">施設数</label><input type="number" id="est-n" min="1" max="60" value="1" style="width:110px" aria-describedby="est-err"></div>
+          <div class="field" style="margin:0"><label for="est-term">期間</label><select id="est-term"><option value="12">12か月（年払い 5%オフ）</option><option value="1">1か月（月払い）</option></select></div>
+          <p style="width:100%;margin-top:4px" class="p-note" id="est-sum" aria-live="polite"></p>
+          <span class="err" id="est-err" role="alert"></span>
+        </div>
+        <button class="btn btn-ghost" type="submit">見積書をダウンロード（テキスト）</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="sec sec-tint" aria-labelledby="flow-h">
+    <div class="wrap">
+      <div class="sh">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 11h13M12 6l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <p class="en" aria-hidden="true">Flow</p>
+        <h2 id="flow-h">導入までの流れ</h2>
+        <p class="lead">お試しで登録した児童・保護者・記録は、そのまま本番に引き継ぎます。</p>
+      </div>
+      <ol class="flow">
+        <li><h3>お試しを申し込む</h3><p>クラブ名とメールアドレスだけ。支払い情報は入力しません。</p></li>
+        <li><h3>30日間 使ってみる</h3><p>名簿のExcelを読み込み、職員2〜3人で入退室から始めるのがおすすめです。</p></li>
+        <li><h3>プランを選んで契約</h3><p>請求書払い・口座振替のどちらか。年度途中の契約は月割りです。</p></li>
+        <li><h3>保護者に案内する</h3><p>配布用のチラシ（QRコードつき）を印刷して配れば、保護者が自分で登録します。</p></li>
+      </ol>
+      <p style="margin-top:36px"><button class="btn btn-main btn-lg" type="button" data-open="trial"><small>支払い情報の入力不要</small>まずは30日間 無料で試す</button></p>
+    </div>
+  </section>
+
+  <section class="sec faq" aria-labelledby="faq-h">
+    <div class="wrap" style="max-width:860px">
+      <div class="sh">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8.5 8.5a2.5 2.5 0 114 2c-1 .7-1.5 1.2-1.5 2.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="11" cy="16" r="1.2" fill="currentColor"/></svg></span>
+        <p class="en" aria-hidden="true">FAQ</p>
+        <h2 id="faq-h">よくある質問</h2>
+        <p class="lead">料金・支払い・個人情報について、よくいただく11の質問です。</p>
+      </div>
+      <div id="faq"></div>
+    </div>
+  </section>
+</div>
+
+<!-- =============== 導入事例 =============== -->
+<div class="page" id="p-cases" data-page="cases" hidden>
+  <section class="sec" style="padding-top:64px">
+    <div class="wrap">
+      <div class="sh" style="--acc:var(--peach);--acc-l:#f4c4cd;margin-bottom:8px">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M4 5h14v9H9l-4 4v-4H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+        <p class="en" aria-hidden="true">Stories</p>
+        <h1 id="h-cases" tabindex="-1">導入事例</h1>
+        <p class="lead">運営のかたちも規模もちがうクラブが、何に困って、何が変わったか。</p>
+      </div>
+      <form class="filters" id="filters" aria-label="事例をしぼりこむ"></form>
+      <p class="count" id="case-count" aria-live="polite"></p>
+      <div id="case-list"></div>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<footer class="ft">
+  <div class="wrap">
+    <div>
+      <p style="font-weight:800;letter-spacing:.12em;color:#fff;font-size:17px">おかえりノート</p>
+      <p>放課後児童クラブの出欠と保護者連絡のアプリ</p>
+      <p style="margin-top:8px">運営：株式会社ひだまりラボ（架空の会社です）</p>
+    </div>
+    <div><h3>製品</h3><ul><li><a href="#features" data-route="features">機能</a></li><li><a href="#pricing" data-route="pricing">料金</a></li><li><a href="#cases" data-route="cases">導入事例</a></li><li><button class="link" type="button" data-open="demo">出欠ボードを触る</button></li></ul></div>
+    <div><h3>安心して使うために</h3><ul><li><button class="link" type="button" data-open="sec">セキュリティと個人情報</button></li><li><button class="link" type="button" data-open="status"><span class="status-dot" aria-hidden="true"></span>稼働状況</button></li><li><button class="link" type="button" data-open="doc">資料ダウンロード</button></li></ul></div>
+    <div><h3>お問い合わせ</h3><ul><li>電話 0120-○○○-○○○（架空）</li><li>平日 9:30〜18:00</li><li>学童の閉所後に折り返しも受け付けます</li></ul></div>
+    <p class="copy">このページは site-skills の使用例として作った架空の製品サイトです。団体名・人名・数字はすべて架空です。</p>
+  </div>
+</footer>
+
+<button class="totop" type="button" id="totop" aria-label="ページの先頭へ"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" style="margin:auto"><path d="M3 10l5-5 5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+<button class="skills-btn" type="button" data-open="skills"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="2" width="5" height="5" rx="1" fill="#f0b429"/><rect x="9" y="2" width="5" height="5" rx="1" fill="#fff"/><rect x="2" y="9" width="5" height="5" rx="1" fill="#fff"/><rect x="9" y="9" width="5" height="5" rx="1" fill="#fff"/></svg>使ったスキル</button>
+
+<!-- ダイアログ -->
+<dialog id="trial" aria-labelledby="trial-h">
+  <div class="dlg-h"><h2 id="trial-h">30日間の無料お試し</h2><button class="x" type="button" data-close aria-label="閉じる">×</button></div>
+  <div class="dlg-b">
+    <form id="trial-form" novalidate>
+      <p class="form-note">支払い情報の入力は不要です。お試しが終わっても自動で有料にはなりません。プランは正式に申し込むときに選びます。</p>
+      <div class="field"><label for="t-club">クラブ名<span class="req">必須</span></label><input type="text" id="t-club" name="club" autocomplete="organization" placeholder="例：みなと第二小学校区 放課後児童クラブ" aria-describedby="t-club-e"><span class="err" id="t-club-e"></span></div>
+      <fieldset class="field"><legend>運営のかたち<span class="req">必須</span></legend><div class="radios" role="radiogroup" aria-describedby="t-type-e"><label><input type="radio" name="type" value="公設公営">公設公営</label><label><input type="radio" name="type" value="公設民営">公設民営</label><label><input type="radio" name="type" value="民設民営">民設民営</label><label><input type="radio" name="type" value="保護者会">保護者会・父母会</label></div><span class="err" id="t-type-e"></span></fieldset>
+      <div class="field"><label for="t-kids">登録児童数（だいたいで構いません）</label><input type="number" id="t-kids" name="kids" min="1" max="400" inputmode="numeric" placeholder="例：55" aria-describedby="t-kids-e"><span class="err" id="t-kids-e"></span></div>
+      <div class="field"><label for="t-name">お名前<span class="req">必須</span></label><input type="text" id="t-name" name="name" autocomplete="name" aria-describedby="t-name-e"><span class="err" id="t-name-e"></span></div>
+      <div class="field"><label for="t-mail">メールアドレス<span class="req">必須</span></label><input type="email" id="t-mail" name="mail" autocomplete="email" inputmode="email" aria-describedby="t-mail-e"><span class="err" id="t-mail-e"></span></div>
+      <button class="btn btn-main btn-lg" type="submit" style="width:100%">お試しを始める</button>
+      <p class="form-note" style="margin-top:12px">この使用例では送信しません。入力の確かめ方だけ動きます。</p>
+    </form>
+    <div class="done" id="trial-done" hidden tabindex="-1">
+      <svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true" style="margin:auto"><circle cx="28" cy="28" r="26" fill="#d6ecdf"/><path d="M17 29l7 7 15-16" fill="none" stroke="#0b7a52" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h3>受け付けました</h3>
+      <p id="trial-done-msg"></p>
+      <p style="margin-top:14px"><button class="btn btn-ghost" type="button" data-close>閉じる</button></p>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="doc" aria-labelledby="doc-h">
+  <div class="dlg-h"><h2 id="doc-h">資料をダウンロード</h2><button class="x" type="button" data-close aria-label="閉じる">×</button></div>
+  <div class="dlg-b">
+    <form id="doc-form" novalidate>
+      <p class="form-note">A4・12ページ。機能、料金、導入までの流れ、セキュリティの説明を、職員会議や運営委員会で配れる形にまとめています。</p>
+      <div class="field"><label for="d-mail">送り先のメールアドレス<span class="req">必須</span></label><input type="email" id="d-mail" autocomplete="email" aria-describedby="d-mail-e"><span class="err" id="d-mail-e"></span></div>
+      <div class="field"><label for="d-role">お立場</label><select id="d-role"><option>施設長・主任</option><option>支援員・補助員</option><option>運営法人の本部</option><option>市区町村の担当課</option><option>保護者会の役員</option></select></div>
+      <button class="btn btn-sub btn-lg" type="submit" style="width:100%">資料を受け取る</button>
+    </form>
+    <div class="done" id="doc-done" hidden tabindex="-1"><h3>メールでお送りしました</h3><p>（使用例のため、実際には送られません）</p><p style="margin-top:14px"><button class="btn btn-ghost" type="button" data-close>閉じる</button></p></div>
+  </div>
+</dialog>
+
+<dialog id="demo" aria-labelledby="demo-h">
+  <div class="dlg-h"><h2 id="demo-h">出欠ボードを触ってみる</h2><button class="x" type="button" data-close aria-label="閉じる">×</button></div>
+  <div class="dlg-b">
+    <p class="form-note" style="margin-top:0">子どもの名前を押すと、未来所 → 来所 → 帰宅 と移ります。未来所の子には、保護者への確認を送れます。</p>
+    <div class="demo-bar"><span class="alert" id="d-alert" aria-live="polite"></span><button class="btn btn-ghost btn-sm" type="button" id="d-reset" style="margin-left:auto">最初に戻す</button></div>
+    <div class="d-board" id="d-board"></div>
+    <ul class="d-log" id="d-log" aria-label="きょうの記録" aria-live="polite"></ul>
+  </div>
+</dialog>
+
+<dialog id="case-dlg" aria-labelledby="cd-h">
+  <div class="dlg-h"><h2 id="cd-h">導入事例</h2><button class="x" type="button" data-close aria-label="閉じる">×</button></div>
+  <div class="dlg-b cd" id="cd-body"></div>
+</dialog>
+
+<dialog id="sec" aria-labelledby="sec-h">
+  <div class="dlg-h"><h2 id="sec-h">セキュリティと個人情報</h2><button class="x" type="button" data-close aria-label="閉じる">×</button></div>
+  <div class="dlg-b">
+    <ul style="line-height:2">
+      <li>・データは国内のデータセンターに保存し、通信と保存の両方を暗号化します。</li>
+      <li>・アレルギーや家庭の事情などの配慮事項は、権限を与えた職員だけが見られます。</li>
+      <li>・職員のログインに2段階認証を必須にできます（スタンダード以上）。</li>
+      <li>・児童の情報を見た・変えた操作のログを、プランに応じて1〜5年保存します。</li>
+      <li>・契約を終えるときは、全データをCSVで受け取ってから削除できます。</li>
+      <li>・自治体の情報セキュリティのチェックシートへの回答書を、資料と一緒にお渡しします。</li>
+    </ul>
+    <p class="form-note" style="margin-top:12px">※使用例のための架空の内容です。</p>
+  </div>
+</dialog>
+
+<dialog id="status" aria-labelledby="st-h">
+  <div class="dlg-h"><h2 id="st-h">稼働状況</h2><button class="x" type="button" data-close aria-label="閉じる">×</button></div>
+  <div class="dlg-b">
+    <p><span class="status-dot" aria-hidden="true"></span><b>すべて正常に動いています</b>（2026年10月26日 15:10 時点）</p>
+    <div class="screen" style="--acc:var(--green);box-shadow:none;margin-top:14px"><div class="body">
+      <div class="row"><span>入退室の記録</span><span class="chip chip-g">正常</span></div>
+      <div class="row"><span>保護者アプリ・連絡</span><span class="chip chip-g">正常</span></div>
+      <div class="row"><span>お知らせの通知</span><span class="chip chip-g">正常</span></div>
+      <div class="row"><span>直近90日の稼働率</span><span>99.97%</span></div>
+    </div></div>
+    <p class="form-note" style="margin-top:12px">直近の停止：2026年8月19日 6:02〜6:19（定期メンテナンス、開所前に実施）。※架空の内容です。</p>
+  </div>
+</dialog>
+
+<dialog id="skills" aria-labelledby="sk-h">
+  <div class="dlg-h"><h2 id="sk-h">使ったスキル</h2><button class="x" type="button" data-close aria-label="閉じる">×</button></div>
+  <div class="dlg-b">
+    <p class="form-note" style="margin-top:0">部品ごとに、どのスキルのどの型・どのサイトの値を当てたか。<span class="own">赤字</span>はスキルに無く、自分で決めたところ。</p>
+    <div class="sk-tabs" id="sk-tabs"></div>
+    <div id="sk-list"></div>
+  </div>
+</dialog>
+
+<script>
+(() => {
+'use strict';
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const yen = n => n.toLocaleString('ja-JP');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+const saveData = !!(navigator.connection && navigator.connection.saveData);
+const motionOK = () => !reduce.matches && !saveData;
+if (motionOK()) document.documentElement.classList.add('motion');
+
+/* ---------- データ ---------- */
+const PLANS = [
+  { id: 'light', name: 'ライト', cap: '登録児童 40人まで', max: 40, m: 6980, feats: ['QRカードの入退室と未来所アラート', '欠席・お迎え変更の連絡', '月の出席簿の出力'] },
+  { id: 'std', name: 'スタンダード', cap: '登録児童 70人まで', max: 70, m: 11480, feats: ['ライトのすべて', '長期休みの利用申し込みと弁当集計', 'おやつ代・延長料金の集金', '2段階認証の必須化'] },
+  { id: 'wide', name: 'ワイド', cap: '登録児童 120人まで', max: 120, m: 17800, feats: ['スタンダードのすべて', '支援の単位ごとの出欠ボード', '入所・継続申請の受け付け', '操作ログ 3年保存'] },
+  { id: 'corp', name: '法人・自治体', cap: '3施設から・1施設 120人まで', max: Infinity, m: 9860, per: '1施設あたり', feats: ['ワイドのすべて', '複数クラブの一覧と実績報告', '担当者による初期設定の代行', '操作ログ 5年保存'] }
+];
+const yearly = m => Math.floor(m * 12 * 0.95);
+const KIDS = [20, 30, 40, 55, 70, 90, 120, 150];
+const planFor = n => n <= 40 ? 'light' : n <= 70 ? 'std' : 'wide';
+
+const CMP = [
+  ['出欠・入退室', [
+    ['QRカードの入退室', '○', '○', '○', '○', '○'],
+    ['未来所アラート（下校時刻と照合）', '—', '○', '○', '○', '○'],
+    ['学年別の下校時刻・行事カレンダー', '—', '○', '○', '○', '○'],
+    ['長期休みの利用申し込み', '—', '—', '○', '○', '○'],
+    ['支援の単位ごとの出欠ボード', '—', '—', '—', '○', '○'],
+    ['月の出席簿（市区町村の様式）', '○', '○', '○', '○', '○']
+  ]],
+  ['保護者連絡', [
+    ['保護者アカウント', '10人まで', '人数無制限', '人数無制限', '人数無制限', '人数無制限'],
+    ['欠席・お迎え変更の連絡', '—', '○', '○', '○', '○'],
+    ['お知らせ配信と既読の確認', '—', '○', '○', '○', '○'],
+    ['連絡の受付時間の設定', '—', '○', '○', '○', '○'],
+    ['やさしい日本語と4か国語の翻訳', '—', '—', '○', '○', '○']
+  ]],
+  ['集金・書類', [
+    ['おやつ代・延長料金の計算', '—', '—', '○', '○', '○'],
+    ['口座振替データ（全銀形式）', '—', '—', '○', '○', '○'],
+    ['入所・継続申請の受け付け', '—', '—', '—', '○', '○'],
+    ['ヒヤリハット・事故報告の下書き', '—', '○', '○', '○', '○'],
+    ['複数クラブの実績報告', '—', '—', '—', '—', '○']
+  ]],
+  ['管理・セキュリティ', [
+    ['職員アカウント', '2人まで', '人数無制限', '人数無制限', '人数無制限', '人数無制限'],
+    ['配慮事項の閲覧権限', '—', '○', '○', '○', '○'],
+    ['2段階認証の必須化', '—', '—', '○', '○', '○'],
+    ['操作ログの保存', '30日', '1年', '1年', '3年', '5年'],
+    ['写真の保存容量', '1GB', '10GB', '30GB', '60GB', '1施設 60GB']
+  ]],
+  ['サポート', [
+    ['メール・チャット', '○', '○', '○', '○', '○'],
+    ['電話（平日 9:30〜18:00）', '—', '○', '○', '○', '○'],
+    ['オンライン導入説明会', '—', '○', '○', '○', '○'],
+    ['保護者向け案内チラシ', '○', '○', '○', '○', '○'],
+    ['担当者による初期設定の代行', '—', '—', '—', '—', '○']
+  ]]
+];
+const COLS = ['フリー', 'ライト', 'スタンダード', 'ワイド', '法人・自治体'];
+
+const FAQ = [
+  ['お試し期間が終わると、自動で有料になりますか。', 'なりません。30日が過ぎると閲覧だけになり、契約のお申し込みをいただいた時点で記録をそのまま使えます。支払い情報は、お試しの申し込みでは入力しません。'],
+  ['月払いと年払いのちがいは何ですか。', '年払いは12か月分を一括でお支払いいただく代わりに、月払いの合計から5%を差し引きます。年度途中から始める場合は、3月までの月割りの年払いも選べます。'],
+  ['表示の価格は税込ですか。', 'すべて税抜・日本円です。請求書には消費税（10%）を加えた金額を記載します。'],
+  ['登録児童数がプランの上限を超えたらどうなりますか。', '翌月から上のプランに切り替わります。年度の途中で一時的に超える（長期休みだけ利用する児童など）場合は、その月だけ超えても切り替えません。'],
+  ['長期休みだけ利用する児童も、登録児童数に入りますか。', '入ります。ただし利用のある月だけ数えます。夏休みだけ利用する児童は、7月と8月だけ人数に含めます。'],
+  ['支払い方法は何がありますか。', '請求書払い（銀行振込）と口座振替です。市区町村の公費でのお支払いに合わせて、見積書・納品書・請求書を年度の様式で発行します。'],
+  ['補助金の申請に使えますか。', 'このページで作る見積書と、機能の説明資料を申請にお使いいただけます。対象になるかどうかは、各市区町村の担当課にご確認ください。'],
+  ['保護者がスマホを持っていない場合はどうしますか。', 'お知らせは紙に印刷でき、欠席やお迎えの連絡は職員が電話で受けた内容をボードに入れられます。保護者アカウントが無い家庭も、ほかの家庭と同じ出欠ボードで扱えます。'],
+  ['入口のタブレットは用意してもらえますか。', 'お手持ちのタブレット（iPadOS 16以上、Android 11以上）で動きます。レンタルは1台 月額￥1,200（税抜）で、QRカードの印刷は無料です。'],
+  ['途中で解約できますか。', '月払いは翌月末で解約できます。年払いは期間の途中で解約しても返金はありませんが、期間の終わりまで使えます。解約の前に、全データをCSVで受け取れます。'],
+  ['児童の個人情報はどこに保存されますか。', '国内のデータセンターに暗号化して保存します。自治体の情報セキュリティのチェックシートへの回答書を、資料ダウンロードと一緒にお渡しします。']
+];
+
+const AV_COLORS = ['#0b7a52', '#1d74a8', '#bf3f55', '#b4500e', '#6d5bb0', '#7a5600'];
+const CASES = [
+  { id: 'minato', type: '公設民営', size: '41〜70人', uses: ['出欠', '保護者連絡'], area: '関東・政令市', big: true,
+    title: '1日11.3件あった保護者からの電話が、2.1件に', org: 'みなと第二小学校区 放課後児童クラブ（運営：NPO法人 みなとの子ども会）', kids: 68, staff: 9,
+    before: ['15時台に欠席・お迎え変更の電話が重なり、来所の確認が止まる', '短縮授業の日を職員が把握しておらず、下校を待ってしまう', '紙の出席簿を閉所後に30分かけて転記'],
+    after: ['電話は1日平均2.1件（導入後6か月目）', '15時台の所在確認が23分から6分に', '出席簿の転記が無くなり、遅番の退勤が平均34分早く'],
+    talk: [['なぜ入れたのですか', '去年の6月に、下校した2年生が来所せずに公園にいたことがありました。電話を受けていた職員が名簿を見られなかったんです。電話を減らすことが先だと思いました。'], ['保護者の登録は進みましたか', '4月の保護者会でチラシを配って、2週間で68世帯のうち61世帯が登録しました。残りの家庭は、職員が電話の内容を入れています。']], by: '施設長 宮下 敦子さん' },
+  { id: 'hidamari', type: '民設民営', size: '71人〜', uses: ['集金', '長期休み'], area: '中部・中核市',
+    title: '夏休み41日分の弁当集計を、申し込みと同時に', org: '第二ひだまりクラブ（NPO法人 ひだまりの会）', kids: 104, staff: 14,
+    before: ['弁当の注文を紙の申込書で集め、毎週末に手で数える', '人数の多い日に職員が足りないと前日に気づく'],
+    after: ['日別の弁当注文数を業者へCSVで送るだけに', '職員が足りない日を、申し込みの締め切り日にわかる', '注文の数え間違いが夏休みで0件'],
+    talk: [['どこが一番楽になりましたか', '7月の土日に申込書を数えていた作業が、まるごと無くなりました。8月18日だけ人が足りないとわかったので、OBの大学生に頼めました。']], by: '事務局長 長尾 誠さん' },
+  { id: 'mizuho', type: '民設民営', size: '41〜70人', uses: ['集金'], area: '近畿・一般市',
+    title: 'おやつ代の集金ミスが、年17件から0件に', org: 'みずほ台児童クラブ（社会福祉法人 みずほ会）', kids: 52, staff: 7,
+    before: ['現金で集めるおやつ代の計算を、出席簿から手で行う', '月に1〜2件、金額のまちがいで返金や追加の連絡'],
+    after: ['出席日数からおやつ代と延長料金を自動で計算', '口座振替に切り替え、現金の受け渡しが無くなった'],
+    talk: [['口座振替への切り替えは大変でしたか', '保護者に依頼書を書いてもらうところは紙のままです。ただ、金額の計算と振替データを作るところは、締めのボタンを押すだけになりました。']], by: '主任支援員 坂口 由美子さん' },
+  { id: 'kawara', type: '公設公営', size: '〜40人', uses: ['出欠', '保護者連絡'], area: '東北・町村',
+    title: '1つの支援の単位、職員4人でも回る出欠確認', org: '川原町 放課後児童クラブ（町の直営）', kids: 31, staff: 4,
+    before: ['職員4人のうち1人が電話番になり、子どもを見る人が減る', '冬の臨時下校の日、保護者全員に電話で連絡'],
+    after: ['臨時下校のお知らせを1回の配信で全世帯に。既読で確かめる', '電話番が要らなくなり、職員3人で子どもを見られる'],
+    talk: [['町の直営で、手続きは難しくなかったですか', '町の情報担当とセキュリティのチェックシートをやりとりして、2か月で導入できました。回答書が最初から用意されていたのは助かりました。']], by: '子ども家庭課 主査 佐藤 健一さん' },
+  { id: 'tsubame', type: '保護者会', size: '〜40人', uses: ['保護者連絡', '集金'], area: '関東・一般市',
+    title: '役員の交代でも、連絡網と会計を引き継げる', org: 'つばめ学童保育所（保護者会運営）', kids: 38, staff: 5,
+    before: ['連絡網が役員個人のLINEで、年度ごとに作り直し', '会計の帳簿がExcelで、引き継ぎのたびに数式が壊れる'],
+    after: ['連絡はクラブのアカウントから送るので、役員が変わっても同じ', '集金の記録がアプリに残り、監査の資料をそのまま出せる'],
+    talk: [['保護者会運営ならではの使い方は', '役員の権限を年度ごとに付け替えています。前の役員は、自分の子どもの連絡だけ見られる保護者に戻ります。']], by: '保護者会 会計 石田 美穂さん' },
+  { id: 'harunoki', type: '民設民営', size: '71人〜', uses: ['出欠', '保護者連絡', '長期休み'], area: '関東・特別区',
+    title: '外国籍の家庭への連絡を、翻訳つきで1回に', org: 'キッズベース桜通り（株式会社ハルノキ）', kids: 87, staff: 12,
+    before: ['外国籍の8世帯に、お知らせを職員が口頭で説明し直していた', '長期休みの申し込みの書き方がわからず、未提出が出る'],
+    after: ['お知らせをやさしい日本語・英語・中国語・ベトナム語で同時に配信', '長期休みの未提出が、8世帯から1世帯に'],
+    talk: [['翻訳の質はどうですか', '送る前に訳を並べて見られるので、行事の名前など固有の言葉だけ職員が直しています。保護者からの返信も日本語に訳されて届きます。']], by: 'エリアマネージャー グエン・ティ・ハンさん' }
+];
+
+/* ---------- ルーティング（トップ・機能・料金・導入事例） ---------- */
+const ROUTES = ['top', 'features', 'pricing', 'cases'];
+const TITLES = { top: 'おかえりノート｜放課後児童クラブの出欠と保護者連絡', features: '機能｜おかえりノート', pricing: '料金プラン｜おかえりノート', cases: '導入事例｜おかえりノート' };
+let current = null;
+function show(route, anchor, focus) {
+  if (!ROUTES.includes(route)) route = 'top';
+  const changed = route !== current;
+  current = route;
+  $$('.page').forEach(p => p.hidden = p.dataset.page !== route);
+  $$('[data-route]').forEach(a => a.dataset.route === route && !a.classList.contains('logo') ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current'));
+  document.title = TITLES[route];
+  closeMenu();
+  if (anchor) {
+    const el = document.getElementById(anchor);
+    if (el) { el.scrollIntoView(); return; }
+  }
+  if (changed) {
+    window.scrollTo(0, 0);
+    if (focus) { const h = $('#h-' + route); h && h.focus({ preventScroll: true }); }
+  }
+  observeReveal();
+}
+function parseHash() {
+  const h = location.hash.slice(1);
+  if (ROUTES.includes(h)) return [h, null];
+  const el = h && document.getElementById(h);
+  if (el) { const page = el.closest('.page'); if (page) return [page.dataset.page, h]; }
+  return ['top', null];
+}
+addEventListener('hashchange', () => { const [r, a] = parseHash(); show(r, a, true); });
+document.addEventListener('click', e => {
+  const g = e.target.closest('[data-goto]');
+  if (g) { e.preventDefault(); history.pushState(null, '', '#' + g.dataset.anchor); show(g.dataset.goto, g.dataset.anchor); }
+});
+
+/* ---------- SPメニュー ---------- */
+const menuBtn = $('.menu-btn'), spNav = $('#sp-nav');
+function closeMenu() { spNav.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); menuBtn.setAttribute('aria-label', 'メニューを開く'); }
+menuBtn.addEventListener('click', () => {
+  const open = !spNav.classList.contains('open');
+  spNav.classList.toggle('open', open);
+  menuBtn.setAttribute('aria-expanded', String(open));
+  menuBtn.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+  if (open) spNav.querySelector('a').focus();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && spNav.classList.contains('open')) { closeMenu(); menuBtn.focus(); } });
+
+/* ---------- ダイアログ ---------- */
+document.addEventListener('click', e => {
+  const o = e.target.closest('[data-open]');
+  if (o) { openDlg(o.dataset.open); return; }
+  const c = e.target.closest('[data-close]');
+  if (c) c.closest('dialog').close();
+  const cs = e.target.closest('[data-case]');
+  if (cs) openCase(cs.dataset.case);
+});
+function openDlg(id) {
+  const d = document.getElementById(id);
+  if (!d) return;
+  closeMenu();
+  if (id === 'trial') resetForm('trial');
+  if (id === 'doc') resetForm('doc');
+  if (id === 'demo') demoReset();
+  if (d.open) return;
+  d.showModal();
+}
+$$('dialog').forEach(d => d.addEventListener('click', e => { if (e.target === d) d.close(); }));
+
+/* ---------- 入力の確かめ ---------- */
+const MAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+function setErr(input, errEl, msg) {
+  errEl.textContent = msg || '';
+  if (input) input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+  return !msg;
+}
+function resetForm(kind) {
+  const f = $('#' + kind + '-form'), done = $('#' + kind + '-done');
+  f.hidden = false; done.hidden = true;
+  $$('.err', f).forEach(e => e.textContent = '');
+  $$('[aria-invalid]', f).forEach(i => i.setAttribute('aria-invalid', 'false'));
+  const b = $('button[type=submit]', f); b.disabled = false; b.textContent = kind === 'trial' ? 'お試しを始める' : '資料を受け取る';
+}
+function fakeSend(f, done, after) {
+  const b = $('button[type=submit]', f);
+  b.disabled = true; b.innerHTML = '<span class="spin" aria-hidden="true"></span>送信しています';
+  setTimeout(() => { after && after(); f.hidden = true; done.hidden = false; done.focus(); }, 900);
+}
+$('#trial-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const f = e.target;
+  const club = $('#t-club'), name = $('#t-name'), mail = $('#t-mail'), kids = $('#t-kids');
+  const type = f.querySelector('input[name=type]:checked');
+  const ok = [
+    setErr(club, $('#t-club-e'), club.value.trim() ? '' : 'クラブ名を入れてください。'),
+    setErr(null, $('#t-type-e'), type ? '' : '運営のかたちを1つ選んでください。'),
+    setErr(kids, $('#t-kids-e'), !kids.value || (+kids.value >= 1 && +kids.value <= 400) ? '' : '1〜400人の数字で入れてください。'),
+    setErr(name, $('#t-name-e'), name.value.trim() ? '' : 'お名前を入れてください。'),
+    setErr(mail, $('#t-mail-e'), !mail.value.trim() ? 'メールアドレスを入れてください。' : MAIL.test(mail.value.trim()) ? '' : '「@」の前後を確かめてください（例：miyashita@example.jp）。')
+  ];
+  if (ok.includes(false)) { const first = f.querySelector('[aria-invalid=true]') || f.querySelector('input[name=type]'); first.focus(); return; }
+  fakeSend(f, $('#trial-done'), () => {
+    const n = +kids.value;
+    $('#trial-done-msg').textContent = `${club.value.trim()} のお試し用の画面を用意しました。${mail.value.trim()} にログインの案内を送ります。` + (n ? `児童${n}人なら、正式な契約では${PLANS.find(p => p.id === planFor(n)).name}プランが合います。` : '');
+  });
+});
+$('#doc-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const mail = $('#d-mail');
+  const ok = setErr(mail, $('#d-mail-e'), !mail.value.trim() ? 'メールアドレスを入れてください。' : MAIL.test(mail.value.trim()) ? '' : '「@」の前後を確かめてください。');
+  if (!ok) { mail.focus(); return; }
+  fakeSend(e.target, $('#doc-done'));
+});
+
+/* ---------- ヒーローのモック（常に動くのはここだけ） ---------- */
+const HERO_KIDS = [
+  ['いのうえ たける', '1年', 'miss'], ['たかはし ゆいな', '2年', 'miss'], ['もりや こうき', '3年', 'miss'],
+  ['さえき はると', '1年', 'in'], ['にしだ そうた', '2年', 'in'], ['あべ りこ', '3年', 'in'], ['おの ひなた', '1年', 'in'],
+  ['くどう めい', '4年', 'out'], ['ふじた れん', '2年', 'out']
+];
+function kidEl(k, i) {
+  const d = document.createElement('div');
+  d.className = 'kid';
+  d.innerHTML = `<span class="av" style="background:${AV_COLORS[i % AV_COLORS.length]}">${k[0][0]}</span>${k[0].split(' ')[1]}<span class="g">${k[1]}</span>`;
+  return d;
+}
+let heroState, heroTimer, heroMin;
+function heroRender() {
+  ['miss', 'in', 'out'].forEach(s => {
+    const col = $('#col-' + s); col.innerHTML = '';
+    heroState.filter(k => k[2] === s).slice(0, 4).forEach(k => col.appendChild(kidEl(k, HERO_KIDS.findIndex(h => h[0] === k[0]))));
+  });
+  const base = { miss: 0, in: 20, out: 0 };
+  ['miss', 'in', 'out'].forEach(s => $('#n-' + s).textContent = heroState.filter(k => k[2] === s).length + base[s]);
+  $('#hero-clock').textContent = `10月26日（月）15:${String(heroMin).padStart(2, '0')}`;
+}
+function heroReset() { heroState = HERO_KIDS.map(k => k.slice()); heroMin = 12; heroRender(); }
+function heroTick() {
+  const miss = heroState.filter(k => k[2] === 'miss');
+  heroMin += 1;
+  if (!miss.length) { heroReset(); return; }
+  const k = miss[0]; k[2] = 'in';
+  heroState.splice(heroState.indexOf(k), 1); heroState.splice(3, 0, k);
+  heroRender();
+  const el = $('#col-in .kid'); el && el.classList.add('arrive');
+  const t = $('#hero-toast');
+  t.textContent = `${k[0].split(' ')[1]}（${k[1]}）が来所しました 15:${String(heroMin).padStart(2, '0')}`;
+  t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2600);
+}
+function heroStart() { heroStop(); if (motionOK() && !document.hidden && current === 'top') heroTimer = setInterval(heroTick, 4200); }
+function heroStop() { clearInterval(heroTimer); heroTimer = null; }
+document.addEventListener('visibilitychange', () => document.hidden ? heroStop() : heroStart());
+reduce.addEventListener('change', () => { document.documentElement.classList.toggle('motion', motionOK()); motionOK() ? heroStart() : heroStop(); });
+
+/* ---------- デモ（ダイアログの出欠ボード） ---------- */
+const DEMO_KIDS = [
+  ['いのうえ たける', '1年', '14:40'], ['たかはし ゆいな', '2年', '14:50'], ['もりや こうき', '3年', '15:00'],
+  ['さえき はると', '1年', '14:40'], ['にしだ そうた', '2年', '14:50'], ['あべ りこ', '3年', '15:00'], ['おの ひなた', '1年', '14:40'], ['くどう めい', '4年', '15:30']
+];
+const REPLIES = { 'いのうえ たける': '母：すみません、今日は歯医者で休みます。連絡を忘れていました。', 'たかはし ゆいな': '父：学校で委員会があると聞いています。15:40ごろ行くはずです。', 'もりや こうき': '母：友達と一緒だと思います。こちらからも本人に電話します。' };
+let demo, demoClock, logTimers = [];
+function demoReset() {
+  logTimers.forEach(clearTimeout); logTimers = [];
+  demo = DEMO_KIDS.map((k, i) => ({ name: k[0], g: k[1], down: k[2], st: i < 3 ? 'miss' : i < 7 ? 'in' : 'out', asked: false, note: '' }));
+  demo[7].st = 'out'; demoClock = 25;
+  $('#d-log').innerHTML = '';
+  log('15:25 の時点の記録から始めます');
+  demoRender();
+}
+function now() { return `15:${String(demoClock).padStart(2, '0')}`; }
+function log(t) { const li = document.createElement('li'); li.innerHTML = `<time>${now()}</time>`; li.append(t); $('#d-log').prepend(li); }
+function demoRender() {
+  const labels = { miss: '未来所', in: '来所', out: '帰宅' };
+  const b = $('#d-board'); b.innerHTML = '';
+  ['miss', 'in', 'out'].forEach(s => {
+    const col = document.createElement('section');
+    col.className = 'd-col' + (s === 'miss' ? ' c-miss' : '');
+    const list = demo.filter(k => k.st === s);
+    col.innerHTML = `<h3><span>${labels[s]}</span><span>${list.length}人</span></h3>`;
+    if (!list.length) { const p = document.createElement('p'); p.className = 'form-note'; p.style.margin = '8px 0'; p.textContent = s === 'miss' ? '来ていない子はいません。' : 'まだいません。'; col.appendChild(p); }
+    list.forEach(k => {
+      const wrap = document.createElement('div');
+      const btn = document.createElement('button');
+      btn.type = 'button'; btn.className = 'd-kid';
+      const next = { miss: '来所', in: '帰宅', out: '未来所' }[s];
+      btn.setAttribute('aria-label', `${k.g} ${k.name}、いまは${labels[s]}。押すと${next}にする`);
+      btn.innerHTML = `<span class="av kid-av" style="width:24px;height:24px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:12px;font-weight:700;background:${AV_COLORS[demo.indexOf(k) % 6]}">${k.name[0]}</span><span>${k.name}</span><span class="g">${k.g}</span><span class="st">${s === 'miss' ? `下校 ${k.down}` : s === 'in' ? '入室の記録あり' : '退室の記録あり'}${k.note ? '　' + k.note : ''}</span>`;
+      btn.addEventListener('click', () => {
+        demoClock = Math.min(59, demoClock + 1);
+        k.st = { miss: 'in', in: 'out', out: 'miss' }[s];
+        if (k.st !== 'miss') k.note = '';
+        log(`${k.g} ${k.name} を「${labels[k.st]}」にしました`);
+        demoRender();
+      });
+      wrap.appendChild(btn);
+      if (s === 'miss') {
+        const ask = document.createElement('button');
+        ask.type = 'button'; ask.className = 'btn btn-sub btn-sm ask';
+        ask.textContent = k.asked ? '確認の連絡を送りました' : '保護者に確認の連絡';
+        ask.disabled = k.asked;
+        ask.addEventListener('click', () => {
+          k.asked = true; k.note = '既読待ち';
+          log(`${k.name} の保護者に「まだ来所していません。ご存じですか」と送りました`);
+          demoRender();
+          logTimers.push(setTimeout(() => { k.note = '返信あり'; demoClock = Math.min(59, demoClock + 2); log(REPLIES[k.name] || '保護者：確認します。'); demoRender(); }, 1800));
+        });
+        btn.after(ask);
+      }
+      col.appendChild(wrap);
+    });
+    b.appendChild(col);
+  });
+  const m = demo.filter(k => k.st === 'miss' && k.note !== '返信あり').length;
+  const a = $('#d-alert');
+  a.textContent = m ? `確かめが必要な子が ${m}人います` : '来ていない子は、全員確かめが済みました';
+  a.classList.toggle('ok', !m);
+}
+$('#d-reset').addEventListener('click', demoReset);
+
+/* ---------- 料金 ---------- */
+let kidsIdx = 3, bill = 'm', showAll = false;
+function renderPlans() {
+  const n = KIDS[kidsIdx], fit = planFor(n);
+  $('#plans').innerHTML = PLANS.map(p => {
+    const match = p.id === fit;
+    const price = bill === 'm' ? p.m : Math.floor(yearly(p.m) / 12);
+    return `<article class="plan${p.id === 'std' ? ' reco' : ''}${match ? ' match' : ''}" aria-labelledby="pl-${p.id}">
+      <p class="badge"${match ? '' : ' hidden'}>${n >= 150 ? '支援の単位を足して' : n + '人なら'}これ</p>
+      <h3 id="pl-${p.id}">${p.name}</h3>${p.id === 'std' ? '<p class="sr">（いちばん多くのクラブが選んでいるプラン）</p>' : ''}
+      <p class="cap">${p.cap}</p>
+      <p class="price"><span class="yen">￥</span><span class="v">${yen(price)}</span><span class="per">/月${p.per ? '・' + p.per : ''}（税抜）</span></p>
+      <p class="yearly">${bill === 'y' ? `年額 ￥${yen(yearly(p.m))}（税抜）` : ''}</p>
+      <ul>${p.feats.map(f => `<li>${f}</li>`).join('')}</ul>
+      <button class="btn btn-main" type="button" data-open="trial"><small>支払い情報の入力不要</small>まずは無料で試す</button>
+      <p class="contract"><button class="link" type="button" data-contract="${p.id}">すぐに契約を始める</button></p>
+    </article>`;
+  }).join('');
+  $('#plans').classList.toggle('show-all', showAll);
+  $('#show-all').hidden = showAll;
+  const out = $('#kids-out');
+  out.innerHTML = `${n >= 150 ? '121〜150' : n}<small>人${n >= 150 ? '以上' : ''}</small>`;
+  $('#kids').setAttribute('aria-valuetext', n >= 150 ? '121人以上' : n + '人');
+  $$('#ticks button').forEach((b, i) => b.setAttribute('aria-pressed', String(i === kidsIdx)));
+}
+$('#ticks').innerHTML = KIDS.map((k, i) => `<button type="button" data-k="${i}" aria-label="${i === KIDS.length - 1 ? '121人以上' : k + '人'}">${i === KIDS.length - 1 ? '121+' : k}</button>`).join('');
+$('#ticks').addEventListener('click', e => { const b = e.target.closest('[data-k]'); if (!b) return; kidsIdx = +b.dataset.k; $('#kids').value = kidsIdx; renderPlans(); });
+$('#kids').addEventListener('input', e => { kidsIdx = +e.target.value; renderPlans(); });
+$$('input[name=bill]').forEach(r => r.addEventListener('change', e => { bill = e.target.value; renderPlans(); }));
+$('#show-all').addEventListener('click', () => { showAll = true; renderPlans(); $('#plans .plan').focus?.(); });
+document.addEventListener('click', e => {
+  const c = e.target.closest('[data-contract]');
+  if (!c) return;
+  const p = PLANS.find(x => x.id === c.dataset.contract);
+  openDlg('trial');
+  $('#trial-h').textContent = `${p.name}プランで申し込む`;
+  $('#trial').addEventListener('close', () => $('#trial-h').textContent = '30日間の無料お試し', { once: true });
+});
+
+/* 比較表（PC は全部開く／SP は項目ごとに details、「月払い料金」だけ開く） */
+(function renderCmp() {
+  const reco = 3; // スタンダード
+  const priceRow = ['月払い料金（税抜・1施設）', '￥0', ...PLANS.map(p => '￥' + yen(p.m))];
+  let h = `<caption>価格は税抜・日本円（￥）、1施設あたりの月額。○は使える、—は使えない。</caption><thead><tr><th scope="col"><span class="sr">項目</span></th>${COLS.map((c, i) => `<th scope="col"${i + 1 === reco ? ' class="on"' : ''}>${c}</th>`).join('')}</tr></thead><tbody>`;
+  h += `<tr><th scope="row">${priceRow[0]}</th>${priceRow.slice(1).map(v => `<td><b>${v}</b></td>`).join('')}</tr>`;
+  CMP.forEach(([g, rows]) => {
+    h += `<tr class="grp"><th colspan="6" scope="colgroup">${g}</th></tr>`;
+    rows.forEach(r => { h += `<tr><th scope="row">${r[0]}</th>${r.slice(1).map(v => `<td${v === '—' ? ' class="no"' : ''}>${v === '—' ? '<span aria-label="なし">—</span>' : v === '○' ? '<span aria-label="あり">○</span>' : v}</td>`).join('')}</tr>`; });
+  });
+  $('#cmp').innerHTML = h + '</tbody>';
+  const dl = r => `<dl>${COLS.map((c, i) => `<dt>${c}</dt><dd>${r[i + 1] === '○' ? 'あり' : r[i + 1] === '—' ? 'なし' : r[i + 1]}</dd>`).join('')}</dl>`;
+  let s = `<details open><summary>${priceRow[0]}</summary>${dl(priceRow)}</details>`;
+  CMP.forEach(([g, rows]) => { s += `<p class="grp-h">${g}</p>` + rows.map(r => `<details><summary>${r[0]}</summary>${dl(r)}</details>`).join(''); });
+  $('#cmp-sp').innerHTML = s;
+})();
+
+/* 最適プラン診断（4問） */
+const QS = [
+  { q: '運営しているクラブ（施設）はいくつですか。', a: [['1〜2施設', 0], ['3施設以上', 'corp']] },
+  { q: '1施設の登録児童数は。', a: [['40人まで', 'light'], ['41〜70人', 'std'], ['71人以上', 'wide']] },
+  { q: 'おやつ代・延長料金の集金や、長期休みの申し込みもアプリで扱いたいですか。', a: [['はい', 'std'], ['出欠と連絡だけでよい', 0]] },
+  { q: '市区町村から、操作ログの長期保存や2段階認証を求められていますか。', a: [['求められている', 'std'], ['特にない・わからない', 0]] }
+];
+const RANK = { light: 0, std: 1, wide: 2, corp: 3 };
+let qi = 0, answers = [];
+function renderDiag() {
+  const box = $('#diag');
+  if (qi < QS.length) {
+    const q = QS[qi];
+    box.innerHTML = `<p class="q-step">質問 ${qi + 1} / ${QS.length}</p><p class="q" id="q-t" tabindex="-1">${q.q}</p><div class="opts" role="group" aria-labelledby="q-t">${q.a.map((a, i) => `<button type="button" data-a="${i}">${a[0]}</button>`).join('')}</div>
+    <p class="q-nav">${qi ? '<button class="link" type="button" data-q="back">前の質問へ戻る</button><button class="link" type="button" data-q="reset">始めからやり直す</button>' : ''}</p>`;
+  } else {
+    let best = 'light';
+    answers.forEach(a => { if (a && RANK[a] > RANK[best]) best = a; });
+    if (answers[0] !== 'corp' && best === 'corp') best = 'wide';
+    if (answers[0] === 'corp') best = 'corp';
+    const p = PLANS.find(x => x.id === best);
+    box.innerHTML = `<div class="result"><p class="q-step">あなたのクラブに合うのは</p><h4 tabindex="-1" id="q-t">${p.name}プラン</h4><p class="price"><span class="yen">￥</span><span class="v">${yen(p.m)}</span><span class="per">/月${p.per ? '・' + p.per : ''}（税抜）</span></p><ul>${p.feats.slice(0, 3).map(f => `<li>${f}</li>`).join('')}</ul>
+    <button class="btn btn-main" type="button" data-open="trial"><small>支払い情報の入力不要</small>まずは無料で試す</button><p class="q-nav"><button class="link" type="button" data-q="back">前の質問へ戻る</button><button class="link" type="button" data-q="reset">始めからやり直す</button></p></div>`;
+  }
+}
+$('#diag').addEventListener('click', e => {
+  const a = e.target.closest('[data-a]'), n = e.target.closest('[data-q]');
+  if (a) { answers[qi] = QS[qi].a[+a.dataset.a][1]; qi++; }
+  else if (n) { if (n.dataset.q === 'back') qi = Math.max(0, qi - 1); else { qi = 0; answers = []; } answers.length = qi; }
+  else return;
+  renderDiag();
+  $('#q-t').focus();
+});
+
+/* 見積書 */
+$('#est-plan').innerHTML = PLANS.map(p => `<option value="${p.id}"${p.id === 'std' ? ' selected' : ''}>${p.name}（￥${yen(p.m)}/月）</option>`).join('');
+function estCalc() {
+  const p = PLANS.find(x => x.id === $('#est-plan').value), n = +$('#est-n').value, term = +$('#est-term').value;
+  const nIn = $('#est-n');
+  let msg = '';
+  if (!Number.isInteger(n) || n < 1 || n > 60) msg = '施設数は1〜60の整数で入れてください。';
+  else if (p.id === 'corp' && n < 3) msg = '法人・自治体プランは3施設からです。';
+  setErr(nIn, $('#est-err'), msg);
+  if (msg) { $('#est-sum').textContent = ''; return null; }
+  const sub = term === 12 ? yearly(p.m) * n : p.m * n;
+  const tax = Math.floor(sub * 0.1);
+  $('#est-sum').textContent = `小計 ￥${yen(sub)}（税抜）＋ 消費税 ￥${yen(tax)} ＝ 合計 ￥${yen(sub + tax)}`;
+  return { p, n, term, sub, tax };
+}
+['change', 'input'].forEach(ev => $('#est-form').addEventListener(ev, estCalc));
+$('#est-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const r = estCalc();
+  if (!r) { $('#est-n').focus(); return; }
+  const txt = `御見積書（使用例・架空）\n発行日：2026年10月26日\n発行：株式会社ひだまりラボ\n\n品名：おかえりノート ${r.p.name}プラン\n数量：${r.n}施設 × ${r.term}か月${r.term === 12 ? '（年払い 5%割引適用）' : ''}\n小計：￥${yen(r.sub)}\n消費税（10%）：￥${yen(r.tax)}\n合計：￥${yen(r.sub + r.tax)}\n\n有効期限：発行日から30日\n`;
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([txt], { type: 'text/plain;charset=utf-8' }));
+  a.download = `okaeri-note-mitsumori-${r.p.id}.txt`;
+  document.body.appendChild(a); a.click(); a.remove();
+});
+
+/* FAQ と FAQPage */
+$('#faq').innerHTML = FAQ.map(([q, a]) => `<details><summary>${q}</summary><p class="a">${a}</p></details>`).join('');
+$('#faq-ld').textContent = JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: FAQ.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) });
+
+/* ---------- 事例 ---------- */
+function art(c, seed) {
+  // 事例の絵：クラブの部屋を上から見た図（机・ランドセル棚・入口）を SVG で描く
+  const col = { '公設公営': '#d6ecdf', '公設民営': '#fbe4e8', '民設民営': '#e1eff8', '保護者会': '#fdf3d6' }[c.type];
+  const n = Math.min(12, Math.round(c.kids / 9));
+  let desks = '';
+  for (let i = 0; i < n; i++) { const x = 40 + (i % 4) * 70 + (seed % 3) * 4, y = 46 + Math.floor(i / 4) * 50; desks += `<rect x="${x}" y="${y}" width="46" height="26" rx="4" fill="#fff" stroke="#221815" stroke-width="2"/><circle cx="${x + 12}" cy="${y + 36}" r="5" fill="${AV_COLORS[(i + seed) % 6]}"/><circle cx="${x + 34}" cy="${y + 36}" r="5" fill="${AV_COLORS[(i + seed + 2) % 6]}"/>`; }
+  let shelf = '';
+  for (let i = 0; i < 9; i++) shelf += `<rect x="${338 + (i % 3) * 16}" y="${40 + Math.floor(i / 3) * 22}" width="12" height="16" rx="3" fill="${AV_COLORS[(i + seed) % 6]}"/>`;
+  return `<svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" aria-hidden="true"><rect width="400" height="250" fill="${col}"/><path d="M0 220h400" stroke="#221815" stroke-width="2" stroke-dasharray="6 6"/><rect x="330" y="32" width="56" height="76" rx="4" fill="none" stroke="#221815" stroke-width="2"/>${shelf}${desks}<rect x="300" y="196" width="60" height="24" fill="#fff" stroke="#221815" stroke-width="2"/><text x="330" y="213" font-size="11" text-anchor="middle" fill="#221815" font-family="system-ui,sans-serif">入口</text></svg>`;
+}
+$('#art-top').innerHTML = art(CASES[0], 1);
+const FILTERS = [['type', '運営のかたち', ['公設公営', '公設民営', '民設民営', '保護者会']], ['size', '登録児童数', ['〜40人', '41〜70人', '71人〜']], ['use', '使い方', ['出欠', '保護者連絡', '集金', '長期休み']]];
+$('#filters').innerHTML = FILTERS.map(([k, label, opts]) => `<div class="fg" role="group" aria-label="${label}"><span aria-hidden="true">${label}</span><label><input type="radio" name="${k}" value="" checked><span>すべて</span></label>${opts.map(o => `<label><input type="radio" name="${k}" value="${o}"><span>${o}</span></label>`).join('')}</div>`).join('');
+function renderCases() {
+  const fd = new FormData($('#filters'));
+  const t = fd.get('type'), s = fd.get('size'), u = fd.get('use');
+  const list = CASES.filter(c => (!t || c.type === t) && (!s || c.size === s) && (!u || c.uses.includes(u)));
+  const filtered = t || s || u;
+  $('#case-count').textContent = `${list.length}件の事例${filtered ? '（しぼりこみ中）' : ''}`;
+  if (!list.length) {
+    $('#case-list').innerHTML = `<div class="empty"><p>この組み合わせの事例は、まだありません。</p><button class="btn btn-ghost" type="button" id="clear-f">条件をすべて外す</button></div>`;
+    $('#clear-f').addEventListener('click', () => { $('#filters').reset(); renderCases(); $('#filters input').focus(); });
+    return;
+  }
+  $('#case-list').innerHTML = `<ul class="cases">${list.map((c, i) => `<li style="display:contents"><button class="case${c.big && !filtered ? ' big' : ''}" type="button" data-case="${c.id}"><span class="art">${art(c, i + 1)}</span><span class="meta">${c.type}・${c.size}・${c.area}</span><span class="ttl">${c.title}</span><span class="org">${c.org}</span></button></li>`).join('')}</ul>`;
+}
+$('#filters').addEventListener('change', renderCases);
+function openCase(id) {
+  const c = CASES.find(x => x.id === id);
+  $('#cd-h').textContent = '導入事例';
+  $('#cd-body').innerHTML = `<div class="art">${art(c, 2)}</div><p class="case meta" style="font-size:13px;color:var(--ink2)">${c.type}・登録児童 ${c.kids}人・職員 ${c.staff}人・${c.area}</p><h3>${c.title}</h3><p class="org">${c.org}</p>
+  <div class="ba"><div class="b"><h4>導入前の課題</h4><ul>${c.before.map(x => `<li>${x}</li>`).join('')}</ul></div><div class="a2"><h4>導入後の効果</h4><ul>${c.after.map(x => `<li>${x}</li>`).join('')}</ul></div></div>
+  <div class="interview">${c.talk.map(([q, a]) => `<p><b>${q}</b>${a}</p>`).join('')}<p style="font-size:13px;color:var(--ink2)">お話：${c.by}（人名・団体名は架空）</p></div>
+  <p style="margin-top:10px"><button class="btn btn-main" type="button" data-open="trial"><small>支払い情報の入力不要</small>まずは無料で試す</button></p>`;
+  const d = $('#case-dlg'); if (!d.open) d.showModal();
+  d.scrollTop = 0;
+}
+
+/* ---------- 使ったスキル ---------- */
+const S = { saas: 'saas-quality-bar', lp: 'lp-quality-bar', own: '自分で決めた' };
+const SKILLS = [
+  ['全体', '4ページの流れ（トップ→機能→料金→導入事例）', 'saas', '業務SaaS（types/business.md）', 'Backlog', 'Backlog の top / features / pricing / customers の4ページの順と役割をそのまま翻訳。'],
+  ['トップ', '最初の画面の一文「〜なら（ロゴ）」', 'saas', '業務SaaS・最初の画面', 'Backlog', 'h1「AIで進める プロジェクト管理なら（ロゴ）」の言い回しを「放課後児童クラブの出欠と保護者連絡なら（ロゴ）」に。'],
+  ['トップ', '主「試す」＋副「資料」、ボタン内の上段に小さく理由', 'saas', '業務SaaS・最初の画面／rules.md 4', 'Backlog・Resend', 'Backlog の橙の塗り＋橙の枠、上段「支払い情報の入力不要」。副を一段弱くするのは rules 4（Backlog と Resend で確認）。'],
+  ['トップ', '実績の数字3つと、時点・数え方の注記', 'saas', '業務SaaS・最初の画面／checklist', 'Backlog', 'Backlog の有料契約数・有料利用ユーザー数・継続率＋2026年6月末の注記 → 導入施設数・登録済み保護者・継続率＋2026年9月末の注記。'],
+  ['トップ', '「登録せずに出欠ボードを触る」デモをダイアログで', 'saas', '業務SaaS・最初の画面', 'Backlog', 'Backlog は外部の操作デモを iframe のダイアログで開く。ここでは iframe ではなく DOM で動くボードにした。'],
+  ['トップ', '製品の画面を DOM のモックで見せる', 'saas', '開発者向け・製品の見せ方', 'Resend', 'Resend の機能ページは DOM のモックで画面を見せる。Backlog は実画面キャプチャ（webp）。画像を使えないので Resend 側に寄せた。'],
+  ['トップ', '「放課後の4時間」タイムライン（14:40→18:30）', 'own', '—', '—', 'スキルに無い。学童の一日の時刻で「これまで」と比べる構成は自分で決めた。'],
+  ['機能', 'h1 で役割の広さを先に言う', 'saas', '業務SaaS・機能の並べ方', 'Backlog', 'Backlog 機能ページの h1「開発からマーケティング、人事・総務まで様々な職種で使われている」→「支援員、施設長、保護者、市区町村の担当課まで」。'],
+  ['機能', '課題別4ブロック（小見出し→成果の見出し→3〜4文→チェック2〜3行→リンク＋画面、左右交互）', 'saas', '業務SaaS・機能の並べ方', 'Backlog', 'Backlog の4ブロックの型をそのまま。'],
+  ['機能', '機能カード8枚、うち1枚を「移行」に', 'saas', '業務SaaS・機能の並べ方', 'Backlog', 'Backlog は「Jira・Redmineからの移行」をカードの1枚に → 「紙の名簿・Excelからの移行」。'],
+  ['料金', '有料4カード、フリーは注記1行と比較表の1列だけ', 'saas', '業務SaaS・料金表', 'Backlog', ''],
+  ['料金', 'おすすめは1枚、枠と帯の色だけ（「おすすめ」の文字なし）', 'saas', '業務SaaS・料金表', 'Backlog', '読み上げ向けには sr の一文を足した（ここは自分で決めた）。'],
+  ['料金', '月払い／年払いは radio 2つのスイッチ、ラベルに「(5%オフ)」、年払いのときだけ年額の行', 'saas', '業務SaaS・料金表／checklist', 'Backlog', '割引率 5% も Backlog の値。'],
+  ['料金', '「￥」「/月」「税抜」をカードと比較表の両方に', 'saas', '業務SaaS・料金表／checklist', 'Backlog', ''],
+  ['料金', '料金表の上にページ内目次4つ（比較・見積書・導入までの流れ・FAQ）', 'saas', '業務SaaS・料金表', 'Backlog', ''],
+  ['料金', '比較表 5区分、PC は全部開く／SP は details で「月払い料金」だけ開く', 'saas', '業務SaaS・料金表／rules.md 2', 'Backlog', 'Backlog 5区分35行 → 5区分26行＋料金行。'],
+  ['料金', '児童数スライダー：合うプランに札、ほかは opacity .4（SP は隠す）、label と aria-valuetext、目盛りも押せる', 'saas', '開発者向け・料金表／checklist', 'Resend', 'Resend の通数スライダー（9段）を「1施設の登録児童数」8段に。札は見出しの外、hidden で表示中だけ読ませる（Resend の反面教師を避けた）。'],
+  ['料金', '最適プラン診断 4問、各問に「前の質問へ戻る」「始めからやり直す」', 'saas', '業務SaaS・選べない人へ', 'Backlog', '問いは Backlog（置き場所／セキュリティ資料／2段階認証／31人以上）を、施設数／児童数／集金／自治体の要件に置き換えた。'],
+  ['料金', '全カードの「試す」は同じトライアル、プランごとの入口は「すぐに契約を始める」だけ', 'saas', '業務SaaS・試すまで／rules.md 3', 'Backlog・Resend', ''],
+  ['料金', '見積書を料金ページから出せる（問い合わせだけのプランは無し）', 'saas', '業務SaaS・料金表', 'Backlog', 'Backlog は PDF の見積書。ここでは選んだ内容から計算してテキストで出す。'],
+  ['料金', '導入までの流れ4ステップ、データは引き継ぎ', 'saas', '業務SaaS・試すまで', 'Backlog', '申し込み→お試し→契約→正式導入 → 4つ目を「保護者に案内する」に。'],
+  ['料金', 'FAQ 11問と FAQPage の構造化データ', 'saas', 'rules.md 1／開発者向け', 'Backlog・Resend', '10問以上は rules 1。FAQPage は Resend にあり Backlog に無い（Backlog の反面教師）。'],
+  ['導入事例', '絞り込み（運営のかたち・児童数・使い方）と0件のとき', 'saas', '業務SaaS・事例と信頼', 'Backlog', 'Backlog の業種・職種・従業員数・使い方 → 学童の軸に。0件の表示は自分で決めた。'],
+  ['導入事例', '詳細：見出しに成果の数字 → 導入前の課題／導入後の効果 → インタビュー', 'saas', '業務SaaS・事例と信頼', 'Backlog', ''],
+  ['導入事例', '事例の絵（部屋を上から見た図）', 'own', '—', '—', '写真が使えないときの事例の絵は、スキルに無い。'],
+  ['フッター', 'セキュリティと稼働状況はフッターから', 'saas', '業務SaaS・事例と信頼', 'Backlog', 'Backlog はセキュリティページと status.nulab.com をフッターに。'],
+  ['見た目', '配色表：ベース1色＋ティント＋4アクセント＋赤みのある黒、1セクション1アクセント', 'lp', 'ポップ・参加型（common.md 2）', 'ガールスカウト100周年', '文字 #221815 はそのまま。ベースは #009a59 が白地で 3.4:1 なので、#0b7a52 に暗くした（自分で決めた）。'],
+  ['見た目', '見出しの型：アイコン→細い英字→太い和文→リード1行を全セクションで', 'lp', 'ポップ・参加型（common.md 1）', 'ガールスカウト100周年', ''],
+  ['見た目', '欧文は細く大きく、和文は太く小さく字間 .12em、本文行間 2.1', 'lp', 'ポップ・参加型（common.md 3）', 'ガールスカウト100周年', '和文 letter-spacing .1〜.15em、行間 約2.1。'],
+  ['見た目', 'ずらしベタ影 -6px 6px 0、少し傾けた付せん・スマホ', 'lp', 'ポップ・参加型（common.md 5）', 'ガールスカウト100周年', 'box-shadow: -6px 6px 0 0 の値をそのまま。色はセクションのアクセント。'],
+  ['見た目', 'Webフォントを読まずシステムフォント', 'lp', 'テック・SaaS', 'Stripe（日本）', ''],
+  ['動き', 'ホバー .3s ease・登場 1s easeInOutCubic（1回きり）、時間は3段', 'lp', 'ポップ・参加型（common.md 4）／rules 3', 'ガールスカウト100周年', '登場のずれは common の ±100px を ±40px に（390px で横にはみ出さないよう。自分で決めた）。'],
+  ['動き', '常に動くのはヒーローの来所の通知だけ。タブ非表示で止める', 'lp', 'rules 4／テック・SaaS', 'ガールスカウト100周年・Stripe（日本）', '紙吹雪の代わりに「子どもが届く」をアンビエントに。'],
+  ['動き', '動きは足す：reduced-motion・saveData では登場もアンビエントも無し', 'lp', 'rules 10／common.md 6-1', 'Apple AirPods Pro 3', ''],
+  ['動き', 'ホバーは (hover:hover) and (pointer:fine) の中だけ', 'lp', 'rules 7', 'とらや', ''],
+  ['動き', 'トップへ戻るボタンは 2/3 を過ぎてから', 'lp', 'ポップ・参加型（common.md 1）', 'ガールスカウト100周年', ''],
+  ['重さ', '画像なし（SVG・CSS）、1ファイル', 'lp', 'common.md 6-1', 'ガールスカウト100周年（の弱点を超える）', '目安 ファーストビュー 500KB・全体 2MB に対し、HTML 1枚。'],
+  ['中身', '学童の言葉と数字（支援の単位40人、下校時刻、おやつ代75円、延長30分200円 など）', 'own', '—', '—', '題材の中身はスキルの外。国の基準「支援の単位はおおむね40人以下」は一般に知られた事実として使った。'],
+  ['全体', 'ページの切り替え（1枚の HTML で4ページ）', 'own', '—', '—', '1枚で4ページを見せる作り方はスキルに無い。'],
+  ['状態', 'フォームのエラー・送信中・完了、空の状態', 'own', '—', '—', 'saas の checklist には状態の項目が無い。依頼文の決まりに従って自分で揃えた。']
+];
+const GROUPS = ['すべて', ...new Set(SKILLS.map(s => s[0]))];
+let skG = 'すべて';
+function renderSkills() {
+  $('#sk-tabs').innerHTML = GROUPS.map(g => `<button type="button" aria-pressed="${g === skG}" data-g="${g}">${g}</button>`).join('');
+  $('#sk-list').innerHTML = SKILLS.filter(s => skG === 'すべて' || s[0] === skG).map(s => `<div class="sk"><h3>${s[1]}</h3><p class="src">${s[2] === 'own' ? '<span class="own">スキルに無い・自分で決めた</span>' : `<span class="${s[2] === 'saas' ? 's1' : 's2'}">${S[s[2]]}</span><span>${s[3]}</span><span>値：${s[4]}</span>`}<span>${s[0]}</span></p>${s[5] ? `<p>${s[5]}</p>` : ''}</div>`).join('');
+}
+$('#sk-tabs').addEventListener('click', e => { const b = e.target.closest('[data-g]'); if (b) { skG = b.dataset.g; renderSkills(); } });
+
+/* ---------- 登場とトップへ ---------- */
+let io;
+function observeReveal() {
+  if (!motionOK() || !('IntersectionObserver' in window)) { $$('.rv').forEach(el => el.classList.add('in')); return; }
+  io && io.disconnect();
+  io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), { threshold: .12 });
+  $$('.page:not([hidden]) .rv:not(.in)').forEach((el, i) => { if (el.closest('.blk')) el.classList.add(i % 2 ? 'r' : 'l'); io.observe(el); });
+}
+const totop = $('#totop');
+addEventListener('scroll', () => {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  totop.classList.toggle('show', max > 400 && scrollY > max * 2 / 3);
+}, { passive: true });
+totop.addEventListener('click', () => { scrollTo(0, 0); const h = $('#h-' + current); h && h.focus({ preventScroll: true }); });
+
+/* ---------- 初期化 ---------- */
+heroReset(); renderPlans(); renderDiag(); estCalc(); renderCases(); renderSkills();
+const [r, a] = parseHash(); show(r, a, false);
+heroStart();
+addEventListener('hashchange', heroStart);
+})();
+</script>
+</body>
+</html>
