@@ -38,4 +38,13 @@
 - [ ] 連載のもくじでは、いま読んでいる話に印を付ける（北欧、暮らしの道具店は印無し・自分へのリンク）
 - [ ] 一覧のサムネイルを srcset と sizes で表示の大きさに合わせる（北欧、暮らしの道具店：180w／360w・sizes 180px／87px が見本）
 
+- [ ] Recipe・Article の datePublished と dateModified を ISO 8601（2026-09-09T19:13:00-04:00）で書く（King Arthur Baking は "September 9, 2026 at 7:13pm"・dateModified 無し）
+- [ ] レシピの手順は JSON-LD でも HowToSection／HowToStep で持ち、画面の段（下ごしらえ・焼くなど）と合わせる（King Arthur Baking は文字列の配列）
+- [ ] レシピは材料の列と手順の面を分け、手順の文字をリードより大きくする（King Arthur Baking：材料 325px・手順 20px／31.2px、リード 18px）
+- [ ] 量は2つの単位を同じ行に書く（King Arthur Baking：「3 1/2 cups (397g)」）。日本向けはグラムを先に
+- [ ] 手順の見出しのそばに、画面を消さない切り替え（Wake Lock。使えない端末では理由を出す）と、手順の写真の出し入れを置く（King Arthur Baking：Bake Mode・Hide images）
+- [ ] 手順を読んでいる人に、画面の大半を覆うポップアップを出さない（King Arthur Baking：1180×793 で画面の72%）。出すなら写真は表示の大きさで（同：1400×1400 の JPEG 1,126KB を全ページで読む）
+- [ ] 白文字を橙の地に載せる札も 4.5:1 を計算で確かめる（King Arthur Baking：#fff／#e25c2a で 3.62:1）
+- [ ] 動画の埋め込みは再生を押すまでサムネイルだけにする（King Arthur Baking のトップ：YouTube 3,683KB を最初から読む）
+
 解剖で裏づけた項目が増えたら、ここに足す（どのサイトで確かめたかを添える）。
