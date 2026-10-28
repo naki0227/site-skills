@@ -47,4 +47,14 @@
 - [ ] 白文字を橙の地に載せる札も 4.5:1 を計算で確かめる（King Arthur Baking：#fff／#e25c2a で 3.62:1）
 - [ ] 動画の埋め込みは再生を押すまでサムネイルだけにする（King Arthur Baking のトップ：YouTube 3,683KB を最初から読む）
 
+- [ ] 見出しの id を読める言葉で付ける。日本語を落とすスラッグで ""・"-1" にしない（LINEヤフー Tech Blog は h2・h3 17個のうち読める id が5つ）
+- [ ] SP でも h1 を一番大きくする（LINEヤフー Tech Blog の SP は h1 20px・h2 32px）
+- [ ] 公開日を配る HTML に書く。JS で入れない。一覧と記事で日付の形をそろえる（LINEヤフー Tech Blog は `<time dateTime="">` が空、「2026.10.27」と「2026-10-19」）
+- [ ] 本文の図は SP で字が読めるかを 390px で見る。読めないなら押して拡大できるようにし、キャプションを付ける（LINEヤフー Tech Blog：1600px の図を 350px に 0.22倍）
+- [ ] ページ送りの前後の矢印が、ほかのページがあるときに押せる（LINEヤフー Tech Blog はいつも aria-disabled・href="#"）
+- [ ] トップと一覧に Article の JSON-LD を置かない。一覧は CollectionPage か Blog（LINEヤフー Tech Blog は datePublished "" の Article）
+- [ ] コードの帯を出すなら、言語名とコピーを入れる。空の帯を出さない（LINEヤフー Tech Blog）
+- [ ] 全ページ同じ CSS を HTML に埋め込まず、外部ファイルにしてキャッシュを効かせる（LINEヤフー Tech Blog：237KB を毎ページ）
+- [ ] フォーカスの印を :focus-visible で付ける。opacity を下げるだけにしない（LINEヤフー Tech Blog：:focus で opacity .6、:focus-visible 0）
+
 解剖で裏づけた項目が増えたら、ここに足す（どのサイトで確かめたかを添える）。

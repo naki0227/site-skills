@@ -45,5 +45,13 @@
 - [ ] 自動で流れるカードは、ホバー・フォーカス・ボタン・reduced-motion で止まる（HILLTOP：slick で止まらない）
 - [ ] トップの動画は SP 用を本当に読んでいるかを通信で確かめ、poster と止める手段を付けた（HILLTOP：SP でも PC 用 60.7MB）
 - [ ] title と meta description を1ページずつ確かめた（HILLTOP：社名2回、description に別ページの題）
+- [ ] トップの最初の1文は h1 で、aria-hidden にしていない。絵だけを隠した（Mistral AI：h1 0、1文が aria-hidden）
+- [ ] 採用の入口を、ヘッダーの下がり窓の奥だけにしていない。トップの最後の入口・フッター・相談の振り分けにも置いた（Mistral AI：Company の4項目目だけ）
+- [ ] 採用ページに、班・職種ごとの募集の件数と勤務地を出した（Mistral AI：件数 0か所、外の Ashby に 226件）
+- [ ] 自動で次へ進むタブ・流れるロゴの帯・物理の動きは、reduce とホバー・フォーカスで止まる（Mistral AI：業種タブが reduce でも10秒で進む）
+- [ ] 同意の窓・タグ管理の重さを測り、画像より重くしていない（Mistral AI：axept.io 1,445KB＋GTM 1,014KB、トップの画像 863KB）
+- [ ] フッターの「プライバシーの設定」などの JS で開く項目は button にした（Mistral AI：href="/javascript:…/" で 404）
+- [ ] 絞り込みの検索欄に label か aria-label を付けた（Mistral AI：placeholder だけ）
+- [ ] 罫で区切る格子のデザインでも、最初の3画面の枠線を数え、区切りの一部を地の色の段に替えた（Mistral AI：PC 75・SP 80）
 
 解剖で裏づけた項目が増えたら、ここに足す（どのサイトで確かめたかを添える）。

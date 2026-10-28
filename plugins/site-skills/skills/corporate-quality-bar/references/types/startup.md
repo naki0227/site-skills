@@ -18,12 +18,36 @@
 - **見た目の値（計算済みスタイル）**：文字 #152632、補助 #727888・#9EA2AD、線 #D3D4D9、面 #F6F6F7、事業の札 #CCEFD1（12px・角丸いっぱい）、アクセント #534DFF の1色（採用ボタン・現在地）。KV 60px（SP 34px）・行間1.4・字間0.04em、ミッション 32px・行間1.9。本文幅 1132px（1440px で左右154px）。事業とニュースはカードでなく全幅の行（内側 28px、PC で1行 192〜196px）。動きは文字せり上がり 0.8s cubic-bezier(.47,.16,.24,1)・1文字0.06sずらし、ホバーの不透明度 1.2s cubic-bezier(.18,.06,.23,1)。
 - **重さ（PC/SP）**：top 4.90/4.55MB、about 2.44/2.44、business 3.61/3.60、採用 6.51/7.19（KV の webm 2本で約5MB）、news 2.20/2.20。会社サイトは全ページで共通JS 954KB を読む。
 
-## 真似る型（1サイト目からの仮説。2つ目で確かめる）
-- 会社サイトは「志・事業の地図・ニュース・連絡先」に絞り、プロダクトと採用は別サイトへ渡す。事業は1ページ＋アンカーで並べる（LayerX）。
-- 採用の入口をヘッダーに2つ（ナビ＋目立つボタン）とトップの節に置く（LayerX）。
+### Mistral AI（https://mistral.ai/ 、2026-10-28 解剖。選んだ理由：パリの AI スタートアップで、会社・事業・採用・ブログ・相談を1つのドメインに持ち、トークンの配色・Matter.js の積み木・貼りつく目次・手元で絞るブログを作り込んでいる。受賞歴・事例集は確かめられなかった）
+Astro＋Netlify。採用の募集は外の Ashby（2026-10-28 に 226件）。
+- **ナビ（PC）**：fixed・48px・地 #fbfbf8・罫 1px #e4e3de で項目を区切る。ロゴ 120px → Research／Sovereign AI／Cloud／Customers／Company（ALTMistral 16px/500）→ 右に Get in touch と黒 #09090b の Login。800〜1,600px スクロールしても隠さない。▾は項目の下の小さな窓（幅 240〜345px・1行 57px・右に ›、題も1文も無い）でメガメニューにしない。採用は Company の4項目目だけ。SP はロゴ・中央に Get in touch・3×3 の点 48px、開くと全画面で1段目5項目 57px → 2段目へ横送り。
+- **トップの順番**：1文「Mistral is #1 in Sovereign AI.」96px（`<p aria-hidden>`、h1 無し）＋120px の色の箱が Matter.js で積み上がる＋下に最新の記事の札 → 顧客ロゴの帯 272px（流れる）→ 何を守るかの札13 → 事業4つ（左に 226×52px の目次が top 44px で貼りつき現在地が替わる、右に「We make the models. You keep them.」の対の文）→ 業種タブ4つ（1行 約156px、#ffaf01 の棒が約10秒で伸びて次へ）→ 暗い #151524 の入口3つ。数字の帯も採用の入口も本文に無い。最初の画面の文字は8字。
+- **信頼の材料**：会社ページは使命（200dvh の間スクロールで文が中央へ育つ）→ 成り立ち2区画 → 年表18枚（幅 500px・日付は Space Mono 11px の黒い札・題だけ）→ 創業者3人 → 顧客ロゴ → 最新3件。会社概要の表・所在地・社員数は無く、社員「900+」は採用ページ、Paris と設立 2023-04 は JSON-LD にだけ。
+- **採用**：Apply now 2つ（Ashby へ）。班4つは押すと 110×40→392×132px に開いて1文だけ、件数とリンクは無い。数字 900+・30+・50%（232px のタイル・72px）、価値4つ（色の面に黒字）、福利3組（育休 20週・401k 6%・英年金 5% と数字で書く）、選考は職の系統で2本（GTM 4段・技術 3段）、最後に応募者の個人情報の方針。
+- **相談**：左に Looking for help?（Support・Press・Privacy・Vulnerability の4つ）、右に営業の5欄（名・姓・会社のメール・役職・相談 1,000字、全部必須、autocomplete 無し）。採用の振り分けは無い。
+- **ニュース**：/news/ に 92件を全部 HTML に持つ（1,220KB）。分類5つ（Space Mono 11px の札、選ぶと分類の色）は複数選べ、件数「92 results」とページ数が替わる。押して 57〜70ms・通信 0KB、URL に `?categories=research,company&search=Large`、0件は「No results」。検索欄は label 無し。1枚目だけ 960×643 の大きいカード。
+- **データ**：トップだけ Organization（創業者3人・foundingDate・PostalAddress・sameAs 5）。他は WebPage／CollectionPage。lang="en"＋hreflang en・fr・it。トップに h1 が無い。alt 無し 0／475枚。
+- **見た目の値**：トークンで光・闇・反転の3組。地 #fbfbf8・面 #f5f4ef・#ebe9e0、文字 #18181b（438回）・#3f3f47・#71717b（4.66:1）、暗 #151524、色は #ffaf01→#ff8204→#ff5229→#e51300 の4段。書体は自前の ALTMistral 500（460要素）・Inter・Space Mono。段は display 96／h1 72／h2 56・60／h3 44・52／h4 32／h5 24／本文 16・24／札 11（字間 -.02〜0em）。色の変化は .15s cubic-bezier(.4,0,.2,1)。inspect.js：最初の3画面の枠線 PC 75・SP 80。
+- **重さ（PC/SP）**：top 5.23/4.51MB、about 6.97/5.15、products 3.95/3.79、careers 6.53/4.22、news 6.13/4.87（GTM 除く）。全ページに共通 JS 1,216KB（Matter.js・three.js・Swiper・GSAP 入り）＋同意の窓 axept.io 1,445KB＋GTM 1,014KB。画像は srcset と lazy（トップ 114枚中 111枚が lazy、SP の画像は PC の約1/5）。
+- **動き**：reduce を見ているのはグラフ・地球の回転・視差の3か所だけで、1文の出し方・積み木・10秒のタブ・ロゴの帯は reduce でも動く。
+
+
+## 真似る型（LayerX と Mistral AI の2つで確かめた）
+- 会社サイトは「志・事業の地図・ニュース・連絡先」に絞り、事業は1ページ（LayerX：アンカー、Mistral：/products/ のタイル5枚・2,344px）で並べ、プロダクトの本体と採用の募集は外へ渡す（LayerX：別ドメインと外部ATS、Mistral：Studio・Vibe と Ashby）。
+- ヘッダーの右端に、目立つ形の行動を置く（LayerX：Join Us の丸いボタン、Mistral：黒の Login と Get in touch）。Mistral は 48px の帯を隠さない。下がり窓は1列の小さな窓（LayerX 5項目、Mistral 1行 57px）で、メガメニューにしない。
+- トップは1文で始め、数字の帯を置かない（LayerX：h1「未来の希望を、実装しよう。」60px、Mistral：96px の1文＋最新の1件）。1文は h1 にする（Mistral は aria-hidden の p で h1 無し）。
+- 事業は対の文で書く（Mistral：「We make the models. You keep them.」×4）。左に貼りつく目次（226×52px・top 44px）で今どこかを見せる（Mistral）。
+- ニュースの絞り込みは URL に組み合わせを残す（LayerX：?category=…&year=…&sort=…、Mistral：?categories=a,b&search=x）。件数が数百までなら全部持って手元で絞る（Mistral 92件・57〜70ms・0KB。LayerX は読み直しで +1.3MB）。
+- 相談のフォームの前で用件を振り分ける（LayerX：リンク5つ、Mistral：4つ）。どちらも採用の振り分けが無かったので、作るときは採用を足す。
+- 採用の福利は組に分けて数字で書き、選考は職の系統ごとに段の数を書く（Mistral：福利3組、選考 4段と3段）。
 
 ## 反面教師
 - 会社概要に規模の数字（社員数・資本金）が無く、導入社数が本文に埋もれる（LayerX）。数字は会社概要かトップに置く。
 - 見出しを1文字ずつ span に分けて動かし、読み上げで切れて見える。PC 用と SP 用の見出しを二重に置く（LayerX）。
 - 絞り込み1回でページ全体を読み直す（SP で1回最大 +1.3MB）。文字だけのページでも約1MBの共通JSを読む（LayerX）。
 - トップのニュース枠が同じ事業の外部記事で埋まり、会社の重要なお知らせがトップに出ない（LayerX、2026-10-24時点）。
+- トップに h1 が無く、1文が aria-hidden（Mistral）。読み上げの最初の見出しが3つ目の区画になる。
+- 採用への入口がトップの本文・フッター・相談の振り分けに無く、採用ページに募集の件数も出ない（Mistral：下がり窓の1項目だけ、Ashby に 226件）。
+- 会社ページに会社概要の表が無く、社員数は採用ページ、所在地は JSON-LD にだけ（Mistral）。
+- reduce でも積み木が落ち、タブが10秒で回り、ロゴが流れる（Mistral）。同意の窓 1.45MB と GTM 1.0MB を全ページで最初に読む（Mistral）。
+- フッターの「Privacy choices」の href が `/javascript:openAxeptioCookies()/` で 404（Mistral）。

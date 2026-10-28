@@ -21,7 +21,7 @@ description: メディア・ブログ・読みもののサイトを作る・直�
 | ニュース | 新聞・ニュースサイト | ProPublica | `types/news.md` |
 | オウンドメディア | 企業・ブランドの読みもの | 北欧、暮らしの道具店 | `types/owned.md` |
 | レシピ・ハウツー | レシピ、手順の説明 | King Arthur Baking | `types/recipe-howto.md` |
-| 技術ブログ | 開発者のブログ・技術記事 | メルカリエンジニアリング | `types/tech-blog.md` |
+| 技術ブログ | 開発者のブログ・技術記事 | メルカリエンジニアリング、LINEヤフー Tech Blog | `types/tech-blog.md` |
 
 ## このスキルの範囲
 - 記事ページと一覧の読みやすさ・回遊。トップ1枚の見た目は `lp-quality-bar` の「読みもの・エディトリアル」の型。
