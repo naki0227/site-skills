@@ -60,4 +60,12 @@
 - [ ] SP の本文が 16px を下回らない。clamp の下限を 1rem にした（microCMS の SP は本文 14.2px・注 12.4px）
 - [ ] 上限を超えたらどうなるか（止まる・追加料金）を、比較表のその行に書いた（microCMS「20GB/月（超過時はAPI停止）」「+20円/GB」）
 
+- [ ] AI が働く様子（待ち → 結果）を、画像1枚でなく、入力欄か DOM のモックで最初の画面に見せた。モックには止めるボタンを付け、reduce では結果の画面で止めた（Granola は約8.6秒の1巡が reduce でも回り、止めるボタンも無い）
+- [ ] スクロール連動の演出（`animation-timeline: scroll()／view()`）は `prefers-reduced-motion: no-preference` の中でだけ付け、`@supports not` の形も確かめた（Granola は12個が reduce でも動く）
+- [ ] データの扱い（音声を残すか・学習に使うか・保存の期間）を、比較表の行にもした（Granola の Trust & Control 11行）
+- [ ] SP では、端末に合わないボタンの文言（iPhone に「Download for Mac」）を出していない（Granola の料金ページ）
+- [ ] フッターなどの重いページへのリンクを先読みしていない。先読みの量を、ページの重さと比べた（Granola は「License」の先読みが 6,158KB で /pricing の 44%）
+- [ ] 構造化データの評価（AggregateRating）は、画面に出して出典を書いたものだけにした（Granola は 4.9／39件を構造化データにだけ書く）
+- [ ] 画面の左右の端に固定するボタン（cookie・プライバシーの設定）が、SP で本文やカードの見出しに重ならない（Granola の鍵のボタンが料金のカードの「Business」に重なる）
+
 解剖で裏づけた項目が増えたら、ここに足す（どのサイトで確かめたかを添える）。

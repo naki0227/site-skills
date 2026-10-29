@@ -20,7 +20,7 @@ description: 通販サイト（EC・ネットショップ）の画面を作る�
 |---|---|---|---|
 | アパレル・靴 | 服、靴、バッグ、アクセサリー、スポーツウェア | Allbirds、Tracksmith | `types/apparel.md` |
 | 食品・ギフト | 食品、菓子、酒、ギフト、コーヒー豆・茶葉（文字で選ぶ品） | とらや、Sey Coffee | `types/food-gift.md` |
-| 単品・D2C | 少ない商品を深く売るブランド | Our Place | `types/d2c.md` |
+| 単品・D2C | 少ない商品を深く売るブランド、定期便が主の食品 | Our Place、BASE FOOD | `types/d2c.md` |
 | 総合・雑貨 | 品数が多い店、生活雑貨・工芸・台所道具 | 中川政七商店 | `types/general.md` |
 
 ## このスキルの範囲

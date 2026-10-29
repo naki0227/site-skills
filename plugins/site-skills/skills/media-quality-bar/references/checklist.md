@@ -57,4 +57,13 @@
 - [ ] 全ページ同じ CSS を HTML に埋め込まず、外部ファイルにしてキャッシュを効かせる（LINEヤフー Tech Blog：237KB を毎ページ）
 - [ ] フォーカスの印を :focus-visible で付ける。opacity を下げるだけにしない（LINEヤフー Tech Blog：:focus で opacity .6、:focus-visible 0）
 
+- [ ] 読み始めたら全体ナビを、題と操作だけの細い帯（60px 前後）に入れ替え、下端に進み具合の線を付ける。線は transform だけで動かし、値は IntersectionObserver で進める（Quanta Magazine：PC 4px・SP 2px・translateX・.2s。値は scroll のたびに計算していた）
+- [ ] 本文の補足（人物・音声・関連）は列の外に置き、本文の幅を変えない（Quanta Magazine：560px の右 64px に 300px）
+- [ ] 最後の段落の後ろに「ここで終わり」の印を置く（Quanta Magazine：記事の色の 10px の点）
+- [ ] 閉じたコメント欄・ニュースレターの部品は、開いたときに読む（Quanta Magazine：閉じたままで Disqus 2.42MB）
+- [ ] PC 用と SP 用で描き分けた図は picture／media で片方だけ読む（Quanta Magazine：両方の SVG を読み 1,207KB）
+- [ ] 全幅の帯に置く写真は、帯の幅に合った大きさで配る（Quanta Magazine：520×292 を 1440×600 に）
+- [ ] 全画面メニューは Esc で閉じ、開いたボタンにフォーカスを戻す（Quanta Magazine は閉じない）
+- [ ] 記事ごとに色を変えるなら、記事の要素に役割の変数（accent・background・text）を置き、線・点・帯をその変数で塗る（Quanta Magazine の --theme-accent ほか）
+
 解剖で裏づけた項目が増えたら、ここに足す（どのサイトで確かめたかを添える）。
