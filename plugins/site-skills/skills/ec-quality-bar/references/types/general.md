@@ -21,10 +21,34 @@
 - **データ**：詳細は Product（1色分、color 白百合、Offer 1つ）＋AggregateRating＋Review 10件。ProductGroup にしていない。BreadcrumbList は無い（画面のパンくずはある）。一覧とガイドは JSON-LD なし、トップは WebSite＋SearchAction。詳細の img 207枚中 alt 属性なし38・空42。おすすめのリンクは href="javascript:void(0)"。
 - **重さ**：PC top 28.04MB / list 26.36MB / item 28.67MB / guide 23.92MB（SP 31.55 / 26.00 / 28.71 / 24.31MB）、解析・広告タグを除いて。**AI チャット（chatbot.ecbeing.io の .NET WASM）が開く前から毎ページ約14.2MB**。海外判定の環境では WorldShopping の画像 3.8MB と JS 1.0MB も（除くと 22.52 / 20.77 / 21.93 / 18.34MB）。load まで PC で一覧 8.7秒・詳細 12.5秒。
 
+### Iittala（https://iittala.com/ ・2026-10-30 計測・ガラスと器・フィンランド・Shopify の自前テーマ・EU 向け EUR）
+- **位置づけ**：同じ形を十数色で売る品が多い（Kivi のキャンドルホルダー7色、Aalto の花瓶）。色ごとに別の商品（URL・商品 ID が別、Shopify の選択肢は「Default Title」1つ）。中川政七商店と同じ「色ごとに別ページ」だが、見せ方は反対（中川は詳細に色ごとの行、Iittala は写真の見本）。
+- **一覧**（/collections/vases）：PC 4列 338×493（間24px、端まで）・SP 2列 183×384。上から 題「VASES」35px 中央 → 3行の説明 → 下位3つ → 「93 products」（#6d7782）・「Filters ▾」・「Sort ▾」→ 1枠目に黄 #ffc600 の販促 → カード。カードは 写真 336 の正方形（地 #f7f7f7、2枚）→ ブランド＋シリーズ 12px → 名前 14px（色の名前まで）・右に価格 → 会員価格か「New」12px 700。PC はホバーで写真を2枚目へ（opacity .3s cubic-bezier(.4,0,.2,1)）、カート 20×40 とお気に入り 28×36 の印を出す。SP は印を常に出す。品切れはカードに「Out of stock」と「Notify me」。最初に39点、「Showing 39 of 93 products」と「Load more」70×40（押すと 3.56秒・876KB で78点、URL は変わらない）。並べ替えの初期値 Featured。img 113枚中 lazy 85、alt なし0。
+- **絞り込み**：PC は右から 720×900、SP は全画面、slide-right .45s cubic-bezier(.22,1,.36,1)。6群（Brand・Color・Collection・Availability・Price・Product type）。Color は11値、最初は3つと件数「Beige (11)・Blue (1)・Brown (5)」と「View more」。価格は数の欄2つと 50〜2500 € の帯。**チェックを押すとページを読み直さずに裏の一覧が変わり**（Blue で 93→1、88KB、約3秒）、下の帯が「Reset all ／ See 1 results」に。URL に条件が残る。閉じると件数の横に「Blue ×」。ページの位置は動かない。
+- **詳細のファーストビュー**（Kivi 60mm linen）：PC は左に写真 825×825（2枚、「1 / 2」と ◀ ▶）、右の列 x=961・幅344 に ブランド 14px → 名前 18px 大文字（h1）→ 会員価格 12px 700 → 価格 18px（y=279）→ **黒 #000 の帯 344×40 に「Add to cart」と − 1 ＋**（y=317）→ 高さ 17px の窓で約束の3行（Free returns within 30 days of delivery・包装はカートで・会員は 100 € 以上で送料無料）を約3秒ずつ縦に送る → 「Colour」と系統名 → 見本。SP は名前 y=601・価格 y=681・帯 y=717〜757 で 844px に入る。SP に固定のボタンは無い（帯は購入の列の中だけで sticky）。
+- **色の見本**：40×40 の商品写真を 48px 間隔で6つ＋「+1」。選んだ色に 1px の下線、ホバーでも線。**押すとページごと読み直す**（PC 3.51秒・2,868KB）。見本の上の名前は系統名で、品の色とずれる（calluna が「Red」、linen が「Beige」）。
+- **品切れ**（Nappula 183mm steel）：見本は opacity .4 で残し押せる（読み上げ「- Unavailable」）。価格の横に「Out of stock」12px 700 #6d7782（白で 4.55）。黒い帯の場所を #ececec の「✉ Notify me」344×51 に替え、押すと中央の窓にメールの欄と目的の1文。入荷の時期は書かない。
+- **カートに入れる**：ページは移らない。押して 1.16秒後に右下へトースト 446×56（白・影 0 0 10px rgba(0,0,0,.3)・角6px・fade-in .3s ease-in-out）「… was added to your cart.」を約3.5秒、ヘッダーの袋に黒い丸の数。トーストに role・aria-live は無く、ボタンの文字も変わらない。ドロワーは印を押したときだけ（SP は全画面）。
+- **カート**：品の行に − 1 ＋・×・「Gift wrapping (4,90 €/ item)」のチェック → 灰の注「Myiittala members receive free delivery to purchases over 100 €.」→ カード（無料）・割引コード → Order Value ／ Shipping「Calculated at checkout」／ Total → Checkout。送料無料までの残りは言わない。空のときは「YOUR CART IS EMPTY.」24px と「Continue shopping」453×40。
+- **買う前の不安**：返品30日はボタンの直下の窓（0手、ただし回る）。送料 9.90 € 一律は /pages/delivery-information だけ（フッターから1手）、届く日は国ごとの表（21か国、4〜10営業日）。会員でない人の送料無料の条件は書いていない。
+- **見た目**：地 #fff・文字 #101820・主のボタン #000・写真の地 #f7f7f7・灰の面 #ececec・補う文字 #6d7782・黄 #ffc600 はフッター全体と販促の枠だけ。角は全部0。書体は自前の AINO 1つ（300/400/700、woff2 57KB）。本文 14px／1.35、見出しは大文字 35・24・18px（SP 28・22・16）、字間0。動きはトークン（short .12/.18/.25s、medium .35/.45/.6s、曲線 base (.6,0,0,1)・out (.16,1,.3,1) ほか）、prefers-reduced-motion は12か所で止める。
+- **データ**：一覧は CollectionPage・BreadcrumbList・ItemList（Product・Offer）、詳細は WebPage の breadcrumb に BreadcrumbList・Product・Offer・UnitPriceSpecification。ただし詳細のパンくずの道は Home → Gifts → Gifts by price → Gifts under 25 €。画面のパンくずは一覧の一番下。
+- **重さ**：PC top 31.55MB / list 10.45MB / item 8.80MB / cart 6.61MB / guide 6.86MB（SP 29.23 / 9.91 / 8.33 / 6.64 / 6.75MB）、解析タグを除く。トップは全面の動画 12.1MB と、`rel=prefetch` で取る商品ページ5つ（1つ約490KB）。**全ページで Shopify の購入手続きの JS を49〜66本先読み**（転送 0.66〜0.73MB）。転送量は top 16.98MB・list 3.86MB・item 2.94MB。
+
 ## 真似る型
-（見本が1つ（中川政七商店）だけ。2つ以上そろったら、共通する型をここにまとめる。それまでは上の実測から、作るものに合うものを選ぶ。）
+（見本2つ：中川政七商店・Iittala。どちらも色ごとに別の商品にしている）
+1. **色や柄の違いは、一覧では色ごとに1枚のカードにする**。名前に色の名前まで入れる（中川：ふきん94点、Iittala：「Vase 160mm clear」と「Vase 160 mm Finnish sand」を別のカード）。カードからそのまま入れられるようにする（中川：222×40 の「カートに入れる」、Iittala：ホバーで出る袋の印 20×40、SP は常に）。
+2. **詳細では、同じ形のほかの色に、写真か色の行で1手で届かせる**。色が10未満なら 40×40 の写真の見本を並べ、選んだ色に下線（Iittala）。色ごとに在庫とボタンを持たせたいなら、色ごとの行 356×118 にボタンを置く（中川）。どちらも、押してもページを読み直さずに写真・在庫・URL を替える（両店とも読み直す＝直す）。
+3. **品切れの色も消さない**。見本は薄く（Iittala：opacity .4）、行なら「在庫がありません」と書き（中川）、ボタンの場所を同じ幅の次の行動に替える（Iittala：灰 #ececec の「Notify me」344×51、中川：「店舗在庫を確認」356×48 から店ごとの在庫）。入荷の時期は両店とも書かないので、作るときは書く。
+4. **カートに入れた反応は押した場所の近くか画面の端で返し、ヘッダーの数を増やす**（中川：0.17秒でボタンの上に 328×56 の吹き出し、Iittala：1.16秒で右下に 446×56 のトースト）。両店とも送料無料までの残りを言わないので、作るときは反応の中で言う。
+5. **送料の条件はボタンの近くか全ページの頭に**（中川：40px の帯に「11,000円以上で送料・代引き手数料無料」、Iittala：ボタンの直下の窓に会員の条件）。金額も詳細かカートに書く（Iittala はカートで「Calculated at checkout」＝直す）。
 
 ## 反面教師
+- 色の見本を押すとページごと読み直す（Iittala：3.51秒・2,868KB）。見本の上の名前を系統名にして品の色とずらす（calluna を「Red」）。
+- 送料が一律 9.90 € なのに、カートは「Calculated at checkout」で、金額は配送の案内のページだけ。送料無料は会員の条件しか書かない（Iittala）。
+- 返品・包装・送料の約束の3行を、高さ 17px の窓で約3秒ずつ回す（Iittala）。見えない時間ができる。
+- カートに入れてから反応まで 1.16秒、トーストに role も aria-live も無い（Iittala）。
+- 購入手続きの JS を全ページで49〜66本先読みし、トップでは商品ページ5つも先読みする（Iittala）。
 - カートの地 #32a2c5 に白の文字で 2.95:1、ホバー #30c9e3 で 1.98:1。メール便可の金 2.12、順位の金銀 2.35・2.39（中川政七商店）。主の行動の地は白で 4.5 以上に。
 - 絞り込みのたびにページを読み直して一番上に戻る。選んだ条件のチップが無い（中川政七商店）。
 - 絞り込みの0件が白い面だけで、選んだ条件が欄から消えて外せない（中川政七商店）。

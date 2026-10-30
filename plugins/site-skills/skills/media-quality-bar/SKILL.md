@@ -20,7 +20,7 @@ description: メディア・ブログ・読みもののサイトを作る・直�
 |---|---|---|---|
 | ニュース | 新聞・ニュースサイト | ProPublica | `types/news.md` |
 | オウンドメディア | 企業・ブランド・財団の読みもの | 北欧、暮らしの道具店、Quanta Magazine | `types/owned.md` |
-| レシピ・ハウツー | レシピ、手順の説明 | King Arthur Baking | `types/recipe-howto.md` |
+| レシピ・ハウツー | レシピ、手順の説明 | King Arthur Baking、白ごはん.com | `types/recipe-howto.md` |
 | 技術ブログ | 開発者のブログ・技術記事 | メルカリエンジニアリング、LINEヤフー Tech Blog | `types/tech-blog.md` |
 
 ## このスキルの範囲

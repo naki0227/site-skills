@@ -21,7 +21,7 @@ description: 会社のサイト（コーポレートサイト・採用サイト�
 | 大企業・上場 | 事業が多い会社、上場企業 | Valmont Industries（2026-10-25）・日清食品グループ（2026-10-29） | `types/enterprise.md` |
 | 中小・地域企業 | 地域の会社、工場、専門業者 | 竹中庭園緑化（2026-10-26） | `types/sme-local.md` |
 | スタートアップ | 新しい会社、プロダクトが1つの会社 | LayerX（2026-10-24）・Mistral AI（2026-10-28） | `types/startup.md` |
-| 採用サイト | 採用だけの特設サイト | HILLTOP 採用サイト（2026-10-27） | `types/recruit.md` |
+| 採用サイト | 採用だけの特設サイト | HILLTOP 採用サイト（2026-10-27）・Life at Spotify（2026-10-30） | `types/recruit.md` |
 
 ## このスキルの範囲
 - 会社のサイトの骨組みと、訪問者それぞれの用事への導線。トップの見た目と雰囲気は `lp-quality-bar`。

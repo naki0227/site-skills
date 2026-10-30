@@ -4,10 +4,10 @@
 
 | リポジトリ | コミット | 日付 |
 |---|---|---|
-| `naki0227/lp-anatomy` | `19ce137` | 2026-10-28 |
-| `naki0227/ec-anatomy` | `2c5b301` | 2026-10-28 |
-| `naki0227/game-anatomy` | `40bbe29` | 2026-10-29 |
-| `naki0227/corporate-anatomy` | `0ef2b6a` | 2026-10-29 |
-| `naki0227/saas-anatomy` | `5d86345` | 2026-10-29 |
-| `naki0227/media-anatomy` | `fffad25` | 2026-10-29 |
-| `naki0227/booking-anatomy` | `e1b4647` | 2026-10-28 |
+| `naki0227/lp-anatomy` | `1d1321f` | 2026-10-29 |
+| `naki0227/ec-anatomy` | `a5e410f` | 2026-10-29 |
+| `naki0227/game-anatomy` | `2618a5a` | 2026-10-29 |
+| `naki0227/corporate-anatomy` | `fa5b357` | 2026-10-30 |
+| `naki0227/saas-anatomy` | `ea49589` | 2026-10-30 |
+| `naki0227/media-anatomy` | `0df3388` | 2026-10-30 |
+| `naki0227/booking-anatomy` | `d34eddf` | 2026-10-30 |

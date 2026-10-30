@@ -21,12 +21,30 @@ WordPress。会社サイト hilltop21.co.jp とは別ドメインで、会社概
 - **見た目の値**：#333（15回）・白（31）・灰 #f1f2f3（13）・札 #da338a（12）・数字 #e4007f（7）、グラデーション #fdca62→#e73394 に noise.png を color-burn。英字の題 Montserrat 80px/700（SP 40px）、本文 16px/300・行間 2（SP 14.4px）。白字の札 #da338a で 4.36:1、縦の札 2.75:1、Join Us! の帯の中央で白字 2.94:1、フッターのリンク rgba(51,51,51,.6) で 3.69:1。
 - **重さ（PC/SP、動画を除く）**：top 3.85/3.63MB、メッセージ 1.82、数字 1.53、ジョブリスト 3.79、社員の声 3.07。動画は PC 用 60.7MB（1920×1080・30秒）・SP 用 27.9MB だが、`<source>` を読み込み開始のあとに JS で消すため SP でも PC 用を読み、開いて10秒で PC 42.0MB・SP 43.4MB。社員カード 300px に 2560px の写真（948KB）、img の loading="lazy" 0／11。
 
-## 真似る型（1サイト目からの仮説。2つ目で確かめる）
-- ナビを読み手の順の「〜を知る」（会社→人→仕事→場所→質問→求人）でそろえ、応募だけを別の形・別の色で右に離す（HILLTOP）。
-- 全ページの最後に同じ応募の帯を置き、行動は3つまで（ボタン2つ＋文字のリンク1つ）（HILLTOP Join Us! 480px）。
-- 職場の数字はタイルに入れ、値ごとに形（帯・円・棒・表）を変える。数字だけを1色・1書体にする（HILLTOP /culture/）。ただし数え上げず、最後の値と「YYYY年MM月現在」を出す。
+### Life at Spotify（https://www.lifeatspotify.com/ 、2026-10-30 解剖。選んだ理由：大きな会社の採用だけのサイトで、最初の画面が募集の束と検索になり、絞り込みの選択肢に件数が付き、応募を自サイトの中の4段で済ませる。Awwwards の作品ページに Honorable Mention〔2026年1月25日〕として掲載。Webby・FWA の受賞は確かめられなかった）
+Next.js＋WordPress（headless、募集は api.lifeatspotify.com/wp-json/animal/v1/job/search の JSON 28,761 バイト）。lang="en"。会社概要・数字・沿革・代表のことばのページは無い。
+- **ナビ（PC）**：fixed・地なし。ロゴ 40px の丸、中央にピル3つ（The Way We Play 152×42・Find Your Team 139×42・Start Your Journey 161×42、14px、左右 20px、角 100px、すき間 8px、地 rgba(41,41,41,.68)、ホバー #404040、今いる区画 rgba(242,242,242,.92)＋blur 20px）、右端に離して All Jobs 93×42px（いつも明るい地）。PC に下がり窓は無い。区画のトップでは2段目（↳ の丸＋Culture・Benefits & Perks など）が出て、600px 下へ読むと1段目が 40→−51px、2段目が 88→39px に上がって残る。ピルが本文の見出しに重なる。
+- **SP のメニュー**：全画面のぼかし、4項目（▾で小項目）、画面の下に緑 #19b551 の帯「All Jobs［79］→」。件数が出るのはここだけ。
+- **トップの順番**：写真＋h1「Join the band」128px → 1秒で写真の箱が 470×470px・角 12px に縮み（GSAP、width/height を動かす）、h1 は scale .35、1.5秒で募集の束（Swiper coverflow・rotate 45・depth 100・4,000ms ごとに送る・speed 800）と検索の帯 1424×98px → Find your stage 716 → Built for how you work and live 948 → Go deeper の6枚 920 → Our 3 Values 1,012 → Latest jobs 837 → Wanna join us? 698 → Quick clicks 427（全幅の行3本）→ フッター。全 7,701px。何の会社かの文は無い。h1 は約5秒で visibility:hidden。
+- **信頼の材料**：数字は無い。価値観3つ（#c87dff の3枚、題 28〜40px が上・文 20px が下、top と about で同じ）、都市名の帯（80px・wdth 150 の白い札と写真の札、約 131px/秒＋スクロール連動、reduce で止まる）、フッターの報告書 PDF 2本（大きさの表示なし）。
+- **募集の一覧（/jobs）**：h1 無し（見出しは input の value を1文字ずつ打つ）。窓3つ（Location・Category・Job type、306×78px、div と p で Tab では届かない）。選択肢に件数：London (41)・Stockholm (31)・New York (23)・Los Angeles (4)・Jakarta (2)・Tokyo (2)・Toronto (2)・Berlin (1)・Ho Chi Minh (1)。上に「79 jobs in all locations in all categories in all job types」24px。URL は ?l=london&c=…&q=…、読み直しても残る。選ぶと 800ms で +15〜16KB。行は白 946×186px・角 24px、職種名 20px、場所、札2つ、Permanent、ホバーで地が #89bcf8。行は div role="link"（href 無し）。5件ずつ「Load more jobs」、「Showing 5 of out 79」（誤字）。SP は全画面の白いシートで「Clear all」「See 79 jobs」。言葉「design」で 79件中 50件。
+- **応募**：募集の詳細の「Apply now」（708×98px の帯）で白いシートが下から上がり、上に「Application 職種名」と 1 Information・2 Links・3 Qualifications・4 Demographic survey。外の採用システムへ渡さない。欄：履歴書・代名詞の checkbox 11・Full name*・Email*・Phone*・Current company*・Current location*・LinkedIn・GitHub・Portfolio・Other・自由記述・在留資格の問い3つ。label は全部あるが、電話もメールも type="text"、required 0（* の文字だけ）、autocomplete は name と email だけ、案内の同意に aria-required="true"。詳細のページに JobPosting は無い。
+- **ニュース（/latest）**：全部 Podcast、日付に年が無い（40個、「October 13」が2回）、行の先は全部 open.spotify.com（外の印なし）、画像 139枚で lazy 0。トップにニュースの欄は無い。
+- **データ**：JSON-LD 0（全ページ）、top の img 31のうち alt 属性なし 21、トップでスクリプトのエラー（reading 'innerHTML' of null）。開くと _next/data の JSON 5本を先読み。
+- **見た目の値**：地 #000、面 #89bcf8（黒字 10.61:1）・#c87dff（7.83）・#19b551（7.77）、行 #fff、フッターの面 #1a1a1a、ボタン #191414。補助 rgba(255,255,255,.82)（13.77:1）、副の札 rgba(0,0,0,.6)（5.74:1）。書体は SpotifyMixVariable 1本（572KB、wght 40–257・wdth・slnt）：本文 wdth 100・wght 70、見出し wdth 120・wght 182、特大と地名 wdth 120〜150・wght 218。大きさは calc(最小 + 差×(100vw − 48rem)/42)（display-3 64→32px、headline-4 20→16px、paragraph-2 24→16px）。角 24px（SP 16px）、面のすき間 8px。
+- **動き**：CSS の reduced-motion 0か所。reduce で止まるのは都市の帯だけで、最初の画面の縮み・束の4秒送り・2秒送りのスライダー・出てくる絵（transform .4s,opacity .2s が CSS に 2,568回）・見出しを打つ動きは動く。開閉 .35s cubic-bezier(.645,.045,.355,1)、ホバーは背景色 .25s。
+- **重さ（PC/SP）**：top 14.50/14.18MB（jpeg 10,049KB、束の写真 2000px 573〜924KB を SP でも同じ、表示 125〜583px、lazy 0/31）、価値観 7.19/6.71、チーム 6.91/6.60、募集の一覧 3.77/3.77（写真 0）、最新 5.92/5.92。タグ：GTM 933KB＋OneTrust 763KB（/jobs では自身 3,042KB の 56%）。同じ CSS 133KB を2回読むページあり。
+
+## 真似る型（2サイトから。どちらの値かを添える）
+- 応募の入口だけを別の形・別の地でナビの右に離す（HILLTOP：ENTRY 100×80px のグラデーション、Spotify：All Jobs 93×42px の明るい地）。件数を添える（Spotify は SP のメニューの緑の帯にだけ「79」。PC にも出す）。
+- 最初の画面で「どんな募集があるか」に答える（Spotify：写真が 470px の札に縮んで募集の束＋検索の帯 1424×98px）。HILLTOP は最初の画面が文字0の動画で、何の会社かも募集も出なかった。h1 は消さずに残す。
+- 全ページの最後に同じ誘いの帯を置き、行動は3つまで（HILLTOP：Join Us! 480px にボタン2つ＋文字のリンク1つ、Spotify：Wanna join us? の紫の帯に All jobs 1つ＋Sound Good? に Start Your Journey・Read our FAQ）。
+- 募集の一覧は、窓の選択肢に件数（London (41)）、上に今の条件を読む1文（「79 jobs in all locations…」）、URL に残す（?l=…&c=…&q=…）、SP は全画面のシートで「See N jobs」（Spotify /jobs）。窓は button と checkbox で作る。
+- 応募は名前のついた段に分け、上に段の列を出す（Spotify：Information・Links・Qualifications・Demographic survey）。中小は1段目を見学にする（HILLTOP の社員は見学で入社を決めた）。
+- 価値観や職場の話は色の面に入れ、題を上・文を下に寄せる（Spotify：#c87dff の3枚）。職場の数字はタイルにして値ごとに形を変える（HILLTOP /culture/ の9枚）。ただし数え上げず、日付を添える。
 - インタビューは全員に同じ問いを同じ順で（HILLTOP：5問）。部署の話は4人前後のクロストークで、PROFILE を先に置く。
 - 募集要項に条件の表の外の具体（配属先の編成・キャリアの道・禁煙・食堂の負担）を小見出しで書く（HILLTOP 製造系総合職）。
+- 場所は地名を特大の札にして写真の札と交互に流す（Spotify：80px・wdth 150、約 131px/秒、reduce で止まる）。止めるボタンも付ける。
 
 ## 反面教師
 - 選考フローが募集要項に無く、FAQ が無い場所を案内する（HILLTOP）。流れは `<ol>` で募集要項に書き、見学をその1段目にする。
@@ -36,3 +54,10 @@ WordPress。会社サイト hilltop21.co.jp とは別ドメインで、会社概
 - エントリーが9項目・8必須・label 無し・電話もメールも text（HILLTOP）。
 - SP でも PC 用の 60.7MB の動画を読む、最初の画面に文が無い（HILLTOP）。
 - 止まらない社員カードの流れ（slick：pauseOnHover/Focus false・swipe false）（HILLTOP）。
+- 最初の画面の h1 を演出のあとで隠す（Spotify：「Join the band」が約5秒で visibility:hidden）。募集の一覧に h1 が無い（Spotify /jobs）。
+- 絞り込みの窓が div で Tab で届かず、募集の行が div role="link"（Spotify /jobs）。窓は button＋checkbox、行は a href。
+- 自動で送る束・スライダーが reduce でも動く（Spotify：4,000ms と 2,000ms。CSS の reduced-motion 0か所）。
+- 応募の電話・メールが type="text"、必須は * の文字だけ、宣伝の同意に aria-required（Spotify）。
+- ニュースの日付に年が無く、全部外のサイトへ印なしで出る（Spotify /latest）。
+- 募集の詳細に JobPosting の構造化データが無い（HILLTOP・Spotify とも0）。
+

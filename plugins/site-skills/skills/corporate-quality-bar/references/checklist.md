@@ -62,4 +62,14 @@
 - [ ] フッターに、ナビの2段目までのサイトの地図を置いた（日清食品グループ：4項目だけ）
 - [ ] ニュースの絞り込みに「種類（商品・IR・会社のお知らせ）」を入れ、件数を出した（日清食品グループ：API に category があるのに画面では会社と年月だけ）
 
+- [ ] 採用サイトの最初の画面で「どんな募集があるか」に答えた（本物の募集の札か件数と検索）。演出のあとでも h1 が見えている（Life at Spotify：束は良いが h1 は5秒で visibility:hidden）
+- [ ] 絞り込みの選択肢に件数を付け、一覧の上に今の条件を1文で出した。SP のシートの決定ボタンに件数を出した（Life at Spotify：London (41)・「79 jobs in all locations…」・See 79 jobs）
+- [ ] 絞り込みの窓は button と checkbox で、Tab だけで選べる。募集の行は a href で、新しいタブで開ける（Life at Spotify：窓が div、行が div role="link"）
+- [ ] 応募を段に分けるときは、段に名前を付けて上に並べ、今の段を示した（Life at Spotify：Information・Links・Qualifications・Demographic survey）
+- [ ] 応募の欄の必須は required と画面の文字の両方で示し、宣伝の同意は任意にした（Life at Spotify：required 0、案内の同意に aria-required）
+- [ ] 募集の詳細ごとに JobPosting の構造化データを入れた（HILLTOP・Life at Spotify とも 0）
+- [ ] ニュースの日付に年を書いた。外のサイトへ出る行には印を付けた（Life at Spotify /latest：年なし・全部 open.spotify.com）
+- [ ] 浮かせたヘッダーのピルが、本文の見出しや写真の上で重ならないかを、スクロールの途中の画面で確かめた（Life at Spotify：Culture のピルが「One Team, Together」に重なる）
+- [ ] 一覧の件数の文（「N件中M件を表示」）を声に出して読んだ（Life at Spotify：「Showing 5 of out 79」）
+
 解剖で裏づけた項目が増えたら、ここに足す（どのサイトで確かめたかを添える）。
