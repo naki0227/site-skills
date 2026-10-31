@@ -19,7 +19,7 @@ description: SaaS・ソフトウェア・アプリの製品サイトを作る・
 | 下位タイプ | 向く題材 | 見本（解剖したサイト） | ファイル |
 |---|---|---|---|
 | 開発者向け | API、開発ツール、インフラ、ヘッドレスCMS | Resend、microCMS | `types/devtools.md` |
-| 業務SaaS | 営業・人事・会計・社内ツール・保育や学童などの現場 | Backlog、コドモン | `types/business.md` |
+| 業務SaaS | 営業・人事・会計・社内ツール・保育や学童などの現場・製品開発の課題管理 | Backlog、コドモン、Linear | `types/business.md` |
 | AIプロダクト | 生成AI・AIを中心にした製品、会議や記録の AI | Nani翻訳、Granola | `types/ai.md` |
 | 個人向けアプリ | スマホ・PC のアプリ、個人で使う道具、共有カレンダー | Todoist、TimeTree | `types/app.md` |
 

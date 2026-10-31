@@ -76,4 +76,16 @@
 - [ ] 題の書体を Web フォントで読むなら、使う字だけに分ける（白ごはん.com：NGT P明朝 676KB を全字で PC の全ページ）
 - [ ] 自動で送るスライドには止めるボタンを付け、reduced-motion では止める（白ごはん.com：6秒・autoHover だけ）。SP で left を JS で動かさない（同：SP トップ CLS 0.083）
 
+- [ ] 動きは `@media (prefers-reduced-motion: no-preference)` の中で足す。外には色の変化だけを書けば、reduced-motion の人には何もしなくても動かない（The Markup：transform の宣言 21か所すべて）
+- [ ] 押せるものは影でなく線で見せてよい：1px の線を 3px・6px ずらした紙を2枚重ね、ホバーで上の紙ほど戻す（The Markup：-3／-2／-1px・.2s linear）
+- [ ] 記事に h1 を1つだけ置く。同じ題の隠れた h1 を残さない（The Markup：0×0 の h1 がもう1つ）
+- [ ] `<time datetime>` に時差まで書く（The Markup：画面は「8:00 a.m. UTC」なのに datetime は「2026-10-14T08:00:00」）
+- [ ] 調べ方（データ・手順・限界）を別の記事にするなら、頭に本編への導線、本編から調べ方への導線を両方置く（The Markup：Show Your Work の「Have you read this article yet?」）
+- [ ] 図表の iframe（Datawrapper など）は loading="lazy" か押してから読む（The Markup：13枚 × main.js 415KB で 19.82MB）
+- [ ] 全ページ共通の JS に、一部のページでしか使わない部品（動画の再生など）を入れない（The Markup：video.js 入りの main.js 1,041KB を全ページで）
+- [ ] 閉じたメニューの中のリンクを Tab に入れない（inert か visibility:hidden）。開閉は transform で（The Markup：max-height 0 のまま Tab が入る、max-height .4s）
+- [ ] 一覧のページ送りで、無効のボタンに href を残さない。rel="next" を付ける（The Markup：無効の Newer に /page/0、rel="next" 無し）
+- [ ] 本文の引用と関連カードは、PC で本文の列の外へ出し、本文の幅を変えない（The Markup：margin-left -180px・関連 308px を左右交互）
+- [ ] 転載を許すなら、条件と貼るだけの HTML を記事から1押しで出す（The Markup：Republish の全画面の面と Copy HTML）
+
 解剖で裏づけた項目が増えたら、ここに足す（どのサイトで確かめたかを添える）。

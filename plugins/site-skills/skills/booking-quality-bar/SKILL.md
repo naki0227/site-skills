@@ -19,7 +19,7 @@ description: 予約サイト（宿・飲食・チケット・体験）の画面�
 | 下位タイプ | 向く題材 | 見本（解剖したサイト） | ファイル |
 |---|---|---|---|
 | 宿 | ホテル、旅館、民泊 | じゃらんnet、星野リゾート | `types/stay.md` |
-| 飲食 | レストラン、カフェの席予約 | TableCheck | `types/restaurant.md` |
+| 飲食 | レストラン、カフェの席予約 | TableCheck、Resy | `types/restaurant.md` |
 | チケット・イベント | 公演、展示、スポーツ、劇場の回の表 | DICE、Shakespeare's Globe | `types/ticket-event.md` |
 | レンタル・体験 | 体験、レンタル、教室、時間枠のサウナ・ジム、時間指定の入場（ミュージアム） | Othership、チームラボプラネッツ | `types/rental-activity.md` |
 

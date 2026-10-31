@@ -5,7 +5,7 @@
 
 ## 下位の型
 同じ「イベント」でも、見本で別れた。作るものがどちらに近いかを先に決める。
-- **チケット制のフェス・ライブ**（Lollapalooza）：最初の画面は物販・チケット、出演者と時間割が中心、購入ボタンが全ページに。
+- **チケット制のフェス・ライブ**（Lollapalooza、Primavera Sound Barcelona）：最初の画面は出演者のポスターかチケット、出演者の一覧と時間割が中心、購入ボタンが全ページに。
 - **入場無料か少額の、日本の地方の催し**（陶器市・祭り・マルシェ。見本は笠間の陶炎祭）：買うボタンは無い。中心は会場図・出店者一覧・行き方と駐車場・雨の扱い。出店者は数十〜数百件、会場図は印刷物（PDF）が正本になりやすい。
 
 ## 見本の実測
@@ -27,6 +27,22 @@
 - **安全**：`prefers-reduced-motion` は CSS・ページ内とも 0件。991px 以下で `*:focus{outline:none}`、PC はメニューボタンだけ `outline:2px solid blue`（2.16:1）。スライダーの自動送り（4,000ms）は IntersectionObserver で画面内だけ。
 - **重さ**（展開後・解析タグ除く）：top PC 21.21MB（動画 8,392KB・画像 9,057KB・JS 3,467KB）／SP 14.01MB、beyond 12.51／4.74MB、schedule 6.23／4.68MB、lineup 5.49／4.37MB、tickets 5.44／4.61MB。どのページも JS 3.2〜3.5MB（Zendesk 1.2MB・Mailchimp 0.7MB・OneTrust 0.5MB）。top PC は 42 ホストと通信、tickets PC の転送 3.74MB のうち 57% が Webflow 以外。Oswald を6太さ読むが歩いた5ページでは見えない。
 
+### Primavera Sound Barcelona 公式（https://www.primaverasound.com/en/barcelona ・ 2026-10-31 解剖、2027-06-02〜06 の約7か月前・一般発売中。歩いたページ：/en/barcelona・/en/nobody-is-normal・/en/barcelona/lineup・/en/artist/massive-attack・/en/news・/en/barcelona/tickets-info-barcelona）
+- **枠**：React の SPA（Tailwind＋Radix）。ヘッダー 72px（SP 96px）は固定しない。Barcelona のトップは「ポスター 1440×620 → チケットの帯 → Revolut の帯 → YouTube 1440×810 → ショップの帯 → News → メール登録 → Relive → 協賛4段 → フッター」。title・description とも「Tickets for…」で、トップはチケット売り場の顔。
+- **最初の画面**：点の色と出演者の名前（大きさ3段・closing set・日曜の別枠）を焼き込んだ jpg（PC 2000×861・SP 800×1067 の別画像）。alt は画像の URL、リンクなし。日付・会場は画像の中のカタルーニャ語だけで、文字で出るのはメガメニューの「02 - 06 JUN, 2027 PARC DEL FÒRUM, ES」（12px 等幅）。SP 画像のいちばん小さい名前は画面で約 6px。
+- **出演者一覧（Artists A-Z、/en/barcelona/lineup）**：150組を、地 #efeae7 の上で GT America Standard Black 30px／50.7px（1.69）・中央揃え・「•」区切りの1本の文字の流れに。名前は全部 h2。PC は `a href="/en/artist/<slug>?e=primavera-sound-2027-barcelona"`、SP（24px／40.56px）は span でリンクでない。ホバーから 68ms で約 296×220 の写真のカード（濃い帯に名前 16px・VIEW PROFILE、星と ×）。ホバー色 #7dd6ad は地と 1.45:1、フォーカスではカードが出ない、SP の VIEW PROFILE は 103×16px。見出し 360px にポスターの点。トップの本文から A-Z へのリンクは0本（メガメニューの中だけ）。
+- **1組（/en/artist/massive-attack）**：白黒写真 1400×620 に h1 40px・900 白。左に NEXT DATES（白い札「Primavera Sound Barcelona 2027」・会場 10px・TICKETS 128×32）と PREVIOUS CONCERTS（日付｜フェス名）、右に本文を5つの問いで（Where to start?／What you should know／What you don't need to know but is cool／Why are they at Primavera Sound?／You'll like them if you like...）。前後の出演者へのリンクは無く、パンくずの /en/artist は 404。YouTube は autoplay=0 だが iframe は読み込み時に作る。
+- **ナビ**：FESTIVALS（`aria-expanded`・`aria-controls`）のメガメニューに、フェス5つのタブ（等幅 14px・字間 .7px、他は #b8c2cc＝白と 1.81:1）、名前 60px Black、日付と会場の1行、黒い丸の TICKETS、5列の目次（2027 EDITION／TICKETS 5／INFO 5／ACCESSTICKET 2／YOU MAY ALSO LIKE 4）。SP は検索・アカウント・3本線が各 32×32（3本線に名前なし）。
+- **チケット**：タブ2つ（GENERAL SALE／PRIMAVERA PRO、716×56・SP 143／154×36、選択中は黒地白字、他 #e4dfda、押して 110ms で中身が替わる）の下に、券種1行（白・64px・間 8px）＝赤い＋・名前 18px 700・「|」・札（等幅 12px・角 8px、On Sale #7dd6ad／VIP #f8d628）・FROM 12px 等幅＋値段 22px 900＋「+ fees」16px・BUY 128×32（丸・#7dd6ad・12px）。行を押して 64〜82ms で Radix の Accordion が 0.3s で開き、説明1文。BUY は 103ms で「Select your selling platform」（892×772）に Fever と Installment Plan（AccessTicket）の2行、どちらも新しいタブ。一般4券種は Revolut 払いが €20 安い（€330／€350、VIP €525／€545）。
+- **チケット案内（Tickets Info）**：左に「\ GENERAL SALE・\ MINORS・\ ACCESSIBLE TICKET・\ FAQS」（等幅 16px・#f60）、右に本文 Tiempos 14px／21px と同じ帯。地元割はバルセロナ都市圏 10%（住民登録の証明を出し、割引コードがメールで来る）、未成年は 0〜12歳無料（大人の券に紐づけ）・13〜17歳割引・15歳以下は保護者同伴、車いすは申込フォーム、FAQ 5問。本文の値段（一般 €360・VIP €560）が帯の FROM（€350・€545）と食い違う。
+- **世界観（Nobody is Normal）**：性暴力・差別のない祭りの約束のページ。h1 1つ・本文 14px、相談のブース2か所と監修団体を書く。
+- **ニュース**：全フェス共通のモザイク3列（大カード：写真の上に白 26px／37.18px、小カード：写真半分＋16px）。BY EVENT の6つで絞る（押して 86ms で一覧を読み直す、選択中 #7dd6ad、`aria-pressed` なし、URL は変わらない）。最初 18件・LOAD MORE。カードに日付が無い。札は白 10px on #7dd6ad（1.74:1）。英語版にスペイン語の見出しが混ざる。
+- **部品の値**：地 #efeae7、行・ヘッダー #fff、文字 rgba(0,0,0,.87)（地と 13.93:1）、ミント #7dd6ad（黒文字 12.09:1）、本文のリンク #f60（地と 2.46:1）。書体は自前の woff2 で GT America Mono（ナビ・ラベル 14px 大文字・字間 .7px）、GT America Standard（名前・値段）、Tiempos Text（本文 14／21）。body の既定は Roboto 14px で読み込んでいない。
+- **表記**：`<html>` の lang が空（6ページとも）、hreflang 4本（en・es・ca-es・pt）と canonical はある。言語の切り替えはフッターの ES｜EN｜CA｜PT だけ。viewport は `maximum-scale=1.0, user-scalable=0`。JSON-LD 0件。
+- **ポップアップ**：Cookiebot（Marketing 75件）を拒否しても、読み込みから 7.0〜7.3 秒で Braze のニュースレターの全画面 iframe（1440×900／390×844、見出しに絵文字、閉じるは名前なしの button、Esc で閉じる）。
+- **動き**：ほとんど動かない。行の開閉 0.3s・BUY のダイアログ・カード。`prefers-reduced-motion` は CSS に2件（トーストとメニューの引き出し）だけ。top の YouTube は `autoplay=1&mute=1&controls=0` で読み込み時に埋め込む。
+- **重さ**（展開後・解析タグ除く）：top PC 23.80MB／SP 23.97MB、1組 20.55／20.80、news 18.10／19.46、buy 16.88／17.19、world 16.82／17.21、A-Z 16.72／17.00。どのページも JS 13.0〜16.5MB（vendor.bundle.js 5,585KB・main.bundle.js 2,421KB・Stripe 3.7MB）と CSS 2.9MB（Tailwind の全クラス、規則 61,950）。top は YouTube 5,113KB と、PC 用・SP 用の帯の画像を両方（1,268KB）。転送は br で vendor 1,210KB・CSS 412KB。`tools/inspect.js` は top で FAIL 5（横スクロール 4px・書体 7種・SP で 13px 未満 24%）／WARN 9。
+
 ### 笠間の陶炎祭（ひまつり）公式（https://www.himatsuri.net/ ・ 2026-10-26 解剖、第45回 2026-04-29〜05-05 の約5か月半後。歩いた5ページ：/・/about/・/syutten/・/blog/・/access/ と、会場図・ハウツー・バス路線図の PDF 3本）
 - **下位の型**：入場料 1日500円（18歳以下無料）の地方の陶器市。会場は笠間芸術の森公園、来場8万人（閉幕あいさつ）。
 - **最初の画面**：黒 #000 のヘッダー 70px（SP 56px 固定）→ 写真4枚のフェード 80vh（PC 720px・SP 591px）。日付・時刻・会場はその下にロゴ画像と横並びで、PC は日付 18px が y=892px（1440×900 の折り目の下）、SP は 34px（時刻・会場 24px）が y=734px。曜日は 6px（SP 12px）の黒い札。入場料は上下 3px double の囲み。
@@ -46,11 +62,18 @@
 - 1本は「番号・駐車場名（収容台数）・開く時刻・状況・ナビ」の表。16か所・計4,870台。状況は ○ 空きあり・△ 空き50％以下・× 満車。注記に「雨天時使用禁止」（白磁ヶ丘公園 100台）、「4月30日、5月1日は駐車できません」「初日は 3:00〜」。「携帯電話によっては過去の情報のまま表示する場合がございます」と書いている。
 
 ## 真似る型
-（見本が2つ以上そろったら、共通する型をここにまとめる。いまの2つは下位の型が違う。）
-- 日付・会場は、PC・SP とも最初の画面に入れる（Lollapalooza はヘッダーに常時、陶炎祭は PC で折り目の下に落ちていた）。
+- 日付・会場は、PC・SP とも最初の画面に**文字で**入れる（Lollapalooza はヘッダーに常時。陶炎祭は PC で折り目の下、Primavera はポスター画像の中とメガメニューの中だけ）。
+- （チケット制のフェス）出演者は「全員の名前の一覧」を1ページ持ち、1組1URL にする。一覧は文字で組む（Primavera の A-Z：150組・30px／50.7px の流れ・1組ずつ a）。ポスター・時間割を画像だけで出すと名前が読めず押せない（Lollapalooza：ラインナップ・時間割が alt 空の画像、Primavera：トップのポスターの alt が画像の URL）。
+- （チケット制のフェス）チケットのページは「券種・値段」の上に、販売前・販売中・終了後の段階を決めて出し分ける。終了後も次回のお知らせ登録を残し（Lollapalooza の /tickets）、販売中は券種1行に「名前｜状態の札｜値段＋手数料｜BUY」（Primavera：64px・On Sale／VIP の札・FROM €350.00 + fees）。
+- （チケット制のフェス）購入の入口を全ページの同じ場所に置く（Lollapalooza：固定ヘッダー右の TICKETS 117×56、Primavera：ヘッダー右の TICKETS と、メガメニューの祭りの名前の下の黒い丸）。
 
 ## 真似る候補（見本1つ）
 - 会場・日付を、固定ヘッダーのロゴの横に常時置き、右に購入ボタンを1つ置く（Lollapalooza）。
+- 出演者の名前にホバー・タップすると、一覧の上に写真のカード（名前・プロフィールへ）を重ね、一覧から離れない（Primavera：68ms・約 296×220）。フォーカスでも出し、色ではなく下線で示す。
+- 1組の紹介を決まった問いで書く（Primavera：どこから聴くか／知っておくこと／知らなくていいが面白いこと／なぜ出るのか／これが好きなら）。
+- 売り場の種類（一般／業界向け）を帯の最上段のタブ2つに、買う先が複数なら BUY を押してから販売先を選ばせる（Primavera：716×56 のタブ、Fever と分割払いの2行のダイアログ）。
+- 地元割・未成年・車いす・FAQ をチケットのページの章立てで同じページに（Primavera の Tickets Info：\ GENERAL SALE・\ MINORS・\ ACCESSIBLE TICKET・\ FAQS）。
+- メガメニューを祭りごとの目次にし、名前 60px・日付と会場の1行・TICKETS を頭に置く（Primavera の FESTIVALS、5列）。
 - 約束は数字1つの文にして、色の違う箱に1枚ずつ載せる。長い演出にはヘッダー直下に高さ 16px の進捗バーを貼る（Lollapalooza）。
 - 下層ページの頭を「h1 → 2行の h2 → ボタン1つ」の同じ区画で始める（Lollapalooza の4ページ）。
 - ヒーローの配置は CMS の data 属性（揃え・絵の向き・上下の余白）で決め、CSS だけで組み替える（Lollapalooza）。
@@ -72,3 +95,7 @@
 - 店番を PDF の中だけに置き、Web の出店者一覧に番号・場所を出さない。一覧ページの地図ボタンを消したまま「公開予定」の文を閉幕後も残す（陶炎祭）。
 - アコーディオンの checkbox を `display:none` にしてキーボードで開けない。閉じた段の中のリンクに Tab が入る（陶炎祭の94本）。
 - 駐車場を地図の埋め込みだけにして台数・満車を書かず、地図3つで 8.38MB（陶炎祭の access）。
+- 出演者一覧へ、トップの本文から1本もリンクしない（Primavera：A-Z はメガメニューの中だけ）。ポスターの名前をそのまま一覧・1組へのリンクにする。
+- 同じページで値段を2通り書く（Primavera の Tickets Info：帯は FROM €350／€545、本文は €360／€560）。値段は1つの表から出す。
+- ホバー色をブランドの淡い色にして、地と 1.45:1（Primavera の A-Z の #7dd6ad on #efeae7）。SP では名前が span でリンクにならない。
+- 文字だけのページでも決済 SDK・全クラスの CSS を読み 16.7MB（Primavera：Stripe 3.7MB・CSS 2.9MB・JS 13MB を全ページ）。
