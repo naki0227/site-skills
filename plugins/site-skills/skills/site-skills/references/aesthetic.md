@@ -64,6 +64,9 @@
 - **作る前に、その業種の手本を事例集から5〜10件選び、`node scripts/sample.js <URL…>` で地・文字・差し色・書体と太さ・ボタン・罫の数を測ってから、3色と書体を決める。** 決まり1（鮮やかな主の色を大きな面で）は、ポスター・告知・ポップな LP の型。手本の業種が使っていなければ使わない。
 - 色は「題材そのもの」（服・料理・建物の写真）に持たせ、画面の地と文字は色の入った無彩色に寄せる業種がある（ファッションはそう）。
 - 書体は雰囲気で替える。ORBITO 第3版では COOL＝Archivo＋Zen Kaku Gothic New、CUTE＝Cormorant Garamond の斜体＋Zen Old Mincho（手本の Univers・DIN／Sabon・游明朝の代わりの Google Fonts）。
+- **標準の書体・定番の書体は使わない（ユーザーの指示「フォントのデフォルトとかは使わないで。基本的に NG」2026-11-01）。** 端末の標準（ヒラギノ・游ゴシック・メイリオ・Arial・Helvetica・Times など、Webフォントを読まずに描かれた字）と、どこでも使われて個性の出ない定番（Noto Sans JP・Noto Serif JP・Inter・Roboto・Open Sans・Lato・Montserrat・Poppins・M PLUS 1p・Sawarabi、ORBITO 第3版で選んで NG だった Zen Kaku Gothic New・Archivo）は、本文にも見出しにも使わない。`scripts/inspect.js` の default-font が、CSS の指定でなく**実際に描かれた書体**を調べて FAIL にする。
+  - 雰囲気から選ぶ。ORBITO では COOL＝Syne（英字）＋Murecho（和文）、CUTE＝Cormorant Garamond 斜体（英字）＋Kaisei Decol（見出し）＋Zen Maru Gothic（本文）にし、本文の書体ごと切り替えた。
+  - 手本のサイトの書体（Univers・DIN・Sabon など）が有料なら、形の近い Google Fonts から、定番の一覧に入らないものを選ぶ。
 - ファッションの本文は 12〜15px が多かった（DROP TOKYO・DEADLY PONIES 12px、kolor 14px）。ここは真似ず、本文 16px の決まり（`ai-tells.md`）を残した。
 
 ## 当てる順番

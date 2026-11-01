@@ -289,6 +289,18 @@ function judge(m, width) {
     if (out) { fs.mkdirSync(out, { recursive: true }); await p.screenshot({ path: path.join(out, `${name}-top.png`) }); await p.screenshot({ path: path.join(out, `${name}-full.png`), fullPage: true }); }
     const m = await p.evaluate(probe);
     all.push(...judge(m, vp.width));
+    // 実際に描かれた書体（CSS の指定でなく、ブラウザが字を描いた書体）。標準の書体・どこでも使われる定番は使わない
+    try {
+      await p.evaluate(() => { let n = 0; for (const e of document.querySelectorAll('h1,h2,h3,p,a,button,li,dd,dt,figcaption,span')) { if (n > 80) break; const t = [...e.childNodes].some(x => x.nodeType === 3 && x.textContent.trim()); const r = e.getBoundingClientRect(); if (t && r.width && r.height) { e.setAttribute('data-insp-font', ''); n++; } } });
+      const c = await p.context().newCDPSession(p); await c.send('DOM.enable'); await c.send('CSS.enable');
+      const { root } = await c.send('DOM.getDocument', { depth: -1 }); const { nodeIds } = await c.send('DOM.querySelectorAll', { nodeId: root.nodeId, selector: '[data-insp-font]' });
+      const used = {}; for (const id of nodeIds) { const { fonts } = await c.send('CSS.getPlatformFontsForNode', { nodeId: id }); for (const f of fonts) { if (/emoji|icon|symbol/i.test(f.familyName)) continue; const k = f.familyName.replace(/ (Thin|Light|Regular|Medium|SemiBold|Semibold|Bold|ExtraBold|Black|Italic|W\d)+$/g, '') + (f.isCustomFont ? '' : '（端末の標準）'); used[k] = (used[k] || 0) + f.glyphCount; } }
+      const tot = Object.values(used).reduce((x, y) => x + y, 0) || 1;
+      const NG = /端末の標準|^(Noto Sans|Noto Serif|Noto Sans JP|Noto Serif JP|Noto Sans CJK|Inter|Roboto|Open Sans|Lato|Montserrat|Poppins|Arial|Helvetica|Times|Hiragino|ヒラギノ|Yu Gothic|YuGothic|游ゴシック|Meiryo|メイリオ|MS |Sawarabi|M PLUS 1p|Zen Kaku Gothic New|Archivo|DejaVu|Liberation|Droid)/i;
+      const bad = Object.entries(used).filter(([k, v]) => NG.test(k) && v / tot >= .05).sort((x, y) => y[1] - x[1]);
+      console.log(`${name} 描かれた書体：${Object.entries(used).sort((x, y) => y[1] - x[1]).map(([k, v]) => `${k} ${Math.round(v / tot * 100)}%`).join('・')}`);
+      if (bad.length && !allow.includes('default-font')) all.push({ lv: 'FAIL', id: 'default-font', width: vp.width, msg: `標準・定番の書体で描かれている：${bad.map(([k, v]) => `${k} ${Math.round(v / tot * 100)}%`).join('・')}`, fix: '雰囲気に合う、癖のある書体を選ぶ（references/aesthetic.md「書体」）。Webフォントが読めているかも確かめる' });
+    } catch (e) { errors.push(`${name}: 書体を調べられない ${String(e).slice(0, 80)}`); }
     console.log(`${name} ${vp.width}px  本文 ${m.bodySize}px・本文の13px未満 ${m.runChars ? Math.round(m.runTiny / m.runChars * 100) : 0}%・大きさ ${m.sizeCount}段・書体 ${m.familyCount}・枠線 ${m.bordered}・箱 ${m.boxes}・影 ${m.softShadows}・グラデ ${m.gradients}・小ラベル ${m.eyebrows.length}・番号 ${m.numbering.length}・中央 ${m.runChars ? Math.round(m.runCenter / m.runChars * 100) : 0}%・色相 ${Object.values(m.hues).filter(v => v >= 2).length}・ピル ${m.pills}・角丸 ${m.softRadius}・下が詰まった箱 ${m.tightBottom.length}・写真 ${m.photos}・灰色の枠 ${m.greySlots.length}・等幅メタ ${m.monoMeta.length}・アイコンカード ${m.iconCards}・角丸写真 ${m.softPhotos}・ボタン2つ ${m.twinCta ? 'あり' : 'なし'}・飾りの言葉 ${m.filler.length}・塊/画面 ${m.density?.medBlocks}・最初の画面 ${m.density?.firstChars}字`);
     await p.close();
   }
