@@ -67,7 +67,7 @@
 - **標準の書体・定番の書体は使わない（ユーザーの指示「フォントのデフォルトとかは使わないで。基本的に NG」2026-11-01）。** 端末の標準（ヒラギノ・游ゴシック・メイリオ・Arial・Helvetica・Times など、Webフォントを読まずに描かれた字）と、どこでも使われて個性の出ない定番（Noto Sans JP・Noto Serif JP・Inter・Roboto・Open Sans・Lato・Montserrat・Poppins・M PLUS 1p・Sawarabi、ORBITO 第3版で選んで NG だった Zen Kaku Gothic New・Archivo）は、本文にも見出しにも使わない。`scripts/inspect.js` の default-font が、CSS の指定でなく**実際に描かれた書体**を調べて FAIL にする。
   - 雰囲気から選ぶ。ORBITO では COOL＝Syne（英字）＋Murecho（和文）、CUTE＝Cormorant Garamond 斜体（英字）＋Kaisei Decol（見出し）＋Zen Maru Gothic（本文）にし、本文の書体ごと切り替えた。
   - **書体の癖は、大きな字でしか見えない。** Zen Kaku Gothic New → Murecho に替えても、見出しが 26px のままでは「変わらん」と言われた。和文のゴシック体どうしは 15〜26px ではほぼ同じに見える。書体を選んだら、最初の画面の題を 40px 以上（PC で 40〜60px）にし、その下の1〜2行の文も同じ書体で組んで、癖を見せる。長い本文は読みやすさを優先して別の書体でよい。
-  - 見比べ（2026-11-01、見出し最大 52px・本文も同じ書体、ORBITO の色）：COOL は Murecho・Dela Gothic One・DotGothic16・Reggae One・Zen Antique から **Murecho**、CUTE は Kaisei Decol・Hachi Maru Pop・Yusei Magic・Mochiy Pop One・Zen Kurenaido から **Yusei Magic**（マーカーで書いたような字）。反応は「うーん」で、決め手のある書体ではまだ無いかもしれない。COOL は書体を替えるより、大きく組むことのほうが効いた。
+  - 見比べ（2026-11-01、見出し最大 52px・本文も同じ書体、ORBITO の色）：COOL は Murecho・Dela Gothic One・DotGothic16・Reggae One・Zen Antique から、最初は **Murecho**、大きく組んだ ORBITO を見たあと **Dela Gothic One**（極太で角ばったゴシック体）に替えた。CUTE は Kaisei Decol・Hachi Maru Pop・Yusei Magic・Mochiy Pop One・Zen Kurenaido から **Yusei Magic**（マーカーで書いたような字）。反応は「うーん」で、決め手のある書体ではまだ無いかもしれない。大きく組んで初めて、書体の違いを比べられた（大きくしてから選び直した）。
   - 手本のサイトの書体（Univers・DIN・Sabon など）が有料なら、形の近い Google Fonts から、定番の一覧に入らないものを選ぶ。
 - ファッションの本文は 12〜15px が多かった（DROP TOKYO・DEADLY PONIES 12px、kolor 14px）。ここは真似ず、本文 16px の決まり（`ai-tells.md`）を残した。
 
