@@ -23,11 +23,13 @@ function probe() {
   // 表・入力欄・コード・本物の画面の部品（data-ui）は、線や等幅があって当然なので数えない
   const exempt = el => !!el.closest('table,form,input,select,textarea,pre,code,[data-ui],[aria-hidden="true"]');
   const rgb = c => { const m = c.match(/[\d.]+/g); return m ? m.map(Number) : [0, 0, 0, 0]; };
+  // rgb() は不透明の色で3つの数しか返さない。透明度は無ければ 1
+  const alpha = c => { const a = rgb(c); return a.length > 3 ? a[3] : 1; };
   const lum = ([r, g, b]) => { const f = v => { v /= 255; return v <= .03928 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4; }; return .2126 * f(r) + .7152 * f(g) + .0722 * f(b); };
   const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return +((x + .05) / (y + .05)).toFixed(2); };
   const bgOf = el => { for (let e = el; e; e = e.parentElement) { const s = getComputedStyle(e); if (s.backgroundImage !== 'none' && !/gradient/.test(s.backgroundImage)) return null; const c = rgb(s.backgroundColor); if (c[3] === undefined || c[3] > .9) return c; } return [255, 255, 255, 1]; };
 
-  const m = { chars: 0, runChars: 0, runSizes: {}, runTiny: 0, runCenter: 0, tightBottom: [], greySlots: [], photos: 0, hues: {}, pills: 0, softRadius: 0, sizes: {}, tiny: 0, families: {}, lowContrast: [], unreadable: [], eyebrows: [], numbering: [], bordered: 0, boxes: 0, gradients: 0, gradientText: 0, softShadows: 0, emoji: [], headings: [], svgHero: 0, statRows: 0, bodyBg: getComputedStyle(document.body).backgroundColor };
+  const m = { chars: 0, runChars: 0, runSizes: {}, runTiny: 0, runCenter: 0, tightBottom: [], greySlots: [], photos: 0, monoMeta: [], softPhotos: 0, iconCards: 0, filler: [], twinCta: 0, hues: {}, pills: 0, softRadius: 0, sizes: {}, tiny: 0, families: {}, lowContrast: [], unreadable: [], eyebrows: [], numbering: [], bordered: 0, boxes: 0, gradients: 0, gradientText: 0, softShadows: 0, emoji: [], headings: [], svgHero: 0, statRows: 0, bodyBg: getComputedStyle(document.body).backgroundColor };
   const textEls = [];
   for (const el of document.body.querySelectorAll('*')) {
     if (!visible(el)) continue;
@@ -98,12 +100,17 @@ function probe() {
     if (!visible(el) || exempt(el) || /^(BUTTON|A|INPUT|SELECT|TEXTAREA|IMG|SVG|svg)$/.test(el.tagName)) continue;
     const s = getComputedStyle(el); const r = el.getBoundingClientRect();
     // ボタン・ラベルのような1行の部品は、左右を広く取るのが普通なので数えない（2行以上の中身を持つ箱だけ）
-    if (r.height < 56 || r.width < 120 || r.height > vh * 1.2 || /^inline/.test(s.display)) continue;
-    const framed = ['Top', 'Right', 'Bottom', 'Left'].every(d => parseFloat(s['border' + d + 'Width']) > 0 && s['border' + d + 'Style'] !== 'none') || (rgb(s.backgroundColor)[3] > .9 && s.backgroundColor !== getComputedStyle(el.parentElement || el).backgroundColor);
+    // 画面幅いっぱいの帯（左右の空きは中央寄せの容れ物のぶん）は箱ではないので数えない
+    if (r.height < 56 || r.width < 120 || r.width > vw * .9 || r.height > vh * 1.2 || /^inline/.test(s.display)) continue;
+    const framed = ['Top', 'Right', 'Bottom', 'Left'].every(d => parseFloat(s['border' + d + 'Width']) > 0 && s['border' + d + 'Style'] !== 'none') || (alpha(s.backgroundColor) > .9 && s.backgroundColor !== getComputedStyle(el.parentElement || el).backgroundColor);
     if (!framed) continue;
     // 中身の端：中の要素の箱（枠・罫を含む）と文字の行の箱。箱の内側（枠線の内側）から測る
     const inner = { top: r.top + parseFloat(s.borderTopWidth), bottom: r.bottom - parseFloat(s.borderBottomWidth), left: r.left + parseFloat(s.borderLeftWidth) };
-    const parts = [...el.querySelectorAll('*')].filter(c => { const cs = getComputedStyle(c); return cs.position !== 'absolute' && cs.position !== 'fixed' && visible(c); }).map(c => c.getBoundingClientRect());
+    const kidsEls = [...el.querySelectorAll('*')].filter(c => { const cs = getComputedStyle(c); return cs.position !== 'absolute' && cs.position !== 'fixed' && visible(c); });
+    // 写真・動画・図が箱の下の端まで届いているカード（全幅の画像で終わる箱）は、余白の問題ではないので数えない
+    const lastEl = kidsEls.reduce((p, c) => !p || c.getBoundingClientRect().bottom > p.getBoundingClientRect().bottom ? c : p, null);
+    if (lastEl && (/^(IMG|PICTURE|VIDEO|CANVAS|svg|IFRAME)$/.test(lastEl.tagName) || /url\(/.test(getComputedStyle(lastEl).backgroundImage))) continue;
+    const parts = kidsEls.map(c => c.getBoundingClientRect());
     const rng = document.createRange(); rng.selectNodeContents(el); parts.push(...[...rng.getClientRects()].filter(x => x.width > 2 && x.height > 4));
     if (!parts.length) continue;
     const gT = Math.min(...parts.map(x => x.top)) - inner.top, gB = inner.bottom - Math.max(...parts.map(x => x.bottom)), gL = Math.min(...parts.map(x => x.left)) - inner.left;
@@ -123,6 +130,34 @@ function probe() {
     m.greySlots.push((el.innerText || label).replace(/\s+/g, ' ').trim().slice(0, 24));
   }
   for (const im of document.images) if (visible(im) && im.naturalWidth >= 300 && !/\.svg/.test(im.currentSrc)) m.photos++;
+  // ユーザーの見比べ第2回（2026-11-01）で AI っぽいと選ばれた側を測る
+  // 等幅の小さな英字のメタ情報（EST. 1957 · TOKYO / 01 — SAUNA）
+  for (const [el, s, own] of textEls) {
+    if (exempt(el) || own.length < 3) continue;
+    if (/mono|courier|menlo|consolas/i.test(s.fontFamily) && parseFloat(s.fontSize) <= 13 && /[A-Z0-9]/.test(own)) m.monoMeta.push(own.slice(0, 24));
+    // 形容の多い呼びかけの言葉
+    const hits = own.match(/至福|こだわり抜|極上|ひととき|上質な時間|あなただけの|心と体|ととのう時間|新しい体験|シームレス|革新的|次世代|唯一無二|〜を、もっと|をもっと自由に/g);
+    if (hits) m.filler.push(...hits);
+  }
+  // 写真の角を丸めて影を付ける
+  for (const el of document.querySelectorAll('img,picture,figure,[style*="background-image"],div')) {
+    if (!visible(el) || exempt(el)) continue; const s = getComputedStyle(el); const r = el.getBoundingClientRect();
+    const isPhoto = el.tagName === 'IMG' || el.tagName === 'PICTURE' || /url\(/.test(s.backgroundImage);
+    if (!isPhoto || r.width < 160 || r.height < 100) continue;
+    const box = el.tagName === 'IMG' && el.parentElement ? [s, getComputedStyle(el.parentElement)] : [s];
+    if (box.some(b => parseFloat(b.borderTopLeftRadius) >= 12) && box.some(b => /\d+px\s+\d+px\s+[1-9]\d*px/.test(b.boxShadow))) m.softPhotos++;
+  }
+  // アイコン付きの特徴カードの横並び（3枚以上の兄弟の箱が、それぞれ上に小さな四角や丸の飾り／絵文字を持つ）
+  for (const p of document.body.querySelectorAll('*')) {
+    const kids = [...p.children].filter(visible); if (kids.length < 3 || kids.length > 6 || exempt(p)) continue;
+    const tops = kids.map(c => Math.round(c.getBoundingClientRect().top)); if (new Set(tops).size !== 1) continue;
+    const iconTop = c => { const f = [...c.querySelectorAll('*')].find(x => visible(x)); if (!f) return false; const r = f.getBoundingClientRect(), cs = getComputedStyle(f); return (r.width <= 64 && r.height <= 64 && Math.abs(r.width - r.height) < 6 && (alpha(cs.backgroundColor) > 0 || f.tagName === 'svg' || f.tagName === 'IMG')) || /\p{Emoji_Presentation}/u.test(f.textContent.trim().slice(0, 2)); };
+    const boxed = c => { const cs = getComputedStyle(c); return alpha(cs.backgroundColor) > 0 || parseFloat(cs.borderTopWidth) > 0; };
+    if (kids.filter(c => boxed(c) && iconTop(c)).length >= 3) m.iconCards++;
+  }
+  // 最初の画面に並んだ主ボタンと副ボタン
+  { const btns = [...document.querySelectorAll('a,button')].filter(b => { if (!visible(b) || exempt(b)) return false; const r = b.getBoundingClientRect(), cs = getComputedStyle(b); return r.top < vh && r.height >= 36 && r.height <= 72 && r.width >= 96 && (alpha(cs.backgroundColor) > 0 || parseFloat(cs.borderTopWidth) >= 1.5) && !b.closest('nav,header') && !b.matches('[aria-pressed],[role=radio],[role=tab],[role=option],[aria-selected]') && !b.closest('[role=radiogroup],[role=tablist],fieldset') && b.innerText.trim().length >= 2; });
+    for (let i = 0; i < btns.length; i++) for (let j = i + 1; j < btns.length; j++) { const a = btns[i].getBoundingClientRect(), b = btns[j].getBoundingClientRect(); if (Math.abs(a.top - b.top) < 8 || (Math.abs(a.left - b.left) < 8 && Math.abs(a.bottom - b.top) < 32)) m.twinCta++; } }
   // 情報の密度：画面1枚（高さ1画面分）ごとの、文字数と塊（段落・項目・セル・見出し・ボタン）の数。ヘッダー・ナビ・フッター、隠れている物は数えない
   {
     const H = document.documentElement.scrollHeight, n = Math.max(1, Math.ceil(H / vh)); const ch = Array(n).fill(0), bl = Array(n).fill(0);
@@ -216,6 +251,12 @@ function judge(m, width) {
   if (d && d.medBlocks > 12) add('WARN', 'dense-screen', `画面1枚あたりの塊が中央値 ${d.medBlocks} 個（実サイトは 3〜6、宿の検索結果で 21）`, '1画面に主役を1つ。塊を減らし、残した物を大きくする。一覧・検索結果なら理由を書いて残す');
   if (d && !sp && d.firstChars > 450) add('WARN', 'dense-first', `最初の画面の文字が ${d.firstChars} 字（実サイトは 56〜368 字）`, '最初の画面は、題・何かを言う1文・主な行動・主役の物だけ。説明は下の章へ');
   if (m.greySlots.length) add('WARN', 'grey-slot', `写真の入っていない写真の枠が ${m.greySlots.length} 個（${m.greySlots.slice(0, 2).map(t => '「' + t + '」').join('')}）`, '題材のまわりの世界の本物の写真（tools/photos.js、出典を画面に書く）か、題材の情報そのもの（図・表）に替える');
+  // ユーザーの見比べ第2回（2026-11-01）：等幅の英字メタ・アイコン付きカード・数字のカウンター（stat-row）・写真の角丸と影・ボタン2つ並び・飾りの言葉は AI っぽいと選ばれた
+  if (m.monoMeta.length >= 2) add('WARN', 'mono-meta', `等幅の小さな英字のメタ情報が ${m.monoMeta.length} 個（${m.monoMeta.slice(0, 3).join(' / ')}）`, '消す。中身があるなら和文の本文に入れる。等幅はコードと揃える数字だけ');
+  if (m.iconCards) add('WARN', 'icon-cards', `アイコン付きの特徴カードの横並びが ${m.iconCards} か所`, '言葉と値の一覧（表）か、1つずつの章にする');
+  if (m.softPhotos) add('WARN', 'soft-photo', `角を丸めて影を付けた写真が ${m.softPhotos} 枚`, '写真は四角のまま、影なしで置く');
+  if (m.twinCta) add('WARN', 'twin-cta', '最初の画面に、塗りと縁のボタンが2つ並んでいる', '主な行動は1つ。もう1つは文字のリンクに下げる');
+  if (m.filler.length) add('WARN', 'filler-words', `飾りの言葉：${[...new Set(m.filler)].join('・')}`, '事実（温度・年・数・場所）に書き換える');
   // ai-tells：淡いベージュ・ピンクの無難な地。taste-skill：黄みのクリーム地（WARN）
   const [r, g, b] = m.bodyBgRgb; const mx = Math.max(r, g, b), mn = Math.min(r, g, b);
   if (mx > 235 && mx - mn >= 8 && mx - mn <= 40 && r >= g && g >= b) add('WARN', 'cream-ground', `地が淡いベージュ（${m.bodyBg}）`, '地は白か、題材の現場の色から');
@@ -233,7 +274,7 @@ function judge(m, width) {
     if (out) { fs.mkdirSync(out, { recursive: true }); await p.screenshot({ path: path.join(out, `${name}-top.png`) }); await p.screenshot({ path: path.join(out, `${name}-full.png`), fullPage: true }); }
     const m = await p.evaluate(probe);
     all.push(...judge(m, vp.width));
-    console.log(`${name} ${vp.width}px  本文 ${m.bodySize}px・本文の13px未満 ${m.runChars ? Math.round(m.runTiny / m.runChars * 100) : 0}%・大きさ ${m.sizeCount}段・書体 ${m.familyCount}・枠線 ${m.bordered}・箱 ${m.boxes}・影 ${m.softShadows}・グラデ ${m.gradients}・小ラベル ${m.eyebrows.length}・番号 ${m.numbering.length}・中央 ${m.runChars ? Math.round(m.runCenter / m.runChars * 100) : 0}%・色相 ${Object.values(m.hues).filter(v => v >= 2).length}・ピル ${m.pills}・角丸 ${m.softRadius}・下が詰まった箱 ${m.tightBottom.length}・写真 ${m.photos}・灰色の枠 ${m.greySlots.length}・塊/画面 ${m.density?.medBlocks}・最初の画面 ${m.density?.firstChars}字`);
+    console.log(`${name} ${vp.width}px  本文 ${m.bodySize}px・本文の13px未満 ${m.runChars ? Math.round(m.runTiny / m.runChars * 100) : 0}%・大きさ ${m.sizeCount}段・書体 ${m.familyCount}・枠線 ${m.bordered}・箱 ${m.boxes}・影 ${m.softShadows}・グラデ ${m.gradients}・小ラベル ${m.eyebrows.length}・番号 ${m.numbering.length}・中央 ${m.runChars ? Math.round(m.runCenter / m.runChars * 100) : 0}%・色相 ${Object.values(m.hues).filter(v => v >= 2).length}・ピル ${m.pills}・角丸 ${m.softRadius}・下が詰まった箱 ${m.tightBottom.length}・写真 ${m.photos}・灰色の枠 ${m.greySlots.length}・等幅メタ ${m.monoMeta.length}・アイコンカード ${m.iconCards}・角丸写真 ${m.softPhotos}・ボタン2つ ${m.twinCta ? 'あり' : 'なし'}・飾りの言葉 ${m.filler.length}・塊/画面 ${m.density?.medBlocks}・最初の画面 ${m.density?.firstChars}字`);
     await p.close();
   }
   await b.close();
