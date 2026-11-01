@@ -68,6 +68,9 @@
   - 雰囲気から選ぶ。ORBITO では COOL＝Syne（英字）＋Murecho（和文）、CUTE＝Cormorant Garamond 斜体（英字）＋Kaisei Decol（見出し）＋Zen Maru Gothic（本文）にし、本文の書体ごと切り替えた。
   - **書体の癖は、大きな字でしか見えない。** Zen Kaku Gothic New → Murecho に替えても、見出しが 26px のままでは「変わらん」と言われた。和文のゴシック体どうしは 15〜26px ではほぼ同じに見える。書体を選んだら、最初の画面の題を 40px 以上（PC で 40〜60px）にし、その下の1〜2行の文も同じ書体で組んで、癖を見せる。長い本文は読みやすさを優先して別の書体でよい。
   - 見比べ（2026-11-01、見出し最大 52px・本文も同じ書体、ORBITO の色）：COOL は Murecho・Dela Gothic One・DotGothic16・Reggae One・Zen Antique から、最初は **Murecho**、大きく組んだ ORBITO を見たあと **Dela Gothic One**（極太で角ばったゴシック体）に替えた。CUTE は Kaisei Decol・Hachi Maru Pop・Yusei Magic・Mochiy Pop One・Zen Kurenaido から **Yusei Magic**（マーカーで書いたような字）。反応は「うーん」で、決め手のある書体ではまだ無いかもしれない。大きく組んで初めて、書体の違いを比べられた（大きくしてから選び直した）。
+  - **書体を選んだら、商品の部品から形を取って題を作り込む。** COOL の書体は見比べで「一番ましだけど納得いかない」と言われ、不満は「字の形そのもの」と「ロゴのように作り込んでいない」だった。字の形の候補を広げると Train One と LINE Seed JP（LINE、OFL。Google Fonts 以外は使う字だけ `fontTools.subset` で埋め込む）が好まれ、「デザイン性をもっとプロダクトの性質に合わせるなら良い」と言われた。宇宙服の部品（反射テープ・パイピング・名札・命綱・洗濯表示のタグ）から5つ作り、**命綱**（字の下を1本の綱が通り、端にカラビナ。綱は服の橙）が選ばれた（2026-11-01）。
+    - 作り方：字の輪郭を書体から取り出し（`fontTools` の SVGPathPen）、SVG の題にして部品の形を足す。題の文字は画面読み上げ用に h1 の中に残す。
+    - 題と、その下の文の書体はそろえる（題を LINE Seed JP、下の文を Dela Gothic One にしたら、太字が2種類ぶつかった）。
   - 手本のサイトの書体（Univers・DIN・Sabon など）が有料なら、形の近い Google Fonts から、定番の一覧に入らないものを選ぶ。
 - ファッションの本文は 12〜15px が多かった（DROP TOKYO・DEADLY PONIES 12px、kolor 14px）。ここは真似ず、本文 16px の決まり（`ai-tells.md`）を残した。
 
