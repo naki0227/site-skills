@@ -29,7 +29,7 @@ function probe() {
   const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return +((x + .05) / (y + .05)).toFixed(2); };
   const bgOf = el => { for (let e = el; e; e = e.parentElement) { const s = getComputedStyle(e); if (s.backgroundImage !== 'none' && !/gradient/.test(s.backgroundImage)) return null; const c = rgb(s.backgroundColor); if (c[3] === undefined || c[3] > .9) return c; } return [255, 255, 255, 1]; };
 
-  const m = { chars: 0, runChars: 0, runSizes: {}, runTiny: 0, runCenter: 0, tightBottom: [], greySlots: [], photos: 0, monoMeta: [], softPhotos: 0, iconCards: 0, filler: [], twinCta: 0, hues: {}, pills: 0, softRadius: 0, sizes: {}, tiny: 0, families: {}, lowContrast: [], unreadable: [], eyebrows: [], numbering: [], bordered: 0, boxes: 0, gradients: 0, gradientText: 0, softShadows: 0, emoji: [], headings: [], svgHero: 0, statRows: 0, bodyBg: getComputedStyle(document.body).backgroundColor };
+  const m = { chars: 0, runChars: 0, runSizes: {}, runTiny: 0, runCenter: 0, tightBottom: [], greySlots: [], photos: 0, monoMeta: [], softPhotos: 0, iconCards: 0, filler: [], twinCta: 0, greyRun: 0, badBreaks: [], hues: {}, pills: 0, softRadius: 0, sizes: {}, tiny: 0, families: {}, lowContrast: [], unreadable: [], eyebrows: [], numbering: [], bordered: 0, boxes: 0, gradients: 0, gradientText: 0, softShadows: 0, emoji: [], headings: [], svgHero: 0, statRows: 0, bodyBg: getComputedStyle(document.body).backgroundColor };
   const textEls = [];
   for (const el of document.body.querySelectorAll('*')) {
     if (!visible(el)) continue;
@@ -79,6 +79,19 @@ function probe() {
     const chrome = el.closest('nav,footer,header,[role=navigation],[role=contentinfo]');
     if (!chrome && !exempt(el) && k >= 30 && !/^H[1-6]$/.test(el.tagName)) { m.runChars += k; m.runSizes[fs] = (m.runSizes[fs] || 0) + k; if (fs < 13) m.runTiny += k; if (s.textAlign === 'center') m.runCenter += k; }
     const bg = bgOf(el);
+    // 本文の灰色：地との差が 7:1 未満の本文（実測のファッション10件は本文を #000〜#1e1e1e で組み、灰色は注記だけ）
+    if (!chrome && !exempt(el) && k >= 30 && !/^H[1-6]$/.test(el.tagName) && bg && ratio(rgb(s.color), bg) < 7) m.greyRun += k;
+    // 日本語の折り返し：語の途中で行が分かれる・最後の行が1〜3字だけ（「す。」）
+    if (!chrome && !exempt(el) && k >= 20 && /[\u3040-\u30ff\u4e00-\u9fff]/.test(own) && s.writingMode.startsWith('horizontal') && typeof Intl.Segmenter === 'function') {
+      const lines = []; const rg = document.createRange();
+      for (const n of el.childNodes) { if (n.nodeType !== 3) continue; for (let i = 0; i < n.length; i++) { rg.setStart(n, i); rg.setEnd(n, i + 1); const rc = rg.getClientRects()[0]; if (!rc) continue; const ch = n.data[i]; const L = lines[lines.length - 1]; if (/\s/.test(ch)) { if (L) L.t += ' '; continue; } if (!L || rc.top > L.top + rc.height * .5) lines.push({ top: rc.top, t: ch }); else L.t += ch; } }
+      if (lines.length > 1) {
+        const last = lines[lines.length - 1].t; if (last.replace(/[。、」）]/g, '').length <= 2) m.badBreaks.push(`「…${lines[lines.length - 2].t.slice(-6)}／${last}」最後の行が${last.length}字`);
+        const seg = new Intl.Segmenter('ja', { granularity: 'word' }); let joined = '', cuts = [];
+        for (const L of lines) { L.t = L.t.trim(); if (/[A-Za-z0-9.,]$/.test(joined) && /^[A-Za-z0-9]/.test(L.t)) joined += ' '; joined += L.t; cuts.push(joined.length); } cuts.pop();
+        for (const w of seg.segment(joined)) { if (!w.isWordLike || w.segment.length < 2) continue; for (const c of cuts) if (c > w.index && c < w.index + w.segment.length) m.badBreaks.push(`「${joined.slice(Math.max(0, c - 5), c)}／${joined.slice(c, c + 5)}」語「${w.segment}」の途中`); }
+      }
+    }
     if (bg && k > 1) {
       const r = ratio(rgb(s.color), bg); const large = fs >= 24 || (fs >= 19 && +s.fontWeight >= 700);
       // 1.3 未満は、写真や動画の上の文字（地の色を CSS から取れない）か、隠した文字であることが多いので数えない
@@ -256,6 +269,8 @@ function judge(m, width) {
   if (m.iconCards) add('WARN', 'icon-cards', `アイコン付きの特徴カードの横並びが ${m.iconCards} か所`, '言葉と値の一覧（表）か、1つずつの章にする');
   if (m.softPhotos) add('WARN', 'soft-photo', `角を丸めて影を付けた写真が ${m.softPhotos} 枚`, '写真は四角のまま、影なしで置く');
   if (m.twinCta) add('WARN', 'twin-cta', '最初の画面に、塗りと縁のボタンが2つ並んでいる', '主な行動は1つ。もう1つは文字のリンクに下げる');
+  if (m.runChars && m.greyRun / m.runChars > .4) add('WARN', 'grey-body', `本文の ${Math.round(m.greyRun / m.runChars * 100)}% が灰色（地との差 7:1 未満）`, '本文は地との差が大きい色（黒・白に近い色）で。灰色は注記・値の補足だけ');
+  if (m.badBreaks.length) add('WARN', 'line-break', `変な所で折り返す文 ${m.badBreaks.length}か所：${m.badBreaks.slice(0, 3).join('; ')}`, '文節で折り返す（html に lang="ja" と word-break:auto-phrase、要所は <wbr> か改行）。最後の行が数字だけにならない幅や言い回しにする');
   if (m.filler.length) add('WARN', 'filler-words', `飾りの言葉：${[...new Set(m.filler)].join('・')}`, '事実（温度・年・数・場所）に書き換える');
   // ai-tells：淡いベージュ・ピンクの無難な地。taste-skill：黄みのクリーム地（WARN）
   const [r, g, b] = m.bodyBgRgb; const mx = Math.max(r, g, b), mn = Math.min(r, g, b);
