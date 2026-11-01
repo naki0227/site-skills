@@ -49,5 +49,22 @@
 使い方：題材の特色を1行で書き、それに合う印象を上の言葉から1つ決め、その行の型（2色の土台＋差し色、構図）を出発点にする。合わなければ、別の行の型や表に無い組み合わせを使ってよい。値はそのまま写さず、題材の色（`ai-tells.md` の「現場の色」）に寄せて置き換える。どの行でも共通なのは、**大きな文字か大きな写真の、どちらか1つが画面の主役**であること。中央に小さな題とボタンを並べる型は使わない。
 - 不定形の塗り（ぐにゃっとした形）・吹き出し・手書きの文字・ステッカーを組み合わせる構図は、合うはずの「軽やか・エネルギッシュ」でも選ばれなかった。使うなら1つだけにする。
 
+## 業種の手本を先に測る（ORBITO の試作への指摘、2026-11-01）
+上の決まり1〜4は、yamayuki_design のリール（ポスター・告知の作例）から来ている。ユーザーの指摘「原色や白黒のそのままの色はあまり使わない」「情報の密度・ボタン・章の区切りがこんなにはっきりしているほうが珍しい」「雰囲気ごとによく使う書体があるはず」「教えた参考サイトを活かせていない」を受けて、`galleries.md` の事例集（MUUUUU.ORG・Web Design Clip のファッション）から開けた10件を `scripts/sample.js` で 1440px で測った（kolor・TOKYO BASE・niko and…・DROP TOKYO・ARTS&SCIENCE・Champion・DEADLY PONIES・LALEROBE・Make My Lemonade・Femme&Fierce）。
+| 見たもの | 実測 | ORBITO 第1・2版でしたこと |
+|---|---|---|
+| 差し色 | 原色・蛍光は0件。暗くくすんだ色（kolor #283249、Champion #012169、Femme&Fierce #7c0b40、Make My Lemonade #4e2629、DROP TOKYO #7f2929） | #FF4F00 の大きな面、ミント #8FF5E4 |
+| 地 | 真っ白（TOKYO BASE・niko and…・Champion・Make My Lemonade）か、色の入った白・黒（ARTS&SCIENCE #ecebeb、DEADLY PONIES #f0efeb／#141414、TOKYO BASE #edf1f2、kolor #283249） | #0C0B10・#FFD9E6 |
+| 文字の色 | 純黒 #000 が6件（指摘と違い、文字の黒はふつう） | ― |
+| 書体 | グロテスク体（kolor LTUnivers、TOKYO BASE DIN、DROP TOKYO Neue Haas Unica、niko and… Helvetica Neue）か、セリフ・明朝（ARTS&SCIENCE Sabon、as it is 游明朝）。太さは 400〜600、900 は0件 | Noto Sans JP 900 ＋ Unbounded 800 |
+| ボタン | 塗りか枠のある短いリンクが0個のサイトが6件。あっても小さく角0（DEADLY PONIES 黒、Make My Lemonade 1px の枠） | 大きな橙の塗りボタン、2px の枠の切り替え |
+| 章の区切り | 全幅の罫は8件で0本。写真と余白で区切る | 一覧の罫・フッターの上の罫 |
+| 色を持つ物 | 写真（モデル・服）。画面の地と文字はほぼ無彩色 | 地・惑星・ロゴ・ボタンに色 |
+
+- **作る前に、その業種の手本を事例集から5〜10件選び、`node scripts/sample.js <URL…>` で地・文字・差し色・書体と太さ・ボタン・罫の数を測ってから、3色と書体を決める。** 決まり1（鮮やかな主の色を大きな面で）は、ポスター・告知・ポップな LP の型。手本の業種が使っていなければ使わない。
+- 色は「題材そのもの」（服・料理・建物の写真）に持たせ、画面の地と文字は色の入った無彩色に寄せる業種がある（ファッションはそう）。
+- 書体は雰囲気で替える。ORBITO 第3版では COOL＝Archivo＋Zen Kaku Gothic New、CUTE＝Cormorant Garamond の斜体＋Zen Old Mincho（手本の Univers・DIN／Sabon・游明朝の代わりの Google Fonts）。
+- ファッションの本文は 12〜15px が多かった（DROP TOKYO・DEADLY PONIES 12px、kolor 14px）。ここは真似ず、本文 16px の決まり（`ai-tells.md`）を残した。
+
 ## 当てる順番
-作る前（`make.md`）に、3色（地・主・差し色の色名と値）と、分け方の比率と、題の置き方を1行ずつ書いてから作る。作った後は `critique.md` の見方7（色）で「主の色が大きな面を持っているか」「色相が3つを超えていないか」を見る。
+作る前（`make.md`）に、上の「業種の手本を先に測る」をしてから、3色（地・主・差し色の色名と値）と、分け方の比率と、題の置き方を1行ずつ書いてから作る。作った後は `critique.md` の見方7（色）で「主の色が大きな面を持っているか」「色相が3つを超えていないか」を見る。
