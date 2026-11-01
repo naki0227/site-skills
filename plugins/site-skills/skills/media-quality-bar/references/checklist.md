@@ -88,4 +88,13 @@
 - [ ] 本文の引用と関連カードは、PC で本文の列の外へ出し、本文の幅を変えない（The Markup：margin-left -180px・関連 308px を左右交互）
 - [ ] 転載を許すなら、条件と貼るだけの HTML を記事から1押しで出す（The Markup：Republish の全画面の面と Copy HTML）
 
+- [ ] 目次を押したときの飛び先より下に「いまの節」の監視の線を置き、押した項目は先に印を付ける（DeNA Engineering：線 90px・飛び先 100px で前の節が残る）
+- [ ] h3 は h2 より一段小さくし、太さだけで分けない（DeNA Engineering：h2・h3 とも 33px）
+- [ ] コードの行間は本文と別に 1.5〜1.6 にする（DeNA Engineering：本文の 2.0 を継いで 26行が 924px）。コメント・数の色も地で 4.5:1（同：2.58:1・2.84:1）
+- [ ] 数式の JS（MathJax・KaTeX）は数式のある記事だけで読み、$ を区切りにしない（DeNA Engineering：数式 0 の記事でも 780KB）
+- [ ] html に lang を書き、h1 は題の1つだけ（DeNA Engineering：lang 無し・ロゴと見出しの画像も h1 で記事に4つ）
+- [ ] 開閉は button と aria-expanded で作り、開くと印を変える（DeNA Engineering：checkbox と label、＋が開いても＋のまま）
+- [ ] ページ送りは前後の矢印の場所を invisible で取っておき、ページを進めても番号の位置を変えない（DeNA Engineering：60px の丸・上 5px の罫・/page/2/。rel="next" は足す）
+- [ ] 記事の description を本文の頭の自動で作るなら、見出しの語を落とす（DeNA Engineering：「はじめに こんにちは。…」）
+
 解剖で裏づけた項目が増えたら、ここに足す（どのサイトで確かめたかを添える）。

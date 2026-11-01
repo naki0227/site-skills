@@ -35,15 +35,34 @@ PC 1440×900 / SP 390×844。見たページ：トップ（/ja）、分類「Fro
 - **動き**：a・button のホバーとフォーカスで opacity .6。ナビの下線 scaleX .4s cubic-bezier(.645,.045,.355,1)。SP のメニューは3本線を keyframes で×に。:hover 26か所に (hover:hover) 0、reduced-motion 0、:focus-visible 0。
 - **重さ**：解析を除く PC top 2.78MB／list 3.02MB／article 4.37MB／long 3.47MB（SP 2.86／3.03／4.35／3.45MB）。全部込み article PC 4.96MB・105リクエスト・9ホスト。HTML ごとに同じ 237KB の CSS を埋め込む。PC のカードのホバーで次のページのデータ 318KB を先読み。
 
+### DeNA Engineering（https://engineering.dena.com/blog/ ・2026-11-01 計測）
+PC 1440×900 / SP 390×844。見たページ：トップ（/blog/・20本×39ページ）、分類「技術記事」（/blog/categories/technology/・20本×16ページ）、ふつうの記事（/blog/2026/10/gce-e2-memory-rightsizing/・h2 7・コード3・高さ 10,843px）、長い記事（/blog/2026/09/bigquery-editions-migration/・h2 8・h3 10・コード13・表6・高さ 25,036px／SP 33,478px）。Hugo＋Tailwind。選んだ理由：日本語の見出し id で作った追いかける目次、黒い帯に食い込む白い紙、青 #0e00de 1色。受賞・事例集は確かめられなかった。
+- **組み**：外の地 #e7edff → 黒 #222 の帯（PC 上 110・下 120px）→ 帯に -50px 食い込む白い紙（1330px・内 PC 100px/55px、SP 40px/20px）→ 本文の列＋右 280px。ヘッダーは白・sticky・PC 80px／SP 60px。
+- **本文**：箱 PC 870px（1行 約51字）・SP 310px（約20字）。17px／34px（line-height 2）、SP 15px／30px。段落の間 30px／20px。本文 #222（15.91:1）。html 62.5%（1rem＝10px）。Google Fonts の Montserrat → Noto Sans JP。
+- **見出し**：h1 43px／64.5px・700・#0e00de（SP 33px、記事の題は SP で7行）。h2 33px・700・青・span に左 4px の線＋10px・上 100px（SP 28px・上 60px）。h3 も **33px**（400）で、h2 と太さと線だけが違う。
+- **記事の頭**：日付「2026.10.02」15px（time 要素無し・更新日無し）＋分類の札（12px・2px 青の線・丸）→ 題 → 「by 名前」17px（著者の記事一覧へ）→ タグ 15px／30px。アイキャッチ・リード無し。
+- **目次**：ある。見出しの id は Hugo が日本語のまま（#はじめに）。PC は右 280px・sticky top 90px・上下 2px #222 の罫・「Contents」24px・項目 15px #666（5.74:1）・nowrap で省略・h3 は左 20px・いまの節は 700 #0e00de。scroll.js（約3KB）が本文の全要素を IntersectionObserver（rootMargin "-10% 0px -90%"）で見る。押すと見出しを上から 100px（ヘッダー＋20px）へ smooth・pushState。監視の線（90px）が飛び先（100px）より上なので、押した節の1つ前が太字のまま残る。smooth は reduced-motion を見ない。SP は題と本文の間に置き固定しない（long で 655px）。
+- **コード**：Hugo の Chroma が inline style（long の HTML 137KB、ふつうの記事 48KB）。言語は書き手が指定（language-sql）だが画面に言語名・コピー無し。pre に tabindex="0"。行間は本文の 2.0 を継いで 17px／34px（26行で 924px）。地 #f0f0f0 でコメント #60a0b0 2.58:1・数 #40a070 2.84:1・キーワード #007020 5.52:1。SP は long の13本すべてが横送りで、手がかり無し。
+- **表・部品**：表は上 1px #666・見出しの下 2px・セル 5px 10px・縦罫無し。SP は 310px に押し込む（6つのうち1つだけ 332px）。外部リンクはカード（2px #dbdbdb・地 #f8f8f8・写真 40:21・題 17px 青 2行）。脚注は doc-endnotes で、h2「脚注」として目次にも出る。図に寸法・キャプション無し。
+- **記事の終わり**：#f3f6ff の面（内 35px）に「最後まで読んでいただき…」とシェア4つ（60px）→ Related Articles 3本（タグで選ぶ。article では 2022・2020・2019年）→ 右に分類・連載 → 黒い採用の帯（白 5px の罫＋See more →、矢印は .15s で 10px）。次の記事・著者紹介無し。
+- **一覧**：写真 320×168（aspect-ratio 40/21・object-fit cover・1200×628 の PNG）＋日付 15px・札・題 28px／35px 400・タグ。行の間 30px（SP 縦積み 60px・題 24px）。img に寸法無しでも CLS top 0.0022・list 0.0005・SP 0。右 330px に Category（8分類と件数）・Series（4）を checkbox で開閉（＋の印が開いても変わらない）。ページ送りは上 5px の青い罫・60px の丸（SP 40px）・いまは塗り、前後の位置を invisible で保持、href は /blog/page/2/、rel="next" 無し。
+- **広告と同意**：広告 0・同意バナー無し。GTM 313KB・GA 18〜20KB（転送）。
+- **データ**：JSON-LD 0件（4ページ）・html に lang 無し・記事の h1 4つ（ロゴ・BLOG の画像・題・recruit の画像）・og:type article・description は本文の頭（「はじめに こんにちは。…」）。RSS あり。ダーク無し。
+- **動き**：keyframes 0。transition は See more の矢印（.15s cubic-bezier(.4,0,.2,1)）だけ。ホバーは時間なしの反転と opacity .5。:hover 20か所のうち本文のリンクと目次の2つは (pointer:fine) の中で、(pointer:coarse) には :active。:focus-visible 0・reduced-motion 0。
+- **重さ**：解析を除く・展開後 top 3.40MB／list 2.36MB／article 2.37MB／long 2.45MB（PC=SP）。記事の中で MathJax 3.0.1 780KB（数式 0 でも全記事・$ を区切りに）と Noto Sans JP 884KB（long 1,046KB）、Google Fonts の CSS 244KB。サイトの JS は scroll.js だけ・CSS 43KB。全部込みの転送 article 2,146KB・83件・8ホスト。トップの cover PNG は最大 877KB。
+
 ## 真似る型
-見本2つ（メルカリエンジニアリング・LINEヤフー Tech Blog）から。作るときの出発点。
-- 本文の箱は 780〜790px、16〜18px、行間 1.75〜2.0、段落の間は 20〜35px。1行は約43〜49字（メルカリエンジニアリング 780px・18px／36px、LINEヤフー Tech Blog 790px・16px／28px・字間 -0.4px）。
+見本3つ（メルカリエンジニアリング・LINEヤフー Tech Blog・DeNA Engineering）から。作るときの出発点。
+- 本文の箱は 780〜790px、16〜18px、行間 1.75〜2.0、段落の間は 20〜35px。1行は約43〜49字（メルカリエンジニアリング 780px・18px／36px、LINEヤフー Tech Blog 790px・16px／28px・字間 -0.4px）。DeNA Engineering の 870px・17px は約51字で長い。
 - 本文の色は題より1段薄い灰にし、比は 6:1 以上を保つ（LINEヤフー Tech Blog：本文 #616161 6.19:1・題 #1f1f1f 16.48:1）。
-- 節の切れ目は罫でなく上の余白で見せる（メルカリエンジニアリング：h2 の上 120px＋60px、LINEヤフー Tech Blog：h2 の上 40px・h3 20px）。SP では h1 を一番大きく保つ（LINEヤフー Tech Blog の SP は h1 20px＜h2 32px で崩れている）。
-- コードの言語は書き手が書き、色づけは使う言語だけ読む（LINEヤフー Tech Blog：class="language-swift" で Prism、メルカリエンジニアリング：自動判定で 1.2MB・誤判定）。地は暗い1色（#272822）・14px／21px・角 4px 前後。言語名とコピーを帯に出す（2サイトとも無い）。
-- 一覧のカードの写真は比率の箱に入れて CLS を 0 にし、表示の2倍で出す（LINEヤフー Tech Blog：padding-bottom 52.6316%・760×400 を 380×200。メルカリエンジニアリングは 2,560px を 196〜780px）。
-- ブログ全体の区切りは太い罫1本、ほかは 1px か余白（LINEヤフー Tech Blog：ブログ名の下 8px・SP 6px、ほかは 1px #e8e8e8）。
-- 記事の終わりに著者の顔（80px の丸・名前・一言）を置き、そのあと関連3本（LINEヤフー Tech Blog）。メルカリエンジニアリングは著者紹介無し。
+- 節の切れ目は罫でなく上の余白で見せる（メルカリエンジニアリング：h2 の上 120px＋60px、DeNA Engineering：h2 の上 100px＋左 4px の線、LINEヤフー Tech Blog：h2 の上 40px）。h3 は h2 より一段小さく（DeNA Engineering は h2 と同じ 33px で崩れる）。SP でも h1 を一番大きく。
+- 長い記事には、読める言葉の見出し id で目次を作り、PC は右 280px 前後で sticky にして、いまの節を色と太さで示す（DeNA Engineering：top 90px・上下 2px の罫・項目 15px・IntersectionObserver）。監視の線は、目次を押したときの飛び先より下に置く（本家は 90px と 100px で前の節が残る）。
+- コードの言語は書き手が書き、色づけは使う言語だけ読む（LINEヤフー Tech Blog：Prism、DeNA Engineering：Chroma で JS 0）。行間は本文と切り離して 1.5〜1.6（DeNA Engineering は本文の 2.0 を継いで 34px）。言語名とコピーを帯に出す（3サイトとも無い）。pre に tabindex="0"（DeNA Engineering）。
+- 一覧のカードの写真は比率の箱に入れて CLS を 0 にし、表示の2倍で出す（LINEヤフー Tech Blog：padding-bottom 52.6316%、DeNA Engineering：aspect-ratio 40/21 で CLS 0.0005〜0.0022。どちらも元画像は大きすぎる）。
+- ブログ全体の区切りは太い罫1本か、帯と紙の重なりで（LINEヤフー Tech Blog：ブログ名の下 8px、DeNA Engineering：黒い帯に白い紙を 50px 食い込ませ、ページ送りの上に 5px の青い罫）。
+- アクセント色を濃くして、文字に使える1色にする（DeNA Engineering：#0e00de が白地で 10.13:1。題・リンク・札・いまの節・いまのページを同じ色で）。
+- ページ送りは本物の URL を持ち、前後の位置を invisible で取っておく（DeNA Engineering：60px の丸・いまは塗り、/page/2/）。
+- 記事の終わりに著者の顔（80px の丸・名前・一言）を置き、そのあと関連3本（LINEヤフー Tech Blog）。メルカリエンジニアリング・DeNA Engineering は著者紹介無し。
 
 ## 反面教師
 - コードの言語を書かずに自動判定させ、全言語分の色づけ JS を全記事で読む（メルカリエンジニアリング：1.2MB、判定も外れる）。言語は書き手が指定し、使う言語だけ読む。
@@ -58,3 +77,10 @@ PC 1440×900 / SP 390×844。見たページ：トップ（/ja）、分類「Fro
 - 日本語の Web フォントで記事1本 1.26MB（LINEヤフー Tech Blog：CSS 224KB＋woff2 1.04MB）、全ページ同じ 237KB の CSS を HTML に埋め込む。
 - ページ送りの前後の矢印がいつも aria-disabled・href="#"（LINEヤフー Tech Blog）。
 - コードの帯（Prism のツールバー）を出しているのに中身が空（LINEヤフー Tech Blog）。
+- 数式の無い記事でも MathJax 780KB を読み、$ を行内の数式の区切りにする（DeNA Engineering）。数式のある記事だけで読む。
+- 目次を押すと、監視の線（上から 90px）が飛び先（100px）より上にあり、押した節の1つ前が太字のまま残る（DeNA Engineering）。
+- コードが本文の行間 2.0 を継ぎ、コメント 2.58:1・数 2.84:1（DeNA Engineering の Chroma）。
+- h3 が h2 と同じ 33px（DeNA Engineering）。
+- 関連が古い3本（2019〜2022年）だけで、次の記事・著者紹介が無い（DeNA Engineering）。
+- 開閉を checkbox と label で作り、＋の印が開いても変わらない。:focus-visible 0（DeNA Engineering）。
+- JSON-LD 0件・html に lang 無し・記事に h1 が4つ・time 要素も更新日も無い（DeNA Engineering）。

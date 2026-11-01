@@ -32,14 +32,33 @@ Astro＋Netlify。採用の募集は外の Ashby（2026-10-28 に 226件）。
 - **動き**：reduce を見ているのはグラフ・地球の回転・視差の3か所だけで、1文の出し方・積み木・10秒のタブ・ロゴの帯は reduce でも動く。
 
 
-## 真似る型（LayerX と Mistral AI の2つで確かめた）
-- 会社サイトは「志・事業の地図・ニュース・連絡先」に絞り、事業は1ページ（LayerX：アンカー、Mistral：/products/ のタイル5枚・2,344px）で並べ、プロダクトの本体と採用の募集は外へ渡す（LayerX：別ドメインと外部ATS、Mistral：Studio・Vibe と Ashby）。
-- ヘッダーの右端に、目立つ形の行動を置く（LayerX：Join Us の丸いボタン、Mistral：黒の Login と Get in touch）。Mistral は 48px の帯を隠さない。下がり窓は1列の小さな窓（LayerX 5項目、Mistral 1行 57px）で、メガメニューにしない。
-- トップは1文で始め、数字の帯を置かない（LayerX：h1「未来の希望を、実装しよう。」60px、Mistral：96px の1文＋最新の1件）。1文は h1 にする（Mistral は aria-hidden の p で h1 無し）。
-- 事業は対の文で書く（Mistral：「We make the models. You keep them.」×4）。左に貼りつく目次（226×52px・top 44px）で今どこかを見せる（Mistral）。
-- ニュースの絞り込みは URL に組み合わせを残す（LayerX：?category=…&year=…&sort=…、Mistral：?categories=a,b&search=x）。件数が数百までなら全部持って手元で絞る（Mistral 92件・57〜70ms・0KB。LayerX は読み直しで +1.3MB）。
-- 相談のフォームの前で用件を振り分ける（LayerX：リンク5つ、Mistral：4つ）。どちらも採用の振り分けが無かったので、作るときは採用を足す。
-- 採用の福利は組に分けて数字で書き、選考は職の系統ごとに段の数を書く（Mistral：福利3組、選考 4段と3段）。
+### Linear（https://linear.app/ 、2026-11-01 解剖。選んだ理由：色・文字・速さ・イージングを CSS 変数のトークンで持ち、会社・採用・ニュースを製品の LP と同じ部品で組む。860px のメガメニュー、トップに架空の1件を通す見本、パスで持つニュースの分類。受賞歴・事例集は確かめられなかった）
+課題管理の製品の会社（2019年創業・フルリモート）。Next.js。会社・採用・ニュース（Now）・変更履歴・相談をすべて linear.app に持ち、応募だけ Ashby。
+- **ナビ（PC）**：fixed 73px・地なし＋blur(20px)・下線 1px rgba(255,255,255,.08)。3,000px 送っても隠さない。Product▾／Resources▾／Customers／Pricing／Now／Contact ｜ Log in／Sign up（#e5e5e6 の地）。項目は 13px・#8a8f98・高さ 32px のピル、ホバーで #f7f8f8＋白 8% を .1s。Product▾ は 860×281px の板（地 rgba(8,9,10,.9)＋blur(32px)・角 14px・影 0 8px 32px）に「2行の段階4つ＋1語4つ＋下に New と最新の更新」。opacity と scale(.98→1) 約 .16s、板の大きさの替わり .22s。Enter で開き Tab で中へ。**採用は Resources▾ の2番目だけ**。SP は三本線（aria-label なし）→全画面 15項目（Careers を含む）。フッター6列 37リンク。
+- **トップの順番**：h1 64px/510/−.022em ＋1文 15px ＋「New Loops →」→ HTML で組んだ製品の画面（架空の課題 DRV-8852）→ 顧客ロゴ7つ → 2色の h2（主の1文 #f7f8f8・続き #8a8f98、48px）＋FIG 0.1〜0.3 → 柱4本（各 約1,240px）→ Features → 変更履歴4件（点と線・日付 12px 大文字）→ 72px の CTA。同じ架空のアプリが Slack の会話→課題→計画→エージェント→差分まで全区画に続く。数字の帯・採用の入口・会社の話はトップに無い。
+- **h1**：見た目の2系統（SP 4行・PC 2行、どちらも aria-hidden）＋読み上げ用の visuallyHidden の1文。行ごとに opacity 0・blur(10px)・translateY(20%) から出すが JS を待つので、計測環境で PC 7.15s に出始め 8.19s に出そろう（load 1.85s）。reduce でも 6.45s まで見えない。
+- **信頼の材料**：About の本文に「Founded in 2019」「more than 40,000 companies」（募集の詳細では同じ数が 25,000）。写真 269px の8人（共同創業3・COO・責任者4）＋名前だけ173人（4段組み・行 39px）＋出資者22人。会社概要の表・所在地・社員数の数字は無い。
+- **相談**：Contact に Sales（4欄・必須3：名前・仕事のメール・会社の規模 select・要件）／Support／その他はメール、＋資料4つ（Slack・Docs・Developers・Status）。採用の振り分けは無い。
+- **採用**：h1＋「Open roles ↓」→ 動画 6:06（preload=metadata）→ 3段落 → 外の記事5本 → 原則 01.〜11. → 募集 23件・部署9つ。行 1312×72px（職種／場所／Learn more #828fff）。件数・絞り込み・検索は無い。詳細は自サイト `/careers/〈uuid〉` にパンくず「Careers / Sales」・「Full-time (Singapore)」・福利（有給5週・育休4か月・4年ごとに1か月）。給与の数字・JobPosting は無い。Apply で Ashby。
+- **ニュース（Now）**：分類6つ（All・Changelog・Product launches・From the team・From the community・Press）を `/now/team` のようなパスで持つ。1回目 1.3〜1.6s（+0.27〜1.24MB）、先読み済みなら 62〜140ms・0KB。件数なし。札 384×417px → Archive の行 1280×56px → Load more。日付は「Oct 29, 2026」で `<time>` 0。変更履歴は URL に日付（`/changelog/2026-10-22-…`）、ただしトップと /changelog で題と日付が食い違う（SEP 10 と September 14）。
+- **データ**：JSON-LD は5ページと募集の詳細で 0。lang="en"、言語の切り替え無し。alt 無し 0。
+- **見た目の値**：地 #08090a・#0f1011・#141516・#191a1b、文字 #f7f8f8（18.73:1）・#d0d6e0・#8a8f98（6.13:1）・#62666d（3.45:1、トップで132要素）、アクセント #7170ff／#828fff、フォーカス 1px #5e69d1。Inter Variable（300/400/510/590/680）と Berkeley Mono。`--title-1〜9` は 17〜72px、本文 15px・行間 1.6・字間 −.011em。速さ `.1s`／`.25s`、`--ease-out-quad cubic-bezier(.25,.46,.45,.94)`。
+- **動き**：@keyframes 61。reduce を CSS で 42か所（no-preference 27・reduce 15）見るのは解剖した中で最多。ただし `@media (prefers-reduced-motion:reduced)` の書き間違いが1か所あり流れる帯の複製が消えない、点の格子 75個は reduce でも動く。
+- **重さ（PC/SP、measure.js）**：top 11.55/16.13MB、about 14.10/13.54、plan 13.26/6.39、careers 18.30/16.14、now 20.80/10.99。うち Next.js の先読み（RSC）が top 36%・about 48%・careers 47%・now 59%。転送量では top が開いて 3,142KB、下まで送ると 5,999KB（先読み42本 1,148KB）。全ページで検索の索引 1,107KB。/plan は PC で PNG 4枚 5,509KB、SP は AVIF 642KB。
+
+
+## 真似る型（LayerX・Mistral AI・Linear の3つで確かめた）
+- 会社サイトは「志・事業の地図・ニュース・連絡先」に絞り、事業は1ページ（LayerX：アンカー、Mistral：/products/ のタイル5枚・2,344px、Linear：トップの柱4本＋柱ごとのページ）で並べ、プロダクトの本体と採用の応募は外へ渡す（LayerX：別ドメインと外部ATS、Mistral：Ashby、Linear：募集の詳細は自サイト・Apply だけ Ashby）。
+- ヘッダーの右端に、目立つ形の行動を置く（LayerX：Join Us の丸いボタン、Mistral：黒の Login と Get in touch、Linear：#e5e5e6 の Sign up）。ヘッダーは隠さない（Mistral 48px、Linear 73px・blur(20px)・下線 白8%）。下がり窓は、項目が8つ以下なら1列の小さな窓（LayerX 5項目、Mistral 1行 57px）、段階と1語の項目が混ざるなら1枚の板（Linear：860px に2行4つ＋1語4つ＋「New と最新の更新」の行、opacity と scale(.98→1) .16s、大きさの替わり .22s）。
+- トップは1文で始め、数字の帯を置かない（LayerX：h1 60px、Mistral：96px の1文＋最新の1件、Linear：h1 64px＋1文＋「New Loops →」）。1文は h1 にし、最初から見える状態で HTML に置く（Mistral は aria-hidden の p、Linear は JS を待って 6.4〜8.2 秒見えない）。
+- トップの見本は架空の1件を全区画に通す（Linear：課題 DRV-8852 と同じ架空のアプリが、会話→課題→計画→エージェント→差分まで続く）。
+- 事業は対の文か2色の文で書く（Mistral：「We make the models. You keep them.」×4、Linear：h2 の主の1文を #f7f8f8・続きを #8a8f98）。左に貼りつく目次（226×52px・top 44px）で今どこかを見せる（Mistral）。
+- 更新の速さは日付つきの変更履歴で見せる（Linear：トップに4件、点と線、URL に日付 `/changelog/2026-10-22-…`）。題と日付は1か所から出す（Linear はトップと一覧で食い違った）。
+- ニュースの絞り込みは URL に組み合わせを残す（LayerX：?category=…&year=…&sort=…、Mistral：?categories=a,b&search=x、Linear：/now/team のパス）。件数が数百までなら全部持って手元で絞るか先読みする（Mistral 92件・57〜70ms・0KB、Linear 先読み済みで 62〜140ms・0KB。LayerX は読み直しで +1.3MB）。どれも分類の件数は出していないので、作るときは足す。
+- 相談のフォームの前で用件を振り分ける（LayerX：リンク5つ、Mistral：4つ、Linear：Sales・Support・メールの3つ＋資料4つ、営業は4欄）。3つとも採用の振り分けが無かったので、作るときは採用を足す。
+- 色・文字の段・速さを CSS 変数のトークンで持ち、会社・採用・ニュースを製品と同じ部品で組む（Mistral：光・闇・反転の3組、Linear：地4段・文字4段・見出し9段・速さ2つ）。文字の4段目は 4.5:1 まで上げる（Linear #62666d は 3.45:1）。
+- 採用の福利は組に分けて数字で書き、選考は職の系統ごとに段の数を書く（Mistral：福利3組、選考 4段と3段。Linear：有給5週・育休4か月・4年ごとに1か月）。募集は部署の見出しと 72px の行で並べる（Linear）が、件数と絞り込みを足す。
+- 人の多さは名前の量で見せる（Linear：写真8人＋名前173人＋出資者22人）。数字で書くなら会社概要の表の上に「いつの値か」を添える。
 
 ## 反面教師
 - 会社概要に規模の数字（社員数・資本金）が無く、導入社数が本文に埋もれる（LayerX）。数字は会社概要かトップに置く。
@@ -51,3 +70,7 @@ Astro＋Netlify。採用の募集は外の Ashby（2026-10-28 に 226件）。
 - 会社ページに会社概要の表が無く、社員数は採用ページ、所在地は JSON-LD にだけ（Mistral）。
 - reduce でも積み木が落ち、タブが10秒で回り、ロゴが流れる（Mistral）。同意の窓 1.45MB と GTM 1.0MB を全ページで最初に読む（Mistral）。
 - フッターの「Privacy choices」の href が `/javascript:openAxeptioCookies()/` で 404（Mistral）。
+- h1 を JS の演出に預け、計測環境で 6.4〜8.2 秒（reduce でも 6.45 秒）見えない（Linear）。
+- 採用がヘッダーに無く（Resources▾ の2番目）、トップの本文・Contact にも無い。23件の募集に件数・絞り込みが無い（Linear）。
+- 同じ数・題・日付が場所で違う：40,000社と 25,000社、変更履歴の題2つ、SEP 10 と September 14（Linear）。
+- `prefers-reduced-motion:reduced` の書き間違いで reduce の1行が効かない。JSON-LD・`<time>` が全ページで 0。見えたリンクを全部先読みし、トップで 42本・1,148KB（Linear）。
