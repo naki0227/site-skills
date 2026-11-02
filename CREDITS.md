@@ -16,8 +16,10 @@
 | 使用例 | ファイル | 題 | 作者 | ライセンス | 元のページ |
 |---|---|---|---|---|---|
 | `gakudo-app` | `photos/Schoolkids-wearing-hats-and-randoseru-in-Kugayama-Japan-Janu.jpg` | Schoolkids wearing hats and randoseru in Kugayama, Japan; January 2010 | Mr. Brian | CC BY 2.0 | https://commons.wikimedia.org/w/index.php?curid=45335693 |
+| `machikoba-recruit` | `photos/chuck-in-use-1920.jpg` | 3 Jaw Chuck in Use | David English | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=64980189 |
 | `machikoba-recruit` | `photos/chuck-in-use.jpg` | 3 Jaw Chuck in Use | David English | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=64980189 |
 | `machikoba-recruit` | `photos/five-axis.jpg` | SMTCL VMC0656e 5-axis machining center 20260331123404 | TurnOnTheNight | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=190307528 |
+| `machikoba-recruit` | `photos/flywheel-lathe.jpg` | Metal lathe used to produce flywheels | Work With Sounds | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=38217955 |
 | `machikoba-recruit` | `photos/lathe-chuck.jpg` | Lathe Chuck | Andrew Magill from Boulder, USA | CC BY 2.0 | https://commons.wikimedia.org/w/index.php?curid=2977616 |
 | `machikoba-recruit` | `photos/machining-center.jpg` | HAAS CNC Machining Center | Psychlist1972 | CC BY 2.0 | https://commons.wikimedia.org/w/index.php?curid=193560471 |
 | `machikoba-recruit` | `photos/vernier.jpg` | Vernier calipers (2) | Al Riaz Uddin Ripon | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=130406704 |

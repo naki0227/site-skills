@@ -58,5 +58,29 @@
    400,
    293
   ]
+ },
+ {
+  "file": "chuck-in-use-1920.jpg",
+  "title": "3 Jaw Chuck in Use",
+  "creator": "David English",
+  "license": "CC BY-SA 4.0",
+  "page": "https://commons.wikimedia.org/w/index.php?curid=64980189",
+  "source_file": "3-Jaw-Chuck-in-Use.jpg",
+  "size": [
+   1920,
+   1080
+  ]
+ },
+ {
+  "file": "flywheel-lathe.jpg",
+  "title": "Metal lathe used to produce flywheels",
+  "creator": "Work With Sounds",
+  "license": "CC BY-SA 4.0",
+  "page": "https://commons.wikimedia.org/w/index.php?curid=38217955",
+  "source_file": "Metal-lathe-used-to-produce-flywheels.jpg",
+  "size": [
+   960,
+   640
+  ]
  }
 ]
