@@ -3,75 +3,93 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>第38回 瀬戸ノ口陶器市｜2027年5月3日・4日</title>
-<meta name="description" content="岐阜県瀬戸ノ口町の陶器市。2027年5月3日（月・祝）・4日（火・祝）、窯元41軒。会場マップ・窯元一覧・2日間の催しの時刻・行き方・雨の日の案内。">
+<title>第38回 瀬戸ノ口陶器市｜2027年5月3日・4日 開催</title>
+<meta name="description" content="岐阜県瀬戸ノ口町の陶器市。2027年5月3日（月・祝）・4日（火・祝）に、窯元41軒が本町通りほかに並びます。会場マップ・出店窯元・イベント・アクセス・雨天時のご案内。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;800&family=Klee+One:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Shippori+Mincho+B1:wght@500&family=Klee+One:wght@600&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Event","name":"第38回 瀬戸ノ口陶器市","startDate":"2027-05-03T09:00+09:00","endDate":"2027-05-04T15:00+09:00","eventStatus":"https://schema.org/EventScheduled","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","isAccessibleForFree":true,"location":{"@type":"Place","name":"瀬戸ノ口駅前広場・本町通り・窯垣の小径・旧瀬戸ノ口小学校・登り窯跡広場","address":{"@type":"PostalAddress","addressRegion":"岐阜県","addressLocality":"瀬戸ノ口町","addressCountry":"JP"}},"organizer":{"@type":"Organization","name":"瀬戸ノ口陶器市実行委員会"},"description":"窯元41軒が並ぶ2日間の陶器市（架空の催し・site-skills の使用例）"}
 </script>
 <style>
-/* 色と文字の出典は右下「使ったスキル」と README.md に */
+/*
+  題材の特色：年に1度、駅前から登り窯跡までの通りに窯元が器を並べる、町ののぼりの立つ陶器市。
+  手本：Web Design Clip の地域情報・アート・レジャーから、地域の催し・イベントの告知23件を測った中央値（README.md）。
+  - 地は白、文字は黒に近い色（23件中 本文の色 #000 が10件）。色は写真とのぼりが持つ。
+  - 書体：本文 Noto Sans JP 400（Web フォントでいちばん多い）、題と見出しは明朝（リュウミン・筑紫明朝・つくしA の代わりに Shippori Mincho B1）を 500 で（いちばん大きい字の太さの中央値 400）。
+  - 本文 16px・行間 1.75、文字の左端 約260px、何も無い帯 72px（上位1割 199px）、ボタンは まる（角の中央値 23px）。
+  - 3色：地 白・主 のぼりの織部の緑・差し色 値札の朱。ボタンは志野の白（題材の色）。
+  - 小さな手がかりは1つ：のぼり（最初の画面の「第三十八回」の縦の旗と、章の題の左の竿）。
+*/
 :root{
-  --paper:#fff; --sumi:#1a1714; --rule:#ccc; --mute:#6b6560; --pale:#f2f2f2;
-  --oribe:#2f5a41; --shu:#b30000;
+  --paper:#fff; --sumi:#1a1714; --rule:#ccc; --mute:#5f5852; --pale:#f2f0ed;
+  --oribe:#2f5a41; --shu:#b30000; --shino:#f3ede4;
   --ease:cubic-bezier(.25,.46,.45,.94); --t1:.1s; --t2:.2s; --t3:.4s;
   --mincho:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif;
-  --hand:"Klee One","Hiragino Mincho ProN",serif;
-  --gothic:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",system-ui,sans-serif;
-  --pad:32px; --head:56px;
+  --hand:"Klee One","Shippori Mincho B1",serif;
+  --gothic:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --pad:32px; --head:64px; --max:1000px;
 }
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:calc(var(--head) + 8px)}
-body{margin:0;background:var(--paper);color:var(--sumi);font:16px/1.7 var(--gothic);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--sumi);font:400 16px/1.75 var(--gothic);-webkit-text-size-adjust:100%}
+h1,h2,h3,p,li,td,th,dd,figcaption{word-break:auto-phrase;text-wrap:pretty}
 svg{display:block}
 a{color:inherit}
 button,input,select{font:inherit;color:inherit}
 :focus-visible{outline:none;box-shadow:0 0 0 4px var(--sumi);border-radius:2px}
-.wrap{max-width:1440px;margin:0 auto;padding:0 var(--pad)}
+.wrap{max-width:calc(var(--max) + var(--pad) * 2);margin:0 auto;padding:0 var(--pad)}
+.sp-br{display:none}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-/* 告知帯 */
+/* 開催状況とヘッダー */
+.site-head{position:sticky;top:0;z-index:20}
 .status{background:var(--sumi);color:#fff;font-size:14px}
-.status .wrap{display:flex;gap:12px;align-items:center;min-height:32px;padding-top:6px;padding-bottom:6px}
-.status b{flex:none;white-space:nowrap;font-weight:700;display:inline-flex;gap:6px;align-items:center}
-.status b::before{content:"";width:8px;height:8px;border-radius:50%;background:#fff}
-.status[data-state="change"] b::before{background:#ff6a5a}
-
-/* ヘッダー：日付と会場を常に */
-.head{position:sticky;top:0;z-index:20;height:var(--head);background:var(--paper);border-bottom:1px solid var(--sumi)}
-.head .wrap{display:flex;align-items:center;gap:16px;height:100%}
-.logo{display:flex;align-items:center;gap:14px;text-decoration:none}
-.logo strong{font:800 20px/1 var(--mincho);white-space:nowrap}
-.logo .when{border-left:1px solid var(--sumi);padding-left:14px;font-size:14px;line-height:1.4;white-space:nowrap}
-.when .s{display:none}
-.gnav{margin-left:auto;display:flex;gap:20px;font-size:14px}
+.status .bar{display:flex;gap:12px;align-items:center;min-height:32px;padding:6px var(--pad)}
+.status b{flex:none;white-space:nowrap;font-weight:700}
+.head{height:var(--head);background:var(--paper);border-bottom:1px solid var(--rule)}
+.head .bar{display:flex;align-items:center;gap:24px;height:100%;padding:0 var(--pad)}
+.logo{text-decoration:none;font:500 20px/1 var(--mincho);white-space:nowrap}
+.gnav{margin-left:auto;display:flex;gap:24px;font-size:14px}
 .gnav a{text-decoration:none;padding:6px 0}
-.pill{display:inline-flex;align-items:center;justify-content:center;height:46px;padding:0 22px;border:2px solid var(--sumi);border-radius:23px;background:var(--sumi);color:#fff;font:700 14px/1 var(--gothic);text-decoration:none;cursor:pointer;white-space:nowrap;transition:opacity var(--t2) var(--ease)}
-.pill--line{background:transparent;color:var(--sumi)}
+.pill{display:inline-flex;align-items:center;justify-content:center;height:46px;padding:0 24px;border:0;border-radius:23px;background:var(--sumi);color:#fff;font:700 15px/1 var(--gothic);text-decoration:none;cursor:pointer;white-space:nowrap;transition:opacity var(--t2) var(--ease)}
+.pill--line{background:transparent;color:var(--sumi);box-shadow:inset 0 0 0 1px var(--sumi)}
 .pill:active{opacity:.6}
 .pill[disabled]{opacity:.35;cursor:not-allowed}
-.head .pill{height:40px;padding:0 18px}
+.head .pill{height:40px;padding:0 20px;font-size:14px}
 
-/* 最初の画面：チラシの面 */
-.sheet{display:grid;grid-template-columns:132px minmax(0,1fr)}
-.nobori{background:var(--oribe);color:#fff;display:flex;justify-content:center;padding:24px 0}
-.nobori h1{writing-mode:vertical-rl;margin:0;font:800 56px/1.05 var(--mincho);letter-spacing:.06em}
-.nobori h1 small{display:block;font-size:20px;letter-spacing:.2em;margin-left:12px}
-.nobori .v-date{writing-mode:vertical-rl;font:600 16px/1.4 var(--mincho);margin-top:auto;letter-spacing:.08em}
-.nobori-in{display:flex;flex-direction:column;align-items:center;gap:20px}
-.stage{padding:28px 40px 32px;min-width:0}
-.lead{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 32px;align-items:end;margin-bottom:20px}
-.when-big{grid-column:1;margin:0;font:800 32px/1.3 var(--mincho)}
-.lead-1{grid-column:1;margin:0;font-size:20px;line-height:1.6}
-.lead .pill{grid-column:2;grid-row:1/3;height:52px;padding:0 28px;font-size:16px;border-radius:26px}
-.stage-main{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:32px;align-items:end}
+/* 最初の画面：暗くしたモノクロの写真に、題・日付・一文・ボタン */
+.hero{position:relative;height:calc(100svh - var(--head) - 32px);min-height:560px;max-height:900px;color:#fff;overflow:hidden;background:#222}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 60%;filter:grayscale(1) brightness(.5)}
+.hero-in{position:relative;height:100%;max-width:calc(var(--max) + var(--pad) * 2);margin:0 auto;padding:0 var(--pad) 88px;display:flex;flex-direction:column;justify-content:flex-end}
+.nobori{position:absolute;top:0;left:max(var(--pad),calc((100% - var(--max)) / 2));width:52px;padding:20px 0 24px;background:var(--oribe);color:#fff;writing-mode:vertical-rl;font:500 18px/52px var(--mincho);letter-spacing:.24em;text-align:center}
+.hero h1{margin:0;font:500 96px/1.15 var(--mincho);letter-spacing:.02em}
+.hero .date{margin:16px 0 0;font:500 32px/1.4 var(--mincho)}
+.hero .date small{font-size:20px}
+.hero .lead-1{margin:12px 0 28px;font-size:20px;line-height:1.7}
+.hero .pill{align-self:flex-start;height:52px;padding:0 32px;border-radius:26px;font-size:16px;background:var(--shino);color:var(--sumi)}
+.hero .credit{position:absolute;right:12px;top:8px;margin:0;font-size:13px;line-height:1.5;color:rgba(255,255,255,.88)}
+.hero .credit a{color:inherit}
+
+/* 章 */
+section.ch{padding:120px 0 0}
+.ch-head{margin-bottom:32px}
+.ch-head h2{position:relative;font:500 32px/1.4 var(--mincho);margin:0;padding-left:20px}
+.ch-head h2::before{content:"";position:absolute;left:0;top:.2em;bottom:.2em;width:4px;background:var(--oribe)}
+.ch-head p{margin:12px 0 0;font-size:16px;max-width:40em}
+
+/* 開催概要 */
+table.gaiyo{width:100%;border-collapse:collapse;font-size:16px}
+.gaiyo th,.gaiyo td{text-align:left;vertical-align:top;padding:14px 16px 14px 0;border-bottom:1px solid var(--rule)}
+.gaiyo th{width:8em;font-weight:700;white-space:nowrap}
+.gaiyo .r{color:var(--shu)}
+
+/* 会場マップ */
+.map-grid{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:32px;align-items:end}
 .map-wrap{position:relative;min-width:0}
 .map-wrap .seg{position:absolute;right:12px;top:12px}
-.map-box{max-width:calc((100svh - 300px) * 1.6);min-width:min(100%,560px)}
-.seg{display:inline-flex;border:2px solid var(--sumi);border-radius:18px;overflow:hidden}
-.seg button{appearance:none;border:0;background:#fff;height:32px;padding:0 14px;font-weight:700;font-size:12px;cursor:pointer}
+.seg{display:inline-flex;border-radius:18px;overflow:hidden;box-shadow:inset 0 0 0 1px var(--sumi);background:#fff}
+.seg button{appearance:none;border:0;background:transparent;height:34px;padding:0 16px;font-weight:700;font-size:14px;cursor:pointer}
 .seg button[aria-pressed="true"]{background:var(--sumi);color:#fff}
 .map-box{border:1px solid var(--sumi);background:#fff}
 .map-box svg{width:100%;height:auto}
@@ -84,128 +102,114 @@ button,input,select{font:inherit;color:inherit}
 .map-box[data-mode="rain"] .rain-g{opacity:1}
 .map-box[data-mode="rain"] .moves{opacity:.22}
 .moves{transition:opacity var(--t3) var(--ease)}
-.map-hint{display:none}
-.sp-only{display:none}
+.map-hint{display:none;font-size:14px;margin:8px 0 0}
 
 /* 値札（選んだ窯元） */
 .fuda{position:relative;width:100%;border:1px solid var(--sumi);background:#fff;padding:16px 16px 24px 28px;font-family:var(--hand);transform:rotate(-1.5deg)}
 .fuda::before{content:"";position:absolute;left:10px;top:50%;width:9px;height:9px;margin-top:-5px;border:1px solid var(--sumi);border-radius:50%}
-.fuda .no{font-size:14px;color:#4a4540}
+.fuda .no{font-size:14px}
 .fuda b{display:block;font-size:20px;line-height:1.3}
 .fuda span{display:block;font-size:16px}
 .fuda .price{font-size:20px;color:var(--shu)}
 .fuda .rn{font:14px var(--gothic);color:var(--shu)}
 .fuda button{margin-top:6px;font:700 14px var(--gothic);background:none;border:0;text-decoration:underline;text-underline-offset:3px;padding:0;cursor:pointer}
-.fuda.is-empty{transform:none;border-style:dashed;color:var(--mute)}
-
-.tt{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
-.tt caption{text-align:left;font:800 20px/1.4 var(--mincho);padding-bottom:6px;border-bottom:2px solid var(--sumi)}
-.tt td:last-child{width:9em}
-.ev-links{margin:16px 0 0}
-.ev-links button{background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px;font-size:16px}
-
-/* 章 */
-section.ch{padding:96px 0 0}
-.ch-head{margin-bottom:28px}
-.ch-head h2{font:800 32px/1.3 var(--mincho);margin:0}
-.ch-head h2::before{content:"";display:inline-block;width:14px;height:14px;background:var(--shu);margin-right:10px;vertical-align:.12em}
-.ch-head p{margin:8px 0 0;color:#333;font-size:16px;max-width:44em}
+.fuda.is-empty{transform:none;border-style:dashed}
 
 /* 窯元一覧 */
-.filters{display:grid;grid-template-columns:minmax(0,1fr) 180px auto auto auto;gap:10px 16px;align-items:end;margin-bottom:12px}
+.filters{display:grid;grid-template-columns:minmax(0,1fr) 160px;gap:10px 16px;align-items:end;margin-bottom:8px}
+.checks{display:flex;flex-wrap:wrap;gap:0 20px;margin-bottom:12px}
 .field label{display:block;font-size:14px;margin-bottom:2px}
-.field input,.field select{width:100%;height:40px;border:1px solid var(--sumi);border-radius:0;background:#fff;padding:0 10px;font-size:16px}
+.field input,.field select{width:100%;height:44px;border:1px solid var(--sumi);border-radius:0;background:#fff;padding:0 10px;font-size:16px}
 .check{display:flex;align-items:center;gap:6px;height:40px;font-size:16px;cursor:pointer;white-space:nowrap}
 .check input{width:18px;height:18px;accent-color:var(--sumi)}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
-.chip{appearance:none;border:0;background:var(--pale);border-radius:2px;height:36px;padding:0 12px;font-size:14px;cursor:pointer}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.chip{appearance:none;border:0;background:var(--pale);border-radius:18px;height:36px;padding:0 14px;font-size:14px;cursor:pointer}
 .chip[aria-pressed="true"],.chip[aria-checked="true"]{background:var(--sumi);color:#fff}
-.k-grid{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:32px;align-items:start}
-.count{font-size:14px;margin:0 0 4px;color:#4a4540}
-.kilns{list-style:none;margin:0;padding:0;columns:3 300px;column-gap:40px}
+.k-grid{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:40px;align-items:start}
+.count{font-size:14px;margin:0 0 4px}
+.kilns{list-style:none;margin:0;padding:0;columns:2 300px;column-gap:40px}
 .kilns li{break-inside:avoid}
-.area-h{font:800 20px/1.4 var(--mincho);padding:20px 0 4px}
+.area-h{font:500 20px/1.4 var(--mincho);padding:24px 0 4px}
 .area-h:first-child{padding-top:0}
 .area-h small{font:14px var(--gothic);color:var(--shu);margin-left:8px}
 .kiln{display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:0 8px;align-items:baseline;padding:7px 0}
 .kiln .id{font-weight:700;font-size:14px}
-.kiln .nm{appearance:none;background:none;border:0;padding:0;text-align:left;cursor:pointer;font:600 20px/1.35 var(--mincho)}
+.kiln .nm{appearance:none;background:none;border:0;padding:0;text-align:left;cursor:pointer;font:500 20px/1.35 var(--mincho)}
 .kiln .pr{font:600 20px/1.2 var(--hand);color:var(--shu);white-space:nowrap}
-.kiln .ds{grid-column:2/4;font-size:14px;color:#333;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.kiln .ds{grid-column:2/4;font-size:14px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
 .kiln .tag{font-size:14px;font-weight:700;color:var(--shu);margin-left:6px}
-.go{appearance:none;flex:none;border:0;background:var(--pale);font-size:13px;font-weight:700;padding:0 10px;height:28px;border-radius:14px;cursor:pointer;font-size:14px}
+.go{appearance:none;flex:none;border:0;background:var(--pale);font-weight:700;padding:0 10px;height:28px;border-radius:14px;cursor:pointer;font-size:14px}
 .go[aria-pressed="true"]{background:var(--sumi);color:#fff}
 .no-hit{padding:24px 0}
 .no-hit p{margin:0 0 10px;font-size:16px}
-.route{position:sticky;top:calc(var(--head) + 12px);padding:20px 20px 24px;background:var(--pale)}
-.route h3{font:800 20px/1.4 var(--mincho);margin:0}
-.route .sub{font-size:14px;margin:0 0 6px;color:#4a4540}
+.route{position:sticky;top:calc(var(--head) + 48px);padding:20px 20px 24px;background:var(--pale)}
+.route h3{font:500 20px/1.4 var(--mincho);margin:0}
+.route .sub{font-size:14px;margin:0 0 6px}
 .route ol{margin:6px 0 0;padding-left:1.6em;font-size:16px}
 .route li{padding:2px 0}
 .route li span{font:600 14px var(--hand);color:var(--shu);margin-left:4px}
 .route .empty{font-size:14px;margin:6px 0 0}
 .route .clear{background:none;border:0;padding:0;margin-top:10px;font-size:14px;text-decoration:underline;cursor:pointer}
 
-/* 写真の枠 */
-/* 写真：題材のまわりの世界の実写（Wikimedia Commons）。題材の物としては見せず、何が写っているかと出典を書く */
-.band{margin:0}
-.band img{display:block;width:100%;height:auto;object-fit:cover}
-.band figcaption{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 24px;padding:12px 0 0;font-size:16px}
-.band .credit{font-size:13px;color:#4a4540}
+/* 写真（題材のまわりの世界の実写。出典は写真の端に小さく重ねる） */
+.band{position:relative;margin:56px 0 0}
+.band img{display:block;width:100%;height:auto;aspect-ratio:16/7;object-fit:cover}
+.band .credit{position:absolute;right:10px;top:8px;margin:0;font-size:13px;line-height:1.5;color:rgba(255,255,255,.9);text-shadow:0 0 4px rgba(0,0,0,.6)}
 .band .credit a{color:inherit}
-.band--street img{height:min(62vh,640px);object-position:50% 62%}
-.band--street figcaption{padding-left:var(--pad);padding-right:var(--pad);max-width:1440px;margin:0 auto}
-.band--kiln{margin-top:48px}
-.band--kiln img{aspect-ratio:16/7}
+.band figcaption.what{margin-top:10px;font-size:16px}
 
-/* 催し */
-.ev-grid{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:32px;align-items:start}
+/* イベント */
+.tt{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.tt caption{text-align:left;font:500 20px/1.4 var(--mincho);padding-bottom:6px;border-bottom:2px solid var(--sumi)}
+.tt td:last-child{width:8em}
+.ev-links{margin:16px 0 0}
+.ev-links button{background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px;font-size:16px}
 table.list{width:100%;border-collapse:collapse;font-size:16px}
 .list th,.list td{text-align:left;vertical-align:top;padding:10px 12px 10px 0;border-bottom:1px solid var(--rule)}
 .list td:first-child,.list th:first-child{white-space:nowrap}
 .list thead th{font-size:14px;font-weight:400;border-bottom:2px solid var(--sumi)}
-.list td.t{font:800 16px var(--mincho);white-space:nowrap;font-variant-numeric:tabular-nums}
+.list td.t{font:500 16px var(--mincho);white-space:nowrap;font-variant-numeric:tabular-nums}
 .list .r{display:block;font-size:14px;color:var(--shu)}
 
-/* 行き方 */
+/* アクセス */
 .acc-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px}
 .line{list-style:none;margin:12px 0 0;padding:0;border-left:4px solid var(--sumi)}
 .line li{position:relative;padding:4px 0 14px 20px}
 .line li::before{content:"";position:absolute;left:-9px;top:8px;width:10px;height:10px;border:2px solid var(--sumi);background:#fff;border-radius:50%}
-.line li.ride{padding-top:0;padding-bottom:12px;color:#333;font-size:14px}
+.line li.ride{padding-top:0;padding-bottom:12px;font-size:14px}
 .line li.ride::before{display:none}
-.line b{font:800 20px var(--mincho)}
-.total{font:800 20px/1.4 var(--mincho);margin:4px 0 0}
+.line b{font:500 20px var(--mincho)}
+.total{font:500 20px/1.4 var(--mincho);margin:4px 0 0}
 .tip{margin:14px 0 0;font-size:16px}
 
-/* 雨の日 */
+/* 雨天時 */
 .rain-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:start}
 
-/* お知らせ登録 */
-.mail{background:var(--pale);margin-top:96px;padding:40px var(--pad)}
+/* メールでのお知らせ */
+.mail{background:var(--pale);margin-top:120px;padding:48px 0}
 .mail-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 40px;align-items:start}
-.mail h2{font:800 32px/1.3 var(--mincho);margin:0 0 6px}
+.mail h2{font:500 32px/1.4 var(--mincho);margin:0 0 8px}
 .mail p{margin:0}
 .mail form{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 10px}
-.mail input[type=email]{height:46px;border:1px solid #8a847e;padding:0 12px;font-size:16px;width:100%;border-radius:0}
+.mail input[type=email]{height:46px;border:1px solid var(--sumi);padding:0 12px;font-size:16px;width:100%;border-radius:0}
 .mail input[aria-invalid="true"]{border:2px solid var(--shu)}
 .mail .opts{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:0 16px}
 .mail .err{grid-column:1/-1;color:var(--shu);font-size:16px;margin:0;min-height:1.6em}
 .mail .done{font-size:16px}
 
-footer{padding:40px 0 88px;font-size:14px;color:#333}
+footer{padding:48px 0 88px;font-size:14px}
 footer .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 footer p{margin:0 0 4px}
-footer h2{font:800 16px var(--mincho);margin:0 0 6px}
-footer .fic{margin-top:24px;color:#4a4540}
+footer h2{font:500 16px var(--mincho);margin:0 0 6px}
+footer .fic{margin-top:24px}
 
 /* 使ったスキル */
-.skills-btn{position:fixed;right:12px;bottom:12px;z-index:40;height:36px;padding:0 14px;border-radius:18px;border:2px solid var(--sumi);background:#fff;font:700 14px/1 var(--gothic);cursor:pointer}
+.skills-btn{position:fixed;right:12px;bottom:12px;z-index:40;height:36px;padding:0 14px;border-radius:18px;border:1px solid var(--sumi);background:#fff;font:700 14px/1 var(--gothic);cursor:pointer}
 .skills-btn:active{opacity:.6}
-dialog.skills{width:min(900px,calc(100vw - 24px));max-height:min(84vh,820px);padding:0;border:2px solid var(--sumi);border-radius:0}
+dialog.skills{width:min(900px,calc(100vw - 24px));max-height:min(84vh,820px);padding:0;border:1px solid var(--sumi);border-radius:0}
 dialog.skills::backdrop{background:rgba(26,23,20,.5)}
 .skills-in{padding:20px 24px 24px;overflow:auto;max-height:inherit}
-.skills h2{font:800 24px/1.4 var(--mincho);margin:0 0 4px}
+.skills h2{font:500 24px/1.4 var(--mincho);margin:0 0 4px}
 .skills .lead{font-size:14px;margin:0 0 12px}
 .skills table{width:100%;border-collapse:collapse;font-size:14px}
 .skills th,.skills td{text-align:left;vertical-align:top;padding:8px 8px 8px 0;border-bottom:1px solid var(--rule)}
@@ -215,60 +219,47 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
 .skills .close{float:right;height:36px}
 
 @media (hover:hover) and (pointer:fine){
-  .pill:hover{opacity:.75}
-  .gnav a:hover,.ev-links button:hover{color:var(--mute)}
+  .pill:hover{opacity:.8}
+  .gnav a:hover,.ev-links button:hover{text-decoration:underline}
   .kiln .nm:hover{color:var(--oribe)}
   .dot:hover .ring{opacity:1}
   .chip:hover,.go:hover{opacity:.75}
   .skills-btn:hover{opacity:.7}
 }
-@media (max-width:1200px){
-  .sheet{grid-template-columns:96px minmax(0,1fr)}
-  .stage{padding:24px 28px}
-  .stage-main{grid-template-columns:minmax(0,1fr) 260px}
-  .nobori h1{font-size:44px}
-}
 @media (max-width:992px){
   .gnav{display:none}
   .head .pill{margin-left:auto}
-  .sheet{grid-template-columns:1fr}
-  .nobori{padding:14px var(--pad);justify-content:flex-start}
-  .nobori-in{flex-direction:row;align-items:baseline;flex-wrap:wrap;gap:4px 16px}
-  .nobori h1,.nobori .v-date{writing-mode:horizontal-tb}
-  .nobori h1{font-size:32px;letter-spacing:.02em}
-  .nobori h1 small{display:inline;font-size:16px;margin:0 8px 0 0;letter-spacing:.05em}
-  .nobori .v-date{margin:0;font-size:20px}
-  .stage{padding:20px var(--pad) 28px}
-  .stage-main{grid-template-columns:1fr;gap:16px}
-  .map-box{max-width:none}
-  .k-grid,.tt,.acc-grid,.rain-grid,.mail-in{grid-template-columns:1fr}
+  .hero h1{font-size:72px}
+  .map-grid,.k-grid,.tt,.acc-grid,.rain-grid,.mail-in{grid-template-columns:1fr}
   .route{position:static}
-  .filters{grid-template-columns:1fr 1fr}
-  .filters .field:first-child{grid-column:1/-1}
 }
 @media (max-width:768px){
-  :root{--pad:16px;--head:52px}
+  :root{--pad:16px;--head:56px}
   footer .cols{grid-template-columns:1fr}
+  section.ch{padding-top:88px}
 }
 @media (max-width:600px){
+  .hero{height:calc(100svh - var(--head) - 52px);min-height:520px}
+  .hero-in{padding-bottom:64px}
+  .nobori{width:40px;font-size:15px;line-height:40px;padding:14px 0 18px}
+  .hero h1{font-size:48px}
+  .hero .date{font-size:24px}
+  .sp-br{display:inline}
+  .hero .credit{left:56px;right:8px;text-align:right}
+  .hero .date small{font-size:16px}
+  .hero .lead-1{font-size:16px;margin-bottom:20px}
+  .hero .pill{align-self:stretch}
   .map-box{overflow-x:auto}
   .map-box svg{width:640px;max-width:none}
-  .map-hint{display:inline}
-  .sp-only{display:inline}.pc-only{display:none}
-  .fuda{transform:none}
-  .band--kiln img{aspect-ratio:4/3}
-  .band--street img{height:46vh}
-  .lead{grid-template-columns:1fr}
-  .lead .pill{grid-column:1;grid-row:auto;margin-top:12px;width:100%}
-  .when-big{font-size:32px}
-  .when-big .dw{font-size:16px}
-  .lead-1{font-size:16px}
+  .map-hint{display:block}
   .map-wrap .seg{position:static;margin-top:10px}
-  .filters{grid-template-columns:1fr 1fr}
-  .filters .field:nth-child(2){grid-column:1/-1}
+  .fuda{transform:none}
+  .band img{aspect-ratio:4/3}
+  .filters{grid-template-columns:1fr}
   .ch-head h2{font-size:24px}
   .mail form{grid-template-columns:1fr}
   .list td.t{font-size:14px}
+  .gaiyo th{width:5.5em}
   .skills thead{display:none}
   .skills table,.skills tbody,.skills tr,.skills td{display:block;width:auto!important}
   .skills tr{border-bottom:1px solid var(--rule);padding:8px 0}
@@ -276,12 +267,8 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
   .skills-in{padding:16px}
 }
 @media (max-width:430px){
-  .when .l{display:none}.when .s{display:inline}
-  .logo strong{font-size:16px}
-  .logo{gap:8px}.logo .when{padding-left:8px;font-size:13px}
-  .head .pill{padding:0 12px;font-size:12px}
-  .head .pill .full{display:none}
-  .nobori h1{font-size:28px}
+  .logo{font-size:18px}
+  .head .bar{gap:12px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -291,43 +278,60 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
 </head>
 <body>
 
-<div class="status" id="status" data-state="ok" role="status">
-  <div class="wrap"><b>開催予定</b><span>雨天決行。荒天のときは各日 6:30 にここでお知らせします（10月26日 更新）</span></div>
-</div>
-
-<header class="head">
-  <div class="wrap">
-    <a class="logo" href="#top" aria-label="瀬戸ノ口陶器市 ページの先頭へ">
-      <strong>瀬戸ノ口陶器市</strong>
-      <span class="when"><span class="l">2027年5月3日(月・祝)・4日(火・祝)</span><span class="s">5/3(月祝)・5/4(火祝)</span><br><span class="l">岐阜県瀬戸ノ口町 本町通りほか</span><span class="s">9:00〜 入場無料</span></span>
-    </a>
-    <nav class="gnav" aria-label="ページ内">
-      <a href="#map">会場マップ</a><a href="#kilns">窯元41軒</a><a href="#events">催し</a><a href="#access">行き方</a><a href="#rain">雨の日</a>
-    </nav>
-    <a class="pill" href="#access">行き方<span class="full">を調べる</span></a>
+<header class="site-head">
+  <div class="status" id="status" data-state="ok" role="status">
+    <div class="bar"><b>開催予定</b><span>雨天決行です。荒天時の判断は、各日6:30にここでお知らせします（10月26日更新）</span></div>
+  </div>
+  <div class="head">
+    <div class="bar">
+      <a class="logo" href="#top">瀬戸ノ口陶器市</a>
+      <nav class="gnav" aria-label="ページ内">
+        <a href="#gaiyo">開催概要</a><a href="#map">会場マップ</a><a href="#kilns">出店窯元</a><a href="#events">イベント</a><a href="#access">アクセス</a><a href="#rain">雨天時</a>
+      </nav>
+      <a class="pill" href="#access">行き方を調べる</a>
+    </div>
   </div>
 </header>
 
 <main id="top">
-  <!-- 最初の画面：題（のぼり）・いつどこで・1文・主な行動・主役の会場図 -->
-  <div class="sheet">
-    <div class="nobori">
-      <div class="nobori-in">
-        <h1><small>第三十八回</small>瀬戸ノ口陶器市</h1>
-        <p class="v-date">五月三日・四日　窯元四十一軒</p>
-      </div>
+  <section class="hero" aria-labelledby="h-title">
+    <img src="photos/Arita-tokichi-200804.jpg" width="1280" height="960" alt="陶器市の通り。軒先に器を並べた店の前を、袋を提げた人が歩いている（写真は佐賀県有田町の有田陶器市）">
+    <p class="nobori" aria-hidden="true">第三十八回</p>
+    <div class="hero-in">
+      <h1 id="h-title">瀬戸ノ口陶器市</h1>
+      <p class="date">2027年<br class="sp-br">5月3日<small>（月・祝）</small>・4日<small>（火・祝）</small></p>
+      <p class="lead-1">岐阜県瀬戸ノ口町の本町通りほかに、<br>窯元41軒が器を並べます。</p>
+      <a class="pill" href="#access">行き方を調べる</a>
     </div>
+    <p class="credit">写真：有田陶器市（佐賀県有田町）／Atsasebo／<a href="https://commons.wikimedia.org/w/index.php?curid=9228610">Wikimedia Commons</a>／CC BY-SA 3.0</p>
+  </section>
 
-    <div class="stage" id="map">
-      <div class="lead">
-        <p class="when-big">5月3日<span class="dw">（月・祝）</span>・4日<span class="dw">（火・祝）</span></p>
-        <p class="lead-1">瀬戸ノ口駅前から登り窯跡まで、窯元41軒が5つの会場に並びます。9:00から、入場無料。</p>
-        <a class="pill" href="#access">行き方を調べる</a>
+  <div class="wrap">
+    <!-- 開催概要 -->
+    <section class="ch" id="gaiyo" aria-labelledby="h-gaiyo">
+      <div class="ch-head"><h2 id="h-gaiyo">開催概要</h2></div>
+      <table class="gaiyo">
+        <tbody>
+          <tr><th scope="row">日時</th><td>2027年5月3日（月・祝）9:00〜16:00<br>2027年5月4日（火・祝）9:00〜15:00</td></tr>
+          <tr><th scope="row">会場</th><td>瀬戸ノ口駅前広場・本町通り・窯垣の小径・旧瀬戸ノ口小学校・登り窯跡広場（岐阜県瀬戸ノ口町）</td></tr>
+          <tr><th scope="row">出店</th><td>窯元41軒（うち初出店3軒）</td></tr>
+          <tr><th scope="row">入場</th><td>無料（臨時駐車場は駐車協力金 1日500円）</td></tr>
+          <tr><th scope="row">雨天時</th><td>小雨決行。<span class="r">荒天時は中止</span>し、各日6:30に判断します</td></tr>
+          <tr><th scope="row">主催</th><td>瀬戸ノ口陶器市実行委員会（事務局：瀬戸ノ口町商工会）</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 会場マップ -->
+    <section class="ch" id="map" aria-labelledby="h-map">
+      <div class="ch-head">
+        <h2 id="h-map">会場マップ</h2>
+        <p>駅前広場（A）から登り窯跡広場（E）まで、歩いて12分ほどです。番号を押すと、その窯元の値札が出ます。</p>
       </div>
-      <div class="stage-main">
+      <div class="map-grid">
         <div class="map-wrap">
           <div class="map-box" id="mapBox" data-mode="fine" data-ui>
-        <svg viewBox="0 0 800 500" id="mapSvg" aria-labelledby="mapTitle">
+            <svg viewBox="0 0 800 500" id="mapSvg" aria-labelledby="mapTitle">
           <title id="mapTitle">会場図。瀬戸ノ口駅前の A 駅前広場、B 本町通り、C 窯垣の小径、D 旧瀬戸ノ口小学校の校庭、E 登り窯跡広場。番号は窯元の番号</title>
           <defs><pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="#ccc" stroke-width="2"/></pattern></defs>
           <path d="M0 40 C 160 70, 330 14, 520 44 S 720 22, 800 36" fill="none" stroke="#e3e3e3" stroke-width="22"/>
@@ -366,31 +370,26 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
         </svg>
           </div>
           <div class="seg" role="group" aria-label="地図の表示">
-            <button type="button" id="mode-fine" aria-pressed="true">晴れの日</button>
-            <button type="button" id="mode-rain" aria-pressed="false">雨の日</button>
+            <button type="button" id="mode-fine" aria-pressed="true">晴天時</button>
+            <button type="button" id="mode-rain" aria-pressed="false">雨天時</button>
           </div>
+          <p class="map-hint">地図は横に動かせます。</p>
         </div>
         <div class="fuda is-empty" id="fuda" aria-live="polite"><span>地図の番号を押してください</span></div>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <!-- 町の通りの実写（陶器市のまわりの世界） -->
-  <figure class="band band--street">
-    <img src="photos/Arita-tokichi-200804.jpg" width="960" height="720" loading="lazy" alt="有田陶器市の通り。軒先に器を並べた店の前を、袋を提げた人が歩いている">
-    <figcaption><span>有田陶器市の通り（佐賀県有田町、2008年4月）。瀬戸ノ口でも、本町通りの B の12軒は、こうして軒下に器を並べます。</span><span class="credit">写真：Atsasebo／<a href="https://commons.wikimedia.org/w/index.php?curid=9228610">Wikimedia Commons</a>／CC BY-SA 3.0</span></figcaption>
-  </figure>
-
-  <div class="wrap">
     <!-- 窯元 -->
     <section class="ch" id="kilns" aria-labelledby="h-kilns">
       <div class="ch-head">
-        <h2 id="h-kilns">出店する窯元 41軒</h2>
-        <p>番号は地図の番号。値段は各窯元の一番安い器の目安です。「回る」を押すと、駅から歩く順に並べ直します。</p>
+        <h2 id="h-kilns">出店窯元</h2>
+        <p>41軒の窯元が出店します。番号は会場マップの番号、値段は各窯元のいちばん安い器の目安です。<br>「回る」を押すと、駅から歩く順に並べ直します。</p>
       </div>
       <div class="filters">
         <div class="field"><label for="q">名前・器で探す</label><input id="q" type="search" placeholder="例：ぐい呑、喜八窯" autocomplete="off"></div>
         <div class="field"><label for="kind">焼き</label><select id="kind"><option value="">すべて</option></select></div>
+      </div>
+      <div class="checks">
         <label class="check"><input type="checkbox" id="fWake">訳あり品</label>
         <label class="check"><input type="checkbox" id="fTaiken">体験あり</label>
         <label class="check"><input type="checkbox" id="fNew">初出店</label>
@@ -412,25 +411,26 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
     <!-- 催し -->
     <section class="ch" id="events" aria-labelledby="h-events">
       <div class="ch-head">
-        <h2 id="h-events">2日間の催しと時刻</h2>
-        <p>登り窯の窯出しは3日の朝だけ。4日は15時に閉め、14時半から一部の窯元が値下げをします。雨の日に変わる催しは朱で書いています。</p>
+        <h2 id="h-events">イベント</h2>
+        <p>登り窯の窯出しは3日の朝だけです。4日は15時に終わり、14時半から一部の窯元で値下げがあります。<br>雨天時に変わる内容は赤字で書いています。</p>
       </div>
       <div class="tt">
         <table class="list" id="day-0503"><caption>3日（月・祝）9:00〜16:00</caption><tbody id="tt-0503"></tbody></table>
         <table class="list" id="day-0504"><caption>4日（火・祝）9:00〜15:00</caption><tbody id="tt-0504"></tbody></table>
       </div>
       <p class="ev-links"><button type="button" id="ics">この2日をカレンダーに入れる（.ics）</button></p>
-      <figure class="band band--kiln">
+      <figure class="band">
         <img src="photos/Noborigama-Tokoname-01.jpg" width="1280" height="742" loading="lazy" alt="常滑の登り窯。れんがの窯が斜面に沿って上へ続き、左に階段、右に焚き口の板が並ぶ">
-        <figcaption><span>常滑（愛知県）の登り窯。部屋が斜面に沿って階段のように続きます。3日の朝に開ける瀬戸ノ口の共同登窯も、同じつくりの窯です。</span><span class="credit">写真：Gryffindor／<a href="https://commons.wikimedia.org/w/index.php?curid=63887246">Wikimedia Commons</a>／CC BY-SA 4.0</span></figcaption>
+        <p class="credit">写真：Gryffindor／<a href="https://commons.wikimedia.org/w/index.php?curid=63887246">Wikimedia Commons</a>／CC BY-SA 4.0</p>
+        <figcaption class="what">写真は常滑（愛知県）の登り窯です。3日の朝に開ける瀬戸ノ口の共同登窯も、同じつくりの窯です。</figcaption>
       </figure>
     </section>
 
     <!-- 行き方 -->
     <section class="ch" id="access" aria-labelledby="h-access">
       <div class="ch-head">
-        <h2 id="h-access">電車・車での行き方と駐車場</h2>
-        <p>昨年は3日の10時40分から13時10分まで P1 が満車でした。車は10時前か、午後遅めに。</p>
+        <h2 id="h-access">アクセス・駐車場</h2>
+        <p>昨年は3日の10時40分から13時10分まで、P1 が満車になりました。<br>お車の方は、10時前か午後のご来場をおすすめします。</p>
       </div>
       <div class="acc-grid">
         <div>
@@ -444,11 +444,12 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
             <thead><tr><th scope="col">駐車場</th><th scope="col">台数</th><th scope="col">会場まで</th></tr></thead>
             <tbody>
               <tr><td><b>P1 運動公園</b></td><td>420台</td><td>シャトルバス 6分（12分おき・無料）</td></tr>
-              <tr><td><b>P2 町役場</b></td><td>85台</td><td>歩いて4分。車いす・ベビーカーの人を優先</td></tr>
-              <tr><td><b>P3 旧JA倉庫跡</b></td><td>160台</td><td>歩いて9分</td></tr>
+              <tr><td><b>P2 町役場</b></td><td>85台</td><td>徒歩4分。車いす・ベビーカーの方を優先します</td></tr>
+              <tr><td><b>P3 旧JA倉庫跡</b></td><td>160台</td><td>徒歩9分</td></tr>
             </tbody>
           </table>
-          <p class="tip">協力金は1日500円（P1〜P3 共通）。会場のまわりの道は2日とも8:00〜17:00 車が入れません。買った器は駅前の本部で家まで送れます（送料は大きさと地域で変わります）。駅のコインロッカーは12個だけです。</p>
+          <p class="tip">駐車協力金は1日500円です（P1〜P3 共通）。会場周辺の道路は、2日とも8:00〜17:00に<span style="white-space:nowrap">車両通行止め</span>になります。</p>
+          <p class="tip">お買い上げの器は、駅前の本部から宅配便で送れます（送料は大きさと地域で変わります）。駅のコインロッカーは12個です。</p>
         </div>
       </div>
     </section>
@@ -456,8 +457,8 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
     <!-- 雨の日 -->
     <section class="ch" id="rain" aria-labelledby="h-rain">
       <div class="ch-head">
-        <h2 id="h-rain">雨の日の開催と会場の変更</h2>
-        <p>判断は各日 6:30。このページの上の黒い帯と、登録した人へのメールでお知らせします。電話は7:00から。</p>
+        <h2 id="h-rain">雨天時のご案内</h2>
+        <p>開催の判断は各日6:30に、このページの上部とメールでお知らせします。<br>お電話でのお問い合わせは7:00から受け付けます。</p>
       </div>
       <div class="rain-grid">
         <table class="list">
@@ -479,32 +480,32 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
           </tbody>
         </table>
       </div>
-      <p style="margin-top:16px"><button class="pill pill--line" type="button" id="toRainMap">地図を雨の日に切り替える</button></p>
+      <p style="margin-top:16px"><button class="pill pill--line" type="button" id="toRainMap">雨天時の会場マップを見る</button></p>
     </section>
 
-    <!-- お知らせ登録 -->
-    <section class="mail" id="mail" aria-labelledby="h-mail">
-      <div class="mail-in">
-        <div>
-          <h2 id="h-mail">前日の夕方と当日 6:30 にメールで知らせる</h2>
-          <p>雨の日の判断、駐車場の混み具合、窯出しの時刻がずれたとき。2日間と前の日だけ、多くて4通です。</p>
-        </div>
-        <div>
-          <form id="mailForm" novalidate>
-            <label class="vh" for="email">メールアドレス</label>
-            <input type="email" id="email" placeholder="you@example.jp" autocomplete="email" aria-describedby="mailErr">
-            <button class="pill" type="submit" id="mailBtn">登録する</button>
-            <div class="opts">
-              <label class="check"><input type="checkbox" name="d" value="0503" checked>3日に行く</label>
-              <label class="check"><input type="checkbox" name="d" value="0504">4日に行く</label>
-            </div>
-            <p class="err" id="mailErr" aria-live="polite"></p>
-          </form>
-          <p class="done" id="mailDone" hidden></p>
-        </div>
-      </div>
-    </section>
   </div>
+    <!-- お知らせ登録 -->
+  <section class="mail" id="mail" aria-labelledby="h-mail">
+    <div class="mail-in wrap">
+      <div>
+        <h2 id="h-mail">メールでのお知らせ</h2>
+        <p>前日の夕方と当日6:30に、雨天時の判断・駐車場の混み具合・窯出しの時刻をお送りします。<br>お送りするのは開催の2日間と前日だけ、多くて4通です。</p>
+      </div>
+      <div>
+        <form id="mailForm" novalidate>
+          <label class="vh" for="email">メールアドレス</label>
+          <input type="email" id="email" placeholder="you@example.jp" autocomplete="email" aria-describedby="mailErr">
+          <button class="pill" type="submit" id="mailBtn">登録する</button>
+          <div class="opts">
+            <label class="check"><input type="checkbox" name="d" value="0503" checked>3日に行く</label>
+            <label class="check"><input type="checkbox" name="d" value="0504">4日に行く</label>
+          </div>
+          <p class="err" id="mailErr" aria-live="polite"></p>
+        </form>
+        <p class="done" id="mailDone" hidden></p>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer>
@@ -512,18 +513,19 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
     <div class="cols">
       <div><h2>瀬戸ノ口陶器市実行委員会</h2><p>事務局：瀬戸ノ口町商工会（町役場となり）</p><p>平日 9:00〜17:00（陶器市の2日間は 7:00〜17:00）</p></div>
       <div><p>主催　瀬戸ノ口陶器市実行委員会</p><p>共催　瀬戸ノ口町・瀬戸ノ口町商工会</p><p>協力　東濃鉄道・瀬戸ノ口共同登窯組合</p></div>
-      <div><p>器の値段は窯元ごとに決めています。カード・電子マネーが使えるかは、店先の札を見てください。</p></div>
+      <div><p>器の値段は窯元ごとに決めています。カード・電子マネーが使えるかは、各窯元の店頭でご確認ください。</p></div>
     </div>
     <p class="fic">このページは site-skills の使用例として作った、架空の町・架空の催しです。地名・窯元・人数はすべて作りものです。</p>
   </div>
 </footer>
+
 
 <button class="skills-btn" type="button" id="skillsBtn" aria-haspopup="dialog">使ったスキル</button>
 <dialog class="skills" id="skillsDlg" aria-labelledby="h-skills">
   <div class="skills-in">
     <button class="pill pill--line close" type="button" id="skillsClose">閉じる</button>
     <h2 id="h-skills">使ったスキル</h2>
-    <p class="lead">主：<code>game-quality-bar</code>（イベント・ライブ）／副：<code>lp-quality-bar</code>（和・上質）／仕上げ：<code>site-skills</code> の <code>ai-tells.md</code>。部品ごとに、どの型・どのサイトの値を当てたか。</p>
+    <p class="lead">主：<code>game-quality-bar</code>（イベント・ライブ）／副：<code>lp-quality-bar</code>（和・上質）／作る前後：<code>site-skills</code>（make.md・aesthetic.md・ai-tells.md・critique.md、Web Design Clip の地域の催し23件の実測）。部品ごとに、どの型・どのサイトの値を当てたか。</p>
     <table>
       <thead><tr><th scope="col">部品</th><th scope="col">スキル・型</th><th scope="col">出典と値</th></tr></thead>
       <tbody id="skillsRows"></tbody>
@@ -585,25 +587,24 @@ var FROM={
 };
 
 var SKILLS=[
- ['最初の画面の組み方','site-skills／ai-tells.md','「写真に頼らず見せられるもの（地図）を主役に」「1画面に主役を1つ」。題（のぼり）・いつどこで・1文・行き方のボタン・主役の会場図だけ。時刻表は下の章へ'],
- ['会場・日付を常に見せる','game-quality-bar／イベント・ライブ','Lollapalooza：告知帯 → 固定ヘッダー。ロゴの横に縦線で区切って日付・会場、右端にボタン1つ'],
- ['のぼりの色','ai-tells.md（題材の現場の色）','陶器市ののぼり・織部釉の緑 <code>#2f5a41</code>（白文字 7.9:1）。スキルに実測値は無く、自分で決めた'],
- ['地・文字・罫','lp-quality-bar／和・上質','とらや：地 <code>#fff</code>・罫 <code>#ccc</code>・薄い面 <code>#f2f2f2</code>。文字は純黒にしない（<code>#1a1714</code>、common.md の「赤みのある黒」）'],
- ['朱（雨・値札・本部）','lp-quality-bar／和・上質','とらや：赤 <code>#b30000</code> を小さな目印だけに。値札の値段もこの色'],
- ['文字','lp-quality-bar／和・上質＋ai-tells.md','とらや：見出しだけ明朝、大きさは 12/14/16/20/24/32px の段。明朝は Shippori Mincho B1、値札は手書きの Klee One（ai-tells：題材に合えば手書きの書体）'],
- ['ボタン','lp-quality-bar／和・上質','とらや：ピル 高さ46・角丸23・縁2px・太字14px。主の行動（行き方）は墨ベタ1つだけ'],
+ ['最初の画面','site-skills／aesthetic.md 4・ai-tells.md 第3回','暗くしたモノクロの写真を全面に敷き、題を大きく重ねる。出典は写真の端に小さく。手本23件の最初の画面の文字は中央値78字なので、題・日付・一文・ボタンだけ'],
+ ['題の書体と太さ','site-skills／aesthetic.md「業種の手本を先に測る」','手本23件のいちばん大きい字は中央値 39.5px・太さ 400。題は写真の上に 96px で重ねるので大きく、太さは 500（Shippori Mincho B1）。明朝はリュウミン・筑紫明朝・つくしA を使う手本がある'],
+ ['本文','site-skills／手本23件の中央値','Noto Sans JP（Web フォントでいちばん多い）400・16px・行間 1.75。本文の色は #000 が10件なので黒に近い <code>#1a1714</code>'],
+ ['文字の左端と余白','site-skills／手本23件の中央値','文字の左端 261px → 本文の幅 1000px。何も無い帯 72px（上位1割 199px）→ 章の間 120px'],
+ ['ボタン','site-skills／手本23件・ai-tells.md 第3回','ボタンは中央値2個・角は まる（中央値 23px）。最初の画面は1つ。色は橙にせず、志野の白 <code>#f3ede4</code>'],
+ ['のぼり（小さな手がかり1つ）','site-skills／ai-tells.md「代わりに何をするか」','最初の画面の「第三十八回」の縦の旗と、章の題の左の竿。色は織部の緑 <code>#2f5a41</code>'],
+ ['会場・日付を常に見せる','game-quality-bar／イベント・ライブ','Lollapalooza：告知帯 → 固定ヘッダー、右端にボタン1つ'],
+ ['朱（雨天時・値札・本部）','lp-quality-bar／和・上質','とらや：赤 <code>#b30000</code> を小さな目印だけに'],
  ['動き','lp-quality-bar／和・上質','とらや：<code>cubic-bezier(.25,.46,.45,.94)</code>、.1/.2/.4s、transition だけ'],
- ['窯元の一覧','game-quality-bar／イベント・ライブ','Lollapalooza の反面教師（ラインナップを画像1枚・alt 空）から、41軒を文字で、地図と同じ番号で組む'],
+ ['窯元の一覧','game-quality-bar／イベント・ライブ','Lollapalooza の反面教師（ラインナップを画像1枚・alt 空）から、41軒を文字で、地図と同じ番号で'],
  ['窯元1軒の URL','game-quality-bar／checklist','Pokémon LEGENDS Z-A：キャラクター1人を URL で指せる型を窯元に（<code>#kiln-B3</code>）'],
- ['2日の時刻表','game-quality-bar／checklist','Lollapalooza の反面教師（時間割を日ごとの画像・タブに隠す）から、2日を並べて文字で。日ごとの URL <code>#day-0503</code>'],
- ['写真','ai-tells.md・make.md 6','灰色の枠をやめ、陶器市のまわりの世界の実写（有田陶器市の通り、常滑の登り窯）を Wikimedia Commons から。何が写っているかと出典（作者・ライセンス）を画面に書く'],
- ['前日のお知らせ登録','game-quality-bar／イベント・ライブ','Lollapalooza：「次のお知らせ登録」を残す'],
- ['JSON-LD','game-quality-bar／イベント・ライブ','Lollapalooza の反面教師から：Event の eventStatus を今の状態に'],
- ['フォーカス枠','lp-quality-bar／旅・宿泊','星野リゾート：<code>0 0 0 4px</code> の墨。Lollapalooza のように消さない'],
+ ['イベントの時刻表','game-quality-bar／checklist','Lollapalooza の反面教師（時間割を画像・タブに隠す）から、2日を並べて文字の表で'],
+ ['写真','site-skills／make.md 6','灰色の枠でなく、陶器市のまわりの世界の実写（有田陶器市の通り、常滑の登り窯）を Wikimedia Commons から。何が写っているかと出典を書く'],
+ ['文章と表記','site-skills／ai-tells.md「文章は店の人が書く言葉で」「表記」','見出しは 開催概要・会場マップ・出店窯元・イベント・アクセス・雨天時のご案内。補助動詞・形式名詞はひらく。折り返しは <code>word-break:auto-phrase</code> と意味の切れ目の改行'],
+ ['フォーカス枠','lp-quality-bar／旅・宿泊','星野リゾート：<code>0 0 0 4px</code> の墨'],
  ['ホバー','lp-quality-bar／rules 7','とらや：<code>(hover:hover) and (pointer:fine)</code> の中だけ'],
- ['画面幅の段','lp-quality-bar／common.md','ガールスカウト100周年：1200 / 992 / 768 / 600 / 430px'],
  ['動きを止める','lp-quality-bar／common.md・game rules 3','<code>prefers-reduced-motion: reduce</code> で止める'],
- ['地図・回る順・行き方の切り替え・雨天の表','（スキルに無い）','自分で決めた。README の「スキルで足りなかったこと」に']
+ ['地図・回る順・行き方の切り替え・雨天時の表','（スキルに無い）','自分で決めた。README の「スキルで足りなかったこと」に']
 ];
 
 /* 告知帯の下のヘッダー：日付は常に。最初の画面の時刻表 */
@@ -678,7 +679,7 @@ $('#kilnList').addEventListener('click',function(e){var b=e.target.closest('butt
 function renderRoute(){
   var order='ABCDE',r=route.map(byId).sort(function(a,b){return order.indexOf(a.area)-order.indexOf(b.area)||parseInt(a.id.slice(1))-parseInt(b.id.slice(1))});
   $('#routeN').textContent=r.length;
-  $('#routeBody').innerHTML=r.length?'<ol>'+r.map(function(k){return '<li>'+k.id+' '+k.name+'<span>'+k.price+'</span></li>'}).join('')+'</ol><button class="clear" type="button" id="clearRoute">すべて外す</button>':'<p class="empty">まだ入っていません。一覧の「回る」を押すと、ここに並びます。この端末に残るので、当日も開けます。</p>';
+  $('#routeBody').innerHTML=r.length?'<ol>'+r.map(function(k){return '<li>'+k.id+' '+k.name+'<span>'+k.price+'</span></li>'}).join('')+'</ol><button class="clear" type="button" id="clearRoute">すべて外す</button>':'<p class="empty">まだありません。一覧の「回る」を押すと、ここに並びます。<br>この端末に残るので、当日も開けます。</p>';
   var c=$('#clearRoute');if(c)c.addEventListener('click',function(){route=[];store.set('toukiichi-route',route);render();renderRoute()});
 }
 render();renderRoute();
