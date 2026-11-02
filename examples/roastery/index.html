@@ -7,7 +7,7 @@
 <meta name="description" content="福岡・薬院の小さな焙煎所、三日月珈琲の通販。豆は12種類、200gと500g、挽き方を選べます。毎週 月・水・金に焙煎して翌日発送。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
 {"@type":"ListItem","position":1,"name":"三日月珈琲","item":"https://example.com/"},
@@ -15,40 +15,43 @@
 </script>
 <style>
 /*
-  地は白（ec 食品・ギフト：とらやの #fff）。色は焙煎の現場から：
-  焦げ茶（焙煎機と予定表の黒板）、クラフト紙（豆のラベル）、朱のスタンプ（焙煎日の判）。
-  文字は3種：名前は明朝、本文と数値はゴシック（tabular-nums で桁をそろえる）、焙煎記録と味の言葉は手書きの書体（Klee One）。
-  文字の大きさ・一覧の列・sticky の列はとらやの実測値。
+  値は Web Design Clip の food・eat-drink の食品・飲料の店40件（開けて和文の本文が取れた35件、2026-11-02、scripts/sample.js）の中央値に寄せた。
+  - 地：白15・色の入った白15・暗い地5。コーヒーの焙煎所は色の入った白が多い（A Bite Coffee #ece9e1、Chevron Coffee #edece7、j.organic #f6f1ed）→ #eeece7。
+  - 色は3つ：地 #eeece7・主 焦げ茶 #2b1a14（文字・ボタン・次の焙煎の面）・差し色 クラフト紙 #d9bf98（豆のラベル）。品切れの赤は状態の文字だけ。
+  - 書体：本文の CSS の先頭は明朝が12件・ゴシックが17件。題と名前は Shippori Mincho 500（篠栗珈琲焙煎所が本文・題に使用）、本文は Zen Kaku Gothic New 400（j.organic coffee・お茶処しまだ・金棒茶）。
+  - いちばん大きい字 48px・太さ 500、本文 15〜16px・行間 2・太さ 400、文字の左端 240px、何も無い帯 88px、全幅の罫は0本（35件中23件）、ボタンは角0。
+  - 一覧の列・sticky の列・カートの流れは ec-quality-bar（とらや・Allbirds）。
 */
 :root{
-  --bg:#fff;
+  --bg:#eeece7;
   --ink:#2b1a14;      /* 焦げ茶 */
-  --ink2:#6a5448;     /* 補助の文字（白の上で 7.0:1） */
+  --ink2:#5a4339;     /* 注記・出典だけ（地の上で 8.0:1） */
   --rule:#d8cfc6;     /* 罫 */
   --kraft:#d9bf98;    /* ラベルのクラフト紙 */
   --kraft2:#ecdcc2;   /* 薄いクラフト（記録用紙） */
   --stamp:#8f1d14;    /* 朱のスタンプ（クラフトの上で 5.9:1） */
   --ease:cubic-bezier(.25,.46,.45,.94);   /* とらや */
-  --serif:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",serif;
-  --sans:"Hiragino Sans","Yu Gothic","YuGothic","Noto Sans JP",system-ui,sans-serif;
+  --serif:"Shippori Mincho","Yu Mincho",serif;
+  --sans:"Zen Kaku Gothic New","Yu Gothic",sans-serif;
   --mono:var(--sans);
-  --hand:"Klee One","Hiragino Maru Gothic ProN",var(--sans);
+  --hand:var(--serif);
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--sans);font-variant-numeric:tabular-nums}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/2 var(--sans);font-variant-numeric:tabular-nums;word-break:auto-phrase;text-wrap:pretty}
 a{color:inherit}
 button,select,input{font:inherit;color:inherit}
 :focus-visible{outline:3px solid var(--stamp);outline-offset:2px}
+.nw{white-space:nowrap}
 .vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.wrap{max-width:1100px;margin:0 auto;padding:0 15px}
+.wrap{max-width:990px;margin:0 auto;padding:0 15px}
 .mono{font-family:var(--mono)}
 
 /* ヘッダー：PC 72px・SP 54px（とらや） */
-.hd{position:sticky;top:0;z-index:30;background:var(--bg);border-bottom:1px solid var(--ink)}
+.hd{position:sticky;top:0;z-index:30;background:var(--bg)}
 .hd .wrap{display:flex;align-items:center;gap:24px;height:72px}
 .logo{display:flex;align-items:baseline;gap:12px;text-decoration:none}
-.logo b{font:600 22px/1 var(--serif);letter-spacing:.06em}
+.logo b{font:500 22px/1 var(--serif);letter-spacing:.06em}
 .logo small{font:13px/1 var(--mono);color:var(--ink2)}
 .hd nav{display:flex;gap:22px;margin-left:auto;font-size:14px}
 .hd nav a{text-decoration:none;padding:6px 0}
@@ -57,19 +60,33 @@ button,select,input{font:inherit;color:inherit}
 .count[hidden]{display:none}
 
 .crumb{font-size:13px}
-.crumb ol{list-style:none;margin:0 auto;padding:8px 15px;max-width:1100px;display:flex;gap:6px;flex-wrap:wrap}
+.crumb ol{list-style:none;margin:0 auto;padding:8px 15px;max-width:990px;display:flex;gap:6px;flex-wrap:wrap}
 .crumb li+li::before{content:"/";margin-right:6px;color:var(--ink2)}
 
 /* 一覧の頭 */
-.lead{padding:28px 0 18px}
-.lead h1{font:400 32px/1.4 var(--serif);margin:0}
-.lead p{margin:4px 0 0;font-size:16px;color:var(--ink2);max-width:40em}
+.lead{padding:88px 0 24px}
+.lead h2{font:500 32px/1.4 var(--serif);margin:0}
+.lead p{margin:6px 0 0;font-size:16px;max-width:40em}
+body:not(.detail) .crumb{display:none}
+/* 最初の画面：焙煎機から豆を出す写真を暗くして全面に敷き、題を重ねる（ai-tells 見比べ第3回・aesthetic 4） */
+.hero{position:relative;min-height:calc(100vh - 72px);min-height:calc(100svh - 72px);display:flex;align-items:flex-end;color:#fff;background:#1d120e}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 50%;opacity:.55}
+.hero .wrap{position:relative;width:100%;padding-bottom:72px}
+.hero h1{font:500 48px/1.35 var(--serif);margin:0;letter-spacing:.04em}
+/* 作り込みは1つだけ：コーヒー袋の口を留めるブリキのタイ（題の下の2pxの線と、両端の折り返し） */
+.tie{display:block;position:relative;width:216px;height:2px;background:var(--kraft);margin:18px 0 20px}
+.tie::before,.tie::after{content:"";position:absolute;top:-4px;width:6px;height:10px;background:var(--kraft)}
+.tie::before{left:0}.tie::after{right:0}
+.hero p{margin:0;font-size:18px;line-height:1.9;max-width:34em}
+.hero .go{display:inline-flex;align-items:center;height:52px;padding:0 26px;margin-top:28px;background:var(--kraft);color:var(--ink);font-weight:700;text-decoration:none;transition:background-color .2s var(--ease)}
+@media (hover:hover) and (pointer:fine){.hero .go:hover{background:#fff}}
+.hero .credit{position:absolute;right:15px;top:12px;margin:0;font-size:13px;line-height:1.5;color:#fff;opacity:.85;text-align:right;max-width:calc(100% - 30px)}
+.hero .credit a{color:inherit}
 
 /* 次の焙煎（黒板）。最初の画面の主役は、いちばん近い焙煎日の1回だけ */
 .board{background:var(--ink);color:var(--kraft2);padding:24px 28px 28px}
 .board-hd{display:flex;justify-content:space-between;align-items:flex-end;gap:8px 20px;flex-wrap:wrap}
-.board-hd h2{font:600 34px/1.3 var(--hand);margin:0;color:#fff}
-.board-hd h2 small{display:block;font:400 16px/1.5 var(--sans);color:var(--kraft2)}
+.board-hd h3{font:500 34px/1.3 var(--serif);margin:0;color:#fff}
 .board-hd label{font-size:14px;display:flex;align-items:center;gap:8px}
 .board-hd select{height:40px;background:var(--ink);color:#fff;border:1px solid var(--kraft2);padding:0 8px;font-size:16px}
 .kama{font-size:16px;margin:10px 0 0}
@@ -84,7 +101,7 @@ button,select,input{font:inherit;color:inherit}
 .board.open .later{display:block}
 .toolsbtn{display:none}
 .day{padding:12px 0 4px}
-.day h3{margin:0;font:600 20px/1.4 var(--hand);color:#fff}
+.day h3{margin:0;font:500 20px/1.4 var(--serif);color:#fff}
 .day p{margin:2px 0 0;font-size:14px}
 .day ul{list-style:none;margin:4px 0 0;padding:0;font:16px/1.7 var(--hand);display:flex;flex-wrap:wrap;gap:0 14px}
 .day li a{text-decoration:none}
@@ -106,9 +123,9 @@ button,select,input{font:inherit;color:inherit}
 /* 一覧：PC 4列・列間40・行間60、SP 2列・16/40（とらや）。カードは豆ごとのラベル */
 .grid{list-style:none;margin:0;padding:0 0 72px;display:grid;grid-template-columns:repeat(4,1fr);gap:60px 40px}
 .card a{display:flex;flex-direction:column;height:100%;text-decoration:none}
-.label{position:relative;flex:1;background:var(--kraft);padding:16px 16px 18px;display:flex;flex-direction:column;transition:opacity .2s var(--ease),transform .2s var(--ease)}
+.label{position:relative;flex:1;background:var(--kraft);padding:16px 16px 26px;display:flex;flex-direction:column;transition:opacity .2s var(--ease),transform .2s var(--ease)}
 .label .no{display:flex;justify-content:space-between;font:13px/1 var(--mono)}
-.label .cty{font:600 26px/1.25 var(--serif);margin:12px 0 2px;letter-spacing:.02em}
+.label .cty{font:500 26px/1.25 var(--serif);margin:12px 0 2px;letter-spacing:.02em}
 .label .nm{font-size:14px;font-weight:700;line-height:1.45}
 .label .spec{font-size:14px;margin:8px 0 0}
 .label dl{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;margin:10px 0 0;font:14px/1.5 var(--mono)}
@@ -119,7 +136,7 @@ button,select,input{font:inherit;color:inherit}
 .taste span{white-space:nowrap}
 .roastline{display:flex;align-items:center;gap:8px;margin-top:auto;padding:12px 64px 0 0;font:13px/1.35 var(--mono)}
 .roastline i{width:28px;height:14px;display:block;flex:none}
-.stamp{position:absolute;right:10px;bottom:10px;border:2px solid var(--stamp);color:var(--stamp);font:700 13px/1.25 var(--mono);padding:3px 5px;text-align:center;transform:rotate(-4deg);background:rgba(217,191,152,.6)}
+.stamp{display:block;font-size:13px;line-height:1.5;margin-top:8px}
 .card .pr{margin-top:12px;font-size:16px}
 .card .pr small{font-size:13px}
 .card .warn{font:700 13px/1.4 var(--sans);color:var(--stamp);margin-top:2px}
@@ -139,15 +156,15 @@ button,select,input{font:inherit;color:inherit}
 .cond th{width:9em;font-weight:700}
 
 /* 詳細：左 625px・右 340px の列を sticky（とらや） */
-.pd{display:grid;grid-template-columns:625px 340px;grid-template-areas:"lbl buy" "body buy";justify-content:space-between;gap:0 40px;padding:28px 0 80px}
+.pd{display:grid;grid-template-columns:minmax(0,1fr) 340px;grid-template-areas:"lbl buy" "body buy";justify-content:space-between;gap:0 40px;padding:28px 0 80px}
 .big{grid-area:lbl;background:var(--kraft);padding:24px 28px 30px;position:relative}
 .big .no{display:flex;justify-content:space-between;font:14px/1 var(--mono)}
-.big .cty{font:600 44px/1.2 var(--serif);margin:18px 0 4px;letter-spacing:.03em}
+.big .cty{font:500 44px/1.2 var(--serif);margin:18px 0 4px;letter-spacing:.03em}
 .big .nm{font-size:18px;font-weight:700}
 .big dl{display:grid;grid-template-columns:7em 1fr;gap:4px 14px;margin:18px 0 0;font:14px/1.6 var(--mono);border-top:1px dashed var(--ink);padding-top:14px}
 .big dd{margin:0}
 .big .taste{font-size:22px;margin-top:16px}
-.big .stamp{bottom:auto;top:56px;right:24px;font-size:13px;padding:5px 8px}
+.big .stamp{font-size:14px}
 .big .ratio{height:22px;max-width:420px}
 .body{grid-area:body;max-width:625px}
 .body h2{font:400 24px/1.5 var(--serif);margin:44px 0 12px}
@@ -198,15 +215,16 @@ button,select,input{font:inherit;color:inherit}
 .err{color:var(--stamp);font-size:13px;font-weight:700;margin:6px 0 0}
 .ok{font-size:14px;margin:0}
 
-/* 焙煎記録（記録用紙の罫に手書き） */
+/* 焙煎記録（記録用紙の罫） */
 .log{background:var(--kraft2) repeating-linear-gradient(transparent 0 31px,#cdb592 31px 32px);padding:0 18px;font:17px/32px var(--hand)}
 .log table{width:100%;border-collapse:collapse}
 .log th{font:13px/32px var(--mono);text-align:left;width:9em;color:var(--ink2);font-weight:400}
 .log td{font-weight:600;line-height:32px}
 .log td,.log th{padding:0;vertical-align:bottom}
 .log .sig{text-align:right;margin:0;font-size:15px;line-height:32px}
-.photo{border:1px dashed var(--ink);aspect-ratio:3/2;display:flex;flex-direction:column;justify-content:flex-end;padding:16px;font-size:16px;background:#fff;margin-top:20px}
-.photo b{font:13px/1.5 var(--mono);display:block;color:var(--ink2)}
+.photo{margin:24px 0 0}
+.photo img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}
+.photo figcaption{font-size:13px;line-height:1.7;color:var(--ink2);margin-top:8px}
 .brewt{width:100%;border-collapse:collapse;font-size:14px}
 .brewt th,.brewt td{border-top:1px solid var(--rule);padding:9px 8px 9px 0;text-align:left}
 .brewt thead th{font:13px var(--mono);color:var(--ink2);font-weight:400}
@@ -231,7 +249,7 @@ button,select,input{font:inherit;color:inherit}
 .dr-body{flex:1;overflow:auto;padding:0 20px}
 .line{display:grid;grid-template-columns:64px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--rule)}
 .mini{width:64px;height:64px;background:var(--kraft);display:flex;flex-direction:column;justify-content:space-between;padding:6px;font:13px/1.2 var(--mono)}
-.mini b{font:600 13px/1.2 var(--serif)}
+.mini b{font:500 13px/1.2 var(--serif)}
 .line h3{font-size:14px;margin:0;font-weight:700}
 .line .v{font-size:13px;color:var(--ink2);margin-top:2px}
 .line .lp{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
@@ -283,7 +301,7 @@ dialog[open]{animation:pop .2s var(--ease)}
 
 .ft{background:var(--ink);color:var(--kraft2);font-size:13px;padding:36px 0 90px}
 .ft .wrap{display:flex;flex-wrap:wrap;gap:16px 48px}
-.ft b{font:600 16px/1.5 var(--serif);display:block;margin-bottom:6px;color:#fff}
+.ft b{font:500 16px/1.5 var(--serif);display:block;margin-bottom:6px;color:#fff}
 .ft button{background:none;border:0;color:inherit;padding:4px 0;cursor:pointer;text-decoration:underline;font-size:13px;display:block}
 
 @media (max-width:1180px){.pd{grid-template-columns:1fr 340px}}
@@ -302,14 +320,14 @@ dialog[open]{animation:pop .2s var(--ease)}
   .lead h1{font-size:28px}
   .lead p{font-size:16px}
   .board{margin:0 -15px;padding:20px 15px 20px}
-  .board-hd h2{font-size:28px}
+  .board-hd h3{font-size:28px}
   .quick select,.qbtn{width:100%}
   .toolsbtn{display:block;width:100%;height:46px;margin-top:16px;border:0;background:var(--kraft2);font-size:16px;font-weight:700;cursor:pointer}
   .tools{display:none}
   .tools.open{display:flex}
   .chip{padding:0 9px}
   .grid{grid-template-columns:repeat(2,1fr);gap:40px 16px}
-  .label{padding:12px 10px 14px}
+  .label{padding:12px 10px 22px}
   .label .cty{font-size:20px;margin-top:8px}
   .label .nm{font-size:14px}
   .label dl{grid-template-columns:1fr;gap:0;font-size:13px}
@@ -317,7 +335,6 @@ dialog[open]{animation:pop .2s var(--ease)}
   .label .taste{font-size:14px}
   .label .no{font-size:13px}
   .label .roastline{font-size:13px}
-  .stamp{position:static;transform:none;display:inline-block;margin-top:8px;align-self:flex-start;font-size:13px}
   .roastline{padding-right:0}
   .sortbox{margin-left:0}
   .pd{padding:12px 0 40px}
@@ -326,7 +343,6 @@ dialog[open]{animation:pop .2s var(--ease)}
   .big .nm{font-size:16px}
   .big dl{grid-template-columns:6em 1fr;font-size:13px;margin-top:12px;padding-top:10px}
   .big .taste{font-size:18px;margin-top:10px}
-  .big .stamp{position:absolute;top:40px;right:15px;margin:0;transform:rotate(-4deg)}
   .buy h1{font-size:28px}
   .row-buy.main{display:none}
   .spbar{display:block;position:sticky;bottom:0;z-index:20;background:rgba(255,255,255,.95);border-top:1px solid var(--ink);padding:10px 15px 12px;margin:0 -15px}
@@ -535,7 +551,7 @@ function plan(roastDate){
   var ship = addDays(roastDate,1), arrive = addDays(ship, region().days);
   return {roast:roastDate, ship:ship, arrive:arrive, left: BEST_DAYS - Math.round((arrive - roastDate)/864e5)};
 }
-function stampHtml(b){var d=nextRoast(b.day);return '<span class="stamp">次の焙煎<br>'+(d.getMonth()+1)+'/'+d.getDate()+' '+DAYS[b.day]+'</span>'}
+function stampHtml(b){var d=nextRoast(b.day);return '<span class="stamp">次の焙煎 '+sl(d)+'</span>'}
 function ratioHtml(b){
   var cols=["#2b1a14","#8a6a4a","#f4e9d8"];
   return '<div class="ratio" aria-hidden="true">'+b.mix.map(function(m,i){return '<span style="width:'+m[1]+'%;background:'+cols[i]+'"></span>'}).join("")+'</div>'+
@@ -566,13 +582,17 @@ function renderList(){
   var kindBtns = [["all","すべて"],["single","シングル"],["blend","ブレンド"],["decaf","デカフェ"]];
   var chip = function(group,v,l){return '<button type="button" class="chip" data-'+group+'="'+v+'" aria-pressed="'+(state[group]===v)+'">'+l+'</button>'};
   $("#main").innerHTML =
+   '<section class="hero" aria-labelledby="h-shop"><img src="photos/Beans-Dropping-from-a-Coffee-Roaster.jpg" alt="焙煎機の釜から、焼き上がった豆を冷却槽に出すところ" width="1920" height="1278" fetchpriority="high">'+
+     '<div class="wrap"><h1 id="h-shop">三日月珈琲</h1><span class="tie" aria-hidden="true"></span>'+
+     '<p>福岡・薬院の焙煎所です。<br>豆は焼く曜日が決まっていて、焼いた翌日に発送します。</p>'+
+     '<a class="go" href="#next">次の焙煎を見る</a></div>'+
+     '<p class="credit">写真：焙煎機から豆を出すところ<br><span class="nw">（Jkafader、<a href="https://commons.wikimedia.org/w/index.php?curid=27929316">CC BY-SA 3.0</a>）</span></p></section>'+
    '<div class="wrap">'+
-   '<div class="lead"><h1>コーヒー豆 12種</h1>'+
-   '<p>どの豆も200gと500g、挽き方は5通り。豆ごとに焼く曜日が決まっています。</p></div>'+
+   '<div class="lead" id="next"><h2>次の焙煎</h2><p>この回の釜に入れる豆を選べます。ほかの豆は、下の一覧からどうぞ。</p></div>'+
    '<section class="board" aria-labelledby="h-board">'+(function(){
      var x = days[0], kg = KAMA[x.dw];
-     return '<div class="board-hd"><h2 id="h-board"><small>次の焙煎</small>'+md(x.d)+'</h2><label>お届け先 '+regionSel()+'</label></div>'+
-       '<p class="kama">5kg 釜の空き <b>'+kg.toFixed(1)+'kg</b>（200g で約'+Math.floor(kg/0.2)+'袋）。'+r.nm+'へ <b>'+sl(x.p.arrive)+'</b> 着</p>'+
+     return '<div class="board-hd"><h3 id="h-board">'+md(x.d)+'</h3><label>お届け先 '+regionSel()+'</label></div>'+
+       '<p class="kama">5kg 釜の空き <b>'+kg.toFixed(1)+'kg</b>（200g で約'+Math.floor(kg/0.2)+'袋）。<span class="nw">'+r.nm+'へ <b>'+sl(x.p.arrive)+'</b> 着</span></p>'+
        '<div class="quick"><label class="vh" for="quickBean">この回の釜で焼く豆</label>'+
        '<select id="quickBean" data-quick>'+x.list.map(function(b){return '<option value="'+b.id+'">'+esc(b.nm)+'</option>'}).join("")+'</select>'+
        '<button type="button" class="qbtn" id="quickAdd">'+quickLabel(x.list[0])+'</button></div>'+
@@ -672,8 +692,8 @@ function renderItem(id){
       '</tbody></table><p class="sig">— 吉住</p></div>'+
       '<h2>この豆のこと</h2><p>'+esc(b.desc)+'</p>'+
       (b.voice?'<p class="voice">'+esc(b.voice)+'</p>':'')+
-      '<div class="photo" role="img" aria-label="写真の枠（撮影予定）"><b>写真の枠：撮る写真</b>'+
-        esc(b.nm)+'の生豆と焼いた豆を、麻袋の上に並べて真上から。横3:2、北窓の自然光。左に生豆、右に焼き上がり。</div>'+
+      '<figure class="photo"><img src="photos/Coffee-Beans-in-a-Cooling-Tray.jpg" alt="冷却槽の中でかき混ぜられる、焼き上がったコーヒー豆" width="1280" height="1923" loading="lazy">'+
+        '<figcaption>焼き上がった豆は、冷却槽で混ぜながら冷まします。<br>写真：冷却槽の豆<span class="nw">（Jkafader、<a href="https://commons.wikimedia.org/w/index.php?curid=27929313">CC BY-SA 3.0</a>）</span></figcaption></figure>'+
       '<h2>淹れ方の目安</h2>'+
       '<table class="brewt"><thead><tr><th>道具</th><th>豆</th><th>湯</th><th>温度</th><th>時間</th></tr></thead><tbody>'+
         '<tr><td>ペーパー（中挽き）</td><td>15g</td><td>240ml</td><td>'+t+'℃</td><td>2分30秒</td></tr>'+
@@ -898,6 +918,7 @@ $("#shipTable tbody").innerHTML = REGIONS.map(function(x){return '<tr><th>'+x.nm
 /* 使ったスキル */
 var SK = [
  ["選び方","site-skills の表で「商品を探して買ってもらう」→ 主 ec-quality-bar。雰囲気のために副 lp-quality-bar。仕上げに site-skills の references/ai-tells.md を全部当てはめて作り直した。"],
+ ["題の下のタイ","作り込みは1つだけ：題の下の2pxの線と両端の折り返し（コーヒー袋の口を留めるブリキのタイ）。親セッションの依頼「題材の部品から取った小さな手がかりを1つだけ」（ORBITO の命綱と同じ考え方）。"],
  ["次の焙煎（黒板）","題材でしか成り立たない部品（ai-tells「最後の問い」）。最初の画面の主役は、いちばん近い焙煎日・5kg 釜の空き・地域への着日と「この回の釜に入れる」だけ（ai-tells「情報の密度：1画面に主役を1つ」）。ほかの焙煎日は「ほかの焙煎日 2回分を見る」で開く。型はスキルに無く自分で決めた。"],
  ["この回の釜に入れる","最初の画面の本物のボタン（site-skills critique.md：最初の画面に主な行動のボタン）。黒板のいちばん近い焙煎日の行で豆を選び、200g・中挽きでそのままかごへ（容量と挽き方は、かごに入った後でなく詳細で変えられる）。型はスキルに無く自分で決めた。"],
  ["スマホ","絞り込みは「絞り込み・並べ替え」の1つのボタンにたたむ（Allbirds の SP：全画面のフォームで適用）。黒板の下に商品が見える。"],
@@ -913,15 +934,15 @@ var SK = [
  ["カートボタン","高さ46・枠2px・14px太字、ホバーで白黒が入れ替わる .2s（とらや）。とらやの角丸23px のピルは、ai-tells の指摘で四角に変えた。"],
  ["お届けの3行","焙煎日→発送日→着日を桁をそろえて3行。焙煎してから送る店の流れで、スキルに型は無い。賞味期限は「届いた日から約○日」（ec checklist・とらや）。"],
  ["SP の固定バー","sticky bottom:0・白95%（とらや）。上に焙煎日→着日と送料の1行（ec checklist：とらやの反面教師 y=2352）。"],
- ["焙煎記録","投入温度・1ハゼ・煎り止めを、記録用紙の罫に手書きの書体（Klee One）で。題材でしか成り立たない部品。スキルに型は無い。"],
- ["写真の枠","写真が入る場所は絵で埋めず、撮る写真を書いた枠に（ai-tells「絵と写真」）。"],
+ ["焙煎記録","投入温度・1ハゼ・煎り止めを、記録用紙の罫に明朝で。題材でしか成り立たない部品。スキルに型は無い。"],
+ ["写真の枠","最初の画面に焙煎機から豆を出す写真、詳細に冷却槽の豆の写真（Wikimedia Commons、CC BY-SA 3.0）。何が写っているかと出典を写真の端に重ねる（ai-tells 見比べ第3回・make.md 6）。三日月珈琲の店の写真ではないと出典に書いた。"],
  ["かごに入れる","ページを移らず右からドロワー PC 530px・SP 全画面（ec rules 1：Allbirds）。知らせは role=status（とらや）。ボタンは2秒「かごに入れました」（とらやの「✓ 追加しました」）。"],
  ["送料無料まで","ドロワーの頭に「あと○円で送料無料」と太いバー、数量で言い直す、数量1の − はごみ箱（Allbirds）。送料はかごの中で金額に（とらやの反面教師）。焙煎日の違う豆は遅いほうにそろえる、と着日を出すのは自分で決めた。"],
  ["包装","商品ごとに「必須」、未選択だと理由をボタンの下に（ec checklist・とらや）。ギフト箱165円は別の行（Allbirds の反面教師）。"],
  ["案内の窓","送料・返品・支払い・特商法を詳細から1手の窓に（ec rules 3）。返品の条件と連絡先を分ける（Allbirds の反面教師）。"],
- ["色と文字","地は白（とらや #fff）。焦げ茶・クラフト紙・朱は焙煎の現場から（ai-tells「色と文字」）。名前は明朝、本文と数値はゴシック（tabular-nums）、記録と味は手書き（書体は3つまで：site-skills の inspect.js）。lp 温かい飲食の紙色2色の地・アーチ・楕円の境目は「やわらかい無難な地」に当たるので外した。"],
+ ["色と文字","Web Design Clip の食品・飲料の店35件の中央値に寄せた：地は色の入った白 #eeece7（A Bite Coffee・Chevron Coffee）、主は焦げ茶、差し色はクラフト紙。題は Shippori Mincho 48px・500（篠栗珈琲焙煎所）、本文は Zen Kaku Gothic New 16px・行間2・400、文字の左端 240px、章の間 88px、全幅の罫0本。"],
  ["データ","BreadcrumbList と、詳細ごとに Product＋Offer（ec rules 5）。"],
- ["重さ・動き","外部は Google Fonts の Klee One だけ。動きは transform と opacity、.1/.2/.4s（とらや）。prefers-reduced-motion で全部止める。"]
+ ["重さ・動き","外部は Google Fonts の Shippori Mincho と Zen Kaku Gothic New、写真2枚。動きは transform と opacity、.1/.2/.4s（とらや）。prefers-reduced-motion で全部止める。"],
 ];
 $("#skrows").innerHTML = SK.map(function(r){return '<tr><th>'+r[0]+'</th><td>'+r[1]+'</td></tr>'}).join("");
 
