@@ -33,16 +33,19 @@ function thumb(url, w) {
 
 (async () => {
   if (cmd === 'search' && a) {
+    // 前の検索の結果が残っていると、この検索が時間切れになったときに get が前の写真を取ってしまう（町工場の作り直しで起きた）。先に消す
+    try { fs.unlinkSync(LAST); } catch (e) { }
     const q = encodeURIComponent(a);
     const d = curlJSON(`https://api.openverse.org/v1/images/?q=${q}&license=cc0,by,by-sa&source=wikimedia&page_size=12`);
     const rows = (d.results || []).map((r, i) => ({ n: i + 1, title: r.title, creator: r.creator, license: `${r.license === 'cc0' ? 'CC0' : 'CC ' + r.license.toUpperCase()} ${r.license_version}`, url: r.url, page: r.foreign_landing_url, w: r.width, h: r.height }));
-    fs.writeFileSync(LAST, JSON.stringify(rows, null, 1));
+    fs.writeFileSync(LAST, JSON.stringify({ q: a, rows }, null, 1));
     for (const r of rows) console.log(`${String(r.n).padStart(2)}. ${r.title.slice(0, 50)}｜${(r.creator || '').slice(0, 24)}｜${r.license}｜${r.w}×${r.h}\n    ${r.page}`);
     if (!rows.length) console.log('見つからなかった。英語の別の言い方（素材・道具・地名）で探す');
     return;
   }
   if (cmd === 'get' && a && b) {
-    const rows = JSON.parse(fs.readFileSync(LAST, 'utf8')); const r = rows.find(x => x.n === +a);
+    let saved; try { saved = JSON.parse(fs.readFileSync(LAST, 'utf8')); } catch (e) { console.error('直前の検索の結果が無い（検索が失敗した）。もう一度 search する'); process.exit(1); }
+    const rows = saved.rows || saved; if (saved.q) console.error(`検索語「${saved.q}」の ${a} 番を取る`); const r = rows.find(x => x.n === +a);
     if (!r) { console.error('その番号は直前の検索に無い'); process.exit(1); }
     // Wikimedia の縮小版は決まった幅（500・960・1280・1920）だけ出せる。元より大きい幅は頼まない
     const STEPS = [500, 960, 1280, 1920]; const want = +c || 1280; const w = STEPS.filter(x => x <= (r.w || 1920)).reduce((p, x) => Math.abs(x - want) < Math.abs(p - want) ? x : p, 500); fs.mkdirSync(b, { recursive: true });

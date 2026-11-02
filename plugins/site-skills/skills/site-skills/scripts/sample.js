@@ -1,4 +1,4 @@
-// 手本のサイトを測る：余白（何も無い帯の高さ）・文字の左端・本文と見出しの大きさ／行間／字間／太さ・実際に描かれた書体（和文と英字）・商品一覧（列・間・写真の縦横・商品名）・罫・ボタン・地の色（PC 1440px）
+// 手本のサイトを測る（runs・heads の fam は CSS で指定した書体の先頭。この環境に無いヒラギノ・游ゴシックも名前で数えられる）：余白（何も無い帯の高さ）・文字の左端・本文と見出しの大きさ／行間／字間／太さ・実際に描かれた書体（和文と英字）・商品一覧（列・間・写真の縦横・商品名）・罫・ボタン・地の色（PC 1440px）
 // 使い方：node sample.js <URLを1行ずつ書いたファイル> <出力.jsonl> [並列数]。最初の画面は shots2/ に保存
 const { chromium } = require('playwright');
 const fs = require('fs');
@@ -30,8 +30,8 @@ function probe() {
     if (!chrome) { lefts.push(Math.round(tr.left)); rights.push(Math.round(W - tr.right)); }
     if (tr.top + sy < 900) firstChars += own.length;
     const fs_ = parseFloat(s.fontSize), lh = s.lineHeight === 'normal' ? 1.4 : parseFloat(s.lineHeight) / fs_, ls = s.letterSpacing === 'normal' ? 0 : parseFloat(s.letterSpacing) / fs_;
-    if (!chrome && own.length >= 30 && !/^H\d$/.test(e.tagName)) runs.push({ n: own.length, fs: fs_, lh: +lh.toFixed(2), ls: +ls.toFixed(3), w: +s.fontWeight, jp: jp.test(own), color: hex(s.color), width: Math.round(tr.right - tr.left) });
-    if (/^H[1-3]$/.test(e.tagName) || (fs_ >= 28 && own.length <= 40)) heads.push({ tag: e.tagName, fs: fs_, w: +s.fontWeight, ls: +ls.toFixed(3), lh: +lh.toFixed(2), jp: jp.test(own), t: own.slice(0, 20) });
+    if (!chrome && own.length >= 30 && !/^H\d$/.test(e.tagName)) runs.push({ n: own.length, fam: s.fontFamily.split(',')[0].replace(/["']/g, '').trim(), fs: fs_, lh: +lh.toFixed(2), ls: +ls.toFixed(3), w: +s.fontWeight, jp: jp.test(own), color: hex(s.color), width: Math.round(tr.right - tr.left) });
+    if (/^H[1-3]$/.test(e.tagName) || (fs_ >= 28 && own.length <= 40)) heads.push({ tag: e.tagName, fam: s.fontFamily.split(',')[0].replace(/["']/g, '').trim(), fs: fs_, w: +s.fontWeight, ls: +ls.toFixed(3), lh: +lh.toFixed(2), jp: jp.test(own), t: own.slice(0, 20) });
     if (k++ < 400) e.setAttribute('data-m', jp.test(own) && own.replace(/[\x00-\x7f]/g, '').length >= own.length * .3 ? 'jp' : 'lat');
   }
   // 縦の余白：何も無い帯の高さ
