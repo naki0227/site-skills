@@ -7,9 +7,9 @@
 <meta name="description" content="北区十条の銭湯・十条湯のサウナを、60分ごとの枠で予約できます。男女別・各6名。当日の予約はサウナ料金が160円引き。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- 書体は使う字だけを読む（text= で切り出す）。字を足したらここも足す -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&display=swap&text=%2C.0123456789%3A%E3%80%81%E3%80%9C%E3%81%94%E3%81%9F%E3%81%A3%E3%81%A8%E3%81%AB%E3%81%AE%E3%82%8C%E3%82%A2%E3%82%A6%E3%82%AD%E3%82%AF%E3%82%B5%E3%82%B9%E3%82%BB%E3%83%8A%E3%83%AB%E3%83%BB%E4%BA%86%E4%BA%88%E4%BB%8A%E4%BB%98%E4%BD%BF%E5%86%85%E5%86%86%E5%89%8D%E5%8D%81%E5%8F%97%E5%90%88%E5%90%8D%E5%91%82%E5%96%B6%E5%9C%9F%E5%A0%B4%E5%A5%B3%E5%AE%B9%E5%BD%93%E6%96%99%E6%97%A5%E6%99%82%E6%9C%88%E6%9C%A8%E6%9D%A1%E6%9E%A0%E6%A5%AD%E6%B0%B4%E6%B5%81%E6%B9%AF%E6%BA%80%E7%81%AB%E7%94%B7%E7%A2%BA%E7%B4%84%E7%B5%82%E8%AA%8D%E9%87%91%E9%96%93%E9%A2%A8%EF%BC%88%EF%BC%89">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Klee+One:wght@600&display=swap&text=%2C0123456789%3A%E2%88%92%E3%80%9C%E3%81%8A%E3%81%9D%E3%81%A8%E3%81%AE%E3%81%B2%E3%81%BF%E3%82%8A%E3%82%A6%E3%82%AA%E3%82%B5%E3%82%BF%E3%83%83%E3%83%88%E3%83%8A%E3%83%9E%E3%83%AB%E3%83%BB%E4%BA%88%E4%BA%BA%E4%BC%91%E5%85%A5%E5%86%86%E5%88%86%E5%89%B2%E5%A4%A7%E5%AD%A6%E5%AE%9A%E5%B0%8F%E5%B0%B1%E5%BD%93%E6%96%99%E6%97%A5%E6%9C%AA%E6%9C%AC%E6%B5%B4%E7%94%9F%E7%A8%8E%E7%B4%84%E8%BE%BC%E9%87%91%EF%BC%88%EF%BC%89%EF%BC%8B%EF%BC%8F">
+<!-- 書体は使う字だけを読む（text= で切り出す。このファイルの本文と JS の文言に出てくる字すべて）。字を足したら作り直す -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&family=Zen+Old+Mincho:wght@400;700&display=swap&text=%21%22%23%24%25%26%27%28%29%2A%2B%2C-.%2F0123456789%3A%3B%3C%3D%3E%3F%40ABCDEFGHIJKLMNOPQRSTUVWXYZ%5B%5C%5D%5E_%60abcdefghijklmnopqrstuvwxyz%7B%7C%7D~%C3%97%E2%80%99%E2%80%A6%E2%80%B9%E2%80%BA%E2%84%83%E2%86%92%E2%88%92%E2%96%B2%E2%96%B3%E2%97%86%E2%97%8B%E2%97%8F%E3%80%80%E3%80%81%E3%80%82%E3%80%8C%E3%80%8D%E3%80%9C%E3%81%82%E3%81%84%E3%81%86%E3%81%88%E3%81%8A%E3%81%8B%E3%81%8C%E3%81%8D%E3%81%8E%E3%81%8F%E3%81%90%E3%81%91%E3%81%92%E3%81%93%E3%81%94%E3%81%95%E3%81%97%E3%81%98%E3%81%99%E3%81%9A%E3%81%9B%E3%81%9D%E3%81%9E%E3%81%9F%E3%81%A0%E3%81%A1%E3%81%A3%E3%81%A4%E3%81%A6%E3%81%A7%E3%81%A8%E3%81%A9%E3%81%AA%E3%81%AB%E3%81%AE%E3%81%AF%E3%81%B0%E3%81%B2%E3%81%B3%E3%81%B6%E3%81%B8%E3%81%BE%E3%81%BF%E3%82%80%E3%82%81%E3%82%82%E3%82%83%E3%82%84%E3%82%88%E3%82%89%E3%82%8A%E3%82%8B%E3%82%8C%E3%82%8D%E3%82%8F%E3%82%92%E3%82%93%E3%82%A2%E3%82%A4%E3%82%A5%E3%82%A6%E3%82%A7%E3%82%A8%E3%82%AA%E3%82%AB%E3%82%AC%E3%82%AD%E3%82%AF%E3%82%B0%E3%82%B1%E3%82%B4%E3%82%B5%E3%82%B7%E3%82%B8%E3%82%B9%E3%82%BB%E3%82%BF%E3%83%80%E3%83%81%E3%83%83%E3%83%87%E3%83%88%E3%83%89%E3%83%8A%E3%83%8D%E3%83%90%E3%83%94%E3%83%97%E3%83%99%E3%83%9A%E3%83%9B%E3%83%9C%E3%83%9E%E3%83%A3%E3%83%A9%E3%83%AA%E3%83%AB%E3%83%AC%E3%83%AD%E3%83%B3%E3%83%BB%E3%83%BC%E4%B8%80%E4%B8%8A%E4%B8%8B%E4%B8%A1%E4%B8%A6%E4%B8%AD%E4%B8%B8%E4%B8%BB%E4%BA%86%E4%BA%88%E4%BA%AC%E4%BA%BA%E4%BB%8A%E4%BB%95%E4%BB%98%E4%BB%A5%E4%BB%B2%E4%BB%B6%E4%BB%BB%E4%BC%91%E4%BC%9A%E4%BC%9D%E4%BD%8D%E4%BD%8F%E4%BD%93%E4%BD%95%E4%BD%99%E4%BD%9C%E4%BD%BF%E4%BE%8B%E4%BF%82%E4%BF%A1%E5%80%8B%E5%80%A4%E5%82%99%E5%83%8F%E5%85%83%E5%85%88%E5%85%A5%E5%85%AC%E5%85%B8%E5%86%85%E5%86%86%E5%86%99%E5%87%A1%E5%87%BA%E5%88%86%E5%88%87%E5%88%9D%E5%88%BB%E5%89%8D%E5%89%AF%E5%89%B2%E5%8A%9B%E5%8A%B9%E5%8B%95%E5%8C%96%E5%8C%97%E5%8C%BA%E5%8D%81%E5%8D%97%E5%8D%9A%E5%8D%B0%E5%8E%9F%E5%8F%8D%E5%8F%96%E5%8F%97%E5%8F%A3%E5%8F%B0%E5%8F%B7%E5%90%88%E5%90%8C%E5%90%8D%E5%91%82%E5%92%8C%E5%93%81%E5%93%A1%E5%95%86%E5%96%B6%E5%9B%9B%E5%9B%9E%E5%9B%B2%E5%9B%B3%E5%9B%BA%E5%9C%9F%E5%9C%B0%E5%9E%8B%E5%9F%BC%E5%A0%B1%E5%A0%B4%E5%A1%8A%E5%A2%97%E5%A2%A8%E5%A3%81%E5%A3%AB%E5%A3%B0%E5%A4%96%E5%A4%A7%E5%A4%AA%E5%A5%A5%E5%A5%B3%E5%A7%8B%E5%AD%97%E5%AD%A6%E5%AE%9A%E5%AE%9F%E5%AE%A4%E5%AE%B9%E5%AE%BF%E5%AF%86%E5%AF%8C%E5%B0%8F%E5%B0%B1%E5%B1%8B%E5%B1%B1%E5%B7%AE%E5%B8%AD%E5%B8%AF%E5%B8%B8%E5%B9%B3%E5%B9%B4%E5%BA%97%E5%BA%A6%E5%BA%A7%E5%BA%AD%E5%BC%95%E5%BC%B1%E5%BD%93%E5%BD%A2%E5%BD%A9%E5%BD%B9%E5%BE%8C%E5%BE%92%E5%BE%93%E6%83%85%E6%84%8F%E6%85%8B%E6%89%80%E6%89%8B%E6%89%95%E6%8A%9C%E6%8A%BC%E6%8C%81%E6%8E%83%E6%8E%A2%E6%8F%9B%E6%94%AF%E6%95%B0%E6%96%87%E6%96%99%E6%96%B9%E6%97%A5%E6%98%8E%E6%98%94%E6%98%AD%E6%99%82%E6%9B%9C%E6%9B%B8%E6%9B%BF%E6%9C%80%E6%9C%88%E6%9C%9D%E6%9C%A8%E6%9C%AA%E6%9C%AB%E6%9C%AC%E6%9C%AD%E6%9D%A1%E6%9D%B1%E6%9D%BF%E6%9E%A0%E6%9E%B6%E6%A0%BC%E6%A4%9C%E6%A5%AD%E6%A7%8B%E6%A8%AA%E6%AC%A1%E6%AD%A2%E6%AD%A9%E6%AE%8B%E6%AE%B5%E6%B0%97%E6%B0%B4%E6%B1%BA%E6%B3%8A%E6%B3%A8%E6%B4%97%E6%B5%81%E6%B5%B4%E6%B6%88%E6%B8%85%E6%B8%88%E6%B8%9B%E6%B9%96%E6%B9%AF%E6%BA%80%E6%BC%94%E7%81%AB%E7%81%B0%E7%82%B9%E7%84%A1%E7%89%A9%E7%8A%B6%E7%8F%BE%E7%90%86%E7%94%9F%E7%94%A8%E7%94%B1%E7%94%B7%E7%94%BB%E7%95%A5%E7%95%AA%E7%99%BD%E7%9B%B4%E7%9C%9F%E7%A2%BA%E7%A4%BA%E7%A5%9D%E7%A5%A8%E7%A7%BB%E7%A8%8E%E7%A9%BA%E7%AB%A0%E7%AB%AF%E7%AE%B1%E7%B4%84%E7%B4%85%E7%B4%A2%E7%B5%82%E7%B5%84%E7%B5%A1%E7%B5%B5%E7%B6%9A%E7%B7%9A%E7%B8%81%E7%B8%A6%E7%BD%AB%E7%BD%AE%E7%BF%8C%E7%BF%BB%E8%80%85%E8%81%9E%E8%84%9A%E8%87%AA%E8%89%B2%E8%8B%B1%E8%96%84%E8%97%8D%E8%A1%8C%E8%A1%97%E8%A1%A8%E8%A3%8F%E8%A6%8B%E8%A7%92%E8%A7%A6%E8%A8%80%E8%A8%88%E8%A8%98%E8%A8%AD%E8%A8%B3%E8%A9%B1%E8%AA%8D%E8%AA%AD%E8%AA%BF%E8%B2%B7%E8%B2%B8%E8%B3%AA%E8%B5%A4%E8%B6%B3%E8%B7%AF%E8%BB%8A%E8%BB%A2%E8%BE%BA%E8%BE%BC%E8%BF%91%E8%BF%94%E9%80%81%E9%80%9A%E9%80%A0%E9%80%A3%E9%80%B1%E9%80%B2%E9%81%85%E9%81%8E%E9%81%93%E9%81%A0%E9%81%B8%E9%81%BF%E9%83%8A%E9%83%A8%E9%83%BD%E9%87%91%E9%8A%80%E9%8A%AD%E9%8D%B5%E9%95%B7%E9%96%89%E9%96%8B%E9%96%93%E9%96%A2%E9%9A%8E%E9%9B%B0%E9%9B%BB%E9%9D%A2%E9%A0%86%E9%A1%8C%E9%A2%A8%E9%A4%A8%E9%A7%85%E9%A7%90%E9%A8%93%E9%AB%98%EF%BC%88%EF%BC%89%EF%BC%8B%EF%BC%8F%EF%BC%9A%EF%BC%9D">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Klee+One:wght@600&display=swap&text=%21%22%23%24%25%26%27%28%29%2A%2B%2C-.%2F0123456789%3A%3B%3C%3D%3E%3F%40ABCDEFGHIJKLMNOPQRSTUVWXYZ%5B%5C%5D%5E_%60abcdefghijklmnopqrstuvwxyz%7B%7C%7D~%C3%97%E2%80%99%E2%80%A6%E2%80%B9%E2%80%BA%E2%84%83%E2%86%92%E2%88%92%E2%96%B2%E2%96%B3%E2%97%86%E2%97%8B%E2%97%8F%E3%80%80%E3%80%81%E3%80%82%E3%80%8C%E3%80%8D%E3%80%9C%E3%81%82%E3%81%84%E3%81%86%E3%81%88%E3%81%8A%E3%81%8B%E3%81%8C%E3%81%8D%E3%81%8E%E3%81%8F%E3%81%90%E3%81%91%E3%81%92%E3%81%93%E3%81%94%E3%81%95%E3%81%97%E3%81%98%E3%81%99%E3%81%9A%E3%81%9B%E3%81%9D%E3%81%9E%E3%81%9F%E3%81%A0%E3%81%A1%E3%81%A3%E3%81%A4%E3%81%A6%E3%81%A7%E3%81%A8%E3%81%A9%E3%81%AA%E3%81%AB%E3%81%AE%E3%81%AF%E3%81%B0%E3%81%B2%E3%81%B3%E3%81%B6%E3%81%B8%E3%81%BE%E3%81%BF%E3%82%80%E3%82%81%E3%82%82%E3%82%83%E3%82%84%E3%82%88%E3%82%89%E3%82%8A%E3%82%8B%E3%82%8C%E3%82%8D%E3%82%8F%E3%82%92%E3%82%93%E3%82%A2%E3%82%A4%E3%82%A5%E3%82%A6%E3%82%A7%E3%82%A8%E3%82%AA%E3%82%AB%E3%82%AC%E3%82%AD%E3%82%AF%E3%82%B0%E3%82%B1%E3%82%B4%E3%82%B5%E3%82%B7%E3%82%B8%E3%82%B9%E3%82%BB%E3%82%BF%E3%83%80%E3%83%81%E3%83%83%E3%83%87%E3%83%88%E3%83%89%E3%83%8A%E3%83%8D%E3%83%90%E3%83%94%E3%83%97%E3%83%99%E3%83%9A%E3%83%9B%E3%83%9C%E3%83%9E%E3%83%A3%E3%83%A9%E3%83%AA%E3%83%AB%E3%83%AC%E3%83%AD%E3%83%B3%E3%83%BB%E3%83%BC%E4%B8%80%E4%B8%8A%E4%B8%8B%E4%B8%A1%E4%B8%A6%E4%B8%AD%E4%B8%B8%E4%B8%BB%E4%BA%86%E4%BA%88%E4%BA%AC%E4%BA%BA%E4%BB%8A%E4%BB%95%E4%BB%98%E4%BB%A5%E4%BB%B2%E4%BB%B6%E4%BB%BB%E4%BC%91%E4%BC%9A%E4%BC%9D%E4%BD%8D%E4%BD%8F%E4%BD%93%E4%BD%95%E4%BD%99%E4%BD%9C%E4%BD%BF%E4%BE%8B%E4%BF%82%E4%BF%A1%E5%80%8B%E5%80%A4%E5%82%99%E5%83%8F%E5%85%83%E5%85%88%E5%85%A5%E5%85%AC%E5%85%B8%E5%86%85%E5%86%86%E5%86%99%E5%87%A1%E5%87%BA%E5%88%86%E5%88%87%E5%88%9D%E5%88%BB%E5%89%8D%E5%89%AF%E5%89%B2%E5%8A%9B%E5%8A%B9%E5%8B%95%E5%8C%96%E5%8C%97%E5%8C%BA%E5%8D%81%E5%8D%97%E5%8D%9A%E5%8D%B0%E5%8E%9F%E5%8F%8D%E5%8F%96%E5%8F%97%E5%8F%A3%E5%8F%B0%E5%8F%B7%E5%90%88%E5%90%8C%E5%90%8D%E5%91%82%E5%92%8C%E5%93%81%E5%93%A1%E5%95%86%E5%96%B6%E5%9B%9B%E5%9B%9E%E5%9B%B2%E5%9B%B3%E5%9B%BA%E5%9C%9F%E5%9C%B0%E5%9E%8B%E5%9F%BC%E5%A0%B1%E5%A0%B4%E5%A1%8A%E5%A2%97%E5%A2%A8%E5%A3%81%E5%A3%AB%E5%A3%B0%E5%A4%96%E5%A4%A7%E5%A4%AA%E5%A5%A5%E5%A5%B3%E5%A7%8B%E5%AD%97%E5%AD%A6%E5%AE%9A%E5%AE%9F%E5%AE%A4%E5%AE%B9%E5%AE%BF%E5%AF%86%E5%AF%8C%E5%B0%8F%E5%B0%B1%E5%B1%8B%E5%B1%B1%E5%B7%AE%E5%B8%AD%E5%B8%AF%E5%B8%B8%E5%B9%B3%E5%B9%B4%E5%BA%97%E5%BA%A6%E5%BA%A7%E5%BA%AD%E5%BC%95%E5%BC%B1%E5%BD%93%E5%BD%A2%E5%BD%A9%E5%BD%B9%E5%BE%8C%E5%BE%92%E5%BE%93%E6%83%85%E6%84%8F%E6%85%8B%E6%89%80%E6%89%8B%E6%89%95%E6%8A%9C%E6%8A%BC%E6%8C%81%E6%8E%83%E6%8E%A2%E6%8F%9B%E6%94%AF%E6%95%B0%E6%96%87%E6%96%99%E6%96%B9%E6%97%A5%E6%98%8E%E6%98%94%E6%98%AD%E6%99%82%E6%9B%9C%E6%9B%B8%E6%9B%BF%E6%9C%80%E6%9C%88%E6%9C%9D%E6%9C%A8%E6%9C%AA%E6%9C%AB%E6%9C%AC%E6%9C%AD%E6%9D%A1%E6%9D%B1%E6%9D%BF%E6%9E%A0%E6%9E%B6%E6%A0%BC%E6%A4%9C%E6%A5%AD%E6%A7%8B%E6%A8%AA%E6%AC%A1%E6%AD%A2%E6%AD%A9%E6%AE%8B%E6%AE%B5%E6%B0%97%E6%B0%B4%E6%B1%BA%E6%B3%8A%E6%B3%A8%E6%B4%97%E6%B5%81%E6%B5%B4%E6%B6%88%E6%B8%85%E6%B8%88%E6%B8%9B%E6%B9%96%E6%B9%AF%E6%BA%80%E6%BC%94%E7%81%AB%E7%81%B0%E7%82%B9%E7%84%A1%E7%89%A9%E7%8A%B6%E7%8F%BE%E7%90%86%E7%94%9F%E7%94%A8%E7%94%B1%E7%94%B7%E7%94%BB%E7%95%A5%E7%95%AA%E7%99%BD%E7%9B%B4%E7%9C%9F%E7%A2%BA%E7%A4%BA%E7%A5%9D%E7%A5%A8%E7%A7%BB%E7%A8%8E%E7%A9%BA%E7%AB%A0%E7%AB%AF%E7%AE%B1%E7%B4%84%E7%B4%85%E7%B4%A2%E7%B5%82%E7%B5%84%E7%B5%A1%E7%B5%B5%E7%B6%9A%E7%B7%9A%E7%B8%81%E7%B8%A6%E7%BD%AB%E7%BD%AE%E7%BF%8C%E7%BF%BB%E8%80%85%E8%81%9E%E8%84%9A%E8%87%AA%E8%89%B2%E8%8B%B1%E8%96%84%E8%97%8D%E8%A1%8C%E8%A1%97%E8%A1%A8%E8%A3%8F%E8%A6%8B%E8%A7%92%E8%A7%A6%E8%A8%80%E8%A8%88%E8%A8%98%E8%A8%AD%E8%A8%B3%E8%A9%B1%E8%AA%8D%E8%AA%AD%E8%AA%BF%E8%B2%B7%E8%B2%B8%E8%B3%AA%E8%B5%A4%E8%B6%B3%E8%B7%AF%E8%BB%8A%E8%BB%A2%E8%BE%BA%E8%BE%BC%E8%BF%91%E8%BF%94%E9%80%81%E9%80%9A%E9%80%A0%E9%80%A3%E9%80%B1%E9%80%B2%E9%81%85%E9%81%8E%E9%81%93%E9%81%A0%E9%81%B8%E9%81%BF%E9%83%8A%E9%83%A8%E9%83%BD%E9%87%91%E9%8A%80%E9%8A%AD%E9%8D%B5%E9%95%B7%E9%96%89%E9%96%8B%E9%96%93%E9%96%A2%E9%9A%8E%E9%9B%B0%E9%9B%BB%E9%9D%A2%E9%A0%86%E9%A1%8C%E9%A2%A8%E9%A4%A8%E9%A7%85%E9%A7%90%E9%A8%93%E9%AB%98%EF%BC%88%EF%BC%89%EF%BC%8B%EF%BC%8F%EF%BC%9A%EF%BC%9D">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -30,7 +30,12 @@
 }
 </script>
 <style>
-/* 地と文字は lp-quality-bar 和・上質（とらや）の無彩色：地 #fff・文字 #111・罫 #ccc・ホバーの文字 #777・薄い面 #f2f2f2。
+/* 2026-11-02 作り直し：Web Design Clip の hotel・leisure（予約のできる日本語のサイト40件、PC 1440px、scripts/sample.js）の中央値に寄せた。
+   左端 188px → 中身の幅 1064px／何も無い帯 80px（上位1割 300px）→ 章の上下 80px／いちばん大きい字 40px・太さ 400 → 題 40px 400／
+   本文 14.5px・行間 1.85・400（本文は 16px のまま：予約の値段と条件を読ませるため）／書体は明朝が約4割（Zen Old Mincho 4・Noto Serif JP 5）、
+   ゴシックは Zen Kaku Gothic New・Noto Sans JP → 見出し Zen Old Mincho、本文 Zen Kaku Gothic New／ボタンの角 4px／全幅の罫 0／
+   地は白か色の入った白（40件中16件が #f2efe6〜#f8f5f2 の温かい白）→ #f7f5f0／本文の色 #000〜#333。
+   それ以前の版：地と文字は lp-quality-bar 和・上質（とらや）の無彩色：地 #fff・文字 #111・罫 #ccc・ホバーの文字 #777・薄い面 #f2f2f2。
    色は「のれん」だけが持つ（とらやの「色は商品写真の地に任せる」の置き換え）：男湯の藍・女湯の紅。木札の木色は時間帯の札だけ。
    文字の大きさは とらや の6段（12/14/16/20/24/32）から 12 を除いた5段。本文16px・注記14px（site-skills ai-tells：本文16px以上・注記13px以上）。
    見出しは明朝 400・行間1.5、本文はゴシック、字間は触らない。
@@ -38,23 +43,23 @@
    料金表と営業時間の札だけ、番台の手書きに寄せた書体（Klee One）。
    動きは transition だけ、イージング cubic-bezier(.25,.46,.45,.94)、.1 / .2 / .4s。 */
 :root{
-  --bg:#fff; --ink:#111; --sub:#555; --hover:#777; --line:#ccc; --face:#f2f2f2;
+  --bg:#f7f5f0; --ink:#1a1a1a; --sub:#4a4a4a; --hover:#666; --line:#ccc; --face:#ece8df;
   --ai:#1f3a5a; --ai-face:#e3e8ee; --beni:#9e2a2b;
   --wood:#d9bd8f; --wood-edge:#8c6a3c; --wood-ink:#2b1d0e; --off:#ebe6dd; --off-ink:#666;
   --mark:#b30000;
   --ease:cubic-bezier(.25,.46,.45,.94);
-  --mincho:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",serif;
+  --mincho:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho","YuMincho",serif;
   --hand:"Klee One","Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;
-  --sans:"Hiragino Kaku Gothic ProN","Yu Gothic","YuGothic","Noto Sans JP","Meiryo",sans-serif;
+  --sans:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic","YuGothic",sans-serif;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7;overflow-x:hidden;font-variant-numeric:tabular-nums}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.85;overflow-x:hidden;font-variant-numeric:tabular-nums;word-break:auto-phrase;text-wrap:pretty}
 a{color:inherit}
 button,input{font:inherit;color:inherit}
 button{cursor:pointer}
 :focus-visible{outline:3px solid var(--ai);outline-offset:2px}
-.wrap{max-width:1180px;margin:0 auto;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1112px;margin:0 auto;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
 @media (max-width:600px){.wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}}
 h1,h2,h3{font-family:var(--mincho);font-weight:400;line-height:1.5;margin:0}
 
@@ -72,10 +77,18 @@ h1,h2,h3{font-family:var(--mincho);font-weight:400;line-height:1.5;margin:0}
 @media (max-width:374px){.fuda{display:none}}
 
 /* 予約（最初の画面の主役） */
-.top{padding-block:24px 72px}
-.top h1{font-size:32px}
-.top .lead{margin:4px 0 20px;color:var(--sub)}
-.top .lead b{color:var(--mark);font-weight:700}
+.hero{position:relative;color:#fff;background:#222;min-height:min(560px,72vh);display:grid;align-items:end;overflow:hidden}
+/* 写真は暗く沈めて全面に。題は1色（白）で重ねる */
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.5)}
+.hero .wrap{position:relative;padding-block:0 72px;width:100%}
+.hero h1{font-size:40px;line-height:1.4}
+.hero .lead{margin:12px 0 24px;font-size:18px}
+.hero .btn{background:var(--ai);border-color:#fff;border-width:1px}
+.hero .credit{position:absolute;right:12px;bottom:8px;margin:0;font-size:13px;color:#fff;text-shadow:0 0 4px rgba(0,0,0,.8);max-width:calc(100% - 24px);text-align:right;line-height:1.5}
+@media (max-width:600px){.hero{min-height:420px}.hero h1{font-size:32px}.hero .lead{font-size:16px}.hero .wrap{padding-bottom:64px}}
+.top{padding-block:80px}
+.top > .wrap > h2{font-size:32px}
+.top .lead{margin:4px 0 24px}
 .book{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:32px;align-items:start}
 @media (max-width:960px){.book{grid-template-columns:minmax(0,1fr)}}
 .pick{display:grid;gap:20px;min-width:0}
@@ -160,16 +173,16 @@ h1,h2,h3{font-family:var(--mincho);font-weight:400;line-height:1.5;margin:0}
 .sum .per{margin:0 16px;text-align:right;font-size:14px;color:var(--sub)}
 .sum .pickline{margin:16px 16px 0;font-size:16px;line-height:1.6}
 .sum .pickline b{font-family:var(--mincho);font-size:24px;font-weight:400}
-.sum .pickline .none{color:var(--off-ink)}
+.sum .pickline .none{display:block;color:var(--sub)}
 .sum .nomore{margin:10px 16px 16px;font-size:14px}
 .sum .terms{margin:12px 16px 16px;padding:12px 12px 14px;background:#fff;font-size:14px}
 .sum .terms b{display:block}
 .sum .go{margin:0 16px 16px}
-/* ボタンはとらやの寸法（高さ46・縁2px・太字14px）。角はほかの部品（木札・伝票・のれん）にそろえて丸めない。墨ベタはホバーで白黒反転 */
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;border-radius:0;border:2px solid var(--ink);background:var(--ink);color:#fff;font-weight:700;font-size:14px;padding:0 24px;transition:background-color .2s var(--ease),color .2s var(--ease)}
-.btn:disabled{background:var(--off);border-color:var(--off);color:var(--off-ink);cursor:not-allowed}
+/* ボタンは のれんの藍、角 4px（手本40件の中央値） */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;border-radius:4px;border:2px solid var(--ai);background:var(--ai);color:#fff;text-decoration:none;font-weight:700;font-size:14px;padding:0 24px;transition:background-color .2s var(--ease),color .2s var(--ease)}
+.btn:disabled{background:#d9d3c7;border-color:#d9d3c7;color:#4f4a42;cursor:not-allowed}
 .btn.wide{width:100%}
-.btn.line{background:#fff;color:var(--ink)}
+.btn.line{background:#fff;color:var(--ai)}
 .go .reason{display:block;text-align:center;font-size:14px;color:var(--sub);margin-top:4px;min-height:1.6em}
 
 /* SP の下の帯（DICE：画面下に固定・74px） */
@@ -181,28 +194,26 @@ h1,h2,h3{font-family:var(--mincho);font-weight:400;line-height:1.5;margin:0}
 @media (max-width:960px){.bar{display:flex} body{padding-bottom:74px} .sum .go{display:none} .sum{position:static}}
 
 /* 章 */
-.sec{padding-block:48px}
+.sec{padding-block:80px}
 .sec.alt{background:var(--face)}
-.sec h2{font-size:24px;margin-bottom:4px}
-.sec .sub{margin:0 0 24px;color:var(--sub)}
+.sec h2{font-size:32px;margin-bottom:4px}
+/* 作り込みは1つだけ：見出しの下に、のれんの切れ目のような2枚の短い藍の線 */
+.top > .wrap > h2::after,.sec > .wrap > h2::after{content:"";display:block;width:44px;height:3px;margin-top:10px;background:linear-gradient(90deg,var(--ai) 0 20px,transparent 20px 24px,var(--ai) 24px)}
+.sec .sub{margin:12px 0 32px}
+@media (max-width:600px){.top > .wrap > h2,.sec > .wrap > h2{font-size:26px}}
 
 /* 写真の枠 */
-.photos{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
-.photos dl{grid-column:1 / -1}
-@media (max-width:600px){.photos{grid-template-columns:1fr}}
 .ph{margin:0;min-width:0}
 /* 写真は Wikimedia Commons の自由に使える実写（credits.json）。十条湯の物としては見せない */
 .ph img{display:block;width:100%;height:auto;aspect-ratio:4 / 3;object-fit:cover;background:#ddd;max-width:100%}
 .ph figcaption{font-size:16px;margin-top:10px}
 .ph figcaption small{display:block;font-size:14px;color:var(--sub);margin-top:4px}
-.temps{display:flex;flex-wrap:wrap;gap:8px 32px;margin:0 0 24px;align-items:baseline}
-.temps .big{font-family:var(--mincho);font-size:32px;line-height:1.2}
-.spec{margin:8px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-flow:column;grid-template-rows:auto auto;column-gap:24px}
-@media (max-width:600px){.spec{grid-template-columns:1fr;grid-auto-flow:row;grid-template-rows:none}}
+.room{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.618fr);gap:48px;align-items:start}
+@media (max-width:860px){.room{grid-template-columns:1fr;gap:32px}}
+.spec{margin:0;display:grid;gap:4px}
 .spec dt,.spec dd{margin:0}
-.spec dt{color:var(--sub);font-size:14px}
-.spec dd{font-size:16px}
-@media (max-width:600px){.spec dd{margin-bottom:12px}}
+.spec dt{font-size:14px;font-weight:700}
+.spec dd{font-size:16px;margin-bottom:20px}
 .spec dd b{font-family:var(--mincho);font-size:32px;font-weight:400;line-height:1.2}
 
 /* 番台の料金表（手書きの板） */
@@ -288,8 +299,8 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
   .sex[aria-pressed="false"]:hover{background:var(--face)}
   .day:not(:disabled):not([aria-pressed="true"]):hover{background:var(--line)}
   .slot:not(:disabled):not([aria-pressed="true"]):hover{transform:translateY(-3px)}
-  .btn:not(:disabled):hover{background:#fff;color:var(--ink)}
-  .btn.line:hover{background:var(--ink);color:#fff}
+  .btn:not(:disabled):hover{background:#fff;color:var(--ai)}
+  .btn.line:hover{background:var(--ai);color:#fff}
   .skills-btn:hover{background:var(--ink);color:#fff}
   .wk button:not(:disabled):hover{color:var(--hover)}
 }
@@ -311,10 +322,20 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
 </header>
 
 <main id="top">
+<section class="hero" aria-labelledby="hero-h">
+  <img src="photos/A-Japanese-public-bath-in-museum---Flickr---odako1.jpg" width="960" height="640" alt="博物館に移された昔の銭湯の洗い場。白いタイルの壁にカランが並び、奥の壁一面に富士山と湖のペンキ絵。">
+  <div class="wrap">
+    <h1 id="hero-h">十条湯のサウナ</h1>
+    <p class="lead">男湯・女湯それぞれのサウナを、<br>60分ごとの枠で予約できます。</p>
+    <a class="btn" href="#book">空きを見る</a>
+  </div>
+  <p class="credit">写真：博物館に移された昔の銭湯（十条湯ではありません）　Koichi Oda／<a href="https://commons.wikimedia.org/w/index.php?curid=55885722" target="_blank" rel="noopener">Wikimedia Commons</a>／CC BY-SA 2.0</p>
+</section>
+
 <section class="top" id="book" aria-labelledby="book-h">
   <div class="wrap">
-    <h1 id="book-h">十条湯 サウナの予約</h1>
-    <p class="lead">男湯・女湯それぞれ6名まで、60分ごとの枠です。<b>当日の予約はサウナ料金が160円引き。</b></p>
+    <h2 id="book-h">空きを見て予約する</h2>
+    <p class="lead">当日の予約は、サウナ料金が160円引きになります。</p>
 
     <div class="book">
       <div class="pick">
@@ -374,15 +395,15 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
   <div class="wrap">
     <h2 id="room-h">サウナと水風呂</h2>
     <p class="sub">男湯・女湯とも同じつくりです。</p>
-    <p class="temps"><span><span class="big">92</span>℃前後　サウナ室（2段・6名・ガス遠赤外線）</span><span><span class="big">16.5</span>℃前後　水風呂（地下水）</span><span>外気浴は裏庭のベンチ4脚</span></p>
-    <div class="photos">
-      <figure class="ph">
-        <img src="photos/A-Japanese-public-bath-in-museum---Flickr---odako1.jpg" width="960" height="640" loading="lazy" alt="博物館に移された昔の銭湯の洗い場。白いタイルの壁にカランが並び、奥の壁一面に富士山と湖のペンキ絵。">
-        <figcaption>博物館に移された、昔の銭湯の洗い場。奥の壁に富士山のペンキ絵。十条湯の写真ではありません。<small>写真：Koichi Oda／<a href="https://commons.wikimedia.org/w/index.php?curid=55885722" target="_blank" rel="noopener">Wikimedia Commons</a>／CC BY-SA 2.0</small></figcaption>
-      </figure>
+    <div class="room">
+      <dl class="spec">
+        <dt>サウナ室</dt><dd><b>92</b>℃前後<br>2段・6名・ガス遠赤外線</dd>
+        <dt>水風呂</dt><dd><b>16.5</b>℃前後<br>地下水</dd>
+        <dt>外気浴</dt><dd>裏庭のベンチ4脚</dd>
+      </dl>
       <figure class="ph">
         <img src="photos/Shoes-boxes-at-a-Sento---Tokyo-area---Dec-22-2021.jpg" width="960" height="720" loading="lazy" alt="東京近郊の銭湯の下足箱。番号の付いた木札の鍵が縦横に並ぶ。">
-        <figcaption>東京近郊の銭湯の下足箱。番号の木札が鍵になる。このページの時間の札は、この木札の形から取りました。<small>写真：Nesnad／<a href="https://commons.wikimedia.org/w/index.php?curid=113582446" target="_blank" rel="noopener">Wikimedia Commons</a>／CC BY 4.0</small></figcaption>
+        <figcaption>東京近郊の銭湯の下足箱（十条湯ではありません）。番号の木札が鍵になります。予約の時間の札は、この木札の形です。<small>写真：Nesnad／<a href="https://commons.wikimedia.org/w/index.php?curid=113582446" target="_blank" rel="noopener">Wikimedia Commons</a>／CC BY 4.0</small></figcaption>
       </figure>
     </div>
   </div>
@@ -707,6 +728,7 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
     ['ボタン（墨ベタはホバーで反転）', 'lp', 'lp／和・上質＝とらや', '高さ46・縁2px・太字14px。とらやは角23のピルだが、木札・伝票・のれんの角ばった部品にそろえて角を丸めない。'],
     ['動き（transition だけ・.1/.2/.4s）', 'lp', 'lp／和・上質＝とらや・rules 7', 'cubic-bezier(.25,.46,.45,.94) の1つ。演出の keyframes は持たない。ホバーはマウス端末だけ。reduced-motion で止まる（とらやには無い）。'],
     ['番台の料金板・営業時間の札', 'ai', 'site-skills／ai-tells.md', '「木札のような料金表や営業時間の札を、文字の組み方で作る」「手書きの文字（画像でなく書体）」。書体 Klee One は自分で選んだ。'],
+    ['手本40件の中央値（左端・題・書体・地・ボタン）', 'ai', 'site-skills／make.md・aesthetic.md・scripts/sample.js', 'Web Design Clip の hotel・leisure で予約のできる日本語のサイト40件を測った中央値に寄せた：左端 188px、題 40px・太さ 400、見出しは明朝（Zen Old Mincho）・本文は Zen Kaku Gothic New、ボタンの角 4px、何も無い帯 80px、地は温かい白 #f7f5f0。最初の画面は暗くした写真に題を重ねた。'],
     ['区切りは余白と地の色・本文16px', 'ai', 'site-skills／ai-tells.md・inspect.js', '四辺を囲む箱や罫をやめ、白と #f2f2f2 の1段の差で分けた（最初の3画面の枠線 73→9 個。実サイトは 7〜27 個）。本文16px・注記14px（13px未満 38%→0%）。'],
     ['情報の密度（最初の画面は予約の部品だけ）', 'ai', 'site-skills／ai-tells.md「1画面に主役を1つ」・inspect.js', '最初の画面は題・1文・予約の部品と伝票だけ。木札から終わりの時刻と値段（その日どの枠も同じ）を外し、料金板・設備・注意書きは下の章へ。PC の塊/画面 27→12、最初の画面 660→442字。選ぶための画面なので、最初の画面だけは塊19（じゃらんの検索 21 と同じ理由）。'],
     ['実写の写真（よその銭湯の洗い場・下足箱）', 'ai', 'site-skills／ai-tells.md「絵と写真」・make.md 6・photos.js', '灰色の写真の枠を、Wikimedia Commons の自由に使える実写に替えた。十条湯の物としては見せず、何が写っているかと出典（作者・ライセンス）を画面に書く。下足箱の写真は、時間の木札の元の形。'],
