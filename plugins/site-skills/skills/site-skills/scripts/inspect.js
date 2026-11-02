@@ -296,10 +296,12 @@ function judge(m, width) {
       const { root } = await c.send('DOM.getDocument', { depth: -1 }); const { nodeIds } = await c.send('DOM.querySelectorAll', { nodeId: root.nodeId, selector: '[data-insp-font]' });
       const used = {}; for (const id of nodeIds) { const { fonts } = await c.send('CSS.getPlatformFontsForNode', { nodeId: id }); for (const f of fonts) { if (/emoji|icon|symbol/i.test(f.familyName)) continue; const k = f.familyName.replace(/ (Thin|Light|Regular|Medium|SemiBold|Semibold|Bold|ExtraBold|Black|Italic|W\d)+$/g, '') + (f.isCustomFont ? '' : '（端末の標準）'); used[k] = (used[k] || 0) + f.glyphCount; } }
       const tot = Object.values(used).reduce((x, y) => x + y, 0) || 1;
-      const NG = /端末の標準|^(Noto Sans|Noto Serif|Noto Sans JP|Noto Serif JP|Noto Sans CJK|Inter|Roboto|Open Sans|Lato|Montserrat|Poppins|Arial|Helvetica|Times|Hiragino|ヒラギノ|Yu Gothic|YuGothic|游ゴシック|Meiryo|メイリオ|MS |Sawarabi|M PLUS 1p|Zen Kaku Gothic New|Archivo|DejaVu|Liberation|Droid)/i;
+      // 定番の Web フォント（Noto Sans JP・Inter など）は、手本の業種で使われていればよい（ユーザーの許可 2026-11-02、ファッション80件の実測で Noto Sans JP が最多）。
+      // ここで止めるのは、Web フォントを指定せず端末の標準で描かれた字だけ（書体を決めていない）
+      const NG = /端末の標準/;
       const bad = Object.entries(used).filter(([k, v]) => NG.test(k) && v / tot >= .05).sort((x, y) => y[1] - x[1]);
       console.log(`${name} 描かれた書体：${Object.entries(used).sort((x, y) => y[1] - x[1]).map(([k, v]) => `${k} ${Math.round(v / tot * 100)}%`).join('・')}`);
-      if (bad.length && !allow.includes('default-font')) all.push({ lv: 'FAIL', id: 'default-font', width: vp.width, msg: `標準・定番の書体で描かれている：${bad.map(([k, v]) => `${k} ${Math.round(v / tot * 100)}%`).join('・')}`, fix: '雰囲気に合う、癖のある書体を選ぶ（references/aesthetic.md「書体」）。Webフォントが読めているかも確かめる' });
+      if (bad.length && !allow.includes('default-font')) all.push({ lv: 'WARN', id: 'default-font', width: vp.width, msg: `端末の標準の書体で描かれている（書体を指定していない）：${bad.map(([k, v]) => `${k} ${Math.round(v / tot * 100)}%`).join('・')}`, fix: '手本の業種で使われている書体を指定する（references/aesthetic.md「書体」）。Webフォントが読めているかも確かめる' });
     } catch (e) { errors.push(`${name}: 書体を調べられない ${String(e).slice(0, 80)}`); }
     console.log(`${name} ${vp.width}px  本文 ${m.bodySize}px・本文の13px未満 ${m.runChars ? Math.round(m.runTiny / m.runChars * 100) : 0}%・大きさ ${m.sizeCount}段・書体 ${m.familyCount}・枠線 ${m.bordered}・箱 ${m.boxes}・影 ${m.softShadows}・グラデ ${m.gradients}・小ラベル ${m.eyebrows.length}・番号 ${m.numbering.length}・中央 ${m.runChars ? Math.round(m.runCenter / m.runChars * 100) : 0}%・色相 ${Object.values(m.hues).filter(v => v >= 2).length}・ピル ${m.pills}・角丸 ${m.softRadius}・下が詰まった箱 ${m.tightBottom.length}・写真 ${m.photos}・灰色の枠 ${m.greySlots.length}・等幅メタ ${m.monoMeta.length}・アイコンカード ${m.iconCards}・角丸写真 ${m.softPhotos}・ボタン2つ ${m.twinCta ? 'あり' : 'なし'}・飾りの言葉 ${m.filler.length}・塊/画面 ${m.density?.medBlocks}・最初の画面 ${m.density?.firstChars}字`);
     await p.close();
