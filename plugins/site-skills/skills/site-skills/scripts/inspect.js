@@ -208,6 +208,11 @@ function probe() {
   m.sizeCount = Object.keys(m.sizes).filter(k => m.sizes[k] / m.chars >= .005).length;
   m.familyCount = Object.values(m.families).filter(v => v / m.chars >= .03).length;
   m.familyNames = Object.entries(m.families).filter(([, v]) => v / m.chars >= .03).map(([k]) => k);
+  // 表記：実在の日本語サイト275件（8業種、2026-11-02）でほぼ必ずひらいて書かれる言葉が、漢字で出ていないか
+  { const T = (document.body.innerText || '');
+    const H = [[/下さい/g, 'ください'], [/頂(?:く|き|け|いた)/g, 'いただく'], [/出来(?:る|ま|た|な|れ)/g, 'できる'], [/致(?:しま|す|し)/g, 'いたします'],
+      [/(?<![\u4e00-\u9fff])事(?=[がをはにでも])/g, 'こと'], [/(?<![\u4e00-\u9fff])為(?=[にの])/g, 'ため'], [/迄/g, 'まで'], [/私達/g, '私たち']];
+    m.hyouki = []; for (const [re, w] of H) { const n = (T.match(re) || []).length; if (n) m.hyouki.push(`${(T.match(re) || [])[0]}→${w}（${n}）`); } }
   m.overflowX = document.documentElement.scrollWidth > innerWidth + 1;
   m.bodyBgRgb = rgb(m.bodyBg);
   return m;
@@ -271,6 +276,7 @@ function judge(m, width) {
   if (m.twinCta) add('WARN', 'twin-cta', '最初の画面に、塗りと縁のボタンが2つ並んでいる', '主な行動は1つ。もう1つは文字のリンクに下げる');
   if (m.runChars && m.greyRun / m.runChars > .4) add('WARN', 'grey-body', `本文の ${Math.round(m.greyRun / m.runChars * 100)}% が灰色（地との差 7:1 未満）`, '本文は地との差が大きい色（黒・白に近い色）で。灰色は注記・値の補足だけ');
   if (m.badBreaks.length) add('WARN', 'line-break', `変な所で折り返す文 ${m.badBreaks.length}か所：${m.badBreaks.slice(0, 3).join('; ')}`, '文節で折り返す（html に lang="ja" と word-break:auto-phrase、要所は <wbr> か改行）。最後の行が数字だけにならない幅や言い回しにする');
+  if (m.hyouki && m.hyouki.length) add('WARN', 'hyouki', `漢字で書いた補助動詞・形式名詞：${m.hyouki.join('・')}`, 'ひらく（実在の日本語サイト275件では、どの業種もほぼひらがな。references/ai-tells.md「表記」）');
   if (m.filler.length) add('WARN', 'filler-words', `飾りの言葉：${[...new Set(m.filler)].join('・')}`, '事実（温度・年・数・場所）に書き換える');
   // ai-tells：淡いベージュ・ピンクの無難な地。taste-skill：黄みのクリーム地（WARN）
   const [r, g, b] = m.bodyBgRgb; const mx = Math.max(r, g, b), mn = Math.min(r, g, b);
