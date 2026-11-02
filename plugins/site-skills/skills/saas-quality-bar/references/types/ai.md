@@ -27,12 +27,28 @@
 - **動き**：スクロールの演出は CSS の `animation-timeline: scroll(root)`／`view()`／名前付きの view timeline で12個（窓が縮む translateY(-6vh) scale(1.2)→0・1、前中後の線 scaleX、ロゴが文字の下から）、`@supports not` で古いブラウザに戻す。イージングは out-expo cubic-bezier(.16,1,.3,1) が最多。CSS の reduce の規則は6つで、scroll timeline も帯もモックも止まらない。
 - **データと重さ**：PC で top 7.86MB / chat 14.82MB / pricing 13.85MB / 事例 13.63MB / ヘルプ 2.55MB（SP 5.60／7.55／5.63／6.06／2.54MB）。PC は Next.js の Link が画面のリンク先の RSC を先読みし、フッターの「License」（/third-party-licenses）だけで 6,158KB（/pricing の 44%）。自前の JS 約 4.3MB。構造化データは SoftwareApplication＋AggregateRating 4.9／39件だが、評価は画面に出ていない。解析は Plausible、cookie の同意は「Reject all」と「Accept all」が同じ黒の塗り。
 
+### Cursor（Anysphere, Inc.）https://cursor.com/ja — 2026-11-02
+- **最初の画面＝小さな題と大きな DOM の窓**：h1「Cursor は、意欲的なソフトウェアを構築するためのコーディング エージェントです。」26px/400・行間 1.25・字間 -0.325px・幅 658px の2行（料金の h1 52px の半分）。すぐ下（y=351px）に 1300×720px の窓（240要素の DOM、画像は後ろの油彩風の写真1枚、/_next/image 1440px・q=70）。窓は Cursor Desktop と CLI が重なり、「about-acme.md を読む」→「思考時間 6秒」→「app/page.tsx +52 -0」→「初回描画は 280ms です。」と進む（15秒で13通りに変わる）。窓の文は日本語、コードとファイル名は英語。トップの窓は少なくとも5つ（Desktop・Mission Control・cursor.com/agent・Slack 風・CLI）。
+- **行動は端末で変える**：PC の主ボタンは OS 名入り「macOS 版をダウンロード ⤓」（Linux の UA では「Linux 版をダウンロード」234×43px）で api2.cursor.sh のファイルを直接、副は「デモを依頼する →」（地 #e6e5e0、/contact-sales?source=hero_request_demo）。SP（390px）は「始める →」108×44px で /login、副は出さない。ヘッダーは文字「サインイン」・枠「営業担当に問い合わせる」・塗り「ダウンロード」の3段（14px、高さ 27〜31px）。
+- **機能の並べ方**：top 4章・features 6章とも、黒の題 22px（features の章題は 26px）のすぐ後に同じ大きさの灰（#26251e の 60%）の続きを置く1文の見出し。カード #f2f1ed の左 383px に題とオレンジのリンク「… →」、右 840px に窓。features は「どこで作業していても」でデスクトップ・CLI・その他の環境・Web とモバイルの4枚（入口ごと）。
+- **料金表**：「個人／Teams」の radio の切り替え（外 168×42px・内側 2px、選んだ方が地 #f7f7f4）。個人は Free $0・Plus $8・Premium $30・Super $100・Ultra $200。PC は Ultra のカードが 1440・1920px とも幅0で4枚だけ（比較表には列があり、SP は5枚）。カード 288px・価格 36px・ボタン 288×43px。Premium だけ札「一番人気」（12px・#f54e00・地は同じ色の 10%・2.9:1）と塗りのボタン。使用量は Plus を基準に「4x・15x・50x」、利用枠は毎週リセット（FAQ）。年払いなし。税はカードの下の注 12px「表示価格には…（VATなど）は含まれていません」と「更新の24時間前までに解約」。Teams は $30「/ユーザー/月」でカードの中で席の種類（個人・Premium・Super・Ultra）を選ぶ、企業は「カスタム」。
+- **比較表**：PC だけ。7列（Free〜Ultra・Teams・企業）、tr 57（使用量1・Cursor 6・Grok 6・チーム管理 14・追加特典 3・X 20）、行 54px、値は ✓／—（14px）、thead 101px は sticky でなく、開閉なし。SP では table が幅0で、比較表そのものが無い。FAQ 9問（左に題 36px・右に 650px の列・行 56px）、FAQPage あり。
+- **試すまで**：サイトに登録の欄は0。カードの要否はどこにも書かない（支払いは FAQ の1問）。有料のボタンは4枚で4通り（Plusを選択する・Premium を選択する・Superに申し込む・Ultraを始める）、比較表ではまた別。
+- **事例と信頼**：/ja/customers は声のカード 18枚（3列×6段・引用 16px・顔 30px）とロゴ 64枚（8×8）で、詳細へのリンクは0（main の a は contact-sales の1本）。詳細はブログ（/ja/blog/nokia：h1 に成果「5,000万行超のコードを2週間で分析」→ 数字3つ「エンジニア2人／12人以上ではなく」「2週間／数か月ではなく」→ 章4つ）。数字に時点なし。認証はフッターの1行「SOC 2 | ISO27001 | ISO42001 | AIUC-1」。
+- **データの扱い**：料金の FAQ「Cursorは私のデータをどのように使用しますか？」と比較表の「チーム全体のプライバシー設定」「チャットデータの保持設定をカスタマイズ」（Teams 以上）。最初の画面の近くには書かない。
+- **ドキュメント**：/docs は英語だけ（/ja/docs は robots.txt で Disallow）。地・文字はマーケと同じ、書体は system-ui だけ、左 270px のサイドバー 12区分（見出し 12px・#7a7974・4.06:1）、⌘K の検索、右に目次と「Copy page」。
+- **見た目**：色は地 #f7f7f4・文字 #26251e（14.33:1）の2つで、灰は #26251e を 60%（4.07:1）・50%（3.06:1）・40%（2.36:1）に透かす（--color-theme-text-sec・mid・tertiary）。線も 2.5・10・20・60%。カード #f2f1ed・#ebeae5・#e6e5e0・#e1e0db、差し色 #f54e00（top 10要素、3.28:1）。dark は #14120b／#edecec を同じ変数で。太さは 400 だけ、段は 52／36／26／22／16／14／12px（字間 -.025〜.01em）、SP は ×0.9375。欧文 CursorGothic（自前）、和文の字形は無く端末の書体に落ちる。格子 --g 10px。
+- **動き**：--duration .14s（transition-fast、20か所以上）、--duration-slow .25s、--ease-out-spring cubic-bezier(.25,1,.5,1)、既定 .15s cubic-bezier(.4,0,.2,1)。keyframes 32。スクロールの演出はほぼ無い。reduce の規則 9か所あるが、top では mobileWorking*（3,100ms）30個と shimmer（1,600ms）6個が running のまま、窓の中身は JS で 15秒に8回変わる。
+- **データと重さ**：PC で top 18.19MB / product 15.86MB / pricing 12.84MB / customers 13.87MB / docs 9.38MB（SP 18.25／14.99／12.82／13.67／8.75MB）。JS が 61〜82%。全マーケのページで壁紙 cursor-wallpaper.png 1,423KB・statsig の初期化 895KB・OneTrust 592KB を読む。解析と出し分けは自分のドメインの下（/an/・/statsig-proxy）に通す。チャット・商談のウィジェットは無い。top の video はロゴの 22px だけ。構造化データは product と pricing に SoftwareApplication＋Offer、pricing に FAQPage。
+
 ## 真似る型
-（Nani翻訳・Granola の2件から。AI が働く様子を、最初の画面で本物か本物に近い形で見せる2つの方法がある。）
-- **最初の画面の右（または中央）は、AI が働く製品そのものにする。**登録なしで動く入力欄（Nani翻訳：textarea 741×158px、「ログインなしで無料で翻訳できます」）か、DOM で組んだ画面の1巡（Granola：入れる前 → 「Enhancing notes」の待ち → 結果と元のメモの切り替え、約8.6秒）。画像や動画1本で済ませない。どちらの場合も、行動のボタンは1つ（Nani翻訳はボタン型の「試す」が無く、Granola は「Download for free」だけ）。
-- **データの扱い（保存先・学習に使うか・音声を残すか）を、最初の画面の近くと料金の両方に書く。**Nani翻訳はサイドバーに全ページ常設、Granola はトップの約束3行と比較表の Trust & Control 11行（「Model training opt-out：Per user／Workspace-wide」）。
-- **料金はカードを少なくし、上限は利用者の単位で書く。**Nani翻訳は2枚（トークン → 「450字の英和翻訳なら約2,500回」）、Granola は3枚（履歴 30日 → 無制限、「Auto only／Auto + model selection」）。どちらも税の表記と FAQPage が無い（真似しない）。
-- **機能は「いつ・どこで使うか」で3つに切る**（Granola の Before／In／After、範囲の During a meeting／In a folder／Across all meetings）。Nani翻訳は機能別カード8枚で、AI の使い方の動詞を見出しにする（「@で翻訳の意図を追加」）。
+（Nani翻訳・Granola・Cursor の3件から。AI が働く様子を、最初の画面で本物か本物に近い形で見せる。）
+- **最初の画面の主役は、AI が働く製品そのもの。題はそれより小さくてよい。**登録なしで動く入力欄（Nani翻訳：textarea 741×158px）か、DOM で組んだ画面の1巡（Granola：約8.6秒、Cursor：1300×720px・15秒で13通り）。Cursor は h1 を 26px に抑え、窓に面積を譲る。画像や動画1本で済ませない。止めるボタンと reduce での停止は3件とも無い（足す）。
+- **窓の中は、本物らしい仕事の細部で埋める。**ファイル名・差分の行数・考えた秒数・結果の数字（Cursor「about-acme.md を読む」「思考時間 6秒」「+52 -0」「初回描画は 280ms」、Granola「Enhancing notes」）。訳した文と、訳さないコードを混ぜてよい。
+- **行動は1つか、端末で変える。**Nani翻訳はボタン型の「試す」無し、Granola は「Download for free」1つ、Cursor は PC が OS 名入りのダウンロード＋副「デモを依頼する」、SP は「始める →」で /login だけ（Granola は SP でも「Download for Mac」で、真似しない）。
+- **データの扱い（保存先・学習に使うか・残す期間）を、最初の画面の近くと料金の両方に書く。**Nani翻訳はサイドバーに常設、Granola はトップの約束3行と比較表の Trust & Control 11行。Cursor は料金の FAQ と比較表だけで、最初の画面の近くに無い（真似しない）。
+- **料金の上限は利用者の単位か、基準のプランの何倍かで書く。**Nani翻訳「450字の英和翻訳なら約2,500回」、Granola「30日 → 無制限」、Cursor「Plusの4倍・15倍・50倍、毎週リセット」。年払いは3件とも Nani翻訳だけ（-20%）。
+- **機能は「いつ・どこで使うか」で切る**（Granola の Before／In／After、Cursor の「どこで作業していても」デスクトップ・CLI・その他・Web とモバイル）。見出しは黒の題＋同じ大きさの灰の続きの1文（Cursor 22px＋60%）か、AI の使い方の動詞（Nani翻訳「@で翻訳の意図を追加」）。
 
 ## 反面教師
 - 主ボタンの白文字が地 #099bff で 2.94:1、PRO の名前 #24afff が 2.43:1、注記 #7f8b91 が 3.50:1（Nani翻訳）。
@@ -42,3 +58,8 @@
 - reduce で、DOM のモックの1巡（約8.6秒）、scroll timeline の12個、札の帯（30s）がすべて動く。止めるボタンも無い（Granola）。
 - PC でフッターの「License」の先を 6,158KB 先読みし、料金ページの 44% になる（Granola）。
 - SP（iPhone）でも料金のボタンが「Download for Mac」。AggregateRating 4.9／39件を構造化データにだけ書き、画面に出していない。事例の数字（260+ 時間・69%・61%）に時点と数え方が無い（Granola）。
+- reduce でも窓の中身が JS で変わり続け（15秒に8回）、mobileWorking* 30個と shimmer 6個が running。止めるボタンも無い（Cursor）。
+- SP の料金ページに比較表が無い（PC の 57行が table ごと幅0）。PC では Ultra のカードが出ない（Cursor）。
+- 灰の文字が地に足りない：60% 4.07:1（説明 96要素）、50% 3.06:1、40% 2.36:1、リンクの差し色 3.28:1、札 2.9:1（Cursor）。
+- 和文の字形を持たない欧文の自前書体だけを指定し、和文は端末の書体に落ちる。「アを構築す／るためのコ」など語の途中の折り返し PC 22か所（Cursor）。
+- 事例のページの声 18件から詳細へ行けず、詳細はブログに分かれる。有料のボタンの文言が4枚で4通り（Cursor）。

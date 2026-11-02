@@ -62,6 +62,11 @@
 - [ ] 日本語の Web フォントは分割配信（woff2・使う字だけ）にした。自前で OTF の全字形を配らない（P3R は 8,970KB を毎ページ）
 - [ ] SP は `width=device-width` で組み、固定幅の viewport で縮めない（P3R は `width=750` で本文が実寸 10.4px）
 - [ ] 特設・下層ページに「購入はこちら」の固定ボタンを置くなら、購入の区画に来たら隠す（P3R は /expansion/ 300×97・/switch2/ 257×51 で出しっぱなし）
+- [ ] （家庭用）年齢区分（ESRB・PEGI・CERO）を文字で、機種の帯・店の一覧・版の比較の横に書いた。フッターに画像で置くなら原寸で、alt に区分と内容を書いた（Expedition 33 は 108×48 を 168×112 に伸ばした画像1枚、alt「Jpeg V1.jpg」）
+- [ ] （家庭用）版の比較は PC は `table`、SP は `button[aria-expanded]` の版ごとの開閉にし、同じデータから作った（Expedition 33 は PC が画像 `SKU_Matrix.png`、SP は 362×46 の button 4つ）
+- [ ] 人物のタブは `role="tab"`・`aria-selected`・roving tabindex（選んだ札だけ 0、← → Home End）で、選ぶと URL（#名前）も変わる（Expedition 33 はキーボードは手本、URL は変わらない）
+- [ ] 背景のループ動画は、その区画が見えてから src を入れ、reduced-motion なら poster だけで mp4 を取らない（Expedition 33 は見える前に 9,126KB、reduce でも 8.5MB を取る）
+- [ ] SP のフッター・注記も 13px 以上（Expedition 33 は SP の権利 9px・Privacy Policy 6px・版の注記 8px）
 
 - [ ] （スマホ）最初の画面の下端に、ストアの全部と年齢区分の箱（区分・内容・「ゲーム内課金〔ランダム型を含む〕」）を1列に置いた。ストアは名前のあるリンク、年齢区分は文字（ゼンレスゾーンゼロは並べ方は手本、7つとも alt 空の img）
 - [ ] ヘッダーの入手ボタンから開くモーダルは Esc・外側のクリックで閉じ、閉じたら開いたボタンへフォーカスが戻る（ゼンレスゾーンゼロは × だけ）

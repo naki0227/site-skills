@@ -97,4 +97,15 @@
 - [ ] 一覧の写真は1件1枚目だけを先に読み、残りは loading="lazy"（Relux の弱点：351枚・lazy 0・36.8MB）
 - [ ] SP の宿ページに、日程・合計・予約の帯を下に固定した（Relux の弱点：帯の代わりに閲覧人数のトースト）
 
+
+- [ ] チケットの一覧のカードに、席種ごとの値段を全部並べ、売り切れた席種は消さずに線で残し、読み上げに「売り切れ」と伝えた（Philharmonie de Paris：16px/25px、線は 400＋`aria-label="Unavailable price"`）
+- [ ] 空きの段（空きあり・残りわずか・売り切れ・キャンセル待ち）を、一覧・回のチップ・詳細の枠の3か所で同じ言葉と色にした。残りわずかを緑にしなかった（Philharmonie de Paris の弱点：「Last tickets」が #238044）
+- [ ] 回が2〜5回なら題の下に「日・時刻・空き」のチップを並べ、押したら読み直さずに枠の空きと席種を替えた（Philharmonie de Paris：349ms・0KB）
+- [ ] 席種の色を詳細と席の画面で同じにした（Philharmonie de Paris：丸 16px と左の線 4px が同じ #ff9090・#ffc080・#ff90ff・#60b0ff）
+- [ ] 枚数の上限をその席種の残りの数にし、残りの数も文字で横に書いた（Philharmonie de Paris の弱点：上限 1・3・4 は select を開くまで分からない）
+- [ ] 枚数を選んだら「◯枚・合計」と買うボタンの帯を画面下に貼り付け、その帯に払い戻しの可否と交換の締め（回の日時から計算）を1行で入れた（Philharmonie de Paris の弱点：条件は仏語の CGV だけ）
+- [ ] 日付の select やボタンの文字が、自分の幅に収まる（Philharmonie de Paris の弱点：24px・380px で「— 8:0」）
+- [ ] 回ごとの Event に、席種ごとの Offer と availability を入れた。プロパティ名は schema.org の綴りどおり（Philharmonie de Paris の弱点：`"EventStatus"`・空の endDate）
+- [ ] 予約の入口と席の画面の間に、選択肢のモーダルを挟まない（Philharmonie de Paris の弱点：4択のモーダル＋新しいタブ）
+
 解剖で裏づけた項目が増えたら、ここに足す（どのサイトで確かめたかを添える）。

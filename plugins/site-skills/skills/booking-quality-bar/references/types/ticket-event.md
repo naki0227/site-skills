@@ -35,15 +35,35 @@
 - **動き**：all 200〜300ms ease-out が主。頭の BOOK NOW は fadeInUp 600ms cubic-bezier(.42,.01,.23,1) を 1000ms 遅らせる。ロゴの輪がスクロールの割合で回り、一番下で scale 3.5・50度（GSAP）。**ロゴの回転・スムーズスクロール・動画を JS でも `prefers-reduced-motion` で止める**、CSS も reduce で .01ms。
 - **重さ（PC / SP）**：規約の入口 3.65 / 3.76MB、公演 5.51 / 5.19MB、What's On 8.88 / 6.49MB、トップ 9.85 / 8.81MB、ガイドツアー 13.30 / 11.47MB。いちばん重いのは写真（ツアーの JPEG 8.9MB、トップの「?resize=16%2C10」の GIF が 2,985KB のまま）。全ページで OneTrust 850KB・Font Awesome 約500KB・`/wp-json/wp/v2/` 195KB。
 
+### Philharmonie de Paris（https://philharmoniedeparis.fr/en ・2026-11-02・コンサートホールの自社サイト。席の画面は billetterie.philharmoniedeparis.fr＝SecuTix）
+条件：トップ・カレンダー（/en/calendar?genreGps=1&types=1 と /en/calendar）・公演 /en/activite/29624（Orchestre de Paris / Klaus Mäkelä、2026年12月2日・3日の2回）・席の画面（perfId=10229442289070）・Subscriptions and discounts（＋仏語の CGV）。PC 1440 と SP 390 で計測。席の画面で枚数を選ぶまでで、Add to cart は押していない。
+
+- **検索**：ヘッダーの「CALENDAR」185×56（角28px・#be244f）から。紺の日付の帯（「MONDAY, 2 NOVEMBER 2026」32px）の右に When｜What｜Advanced filters｜検索。When は白い面 312×534 に**1か月・月曜始まり・日 32×32**、選んだ日は口紅色の丸。**公演のある日の印は無い**。日を押すと 683ms で URL が `?startDate=2026-11-19` になり、「from 19/11/2026 ⊗」のチップ（40px）。**終わりの日は持たない**。What は7項目。人数・枚数は探す段で聞かない。件数「4168 results」は画面の外に置き読み上げだけ。
+- **一覧**：日ごとの紺の帯 72px（SP 22.4px）→ 時刻 36px → カード 1368×343（写真 323｜本文 784｜灰 #edeff1 の面 261）。灰の面に会場・**席種6つの値段「€13｜€27｜€42｜€62｜€78｜€88」16px/25px、売り切れた席種だけ取り消し線（400、`aria-label="Unavailable price"`）、残りは 600**・空き・「Info & Tickets」160×40（角20px）。空きは丸 17px＋14px の言葉で3段：GOOD＝何も出さない／LIMITED＝「Last tickets」緑 #238044／NONE＝「Sold Out」「Sold Out – Waiting List」赤 #da2320（11月2日〜の22公演で 13／4／3／2）。値段と空きはカードを出した後に22件分を1回の JSON（`level`・`label`・`buttonType`）でまとめて差し込む。並べ替え・地図は無い。
+- **詳細**：写真の頭（題 38px/40px Bold 大文字、SP 22px）の下に**回のチップ**「2 Dec / 8:00 pm / ● Last tickets」（選んだ回は白地、約118×99。空きは 12px）。右に白い枠 432×555（角16px）：日付の select 380×47（24px で「— 8:0」と切れる）→ ● Last tickets → **Book my ticket 380×60**（角30px・18px 600、PC y=687）→ SEAT CATEGORIES AND PRICES（席種6つを2列、色の丸＋「Catégorie 1 €78.00」、売り切れは線）。チップを押すと **349ms・通信 0KB・URL は替わらず**、select と席種の線が替わる（3日は Catégorie 1 も売り切れ）。SP は**紺の帯 80px に Book my ticket 370×60 を画面下に固定**（最初の画面から。帯に日付・値段は無い）。地図は埋め込まない。口コミは無い。
+- **買うまでの段**：Book my ticket → **4択のモーダル**（個別の券／定期会員を作る 3〜5公演15%・6公演以上25%／28歳未満 1枚 €9／会員に足す）→ 個別の券は新しいタブで席の画面へ。
+- **席の画面**：「1人9枚まで」の説明（14px #1675e1、4.50:1）→ **席種×料金区分の表**（Seat Category｜Tariff｜Unit Price｜Quantity）。席種は左の線 4px の色（1 #ff9090・2 #ffc080・3 #ff90ff・4 #60b0ff。**詳細の丸と同じ色**）。行は「Jeunes de 16 à 27 ans 11.00 EUR」と「Full price 78.00 EUR」。**枚数の select（80×40・角6px）の上限がその席種の残り**（12月2日：Catégorie 1＝1・2＝3・3＝4。残りが9を超える席種は9まで）。数字は画面に書かない。売り切れは「Sold out」ピル（#bc1c00 on 5%、77×32）。枚数を選ぶと約1.5秒・通信 0KB で**「TOTAL　2 TICKETS　136.00 EUR」＋Add to cart の帯が sticky で画面下**（PC 1038×72・SP 358×104、#f4f5ff）。Add to cart（#b3d6fd に黒）は0枚でも同じ色。11月2日の回には区画（1er Balcon impair - courbe など）を選ぶ「Preference」の列があり、座席表は無く自動で割り当て。
+- **予約前の不安**：払い戻し不可・**2025-26年から同じか高い席へ公演の48時間前まで交換、手数料は券の10%**・定期会員は1シーズン4回無料・7日前を切った注文はすぐ払う、は**仏語の CGV だけ**。英語の案内は会員の特典に「up to 3 times」と書き回数が合わず、見出しも「SEASON 2025-26」のまま。公式の転売（額面以下・買う人が1枚 €1）は案内の y=4,330 と詳細の y=2,943。席の画面には右下の「General terms & conditions」のリンク（y=1,011）と支払いの印5つだけ。
+- **データ**：詳細に**回ごとの `MusicEvent`（2つ）と、席種ごとの `Offer`（price・EUR・券売り場の url・`availability` InStock／OutOfStock・validFrom＝販売開始）**。`"EventStatus"` と大文字で始まり綴りが違う、3日の endDate が空文字。トップ・一覧・案内は JSON-LD 無し。
+- **見た目**：紺 #001b3b（白地で 17.21:1）が文字と帯、口紅色 #be244f が押すもの（白字 5.91:1、ホバー #b9204a）、灰の地 #d4d9de・#edeff1、白いカード角16px。見出しは自社の Philharmonique（細い大文字。CALENDAR 90px／SP 50px）、本文は Source Sans Pro（Google Fonts）。券売り場は Montserrat・水色 #b3d6fd で、紺と口紅色は消える。
+- **動き**：主ボタンは `transition: all`（0s）で色が一瞬で替わる。CSS は box-shadow .3s ease が主。頭のスライドは自動で、prefers-reduced-motion は自社・券売り場とも0か所。
+- **重さ（PC / SP）**：トップ 10.70 / 4.21MB（テーマの中の JPEG 1枚 7,019KB、SP は読まない）、一覧 5.30 / 5.30MB、公演 4.27 / 3.94MB、席の画面 5.70 / 5.53MB（CSS 1本 2,341KB・JS 1,084KB）、案内 3.22 / 3.22MB。どのページにも同意の SDK（sdk.privacy-center.org、展開後 674KB）。sprite.svg 187KB を2つの URL で2回読む。
+
 ## 真似る型
-見本は DICE（販売サービス）と Shakespeare's Globe（劇場の自社サイト）の2つ。
+見本は DICE（販売サービス）・Shakespeare's Globe（劇場の自社サイト）・Philharmonie de Paris（コンサートホールの自社サイト＋SecuTix）の3つ。
 
 1. **値段は手数料込みで出し、含んだことを1文で添える**。DICE は「From £36.05」の下に「The price you'll pay. No surprises later.」、Globe は「£89–£29*」の * で「£3 per order・£1 per ticket を含む、立ち見は除く」を DETAILS と公演日の表の上の面（656×152）の2か所で言う。作るときは、合計の下に内訳の1行を置く。
 2. **公演日がいくつもある演目は、1行1回の表**（Globe：行 656×110、日付・時刻のボタン 120×43・値段の幅 13px 700、同じ日の2回は2行）。DICE は1公演1ページなので表が無い。作るときは、行に「日付・時刻のボタン・席種ごとの値段（と残り）」を並べ、配慮の回の印も行に入れる。
-3. **買う入口は1つにして、題名のすぐ下に置き、SP は画面に貼り付ける**。DICE は題名の下（y=547）の枠で、SP は画面下 74px に固定。Globe は頭の右下（y=675）で、SP は**画面の上**に 370×54。どちらも値段（DICE「From £36.05」、Globe「PRICES: £89.00 - £5.00」）を入口の横に出す。
-4. **日付は「始まり」と「終わり」の範囲で持つ**。DICE は URL に `?from=…&until=…`、Globe は選んだ日＋7日（`unixDay` の範囲）。作るときは URL に from／until で残す（Globe は残らなかった）。
+3. **買う入口は1つにして、題名のすぐ下に置き、SP は画面に貼り付ける**。DICE は題名の下（y=547）の枠で、SP は画面下 74px に固定。Globe は頭の右下（y=675）で、SP は**画面の上**に 370×54。どちらも値段（DICE「From £36.05」、Globe「PRICES: £89.00 - £5.00」）を入口の横に出す。 Philharmonie は右の白い枠 432×555 の Book my ticket 380×60（y=687）で、SP は画面下の紺の帯 80px（値段は入れていない）。
+4. **日付は「始まり」と「終わり」の範囲で持つ**。DICE は URL に `?from=…&until=…`、Globe は選んだ日＋7日（`unixDay` の範囲）。作るときは URL に from／until で残す（Globe は残らなかった）。 Philharmonie は `startDate` だけで終わりを持たない。
 5. **毎日ある枠（ツアー・体験）は月のカレンダーに印**（Globe：升 93×80、休みの日は印なし、データは HTML に持って月送りで通信しない）。DICE のカレンダーには印が無かった。作るときは印に回の数・最初の時刻・残りを入れ、読み上げの名前を付ける。
 6. **配慮の回（字幕・音声ガイド・リラックス）は、行の印と種類ごとの絞り込みの両方で引ける**（Globe：表の注記と3つの開く枠）。印は本文と同じ書体で、14px 以上。
+
+7. **一覧の段で、席種ごとの値段を全部並べ、売り切れた席種だけ取り消し線で残す**（Philharmonie：「€13｜€27｜€42｜€62｜€78｜€88」16px/25px、線は 400＋`aria-label="Unavailable price"`、残りは 600。Globe は行に値段の幅「£89.00 - £29.00*」、DICE は「From」の1つ）。作るときは値段の幅だけで済ませず、どの席種が残っているかまで一覧で見せる。
+8. **同じ演目の回が少ない（2〜5回）なら、題の下に「日・時刻・空き」のチップ**を並べ、押すと読み直さずに右の枠の空きと席種を替える（Philharmonie：約118×99、349ms・0KB）。回が多いなら Globe の1行1回の表。
+9. **席の画面は「席種×料金区分」の行で、枚数の上限をその席種の残りの数にする**（Philharmonie：上限 1・3・4、1人9枚まで）。上限を数字でも横に書く（本家は書かない）。枚数を選んだら「◯枚　合計」と買うボタンの帯を画面下に貼り付ける（PC 1038×72・SP 358×104）。
+10. **席種は1つの色を持ち、詳細と席の画面で同じ色を使う**（Philharmonie：1 #ff9090・2 #ffc080・3 #ff90ff・4 #60b0ff、詳細の丸 16px と席の画面の左の線 4px）。
+11. **構造化データは回ごとの Event に、席種ごとの Offer と availability（InStock／OutOfStock）を入れる**（Philharmonie。DICE は AggregateOffer だけ、Globe は無し）。
 
 ## 反面教師
 - 残りが「LIMITED TICKETS」の一言だけで、SP は 8.32px。席種ごとの残りは席の画面まで出ない（Globe）。
@@ -58,3 +78,10 @@
 - 日付のカレンダーに、公演のある日の印が無い（DICE。押す前に空きの有無が分からない）。Globe の What's On の日の帯にも印は無い。
 - 1ページ 10MB 前後。決済とボット対策を全ページで読み、文字だけのヘルプでも 8.33MB（DICE）。
 - 一覧の見出しの後半が白33%（2.77:1）、件数も並べ替えも無い（DICE）。
+- 残りが少ないことを緑 #238044 の「Last tickets」で言う。写真の上のチップでは 12px・3.48:1（Philharmonie）。少ないは赤い側の色で、数で言う。
+- 席の画面に残りの数も払い戻しの条件も無い。上限は select を開くまで分からず、払い戻し不可・48時間前の交換・手数料10%は仏語の CGV だけ（Philharmonie）。合計の帯の下に、回の日時から計算した交換の締めを1行で出す。
+- 予約の入口の後に4択のモーダルがもう1段あり、個別の券は新しいタブで開く（Philharmonie）。いちばん多い選択肢は直接、ほかは文字のリンクに下げる。
+- SP の固定の帯がボタンだけで、どの回の、いくらの券か書かない（Philharmonie：80px）。DICE のように値段を入れる。
+- 日付の select が自分の幅に収まらない（Philharmonie：24px・380px で「— 8:0」）。
+- 暦に公演の印が無く、`startDate` だけで終わりの日を持たない（Philharmonie）。
+- 英語の案内と販売条件で交換の回数が食い違う（Philharmonie：3回と4回）。規定は1か所から引く。

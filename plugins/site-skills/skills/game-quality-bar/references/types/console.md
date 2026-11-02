@@ -26,15 +26,29 @@
 - **表記**：CERO C はフッターの SPEC（タイトル・発売日・レーティング・ジャンル・価格・プレイ人数・対応機種の7項目、文字）だけ。/stores/・/expansion/ は0件。権利は「©ATLUS ©SEGA」＋機種の商標4行。言語は JA・EN・TC・SC・KO と、FR〜ES の4つが同じ1ページ。JSON-LD は0件、見出しは SVG・画像で top の h1〜h3 のうち13個が空。
 - **安全と重さ**：`prefers-reduced-motion` は5ページの CSS・JS に0件、reduce でもローディング・動画・横送りが同じ。measure.js：top PC 36.99／SP 37.08MB（mp4 9,335KB＝PC 用と SP 用の4本とも、Noto Sans JP の OTF 2本 8,970KB、WebP 8,899KB、HTML 1,111KB のうち base64 約955KB）、/expansion/ 25.22／29.29MB、/switch2/ 27.40／26.63MB（LINE Seed JP の OTF 7,803KB＋Material Symbols 3,912KB）、ニュース 6.42／6.45MB、/stores/ 10.23MB（88% がフォント）。
 
-## 真似る型（Z-A と P3R の2つで確かめた）
+### 『Clair Obscur: Expedition 33』公式（https://www.expedition33.com/ ・2026-11-02 解剖、2025-04-24 発売・海外。歩いた5ページ：/・/overview・/overview/characters・/latest-news・/collectors-edition）
+- **枠**：Wix（Studio）の5ページ。専用の購入ページは無く（/buy は 404）、店はヘッダーの Out Now と機種の帯。地 #000、文字は白と金 #ECCFA3（14.02:1）、ナビ #EDCD9D。見出しは全部 Trajan Pro の大文字を « » で挟む。本文 IM FELL Double Pica 18.5px、紹介・日付は Palatino Linotype Italic、機種・タブは Portmanteau（5書体とも Wix にあげた woff2、太さは 400 だけ）。
+- **最初の画面**：絵の具のかすれの縁で切り抜いた無音のループ動画（1080p、`autoplay muted loop preload="auto"`、poster なし）の中央上にロゴ、下に « Tomorrow Comes »＋AVAILABLE NOW（Portmanteau 34.5px）。直下 y=828 に機種4つのリンク（234×91、新しいタブ）。発売日は出さない。SP は機種のロゴ4つが1画面目に入る。PC は Cookie の帯 64px が機種の帯にかぶる。
+- **動画**：top は2本とも読み込み時に取る（最初の画面 8,321KB、Launch Trailer の背景 9,126KB は `preload="none"` でも autoplay）。トレーラーは金の線の菱形（div、aria-label「… Play video」）を押して `iframe_api` → `autoplay=1&mute=1&controls=1&loop=1`、押す前の YouTube の通信 0。reduce では top の動画が paused・0.0s（ただし 8.5MB は取る）。
+- **キャラクター**：8人を1ページの `role="tab"`（div、aria-selected・aria-controls）で。高さ 30px・角丸 50px・Portmanteau 14.25px、選んでいない札は #ECCFA3 の地に黒、選んだ札は地を抜いて白。roving tabindex（選んだ札 0・他 −1）で、→ はフォーカスだけ移す。切り替え PC 60〜148ms・57〜81KB／SP 50〜151ms・6〜8KB。URL は変わらず、前後のリンク・声優表記は無い。中身は « 名前 »（Trajan 42.6px）→ 紹介3段落（Palatino 斜体 18.5px）→ CHARACTER TRAILER（YouTube へ）・COSPLAY GUIDE → 立ち絵 648×587。
+- **ナビ**：高さ 56px の固定（地は透明）、IM FELL 15px の7項目＋右端の Out Now だけ 20px 斜体で札の絵の上（132×56）。Out Now はリンク（/linkhub）＋ `button aria-label="More Out Now pages" aria-expanded` で、ホバーで Steam・Xbox・PlayStation・Epic（各 100×41、新しいタブ）。SP は 22×22 のメニューボタン。
+- **買う**：/collectors-edition に4版（Standard Game・Digital Deluxe・Lumiere Edition・Collector's Edition〔Sold Out〕）×6品の比較。PC は1枚の画像（`SKU_Matrix.png`、alt はファイル名）、SP は button 4つ（362×46、aria-expanded、1つだけ開く、288ms）。値段は5ページで0件、このページの本文に店のボタンは無い。地域ごとの販売元を文で（米国は限定2版が GameStop だけ、欧州の Collector's は Laced Records だけ、日本は SEGA の通常版だけ）。注記は PC 10.27px／SP 8px。
+- **表記**：ESRB M をフッターの画像 168×112（元は 108×48、alt「Jpeg V1.jpg」、リンクなし）で全ページに。文字の年齢区分は0件。権利は PC 13.86px／SP 9px（Privacy Policy は SP 6px）。hreflang は en-us と x-default だけ。h1 は5ページとも0。
+- **重さ**：measure.js：top PC 41.55／SP 35.41MB（mp4 17,448KB、JS 11,215KB、JSON 5,857KB、HTML 2,813KB はインラインの CSS 1,339KB を含む）、world 20.02MB、chara 13.91MB、news 13.55MB、buy 9.08MB。Typeform の renderer 1,603KB を top・world・chara で毎回。画像は Wix の変換で AVIF。
+
+## 真似る型（Z-A・P3R・Expedition 33 の3つで確かめた）
 - **機種×版の値段・発売日・年齢区分を、1か所に文字で並べる。**Z-A は商品詳細の仕様表（14項目の定義リスト）、P3R は全ページ末尾の SPEC（7項目、価格は全版を1つの欄に）。どちらも値段と CERO が文字で読めるのはそこだけだった。作るときは、その表を購入の区画にも置き、年齢区分を値段の横に出す。
 - **パッケージの買う先は、ストアのボタン1つでなく店の一覧にする。**Z-A はダウンロードカード16チェーン＋ダウンロード番号6ショップの店名リスト、P3R は26店のカード（店舗オリジナル特典つき）を PS5／PS4 で切り替え。店ごとの特典があるなら、店のカードに特典名と版のボタンを入れる。ボタンの名前には店・版・機種を書く（P3R は117個とも名前が無い）。
 - **版は「パッケージ／ダウンロード」の2つのタブか区画で分ける。**Z-A は商品5枚を1つの詳細ページの `#anc01〜04` に分け、価格をパッケージ・DL・Switch 2 Edition の別に書く、P3R は 640×60 のタブ2つ。限定版の同梱物は版×品の ○×表にする（P3R：4版×6品）。
 - **トップの最初の数画面に「購入」への入口を置く。**Z-A は左の縦帯に「購入はこちら！」「予約はこちら！」、P3R は2画面目（y=1,139）に「BUY NOW!」。特設ページは「購入はこちら」を固定する（P3R：/expansion/ 300×97、/switch2/ 257×51）。
+- **最初の画面の真下に機種のリンクを並べ、ヘッダーの右端に買う入口を1つだけ別扱いで置く。**Expedition 33 は AVAILABLE NOW の帯の直下 y=828 に機種4つ（234×91）、ヘッダーは他 15px に対して Out Now だけ 20px の札（132×56）で、▾ の button（aria-expanded）から店4つ（100×41、新しいタブ）。Z-A の縦帯・P3R の2画面目の BUY NOW! と同じく、入口は最初の数画面に。
+- **版×品の比較は、PC は表、SP は版ごとに開く。**P3R は 4版×6品の ○×（ul と背景の絵）、Expedition 33 は 4版×6品（PC は画像1枚、SP は 362×46 の button 4つで1つだけ開く）。どちらも表が文字の table でないので、作るときは table と `button[aria-expanded]` を同じデータから作る。
+- **トレーラーは押してから埋め込む。**Z-A はサムネの `<button>` を押して `iframe_api`、Expedition 33 は菱形の再生を押して `iframe_api` → `autoplay=1&mute=1`。どちらも押す前の YouTube の通信は 0（P3R は読み込み時に iframe で 1.5MB）。
 
 
 ## 真似る候補（見本1つ。2つ目で確かめたら「真似る型」へ上げる）
-- トレーラーのサムネは `<button>` にし、押した時に埋め込みの API を読む（Z-A。P3R は読み込み時に iframe を入れて 1.5MB）。
+- 人物のタブは `role="tab"` の roving tabindex（選んだ札だけ 0、← → でフォーカス）にし、選んだ札は面を抜いて文字だけにする（Expedition 33：8人、高さ 30px、他の札は #ECCFA3 の面）。ただし URL は変えていないので、作るときは #名前 を足す。
+- 写真・動画を作品の画風の縁（Expedition 33 は絵の具のかすれの PNG）で切り抜き、見出しを1つの記号（« »）で挟んで、全ページの部品をそろえる。
 - キャラクターは1人1URL、一覧はグループ見出しで分ける（Z-A。P3R はモーダルで URL なし、組の見出し S.E.E.S.／STREGA は同じ）。
 - ニュースは種類のタブに件数を出し、12件ずつ増やす（Z-A）。
 - 人物ごとに色を1つ決め、一覧の地と詳細の面を同じ色で塗る。選ばれていない人は単色にする（P3R：11色、`_off` 画像）。文字は濃紺（#1d384a なら全色で 4.46 以上）。
@@ -50,4 +64,7 @@
 - 値段を alt の空の画像にする（P3R：top の8つ）。販売店のボタンに名前が無い（P3R：117個）。
 - 人物のカードが href の無い `a` で、キーボードでは開けない。モーダルは Esc で閉じない（P3R）。
 - SP を `width=750` の固定の viewport で縮める（P3R：本文が実寸 10.4px）。
+- 年齢区分をフッターの画像1枚だけにする（Expedition 33：ESRB M、168×112 に引き伸ばしてぼやけ、alt「Jpeg V1.jpg」）。値段を1つも書かない（Expedition 33：5ページで0件）。
+- 版の比較表を画像1枚にする（Expedition 33：`SKU_Matrix.png`、alt はファイル名）。人物のタブに URL が無い（Expedition 33：8人とも同じ URL）。
+- 見えていない区画の背景動画を読み込み時に取る（Expedition 33：Launch Trailer の背景 1080p 9,126KB、`preload="none"` でも autoplay）。
 - 日本語フォントを全字形の OTF のまま毎ページ取る（P3R：8,970KB、/stores/ の 88%）。PC でも SP 用の動画を取る（P3R：4本 9,335KB）。
