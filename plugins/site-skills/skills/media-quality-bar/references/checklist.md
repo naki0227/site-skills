@@ -105,4 +105,13 @@
 - [ ] 本文の途中で、ページを暗くするポップアップを出さない。誘いは記事の終わりのカードに置く（Grist：本文の終わり近くで丸いポップアップ）
 - [ ] 記事ごとに地の色を替えるなら、文字の色は1色のまま、どの地でも 7:1 を超えるか計算する（Grist：#3c3830 が #f0f0f0 10.23:1・#e6ffa0 10.65:1・#ffd1df 8.57:1・#d3c8ff 7.48:1）
 
+- [ ] 目次の項目は `<a href="#見出しの id">` にする。button で位置を計算して飛ばさない。h3 も入れ、押したら URL の # を変える（YAMAP MAGAZINE：button・id 0・h2 だけ・0ms で飛び URL は変わらない）
+- [ ] 写真の説明は figure と figcaption で組み、style の直書き（`span style="color:dimgray;font-size:small"`）にしない。alt に写っている物を書く（YAMAP MAGAZINE：figure 0・article の alt 29枚中23が空）
+- [ ] 写真の説明の終わりに、サービスの該当の画面（地図・コース・記録）へのリンクを置くと、記事がサービスの入口になる（YAMAP MAGAZINE：article 2・long 20）
+- [ ] SP でも h3 を本文より大きくする（YAMAP MAGAZINE：SP の h3 15px・本文 16px）
+- [ ] 本文の途中から出す自社の帯は、SP で画面の1割まで、×で閉じたら出しなおさない、reduced-motion では動かさない（YAMAP MAGAZINE：390×147＝17%・transform .5s cubic-bezier(.2,0,0,1) が止まらない）
+- [ ] ダークに切り替えるとき、ロゴ（img の SVG）と横スクロールのナビの端の面も替わるかを見る。既定は端末の設定に従う（YAMAP MAGAZINE：ロゴが黒のまま #000／#1a1a1a 1.20:1、ナビの端に白の面、prefers-color-scheme 0）
+- [ ] カードの題を配る HTML で字数で切って「...」を付けない。全部配り、CSS の行数で切る（YAMAP MAGAZINE：約40字で切る）
+- [ ] 写真を 1種類の大きさ（850px）で配らない。srcset と sizes で SP の 358px に合わせる（YAMAP MAGAZINE：article の本文 29枚とも srcset 0）
+
 解剖で裏づけた項目が増えたら、ここに足す（どのサイトで確かめたかを添える）。

@@ -33,13 +33,29 @@ PC 1440×900 / SP 390×844。見たページ：トップ（/）、数学の一�
 - **動き**：keyframes 0。color .2s ease-in-out 13回・opacity .2s 10回、大きな出入りは .5s。メニューは全画面 #1a1a1a・opacity .5s cubic-bezier(.4,0,.2,1)、Esc で閉じない。:hover 136 に (hover:hover) 2。prefers-reduced-motion 0（動画も止まらない）。
 - **データと重さ**：JSON-LD は Yoast の @graph で、記事は WebPage（datePublished・dateModified・author Person）。Article は無い。og:image は記事ごとに 1200×630＋alt。ダーク無し、印刷用の組み（VIEW PDF/PRINT MODE・@media print 7）。重さ（解析を除く）PC top 27.74MB / list 8.48MB / article 14.14MB / long 7.77MB（SP 27.00 / 8.48 / 21.05 / 5.87MB）。全部込みの記事 PC 15.43MB・110リクエスト・19ホスト。重い理由は自動再生の mp4（トップ 8.7MB）、トップの YouTube 4本（16.5MB）、閉じたコメントの Disqus（2.42MB）。CLS は記事 0.0013 以下。
 
+### YAMAP MAGAZINE（https://yamap.com/magazine ・2026-11-03 計測）
+PC 1440×900 / SP 390×844。見たページ：トップ（/magazine）、分類「登る」（/magazine/categories/2）、スポンサー記事（/magazine/76697・福岡の六ヶ岳・写真29枚・高さ 20,883px）、編集部の長い記事（/magazine/41571・涸沢の紅葉・19,708px）。登山アプリ YAMAP を運営するヤマップのオウンドメディア。本文は WordPress、画面は Next.js（記事の HTML に本文まで入れて配る）。選んだ理由：写真の説明からアプリの地図・活動日記へつなぐ、記事の頭の目次、本文の途中から出す自社の保険の帯、フッターのダーク切り替え。親の yamap.com が SANKOU! に載る（MAGAZINE 単独の事例集・受賞は確かめられなかった）。
+- **本文**：PC 728px（1行 約38字）・18px／36px（2.0）・字間 1px（.1rem）・段落の間 60px。SP 358px（左右 16px・約21字）・16px／32px・段落の間 32px。文字 #222（白地 15.91:1）。リードも本文と同じ組み。h1 28px／45px（SP 20px／35px）、h2 24px／36px・上下 40px（SP 20px／30px）、h3 18px／27px（**SP 15px で本文より小さい**）。書体は Helvetica Neue → Arial → ヒラギノ角ゴ → Hiragino Sans → メイリオ、@font-face 0。太さは 400 と 700 だけ。
+- **記事の頭**：アイキャッチ 728×485（元 1500×1000・width/height あり）→ パンくず 14px 700 →「投稿日 2026.10.27（#545454）　更新日 2026.10.29（#222）」14px・右端に「Sponsored」→ 分類 16px 700 #545454 → 題 → リード → 目次。書き手は本文の左 100px の欄（丸 100px・肩書・名前 14px 700）。共有は PC の右 45px の欄に丸 45px が3つ（ついてこない）、SP は左下に固定。
+- **目次**：リードの直後、#fafafa・内 40px（SP 20px）の箱に h2 だけ（long は h2 3・h3 8 のうち3項目）。項目は `<button>` 14px 700・palt・間に 1px #ddd。見出しに id が無く、押すと見出しを上 100px の位置へ 0ms で飛ばす。URL は変わらない。固定・いまの節は無い。フォーカスの印は outline none。
+- **部品**：写真は本文幅・元 850px の1種類（srcset 0）・lazy。説明は `<p><img><span style="color:dimgray;font-size:small">`（5.49:1）で figure 0、alt は article 29枚中23が空。説明の終わりに「YAMAPの地図はこちら」「モデルコースはこちら」「〇〇さんの活動日記より」（article 2・long 20、うち活動日記 15）。特典の箱は本文に style を直書き（#f6f6f6・1px #e0e0e0・角 8px、説明 12px・10px）。表・引用・番号の手順・コードは無い。
+- **記事の終わり**：クレジット（撮影・編集協力・協力）→ 書き手の箱 728×293（紹介 14px／28px・「この筆者の記事をもっと読む」）→ タグ（12px 700・#ececec・角 15px）→ 公式SNS 5つ → 関連記事3（372×445・写真 360×240）→ 編集部おすすめ4（横組み 384×130）→ アプリの帯 729×340 → ストア。**関連記事のカードに Sponsored の場所が無く、long の関連3本はどれもスポンサー記事**。スポンサー記事の終わりには関連もおすすめも無い。
+- **一覧**：パンくず → h1 28px／42px → 説明 14px／28px → 下の分類13 → 横組みのカード（写真 344×229 の div 背景｜文 390px、分類 12px と右端に Sponsored、題 h5 18px／27px、日付 12px、書き手 30px の丸）17本 →「もっと見る」215×43・角 30px（17 → 27本、URL は変わらない、PC +617KB）。題は配る HTML で約40字に切って「...」。右の欄 310px に広告 310×220（自社の配信 r.yamap.com）。トップには h1 が無い。
+- **ブランドとの距離**：スポンサー記事が多い（トップの新着 17本中9、一覧「登る」17本中7）。本文の途中（PC y 7,349px の高さ 0 の印）を越えると、自社の登山保険の帯を下から出す（PC 1440×186・SP 390×147＝画面の17%、transform .5s cubic-bezier(.2,0,0,1)、× で戻す）。SP ではそのとき共有の丸が opacity 0 に（.3s・.5s 遅れ）。終わりにアプリとストア。
+- **広告と同意**：本文に他社の広告 0。右の欄に4〜5枠。同意の帯は出ない（GTM・Clarity・LINE のタグは最初から）。
+- **色**：変数 --color-white 25・--color-text #222 18・--color-black-lighter #545454 12・--color-meta #adadad 9・--color-whisper #fafafa 8。赤 #e60012 はロゴの印だけ、ストアへのリンクに #cf0010（5.74:1）。検索の placeholder #adadad は 2.24:1。
+- **ダーク**：フッターのつまみで .dark（地 #1a1a1a・面 #222・本文 #d1d1d1 11.40:1・罫 #404040）、再読み込みでも残る。prefers-color-scheme 0。ロゴは img の SVG のまま黒（#000／#1a1a1a 1.20:1）、ナビの端に白の面が残る。
+- **動き**：ほぼ opacity .1s ease-in。帯だけ .5s。SP のメニューは display の切り替えで動かず、Esc で閉じない。ヘッダーは absolute で固定しない。:hover 44 に (hover:hover) 19、reduced-motion 1か所。
+- **データと重さ**：JSON-LD 0（4ページとも）、記事に meta description・og:description 無し、time 無し。重さ（解析を除く）PC top 4.65MB／list 5.38MB／article 3.10MB／long 3.69MB（SP 4.59／5.40／3.82／4.34MB）。全部込みの article PC（下まで読む）5.84MB・64件・15ホスト（写真 3,836KB・GTM 1,193KB・Next.js 515KB）。CSS 33KB が1本、フォント 0。読み込みの CLS は list PC 0.0234 のほかは 0。一気に最後まで飛ばすと long PC 0.0840・SP 0.1654。
+
 ## 真似る型
-見本2つ（北欧、暮らしの道具店・Quanta Magazine）に共通すること。
-1. **本文は細い列に 16px、行間 1.75〜1.9**：518px・16/28（北欧）、560px・16/30（Quanta）。補足は列の外に出し、本文の幅を変えない（Quanta：右 64px あけて 300px）。
-2. **色は墨と灰に、ブランドの色を1つだけ**：北欧は灰の変数 #444 が 242回で橙 #f39800 はカートだけ、Quanta は #1a1a1a・#fff と橙 #ff8600 を線と点にだけ。ブランドの色を白地の小さな文字に使わない（Quanta の橙は 2.42:1）。
-3. **他社の広告を置かない。運営の関わりを本文の外で言う**：北欧は「SPONSORED」の札、Quanta は記事の終わりの編集注記（資金と編集の独立）。どちらも広告 0。
-4. **一覧の次のページに URL を持たせる**：/note/page/2（北欧）、/mathematics/page/2（Quanta）、どちらも rel="next"。SP でも番号を消さない（Quanta は SP で NEXT だけ）。
-5. **記事の終わりに「同じ分類の続き」を置く**：同じ分類の最新4本（北欧）、Also in 分類 3本＋全幅の NEXT ARTICLE（Quanta）。全幅の次の1本まで置くのは Quanta だけ。
+見本3つ（北欧、暮らしの道具店・Quanta Magazine・YAMAP MAGAZINE）に共通すること。
+1. **本文は細い列に、行間 1.75〜2.0**：518px・16/28（北欧）、560px・16/30（Quanta）、728px・18/36・字間 1px（YAMAP）。段落の間は行の高さ以上（北欧 PC 32px、Quanta 30px、YAMAP 60px）。補足は列の外に出し、本文の幅を変えない（Quanta：右 64px あけて 300px、YAMAP：書き手は左 100px・共有は右 45px）。
+2. **色は墨と灰に、ブランドの色を1つだけ**：北欧は灰の変数 #444 が 242回で橙 #f39800 はカートだけ、Quanta は #1a1a1a・#fff と橙 #ff8600 を線と点にだけ、YAMAP は #222・#545454・#fafafa で、赤はロゴの印とストアへのリンクだけ。ブランドの色を白地の小さな文字に使わない（Quanta の橙は 2.42:1）。
+3. **運営の関わりを札と本文の外で言う**：北欧は「SPONSORED」の札、Quanta は記事の終わりの編集注記、YAMAP は記事の頭と一覧のカードの右端に「Sponsored」とタグ「PR」。札はすべてのカードに（YAMAP は関連のカードで抜けた）。
+4. **一覧の次のページに URL を持たせる**：/note/page/2（北欧）、/mathematics/page/2（Quanta）、どちらも rel="next"。YAMAP は「もっと見る」で URL が変わらない（真似しない）。
+5. **記事の終わりに「同じ分類の続き」を置く**：同じ分類の最新4本（北欧）、Also in 分類 3本＋全幅の NEXT ARTICLE（Quanta）、関連3本＋おすすめ4本（YAMAP）。全幅の次の1本まで置くのは Quanta だけ。
+6. **記事とサービスをつなぐ場所を決める**：北欧は記事の終わりの商品の特集4件、YAMAP は写真の説明の終わりにアプリの地図・活動日記へのリンクと、本文の途中から出す自社の帯。Quanta は製品への導線を置かない。
 
 ## 反面教師
 - 日付を記事の最後に置く。頭では「いつの話か」が分からない（北欧、暮らしの道具店：編集部のおすすめの下に 12px）。
@@ -55,3 +71,11 @@ PC 1440×900 / SP 390×844。見たページ：トップ（/）、数学の一�
 - PC 用と SP 用の図を両方読み、片方を隠す（Quanta Magazine：SVG 合計 1,207KB）。
 - 全幅の「次の記事」に小さい画像を引き伸ばす（Quanta Magazine：520×292 を 1440×600）。
 - 全画面メニューが Esc で閉じない（Quanta Magazine：PC・SP とも）。
+- 目次を button で作り、見出しに id を付けない。h2 だけで、押すと 0ms で飛び、URL もいまの節も無い（YAMAP MAGAZINE）。
+- 写真の説明を p の中の span に style で書き、figure を使わない。alt をほぼ空にする（YAMAP MAGAZINE：article 29枚中23）。
+- SP の h3 を本文より小さくする（YAMAP MAGAZINE：15px と 16px）。
+- 関連記事のカードだけ Sponsored の札が抜ける（YAMAP MAGAZINE：long の関連3本がすべてスポンサー記事）。
+- 「もっと見る」で URL を変えない（YAMAP MAGAZINE）。カードの題を HTML で約40字に切る。
+- SP で自社の帯が画面の17%を覆い続ける（YAMAP MAGAZINE：390×147）。
+- ダークでロゴが黒のまま残り（1.20:1）、端末の設定を見ない（YAMAP MAGAZINE）。
+- JSON-LD 0・記事の meta description 無し・トップの h1 0（YAMAP MAGAZINE）。
