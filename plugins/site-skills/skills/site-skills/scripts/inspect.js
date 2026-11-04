@@ -219,6 +219,10 @@ function probe() {
     m.accentWord = [...new Set(m.accentWord)];
     m.numLead = null; for (const e of document.querySelectorAll('p')) { const r = e.getBoundingClientRect(); if (r.top + scrollY > vh || !r.width) continue; const t = e.innerText.trim(); if (t.length < 20 || e.closest('header,nav,footer') || parseFloat(getComputedStyle(e).fontSize) < 14) continue; const nums = t.replace(/\d{2,4}年\d{1,2}月\d{1,2}日|\d{1,2}月\d{1,2}日|\d{1,2}[:：]\d{2}|\d{4}[\/.-]\d{1,2}[\/.-]\d{1,2}|\d{1,2}[\/.]\d{1,2}/g, '日').match(/\d+(?:[.,]\d+)*/g) || []; if (nums.length >= 3) { m.numLead = `「${t.slice(0, 28)}…」の数字 ${nums.length}個`; break; } }
     m.orangeCta = []; for (const e of document.querySelectorAll('a,button')) { const r = e.getBoundingClientRect(); if (r.top + scrollY > vh || !r.width || r.height < 28 || !e.innerText.trim()) continue; const [R, G, B, A] = rgb(getComputedStyle(e).backgroundColor); if (A === 0) continue; const mx = Math.max(R, G, B) / 255, mn = Math.min(R, G, B) / 255, l = (mx + mn) / 2, d = mx - mn; if (!d) continue; const sat = d / (1 - Math.abs(2 * l - 1)); let h = mx === R / 255 ? ((G - B) / 255 / d) % 6 : mx === G / 255 ? (B - R) / 255 / d + 2 : (R - G) / 255 / d + 4; h = (h * 60 + 360) % 360; if (h >= 8 && h <= 56 && sat > .6 && l > .4 && l < .72) m.orangeCta.push(`「${e.innerText.trim().slice(0, 10)}」`); }
+    // 第5回の見比べ（2026-11-04）：残りの日数・問いかけの見出し・英字の日付
+    { const T = document.body.innerText || ''; const c = T.match(/あと\s*\d+\s*日/); m.countdown = c ? c[0] : null;
+      const e = T.match(/\d{4}\.\d{1,2}\.\d{1,2}\s*(?:MON|TUE|WED|THU|FRI|SAT|SUN)/i); m.engDate = e ? e[0] : null;
+      const hq = [...document.querySelectorAll('h1,h2')].find(h => /[か？?][。]?$/.test(h.innerText.trim()) && h.innerText.trim().length > 6); m.quesHead = hq ? hq.innerText.trim().replace(/\s+/g, '').slice(0, 24) : null; }
     const h1 = document.querySelector('h1'); m.heavyTitle = h1 && +getComputedStyle(h1).fontWeight >= 800 ? `h1 の太さ ${getComputedStyle(h1).fontWeight}` : null; }
   m.overflowX = document.documentElement.scrollWidth > innerWidth + 1;
   m.bodyBgRgb = rgb(m.bodyBg);
@@ -286,6 +290,9 @@ function judge(m, width) {
   if (m.accentWord && m.accentWord.length) add('WARN', 'accent-word', `大きな題の一語だけ色を替えている：${m.accentWord.slice(0, 3).join('・')}`, '題は1色で組む（第3回の見比べで AI っぽいと選ばれた。7業種の作例のうち6つで同じ作り方だった）');
   if (m.numLead) add('WARN', 'number-lead', `最初の画面の文に数字を詰めている：${m.numLead}`, '最初の一文の数字は1つまで。残りは下の章の表や本文へ（第3回の見比べ）');
   if (m.orangeCta && m.orangeCta.length) add('WARN', 'orange-cta', `最初の画面のボタンが橙・黄：${m.orangeCta.slice(0, 2).join('・')}`, '題材から取った色にする。橙・黄を使うなら、題材のどこの色かを1文で言える場合だけ（第3回で橙、第4回で黄が AI っぽいと選ばれた。橙をやめたら黄にそろった）');
+  if (m.countdown) add('WARN', 'countdown', `残りの日数を出している：「${m.countdown}」`, '締め切りや開催は日付で書く（第5回の見比べで「あと26日」が AI っぽいと選ばれた）');
+  if (m.engDate) add('WARN', 'eng-date', `英字の形の日付：「${m.engDate}」`, '「11月4日（水）」の形にする（第5回の見比べ）');
+  if (m.quesHead) add('WARN', 'question-head', `問いかけの見出し：「${m.quesHead}」`, '何の店・何の道具かを言う見出しにする（第5回の見比べ）');
   if (m.heavyTitle) add('WARN', 'heavy-title', `題が極太：${m.heavyTitle}`, '題は手本の業種の太さに（ファッション80件は 400 が中央値）。極太のゴシック体は第3回の見比べで AI っぽいと選ばれた');
   if (m.hyouki && m.hyouki.length) add('WARN', 'hyouki', `漢字で書いた補助動詞・形式名詞：${m.hyouki.join('・')}`, 'ひらく（実在の日本語サイト275件では、どの業種もほぼひらがな。references/ai-tells.md「表記」）');
   if (m.filler.length) add('WARN', 'filler-words', `飾りの言葉：${[...new Set(m.filler)].join('・')}`, '事実（温度・年・数・場所）に書き換える');
