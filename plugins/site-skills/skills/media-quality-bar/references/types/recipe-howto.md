@@ -38,10 +38,29 @@ PC 1440×900 / SP 390×844（iPhone の UA）。見たページ：トップ、�
 - **色と動き**：#e5e5de 39回・#fff 34・#000 25・#f6f5f0 13（右の列 27%）・#c6bda0 12（ボタンの地・黒文字 11.19:1）・#a9a59c 10（札と丸いボタンの枠）。:hover 25 に (hover:hover) 0、reduced-motion 0、:focus-visible 0。トップの送りは6秒・autoHover・止めるボタン無し。
 - **重さ**：measure.js（AdSense・yads は含む）PC top 6.09MB／list 15.41MB／article 11.25MB／long 11.83MB（SP 3.29／3.56／8.87／8.06MB）。全部込みの転送 article PC 4.73MB・271リクエスト・48ホスト（自社 2,051KB・YouTube 980KB）。記事の上位は YouTube の JS 1,630KB・920KB、ngt.woff 676KB、Facebook 558KB。
 
+### Great British Chefs（https://www.greatbritishchefs.com/ ・2026-11-04 計測）
+PC 1440×900 / SP 390×844。見たページ：トップ、分類「Chicken recipes」（/collections/chicken-recipes・難しさの合計 345本）、ふつうのレシピ（/recipes/crab-burritos-recipe・材料21・手順11・組3）、長いレシピ（/recipes/raspberry-peach-melba-mille-feuille-…・材料22・手順18・組4・頭に動画）。同意の画面は「Reject all」で閉じてから測った。一覧の絞り込みと Load more は robots.txt が断る /api を動かすので押していない。選んだ理由：手順ごとの材料の枠と Metric／Imperial の切り替え、シェフを軸にした組み。The Good Web Guide Awards 2018 の Website of the Year。
+- **手順の材料の枠**：手順の段落の下に ul（550px・左 40px・上 15px 下 16px・1px rgba(47,47,47,.1)・内 15px・行 15.2px）で、その手順で使う材料と量だけを書き直す。article 11手順のうち8、long 18手順のうち8（材料を使わない手順には付けない）。合計を割る：材料の列「14 fresh habanero chillies」→ 手順5「7」と手順6「7」、水「3l」→「1l」と「2l」。枠の中身は JSON-LD に入らない。
+- **単位の切り替え**：材料の見出しの直下に「METRIC」「IMPERIAL」（h3・Lato 700 13.6px 大文字・選んだ側に下線）とつまみ（div role="button"・32×10.4px・白い玉の left を .25s linear で 16.8px）。材料の列と手順の枠が同時に替わる（200g → 7 1/16 oz、1l → 2 1/8 pints）。手順の文の中の「1 litre」「220°C」、long の「12cm x 30cm」は替わらない。localStorage に isMetricProbablyPreferred。つまみは tabIndex -1 で Tab が届かず、aria-pressed も無い。
+- **本文**：手順の段落 PC 550px・SP 326px、Lato 400 15.2px／25px・#3e3e3e・下 16px（SP も 15.2px）。番号は div.float-left 27px の列に右寄せ・PT Serif 25.6px・#47af9d、本文は左 40px。ol は 0。
+- **材料**：箱 322px（1px rgba(47,47,47,.1)・内 16px）→「Ingredients」PT Serif 21.6px → 単位 → 行（15.2px／24px・上下 4px）「200g of kohlrabi, (or jicama), peeled…」量が先、材料名は #0895c1 でその材料の分類 /collections/kohlrabi-recipes へ（21行中12）。組は h4・Lato 500 15.2px・#47af9d・大文字、組の間に 1px の罫。下に SAVE／PRINT／SHOPPING LIST（288×38）と Equipment。材料の列は固定しない。
+- **記事の頭**：h1 PT Serif 500 25.6px／30.72px・中央（SP も 25.6px）→「by シェフ」（#ff8300 下線）→ 写真 859×572｜区分・難しさ・人数（Main・Easy・4）→ 時間「1 hour 40 minutes plus overnight soaking」（long「3 hours plus cooling time」）→ 星 → JUMP TO RECIPE（button 174×33・1px #3e3e3e、押すと約700ms で材料の箱へ。# は変わらない）→ リード（15.2px／24px）と本の出典 →「First published in 2026」（年だけ）→ DISCOVER MORE の札。SP はリードの後に「Not feeling this? See related recipes.」。
+- **3列**：材料 322px｜手順 590px｜シェフの紹介 376px（モノクロ 374×249・名前・15.2px／25px の文）と sticky の広告 300×600。Related Recipes 5枚（232×155）は材料より前。
+- **記事の終わり**：最後の手順の写真 550×367 → ニュースレター → Get in touch（コメントはログイン）→ You may also like（429×286 と 656×437 の混ぜ組み、レシピ・分類・読みもの）。次の1本の大きな導線は無い。
+- **一覧**：h1 → 全幅写真 1440×720 → 説明5段落（レシピへのリンク10本）→ 関連の分類5枚 → 左 200px の絞り込み（「Easy (272)」「Main (265)」と件数を項目の中に、隠した checkbox）｜4列×2段＝8枚（aspect-3/2・250×167・題 PT Serif 16px／22.4px・by 13.6px #6a6a6a）→「Load more」（div・href 無し）。格子は JS が API から描く。h1 3つ、SP は絞り込み無し・横送りの1行、PC CLS 0.194。
+- **トップ**：動画 1440×810（mp4 3,729KB・autoplay・loop・controls 無し）→「This week on Great British Chefs」→ 左に h1「Recommended this week」と特集名、右に今週のシェフ1人（写真 665×444・紹介・レシピ6枚）→ 縦長の動画カード 279×498 の送り。
+- **広告と同意**：consentmanager の窓（PC 約500×500・SP 約350×590、全体をぼかす、「up to 494 third parties」、Accept／Reject／Settings を同じ形で）。JS 488KB＋191KB。広告：記事の PC はヘッダーの上 1440×260・右 300×600 sticky・下に固定 1440×110、SP は手順の間に 300×250 の枠4つと下に固定 390×110（ヘッダーと合わせて画面の 22%）。枠は高さを先に取り CLS は article PC 0.0134・SP 0.0488。自社の本の帯を記事に3回（SVG の object を HTML に9つ、PC の 241KB を3回読む）。
+- **データ**：JSON-LD は @type ["Article","Recipe"]・datePublished と dateModified が同じ "2026-08-19T08:42:26"（時差無し）・totalTime だけ・recipeYield 無し・HowToStep 11（組の HowToSection 無し）・author の url が相対。og:type website。ダーク 0。
+- **色と文字**：#3e3e3e（10.70:1）に役割の色3つ：緑 #47af9d（番号・組名・2.66:1）、橙 #ff8300（シェフ名・2.47:1）、青 #0895c1（材料名と分類・3.45:1）。Lato（300・400・400i・700）と PT Serif 400 を Google Fonts から。:hover 62 に (hover:hover) 11、reduced-motion 1、カードのホバーで skeleton-pulse 1.4s infinite。
+- **重さ**：measure.js（広告を除く・展開後）PC top 9.20MB／list 4.91MB／article 5.47MB／long 5.16MB（SP 5.42／4.68／4.88／4.84MB）。全ページで自社 JS 1,918KB と Stripe 1,145KB。全部込みの転送 article PC 3,445KB・111件・23ホスト、SP 2,396KB・86件・11ホスト。写真は srcset と width/height で大きさが合っている。
+
 ## 真似る型
-見本2つ（King Arthur Baking・白ごはん.com）から。作るときの出発点。
+見本3つ（King Arthur Baking・白ごはん.com・Great British Chefs）から。作るときの出発点。
 - 記事の頭に「時間」を大きく置き、その横に要約を開くボタン（King Arthur Baking：HANDS-ON／BAKE／TOTAL TIME の欄、白ごはん.com：「調理時間：40分」19px 700＋「大まかな流れをチェック」）。要約は工程を2組（下ごしらえ／調理と仕上げ）・8行前後に縮める（白ごはん.com）。
 - 工程を読みながら材料を見られるようにする。PC は材料の列を手順の横に（King Arthur Baking：材料 325px・手順の面 785px。固定はしない）、SP は右下の丸いボタン（60px）から下のシート（max 60vh）で呼び戻す（白ごはん.com）。作るときは PC の材料の列を sticky にする（2サイトとも固定していない）。
+- 工程の中で、その工程で使う量をもう一度書く。文の中に書いて地の色で目立たせる（白ごはん.com：.bg 地 #fffadf）か、手順の下に枠で書き直す（Great British Chefs：550px の枠・11手順のうち8）。合計の量は使う手順ごとに割る（同：14本 → 7本と7本）。
+- 単位の切り替えは材料の見出しの直下に置き、材料の列・工程の枠・工程の文の中の量を一度に替える。button 2つと aria-pressed で、選んだ側を覚える（Great British Chefs の Metric／Imperial は文の中が替わらず、Tab も届かない）。日本向けは「グラム ⇔ 計量スプーン」、粉と削り物は重さのまま。
+- 材料名は、その材料の分類一覧へのリンクにする（Great British Chefs：21行中12）。書き手（シェフ）は題の下・材料の横・トップの「今週」の3か所に（同）。
 - 材料は組に分けて印を付ける（白ごはん.com：● 具・○ 水・A 合わせ調味料。King Arthur Baking：Filling／Crust の組名）。工程では組の名前と量をもう一度書き、量を地の色で目立たせる（白ごはん.com：.bg 地 #fffadf）。
 - 量はグラムを先に（白ごはん.com：「500g（3〜4個ほど）」、King Arthur Baking は「3 1/2 cups (397g)」の体積が先。日本向けはグラムが先）。
 - 手順の文字はリードより大きく、段落の間を広く（King Arthur Baking：20px／31.2px、白ごはん.com PC：16px／26.88px・段落の間 21px）。SP でも本文は 16px を保つ（白ごはん.com SP の 14px は小さい）。
@@ -51,6 +70,10 @@ PC 1440×900 / SP 390×844（iPhone の UA）。見たページ：トップ、�
 - 手順の見出しのそばに、画面を消さない切り替え（Wake Lock）と、手順の写真の出し入れ（King Arthur Baking）。
 
 ## 反面教師
+- 単位のつまみが div role="button"・tabIndex -1、手順の文の中の量と温度は替わらない、換算が「7 1/16 oz」（Great British Chefs）。
+- 手順18・SP 15,224px で目次もいまの手順の印も無い。手順を div の番号で書き ol 0（Great British Chefs）。
+- 同意の窓が 494社を並べて全体をぼかし、閉じても SP の下に 110px の広告（ヘッダーと合わせて 22%）（Great British Chefs）。
+- 自社の本の帯を1本に3回、SVG の object を9つ（Great British Chefs）。
 - Recipe の datePublished を "September 9, 2026 at 7:13pm" と書く・dateModified 無し・手順を文字列の配列で持つ（King Arthur Baking）。
 - 一覧のページ送りが href の無い button（King Arthur Baking）。
 - 手順の途中で画面の72%を覆うメール登録のポップアップ、その写真 1,126KB を全ページで読む（King Arthur Baking）。

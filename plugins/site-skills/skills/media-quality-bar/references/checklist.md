@@ -114,4 +114,13 @@
 - [ ] カードの題を配る HTML で字数で切って「...」を付けない。全部配り、CSS の行数で切る（YAMAP MAGAZINE：約40字で切る）
 - [ ] 写真を 1種類の大きさ（850px）で配らない。srcset と sizes で SP の 358px に合わせる（YAMAP MAGAZINE：article の本文 29枚とも srcset 0）
 
+- [ ] 工程に、その工程で使う材料と量を書き直す。合計は使う工程ごとに割る（Great British Chefs：手順の下に 550px の枠・11手順のうち8・「14」を「7」と「7」に）
+- [ ] 単位の切り替えは button と aria-pressed で、材料・工程の枠・工程の文の中の量・温度を一緒に替える。換算は台所で量れる刻みに丸める（Great British Chefs：div・tabIndex -1、文の中の「1 litre」「220°C」は替わらず、「7 1/16 oz」）
+- [ ] 手順が10を超えるレシピに、手順の番号の帯（いまの手順の印つき）を付いてこさせる（Great British Chefs：手順18・SP 15,224px で JUMP TO RECIPE だけ）
+- [ ] 同意の画面は本文を読めるまま下の帯にし、ページ全体をぼかさない（Great British Chefs：494社・全体をぼかす窓・JS 488KB＋191KB）
+- [ ] 画面の公開日に月日まで書く。年だけにしない（Great British Chefs：「First published in 2026」）
+- [ ] 隠すための object・img を並べて CSS で切り替えない。picture と media で1枚だけ読む（Great British Chefs：本の帯の SVG を object 3つ×3回、241KB を3回）
+- [ ] 決済の JS（Stripe など）は、決済の画面だけで読む（Great British Chefs：全ページで js.stripe.com/v3 1,145KB）
+- [ ] ホバーに読み込み中の点滅（skeleton-pulse）を使わない（Great British Chefs：1.4s infinite・reduced-motion でも止まらない）
+
 解剖で裏づけた項目が増えたら、ここに足す（どのサイトで確かめたかを添える）。

@@ -6,6 +6,7 @@
 ## 下位の型
 同じ「イベント」でも、見本で別れた。作るものがどちらに近いかを先に決める。
 - **チケット制のフェス・ライブ**（Lollapalooza、Primavera Sound Barcelona）：最初の画面は出演者のポスターかチケット、出演者の一覧と時間割が中心、購入ボタンが全ページに。
+- **配信が主の授賞式・ショーケース**（見本は The Game Awards）：会場の券は少なく、主な行動は「カレンダーに入れる・どこで見るか」。中心は本番までの日数・候補と受賞者・過去の回。トップは本番の前・最中・後で形を替える。
 - **入場無料か少額の、日本の地方の催し**（陶器市・祭り・マルシェ。見本は笠間の陶炎祭）：買うボタンは無い。中心は会場図・出店者一覧・行き方と駐車場・雨の扱い。出店者は数十〜数百件、会場図は印刷物（PDF）が正本になりやすい。
 
 ## 見本の実測
@@ -43,6 +44,19 @@
 - **動き**：ほとんど動かない。行の開閉 0.3s・BUY のダイアログ・カード。`prefers-reduced-motion` は CSS に2件（トーストとメニューの引き出し）だけ。top の YouTube は `autoplay=1&mute=1&controls=0` で読み込み時に埋め込む。
 - **重さ**（展開後・解析タグ除く）：top PC 23.80MB／SP 23.97MB、1組 20.55／20.80、news 18.10／19.46、buy 16.88／17.19、world 16.82／17.21、A-Z 16.72／17.00。どのページも JS 13.0〜16.5MB（vendor.bundle.js 5,585KB・main.bundle.js 2,421KB・Stripe 3.7MB）と CSS 2.9MB（Tailwind の全クラス、規則 61,950）。top は YouTube 5,113KB と、PC 用・SP 用の帯の画像を両方（1,268KB）。転送は br で vendor 1,210KB・CSS 412KB。`tools/inspect.js` は top で FAIL 5（横スクロール 4px・書体 7種・SP で 13px 未満 24%）／WARN 9。
 
+### The Game Awards 公式（https://thegameawards.com/ ・ 2026-11-04 解剖、本番 2026-12-10 の38日前・ノミネート発表の前。歩いた5ページ：/・/about・/rewind/year-2025・/news・/faq）
+- **枠**：Next.js（App Router）。5ページとも「sticky のヘッダー 90px（SP 80px）＋日数の帯 54px ＝ 144px → 本文 → フッター」。地 #0a1011、カード #283f43、枠 #3b5e64、金 #f2a366（CSS の色で最多 31回）。
+- **日数の帯**：layout の JS が CMS の `tgaTickerDate`・`tgaTickerText`（既定「DAYS UNTIL LIVE SHOW」）・`tgaTickerLink`・`tgaTickerColor`／`tgaTickerTextColor` を読み、`Math.max(0, Math.ceil((日付−今)/864e5))` を毎回計算。地 #639da7 に #0a1011（6.31:1、白なら 3.04）・gellix 500 20px・大文字。リンクがあれば a、無ければ div。全ページで固定。
+- **トップの状態**：ヒーローは `home-hero--announcement`（いま）／`--live`／`--post-show` の3つで、CSS の規則が 79／80／66 か所。告知は中身 min(713px, 37.135vw)・左揃え・右寄せ、生放送中は高さ 900px・中央・下寄せ・暗い幕、放送後は中央・min-height 560px。
+- **最初の画面**：トロフィーの背景動画 1440×675 の右に、ロゴ SVG 487×166（alt 空）・「DECEMBER 10」（serif 56.25px、p）・会場 22.46px 字間 2px・ADD EVENT TO CALENDAR 283×62（AddEvent、新しいタブ）の1つだけ。年と時刻（7:30p ET）は最初の画面に無い。h1 は 1×1 の画面外の文字。
+- **動画**：`<video muted loop playsInline preload=metadata>` を 16:9（6,296KB）と 4:5（5,425KB）の2本、JS が `max-width:767px` で片方を play・片方を pause。poster は背景画像の PNG（PC 8,333KB）。右下に 44×44 の button「Pause background animation」→ 押して 103ms で止まりラベルが Play に。reduce は見ておらず、reduce でも PC 3.49s・SP 4.14s まで再生。トレーラー・前年の映像・見どころは全部 YouTube へのリンク（押す前の YouTube の通信 0）。
+- **過去の回（Rewind）**：/rewind に 2018〜2025 の8年を帯で（放送日・視聴数・REWIND TO 2025）。1年1URL `/rewind/year-2025`、PREVIOUS YEAR は a・最新の NEXT YEAR は `span role="link"` の無効の札。章ナビ RECAP・HIGHLIGHTS・WINNERS は sticky top 90px（SP 80px）で `aria-current="location"`、押して 46〜61ms。受賞30部門は li 409×339（SP 170×471）・3列（SP 2列）、部門 18px・作品 24px 700・作り手 18px の大文字。カードにリンク・候補は無く、絵は alt 空。SP で作り手名が語の途中で折れる。
+- **ナビ**：PC は5項目 16px・字間 1.6px、いまのページは `aria-current="page"`＋1.5px #f2a366 の下線。SP の3本線 40×40 は aria-label「Menu」→「Close menu」・`aria-expanded`・`aria-controls`、Esc で閉じてボタンへ戻る。SKIP TO MAIN CONTENT 255×56。外へのリンクには sr-only の「(opens in new tab)」を JS で足す。
+- **見る・行く**：/faq の THE EVENT 5問（いつ・どう見る・同時配信・何がある・会場に行けるか）を審査の13問より先に。会場の券は「少しだけ売る」の文と Peacock Theater の公演ページへのリンク1本、配信先の名前・値段は0件。カードは 400×291・枠 1px #3b5e64・地 rgba(7,37,51,.4)・内側 30px・3列 間 48px、見出し #f2a366 24px、答えは開閉しない。
+- **ニュース**：2件。年の絞り込みは button `role=combobox`・`aria-haspopup=listbox`（ALL／2026／2025）、選んで 53〜87ms、PC は URL が `?year=2025`。カードに日付が無い。
+- **文字**：gellix（自前 woff2 400／600／700、Arial に size-adjust 104.87% の代わり）と、名前が `"ABC Arizona Serif Unlicensed Trial"` の serif（年 100px・日付 56px・About の h1 100px #f2a366）。章の題 75px／82.5 大文字（SP 36〜40）、本文 20px／22px。transition は .2s ease が96回、ボタンのホバーは `inset 0 0 0 2px #fff`。フォーカスは変数1つ（白 2px・offset 3px）。
+- **重さ**（展開後）：top PC 14.26MB／SP 10.12MB（動画を流すと PC 転送 12秒で 17.4MB）、about 7.88／3.19、faq 7.31／4.62、rewind 5.73／2.73、news 5.35／3.64。各ページの背景を PNG のまま（top の poster 8,333KB と登録の帯 3,169KB、faq 5,003KB、about 3,368KB）。Rewind の絵は w=1920 の webp を 196px で。全ページで BugHerd（不具合報告）の embed.js を2回、SP は Firebase の認証 iframe 283KB。JSON-LD 0件、`lang="en"` のみ。`tools/inspect.js` は top で FAIL 0／WARN 13（Cookie の帯を含む）。
+
 ### 笠間の陶炎祭（ひまつり）公式（https://www.himatsuri.net/ ・ 2026-10-26 解剖、第45回 2026-04-29〜05-05 の約5か月半後。歩いた5ページ：/・/about/・/syutten/・/blog/・/access/ と、会場図・ハウツー・バス路線図の PDF 3本）
 - **下位の型**：入場料 1日500円（18歳以下無料）の地方の陶器市。会場は笠間芸術の森公園、来場8万人（閉幕あいさつ）。
 - **最初の画面**：黒 #000 のヘッダー 70px（SP 56px 固定）→ 写真4枚のフェード 80vh（PC 720px・SP 591px）。日付・時刻・会場はその下にロゴ画像と横並びで、PC は日付 18px が y=892px（1440×900 の折り目の下）、SP は 34px（時刻・会場 24px）が y=734px。曜日は 6px（SP 12px）の黒い札。入場料は上下 3px double の囲み。
@@ -62,12 +76,17 @@
 - 1本は「番号・駐車場名（収容台数）・開く時刻・状況・ナビ」の表。16か所・計4,870台。状況は ○ 空きあり・△ 空き50％以下・× 満車。注記に「雨天時使用禁止」（白磁ヶ丘公園 100台）、「4月30日、5月1日は駐車できません」「初日は 3:00〜」。「携帯電話によっては過去の情報のまま表示する場合がございます」と書いている。
 
 ## 真似る型
-- 日付・会場は、PC・SP とも最初の画面に**文字で**入れる（Lollapalooza はヘッダーに常時。陶炎祭は PC で折り目の下、Primavera はポスター画像の中とメガメニューの中だけ）。
+- 日付・会場は、PC・SP とも最初の画面に**文字で**入れる（Lollapalooza はヘッダーに常時。陶炎祭は PC で折り目の下、Primavera はポスター画像の中とメガメニューの中だけ。The Game Awards は文字だが年と時刻が無い）。年・曜日・開始時刻（地域の時刻）まで書く。
+- 本番までの「いま」を、固定ヘッダーの中の帯に全ページで出す（Lollapalooza：ヘッダーに会場・日付の3行、The Game Awards：54px の帯に「38 DAYS UNTIL LIVE SHOW」を CMS の日付から毎回計算）。文・色・リンクは CMS で替え、当日と後の文も決めておく（TGA は 0 のときの文の出し分けが JS に無い）。
 - （チケット制のフェス）出演者は「全員の名前の一覧」を1ページ持ち、1組1URL にする。一覧は文字で組む（Primavera の A-Z：150組・30px／50.7px の流れ・1組ずつ a）。ポスター・時間割を画像だけで出すと名前が読めず押せない（Lollapalooza：ラインナップ・時間割が alt 空の画像、Primavera：トップのポスターの alt が画像の URL）。
 - （チケット制のフェス）チケットのページは「券種・値段」の上に、販売前・販売中・終了後の段階を決めて出し分ける。終了後も次回のお知らせ登録を残し（Lollapalooza の /tickets）、販売中は券種1行に「名前｜状態の札｜値段＋手数料｜BUY」（Primavera：64px・On Sale／VIP の札・FROM €350.00 + fees）。
 - （チケット制のフェス）購入の入口を全ページの同じ場所に置く（Lollapalooza：固定ヘッダー右の TICKETS 117×56、Primavera：ヘッダー右の TICKETS と、メガメニューの祭りの名前の下の黒い丸）。
 
 ## 真似る候補（見本1つ）
+- トップの最初の画面を「告知・本番中・終了後」の3状態で持ち、同じ部品の class だけを替える（The Game Awards：`home-hero--announcement／--live／--post-show`）。
+- 背景の動画には最初の画面の右下に 44×44 の停止 button、ラベルを止める／再開で入れ替える（The Game Awards）。reduce なら最初から止める。
+- 過去の回は1年1URL で、年の一覧（放送日・視聴数）から入り、ページ内は sticky の章ナビ3つに `aria-current="location"`（The Game Awards の Rewind）。受賞はカードをリンクにし、候補も並べる。
+- 「どこで見る・行けるか」を FAQ の最初の段に置く（The Game Awards の THE EVENT 5問）。ただし値段・配信先は表で。
 - 会場・日付を、固定ヘッダーのロゴの横に常時置き、右に購入ボタンを1つ置く（Lollapalooza）。
 - 出演者の名前にホバー・タップすると、一覧の上に写真のカード（名前・プロフィールへ）を重ね、一覧から離れない（Primavera：68ms・約 296×220）。フォーカスでも出し、色ではなく下線で示す。
 - 1組の紹介を決まった問いで書く（Primavera：どこから聴くか／知っておくこと／知らなくていいが面白いこと／なぜ出るのか／これが好きなら）。
@@ -87,6 +106,8 @@
 - 自分の回る順は、店番を紙の会場図に書き写せる形にする（陶炎祭のハウツー「ペンでブース位置を書き込もう」）。
 
 ## 反面教師
+- 最初の画面の行動を「カレンダーに入れる」だけにし、配信先・券・値段をどこにも表で出さない（The Game Awards：配信先の名前0・値段0、時刻は FAQ の文の中）。
+- 背景を PNG のまま置き、poster の PNG と動画の両方を取る（The Game Awards：top PC 8,333KB＋mp4 6,296KB）。本番に不具合報告の道具（BugHerd）を残す。
 - ラインナップ・時間割を画像1枚で出し、alt を空にする（Lollapalooza）。検索・読み上げ・出演者ごとのURLが無い。
 - 日付タブを `<a href="#">` で作り、ARIA・URL を持たせない（Lollapalooza）。
 - 開催後も JSON-LD が EventScheduled、h1 が物販のまま、見出し文言が重複したまま残る（Lollapalooza）。

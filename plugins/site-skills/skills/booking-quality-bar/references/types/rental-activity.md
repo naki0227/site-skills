@@ -31,18 +31,36 @@
 - **動き**：ストアはカレンダーの transform .5s と行の矢印 all .4s ease だけ、ボタンのホバーは opacity .85 で即時。teamlab.art は opacity .36s・transform 1s を cubic-bezier(.215,.61,.355,1) で（178回）、keyframes 26。prefers-reduced-motion はどちらも 0。
 - **重さ（PC / SP）**：入場日時 0.84 / 0.80MB（自社のファイルは jQuery 85KB と JS 62KB）、トップ 13.13 / 8.48MB（YouTube の base.js 1,630KB を2回）、展示ページ 103.84 / 20.32MB（HLS の mp4 80.4MB・AVIF 18.0MB・reCAPTCHA 4.3MB）、ヘルプ 4.00 / 1.71MB。タグを含めると入場日時でも Google Tag Manager 5本で 3.8MB。
 
-## 真似る型
-（見本：Othership・チームラボプラネッツ。2つで同じだったことを先に、1つだけの型は出典を添えて書く。）
+### Lost Shore Surf Resort（https://www.lostshore.com/ ・2026-11-04・エディンバラの波のプールの時間枠。予約エンジンは wave7 の booking.lostshore.com）
+条件：Plan & book（/activity-agenda）の 2026-11-02〜08 の週。PC 1440 と SP 390 で計測。升を押したモーダルの＋は押したが（通信なし）、Confirm は押さず、カートに入れていない。
 
-1. **1日の枠は、時刻順の行に全部並べ、満員の枠も消さずに残す。** 行には時刻と残り（と値段）だけを置く（Othership：23行・行の間 117px／プラネッツ：26行・492×55・間 16px、売り切れは pointer-events:none）。満員の行の文字は 4.5:1 以上にする（プラネッツの #e0e0e0＝1.32:1 は直す）。
-2. **人数は枠を選ぶ前に聞かない形が多いが、合計はその先で必ず出す。** Othership は1予約1人で値段が別ページ、プラネッツは枠の次の画面で券種ごとの枚数と「単価 x 枚数」の明細・合計。作るときは、枠の行に人数を掛けた合計を出す（横断ルール5）。
-3. **残りは数で。** Othership は全行「56/60 Open」、プラネッツは一部の行だけ赤字「残り28枚」。作るときは全行に数を出し、定員の2割以下で色と言葉を替え、境目を凡例に書く。
-4. **日付で値段が変わるなら、日を選ぶ前に升に最安値を出す。** プラネッツ：升 51×67 に「4,400~」12px（その日のいちばん遅い枠の値段）。
-5. **時刻で値段が変わるなら、行ごとに値段を書く。** プラネッツ：5,200→4,400円の5段。Othership の Off peak $46 は時間割に出ず、反面教師。
-6. **時間指定の無い上の券は、枠の表の頭に1行で。**（プラネッツ：プレミアムパス 08:00 - 21:00・12,000円）
-7. **当日の困りごと（足元・持ち物・同伴）は同意のチェックにして、全部入れるまで次へ進めない。**（プラネッツ：7項目・ボタン opacity .2）
-8. **受付の開き方は、行のそばに時刻で書く。**（Othership：開始の14日前の同時刻・画面に無い／プラネッツ：月ごとに販売「1月のチケットは10月末頃販売予定」）
-9. **場所で在庫が分かれるなら、日付より先に場所を選ぶ。**（Othership。プラネッツは施設1つで、会場の取り違えを同意の1つ目に置く）
+- **検索フォーム**：日付と人数の欄は無い。Plan & book の頭に分類のタブ Surf／Resort／Surfskate（80×53・#f26122・角5px、選んだ物は 2px 黒枠）、絞り込みの帯に **Spaces left（At least 1〜N entries left＝残りの下限）**・Session（12種＋Check all／Uncheck all／Confirm）・View by・Reset、その下に段のチップ 150×29（角15px・13px、12色）。週は › で送り（POST `setAgendaDates`、約330ms、URL は変わらない）、月のボタン 193×47 のメニューに Current week〜8週先。
+- **結果一覧（週の升）**：**資源ごとに別の升**（Reef Left - Sessions・Reef Right - Sessions・Beginner lessons・Lessons Reef Left／Right・Surf Weekends、1つ 423px、頭の帯 18px 800 に Reef Left #59c4f6・Reef Right #63c465）。行＝時刻（**1時間 45px**、`position:absolute;top:45px`）、列＝7日（曜日の頭 40×58.6 #dedede、今日は桃色）。**升 40×40・角9px・15px の中に残りの人数だけ**、地は波の段の色。今週 109升（未来 78・過ぎた 31）。過ぎた升は消さずに opacity .5。ホバーで升に #f26122 の輪と吹き出し 229×98（From・To・Spaces left・Price category・Session）。
+- **色の切り替え**：View by＝Wave setting（12色）／£ Price category（全部 #00405b、区分は Std の1つ）／availability（#82cf2e・#f0e36b・#ff574d、凡例 Mainly available／Averagely／Mainly unavailable）。描き直し約1,050ms。**availability の境目は画面に無い定員との比**で、Manoeuvres の残り4が緑と赤、Turns の8が黄で Cruiser の7が緑。
+- **詳細**：施設側の surf-sessions（7,080px）。60分・プールに20人・10〜15本。9つの波を h3 22px 800・「From £60 (£50 child)」16px 600・説明・Suitable for・Wave height（Thigh to waist〜Head high +）・券の種類（Intermediate／Advanced）の**同じ並び**で。Book now 125×54（SP 319×54）は Air Wave 以外の8つとも同じ /surf-sessions。SP に貼り付く予約の帯は無い。予約エンジン側の surf-sessions に「Lefts or Rights?」（Regular／Goofy × Forehand／Backhand の 2×2）と Winter Surf Safety（7℃・4℃・2℃）。
+- **空きと料金（券と数量）**：升を押すと同じ画面のモーダル 992×572（PC 851〜1,354ms、POST `modalBookingVoucherActivity` +1.6KB）。頭に「New booking: Nov. 4, 2026 at 9:00 am」24px と「**10** entries left ● Reef Left - Sessions ［Turns to Tubes］」20px。券の行は ADULT £70.00・CHILD £60.00（#f26122 の値札）と − 41×35／欄 70×34（入力不可）／＋。**大人を10にすると大人・子どもの両方の＋が disabled（opacity .65）＝上限は残りを券種で分け合う**。＋で通信は無く、合計は出ない。下に Cancel・Confirm and continue my bookings 265×42・Confirm and pay 144×42。
+- **予約前の不安**：升とモーダルに取り消しの語が0。FAQ の「How do I cancel or amend my booking?」は Surfing ではログインと Cove T&Cs へのリンク、Stay では泊の規定（14日以内なし・15〜28日 50%・28日より前 全額）。活動の規定は Cove T&Cs のページ（本文1行）の先の11ページの PDF（110KB）の 2.3：**7日以内は移動も返金も無し、7日より前は移動・クレジット・全額返金**。支払いは予約時に全額。悪天候は施設が閉まったときだけ返金。冷水の基準は FAQ（数字なし）・予約エンジン（大人の初心者4℃）・PDF（大人のレッスン2℃）で食い違う。
+- **データ**：予約エンジンに JSON-LD 無し（枠は `data-available_entries`・吹き出しの HTML・onclick の ID）。施設側は Yoast の WebPage・Organization・BreadcrumbList、用語のページに FAQPage。Event・Offer・Product は無い。
+- **SP**：6つの升を1つの横スクロール（2,531/356px）に並べ、最初の升も 399px で土日が切れる。全部見える升は109個中35個、送れる印は無い。
+- **見た目**：地 #f5edea・文字 #3d3b33（9.71:1）・主 #f26122（白字 3.23:1）。施設側は PP Mori（400・600・800）、予約エンジンは Helvetica（h1 52px 900 字間 -2.34px、本文・升 15px）。トップの頭の h1 は Open Sans の指定で読めず標準の書体、同じ文の h1 が3つ。過ぎた升の白字は 1.62〜1.85:1。
+- **動き**：升は transform・box-shadow・border-color .14s、Book now は .3s。予約エンジンの keyframes 35・reduced-motion 7か所（Bootstrap など）。トップの最初の画面に10%割引の登録の面と Cookie の面が重なる。
+- **重さ（PC / SP、展開後）**：トップ 3.91 / 3.37MB、週の升 2.56 / 2.56MB（うち Adyen の決済 SDK 536KB・決済と会員の CSS 313KB）、施設の surf-sessions 4.46 / 4.21MB（PNG 866KB）、エンジンの surf-sessions 3.12MB、FAQ 3.63 / 3.13MB。転送量はトップ 1.18MB・週の升 1.65MB（うち Google Tag Manager 664KB）。
+
+## 真似る型
+（見本：Othership・チームラボプラネッツ・Lost Shore Surf Resort。2つ以上で同じだったことを先に、1つだけの型は出典を添えて書く。）
+
+1. **枠は時刻順に全部並べ、満員・過ぎた枠も消さずに残す。** 1日なら時刻の行（Othership：23行・行の間 117px／プラネッツ：26行・492×55）、1週間を見せるなら行＝時刻・列＝7日の升（Lost Shore：1時間 45px・升 40×40）。満員・過ぎた枠の文字は 4.5:1 以上にする（プラネッツ #e0e0e0＝1.32:1、Lost Shore の opacity .5 で白字 1.62〜1.85:1 は直す）。
+2. **在庫が場所で分かれるなら、場所ごとに別の行・別の升にする。** Othership：Sauna 1〜6 を別の行／Lost Shore：Reef Left・Reef Right・教室を別の升（423px、頭の帯に名前と色）。日付より先に場所を選ばせる形もある（Othership の店）。SP は升を幅に収めて場所をタブで替える（Lost Shore の横 2,531px は反面教師）。
+3. **残りは数で。** Othership 全行「56/60 Open」、Lost Shore 升の中に残りの数、プラネッツは一部の行だけ「残り28枚」。作るときは全部の枠に数を出し、少ない枠は色と言葉を替え、境目を数で凡例に書く（Lost Shore の availability は定員との比で、同じ4が緑と赤）。
+4. **人数は「残りの下限」として枠を絞る。** Lost Shore：At least 1〜N entries left。作るときは人数の欄からそのまま下限にし、足りない枠は押せなくして理由を出す。
+5. **枠を選んだら、その場で券種ごとの単価と数量、上限は残りの数。合計もそこで出す。** Lost Shore：モーダルに ADULT £70／CHILD £60、上限は残り10を共有（合計は無い）／プラネッツ：次の画面で「単価 x 枚数」と合計。Othership は1予約1人で値段が別ページ（反面教師）。
+6. **取り消しの期限は、枠の日時から日付に直して合計のすぐ下に。** 3つとも枠の画面に無い（Othership：規約の12時間前／プラネッツ：入場2時間前・3回はヘルプだけ／Lost Shore：7日は PDF の 2.3 だけ）。
+7. **段・種類の色で升を塗るなら、説明のページも同じ色と同じ列にそろえる。** Lost Shore：12色のチップ・9つの波を Wave height・Suitable for・From £ の同じ並び。色の数は増やしすぎない（12色に似た色の組が3つ）。升の中にも段の短い名前を入れる。
+8. **日付で値段が変わるなら、日を選ぶ前に升に最安値を出す。時刻で変わるなら行ごとに値段。**（プラネッツ：升に「4,400~」、5,200→4,400円の5段。Othership の Off peak $46 は時間割に出ず反面教師）
+9. **時間指定の無い上の券は、枠の表の頭に1行で。**（プラネッツ：プレミアムパス 08:00 - 21:00・12,000円）
+10. **当日の困りごと（足元・年齢・泳力・水温）は申し込みのそばで確認にし、数字は1か所に決める。**（プラネッツ：7項目の同意、全部入れるまでボタン opacity .2／Lost Shore：7歳以上・25m・冬の 7℃・4℃・2℃ が3か所で食い違う）
+11. **受付の開き方と週の送り方を、枠のそばに書く。**（Othership：開始の14日前の同時刻・画面に無い／プラネッツ：月ごとに販売／Lost Shore：8週先までの週のメニュー。週は URL に残らない）
+12. **体のくせで選ぶもの（左右・利き足）は、升の横に小さな表で。**（Lost Shore：「Lefts or Rights?」 Regular／Goofy × Forehand／Backhand の 2×2）
 
 ## 反面教師
 - 枠の行にも詳細にも、値段・必要な券・取り消し期限が無い（Othership）。枠を選んだら、合計と「◯月◯日 ◯時まで無料」を同じ枠の中に出す。
@@ -57,3 +75,9 @@
 - 日を押すたびにページ全体を読み直し（約1.6秒）、URL は開くたびに替わる32桁で日付を持たない（プラネッツ）。
 - 支払い方法の説明が展示ページとヘルプで食い違う（プラネッツ）。
 - 展示ページの Event の startDate・endDate・住所が空文字（プラネッツ）。
+- モーダルに合計・税・取り消しの条件が無く、活動の取り消し（7日）は空のページの先の11ページの PDF だけ。FAQ の取り消しは泊の規定（14日・28日）で、活動と取り違えやすい（Lost Shore）。
+- 空きの色の境目が画面に無い定員との比で、同じ残り4が緑と赤になる（Lost Shore）。境目を数で決めて凡例に書くか、「4/20」と定員を添える。
+- SP で升を横に 2,531px 並べ、最初の升も 399px で土日が切れる（Lost Shore）。7列を幅に収め、場所はタブで替える。
+- 波の説明の Book now 8つが同じ一覧へ飛び、波を渡さない（Lost Shore）。
+- 週の升のページで決済の SDK（Adyen 536KB）と会員・決済の CSS を読む（Lost Shore）。
+- 白字 on #f26122 が 3.23:1（Book now・値札・Confirm）、Cookie のボタン 2.79:1（Lost Shore）。

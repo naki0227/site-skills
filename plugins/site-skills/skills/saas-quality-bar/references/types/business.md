@@ -44,18 +44,33 @@
 - **見た目の値**：地 #08090a・#0f1011・#141516・#191a1b の4段、文字 #f7f8f8・#d0d6e0・#8a8f98（6.13:1）・#62666d（3.45:1、12px の日付に使う）。主ボタンは紫でなく白 #e5e5e6、紫 #5e6ad2 はスイッチの入。書体は Inter Variable（344KB）＋ Berkeley Mono、太さ 400／510／590。文字の段は変数で title-1〜9（17〜72px、字間 -0.012em／32px からは -0.022em）・text 10〜17px。ボタンは角 9999px・高さ 40px、動きは .16s cubic-bezier(.25,.46,.45,.94)。
 - **データと重さ**：PC で top 11.43MB / features 15.66MB / pricing 13.22MB / customers 17.00MB / docs 8.32MB（SP はトップ 14.90MB）。重さの半分は Next.js の先読み（トップ 42件 7,717KB＝44%、事例 61件 54%）。チャット・商談のウィジェットは無く、第三者は事例ページの LinkedIn 61KB だけ。構造化データは料金の WebPage だけ。
 
+### Attio（CRM、海外）https://attio.com/ — 2026-11-04
+- **最初の画面**：黒いお知らせの帯 48px → ピル 283×30（角 13px）→ h1 64px／行間 0.95／600／字間 -1.28px（interDisplay、SP 40px）→ 一文 18px／23.4px #6f7988（4.41:1）・最大幅 486px → Talk to sales（白・縁 #cad0d9）と Start for free（#202124・縁 #505967）を 108×36・110×36 で並べる。SP は同じ題のまま、メール欄 320×40＋「Send me a demo」320×40＋文字の Talk to sales に入れ替える。
+- **製品画面**：画像でなく DOM（トップ 4,232要素、img 70枚は顔とロゴの小片）。最初の窓は sticky（1440×900）で、質問欄に文字が入り、記録の画面が開く。下の「眠らない仕組み」は売上の仕事の順に5章（Build pipeline・Convert leads・Run sales motions・Forecast revenue・Retain and expand）で、章ごとに表（ICP Score 98〜91）・ワークフロー・SQL・ARR のグラフと模型を替える。SP は窓を縮めるだけで、中の文字が 7px（133個）・6px・4px になる。
+- **機能の並べ方**：トップの5章は左の目次（348px・sticky top:116px）で今を示す：今 #1c1d1f、ほか #d3d8df（#fafafb の上で 1.37:1）、2px の印 #709ff5、色 .32s cubic-bezier(.33,1,.68,1)。見出しは1文の2トーン（頭の数語 #1c1d1f＋続き #6f7988、h3 24px／27.6px）。機能ページ /platform/data は h1 が 13px のピル「Data model」で、題 56px は h2。頭に物どうしの図（Company・Deal・Person＝Standard、Partnership・Invoices＝Custom、各「12 More Attributes」）。
+- **料金表**：4枚（Free $0／Plus $35〔月払い $44〕／Pro $79〔$99〕／Enterprise Custom、per user/month、ドルのみ・税の記載なし）。Annual で開き、Plus と Pro にだけ札「Save 20%」（12px・#538bf3 on #e8f0ff・2.89:1）。切り替えは 94×36 の2つで白い板が .5s cubic-bezier(.2,0,0,1)。価格は月と年の数字を両方 DOM に置き、inline-grid の同じ升で、出る方 -100%・来る方 +100%→0 を 500ms ease-out。カード 271×398・角 20px、Pro だけ縁 #94b9ff＋4px の輪 rgba(83,139,243,.1)＋塗りのボタン。カードの後ろの格子の線（横2・縦5）が 1.5s linear、0〜600ms ずらして引かれる。
+- **比較表**：8区分76行（Credits 3＋追加4段・Workspace 16・Automations 3・Email and calendar 10・Enrichment 小見出し3＋23・Reporting 7・Security and admin 10・Support 4）。PC は「払い方の切り替え＋4つの価格とボタン」の帯 1116×199 を top:116px、区分名 h2 を top:313px に2段で sticky。Pro の列は地 #fafafb、行の名前の右に ⓘ 48個。SP は1行ずつ開閉し、開くと4プランを縦に並べる。PC の区分の開閉なし。FAQ 12問（base-ui の aria-expanded、FAQPage なし）。
+- **試すまで**：Start for free・Continue with Plus／Pro は1手で app.attio.com/welcome/sign-in（別ドメイン）。カード不要は料金ページの題の下の一文だけ、試用は FAQ で「Pro を14日」。
+- **事例と信頼**：トップのロゴは 5×2 の格子（1マス 278×96・地 #fafafb・線 #d3d8df）で、事例のある4社だけ右上に ↗。数字は「30,000+ customers」1つ（時点なし）。事例一覧は7件を全幅 1388×460・半分 578×460 ×2 の交互、札は等幅の大文字 12px／14px／600／字間 .72px で「業種 / 調達額 [段階]」。詳細は左に About・Industry・Company size・Headquarters・Founded・Funding raised・Key features、右に Challenge・Solution・Results（3行）→ 本文。
+- **ドキュメント**：/help は左の目次（Academy 5・Reference 14）、題 56px、検索 320×46 と ⌘K、よく探す語3つ、入口3枚（Academy・Reference・Developers）。開発者の文書は docs.attio.com。
+- **見た目の値**：地 #fff・帯 #fafafb・面 #f3f4f6、文字 #1c1d1f（16.87:1）・#505967（7.08:1）・#6f7988（4.41:1）・#b5bdc9。線 #e4e7ec・#cad0d9。青は印だけ（#266df0 4.64:1）。書体は inter・interDisplay・JetBrains Mono・tiemposText（引用）をすべて自前の woff2（348KB）。ボタンは全ページ 高さ36・角10・14px／500、hover 50ms・戻り .3s cubic-bezier(.2,0,0,1)。色の既定 .2s cubic-bezier(.33,1,.68,1)。reduce で keyframes（レーダー・ロール）は止まるが、窓の文字打ちなど JS の書き換えは5秒で 345回残る（no-preference 1,775回）。
+- **データと重さ**：PC で top 13.97MB / features 21.58MB / pricing 15.41MB / customers 16.29MB / help 15.58MB（展開後。トップの転送は約 6.25MB・37ホスト）。全ページ共通の JS 2,675KB、reCAPTCHA の recaptcha__ja.js 836KB を3回、Intercom、RSC の先読み トップ 52本・料金 59本（機能ページは /apps を 1,235KB）。構造化データはトップだけ Organization・WebSite・SoftwareApplication・Offer。
+
 ## 真似る型
-見本3つ（Backlog・コドモン・Linear）に共通するもの、または1つで測った値を出発点にするもの。値の出どころを添える。
+見本4つ（Backlog・コドモン・Linear・Attio）に共通するもの、または1つで測った値を出発点にするもの。値の出どころを添える。
 1. **行動の数は、試す入口の有無で決める**：試せる製品は「試す」を主に（Backlog は試す＋資料、Linear は Get started と Contact sales）、試せない製品は資料請求＋問い合わせ（コドモン）。主は塗り、副は白地か枠か半透明。Linear のように最初の画面から行動を消さない（ヘッダーの 73×32 だけでは小さい）。
 2. **実績の数字には時点と数え方**：Backlog「2026年6月末」、コドモン「2026年10月1日時点」＋※の数え方と調査元。Linear は「40,000」を3通りに言い、時点なし（真似ない）。
-3. **料金は規模で決める**：Backlog は「31人以上か」を診断の1問に、コドモンは定員3段、Linear は per user/month の4列。人数で決まるなら、入力させる前に段を見せ、大きく出す価格は1つ（コドモン 88px、ほか 30px）。
-4. **強調は1枚だけ、文字の札に頼らない**：Backlog は枠と帯の色、Linear は塗ったボタン1つ（ほかは白5%の半透明）。列はカードの箱にせず線で分けてもよい（Linear の縦線 白8%）。
+3. **料金は規模で決める**：Backlog は「31人以上か」を診断の1問に、コドモンは定員3段、Linear と Attio は per user/month の4列（Attio は 4列とも同じ 271×398 のカード）。人数で決まるなら、入力させる前に段を見せ、大きく出す価格は1つ（コドモン 88px、ほか 30px）。
+4. **強調は1枚だけ、文字の札に頼らない**：Backlog は枠と帯の色、Linear は塗ったボタン1つ（ほかは白5%の半透明）、Attio は縁 #94b9ff＋4px の淡い輪＋塗りのボタン（札「Popular」は比較表の見出しだけ）。列はカードの箱にせず線で分けてもよい（Linear の縦線 白8%）。
 5. **見た目の出発点**：明るい現場向けはコドモン（地は白と淡い水色2段、本文 #4d4c4b、本文 16px／行間 1.5、角 8px と 40px、影はぼかさない 0 4px 0）。開発・企画の職種向けは Linear（地 #08090a から4段、文字4段、主ボタンは白、Inter 510、字間 -0.022em、.16s ease-out-quad）。
 6. **製品画面**：Backlog は実画面キャプチャ、コドモンは写真と端末の合成、Linear は DOM の画面（3,369要素）で仕事の文まで本物らしく埋める。DOM にするなら止めるボタンを付け、reduce では止める（Linear は止まらない）。
 7. **機能の詳しい説明はページを移らずに開く**：Linear の「＋」20個 → 640px のシート（Esc で閉じ、フォーカスは押したボタンへ）。機能が多い製品は、章の最後に機能名の行を置き、押すと説明が出る形にする。
-8. **比較表**：Backlog は 5区分35行・SP は details、Linear は 9区分55行・見出しの行 sticky（PC top:72px）・SP は select で1プラン。✓×に読み上げの文字（Linear「Included／Not included」）。
+8. **比較表**：Backlog は 5区分35行・SP は details、Linear は 9区分55行・見出しの行 sticky（PC top:72px）・SP は select で1プラン、Attio は 8区分76行で「払い方の切り替え＋価格＋ボタン」の帯と区分名を2段で sticky（top:116px・313px）・SP は1行ずつ開閉。✓×に読み上げの文字（Linear「Included／Not included」）。
 9. **フォームは2段**：1段目は選ぶだけの質問、2段目に組織と個人の情報（コドモン 6＋11項目）。任意を「（任意）」と書き、説明文は欄の上。エラーは欄の下に、何をすればよいかまで書く。
 10. **事例の一覧の終わりを入口にする**：Linear は一覧16社の最後に灰色の「Your company ― Make the switch」。絞り込みは URL のあるリンク（/customers/ai）。
+11. **製品の窓は仕事ごとに入れ替える**：Attio はトップの5章（売上の仕事の順）それぞれに表・ワークフロー・SQL・グラフの DOM の模型を置き、左の目次（sticky、今だけ濃く・2px の印）で今の章を示す。章の見出しは「黒の一言＋灰の続き」の1文。目次の非選択は 3:1 以上にする（Attio は 1.37:1）。
+12. **月年の価格を入れ替える動き**：Attio は両方の数字を同じ升に置き、上下に 500ms ease-out で入れ替える。読み上げは見えている方だけにし、reduce では入れ替えずに書き換える。
+13. **SP では最初の画面の行動を替えてよい**：Attio は PC の「相談＋試す」を、SP では「メール欄＋1つのボタン＋文字のリンク」に。題と一文は変えない。
 
 ## 反面教師
 - 商談予約ウィジェットを全ページで読み込み、どのページでも一番重いファイルにする。診断の途中で日時の枠を開いて結果と重ねる（Backlog）。
@@ -65,5 +80,6 @@
 - 検索の0件を見出しだけで終える（コドモンのヘルプ）。
 - SP で最初の画面のボタンの順を PC と逆にする。SP の h1 で助詞1字を次の行に落とす（コドモン）。
 - h1 を opacity:0 で始めて JS で出す。この環境では 7.1〜8.2秒見えず、JS なしでは見えない（Linear）。
+- 左の目次の非選択を 1.37:1、割引の札を 2.89:1、一文を 4.41:1 にする。SP で製品の窓を縮めて中の文字を 4〜7px にする。reCAPTCHA を3回読む（Attio）。
 - 年払いの割引率を書かず、月払いにしてもラベルが「Billed yearly」のまま。2つのスイッチが連動することも、名前も無い（Linear）。
 - リンクが見えるたびに行き先を先読みし、ページの半分がまだ行っていないページ（Linear のトップ 44%）。検索の索引 1,107KB を検索を開く前に読む。
