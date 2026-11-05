@@ -85,6 +85,11 @@ button,input,select{font:inherit;color:inherit}
 .hero .yr{display:block;font:500 20px/1.4 var(--mincho)}
 .hero .lead-1{margin:12px 0 20px;font-size:16px;line-height:1.8}
 .hero .pill{height:52px;padding:0 32px;border-radius:26px;font-size:16px}
+/* 手の跡のある絵：茶碗と湯呑のスケッチ・窯元の判子・窯の煙（自分で描いた SVG。線は #rough でゆらす） */
+.sketch{pointer-events:none}
+.sk-cups{left:79%;top:39%;width:200px;height:auto}
+.sk-stamp{left:88%;top:68%;width:112px;height:auto;transform:rotate(-9deg)}
+.sk-smoke{left:31%;top:-2%;width:110px;height:auto}
 .hero-credit{left:calc(20% + 20px);bottom:14px;font-size:13px;line-height:1.5}
 .hero-credit a{color:inherit}
 
@@ -243,11 +248,27 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
   .chip:hover,.go:hover{opacity:.75}
   .skills-btn:hover{opacity:.7}
 }
+@media (min-width:601px) and (max-width:1200px){
+  .stage{height:760px}
+  .kaiyu{top:58%}
+  .nobori{height:92%;width:120px}
+  .nobori h1{font-size:54px}
+  .ph-street{left:28%;width:38%;top:7%;height:49%}
+  .ph-plates{left:63%;width:34%;top:4%;height:32%}
+  .ph-kiln{left:20%;top:3%;width:140px;height:140px}
+  .sk-smoke{left:31%;top:-3%;width:90px}
+  .sk-cups{left:70%;top:38%;width:150px}
+  .sk-stamp{left:83%;top:63%;width:96px}
+  .fuda-hero{display:none}
+  .hero-text{left:28%;right:var(--pad);top:62%;bottom:auto}
+  .hero-credit{left:28%}
+}
+@media (min-width:601px) and (max-width:860px){
+  .sk-stamp{top:51%;left:80%;width:84px}
+}
 @media (max-width:992px){
   .gnav{display:none}
   .head .pill{margin-left:auto}
-  .ph-street{left:30%;width:40%}
-  .hero-text{left:62%}
   .map-grid,.k-grid,.tt,.acc-grid,.rain-grid,.mail-in{grid-template-columns:1fr}
   .route{position:static}
 }
@@ -267,9 +288,15 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
   .ph-plates{left:56%;width:52%;top:280px;height:150px;border-radius:20px}
   .ph-kiln{left:27%;top:250px;width:112px;height:112px;border-width:4px}
   .fuda-hero{display:none}
+  .sk-cups{left:auto;right:6px;top:392px;width:120px}
+  .sk-stamp{left:24%;top:376px;width:84px}
+  .sk-smoke{left:44%;top:186px;width:70px}
+  .hero-text{background:var(--kaiyu)}
+  .hero-credit{background:var(--kaiyu)}
   .hero-text,.hero-credit{position:static}
-  .hero-text{padding:24px var(--pad) 8px}
+  .hero-text{padding:24px var(--pad) 8px;margin-top:-1px}
   .hero-credit{padding:0 var(--pad) 28px;text-align:left}
+  .stage{padding-top:480px}
   .hero .date{font-size:32px;white-space:normal}
   .hero .date small{font-size:16px}
   .hero .pill{width:100%}
@@ -302,6 +329,12 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="rough" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.6"/></filter>
+    <filter id="inkfade" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="2" seed="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3" result="d"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.2 1.9" result="m"/><feComposite in="d" in2="m" operator="in"/></filter>
+  </defs>
+</svg>
 
 <header class="site-head">
   <div class="status" id="status" data-state="ok" role="status">
@@ -325,6 +358,9 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
       <img class="ph ph-plates" src="photos/Hasami-ware-plates.jpg" width="960" height="720" alt="積み重ねた藍の模様の皿（長崎県波佐見町の波佐見焼）">
       <img class="ph ph-street" src="photos/Arita-tokichi-200804.jpg" width="1280" height="960" alt="陶器市の通り。軒先に器を並べた店の前を、袋を提げた人が歩いている（佐賀県有田町の有田陶器市）">
       <img class="ph ph-kiln" src="photos/Noborigama-Tokoname-01.jpg" width="1280" height="742" alt="れんがの登り窯（愛知県常滑市）">
+      <svg class="sketch sk-smoke" viewBox="0 0 110 150" aria-hidden="true"><g fill="none" stroke="#4f4842" stroke-width="2.6" stroke-linecap="round" filter="url(#rough)"><path d="M30 146 C 16 122, 44 112, 30 90 S 48 52, 34 30 S 46 8, 40 2"/><path d="M52 144 C 44 124, 66 116, 56 96 S 74 64, 62 44" opacity=".7"/><path d="M72 140 C 70 126, 86 118, 80 104 S 92 82, 86 70" opacity=".5"/></g></svg>
+      <svg class="sketch sk-stamp" viewBox="0 0 120 120" role="img" aria-label="窯元の判子"><g filter="url(#inkfade)" fill="none" stroke="#b30000"><circle cx="60" cy="60" r="53" stroke-width="5"/><circle cx="60" cy="60" r="44" stroke-width="1.6"/></g><g filter="url(#inkfade)" fill="#b30000" font-family="Shippori Mincho B1, serif" text-anchor="middle"><text x="60" y="62" font-size="32">窯元</text><text x="60" y="86" font-size="14" letter-spacing="2">四十一軒</text></g></svg>
+      <svg class="sketch sk-cups" viewBox="0 0 200 170" aria-hidden="true"><g filter="url(#rough)"><path d="M22 74 C 26 108, 52 128, 82 127 C 112 126, 134 106, 136 76 Z" fill="#fbf6ee"/><path d="M40 98 C 60 110, 92 112, 124 96 C 116 116, 98 126, 80 126 C 62 126, 48 116, 40 98 Z" fill="#c9734f" opacity=".35"/><path d="M152 44 C 150 84, 152 118, 158 146 L 190 146 C 194 118, 195 84, 193 44 Z" fill="#fbf6ee"/><path d="M152 78 C 164 84, 178 74, 193 82 L 194 104 C 180 98, 166 108, 152 100 Z" fill="#7b8a6a" opacity=".35"/><g fill="none" stroke="#2b2621" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 74 C 22 110, 50 130, 82 129 C 114 128, 138 108, 140 74"/><path d="M16 73 C 34 62, 124 60, 142 73 C 126 84, 34 85, 16 73"/><path d="M60 128 L 62 141 C 76 144, 92 144, 104 140 L 106 126"/><path d="M150 44 C 148 84, 150 120, 156 148 L 192 147 C 196 118, 197 82, 195 44"/><path d="M149 44 C 160 36, 184 36, 196 44 C 184 50, 160 51, 149 44"/><path d="M152 80 C 164 86, 178 76, 194 84" stroke-width="1.6"/></g><g fill="#2b2621" opacity=".55"><circle cx="70" cy="92" r="1.4"/><circle cx="96" cy="104" r="1.2"/><circle cx="170" cy="120" r="1.3"/></g></g></svg>
       <div class="nobori"><span class="kai" aria-hidden="true">第三十八回</span><h1 id="h-title">瀬戸ノ口陶器市</h1></div>
       <p class="fuda-hero" aria-hidden="true"><span>本町通り</span><b>角田製陶</b><span>訳ありの飯碗</span><span class="price">三つで千円</span></p>
       <div class="hero-text">
@@ -617,7 +653,7 @@ var FROM={
 };
 
 var SKILLS=[
- ['最初の画面','site-skills／aesthetic.md「本物か作例か」','手本の催し10件の最初の画面（明るさの中央値 約211・白っぽい部分 約74%、写真は色のまま余白で囲む・切り抜く、題は写真の外に濃い色）に寄せた。「本物か作例か 第2回」で層を作る：生成りの地・灰釉の色の面・のぼり（題）・アーチ／角丸／丸の写真3枚・手書きの値札を、大きさを変えて重ね、面や画面の端からはみ出させる'],
+ ['最初の画面','site-skills／aesthetic.md「本物か作例か」','手本の催し10件の最初の画面（明るさの中央値 約211・白っぽい部分 約74%、写真は色のまま余白で囲む・切り抜く、題は写真の外に濃い色）に寄せた。「本物か作例か 第2回・第3回」で層を作る：手の跡のある絵（茶碗と湯呑のスケッチ・窯元の判子・窯の煙、自分で描いた SVG）・生成りの地・灰釉の色の面・のぼり（題）・アーチ／角丸／丸の写真3枚・手書きの値札を、大きさを変えて重ね、面や画面の端からはみ出させる'],
  ['題の書体と太さ','site-skills／aesthetic.md「業種の手本を先に測る」','手本23件のいちばん大きい字は中央値 39.5px・太さ 400（80px 以上が5件）。題は 80px・太さ 500（Shippori Mincho B1）を墨色で。明朝はリュウミン・筑紫明朝・つくしA を使う手本がある'],
  ['本文','site-skills／手本23件の中央値','Noto Sans JP（Web フォントでいちばん多い）400・16px・行間 1.75。本文の色は #000 が10件なので黒に近い <code>#1a1714</code>'],
  ['文字の左端と余白','site-skills／手本23件の中央値','文字の左端 261px → 本文の幅 1000px。何も無い帯 72px（上位1割 199px）→ 章の間 120px'],
