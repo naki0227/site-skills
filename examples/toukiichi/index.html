@@ -22,7 +22,7 @@
   - 小さな手がかりは1つ：のぼり（最初の画面の「第三十八回」の縦の旗と、章の題の左の竿）。
 */
 :root{
-  --paper:#fff; --kinari:#f7f3ea; --sumi:#1a1714; --rule:#ccc; --mute:#5f5852; --pale:#f2f0ed;
+  --paper:#fff; --kinari:#f7f3ea; --kaiyu:#d9e2d6; --sumi:#1a1714; --rule:#ccc; --mute:#5f5852; --pale:#f2f0ed;
   --oribe:#2f5a41; --shu:#b30000; --shino:#f3ede4;
   --ease:cubic-bezier(.25,.46,.45,.94); --t1:.1s; --t2:.2s; --t3:.4s;
   --mincho:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif;
@@ -58,21 +58,35 @@ button,input,select{font:inherit;color:inherit}
 .pill[disabled]{opacity:.35;cursor:not-allowed}
 .head .pill{height:40px;padding:0 20px;font-size:14px}
 
-/* 最初の画面：生成りの地に、濃い色の題と日付を写真の外に。写真は色のまま、窯の焚き口のアーチと丸に切り抜く（手本10件：明るさの中央値 約211・白っぽい部分 約74%。植物×匠の不定形の切り抜き・ママフェスの角丸の枠） */
-.hero{background:var(--kinari);padding:40px 0 56px}
-.hero-in{position:relative;max-width:calc(1160px + var(--pad) * 2);margin:0 auto;padding:0 var(--pad);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.618fr);gap:48px;align-items:center}
-.hero-text{position:relative;padding-left:76px}
-.nobori{position:absolute;top:0;left:0;width:52px;padding:20px 0 24px;margin:0;background:var(--oribe);color:#fff;writing-mode:vertical-rl;font:500 18px/52px var(--mincho);letter-spacing:.24em;text-align:center}
-.hero h1{margin:0;font:500 80px/1.2 var(--mincho);letter-spacing:.02em}
-.hero .date{margin:20px 0 0;font:500 28px/1.45 var(--mincho);white-space:nowrap}
-.hero .date small{font-size:16px}
-.hero .lead-1{margin:16px 0 28px;font-size:18px;line-height:1.8}
+/* 最初の画面：層を作る（手本：植物×匠の灰の帯＋不定形の写真、ママフェスの重ねた札と縦書きの題、燕三条のはみ出す写真の帯）。
+   生成りの地 → 灰釉の色の面 → のぼり（縦書きの題）→ アーチの写真 → 角丸の写真（右にはみ出す）→ 丸の写真 → 手書きの値札。題は1色（白）でのぼりに。 */
+.hero{background:var(--kinari);overflow:hidden}
+.stage{position:relative;height:clamp(600px,calc(100svh - 132px),780px);max-width:1440px;margin:0 auto}
+.stage > *{position:absolute;margin:0}
+.kaiyu{left:20%;right:0;top:50%;bottom:0;background:var(--kaiyu)}
+.nobori{left:max(24px,8%);top:0;width:150px;height:90%;background:var(--oribe);color:#fff;writing-mode:vertical-rl;display:flex;align-items:center;justify-content:center;gap:18px;padding:36px 0 40px}
+.nobori::before{content:"";position:absolute;left:-14px;top:-40px;bottom:-40px;width:5px;background:#8a6a45}
+.nobori::after{content:"";position:absolute;left:-12px;top:24px;bottom:24px;width:16px;background:repeating-linear-gradient(to bottom,transparent 0 46px,var(--oribe) 46px 62px)}
+.nobori h1{margin:0;font:500 66px/1 var(--mincho);letter-spacing:.06em;white-space:nowrap}
+.nobori .kai{font:500 20px/1 var(--mincho);letter-spacing:.3em;white-space:nowrap;flex:none}
+.ph{object-fit:cover;display:block}
+.ph-street{left:27%;width:36%;top:9%;height:80%;border-radius:50% 50% 0 0 / 30% 30% 0 0;object-position:52% 70%}
+.ph-plates{left:59%;width:30%;top:5%;height:40%;border-radius:28px;object-position:50% 40%}
+.ph-kiln{left:21%;top:5%;width:180px;height:180px;border-radius:50%;border:6px solid var(--kinari);object-position:30% 50%}
+.fuda-hero{left:51%;top:74%;width:230px;padding:12px 14px 16px 30px;background:#fff;border:1px solid var(--sumi);font-family:var(--hand);transform:rotate(-4deg)}
+.fuda-hero::before{content:"";position:absolute;left:10px;top:50%;width:9px;height:9px;margin-top:-5px;border:1px solid var(--sumi);border-radius:50%}
+.fuda-hero::after{content:"";position:absolute;left:-58px;top:50%;width:60px;height:1px;background:var(--sumi);transform:rotate(-14deg);transform-origin:right}
+.fuda-hero b{display:block;font-size:20px;line-height:1.3}
+.fuda-hero span{display:block;font-size:14px;line-height:1.4}
+.fuda-hero .price{font-size:20px;color:var(--shu)}
+.hero-text{left:67%;right:var(--pad);bottom:13%}
+.hero .date{margin:0;font:500 44px/1.3 var(--mincho);white-space:nowrap}
+.hero .date small{font-size:18px}
+.hero .yr{display:block;font:500 20px/1.4 var(--mincho)}
+.hero .lead-1{margin:12px 0 20px;font-size:16px;line-height:1.8}
 .hero .pill{height:52px;padding:0 32px;border-radius:26px;font-size:16px}
-.hero-photos{position:relative;margin:0;padding-bottom:48px}
-.hero-photos .arch{display:block;width:100%;height:auto;aspect-ratio:5/4;object-fit:cover;object-position:50% 70%;border-radius:50% 50% 0 0 / 34% 34% 0 0}
-.hero-photos .round{position:absolute;left:-36px;bottom:0;width:30%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:50%;border:6px solid var(--kinari)}
-.hero-photos figcaption{position:absolute;right:0;bottom:12px;margin:0;font-size:13px;line-height:1.5;text-align:right;max-width:68%}
-.hero-photos figcaption a{color:inherit}
+.hero-credit{left:calc(20% + 20px);bottom:14px;font-size:13px;line-height:1.5}
+.hero-credit a{color:inherit}
 
 /* 章 */
 section.ch{padding:120px 0 0}
@@ -232,8 +246,8 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
 @media (max-width:992px){
   .gnav{display:none}
   .head .pill{margin-left:auto}
-  .hero-in{grid-template-columns:1fr;gap:32px}
-  .hero h1{font-size:64px}
+  .ph-street{left:30%;width:40%}
+  .hero-text{left:62%}
   .map-grid,.k-grid,.tt,.acc-grid,.rain-grid,.mail-in{grid-template-columns:1fr}
   .route{position:static}
 }
@@ -243,17 +257,21 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
   section.ch{padding-top:88px}
 }
 @media (max-width:600px){
-  .hero{padding:24px 0 40px}
-  .hero-text{padding-left:56px}
-  .nobori{width:40px;font-size:15px;line-height:40px;padding:14px 0 18px}
-  .hero h1{font-size:44px}
-  .hero .date{font-size:24px}
-  .sp-br{display:inline}
-  .hero-photos{padding-bottom:0}
-  .hero-photos .round{left:-8px;bottom:64px;width:30%}
-  .hero-photos figcaption{position:static;max-width:none;margin-top:10px;padding-left:34%}
+  .stage{height:auto;padding-top:480px}
+  .kaiyu{left:18%;top:210px;bottom:auto;height:270px}
+  .nobori{left:24px;width:84px;top:0;height:460px;gap:12px;padding:20px 0 24px}
+  .nobori::after{background:repeating-linear-gradient(to bottom,transparent 0 34px,var(--oribe) 34px 46px)}
+  .nobori h1{font-size:40px}
+  .nobori .kai{font-size:14px}
+  .ph-street{left:34%;width:62%;top:16px;height:280px}
+  .ph-plates{left:56%;width:52%;top:280px;height:150px;border-radius:20px}
+  .ph-kiln{left:27%;top:250px;width:112px;height:112px;border-width:4px}
+  .fuda-hero{display:none}
+  .hero-text,.hero-credit{position:static}
+  .hero-text{padding:24px var(--pad) 8px}
+  .hero-credit{padding:0 var(--pad) 28px;text-align:left}
+  .hero .date{font-size:32px;white-space:normal}
   .hero .date small{font-size:16px}
-  .hero .lead-1{font-size:16px;margin-bottom:20px}
   .hero .pill{width:100%}
   .map-box{overflow-x:auto}
   .map-box svg{width:640px;max-width:none}
@@ -274,7 +292,7 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
 }
 @media (max-width:430px){
   .logo{font-size:18px}
-  .hero .date{white-space:normal;font-size:22px}
+  .hero .date{font-size:28px}
   .head .bar{gap:12px}
 }
 @media (prefers-reduced-motion:reduce){
@@ -302,19 +320,19 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
 
 <main id="top">
   <section class="hero" aria-labelledby="h-title">
-    <div class="hero-in">
+    <div class="stage">
+      <div class="kaiyu" aria-hidden="true"></div>
+      <img class="ph ph-plates" src="photos/Hasami-ware-plates.jpg" width="960" height="720" alt="積み重ねた藍の模様の皿（長崎県波佐見町の波佐見焼）">
+      <img class="ph ph-street" src="photos/Arita-tokichi-200804.jpg" width="1280" height="960" alt="陶器市の通り。軒先に器を並べた店の前を、袋を提げた人が歩いている（佐賀県有田町の有田陶器市）">
+      <img class="ph ph-kiln" src="photos/Noborigama-Tokoname-01.jpg" width="1280" height="742" alt="れんがの登り窯（愛知県常滑市）">
+      <div class="nobori"><span class="kai" aria-hidden="true">第三十八回</span><h1 id="h-title">瀬戸ノ口陶器市</h1></div>
+      <p class="fuda-hero" aria-hidden="true"><span>本町通り</span><b>角田製陶</b><span>訳ありの飯碗</span><span class="price">三つで千円</span></p>
       <div class="hero-text">
-        <p class="nobori" aria-hidden="true">第三十八回</p>
-        <h1 id="h-title">瀬戸ノ口<br>陶器市</h1>
-        <p class="date">2027年<br>5月3日<small>（月・祝）</small>・4日<small>（火・祝）</small></p>
+        <p class="date"><span class="yr">2027年</span>5月3日<small>（月・祝）</small>・4日<small>（火・祝）</small></p>
         <p class="lead-1">岐阜県瀬戸ノ口町の本町通りほかに、<br>窯元41軒が器を並べます。</p>
         <a class="pill" href="#access">行き方を調べる</a>
       </div>
-      <figure class="hero-photos">
-        <img class="arch" src="photos/Arita-tokichi-200804.jpg" width="1280" height="960" alt="陶器市の通り。軒先に器を並べた店の前を、袋を提げた人が歩いている（佐賀県有田町の有田陶器市）">
-        <img class="round" src="photos/Noborigama-Tokoname-01.jpg" width="1280" height="742" alt="れんがの登り窯（愛知県常滑市）">
-        <figcaption>写真：有田陶器市の通り（佐賀県有田町）Atsasebo／常滑の登り窯 Gryffindor<br><a href="https://commons.wikimedia.org/w/index.php?curid=9228610">Wikimedia Commons</a> CC BY-SA 3.0・<a href="https://commons.wikimedia.org/w/index.php?curid=63887246">4.0</a></figcaption>
-      </figure>
+      <p class="hero-credit">写真：有田陶器市（Atsasebo, CC BY-SA 3.0）・波佐見焼の皿（Nesnad, CC BY 4.0）・<br>常滑の登り窯（Gryffindor, CC BY-SA 4.0）／<a href="https://commons.wikimedia.org/w/index.php?curid=9228610">Wikimedia</a> <a href="https://commons.wikimedia.org/w/index.php?curid=116465207">Commons</a></p>
     </div>
   </section>
 
@@ -599,7 +617,7 @@ var FROM={
 };
 
 var SKILLS=[
- ['最初の画面','site-skills／aesthetic.md「本物か作例か」','手本の催し10件の最初の画面（明るさの中央値 約211・白っぽい部分 約74%、写真は色のまま余白で囲む・切り抜く、題は写真の外に濃い色）に寄せた。生成りの地に、題・日付・一文・ボタン、色のままの写真を窯の焚き口のアーチと丸に切り抜く'],
+ ['最初の画面','site-skills／aesthetic.md「本物か作例か」','手本の催し10件の最初の画面（明るさの中央値 約211・白っぽい部分 約74%、写真は色のまま余白で囲む・切り抜く、題は写真の外に濃い色）に寄せた。「本物か作例か 第2回」で層を作る：生成りの地・灰釉の色の面・のぼり（題）・アーチ／角丸／丸の写真3枚・手書きの値札を、大きさを変えて重ね、面や画面の端からはみ出させる'],
  ['題の書体と太さ','site-skills／aesthetic.md「業種の手本を先に測る」','手本23件のいちばん大きい字は中央値 39.5px・太さ 400（80px 以上が5件）。題は 80px・太さ 500（Shippori Mincho B1）を墨色で。明朝はリュウミン・筑紫明朝・つくしA を使う手本がある'],
  ['本文','site-skills／手本23件の中央値','Noto Sans JP（Web フォントでいちばん多い）400・16px・行間 1.75。本文の色は #000 が10件なので黒に近い <code>#1a1714</code>'],
  ['文字の左端と余白','site-skills／手本23件の中央値','文字の左端 261px → 本文の幅 1000px。何も無い帯 72px（上位1割 199px）→ 章の間 120px'],
