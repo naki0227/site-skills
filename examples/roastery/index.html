@@ -77,14 +77,14 @@ body:not(.detail) .crumb{display:none}
 .hero{background:var(--bg);padding:16px 0 56px;overflow:hidden}
 .stage{position:relative;max-width:1230px;margin:0 auto;padding:0 15px;height:760px}
 .stage>*{position:absolute}
-.field{left:15px;top:40px;width:44%;height:640px;background:var(--kraft)}
-.hero h1{left:9%;top:92px;writing-mode:vertical-rl;font:500 76px/1.1 var(--serif);margin:0;letter-spacing:.12em;color:var(--ink)}
+.field{left:15px;top:40px;width:44%;height:700px;background:var(--kraft)}
+.hero h1{left:9%;top:68px;writing-mode:vertical-rl;font:500 88px/1.06 var(--serif);margin:0;letter-spacing:.12em;color:var(--ink)}
 /* 作り込みは1つだけ：コーヒー袋の口を留めるブリキのタイ（題の横の2pxの線と、両端の折り返し） */
-.tie{left:calc(9% + 104px);top:100px;width:2px;height:300px;background:var(--ink)}
+.tie{left:calc(9% + 120px);top:76px;width:2px;height:400px;background:var(--ink)}
 .tie::before,.tie::after{content:"";position:absolute;left:-4px;width:10px;height:6px;background:var(--ink)}
 .tie::before{top:0}.tie::after{bottom:0}
-.htxt{left:calc(15px + 4%);top:536px;width:34%}
-.hero p{margin:0;font-size:16px;line-height:2}
+.htxt{left:calc(15px + 4%);top:610px;width:36%;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.hero p{margin:0;font:500 26px/1.4 var(--serif)}
 .hero .go{display:inline-flex;align-items:center;height:52px;padding:0 26px;margin-top:16px;background:var(--ink);color:#fff;font-weight:700;text-decoration:none;transition:opacity .2s var(--ease)}
 @media (hover:hover) and (pointer:fine){.hero .go:hover{opacity:.8}}
 .ph{margin:0}
@@ -331,12 +331,13 @@ dialog[open]{animation:pop .2s var(--ease)}
   .stage{height:780px}
   .field{width:52%;height:440px;top:24px}
   .pa{width:60%}
-  .hero h1{font-size:56px;top:56px;left:7%}
-  .tie{left:calc(7% + 80px);top:64px;height:220px}
+  .hero h1{font-size:64px;top:48px;left:7%}
+  .tie{left:calc(7% + 88px);top:56px;height:300px}
   .pb{left:28%;top:330px;width:220px;height:220px}
   .ring{left:calc(28% - 40px);top:290px;width:300px;height:300px}
   .bag{top:360px;width:150px}
   .htxt{top:600px;left:15px;width:calc(100% - 30px)}
+  .field{height:460px}
 }
 @media (max-width:600px){
   .hero{padding:8px 0 40px}
@@ -344,14 +345,15 @@ dialog[open]{animation:pop .2s var(--ease)}
   .field{left:0;width:58%;height:400px;top:16px}
   .pa{right:0;top:44px;width:64%}
   .pa figcaption{right:8px;top:18px}
-  .hero h1{font-size:44px;top:40px;left:20px}
-  .tie{left:76px;top:46px;height:180px}
+  .hero h1{font-size:54px;top:30px;left:18px}
+  .tie{left:84px;top:36px;height:250px}
   .pb{left:30%;top:250px;width:170px;height:170px}
   .pb figcaption{bottom:34px;font-size:13px}
   .ring{left:calc(30% - 30px);top:220px;width:230px;height:230px}
   .ring text{font-size:19px}
   .bag{right:4px;top:340px;width:96px}
-  .htxt{top:478px;left:15px;width:calc(100% - 30px)}
+  .htxt{top:470px;left:15px;width:calc(100% - 30px);gap:14px}
+  .hero p{font-size:24px}
   .hero .go{width:100%;justify-content:center}
   .hd .wrap{height:54px;gap:10px}
   .hd nav{display:none}
@@ -642,11 +644,11 @@ function renderList(){
        '<figcaption>冷却槽の豆<br><span class="nw">Jkafader、<a href="https://commons.wikimedia.org/w/index.php?curid=27929313">CC BY-SA 3.0</a></span></figcaption></figure>'+
      BAG+
      '<h1 id="h-shop">三日月珈琲</h1><span class="tie" aria-hidden="true"></span>'+
-     '<div class="htxt"><p>福岡・薬院の焙煎所です。<br>豆は焼いた翌日に発送します。</p>'+
+     '<div class="htxt"><p>月・水・金に焼いています</p>'+
      '<a class="go" href="#next">次の焙煎を見る</a></div>'+
    '</div></section>'+
    '<div class="wrap">'+
-   '<div class="lead" id="next"><h2>次の焙煎</h2><p>この回の釜に入れる豆を選べます。ほかの豆は、下の一覧からどうぞ。</p></div>'+
+   '<div class="lead" id="next"><h2>次の焙煎</h2><p>福岡・薬院の焙煎所です。豆は焼く曜日が決まっていて、焼いた翌日に発送します。<br>この回の釜に入れる豆を選べます。ほかの豆は、下の一覧からどうぞ。</p></div>'+
    '<section class="board" aria-labelledby="h-board">'+(function(){
      var x = days[0], kg = KAMA[x.dw];
      return '<div class="board-hd"><h3 id="h-board">'+md(x.d)+'</h3><label>お届け先 '+regionSel()+'</label></div>'+
