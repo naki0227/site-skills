@@ -7,7 +7,7 @@
 <meta name="description" content="福岡・薬院の小さな焙煎所、三日月珈琲の通販。豆は12種類、200gと500g、挽き方を選べます。毎週 月・水・金に焙煎して翌日発送。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
 {"@type":"ListItem","position":1,"name":"三日月珈琲","item":"https://example.com/"},
@@ -18,12 +18,12 @@
   値は Web Design Clip の food・eat-drink の食品・飲料の店40件（開けて和文の本文が取れた35件、2026-11-02、scripts/sample.js）の中央値に寄せた。
   - 地：白15・色の入った白15・暗い地5。コーヒーの焙煎所は色の入った白が多い（A Bite Coffee #ece9e1、Chevron Coffee #edece7、j.organic #f6f1ed）→ #eeece7。
   - 色は3つ：地 #eeece7・主 焦げ茶 #2b1a14（文字・ボタン・次の焙煎の面）・差し色 クラフト紙 #d9bf98（豆のラベル）。品切れの赤は状態の文字だけ。
-  - 書体：本文の CSS の先頭は明朝が12件・ゴシックが17件。題と名前は Shippori Mincho 500（篠栗珈琲焙煎所が本文・題に使用）、本文は Zen Kaku Gothic New 400（j.organic coffee・お茶処しまだ・金棒茶）。
+  - 書体：本文の CSS の先頭は明朝が12件・ゴシックが17件。題と名前は Shippori Mincho 500（篠栗珈琲焙煎所が本文・題に使用）、本文は Noto Sans JP 400（THREE TIMES COFFEE・トーキョー煎餅・こがしバターケーキ）。前に使った Zen Kaku Gothic New は、見比べ第4回で AI っぽいと選ばれたのでやめた。
   - いちばん大きい字 48px・太さ 500、本文 15〜16px・行間 2・太さ 400、文字の左端 240px、何も無い帯 88px、全幅の罫は0本（35件中23件）、ボタンは角0。
   - 一覧の列・sticky の列・カートの流れは ec-quality-bar（とらや・Allbirds）。
 */
 :root{
-  --bg:#eeece7;
+  --bg:#f8f7f3;
   --ink:#2b1a14;      /* 焦げ茶 */
   --ink2:#5a4339;     /* 注記・出典だけ（地の上で 8.0:1） */
   --rule:#d8cfc6;     /* 罫 */
@@ -32,7 +32,7 @@
   --stamp:#8f1d14;    /* 朱のスタンプ（クラフトの上で 5.9:1） */
   --ease:cubic-bezier(.25,.46,.45,.94);   /* とらや */
   --serif:"Shippori Mincho","Yu Mincho",serif;
-  --sans:"Zen Kaku Gothic New","Yu Gothic",sans-serif;
+  --sans:"Noto Sans JP","Yu Gothic",sans-serif;
   --mono:var(--sans);
   --hand:var(--serif);
 }
@@ -69,19 +69,27 @@ button,select,input{font:inherit;color:inherit}
 .lead p{margin:6px 0 0;font-size:16px;max-width:40em}
 body:not(.detail) .crumb{display:none}
 /* 最初の画面：焙煎機から豆を出す写真を暗くして全面に敷き、題を重ねる（ai-tells 見比べ第3回・aesthetic 4） */
-.hero{position:relative;min-height:calc(100vh - 72px);min-height:calc(100svh - 72px);display:flex;align-items:flex-end;color:#fff;background:#1d120e}
-.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 50%;opacity:.55}
-.hero .wrap{position:relative;width:100%;padding-bottom:72px}
-.hero h1{font:500 48px/1.35 var(--serif);margin:0;letter-spacing:.04em}
-/* 作り込みは1つだけ：コーヒー袋の口を留めるブリキのタイ（題の下の2pxの線と、両端の折り返し） */
-.tie{display:block;position:relative;width:216px;height:2px;background:var(--kraft);margin:18px 0 20px}
-.tie::before,.tie::after{content:"";position:absolute;top:-4px;width:6px;height:10px;background:var(--kraft)}
-.tie::before{left:0}.tie::after{right:0}
-.hero p{margin:0;font-size:18px;line-height:1.9;max-width:34em}
-.hero .go{display:inline-flex;align-items:center;height:52px;padding:0 26px;margin-top:28px;background:var(--kraft);color:var(--ink);font-weight:700;text-decoration:none;transition:background-color .2s var(--ease)}
-@media (hover:hover) and (pointer:fine){.hero .go:hover{background:#fff}}
-.hero .credit{position:absolute;right:15px;top:12px;margin:0;font-size:13px;line-height:1.5;color:#fff;opacity:.85;text-align:right;max-width:calc(100% - 30px)}
-.hero .credit a{color:inherit}
+/* 最初の画面：明るい地に、色のある写真2枚を余白で囲んでずらして置き、題は写真の外に濃い色の縦書きで（旅する喫茶・篠栗珈琲焙煎所・j.organic coffee の型。aesthetic「本物か作例か」） */
+.hero{background:var(--bg);padding:32px 0 88px}
+.hero-in{max-width:1230px;margin:0 auto;padding:0 15px;display:grid;grid-template-columns:250px minmax(0,1fr);gap:56px;align-items:start}
+.hero-txt{padding-top:24px}
+.hero-title{display:flex;align-items:flex-start;gap:22px}
+.hero h1{writing-mode:vertical-rl;font:500 48px/1.2 var(--serif);margin:0;letter-spacing:.14em;color:var(--ink)}
+/* 作り込みは1つだけ：コーヒー袋の口を留めるブリキのタイ（題の横の2pxの線と、両端の折り返し） */
+.tie{display:block;position:relative;width:2px;height:216px;background:var(--ink);margin-top:6px}
+.tie::before,.tie::after{content:"";position:absolute;left:-4px;width:10px;height:6px;background:var(--ink)}
+.tie::before{top:0}.tie::after{bottom:0}
+.hero p{margin:28px 0 0;font-size:16px;line-height:2}
+.hero .go{display:inline-flex;align-items:center;height:52px;padding:0 26px;margin-top:24px;background:var(--ink);color:#fff;font-weight:700;text-decoration:none;transition:opacity .2s var(--ease)}
+@media (hover:hover) and (pointer:fine){.hero .go:hover{opacity:.8}}
+.hero-ph{display:grid;grid-template-columns:1.618fr 1fr;gap:40px;align-items:start}
+.hero-ph figure{position:relative;margin:0}
+.hero-ph img{display:block;width:100%;height:auto;object-fit:cover}
+.hero-ph .a img{aspect-ratio:3/2}
+.hero-ph .b{margin-top:120px}
+.hero-ph .b img{aspect-ratio:4/5}
+.hero-ph figcaption{position:absolute;left:10px;bottom:8px;margin:0;font-size:13px;line-height:1.5;color:#fff;text-shadow:0 0 6px rgba(0,0,0,.6)}
+.hero-ph figcaption a{color:inherit}
 
 /* 次の焙煎（黒板）。最初の画面の主役は、いちばん近い焙煎日の1回だけ */
 .board{background:var(--ink);color:var(--kraft2);padding:24px 28px 28px}
@@ -310,7 +318,21 @@ dialog[open]{animation:pop .2s var(--ease)}
   .pd{grid-template-columns:1fr;grid-template-areas:"lbl" "buy" "body";gap:20px}
   .buy{position:static}
 }
+@media (max-width:860px){
+  .hero-in{grid-template-columns:1fr;gap:28px}
+  .hero-txt{order:2;padding-top:0;display:grid;grid-template-columns:auto 1fr;gap:0 22px;align-items:start}
+  .hero-title{grid-row:span 2}
+  .hero p{margin-top:0}
+  .hero-ph{order:1}
+}
 @media (max-width:600px){
+  .hero{padding:12px 0 56px}
+  .hero-ph{gap:0;margin:0 -15px;grid-template-columns:1.15fr 1fr}
+  .hero-ph figcaption{left:8px;bottom:6px}
+  .hero-ph .b{margin-top:56px}
+  .hero h1{font-size:36px}
+  .tie{height:160px}
+  .hero-txt .go{grid-column:1 / -1}
   .hd .wrap{height:54px;gap:10px}
   .hd nav{display:none}
   .logo small{display:none}
@@ -582,11 +604,16 @@ function renderList(){
   var kindBtns = [["all","すべて"],["single","シングル"],["blend","ブレンド"],["decaf","デカフェ"]];
   var chip = function(group,v,l){return '<button type="button" class="chip" data-'+group+'="'+v+'" aria-pressed="'+(state[group]===v)+'">'+l+'</button>'};
   $("#main").innerHTML =
-   '<section class="hero" aria-labelledby="h-shop"><img src="photos/Beans-Dropping-from-a-Coffee-Roaster.jpg" alt="焙煎機の釜から、焼き上がった豆を冷却槽に出すところ" width="1920" height="1278" fetchpriority="high">'+
-     '<div class="wrap"><h1 id="h-shop">三日月珈琲</h1><span class="tie" aria-hidden="true"></span>'+
-     '<p>福岡・薬院の焙煎所です。<br>豆は焼く曜日が決まっていて、焼いた翌日に発送します。</p>'+
+   '<section class="hero" aria-labelledby="h-shop"><div class="hero-in">'+
+     '<div class="hero-txt"><div class="hero-title"><h1 id="h-shop">三日月珈琲</h1><span class="tie" aria-hidden="true"></span></div>'+
+     '<p>福岡・薬院の焙煎所です。<br>豆は焼く曜日が決まっていて、<br>焼いた翌日に発送します。</p>'+
      '<a class="go" href="#next">次の焙煎を見る</a></div>'+
-     '<p class="credit">写真：焙煎機から豆を出すところ<br><span class="nw">（Jkafader、<a href="https://commons.wikimedia.org/w/index.php?curid=27929316">CC BY-SA 3.0</a>）</span></p></section>'+
+     '<div class="hero-ph">'+
+       '<figure class="a"><img src="photos/Beans-Dropping-from-a-Coffee-Roaster.jpg" alt="焙煎機の釜から、焼き上がった豆を冷却槽に出すところ" width="1920" height="1278" fetchpriority="high">'+
+       '<figcaption>焙煎機から豆を出すところ<br><span class="nw">Jkafader、<a href="https://commons.wikimedia.org/w/index.php?curid=27929316">CC BY-SA 3.0</a></span></figcaption></figure>'+
+       '<figure class="b"><img src="photos/Coffee-Beans-in-a-Cooling-Tray.jpg" alt="冷却槽の中でかき混ぜられる、焼き上がったコーヒー豆" width="1280" height="1923">'+
+       '<figcaption>冷却槽の豆<br><span class="nw">Jkafader、<a href="https://commons.wikimedia.org/w/index.php?curid=27929313">CC BY-SA 3.0</a></span></figcaption></figure>'+
+     '</div></div></section>'+
    '<div class="wrap">'+
    '<div class="lead" id="next"><h2>次の焙煎</h2><p>この回の釜に入れる豆を選べます。ほかの豆は、下の一覧からどうぞ。</p></div>'+
    '<section class="board" aria-labelledby="h-board">'+(function(){
@@ -940,9 +967,9 @@ var SK = [
  ["送料無料まで","ドロワーの頭に「あと○円で送料無料」と太いバー、数量で言い直す、数量1の − はごみ箱（Allbirds）。送料はかごの中で金額に（とらやの反面教師）。焙煎日の違う豆は遅いほうにそろえる、と着日を出すのは自分で決めた。"],
  ["包装","商品ごとに「必須」、未選択だと理由をボタンの下に（ec checklist・とらや）。ギフト箱165円は別の行（Allbirds の反面教師）。"],
  ["案内の窓","送料・返品・支払い・特商法を詳細から1手の窓に（ec rules 3）。返品の条件と連絡先を分ける（Allbirds の反面教師）。"],
- ["色と文字","Web Design Clip の食品・飲料の店35件の中央値に寄せた：地は色の入った白 #eeece7（A Bite Coffee・Chevron Coffee）、主は焦げ茶、差し色はクラフト紙。題は Shippori Mincho 48px・500（篠栗珈琲焙煎所）、本文は Zen Kaku Gothic New 16px・行間2・400、文字の左端 240px、章の間 88px、全幅の罫0本。"],
+ ["色と文字","Web Design Clip の食品・飲料の店35件の中央値に寄せた：地は明るい生成り #f8f7f3（手本10件の最初の画面は明るさ中央値 約158・白っぽい部分 約32%）、主は焦げ茶、差し色はクラフト紙。題は Shippori Mincho 48px・500（篠栗珈琲焙煎所）、本文は Noto Sans JP 16px・行間2・400、文字の左端 240px、章の間 88px、全幅の罫0本。"],
  ["データ","BreadcrumbList と、詳細ごとに Product＋Offer（ec rules 5）。"],
- ["重さ・動き","外部は Google Fonts の Shippori Mincho と Zen Kaku Gothic New、写真2枚。動きは transform と opacity、.1/.2/.4s（とらや）。prefers-reduced-motion で全部止める。"],
+ ["重さ・動き","外部は Google Fonts の Shippori Mincho と Noto Sans JP、写真2枚。動きは transform と opacity、.1/.2/.4s（とらや）。prefers-reduced-motion で全部止める。"],
 ];
 $("#skrows").innerHTML = SK.map(function(r){return '<tr><th>'+r[0]+'</th><td>'+r[1]+'</td></tr>'}).join("");
 
