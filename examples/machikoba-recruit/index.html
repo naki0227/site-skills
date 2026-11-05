@@ -87,14 +87,9 @@ button,input,select,textarea{font:inherit;color:inherit}
 .hero-plane{position:absolute;top:96px;bottom:56px;left:max(0px,calc(50% - 552px));right:0;background:#d9e3ee;border-radius:48px 0 0 48px}
 .hero .wrap{position:relative;min-height:720px}
 .hero-txt{position:relative;z-index:3;width:600px;padding-top:40px}
-.plate{position:relative;display:inline-block;margin:0 0 32px;padding:22px 34px 22px;background:#eef1f4;border:1px solid #9aa4b0;border-radius:8px;box-shadow:0 2px 0 #9aa4b0}
-.plate .screw{position:absolute;width:14px;height:14px}
 .hero .call{margin:0 0 28px;font-size:96px;font-weight:700;color:var(--navy);line-height:1.15;letter-spacing:-.01em}
 .hero .call .nb{display:block;white-space:nowrap}
-.plate-t{margin:0;color:var(--navy);font-weight:700;line-height:1.3}
-.plate-t .h-b{display:block;font-size:40px;letter-spacing:.02em;white-space:nowrap}
-.dim{display:flex;align-items:center;gap:14px;width:100%;height:28px;margin-top:10px;border-left:2px solid currentColor;border-right:2px solid currentColor;font-family:var(--mono);font-size:var(--t3);font-weight:700;letter-spacing:.06em}
-.dim::before,.dim::after{content:"";flex:1;height:2px;background:currentColor}
+.hero .tag{display:inline-block;margin:0 0 32px;padding:10px 20px 12px;background:#fff;color:var(--navy);font-size:var(--t4);font-weight:700;line-height:1.4}
 .hero .lead{margin:0 0 8px;font-size:var(--t3);font-weight:500;line-height:1.8}
 .hero .pay{margin:0 0 28px;font-size:var(--t2)}
 .hero-art{position:absolute;top:0;left:560px;right:min(-24px,calc((1024px - 100vw) / 2));height:720px}
@@ -102,12 +97,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 .ha-main img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:18% 50%;border-radius:28px 0 0 28px}
 .ha-circle{position:absolute;top:0;left:calc(100% - min(520px,78%) - 84px);width:160px;height:160px;margin:0;border-radius:50%;overflow:hidden;border:6px solid var(--paper);z-index:1}
 .ha-circle img{display:block;width:100%;height:100%;object-fit:cover}
-.ha-bubble{position:absolute;top:226px;left:calc(100% - min(520px,78%) - 72px);width:250px;height:160px;z-index:2;font-family:var(--hand);color:var(--ink)}
-.ha-bubble svg{position:absolute;inset:0;width:100%;height:100%}
-.ha-bubble p{position:relative;margin:0;padding:16px 22px 0 26px;font-size:var(--t4);font-weight:600;line-height:1.3}
-.ha-bubble .by{position:relative;display:block;padding-left:26px;margin-top:2px;font-size:var(--t1);color:var(--mk-b)}
-.ha-cal{position:absolute;top:556px;left:-190px;width:380px;z-index:4}
-.ha-cal svg{display:block;width:100%;height:auto}
+.ha-fig{position:absolute;top:356px;left:calc(100% - min(520px,78%) - 214px);width:244px;z-index:2}
+.ha-fig svg{display:block;width:100%;height:auto}
 .hero-art .wb{position:absolute;right:max(24px,calc((100vw - 1024px) / 2 - 40px));bottom:16px;width:340px;z-index:3}
 .ha-cr{position:absolute;left:0;top:calc(100% + 8px);max-width:620px;margin:0;font-size:var(--t1);line-height:1.5;color:var(--ink)}
 .ha-cr a{color:inherit}
@@ -115,17 +106,14 @@ button,input,select,textarea{font:inherit;color:inherit}
 @media (max-width:959px){
   .hero{padding:96px 0 40px} .hero .wrap{min-height:0} .hero-plane{display:none}
   .hero-txt{width:auto;padding:24px 16px 28px;margin:0 -16px;background:#d9e3ee}
-  .plate{display:inline-block;padding:16px 22px 16px;margin-bottom:20px}
-  .hero .call{font-size:60px;margin-bottom:20px} .plate-t .h-b{font-size:28px}
-  .dim{font-size:var(--t2);height:24px}
+  .hero .call{font-size:60px;margin-bottom:20px}
+  .hero .tag{font-size:var(--t3);margin-bottom:20px}
+  .ha-fig{left:0;top:150px;width:136px}
   .hero .pay{margin-bottom:20px}
   .hero-art{position:relative;left:auto;right:auto;margin:32px -16px 0 0;height:auto;padding-bottom:8px}
   .ha-main{position:relative;top:auto;margin-left:24px;width:auto} .ha-main img{border-radius:20px 0 0 20px}
   .ha-circle{left:auto;right:16px;top:-40px;width:108px;height:108px;border-width:4px}
-  .ha-bubble{top:auto;bottom:auto;left:0;width:210px;height:122px;position:relative;margin:-56px 0 0 8px}
-  .ha-bubble p{font-size:var(--t3);padding:14px 18px 0 20px} .ha-bubble .by{padding-left:20px}
-  .ha-cal{position:relative;top:auto;left:auto;width:300px;margin:-16px 0 0 40px}
-  .hero-art .wb{position:relative;right:auto;bottom:auto;width:auto;margin:8px 16px 0 24px}
+  .hero-art .wb{position:relative;right:auto;bottom:auto;width:auto;margin:72px 16px 0 24px}
   .hero-art .wb button{font-size:var(--t2)}
   .ha-cr{position:relative;left:auto;top:auto;max-width:none;margin:12px 16px 0 0}
 }
@@ -413,37 +401,43 @@ dialog.skills::backdrop{background:rgba(31,45,74,.6)}
   <div class="wrap">
     <div class="hero-txt">
       <h1 id="h1" class="call"><span class="nb">測る人に</span><span class="nb">なろう！</span></h1>
-      <div class="plate"><svg class="screw" style="left:10px;top:10px" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="#c9d0d8" stroke="#6f7a86" stroke-width="1.2"/><path d="M3.6 5.4 L10.4 8.6" stroke="#6f7a86" stroke-width="1.4" stroke-linecap="round"/></svg><svg class="screw" style="right:10px;top:10px" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="#c9d0d8" stroke="#6f7a86" stroke-width="1.2"/><path d="M3.6 8.2 L10.4 5.8" stroke="#6f7a86" stroke-width="1.4" stroke-linecap="round"/></svg><svg class="screw" style="left:10px;bottom:10px" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="#c9d0d8" stroke="#6f7a86" stroke-width="1.2"/><path d="M3.6 7.8 L10.4 6.2" stroke="#6f7a86" stroke-width="1.4" stroke-linecap="round"/></svg><svg class="screw" style="right:10px;bottom:10px" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="#c9d0d8" stroke="#6f7a86" stroke-width="1.2"/><path d="M3.6 5.6 L10.4 8.4" stroke="#6f7a86" stroke-width="1.4" stroke-linecap="round"/></svg>
-        <p class="plate-t"><span class="h-b">機械オペレーター</span><span class="dim">2名募集</span></p>
-      </div>
+      <p class="tag">機械オペレーターを2名募集しています</p>
       <a class="go" href="#form">工場見学を申し込む<small>私服で大丈夫です</small></a>
     </div>
     <div class="hero-art">
       <figure class="ha-main"><picture><source media="(max-width:959px)" srcset="photos/chuck-in-use.jpg"><img src="photos/chuck-in-use-1920.jpg" width="1920" height="1080" alt="旋盤のチャックにつかんだ丸棒を刃物で削っているところ。台に切りくずが散っている" fetchpriority="high"></picture></figure>
       <figure class="ha-circle"><img src="photos/lathe-chuck.jpg" width="400" height="400" alt="旋盤の6つ爪のチャックを正面から見たところ"></figure>
-      <div class="ha-bubble"><svg viewBox="0 0 250 140" preserveAspectRatio="none" aria-hidden="true"><path d="M20 10 Q8 11 9 24 L11 96 Q12 109 25 108 L50 109 L38 136 L74 109 L231 107 Q244 107 243 94 L241 22 Q240 9 227 9 Z" fill="#fff" stroke="#1f2d4a" stroke-width="2.2" stroke-linejoin="round"/></svg><p>最初は<br>測るだけでした</p><span class="by">辻本（入社3年目）</span></div>
-      <div class="ha-cal"><svg viewBox="0 0 440 160" role="img" aria-label="丸い部品の外径をノギスではさんで測っている線画">
-          <g fill="none" stroke="#1f2d4a" stroke-width="1.2" stroke-opacity=".35" stroke-linecap="round" stroke-linejoin="round" transform="translate(1.6 1.2)">
-            <path d="M10 45 L429 43 L430 70 L11 71 Z"/><path d="M11 71 L53 70 L52 113 L31 147 L10 147 Z"/><path d="M150 36 L224 37 L223 79 L151 78 Z"/>
-          </g>
-          <circle cx="101" cy="112" r="47" fill="#d9b878" stroke="#1f2d4a" stroke-width="2.4"/>
-          <path d="M70 92 Q98 78 128 90" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".7"/>
-          <g fill="#eef1f4" stroke="#1f2d4a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M10 45 L429 43 L430 70 L11 71 Z"/>
-            <path d="M11 71 L53 70 L52 113 L31 147 L10 147 Z"/>
-            <path d="M11 45 L10 9 L23 9 L41 45"/>
-            <path d="M150 36 L224 37 L223 79 L151 78 Z"/>
-            <path d="M150 78 L149 147 L170 146 L192 113 L193 78"/>
-            <path d="M151 36 L167 8 L180 8 L180 36"/>
-            <rect x="188" y="27" width="16" height="9" rx="2"/>
-            <circle cx="212" cy="88" r="7"/>
-          </g>
-          <g stroke="#1f2d4a" stroke-width="1.4" stroke-linecap="round">
-            <path d="M232 44v9M241 44v6M250 44v6M259 44v6M268 44v9M277 44v6M286 44v6M295 44v6M304 44v9M313 44v6M322 44v6M331 44v6M340 44v9M349 44v6M358 44v6M367 44v6M376 44v9M385 44v6M394 44v6M403 44v6M412 44v9"/>
-            <path d="M158 68v-7M166 68v-5M174 68v-5M182 68v-7M190 68v-5M198 68v-5M206 68v-7M214 68v-5"/>
-          </g>
-          <text x="262" y="96" font-family="Klee One, cursive" font-size="20" fill="#1f2d4a">φ11.98 を測る</text>
-        </svg></div>
+      <div class="ha-fig"><svg viewBox="0 0 240 290" role="img" aria-label="作業着と帽子の先輩が、ノギスで丸い部品の外径を測っている絵">
+  <defs><filter id="ol" x="-15%" y="-15%" width="130%" height="130%"><feMorphology in="SourceAlpha" operator="dilate" radius="5" result="d"/><feFlood flood-color="#fff"/><feComposite in2="d" operator="in" result="w"/><feMerge><feMergeNode in="w"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+  <g filter="url(#ol)">
+    <path d="M36 290 L40 206 Q46 164 86 154 L154 154 Q194 164 200 206 L204 290 Z" fill="#3a5686"/>
+    <path d="M98 154 L120 186 L142 154 Z" fill="#e9eef4"/>
+    <path d="M92 154 L120 190 L148 154" fill="none" stroke="#1f2d4a" stroke-width="2.2" stroke-linejoin="round"/>
+    <path d="M120 190 V290" stroke="#1f2d4a" stroke-width="1.6"/>
+    <rect x="148" y="176" width="26" height="14" rx="2" fill="#fff" stroke="#1f2d4a" stroke-width="1.2"/>
+    <rect x="108" y="130" width="24" height="28" fill="#e9b892"/>
+    <ellipse cx="88" cy="106" rx="7" ry="10" fill="#f2cba8"/>
+    <ellipse cx="120" cy="104" rx="32" ry="37" fill="#f2cba8"/>
+    <path d="M87 96 Q88 58 120 56 Q152 58 153 96 Z" fill="#1f2d4a"/>
+    <path d="M86 96 Q120 88 170 98 Q168 104 152 103 Q120 98 88 102 Z" fill="#16213a"/>
+    <circle cx="120" cy="74" r="7" fill="#fff"/>
+    <path d="M104 114 q6 4 12 0 M128 114 q6 4 12 0" fill="none" stroke="#1f2d4a" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M114 128 q6 3 12 0" fill="none" stroke="#9a5a45" stroke-width="2" stroke-linecap="round"/>
+    <path d="M44 214 Q46 252 76 252 L82 238 Q66 236 66 204 Z" fill="#2c4672" stroke="#1f2d4a" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M196 212 Q192 244 152 240 L150 224 Q176 224 176 200 Z" fill="#2c4672" stroke="#1f2d4a" stroke-width="1.5" stroke-linejoin="round"/>
+    <g stroke="#1f2d4a" stroke-width="1.6" stroke-linejoin="round">
+      <rect x="62" y="214" width="150" height="9" rx="1.5" fill="#d5dbe2"/>
+      <path d="M62 223 H76 V242 L69 250 H62 Z" fill="#d5dbe2"/>
+      <rect x="120" y="209" width="20" height="18" rx="2" fill="#d5dbe2"/>
+      <path d="M120 227 H132 V242 L126 250 H120 Z" fill="#d5dbe2"/>
+      <circle cx="98" cy="240" r="16" fill="#d9b878"/>
+      <path d="M150 214v5M160 214v4M170 214v5M180 214v4M190 214v5M200 214v4" fill="none"/>
+    </g>
+    <circle cx="80" cy="246" r="10" fill="#f2cba8" stroke="#c99877" stroke-width="1"/>
+    <circle cx="146" cy="232" r="10" fill="#f2cba8" stroke="#c99877" stroke-width="1"/>
+  </g>
+</svg>
+</div>
       <div class="wb" role="region" aria-labelledby="wbT">
         <span class="mag" style="left:22px" aria-hidden="true"></span><span class="mag" style="right:22px;background:var(--mk-b);box-shadow:0 1px 0 #13306a" aria-hidden="true"></span>
         <div class="wb-in">
@@ -451,7 +445,7 @@ dialog.skills::backdrop{background:rgba(31,45,74,.6)}
         <ul id="wbList"></ul>
         </div>
       </div>
-      <p class="ha-cr">写真はどちらもよその工場（Wikimedia Commons）：<span class="nw"><a href="https://commons.wikimedia.org/w/index.php?curid=64980189" target="_blank" rel="noopener">David English</a> CC BY-SA 4.0・</span><span class="nw"><a href="https://commons.wikimedia.org/w/index.php?curid=2977616" target="_blank" rel="noopener">Andrew Magill</a> CC BY 2.0</span>。ノギスの絵と吹き出しは河内精機で描いたもの</p>
+      <p class="ha-cr">写真はどちらもよその工場（Wikimedia Commons）：<span class="nw"><a href="https://commons.wikimedia.org/w/index.php?curid=64980189" target="_blank" rel="noopener">David English</a> CC BY-SA 4.0・</span><span class="nw"><a href="https://commons.wikimedia.org/w/index.php?curid=2977616" target="_blank" rel="noopener">Andrew Magill</a> CC BY 2.0</span>。ノギスで測る先輩の絵は、河内精機で描いたもの</p>
     </div>
   </div>
 </section>
