@@ -59,7 +59,7 @@ button,input,select{font:inherit;color:inherit}
 .head .pill{height:40px;padding:0 20px;font-size:14px}
 
 /* 最初の画面：層を作る（手本：植物×匠の灰の帯＋不定形の写真、ママフェスの重ねた札と縦書きの題、燕三条のはみ出す写真の帯）。
-   生成りの地 → 灰釉の色の面 → のぼり（縦書きの題）→ アーチの写真 → 角丸の写真（右にはみ出す）→ 丸の写真 → 手書きの値札。題は1色（白）でのぼりに。 */
+   生成りの地 → 灰釉の色の面 → のぼり（縦書きの題）→ アーチの写真 → 角丸の写真（右にはみ出す）→ 丸の写真 → 会場案内図のチラシ（下の会場マップと同じ図）。題は1色（白）でのぼりに。 */
 .hero{background:var(--kinari);overflow:hidden}
 .stage{position:relative;height:clamp(600px,calc(100svh - 132px),780px);max-width:1440px;margin:0 auto}
 .stage > *{position:absolute;margin:0}
@@ -73,12 +73,6 @@ button,input,select{font:inherit;color:inherit}
 .ph-street{left:27%;width:36%;top:9%;height:80%;border-radius:50% 50% 0 0 / 30% 30% 0 0;object-position:52% 70%}
 .ph-plates{left:59%;width:30%;top:5%;height:40%;border-radius:28px;object-position:50% 40%}
 .ph-kiln{left:21%;top:5%;width:180px;height:180px;border-radius:50%;border:6px solid var(--kinari);object-position:30% 50%}
-.fuda-hero{left:51%;top:74%;width:230px;padding:12px 14px 16px 30px;background:#fff;border:1px solid var(--sumi);font-family:var(--hand);transform:rotate(-4deg)}
-.fuda-hero::before{content:"";position:absolute;left:10px;top:50%;width:9px;height:9px;margin-top:-5px;border:1px solid var(--sumi);border-radius:50%}
-.fuda-hero::after{content:"";position:absolute;left:-58px;top:50%;width:60px;height:1px;background:var(--sumi);transform:rotate(-14deg);transform-origin:right}
-.fuda-hero b{display:block;font-size:20px;line-height:1.3}
-.fuda-hero span{display:block;font-size:14px;line-height:1.4}
-.fuda-hero .price{font-size:20px;color:var(--shu)}
 .hero-text{left:67%;right:var(--pad);bottom:13%}
 .hero .date{margin:0 0 24px;font:500 60px/1.2 var(--mincho);white-space:nowrap}
 .hero .date small{font-size:20px}
@@ -86,11 +80,11 @@ button,input,select{font:inherit;color:inherit}
 .hero .yr{display:block;font:500 24px/1.4 var(--mincho)}
 .hero .lead-1{margin:12px 0 20px;font-size:16px;line-height:1.8}
 .hero .pill{height:52px;padding:0 32px;border-radius:26px;font-size:16px}
-/* 手の跡のある絵：茶碗と湯呑のスケッチ・窯元の判子・窯の煙（自分で描いた SVG。線は #rough でゆらす） */
-.sketch{pointer-events:none}
-.sk-cups{left:79%;top:39%;width:200px;height:auto}
-.sk-stamp{left:65%;top:44%;width:108px;height:auto;transform:rotate(-9deg)}
-.sk-smoke{left:31%;top:-2%;width:110px;height:auto}
+/* 会場案内図のチラシ：本物の陶器市で配る・サイトに載せる会場図を、下の会場マップと同じ図（<use>）で。押すと会場マップへ */
+.flyer{left:44%;top:64%;width:250px;padding:10px 12px 12px;background:#fff;border:1px solid var(--sumi);text-decoration:none;transform:rotate(-3deg)}
+.flyer b{display:flex;justify-content:space-between;align-items:baseline;font:500 18px/1.3 var(--mincho);margin-bottom:6px}
+.flyer b span{font:400 13px var(--gothic)}
+.flyer svg{display:block;width:100%;height:auto}
 .hero-credit{left:calc(20% + 20px);bottom:14px;font-size:13px;line-height:1.5}
 .hero-credit a{color:inherit}
 
@@ -257,16 +251,12 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
   .ph-street{left:28%;width:38%;top:7%;height:49%}
   .ph-plates{left:63%;width:34%;top:4%;height:32%}
   .ph-kiln{left:20%;top:3%;width:140px;height:140px}
-  .sk-smoke{left:31%;top:-3%;width:90px}
-  .sk-cups{left:70%;top:38%;width:150px}
-  .sk-stamp{left:83%;top:63%;width:96px}
-  .fuda-hero{display:none}
   .hero-text{left:28%;right:var(--pad);top:62%;bottom:auto}
+  .flyer{left:auto;right:var(--pad);top:auto;bottom:13%;width:220px}
   .hero-credit{left:28%}
   .hero .date{font-size:44px}
 }
 @media (min-width:601px) and (max-width:860px){
-  .sk-stamp{top:51%;left:80%;width:84px}
 }
 @media (max-width:992px){
   .gnav{display:none}
@@ -289,12 +279,11 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
   .ph-street{left:34%;width:62%;top:16px;height:280px}
   .ph-plates{left:56%;width:52%;top:280px;height:150px;border-radius:20px}
   .ph-kiln{left:27%;top:250px;width:112px;height:112px;border-width:4px}
-  .fuda-hero{display:none}
-  .sk-cups{left:auto;right:6px;top:392px;width:120px}
-  .sk-stamp{left:24%;top:376px;width:84px}
-  .sk-smoke{left:44%;top:186px;width:70px}
   .hero-text{background:var(--kaiyu)}
   .hero-credit{background:var(--kaiyu)}
+  .flyer{left:auto;right:8px;top:404px;width:150px;padding:6px 8px 8px}
+  .flyer b{font-size:14px}
+  .flyer b span{display:none}
   .hero-text,.hero-credit{position:static}
   .hero-text{padding:24px var(--pad) 8px;margin-top:-1px}
   .hero-credit{padding:0 var(--pad) 28px;text-align:left}
@@ -331,12 +320,6 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
 </style>
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <defs>
-    <filter id="rough" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.6"/></filter>
-    <filter id="inkfade" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="2" seed="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3" result="d"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.2 1.9" result="m"/><feComposite in="d" in2="m" operator="in"/></filter>
-  </defs>
-</svg>
 
 <header class="site-head">
   <div class="status" id="status" data-state="ok" role="status">
@@ -360,11 +343,8 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
       <img class="ph ph-plates" src="photos/Hasami-ware-plates.jpg" width="960" height="720" alt="積み重ねた藍の模様の皿（長崎県波佐見町の波佐見焼）">
       <img class="ph ph-street" src="photos/Arita-tokichi-200804.jpg" width="1280" height="960" alt="陶器市の通り。軒先に器を並べた店の前を、袋を提げた人が歩いている（佐賀県有田町の有田陶器市）">
       <img class="ph ph-kiln" src="photos/Noborigama-Tokoname-01.jpg" width="1280" height="742" alt="れんがの登り窯（愛知県常滑市）">
-      <svg class="sketch sk-smoke" viewBox="0 0 110 150" aria-hidden="true"><g fill="none" stroke="#4f4842" stroke-width="2.6" stroke-linecap="round" filter="url(#rough)"><path d="M30 146 C 16 122, 44 112, 30 90 S 48 52, 34 30 S 46 8, 40 2"/><path d="M52 144 C 44 124, 66 116, 56 96 S 74 64, 62 44" opacity=".7"/><path d="M72 140 C 70 126, 86 118, 80 104 S 92 82, 86 70" opacity=".5"/></g></svg>
-      <svg class="sketch sk-stamp" viewBox="0 0 120 120" role="img" aria-label="窯元の判子"><g filter="url(#inkfade)" fill="none" stroke="#b30000"><circle cx="60" cy="60" r="53" stroke-width="5"/><circle cx="60" cy="60" r="44" stroke-width="1.6"/></g><g filter="url(#inkfade)" fill="#b30000" font-family="Shippori Mincho B1, serif" text-anchor="middle"><text x="60" y="62" font-size="32">窯元</text><text x="60" y="86" font-size="14" letter-spacing="2">四十一軒</text></g></svg>
-      <svg class="sketch sk-cups" viewBox="0 0 200 170" aria-hidden="true"><g filter="url(#rough)"><path d="M22 74 C 26 108, 52 128, 82 127 C 112 126, 134 106, 136 76 Z" fill="#fbf6ee"/><path d="M40 98 C 60 110, 92 112, 124 96 C 116 116, 98 126, 80 126 C 62 126, 48 116, 40 98 Z" fill="#c9734f" opacity=".35"/><path d="M152 44 C 150 84, 152 118, 158 146 L 190 146 C 194 118, 195 84, 193 44 Z" fill="#fbf6ee"/><path d="M152 78 C 164 84, 178 74, 193 82 L 194 104 C 180 98, 166 108, 152 100 Z" fill="#7b8a6a" opacity=".35"/><g fill="none" stroke="#2b2621" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 74 C 22 110, 50 130, 82 129 C 114 128, 138 108, 140 74"/><path d="M16 73 C 34 62, 124 60, 142 73 C 126 84, 34 85, 16 73"/><path d="M60 128 L 62 141 C 76 144, 92 144, 104 140 L 106 126"/><path d="M150 44 C 148 84, 150 120, 156 148 L 192 147 C 196 118, 197 82, 195 44"/><path d="M149 44 C 160 36, 184 36, 196 44 C 184 50, 160 51, 149 44"/><path d="M152 80 C 164 86, 178 76, 194 84" stroke-width="1.6"/></g><g fill="#2b2621" opacity=".55"><circle cx="70" cy="92" r="1.4"/><circle cx="96" cy="104" r="1.2"/><circle cx="170" cy="120" r="1.3"/></g></g></svg>
+      <a class="flyer" href="#map" aria-label="会場案内図（会場マップへ）"><b>会場案内図<span>A〜E 41軒</span></b><svg viewBox="0 0 800 500" aria-hidden="true"><use href="#mapSvg"/></svg></a>
       <div class="nobori"><span class="kai" aria-hidden="true">第三十八回</span><h1 id="h-title">瀬戸ノ口陶器市</h1></div>
-      <p class="fuda-hero" aria-hidden="true"><span>本町通り</span><b>角田製陶</b><span>訳ありの飯碗</span><span class="price">三つで千円</span></p>
       <div class="hero-text">
         <p class="date"><span class="yr">2027年</span>5月3日・4日<small class="dw">月曜・火曜の祝日に開きます</small></p>
         <a class="pill" href="#access">行き方を調べる</a>
@@ -654,7 +634,7 @@ var FROM={
 };
 
 var SKILLS=[
- ['最初の画面','site-skills／aesthetic.md「本物か作例か」','手本の催し10件の最初の画面（明るさの中央値 約211・白っぽい部分 約74%、写真は色のまま余白で囲む・切り抜く、題は写真の外に濃い色）に寄せた。「本物か作例か 第2回・第3回」で層を作る：手の跡のある絵（茶碗と湯呑のスケッチ・窯元の判子・窯の煙、自分で描いた SVG）・生成りの地・灰釉の色の面・のぼり（題）・アーチ／角丸／丸の写真3枚・手書きの値札を、大きさを変えて重ね、面や画面の端からはみ出させる'],
+ ['最初の画面','site-skills／aesthetic.md「本物か作例か」','手本の催し10件の最初の画面（明るさの中央値 約211・白っぽい部分 約74%、写真は色のまま余白で囲む・切り抜く、題は写真の外に濃い色）に寄せた。「本物か作例か 第2回・第5回」で層を作る：生成りの地・灰釉の色の面・のぼり（題）・アーチ／角丸／丸の写真3枚を、大きさを変えて重ね、面や画面の端からはみ出させる'],
  ['題の書体と太さ','site-skills／aesthetic.md「業種の手本を先に測る」','手本23件のいちばん大きい字は中央値 39.5px・太さ 400（80px 以上が5件）。題は 80px・太さ 500（Shippori Mincho B1）を墨色で。明朝はリュウミン・筑紫明朝・つくしA を使う手本がある'],
  ['本文','site-skills／手本23件の中央値','Noto Sans JP（Web フォントでいちばん多い）400・16px・行間 1.75。本文の色は #000 が10件なので黒に近い <code>#1a1714</code>'],
  ['文字の左端と余白','site-skills／手本23件の中央値','文字の左端 261px → 本文の幅 1000px。何も無い帯 72px（上位1割 199px）→ 章の間 120px'],
