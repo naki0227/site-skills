@@ -15,14 +15,14 @@
 /*
   題材の特色：年に1度、駅前から登り窯跡までの通りに窯元が器を並べる、町ののぼりの立つ陶器市。
   手本：Web Design Clip の地域情報・アート・レジャーから、地域の催し・イベントの告知23件を測った中央値（README.md）。
-  - 地は白、文字は黒に近い色（23件中 本文の色 #000 が10件）。色は写真とのぼりが持つ。
+  - 地は白と生成り（最初の画面）、文字は黒に近い色（23件中 本文の色 #000 が10件）。色は写真とのぼりが持つ。
   - 書体：本文 Noto Sans JP 400（Web フォントでいちばん多い）、題と見出しは明朝（リュウミン・筑紫明朝・つくしA の代わりに Shippori Mincho B1）を 500 で（いちばん大きい字の太さの中央値 400）。
   - 本文 16px・行間 1.75、文字の左端 約260px、何も無い帯 72px（上位1割 199px）、ボタンは まる（角の中央値 23px）。
   - 3色：地 白・主 のぼりの織部の緑・差し色 値札の朱。ボタンは志野の白（題材の色）。
   - 小さな手がかりは1つ：のぼり（最初の画面の「第三十八回」の縦の旗と、章の題の左の竿）。
 */
 :root{
-  --paper:#fff; --sumi:#1a1714; --rule:#ccc; --mute:#5f5852; --pale:#f2f0ed;
+  --paper:#fff; --kinari:#f7f3ea; --sumi:#1a1714; --rule:#ccc; --mute:#5f5852; --pale:#f2f0ed;
   --oribe:#2f5a41; --shu:#b30000; --shino:#f3ede4;
   --ease:cubic-bezier(.25,.46,.45,.94); --t1:.1s; --t2:.2s; --t3:.4s;
   --mincho:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif;
@@ -58,18 +58,21 @@ button,input,select{font:inherit;color:inherit}
 .pill[disabled]{opacity:.35;cursor:not-allowed}
 .head .pill{height:40px;padding:0 20px;font-size:14px}
 
-/* 最初の画面：暗くしたモノクロの写真に、題・日付・一文・ボタン */
-.hero{position:relative;height:calc(100svh - var(--head) - 32px);min-height:560px;max-height:900px;color:#fff;overflow:hidden;background:#222}
-.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 60%;filter:grayscale(1) brightness(.5)}
-.hero-in{position:relative;height:100%;max-width:calc(var(--max) + var(--pad) * 2);margin:0 auto;padding:0 var(--pad) 88px;display:flex;flex-direction:column;justify-content:flex-end}
-.nobori{position:absolute;top:0;left:max(var(--pad),calc((100% - var(--max)) / 2));width:52px;padding:20px 0 24px;background:var(--oribe);color:#fff;writing-mode:vertical-rl;font:500 18px/52px var(--mincho);letter-spacing:.24em;text-align:center}
-.hero h1{margin:0;font:500 96px/1.15 var(--mincho);letter-spacing:.02em}
-.hero .date{margin:16px 0 0;font:500 32px/1.4 var(--mincho)}
-.hero .date small{font-size:20px}
-.hero .lead-1{margin:12px 0 28px;font-size:20px;line-height:1.7}
-.hero .pill{align-self:flex-start;height:52px;padding:0 32px;border-radius:26px;font-size:16px;background:var(--shino);color:var(--sumi)}
-.hero .credit{position:absolute;right:12px;top:8px;margin:0;font-size:13px;line-height:1.5;color:rgba(255,255,255,.88)}
-.hero .credit a{color:inherit}
+/* 最初の画面：生成りの地に、濃い色の題と日付を写真の外に。写真は色のまま、窯の焚き口のアーチと丸に切り抜く（手本10件：明るさの中央値 約211・白っぽい部分 約74%。植物×匠の不定形の切り抜き・ママフェスの角丸の枠） */
+.hero{background:var(--kinari);padding:40px 0 56px}
+.hero-in{position:relative;max-width:calc(1160px + var(--pad) * 2);margin:0 auto;padding:0 var(--pad);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.618fr);gap:48px;align-items:center}
+.hero-text{position:relative;padding-left:76px}
+.nobori{position:absolute;top:0;left:0;width:52px;padding:20px 0 24px;margin:0;background:var(--oribe);color:#fff;writing-mode:vertical-rl;font:500 18px/52px var(--mincho);letter-spacing:.24em;text-align:center}
+.hero h1{margin:0;font:500 80px/1.2 var(--mincho);letter-spacing:.02em}
+.hero .date{margin:20px 0 0;font:500 28px/1.45 var(--mincho);white-space:nowrap}
+.hero .date small{font-size:16px}
+.hero .lead-1{margin:16px 0 28px;font-size:18px;line-height:1.8}
+.hero .pill{height:52px;padding:0 32px;border-radius:26px;font-size:16px}
+.hero-photos{position:relative;margin:0;padding-bottom:48px}
+.hero-photos .arch{display:block;width:100%;height:auto;aspect-ratio:5/4;object-fit:cover;object-position:50% 70%;border-radius:50% 50% 0 0 / 34% 34% 0 0}
+.hero-photos .round{position:absolute;left:-36px;bottom:0;width:30%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:50%;border:6px solid var(--kinari)}
+.hero-photos figcaption{position:absolute;right:0;bottom:12px;margin:0;font-size:13px;line-height:1.5;text-align:right;max-width:68%}
+.hero-photos figcaption a{color:inherit}
 
 /* 章 */
 section.ch{padding:120px 0 0}
@@ -229,7 +232,8 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
 @media (max-width:992px){
   .gnav{display:none}
   .head .pill{margin-left:auto}
-  .hero h1{font-size:72px}
+  .hero-in{grid-template-columns:1fr;gap:32px}
+  .hero h1{font-size:64px}
   .map-grid,.k-grid,.tt,.acc-grid,.rain-grid,.mail-in{grid-template-columns:1fr}
   .route{position:static}
 }
@@ -239,16 +243,18 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
   section.ch{padding-top:88px}
 }
 @media (max-width:600px){
-  .hero{height:calc(100svh - var(--head) - 52px);min-height:520px}
-  .hero-in{padding-bottom:64px}
+  .hero{padding:24px 0 40px}
+  .hero-text{padding-left:56px}
   .nobori{width:40px;font-size:15px;line-height:40px;padding:14px 0 18px}
-  .hero h1{font-size:48px}
+  .hero h1{font-size:44px}
   .hero .date{font-size:24px}
   .sp-br{display:inline}
-  .hero .credit{left:56px;right:8px;text-align:right}
+  .hero-photos{padding-bottom:0}
+  .hero-photos .round{left:-8px;bottom:64px;width:30%}
+  .hero-photos figcaption{position:static;max-width:none;margin-top:10px;padding-left:34%}
   .hero .date small{font-size:16px}
   .hero .lead-1{font-size:16px;margin-bottom:20px}
-  .hero .pill{align-self:stretch}
+  .hero .pill{width:100%}
   .map-box{overflow-x:auto}
   .map-box svg{width:640px;max-width:none}
   .map-hint{display:block}
@@ -268,6 +274,7 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
 }
 @media (max-width:430px){
   .logo{font-size:18px}
+  .hero .date{white-space:normal;font-size:22px}
   .head .bar{gap:12px}
 }
 @media (prefers-reduced-motion:reduce){
@@ -295,15 +302,20 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
 
 <main id="top">
   <section class="hero" aria-labelledby="h-title">
-    <img src="photos/Arita-tokichi-200804.jpg" width="1280" height="960" alt="陶器市の通り。軒先に器を並べた店の前を、袋を提げた人が歩いている（写真は佐賀県有田町の有田陶器市）">
-    <p class="nobori" aria-hidden="true">第三十八回</p>
     <div class="hero-in">
-      <h1 id="h-title">瀬戸ノ口陶器市</h1>
-      <p class="date">2027年<br class="sp-br">5月3日<small>（月・祝）</small>・4日<small>（火・祝）</small></p>
-      <p class="lead-1">岐阜県瀬戸ノ口町の本町通りほかに、<br>窯元41軒が器を並べます。</p>
-      <a class="pill" href="#access">行き方を調べる</a>
+      <div class="hero-text">
+        <p class="nobori" aria-hidden="true">第三十八回</p>
+        <h1 id="h-title">瀬戸ノ口<br>陶器市</h1>
+        <p class="date">2027年<br>5月3日<small>（月・祝）</small>・4日<small>（火・祝）</small></p>
+        <p class="lead-1">岐阜県瀬戸ノ口町の本町通りほかに、<br>窯元41軒が器を並べます。</p>
+        <a class="pill" href="#access">行き方を調べる</a>
+      </div>
+      <figure class="hero-photos">
+        <img class="arch" src="photos/Arita-tokichi-200804.jpg" width="1280" height="960" alt="陶器市の通り。軒先に器を並べた店の前を、袋を提げた人が歩いている（佐賀県有田町の有田陶器市）">
+        <img class="round" src="photos/Noborigama-Tokoname-01.jpg" width="1280" height="742" alt="れんがの登り窯（愛知県常滑市）">
+        <figcaption>写真：有田陶器市の通り（佐賀県有田町）Atsasebo／常滑の登り窯 Gryffindor<br><a href="https://commons.wikimedia.org/w/index.php?curid=9228610">Wikimedia Commons</a> CC BY-SA 3.0・<a href="https://commons.wikimedia.org/w/index.php?curid=63887246">4.0</a></figcaption>
+      </figure>
     </div>
-    <p class="credit">写真：有田陶器市（佐賀県有田町）／Atsasebo／<a href="https://commons.wikimedia.org/w/index.php?curid=9228610">Wikimedia Commons</a>／CC BY-SA 3.0</p>
   </section>
 
   <div class="wrap">
@@ -587,8 +599,8 @@ var FROM={
 };
 
 var SKILLS=[
- ['最初の画面','site-skills／aesthetic.md 4・ai-tells.md 第3回','暗くしたモノクロの写真を全面に敷き、題を大きく重ねる。出典は写真の端に小さく。手本23件の最初の画面の文字は中央値78字なので、題・日付・一文・ボタンだけ'],
- ['題の書体と太さ','site-skills／aesthetic.md「業種の手本を先に測る」','手本23件のいちばん大きい字は中央値 39.5px・太さ 400。題は写真の上に 96px で重ねるので大きく、太さは 500（Shippori Mincho B1）。明朝はリュウミン・筑紫明朝・つくしA を使う手本がある'],
+ ['最初の画面','site-skills／aesthetic.md「本物か作例か」','手本の催し10件の最初の画面（明るさの中央値 約211・白っぽい部分 約74%、写真は色のまま余白で囲む・切り抜く、題は写真の外に濃い色）に寄せた。生成りの地に、題・日付・一文・ボタン、色のままの写真を窯の焚き口のアーチと丸に切り抜く'],
+ ['題の書体と太さ','site-skills／aesthetic.md「業種の手本を先に測る」','手本23件のいちばん大きい字は中央値 39.5px・太さ 400（80px 以上が5件）。題は 80px・太さ 500（Shippori Mincho B1）を墨色で。明朝はリュウミン・筑紫明朝・つくしA を使う手本がある'],
  ['本文','site-skills／手本23件の中央値','Noto Sans JP（Web フォントでいちばん多い）400・16px・行間 1.75。本文の色は #000 が10件なので黒に近い <code>#1a1714</code>'],
  ['文字の左端と余白','site-skills／手本23件の中央値','文字の左端 261px → 本文の幅 1000px。何も無い帯 72px（上位1割 199px）→ 章の間 120px'],
  ['ボタン','site-skills／手本23件・ai-tells.md 第3回','ボタンは中央値2個・角は まる（中央値 23px）。最初の画面は1つ。色は橙にせず、志野の白 <code>#f3ede4</code>'],
