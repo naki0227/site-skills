@@ -80,15 +80,16 @@ button,input,select{font:inherit;color:inherit}
 .fuda-hero span{display:block;font-size:14px;line-height:1.4}
 .fuda-hero .price{font-size:20px;color:var(--shu)}
 .hero-text{left:67%;right:var(--pad);bottom:13%}
-.hero .date{margin:0;font:500 44px/1.3 var(--mincho);white-space:nowrap}
-.hero .date small{font-size:18px}
-.hero .yr{display:block;font:500 20px/1.4 var(--mincho)}
+.hero .date{margin:0 0 24px;font:500 60px/1.2 var(--mincho);white-space:nowrap}
+.hero .date small{font-size:20px}
+.hero .date .dw{display:block;font-size:18px;line-height:1.6;margin-top:4px}
+.hero .yr{display:block;font:500 24px/1.4 var(--mincho)}
 .hero .lead-1{margin:12px 0 20px;font-size:16px;line-height:1.8}
 .hero .pill{height:52px;padding:0 32px;border-radius:26px;font-size:16px}
 /* 手の跡のある絵：茶碗と湯呑のスケッチ・窯元の判子・窯の煙（自分で描いた SVG。線は #rough でゆらす） */
 .sketch{pointer-events:none}
 .sk-cups{left:79%;top:39%;width:200px;height:auto}
-.sk-stamp{left:88%;top:68%;width:112px;height:auto;transform:rotate(-9deg)}
+.sk-stamp{left:65%;top:44%;width:108px;height:auto;transform:rotate(-9deg)}
 .sk-smoke{left:31%;top:-2%;width:110px;height:auto}
 .hero-credit{left:calc(20% + 20px);bottom:14px;font-size:13px;line-height:1.5}
 .hero-credit a{color:inherit}
@@ -262,6 +263,7 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
   .fuda-hero{display:none}
   .hero-text{left:28%;right:var(--pad);top:62%;bottom:auto}
   .hero-credit{left:28%}
+  .hero .date{font-size:44px}
 }
 @media (min-width:601px) and (max-width:860px){
   .sk-stamp{top:51%;left:80%;width:84px}
@@ -364,8 +366,7 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
       <div class="nobori"><span class="kai" aria-hidden="true">第三十八回</span><h1 id="h-title">瀬戸ノ口陶器市</h1></div>
       <p class="fuda-hero" aria-hidden="true"><span>本町通り</span><b>角田製陶</b><span>訳ありの飯碗</span><span class="price">三つで千円</span></p>
       <div class="hero-text">
-        <p class="date"><span class="yr">2027年</span>5月3日<small>（月・祝）</small>・4日<small>（火・祝）</small></p>
-        <p class="lead-1">岐阜県瀬戸ノ口町の本町通りほかに、<br>窯元41軒が器を並べます。</p>
+        <p class="date"><span class="yr">2027年</span>5月3日・4日<small class="dw">月曜・火曜の祝日に開きます</small></p>
         <a class="pill" href="#access">行き方を調べる</a>
       </div>
       <p class="hero-credit">写真：有田陶器市（Atsasebo, CC BY-SA 3.0）・波佐見焼の皿（Nesnad, CC BY 4.0）・<br>常滑の登り窯（Gryffindor, CC BY-SA 4.0）／<a href="https://commons.wikimedia.org/w/index.php?curid=9228610">Wikimedia</a> <a href="https://commons.wikimedia.org/w/index.php?curid=116465207">Commons</a></p>
