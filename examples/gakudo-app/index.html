@@ -86,20 +86,55 @@ ul,ol{padding:0;list-style:none}
 .photo b{display:block;font-size:13px;letter-spacing:.1em;color:var(--muted);margin-bottom:4px}
 
 /* ---------- トップ：最初の画面 ---------- */
-.hero{padding:40px 0 96px}
-.hero-main{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center;min-height:600px}
-.hero-photos{position:relative;height:460px}
-.hp{position:absolute;margin:0;border-radius:28px;overflow:hidden;background:var(--tray)}
+.hero{padding:0 0 96px}
+/* 最初の画面：名前マグネットの黄の面に、アプリの画面3枚・下校の写真2枚・マグネットを重ねる（tetetoco・hacomono・schule の重ね方） */
+.stage{position:relative;height:760px;max-width:1440px;margin:0 auto;overflow:hidden}
+.plane{position:absolute;right:0;top:0;width:62.5%;height:100%;background:var(--m1);clip-path:polygon(13% 4%,40% 2%,71% 2%,99% 9%,100% 100%,7% 100%,4% 76%,8% 62%,3% 42%,6% 20%)}
+.hero-text{position:absolute;left:max(16px,calc(50% - 492px));top:150px;z-index:5;width:520px}
+.hero h1{margin:0;font-size:96px;line-height:1.2;font-weight:700}
+.plate{display:inline-block;font-size:1em;letter-spacing:.02em;padding:6px 26px 12px;border-radius:10px;background:var(--c);box-shadow:inset 0 -8px 0 rgba(0,0,0,.12),0 2px 0 rgba(0,0,0,.2)}
+.pl1{--c:var(--m2);transform:rotate(-2deg)}
+.pl2{--c:var(--m3);transform:rotate(1.5deg) translateX(64px);margin-top:14px}
+.h1-sub{font-size:26px;margin-top:26px;letter-spacing:.04em;font-weight:700}
+.hero .sub{margin-top:10px;font-size:20px;line-height:1.7;color:var(--ink)}
+.hero-cta{margin-top:26px}
+.layers{position:absolute;inset:0;pointer-events:none}
+.dev{position:absolute;background:#1f2226;padding:10px;border-radius:26px}
+.dev .scr{background:#fff;border-radius:16px;height:100%;overflow:hidden;padding:14px 14px 10px;font-size:13px;line-height:1.5}
+.s-h{font-weight:700;font-size:16px;margin-bottom:8px;display:flex;justify-content:space-between;gap:8px}
+.s-h span{font-weight:400;font-size:13px;color:var(--muted)}
+.tablet{left:47%;top:96px;width:470px;height:340px;transform:rotate(-4deg)}
+.s-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;height:calc(100% - 34px)}
+.s-cols div{border-left:2px solid #2a2d31;padding-left:8px;display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.s-cols div:first-child{border-left:0;padding-left:0}
+.s-cols b{font-family:var(--hand);font-size:16px;border-bottom:2px solid currentColor;width:100%}
+.s-cols b.r{color:var(--red)}
+.m,.fmag{display:inline-block;font-style:normal;font-weight:700;background:var(--c);border-radius:4px;padding:3px 9px 4px;box-shadow:inset 0 -3px 0 rgba(0,0,0,.13),0 1px 0 rgba(0,0,0,.18)}
+.m{font-size:13px}
+.m.late{outline:2px solid var(--red);outline-offset:2px}
+.phone{width:226px;height:452px;border-radius:34px;padding:10px}
+.phone .scr{border-radius:26px;padding:22px 14px 12px}
+.ph1{left:74%;top:250px;transform:rotate(6deg);z-index:3}
+.ph2{left:89.5%;top:40px;transform:rotate(-7deg);z-index:2}
+.msg{background:var(--blue-l);border-radius:12px 12px 12px 4px;padding:8px 10px;margin-bottom:8px;font-family:var(--hand)}
+.msg b{display:block;font-family:var(--font);font-size:13px;color:var(--blue)}
+.msg span{display:block;text-align:right;font-family:var(--font);color:var(--blue);font-size:13px}
+.big{font-size:20px;margin:10px 0 12px}
+.big b{font-size:34px;font-weight:300}
+.row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed var(--line)}
+.row span{color:var(--red);font-weight:700}
+.hp{position:absolute;margin:0;border-radius:28px;overflow:hidden;background:var(--tray);border:8px solid var(--board)}
 .hp img{width:100%;height:100%;object-fit:cover;display:block}
-.hp1{left:0;top:6px;width:74%;aspect-ratio:4/3;transform:rotate(-3deg)}
-.hp1 .credit{top:12px;bottom:auto}
-.hp2{right:0;bottom:0;width:58%;aspect-ratio:4/3;transform:rotate(4deg);border:8px solid var(--board)}
+.hp1{left:52%;top:500px;width:340px;aspect-ratio:4/3;transform:rotate(3deg);z-index:4}
+.hp2{left:71%;top:500px;width:250px;aspect-ratio:1;border-radius:50%;transform:rotate(-5deg);z-index:4}
 .hp .credit{position:absolute;left:14px;bottom:10px;margin:0;font-size:13px;line-height:1.5;color:#fff;background:rgba(31,34,38,.62);padding:1px 8px;border-radius:3px}
+.hp2 .credit{left:50%;transform:translateX(-50%);bottom:28px;white-space:nowrap}
+.fmag{position:absolute;font-size:20px;padding:8px 16px 10px;z-index:6}
+.fm1{left:44%;top:440px;transform:rotate(-8deg)}
+.note{position:absolute;left:31%;top:14px;width:230px;height:150px;transform:rotate(-6deg);z-index:4;box-shadow:0 1px 0 rgba(0,0,0,.18)}
+.fm2{left:38%;top:690px;transform:rotate(6deg)}
+.fm3{left:93%;top:520px;transform:rotate(-12deg)}
 .hero-note{margin:28px 0 16px;font-size:13px;color:var(--muted)}
-.hero h1{font-size:40px;font-weight:700;line-height:1.45;letter-spacing:.01em;text-wrap:balance;word-break:auto-phrase}
-.kicker{font-size:16px;font-weight:700;color:var(--muted);margin-bottom:6px}
-.hero .sub{color:var(--ink);margin-top:16px;font-size:20px;line-height:1.7}
-.hero-cta{margin-top:28px}
 
 /* ホワイトボード */
 .wb-wrap{display:block}
@@ -469,8 +504,17 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
   .nav{display:none}
   .menu-btn{display:block;margin-left:0}
   .wb-wrap{grid-template-columns:minmax(0,1fr)}
-  .hero-main{grid-template-columns:minmax(0,1fr);min-height:0}
-  .hero-photos{height:auto;aspect-ratio:1.25;max-width:560px}
+  .stage{height:auto;padding-bottom:470px}
+  .plane{width:100%;height:520px;top:auto;bottom:0}
+  .hero-text{position:relative;left:auto;top:auto;width:auto;padding:40px max(16px,calc(50% - 360px)) 0}
+  .tablet{left:max(16px,calc(50% - 300px));top:auto;bottom:150px;width:380px;height:280px}
+  .ph1{left:calc(50% + 40px);top:auto;bottom:40px}
+  .ph2{display:none}
+  .hp1{left:max(8px,calc(50% - 340px));top:auto;bottom:16px;width:260px}
+  .hp2{display:none}
+  .fm1{left:auto;right:20px;top:auto;bottom:430px}
+  .fm2,.fm3{display:none}
+  .note{left:auto;right:16px;top:auto;bottom:300px;width:184px;height:120px}
   .nb-list{max-height:260px}
   .split,.case-top,.calls{grid-template-columns:minmax(0,1fr);gap:32px}
   .diag{grid-template-columns:1fr}
@@ -494,7 +538,11 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
   .wb-col{padding:8px 8px 14px}
 }
 @media (max-width:600px){
-  .hero h1,.page-head h1{font-size:30px}
+  .page-head h1{font-size:30px}
+  .hero h1{font-size:60px}
+  .plate{padding:4px 18px 9px}
+  .pl2{transform:rotate(1.5deg) translateX(36px)}
+  .h1-sub{font-size:20px;margin-top:22px}
   .h2,.blk h2,.quote{font-size:20px}
   .case-nums dd{font-size:26px}
   .hd .wrap{height:58px;gap:10px}
@@ -502,7 +550,14 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
   .hd-cta .btn{min-height:36px;padding:2px 10px;font-size:13px;white-space:nowrap}
   .menu-btn{min-width:0;padding:0 10px;white-space:nowrap}
   .logo{font-size:16px}
-  .hero{padding:24px 0 44px}
+  .hero{padding:0 0 44px}
+  .stage{padding-bottom:400px}
+  .plane{height:440px}
+  .tablet{left:12px;bottom:130px;width:300px;height:240px;transform:rotate(-4deg)}
+  .tablet .m{font-size:13px;padding:2px 6px}
+  .ph1{left:auto;right:-30px;bottom:24px;width:180px;height:360px}
+  .hp1{left:10px;bottom:10px;width:200px}
+  .fm1{right:12px;bottom:372px;font-size:16px}
   .hero-cta{width:100%}
   .hero .sub{font-size:16px}
   .hero-cta .btn{width:100%}
@@ -589,28 +644,50 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
 <!-- =============== トップ =============== -->
 <div class="page" data-page="top">
   <section class="hero" aria-labelledby="h-top">
-    <div class="wrap">
-      <div class="hero-main">
-        <div class="hero-text">
-          <h1 id="h-top" tabindex="-1">学童の出欠と連絡帳を、<br>ひとつのアプリに</h1>
-          <p class="sub">下校時刻表を入れておくと、<br>来ていない子が出欠ボードに赤く出ます。</p>
-          <div class="hero-cta">
-            <button class="btn btn-main btn-lg" type="button" data-open="trial"><small>支払い情報の入力不要</small>30日間 無料で試す</button>
+    <div class="stage">
+      <div class="plane" aria-hidden="true"></div>
+      <div class="hero-text">
+        <h1 id="h-top" tabindex="-1"><span class="plate pl1">おかえり</span><span class="plate pl2">ノート</span></h1>
+        <p class="h1-sub">学童保育の出欠と連絡帳のアプリ</p>
+        <p class="sub">来ていない子が、出欠ボードに赤く出ます。</p>
+        <div class="hero-cta"><button class="btn btn-main btn-lg" type="button" data-open="trial"><small>支払い情報の入力不要</small>30日間 無料で試す</button></div>
+      </div>
+      <div class="layers" aria-hidden="true">
+        <div class="dev tablet">
+          <div class="scr">
+            <p class="s-h">出欠ボード <span>10月26日（月）15:15</span></p>
+            <div class="s-cols">
+              <div><b class="r">まだ</b><i class="m late" style="--c:var(--m1)">たける</i><i class="m late" style="--c:var(--m2)">ゆいな</i><i class="m" style="--c:var(--m3)">こうき</i></div>
+              <div><b>来所</b><i class="m" style="--c:var(--m3)">さら</i><i class="m" style="--c:var(--m3)">りこ</i><i class="m" style="--c:var(--m2)">れん</i><i class="m" style="--c:var(--m1)">ひなた</i></div>
+              <div><b>帰宅</b><i class="m" style="--c:var(--m4)">めい</i></div>
+            </div>
           </div>
         </div>
-        <div class="hero-photos">
-          <figure class="hp hp1">
-            <img src="photos/Schoolkids-wearing-hats-and-randoseru-in-Kugayama-Japan-Janu.jpg" alt="黄色い帽子をかぶり、黄色いカバーをつけたランドセルで下校する1年生の列を、うしろから写した写真" width="960" height="720">
-            <figcaption class="credit">写真 Mr. Brian（CC BY 2.0）</figcaption>
-          </figure>
-          <figure class="hp hp2">
-            <img src="photos/Randoseru-red-walkinggirls-feb14-2019.jpg" alt="赤いランドセルを背負って歩道を歩く2人の小学生を、うしろから写した写真" width="960" height="720">
-            <figcaption class="credit">写真 Nesnad（CC BY 4.0）</figcaption>
-          </figure>
+        <div class="dev phone ph1">
+          <div class="scr">
+            <p class="s-h">きょうの連絡</p>
+            <p class="msg"><b>はると（1年）の母</b>今日は17:40に祖母が迎えに行きます。<span>既読 9:30</span></p>
+            <p class="msg"><b>そうた（2年）の父</b>16:00にスイミングへ行くので、早めに帰します。<span>既読 8:55</span></p>
+            <p class="msg"><b>めい（4年）の母</b>通院のため欠席します。<span>既読 8:55</span></p>
+          </div>
         </div>
+        <div class="dev phone ph2">
+          <div class="scr">
+            <p class="s-h">クラブだより 11月号</p>
+            <p class="big">既読 <b>38</b> / 43</p>
+            <p class="row">いのうえさん<span>紙で渡す</span></p>
+            <p class="row">もりやさん<span>未読</span></p>
+            <p class="row">あべさん<span>未読</span></p>
+          </div>
+        </div>
+        <figure class="hp hp1"><img src="photos/Schoolkids-wearing-hats-and-randoseru-in-Kugayama-Japan-Janu.jpg" alt="" width="960" height="720"><figcaption class="credit">写真 Mr. Brian（CC BY 2.0）</figcaption></figure>
+        <figure class="hp hp2"><img src="photos/Randoseru-red-walkinggirls-feb14-2019.jpg" alt="" width="960" height="720"><figcaption class="credit">写真 Nesnad（CC BY 4.0）</figcaption></figure>
+        <canvas class="note" id="hero-note-cv" width="460" height="300" aria-hidden="true"></canvas>
+        <i class="fmag fm1" style="--c:var(--m2)">ゆいな</i><i class="fmag fm2" style="--c:var(--m3)">こうき</i><i class="fmag fm3" style="--c:var(--m4)">けいた</i>
       </div>
+    </div>
+    <div class="wrap">
       <p class="hero-note">写真は実在の小学生の下校の様子（Wikimedia Commons）で、おかえりノートの利用者ではありません。<br>下の出欠ボードは触れます。時刻を進めてみてください。</p>
-
       <div class="wb-wrap" id="board">
         <div>
           <div class="wb" role="region" aria-labelledby="wb-date" data-ui>
@@ -1497,6 +1574,19 @@ function renderSkills() {
 }
 $('#sk-tabs').addEventListener('click', e => { const b = e.target.closest('[data-g]'); if (b) { skG = b.dataset.g; renderSkills(); } });
 
+
+/* 最初の画面の連絡帳の切れはし（罫と手書き）を canvas に描く */
+(function drawNote() {
+  const cv = document.getElementById('hero-note-cv'); if (!cv) return;
+  const go = () => { const x = cv.getContext('2d'); const W = cv.width, H = cv.height;
+    x.fillStyle = '#fffdf6'; x.fillRect(0, 0, W, H);
+    x.strokeStyle = '#bcd0e8'; x.lineWidth = 2; for (let y = 70; y < H; y += 54) { x.beginPath(); x.moveTo(0, y); x.lineTo(W, y); x.stroke(); }
+    x.strokeStyle = '#e8a0a0'; x.beginPath(); x.moveTo(52, 0); x.lineTo(52, H); x.stroke();
+    x.fillStyle = '#1c4b96'; x.font = '600 26px "Klee One", cursive'; x.fillText('10/26 れんらく', 66, 56);
+    x.fillStyle = '#1f2226'; x.font = '400 30px "Klee One", cursive'; x.fillText('きょうは祖母が', 66, 112); x.fillText('17:40 にむかえ', 66, 166); x.fillText('にいきます。', 66, 220);
+    x.strokeStyle = '#c62828'; x.lineWidth = 3; x.beginPath(); x.arc(392, 236, 34, 0, Math.PI * 2); x.stroke(); x.fillStyle = '#c62828'; x.font = '600 22px "Klee One", cursive'; x.fillText('既読', 370, 244); };
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(go);
+})();
 /* ---------- 初期化 ---------- */
 wbReset(); renderUnread(false); renderPlans(); renderDiag(); estCalc(); renderCases(); renderSkills();
 const [r, a] = parseHash(); show(r, a, false);
