@@ -81,46 +81,53 @@ button,input,select,textarea{font:inherit;color:inherit}
 .spmenu li a{display:block;padding:16px 0;border-bottom:1px solid var(--rule-l);text-decoration:none;font-size:var(--t3);font-weight:700}
 @media (max-width:959px){ .gnav,.hd .go{display:none} .burger{display:block} }
 
-/* ── 最初の画面：手本（DORO KOGYO・リブドゥ・大和工業）と同じく、色の面・大きさの違う写真・丸・ホワイトボードを重ね、画面の端からはみ出させる。
-   題は「機械オペレーター」を大きく組み、下に図面の寸法線を引いて寸法の数字の位置に「2名募集」を書く（題材の図面から作り込んだ題） */
-.hero{position:relative;padding:120px 0 104px;background:var(--paper);color:var(--ink);overflow:hidden}
-.hero .wrap{position:relative;min-height:700px}
-.hero-txt{position:relative;z-index:2;width:560px;padding-top:56px}
-.hero h1{margin:0 0 28px;font-size:104px;font-weight:700;color:var(--navy);line-height:1.2;letter-spacing:.01em}
-.hero h1 .h-a{display:block;font-size:72px}
-.hero h1 .h-b{display:block;font-size:104px;letter-spacing:-.02em;white-space:nowrap}
-.dim{display:flex;align-items:center;gap:14px;width:600px;height:28px;margin-top:10px;border-left:2px solid currentColor;border-right:2px solid currentColor;font-family:var(--mono);font-size:var(--t3);font-weight:700;letter-spacing:.06em}
+/* ── 最初の画面：手本（リブドゥ・道路工業）と同じく、色の面の上に、写真・丸い写真・絵（ノギスの線画）・手書きの吹き出し・ホワイトボードを重ね、縁からはみ出させる。
+   題は機械の銘板（ねじ4本で留めたアルミの板）に「機械オペレーター」と刻み、下に図面の寸法線で「2名募集」。題も文も無地でなく色の面・銘板の上に置く */
+.hero{position:relative;padding:112px 0 96px;background:var(--paper);color:var(--ink);overflow:hidden}
+.hero-plane{position:absolute;top:96px;bottom:56px;left:max(0px,calc(50% - 552px));right:0;background:#d9e3ee;border-radius:48px 0 0 48px}
+.hero .wrap{position:relative;min-height:720px}
+.hero-txt{position:relative;z-index:3;width:600px;padding-top:40px}
+.plate{position:relative;display:inline-block;margin:0 0 28px;padding:30px 40px 26px;background:#eef1f4;border:1px solid #9aa4b0;border-radius:8px;box-shadow:0 2px 0 #9aa4b0}
+.plate .screw{position:absolute;width:14px;height:14px}
+.hero h1{margin:0;font-size:92px;font-weight:700;color:var(--navy);line-height:1.2;letter-spacing:.01em}
+.hero h1 .h-a{display:block;font-size:64px}
+.hero h1 .h-b{display:block;font-size:92px;letter-spacing:-.02em;white-space:nowrap}
+.dim{display:flex;align-items:center;gap:14px;width:100%;height:28px;margin-top:10px;border-left:2px solid currentColor;border-right:2px solid currentColor;font-family:var(--mono);font-size:var(--t3);font-weight:700;letter-spacing:.06em}
 .dim::before,.dim::after{content:"";flex:1;height:2px;background:currentColor}
 .hero .lead{margin:0 0 8px;font-size:var(--t3);font-weight:500;line-height:1.8}
-.hero .pay{margin:0 0 32px;font-size:var(--t2)}
-.hero-art{position:absolute;top:0;left:520px;right:min(-24px,calc((1024px - 100vw) / 2));height:700px}
-.ha-plane{position:absolute;top:24px;left:120px;right:0;bottom:64px;background:#d9e3ee;border-radius:48px 0 0 48px}
-.ha-main{position:absolute;top:72px;right:0;width:min(520px,72%);margin:0}
+.hero .pay{margin:0 0 28px;font-size:var(--t2)}
+.hero-art{position:absolute;top:0;left:560px;right:min(-24px,calc((1024px - 100vw) / 2));height:720px}
+.ha-main{position:absolute;top:56px;right:0;width:min(520px,78%);margin:0}
 .ha-main img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:18% 50%;border-radius:28px 0 0 28px}
-.ha-sub{position:absolute;left:40px;bottom:0;width:250px;margin:0}
-.ha-sub img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:20px;border:6px solid var(--paper)}
-.ha-circle{position:absolute;top:0;left:200px;width:168px;height:168px;margin:0;border-radius:50%;overflow:hidden;border:6px solid var(--paper)}
+.ha-circle{position:absolute;top:0;left:calc(100% - min(520px,78%) - 84px);width:160px;height:160px;margin:0;border-radius:50%;overflow:hidden;border:6px solid var(--paper);z-index:1}
 .ha-circle img{display:block;width:100%;height:100%;object-fit:cover}
-.hero-art .wb{position:absolute;right:max(24px,calc((100vw - 1024px) / 2 - 40px));bottom:24px;width:360px;z-index:1}
-.ha-cr{position:absolute;left:40px;top:calc(100% + 8px);max-width:560px;margin:0;font-size:var(--t1);line-height:1.5;color:var(--ink)}
+.ha-bubble{position:absolute;top:226px;left:calc(100% - min(520px,78%) - 72px);width:250px;height:140px;z-index:2;font-family:var(--hand);color:var(--ink)}
+.ha-bubble svg{position:absolute;inset:0;width:100%;height:100%}
+.ha-bubble p{position:relative;margin:0;padding:18px 22px 0 24px;font-size:var(--t3);font-weight:600;line-height:1.35}
+.ha-bubble p small{display:block;margin-top:4px;font-size:var(--t1);color:var(--mk-b)}
+.ha-cal{position:absolute;top:556px;left:-190px;width:380px;z-index:4}
+.ha-cal svg{display:block;width:100%;height:auto}
+.hero-art .wb{position:absolute;right:max(24px,calc((100vw - 1024px) / 2 - 40px));bottom:16px;width:340px;z-index:3}
+.ha-cr{position:absolute;left:0;top:calc(100% + 8px);max-width:620px;margin:0;font-size:var(--t1);line-height:1.5;color:var(--ink)}
 .ha-cr a{color:inherit}
 @media (max-width:1180px){ .hero-art .wb{right:24px} }
 @media (max-width:959px){
-  .hero{padding:104px 0 40px} .hero .wrap{min-height:0}
-  .hero-txt{width:auto;padding-top:0}
-  .hero h1{font-size:52px} .hero h1 .h-a{font-size:36px} .hero h1 .h-b{font-size:52px}
-  .dim{width:min(312px,100%);font-size:var(--t2);height:24px}
-  .hero .pay{margin-bottom:24px}
+  .hero{padding:96px 0 40px} .hero .wrap{min-height:0} .hero-plane{display:none}
+  .hero-txt{width:auto;padding:24px 16px 28px;margin:0 -16px;background:#d9e3ee}
+  .plate{display:block;padding:20px 22px 18px;margin-bottom:20px}
+  .hero h1{font-size:50px} .hero h1 .h-a{font-size:34px} .hero h1 .h-b{font-size:50px}
+  .dim{font-size:var(--t2);height:24px}
+  .hero .pay{margin-bottom:20px}
   .hero-art{position:relative;left:auto;right:auto;margin:32px -16px 0 0;height:auto;padding-bottom:8px}
-  .ha-plane{left:56px;top:40px;bottom:120px}
   .ha-main{position:relative;top:auto;margin-left:24px;width:auto} .ha-main img{border-radius:20px 0 0 20px}
-  .ha-sub{left:0;bottom:auto;top:196px;width:128px;position:absolute;z-index:1}
-  .ha-circle{left:auto;right:16px;top:-40px;width:112px;height:112px;border-width:4px}
-  .hero-art .wb{position:relative;right:auto;bottom:auto;width:auto;margin:40px 16px 0 40px}
+  .ha-circle{left:auto;right:16px;top:-40px;width:108px;height:108px;border-width:4px}
+  .ha-bubble{top:auto;bottom:auto;left:0;width:210px;height:122px;position:relative;margin:-56px 0 0 8px}
+  .ha-bubble p{font-size:var(--t2);padding:14px 18px 0 20px}
+  .ha-cal{position:relative;top:auto;left:auto;width:300px;margin:-16px 0 0 40px}
+  .hero-art .wb{position:relative;right:auto;bottom:auto;width:auto;margin:8px 16px 0 24px}
   .hero-art .wb button{font-size:var(--t2)}
-  .ha-cr{position:relative;left:auto;bottom:auto;max-width:none;margin:12px 16px 0 0}
+  .ha-cr{position:relative;left:auto;top:auto;max-width:none;margin:12px 16px 0 0}
 }
-
 
 /* ホワイトボード */
 .wb{background:var(--alu);padding:10px 10px 22px;position:relative;box-shadow:0 2px 0 #8e9399}
@@ -401,18 +408,42 @@ dialog.skills::backdrop{background:rgba(31,45,74,.6)}
 
 <main id="main">
 <section class="hero" id="top" aria-labelledby="h1">
+  <div class="hero-plane" aria-hidden="true"></div>
   <div class="wrap">
     <div class="hero-txt">
-      <h1 id="h1"><span class="h-a">機械</span><span class="h-b">オペレーター</span><span class="dim">2名募集</span></h1>
+      <div class="plate"><svg class="screw" style="left:10px;top:10px" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="#c9d0d8" stroke="#6f7a86" stroke-width="1.2"/><path d="M3.6 5.4 L10.4 8.6" stroke="#6f7a86" stroke-width="1.4" stroke-linecap="round"/></svg><svg class="screw" style="right:10px;top:10px" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="#c9d0d8" stroke="#6f7a86" stroke-width="1.2"/><path d="M3.6 8.2 L10.4 5.8" stroke="#6f7a86" stroke-width="1.4" stroke-linecap="round"/></svg><svg class="screw" style="left:10px;bottom:10px" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="#c9d0d8" stroke="#6f7a86" stroke-width="1.2"/><path d="M3.6 7.8 L10.4 6.2" stroke="#6f7a86" stroke-width="1.4" stroke-linecap="round"/></svg><svg class="screw" style="right:10px;bottom:10px" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="#c9d0d8" stroke="#6f7a86" stroke-width="1.2"/><path d="M3.6 5.6 L10.4 8.4" stroke="#6f7a86" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <h1 id="h1"><span class="h-a">機械</span><span class="h-b">オペレーター</span><span class="dim">2名募集</span></h1>
+      </div>
       <p class="lead">東大阪・高井田の町工場で、金属部品を削っています。<br>経験がなくても、測るところから教えます。</p>
       <p class="pay">高卒の月給は213,400円から。土日祝が休みです。</p>
       <a class="go" href="#form">工場見学を申し込む<small>私服で大丈夫です</small></a>
     </div>
     <div class="hero-art">
-      <div class="ha-plane" aria-hidden="true"></div>
       <figure class="ha-main"><picture><source media="(max-width:959px)" srcset="photos/chuck-in-use.jpg"><img src="photos/chuck-in-use-1920.jpg" width="1920" height="1080" alt="旋盤のチャックにつかんだ丸棒を刃物で削っているところ。台に切りくずが散っている" fetchpriority="high"></picture></figure>
       <figure class="ha-circle"><img src="photos/lathe-chuck.jpg" width="400" height="400" alt="旋盤の6つ爪のチャックを正面から見たところ"></figure>
-      <figure class="ha-sub"><img src="photos/machining-center.jpg" width="400" height="300" alt="マシニングセンタと、刃物の番号を書いたホワイトボード"></figure>
+      <div class="ha-bubble"><svg viewBox="0 0 250 140" preserveAspectRatio="none" aria-hidden="true"><path d="M20 10 Q8 11 9 24 L11 96 Q12 109 25 108 L50 109 L38 136 L74 109 L231 107 Q244 107 243 94 L241 22 Q240 9 227 9 Z" fill="#fff" stroke="#1f2d4a" stroke-width="2.2" stroke-linejoin="round"/></svg><p>最初の3か月は、<br>測るだけでした。<small>辻本（入社3年目）</small></p></div>
+      <div class="ha-cal"><svg viewBox="0 0 440 160" role="img" aria-label="丸い部品の外径をノギスではさんで測っている線画">
+          <g fill="none" stroke="#1f2d4a" stroke-width="1.2" stroke-opacity=".35" stroke-linecap="round" stroke-linejoin="round" transform="translate(1.6 1.2)">
+            <path d="M10 45 L429 43 L430 70 L11 71 Z"/><path d="M11 71 L53 70 L52 113 L31 147 L10 147 Z"/><path d="M150 36 L224 37 L223 79 L151 78 Z"/>
+          </g>
+          <circle cx="101" cy="112" r="47" fill="#d9b878" stroke="#1f2d4a" stroke-width="2.4"/>
+          <path d="M70 92 Q98 78 128 90" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+          <g fill="#eef1f4" stroke="#1f2d4a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 45 L429 43 L430 70 L11 71 Z"/>
+            <path d="M11 71 L53 70 L52 113 L31 147 L10 147 Z"/>
+            <path d="M11 45 L10 9 L23 9 L41 45"/>
+            <path d="M150 36 L224 37 L223 79 L151 78 Z"/>
+            <path d="M150 78 L149 147 L170 146 L192 113 L193 78"/>
+            <path d="M151 36 L167 8 L180 8 L180 36"/>
+            <rect x="188" y="27" width="16" height="9" rx="2"/>
+            <circle cx="212" cy="88" r="7"/>
+          </g>
+          <g stroke="#1f2d4a" stroke-width="1.4" stroke-linecap="round">
+            <path d="M232 44v9M241 44v6M250 44v6M259 44v6M268 44v9M277 44v6M286 44v6M295 44v6M304 44v9M313 44v6M322 44v6M331 44v6M340 44v9M349 44v6M358 44v6M367 44v6M376 44v9M385 44v6M394 44v6M403 44v6M412 44v9"/>
+            <path d="M158 68v-7M166 68v-5M174 68v-5M182 68v-7M190 68v-5M198 68v-5M206 68v-7M214 68v-5"/>
+          </g>
+          <text x="262" y="96" font-family="Klee One, cursive" font-size="20" fill="#1f2d4a">φ11.98 を測る</text>
+        </svg></div>
       <div class="wb" role="region" aria-labelledby="wbT">
         <span class="mag" style="left:22px" aria-hidden="true"></span><span class="mag" style="right:22px;background:var(--mk-b);box-shadow:0 1px 0 #13306a" aria-hidden="true"></span>
         <div class="wb-in">
@@ -422,7 +453,7 @@ dialog.skills::backdrop{background:rgba(31,45,74,.6)}
         <p class="note">押すと申込欄に入ります</p>
         </div>
       </div>
-      <p class="ha-cr">写真はどれもよその工場（Wikimedia Commons）：<span class="nw"><a href="https://commons.wikimedia.org/w/index.php?curid=64980189" target="_blank" rel="noopener">David English</a> CC BY-SA 4.0・</span><span class="nw"><a href="https://commons.wikimedia.org/w/index.php?curid=2977616" target="_blank" rel="noopener">Andrew Magill</a> CC BY 2.0・</span><span class="nw"><a href="https://commons.wikimedia.org/w/index.php?curid=193560471" target="_blank" rel="noopener">Psychlist1972</a> CC BY 2.0</span></p>
+      <p class="ha-cr">写真はどちらもよその工場（Wikimedia Commons）：<span class="nw"><a href="https://commons.wikimedia.org/w/index.php?curid=64980189" target="_blank" rel="noopener">David English</a> CC BY-SA 4.0・</span><span class="nw"><a href="https://commons.wikimedia.org/w/index.php?curid=2977616" target="_blank" rel="noopener">Andrew Magill</a> CC BY 2.0</span>。ノギスの絵と吹き出しは河内精機で描いたもの</p>
     </div>
   </div>
 </section>
