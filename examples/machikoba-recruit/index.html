@@ -81,41 +81,37 @@ button,input,select,textarea{font:inherit;color:inherit}
 .spmenu li a{display:block;padding:16px 0;border-bottom:1px solid var(--rule-l);text-decoration:none;font-size:var(--t3);font-weight:700}
 @media (max-width:959px){ .gnav,.hd .go{display:none} .burger{display:block} }
 
-/* ── 最初の画面：手本（リブドゥ・道路工業）と同じく、色の面の上に、写真・丸い写真・絵（ノギスの線画）・手書きの吹き出し・ホワイトボードを重ね、縁からはみ出させる。
-   題は機械の銘板（ねじ4本で留めたアルミの板）に「機械オペレーター」と刻み、下に図面の寸法線で「2名募集」。題も文も無地でなく色の面・銘板の上に置く */
-.hero{position:relative;padding:112px 0 96px;background:var(--paper);color:var(--ink);overflow:hidden}
-.hero-plane{position:absolute;top:96px;bottom:56px;left:max(0px,calc(50% - 552px));right:0;background:#d9e3ee;border-radius:48px 0 0 48px}
-.hero .wrap{position:relative;min-height:720px}
-.hero-txt{position:relative;z-index:3;width:600px;padding-top:40px}
-.hero .call{margin:0 0 28px;font-size:96px;font-weight:700;color:var(--navy);line-height:1.15;letter-spacing:-.01em}
-.hero .call .nb{display:block;white-space:nowrap}
-.hero .tag{display:inline-block;margin:0 0 32px;padding:10px 20px 12px;background:#fff;color:var(--navy);font-size:var(--t4);font-weight:700;line-height:1.4}
-.hero .lead{margin:0 0 8px;font-size:var(--t3);font-weight:500;line-height:1.8}
-.hero .pay{margin:0 0 28px;font-size:var(--t2)}
-.hero-art{position:absolute;top:0;left:560px;right:min(-24px,calc((1024px - 100vw) / 2));height:720px}
-.ha-main{position:absolute;top:56px;right:0;width:min(520px,78%);margin:0}
-.ha-main img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:18% 50%;border-radius:28px 0 0 28px}
-.ha-circle{position:absolute;top:0;left:calc(100% - min(520px,78%) - 84px);width:160px;height:160px;margin:0;border-radius:50%;overflow:hidden;border:6px solid var(--paper);z-index:1}
-.ha-circle img{display:block;width:100%;height:100%;object-fit:cover}
-.ha-fig{position:absolute;top:356px;left:calc(100% - min(520px,78%) - 214px);width:244px;z-index:2}
+/* ── 最初の画面（第6回）：手本の鶴田電機（recruit.tsuruta-electric.co.jp）と同じく、写真2枚で画面の幅を分け、それぞれに色を multiply で重ねる
+   （左＝安全表示の黄、右＝鋼の青）。日本語の一言は 44px にして写真の下に。ノギスで測る先輩の絵とホワイトボードは写真の上に重ねる */
+.hero{position:relative;padding:80px 0 48px;background:var(--paper);color:var(--ink);overflow:hidden}
+.duo{position:relative;display:grid;grid-template-columns:1fr 1fr;height:560px}
+.duo figure{position:relative;margin:0;overflow:hidden}
+.duo img{display:block;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.08) brightness(1.08);mix-blend-mode:multiply}
+.duo .d-a{background:#f5c400}
+.duo .d-a img{object-position:22% 50%}
+.duo .d-b{background:#8fb3dd}
+.duo figcaption{position:absolute;left:12px;bottom:8px;margin:0;font-size:var(--t1);line-height:1.4;color:var(--ink);background:rgba(251,251,246,.86);padding:2px 8px 3px}
+.duo figcaption a{color:inherit}
+.duo .d-b figcaption{left:auto;right:12px}
+.ha-fig{position:absolute;left:calc(50% - 150px);bottom:-36px;width:236px;z-index:2}
 .ha-fig svg{display:block;width:100%;height:auto}
-.hero-art .wb{position:absolute;right:max(24px,calc((100vw - 1024px) / 2 - 40px));bottom:16px;width:340px;z-index:3}
-.ha-cr{position:absolute;left:0;top:calc(100% + 8px);max-width:620px;margin:0;font-size:var(--t1);line-height:1.5;color:var(--ink)}
-.ha-cr a{color:inherit}
-@media (max-width:1180px){ .hero-art .wb{right:24px} }
+.duo .wb{position:absolute;right:max(24px,calc((100vw - 1024px) / 2));top:40px;width:320px;z-index:2}
+.hero-txt{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 40px;align-items:end;padding-top:56px}
+.hero .call{margin:0;font-size:44px;font-weight:700;color:var(--navy);line-height:1.35}
+.hero .tag{margin:8px 0 0;font-size:24px;font-weight:500}
+.hero .note{margin:8px 0 0;font-size:var(--t1)}
+.hero .note a{color:inherit}
 @media (max-width:959px){
-  .hero{padding:96px 0 40px} .hero .wrap{min-height:0} .hero-plane{display:none}
-  .hero-txt{width:auto;padding:24px 16px 28px;margin:0 -16px;background:#d9e3ee}
-  .hero .call{font-size:60px;margin-bottom:20px}
-  .hero .tag{font-size:var(--t3);margin-bottom:20px}
-  .ha-fig{left:0;top:150px;width:136px}
-  .hero .pay{margin-bottom:20px}
-  .hero-art{position:relative;left:auto;right:auto;margin:32px -16px 0 0;height:auto;padding-bottom:8px}
-  .ha-main{position:relative;top:auto;margin-left:24px;width:auto} .ha-main img{border-radius:20px 0 0 20px}
-  .ha-circle{left:auto;right:16px;top:-40px;width:108px;height:108px;border-width:4px}
-  .hero-art .wb{position:relative;right:auto;bottom:auto;width:auto;margin:72px 16px 0 24px}
-  .hero-art .wb button{font-size:var(--t2)}
-  .ha-cr{position:relative;left:auto;top:auto;max-width:none;margin:12px 16px 0 0}
+  .hero{padding:80px 0 32px}
+  .duo{grid-template-columns:1fr;height:auto}
+  .duo figure{height:240px}
+  .ha-fig{left:auto;right:12px;top:150px;bottom:auto;width:130px}
+  .duo figcaption{top:8px;bottom:auto}
+  .duo .d-b figcaption{left:12px;right:150px}
+  .duo .wb{position:relative;right:auto;top:auto;width:auto;margin:-28px 16px 0 16px}
+  .duo .wb button{font-size:var(--t2)}
+  .hero-txt{grid-template-columns:1fr;padding-top:28px}
+  .hero .call{font-size:32px}
 }
 
 /* ホワイトボード */
@@ -397,17 +393,12 @@ dialog.skills::backdrop{background:rgba(31,45,74,.6)}
 
 <main id="main">
 <section class="hero" id="top" aria-labelledby="h1">
-  <div class="hero-plane" aria-hidden="true"></div>
-  <div class="wrap">
-    <div class="hero-txt">
-      <h1 id="h1" class="call"><span class="nb">測る人に</span><span class="nb">なろう！</span></h1>
-      <p class="tag">機械オペレーターを2名募集しています</p>
-      <a class="go" href="#form">工場見学を申し込む<small>私服で大丈夫です</small></a>
-    </div>
-    <div class="hero-art">
-      <figure class="ha-main"><picture><source media="(max-width:959px)" srcset="photos/chuck-in-use.jpg"><img src="photos/chuck-in-use-1920.jpg" width="1920" height="1080" alt="旋盤のチャックにつかんだ丸棒を刃物で削っているところ。台に切りくずが散っている" fetchpriority="high"></picture></figure>
-      <figure class="ha-circle"><img src="photos/lathe-chuck.jpg" width="400" height="400" alt="旋盤の6つ爪のチャックを正面から見たところ"></figure>
-      <div class="ha-fig"><svg viewBox="0 0 240 290" role="img" aria-label="作業着と帽子の先輩が、ノギスで丸い部品の外径を測っている絵">
+  <div class="duo">
+    <figure class="d-a"><picture><source media="(max-width:959px)" srcset="photos/chuck-in-use.jpg"><img src="photos/chuck-in-use-1920.jpg" width="1920" height="1080" alt="旋盤のチャックにつかんだ丸棒を刃物で削っているところ" fetchpriority="high"></picture>
+      <figcaption>よその工場の旋盤：<a href="https://commons.wikimedia.org/w/index.php?curid=64980189" target="_blank" rel="noopener">David English</a> CC BY-SA 4.0</figcaption></figure>
+    <figure class="d-b"><img src="photos/machining-center-1200.jpg" width="1200" height="900" alt="マシニングセンタと、刃物の番号を書いたホワイトボード" fetchpriority="high">
+      <figcaption>よその工場のマシニングセンタ：<a href="https://commons.wikimedia.org/w/index.php?curid=193560471" target="_blank" rel="noopener">Psychlist1972</a> CC BY 2.0</figcaption></figure>
+    <div class="ha-fig"><svg viewBox="0 0 240 290" role="img" aria-label="作業着と帽子の先輩が、ノギスで丸い部品の外径を測っている絵">
   <defs><filter id="ol" x="-15%" y="-15%" width="130%" height="130%"><feMorphology in="SourceAlpha" operator="dilate" radius="5" result="d"/><feFlood flood-color="#fff"/><feComposite in2="d" operator="in" result="w"/><feMerge><feMergeNode in="w"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
   <g filter="url(#ol)">
     <path d="M36 290 L40 206 Q46 164 86 154 L154 154 Q194 164 200 206 L204 290 Z" fill="#3a5686"/>
@@ -439,13 +430,20 @@ dialog.skills::backdrop{background:rgba(31,45,74,.6)}
 </svg>
 </div>
       <div class="wb" role="region" aria-labelledby="wbT">
-        <span class="mag" style="left:22px" aria-hidden="true"></span><span class="mag" style="right:22px;background:var(--mk-b);box-shadow:0 1px 0 #13306a" aria-hidden="true"></span>
-        <div class="wb-in">
-        <h2 id="wbT">工場見学できる日</h2>
-        <ul id="wbList"></ul>
-        </div>
+      <span class="mag" style="left:22px" aria-hidden="true"></span><span class="mag" style="right:22px;background:var(--mk-b);box-shadow:0 1px 0 #13306a" aria-hidden="true"></span>
+      <div class="wb-in">
+      <h2 id="wbT">工場見学できる日</h2>
+      <ul id="wbList"></ul>
       </div>
-      <p class="ha-cr">写真はどちらもよその工場（Wikimedia Commons）：<span class="nw"><a href="https://commons.wikimedia.org/w/index.php?curid=64980189" target="_blank" rel="noopener">David English</a> CC BY-SA 4.0・</span><span class="nw"><a href="https://commons.wikimedia.org/w/index.php?curid=2977616" target="_blank" rel="noopener">Andrew Magill</a> CC BY 2.0</span>。ノギスで測る先輩の絵は、河内精機で描いたもの</p>
+    </div>
+  </div>
+  <div class="wrap hero-txt">
+    <div>
+      <h1 id="h1" class="call">測る人になろう！</h1>
+      <p class="tag">機械オペレーターを2名募集しています</p>
+    </div>
+    <div>
+      <a class="go" href="#form">工場見学を申し込む<small>私服で大丈夫です</small></a>
     </div>
   </div>
 </section>
