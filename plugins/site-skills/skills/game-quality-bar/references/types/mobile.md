@@ -46,6 +46,20 @@
 - **動き**：transition .4s が88回、keyframes 4つ。区画は `.scroll{opacity:0}` を毎回の scroll ハンドラで点ける。コピーは1字ずつ span。バナーは Swiper autoplay。`prefers-reduced-motion` は全ファイルで0件。`:focus{outline:0}`。
 - **重さ**（measure.js）：top PC 10.85MB／SP 10.70MB（PNG 6,083KB。PC の mp4 は別の計測で 10秒に 8,853,632B をループで取り直し）、world 7.02／5.57MB、/idol/ 7.15／6.11MB、/idol/kotone/ 7.14／6.03MB、レーベル news 6.55／6.62MB（woff2 4,086KB）。全ページで three.min.js 400KB（学園案内の3Dの冊子用）・canvas-confetti・OneTrust 492KB を読む。
 
+### 怪獣８号 THE GAME 公式（https://kj8-thegame.com/ ・2026-11-05 解剖、2025年配信の運営中タイトル〔2026-08 に1周年〕。iOS・Android・Steam。歩いた4ページ：/・/1stanniversary・サポート support.kj8-thegame.com/hc/ja・Web Store webstore.kj8-thegame.com/?language=ja。Web Design Clip 掲載）
+- **枠**：Vite の1枚のトップに7章（TOP・TRAILER・CONCEPT・STORY・CHARACTER・SYSTEM・CAMPAIGN）＋SPEC・X・フッター。sitemap は /・/privacypolicy/・/terms/ だけで、世界観・人物・ニュースの別ページは無い。main.js 879KB に GSAP＋ScrollTrigger・Lenis・Swiper・keen-slider・three.js。html の font-size は PC `.7320644217vw`（1366px で 10px）／SP `min(2.5445vw,10px)`。768px をまたぐと `location.reload()`。
+- **ナビ**：PC は右の固定の列（幅 13.32vw＝1440px で 192px、左 1px #5e625f、項目 8vh＝72px、今の章は #00eee0 の地に黒・比 14.31）に言語・章7つ・ストア3つ・Web Store の帯。横長（1366/620 より）のときは1章1画面の送り（ホイール |Δ|≥20・↑↓キー）。SP はハンバーガー 24.8×15.9（名前なし）で全画面の黒のメニュー。6言語は別 URL（/en/ ほか）。
+- **最初の画面**：アニメの絵の KV、h1 はロゴ画像 422×188（KV の下中央、y624）と標語の画像。発売日・リリース日はページのどこにも無い。左下に1周年の札 230×182。SP は下端に「今すぐダウンロード」とボタン 108×40 を固定し、開くたびに Web Store のポップアップ（保存なし、閉じるは名前なし 30×30、Esc 不可）。PC は `?f=app` のときだけ。
+- **ストア**：UA で出し分け。iPhone は App Store＋Steam、Android は Google Play＋Steam、PC は3つ（img の alt はストア名、本物のリンク）。トップに値段の文字は無く、SPEC の「価格：基本無料（アイテム課金制）」だけ。
+- **Web Store**（Xsolla）：パック5・次元晶17を値段の文字（¥160〜¥30,000）・「あと1回」・「あと25日」・Web Storeボーナス ×150 と並べる。カードを押して 113ms で購入確認（品名・説明・獲得可能アイテム一覧〔数だけ〕・「価格：¥3,000」・Cancel/OK、サインインが要る）。Esc で閉じない。画像106枚とも alt なし。viewport は `user-scalable=no` だけ。Google Fonts の CSS 1本が 881KB（Noto Sans JP・TC・SC・KR・Noto Sans）。
+- **動画**：TRAILER の枠は three.js の WebGL（780×439）で mp4 3本（各 1.3〜1.5MB）をテクスチャにしてサムネで切り替える。PLAY で初めて `youtube.com/embed/{id}?autoplay=1&enablejsapi=1`（押す前の YouTube 0件、押して PC 4,658KB）。背景・SYSTEM・人物の動画は `data-src`＋`preload="none"`＋poster。
+- **キャラクター**：27人を keen-slider の横送りと全員の格子で切り替え（CHANGE VIEW、27.4×18.9 のボタン2つ・名前なし）。カードは `li`（Tab が届かない）。押して 262〜274ms で詳細のモーダル：左に立ち絵・[ BIRTHDAY ]・CV（Roboto Mono 12.65px の札）・名前（見出ゴ 900・PC 81.17px・#00eee0）・英字、右にゲーム内の動画（PLAY で本編 mp4・音あり）・紹介文（PC 13.70px／SP 12.90px）・[ LIKES ]。前後は PC 左右 40×351、SP 下の PREV/NEXT 146×36。role・aria-modal・フォーカス移動・Esc・URL（`#character` のまま）がどれも無い。次の人へ送ると サムネ mp4 1,954KB。
+- **ローディング**：トレーラー3本のテクスチャを読み終えてから演出（ロゴ 1.4s＋blur 1.4s → 文字 .5s → 全体 1s）。この環境で PC 20.9〜22.7s・SP 22.7〜23.3s、その間に PC 19.3MB。reduce でも同じ。
+- **表記**：年齢区分は4ページで0件。権利 ©防衛隊第３部隊 ©松本直也／集英社・©Akatsuki Games Inc.／TOHO CO., LTD.／Production I.G。ニュースは公式に無く、サポート（Zendesk）の「重要なお知らせ」1件だけ。1周年の特設（Astro）は lang="jp"、ただし `time datetime`・aria-label「X（別タブで開く）」・言語の aria-current は手本。
+- **色と文字**：#000（89回）・#00eee0（82回）・#e6e9e9（53回）。英字の題 Source Sans 3 700（PC 75.90〜84.33px／SP 55.57px）、和文の見出し toppan-bunkyu-midashi-go-std 900（Adobe Fonts、OTF features=ALL 3,067KB）、札は Roboto Mono 12.65px、本文 noto-sans-cjk-jp。
+- **動き**：GSAP の power2.out 49回・duration .6 が42回、CSS は .3s ease-out。題の右のカーソル text_flash、PLAY の丸の dotsRotate／frameRotate。`prefers-reduced-motion` は CSS・JS とも0件、SP は animation 850 が動く。Tab の12手とも outline none。
+- **重さ**（measure.js、解析・広告を除く）：top PC 22.05MB／SP 16.50MB（webp 9,785KB・mp4 7,923KB・OTF 3,067KB）、/1stanniversary 3.90／3.46MB、サポート 0.90MB、Web Store 3.84MB。広告タグは別に Meta 1,778KB・TikTok 1,232KB・GTM 1,119KB（PC で操作した1回）。
+
 ## 真似る候補（1サイトだけで見たもの。2つ目で確かめたら「真似る型」へ上げる）
 - 人物の色を CSS 変数2つ（main・sub）で持ち、詳細ページの面・札・ボタン・枠を全部それで塗る。テンプレートは1枚（ウマ娘）。
 - 衣装・姿の切り替えは同じ枠で、丸いサムネに種類名を付ける（ウマ娘：4種・99px）。2枚目以降は押したときに読む方がよい。
@@ -60,14 +74,18 @@
 - 詳細の下に全員の帯を置き、今の人を opacity .3 にする。一覧ページが無くても全員へ届く（学マス：15人のループ）。
 - ページごとにフッターで別の人物を1人出し、その人の詳細へリンク（学マス：13人から1人）。
 - 入手の帯を左下に固定し、フッターの仕様表が見えたら消す（学マス：PC 545×218／SP 302×180、.4s。作るときは IntersectionObserver で）。
+- 端末の UA でストアの組を替える（怪獣８号：iPhone は App Store＋Steam、Android は Google Play＋Steam、PC は3つ）。作るときは、ほかの端末のストアへも1手で届くようにする。
+- PC のナビを右の固定の列にし、章・ストア・課金ストアの帯を常に出す（怪獣８号：192px・項目 72px・今の章は主の色の地に黒）。
+- 課金の買い物を Web Store に分け、値段・回数・期間を文字で、押すと購入確認に中身と価格（怪獣８号：¥160〜¥30,000・あと1回・あと25日、113ms）。
+- 周年の特設は小さな別ページ（Astro）にし、配信の日時を `time datetime` で（怪獣８号 /1stanniversary 3.90MB）。
 
-## 真似る型（ウマ娘・ゼンレスゾーンゼロ・学園アイドルマスターで確かめた）
-1. **入手の導線を全ページの同じ場所に置く。** ウマ娘はフッター直前のストア5つの帯（PC 68px 1行／SP 2・2・1）、ZZZ はヘッダー右の地色の丸「Download Now」（93×25）から 72ms のモーダル（QR＋ストア7つ＋ESRB）。学マスは全ページのフッターの QR＋ストア3つと、top 左下の固定の帯（PC 545×218）。どれも全ページで同じ位置。作るときは、ヘッダーのボタン → モーダル（Esc で閉じる）と、最初の画面の下端の列の2つを置く。
+## 真似る型（ウマ娘・ゼンレスゾーンゼロ・学園アイドルマスター・怪獣８号 THE GAME で確かめた）
+1. **入手の導線を全ページの同じ場所に置く。** ウマ娘はフッター直前のストア5つの帯（PC 68px 1行／SP 2・2・1）、ZZZ はヘッダー右の地色の丸「Download Now」（93×25）から 72ms のモーダル（QR＋ストア7つ＋ESRB）。学マスは全ページのフッターの QR＋ストア3つと、top 左下の固定の帯（PC 545×218）。怪獣８号は PC が右の固定の列にストア3つ、SP が下端の固定の帯（108×40）。どれも全ページ・全章で同じ位置。作るときは、ヘッダーのボタン → モーダル（Esc で閉じる）と、最初の画面の下端の列の2つを置く。
 2. **最初の画面の下端に、ストアの全部と年齢区分の箱を1列に。** ZZZ：ESRB（区分・内容記述・In-Game Purchases (Includes Random Items)）＋QR＋ストア 4＋3。ウマ娘は最初の画面にストアが無かった（y=2,960）ので、ZZZ の置き方を採る。
-3. **人物は1人1URL、人物の色を詳細の面に。** 学マスも `/idol/kotone/`（title も人名）。ウマ娘 `/character/specialweek`＋`--color-main`/`--color-sub`、ZZZ `?id=166651`＋斜めの色の面（15rem 角・skewX(−45deg)）と章札。どちらも色の上の文字の比が足りない人がいる（ウマ娘の札 2.44〜2.73、ZZZ の Sunbringer 2.30）ので、文字は面に乗せないか色ごとに選ぶ。
+3. **人物は1人1URL、人物の色を詳細の面に。** 怪獣８号は1人1URL が無く（詳細のモーダルで URL は #character のまま）、人に送れない反対の例。学マスも `/idol/kotone/`（title も人名）。ウマ娘 `/character/specialweek`＋`--color-main`/`--color-sub`、ZZZ `?id=166651`＋斜めの色の面（15rem 角・skewX(−45deg)）と章札。どちらも色の上の文字の比が足りない人がいる（ウマ娘の札 2.44〜2.73、ZZZ の Sunbringer 2.30）ので、文字は面に乗せないか色ごとに選ぶ。
 4. **ボイスは CV 表記の横のボタンで。** ウマ娘 27.8px の丸（押して mp3 119KB）、ZZZ 32px のマイク（押すたびに次の台詞、再生中は帯が揺れる）。押すまで声を取らない方を採る（ウマ娘、学マス：`new Audio()` を押した時に作り 62,868B、前の音は止める）。学マスは自己紹介を2つ並べる。
 5. **お知らせの種類タブは URL つきのリンク。** ウマ娘 `?t=game`、ZZZ `?category=295`。運営のお知らせ（ウマ娘の [追記] の帯、ZZZ のガチャ提供割合の先頭固定 `/news/public`）は一覧の中で目立たせる。
-6. **人物が数十人を超えたら、まとまり（陣営・グループ）で先に絞る。** ウマ娘 175人を2グループ＋並べ替え5種＋身長の範囲、ZZZ 65人を陣営22 → 同じ陣営のサムネ。
+6. **人物が数十人を超えたら、まとまり（陣営・グループ）で先に絞る。** ウマ娘 175人を2グループ＋並べ替え5種＋身長の範囲、ZZZ 65人を陣営22 → 同じ陣営のサムネ。まとまりが無い数十人なら、横送りと全員の格子の2つの見え方を切り替える（怪獣８号 27人・CHANGE VIEW。ボタンには名前と aria-pressed を付ける）。
 
 ## 反面教師
 - ページを移るたびに 3〜4 秒のローディング画面を出す（ウマ娘：top PC 3,833ms、一覧 6,556ms）。最初の1回だけにする。
@@ -84,3 +102,7 @@
 - BGM のファイルを全ページで取り、ページのどこかを押しただけで鳴らす（ZZZ：3,429KB、最初のクリックで音量 0.8）。音のボタンを押してから取る。
 - ページ送り・章のナビが href の無い a や `<nav>` 要素（ZZZ：2ページ目でも URL が変わらない）。
 - 言語の札を押しても切り替わらない（ZZZ の EN）。
+- ローディングが WebGL のテクスチャ（トレーラーの mp4 3本）と window の load を待ち、さらに演出を足す（怪獣８号：PC 20.9〜22.7s・その間 19.3MB）。最初の画面の絵だけで出す。
+- 人物のカードが `li` で、詳細のモーダルも role・Esc・フォーカス・URL が無い（怪獣８号：27人とも）。カードは button、詳細は `<dialog>`、hash で1人を指す。
+- 年齢区分も運営のお知らせも公式サイトに無い（怪獣８号：4ページで0件、お知らせはサポートの1件だけ）。
+- 課金ストアの画像に alt が無く、拡大を禁じる（怪獣８号の Web Store：106枚・`user-scalable=no`）。

@@ -1,7 +1,7 @@
 # アパレル・靴（服、靴、バッグ、アクセサリー）
 
 ## この下位タイプで特に見ること
-サイズ表と在庫の組み合わせ、着用写真（モデルの身長）、色違いの見せ方、詳細の頭に編集の写真を置くか（置くなら購入の列が最初の画面から落ちないか）。鞄なら、何が入るか（A4・PC のインチ・ボトル）を絞り込みと詳細の両方に出すか
+サイズ表と在庫の組み合わせ、着用写真（モデルの身長）、色違いの見せ方、詳細の頭に編集の写真を置くか（置くなら購入の列が最初の画面から落ちないか）。鞄なら、何が入るか（A4・PC のインチ・ボトル）を絞り込みと詳細の両方に出すか。シャツなら、身幅と丈（袖丈）を別の軸で選ばせるか、品切れの組み合わせをどちらの軸で見せるか。値段の中身（原価・工程・取引先）を詳細に出すか
 
 ## 見本の実測
 
@@ -44,18 +44,34 @@
 - **データ**：詳細は ProductGroup（7色、色ごとに gtin・availability）＋同じ @id の Product（AggregateRating 5.00・2件）＋ BreadcrumbList。一覧・カート・案内も BreadcrumbList。写真の alt は色の名前だけ。
 - **重さ**：PC top 38.62MB / list 20.10MB / item 29.62MB / cart 14.11MB / guide 28.93MB（SP もほぼ同じ）。**主因は和文の Web フォント**：Adobe Fonts の動的サブセットが 5.3〜13.9MB（1本 3〜7MB）、アイコン数個のための Material Symbols（可変4軸）3.9MB。トップは Klaviyo の画像 7.5MB。jQuery 3.6.0 を2回読む。
 
+### ASKET（https://www.asket.com/en-us ・2026-11-05 計測・服（シャツ・ニット・デニム）・スウェーデン・自社の React＋Centra）
+- **位置づけ**：ストックホルムの服の店。1つの定番の服を版を重ねて直す（The Oxford Shirt は 2016 / 1.5）。地 #fff・文字 #000 と黒の透明度の段（.04・.15・.3・.54・.8）だけで組み、書体は Neue Haas Grotesk Display 45 Light と Text 55 Roman の2つ（13.5px・16px・22px・28px、字間 -0.01em）。
+- **一覧**（/en-us/mens/shirts）：PC 4列（345×566、写真 345×518 の 2:3、間 12px）・SP 2列（180×373）。型ごとの h2（The Oxford Shirt 6・Flannel 4・Denim 2・Overshirt 5・Wool Overshirt - Coming Soon 3）の下に色ごとに1枚。カードは左に名前・値段、右に色見本3つ（8px）＋「+3」と色名（灰）。指を乗せると着用 → 平置き（opacity .2s cubic-bezier(.35,0,.15,1)）。20枚を1ページ、img 123枚のうち 107枚 lazy。件数の表示なし、並べ替えなし。
+- **表示の切り替え**：View: 2（702px）・4（345px）・6（226px、名前と値段を消す）・List（1416px の行に Garment・Color・Price・Material・Released / Version）。URL は変わらない。SP には無い。
+- **絞り込み**：「+ Filters」で右から 791px（SP 全画面）。6群（Categories・Colors〔Blue 8・Green 4 …の件数〕・Sizes〔XS-Short〜XXL-Long の18〕・Material・Function〔Building Blocks 13・Occasional Pieces 7〕・Season）、下に Clear all filters／See all results（件数なし）。**Blue を選ぶと URL に ?filterColor=Blue が付くだけで、20枚のまま・チェックも付かない**（2026-11-05 の Chromium で2回。サーバーの HTML も同じ）。
+- **詳細のファーストビュー**：左右半分。PC は名前（h1 22px）y=150・値段・3行の説明・色（14×14 の生地の写真、alt=""）y=656・開く行4つ（Reviews 4.7 / 5.0 (831)・Size & Fit・Shipping & Returns・Store Availability、各 647×33）・Select size 647×41 y=841 まで最初の画面（900px）に入る。SP は写真 390×585 の下に名前 y=673、Select size は購入の列の中で sticky（y=779、列が上へ抜けると消える）。
+- **寸法の二軸**：Select size（XS〜XXL の6）と Select length（Short・Regular・Long、着丈 ±3cm・袖丈 ±2cm）を右から 791px のパネルで選ぶ。身幅を選ぶと、その身幅で品切れの丈だけ打ち消し線（灰）＋黒の「Notify Me」（白のオックスで XL → Short・Long、L → Long）。身幅の側には印が出ない。選ぶまで「Add to cart」は #b2b2b2 に白（2.12:1）で、何を選ぶかを言わない。role="radio" なのに aria-checked が false のまま。
+- **入荷通知**：Notify Me で同じパネルが「Notify me / Available: Spring 2027」とメールの欄1つ・ボタン・**未チェック**のメルマガの1行に替わる。
+- **店の在庫**：開く行の4行目「Store Availability」で身幅と丈を選び直すと、3店に In stock／Out of stock（XL-Long：通販0、ロンドンの Brewer Street に In stock）。寸法のパネルの Notify Me の横には出ない。ページの state に倉庫ごとの数（"1" が通販）。
+- **カートに入れる**：ボタンの中に 14px の回る印 → PC 1.46秒・SP 1.64秒で同じパネルが「Added to cart」（品・Size M-Regular・色・値段）と View Cart（白・黒の枠）／Go to checkout（#333）に替わる。role="status" なし。
+- **カート**：ページは無く、右のパネル PC 720px・SP 全画面。「− 1 ＋」で 1.23秒。Shipping・Sales tax は「Calculated in checkout」、送料無料（150 USD）までの残りを言わない。合計の下に斜体で「No other fees will be added at checkout or upon delivery.」と支払い・運送会社の印9つ。
+- **買う前の不安**：帯（黒）で「関税込み」「Free shipping from 150 USD」「Always free exchanges」を回す。詳細の Shipping & Returns の1手で、DDP・支払い7種・返品30日（返品は 8 USD を引く、交換と店での返品は無料）。送料の金額は案内のページの Ingrid の部品だけ（FedEx Standard $15・3〜4営業日、DHL Express $20・1〜2営業日・13.37 kg CO2e）。
+- **原価と工程**：詳細の下半分に工程の表（白のオックスで17行：取引先・国・最後に行った日 2026-07-22 など、分からない所は「Unknown (Turkey)」、取引先を押すと従業員 690人・月給 1,185 EUR）と原価の表（Assembly 16.2・Main Fabric 12.2・Trims 4.5・Transport 1、計 33.9 EUR、CO2 7.84kg・水 31.63l・電気 35.65kWh）。引き取りの券は Underwear 0〜Outerwear 25 USD の6段。
+- **データ**：詳細に ProductGroup（variesBy size・color、hasVariant は色の5つだけ）・Offer 1つ・BreadcrumbList。AggregateRating なし。WebSite の SearchAction の target が「/en-usnull?search=」。トップに h1 が3つ。
+- **重さ**：PC top 5.97MB / list 5.64MB / item 5.63MB / guide 6.04MB（SP 5.98 / 5.74 / 5.99 / 6.44）。JS 毎ページ約3.5〜3.8MB（自社のドメインから出す GTM 570KB・gtag 551KB を含む）、HTML 1.2〜1.7MB（うち __INITIAL_STATE__ 993KB に関連の品の全在庫）。写真は avif で item 199KB。書体は約85KB、和文の Web フォントなし。動きは cubic-bezier(.35,0,.15,1) と 0.2s・0.5s・0.8s の変数、prefers-reduced-motion は外部の相談の部品だけ。
+
 ## 真似る型
-見本は Allbirds・Tracksmith・土屋鞄製造所の3つ。2つ以上で同じだったことを型にする（値はどれのものかを添える）。
-1. **品切れのサイズ・色は消さずに斜線で残し、押せるようにする。押したら購入のボタンを入荷通知に替える**（Allbirds：14個の四角に斜線＋薄く、押すと「NOTIFY ME」。Tracksmith：50×32 の枠に 1px の斜線、押すとメールか電話の欄。土屋鞄：34px の丸に斜線、押すと「在庫なし」と白の「売り切れ」＋藍の「入荷お知らせ登録」413×48）。3つとも入荷の時期を書かない。作るときは時期も書き、メールマガジンの登録を最初からチェックしない（土屋鞄は入っている）。
-2. **サイズを選ぶまで、購入のボタンに何を選ぶかを書いて押せなくする**（Allbirds・Tracksmith とも「SELECT A SIZE」）。選ぶと URL にバリエーションを残す（Allbirds ?size=…&variant=…、Tracksmith ?sku=…、土屋鞄 ?variant=）。押せない状態の文字は読めるように（Tracksmith は opacity .2 で 1.28:1）。
+見本は Allbirds・Tracksmith・土屋鞄製造所・ASKET の4つ。2つ以上で同じだったことを型にする（値はどれのものかを添える）。
+1. **品切れのサイズ・色は消さずに斜線で残し、押せるようにする。押したら購入のボタンを入荷通知に替える**（Allbirds：14個の四角に斜線＋薄く、押すと「NOTIFY ME」。Tracksmith：50×32 の枠に 1px の斜線、押すとメールか電話の欄。土屋鞄：34px の丸に斜線、押すと「在庫なし」と白の「売り切れ」＋藍の「入荷お知らせ登録」413×48）。ASKET：丈の格子で打ち消し線（灰）＋黒の「Notify Me」、押すと「Available: Spring 2027」）。入荷の時期を書いたのは ASKET だけ（季節で）。作るときは時期を書き、メールマガジンの登録を最初からチェックしない（ASKET は未チェック、土屋鞄は入っている）。
+2. **サイズを選ぶまで、購入のボタンに何を選ぶかを書いて押せなくする**（Allbirds・Tracksmith とも「SELECT A SIZE」）。選ぶと URL にバリエーションを残す（Allbirds ?size=…&variant=…、Tracksmith ?sku=…、土屋鞄 ?variant=）。押せない状態の文字は読めるように（Tracksmith は opacity .2 で 1.28:1、ASKET は「Add to cart」のまま #b2b2b2 に白で 2.12:1 で、何を選ぶかも言わない＝反面教師）。
 3. **色は丸い見本、選んだ色の名前を上の行で言い直す**（Allbirds 36px の丸を2色に斜めに塗り分け、Tracksmith 36px（SP 40px）に「COLOR: NAVY/IVORY」、土屋鞄 34px に「Color: 【数量限定色】シェードウォームグレー」）。色ごとに写真が替わる。見本には枠を付ける（土屋鞄のアクアグリーン #88bfbf は白に 2.05 で溶ける）。
-4. **一覧は1ページに出し切り、画像は lazy**（Allbirds 39件・69/83、Tracksmith 79枚・164/173、土屋鞄 42品・89/105）。件数をカードの数と合わせて一覧の上に出す（Allbirds の JSON-LD 148、Tracksmith の「145 RESULTS」はずれる、土屋鞄は件数そのものが無い＝反面教師）。
-5. **絞り込みで選んだ条件を結果の上に × つきで並べ、まとめて外すボタンを置く**（Allbirds：SP の APPLY FILTERS の後のチップ、Tracksmith：TEES × と CLEAR、土屋鞄：「× 鞄カテゴリー: 防水バッグ」と「全てをクリアする」）。Tracksmith・土屋鞄は選ぶたびに一覧だけ差し替え、ページを読み直さない。
-6. **カートは右からのドロワーで、送料無料までの残りを金額とバーで頭に置く**（Allbirds 約530px・「あと$86で送料無料」、Tracksmith 840px・「ADD $200 TO YOUR CART…」を空のときから）。土屋鞄は /cart へ移り、送料の言葉も無い（反面教師）。
-7. **固定の購入のボタンは、購入の列を過ぎてから出す。未選択なら押すと列へ戻す**（Allbirds：スクロールすると現れる、Tracksmith：IntersectionObserver で列を過ぎてから・未選択なら列へ smooth、土屋鞄：IntersectionObserver でフォームが上へ抜けた後、「購入する」は名前へのアンカー）。ただし SP の最初の画面にボタンが無いなら最初から出す（土屋鞄は SP のボタン y=941 で、最初の画面ではどちらも見えない）。
+4. **一覧は1ページに出し切り、画像は lazy**（Allbirds 39件・69/83、Tracksmith 79枚・164/173、土屋鞄 42品・89/105）。件数をカードの数と合わせて一覧の上に出す（Allbirds の JSON-LD 148、Tracksmith の「145 RESULTS」はずれる、土屋鞄・ASKET は件数そのものが無い＝反面教師。ASKET は20枚・107/123 lazy）。
+5. **絞り込みで選んだ条件を結果の上に × つきで並べ、まとめて外すボタンを置く**（Allbirds：SP の APPLY FILTERS の後のチップ、Tracksmith：TEES × と CLEAR、土屋鞄：「× 鞄カテゴリー: 防水バッグ」と「全てをクリアする」）。Tracksmith・土屋鞄は選ぶたびに一覧だけ差し替え、ページを読み直さない。ASKET は URL に ?filterColor=Blue が付くだけで一覧が絞られず、チップも出ない（反面教師）。
+6. **カートは右からのドロワーで、送料無料までの残りを金額とバーで頭に置く**（Allbirds 約530px・「あと$86で送料無料」、Tracksmith 840px・「ADD $200 TO YOUR CART…」を空のときから）。土屋鞄は /cart へ移り、送料の言葉も無い（反面教師）。ASKET は 720px のパネルだが送料を「Calculated in checkout」と言うだけ（反面教師、$15 と決まっている）。
+7. **固定の購入のボタンは、購入の列を過ぎてから出す。未選択なら押すと列へ戻す**（Allbirds：スクロールすると現れる、Tracksmith：IntersectionObserver で列を過ぎてから・未選択なら列へ smooth、土屋鞄：IntersectionObserver でフォームが上へ抜けた後、「購入する」は名前へのアンカー）。ただし SP の最初の画面にボタンが無いなら最初から出す（土屋鞄は SP のボタン y=941 で、最初の画面ではどちらも見えない）。ASKET は購入の列の中で sticky（SP y=779）にして、列を過ぎると一緒に消える。
 8. **着用の目安・入る物を書く**：Tracksmith は人ごとに身長と着たサイズ（5人）、Allbirds はサイズ群の上に「ハーフサイズの人は近い整数も選んで」。鞄は土屋鞄の収納サイズ（A4ファイル・600mlペットボトル・長財布）と PC対応サイズ（13〜15inch・iPad）を絞り込みの群に。
-9. **詳細の購入の列の近くに返品の条件を1行で**（土屋鞄：カートのボタンの 110px 下に「到着後7日以内・未使用であれば返品可能」）。Tracksmith は列に無くドロワーに「30-DAY RETURNS & EXCHANGES」。送料も同じ場所に（3つとも詳細に送料の金額の行が無い、Allbirds は「+ FREE SHIPPING」だけ）。
-10. **実店舗があるなら、オンラインの在庫の下に店ごとの在庫**（土屋鞄：14店を開閉、通信なし）。オンラインが品切れの色でも出す（土屋鞄は品切れの色で帯が消える）。
+9. **詳細の購入の列の近くに返品の条件を1行で**（土屋鞄：カートのボタンの 110px 下に「到着後7日以内・未使用であれば返品可能」）。Tracksmith は列に無くドロワーに「30-DAY RETURNS & EXCHANGES」。ASKET は購入のボタンの真上の開く行「Shipping & Returns」1手で返品30日・8 USD・交換無料・支払い7種。送料も同じ場所に（4つとも詳細に送料の金額の行が無い、Allbirds は「+ FREE SHIPPING」だけ、ASKET は案内のページの部品だけ）。
+10. **実店舗があるなら、オンラインの在庫の下に店ごとの在庫**（土屋鞄：14店を開閉、通信なし）。ASKET：購入の列の4行目「Store Availability」で3店に In stock／Out of stock。オンラインが品切れの色・寸法でも出し、入荷通知の横にも書く（土屋鞄は品切れの色で帯が消える、ASKET は Notify Me の横に出ない）。
 
 ## 反面教師
 - 有料の返品保証（$4.98）を込みにした金額を、いちばん目立つ購入ボタンに出し、保証なしを文字リンクにする（Allbirds）。
@@ -73,3 +89,6 @@
 - 色を選ぶたびに購入の列の HTML を取り直し、1.0〜2.6秒、待つ間の印なし（土屋鞄）。
 - 入荷お知らせの窓でメールマガジンの登録が最初からチェック済み（土屋鞄）。
 - 和文の Web フォント（Adobe Fonts の動的サブセット）と Material Symbols で1ページ 9〜18MB。パンくず 10px・札 11px・カードの名前 12px（土屋鞄）。
+- 色で絞ると URL に ?filterColor=Blue が付くだけで一覧の20枚が変わらず、チェックも付かない（ASKET、2026-11-05 の Chromium）。
+- カートで送料を「Calculated in checkout」と言い、150 USD までの残りも言わない（送料は FedEx $15 と決まっている）（ASKET）。
+- 色見本が 14×14 で alt=""、リンクに色の名前が無い。本文・値段・ボタンが 13.5px（ASKET）。

@@ -123,4 +123,14 @@
 - [ ] 決済の JS（Stripe など）は、決済の画面だけで読む（Great British Chefs：全ページで js.stripe.com/v3 1,145KB）
 - [ ] ホバーに読み込み中の点滅（skeleton-pulse）を使わない（Great British Chefs：1.4s infinite・reduced-motion でも止まらない）
 
+- [ ] 連載の前後の記事は「第3回 10月22日」のように回の番号と日付で書き、rel="prev／next" を読む順に合わせる（Tansa：「次の記事へ」が1つ古い記事）
+- [ ] 連載のページは、扉のすぐ下に部の名前と記事数の帯を置き、押すと #id へ飛んで URL に残す（Tansa：PC 92px・SP 54px の行、reduced-motion なら smooth にしない）
+- [ ] 並べ替え（初回から／最新から）は記事の日付で並べ、選んだボタンに aria-pressed を付ける（Tansa：日付で並べるが class="on" だけ）
+- [ ] 部ごとの束に、記事数と最終更新の日付を見出しの行に書く（Tansa：「29記事　最終更新 2026年10月4日」13px）
+- [ ] 誘い（メルマガ・寄付）を画像の中の文字で作らない。× に「閉じる」の名前を付け、Tab の最初に置かない（Tansa：PNG 1枚・× は alt 無しの画像）
+- [ ] picture の source に media を書く。書かないと PC でも SP 用の画像を読む（Tansa：donation_request_sp.png 244KB を PC でも）
+- [ ] トップ・一覧のカードの写真を PNG のまま配らない（Tansa：2160×1440 の PNG 5,555KB を 341×227 に）
+- [ ] 同じライブラリを2本読まない。CDN から読むならバージョンを固定する（Tansa：jQuery 3.7.1 と 3.2.1、unpkg の swiper はバージョン無し）
+- [ ] meta description を1つにし、写真のキャプションでなくリードから作る（Tansa：空の1つと、キャプションから始まる1つ）
+
 解剖で裏づけた項目が増えたら、ここに足す（どのサイトで確かめたかを添える）。

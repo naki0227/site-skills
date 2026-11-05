@@ -46,8 +46,22 @@ Astro＋Netlify。採用の募集は外の Ashby（2026-10-28 に 226件）。
 - **動き**：@keyframes 61。reduce を CSS で 42か所（no-preference 27・reduce 15）見るのは解剖した中で最多。ただし `@media (prefers-reduced-motion:reduced)` の書き間違いが1か所あり流れる帯の複製が消えない、点の格子 75個は reduce でも動く。
 - **重さ（PC/SP、measure.js）**：top 11.55/16.13MB、about 14.10/13.54、plan 13.26/6.39、careers 18.30/16.14、now 20.80/10.99。うち Next.js の先読み（RSC）が top 36%・about 48%・careers 47%・now 59%。転送量では top が開いて 3,142KB、下まで送ると 5,999KB（先読み42本 1,148KB）。全ページで検索の索引 1,107KB。/plan は PC で PNG 4枚 5,509KB、SP は AVIF 642KB。
 
+### Mercury（https://mercury.com/ 、2026-11-05 解剖。選んだ理由：米国の法人向けの銀行サービス。色・速さを6系統×光と闇の CSS 変数で持ち、Radix の押して開く全幅のメガメニュー、スクロールで送る最初の画面の動画、区画の地に .5s で色を合わせるヘッダー、決まりの断り書きを最初の画面に貼る作り。受賞歴・事例集は確かめられなかった）
+2017年創業（JSON-LD）。Next.js。会社・事業・採用・ブログを mercury.com に持ち、募集の詳細と応募だけ Greenhouse（新しいタブ）。
+- **ナビ（PC）**：sticky 72px で隠さない。Products▾／Solutions▾／Resources▾／About▾／Pricing ｜ Log in／Open account（#5266eb・40px・角 32px・白で 4.71:1）。▾ はホバーで開かず、押すか Enter で開く。Esc で閉じてフォーカスはボタンに残る。板は幅 1440px・地 #272735・下の角 12px、列 415px×3（480px おき）、各列に「18px の大きな項目＋14px #c3c3cc の1文（8.40:1）＋14px 大文字のラベルと 14px の項目」、下の行に別の客（Personal Banking →／Contact us →）。高さ 320〜646px、リンク 7〜15。fadeIn .15s ease-out（.15s 遅れ）。
+- **ヘッダーの地**：区画に合わせて 透明 → #171721 → #f6f5f2 → #fbfcfd と替わる（scrollY 0・600・2,600・5,000 で測った）。`--theme-transition-duration:.5s`・`cubic-bezier(0,0,.6,1)`。
+- **トップの順番**：h1「Radically different banking」49.35px/480（SP 28px、300ms で opacity 1）＋1文＋メール欄つきの Open account＋Launch demo → 製品の画面の動画 → 左に開閉4項目・右に画面の動画 → 「Loved by 450K+…」の h2 と顧客ロゴ・社長の声の動画3つ（自動で送らない）→ 開閉6項目 → 題が数字のニュースのカード3枚（「$1B in annualized revenue and 4+ years profitable」「$5.2B valuation」）→ business／personal → 脚注18個。最初の画面は sticky 900px／箱 2,250px で、動画（PC 4,681KB・SP 2,346KB）を止めたままスクロールで currentTime を進める（400px で 1.89秒）。
+- **断り書き**：「Mercury is a fintech company, not an FDIC-insured bank…」を最初の画面の下に sticky（PC 1376×41px・12px、SP 342×66px・10px）。本文の数字に上付きの番号（トップに sup 14）、最後に脚注18個・9,402字（PC 12px・SP 10px、区画 1,225／1,559px）。
+- **信頼の材料**：会社ページは記事の引用6枚（Fortune は「in 2023」）と出資者のロゴ・「2,500+ community members」・「1,000+ employees」。会社概要の表・沿革・創業者・創業年は画面に無く、JSON-LD の Organization にだけ（founders 3・address 3・foundingDate 2017）。社員数は /jobs で「1000+」と書き方が違う。
+- **採用**：ヘッダーは About▾ の CONNECT の3番目（14px）だけ、トップの本文に入口なし。/jobs は See open roles ↓ → 価値観 → 勤務地3つ → 福利11行（育休 12週以上・$600・$1K/年・$100/週・401K 4% と数字で書く）→ 文化 → 募集77件を部署15の見出しで（Engineering 18 ほか）。件数・絞り込み・検索なし、行は 職種／勤務地（Any office or remote）／›（Greenhouse へ target=_blank）。JobPosting 0。
+- **問い合わせ**：会社ページに Say hello（hello@）・Press inquiries（press@）の2枚、mailto だけ。営業は事業ページの Contact sales。採用の振り分けなし。
+- **ニュース（ブログ）**：2段目のナビ（Library・Meridian・Inside Mercury・Topics▾・検索）。Topics▾ は14分類を2列＋絵つきの札2枚。分類はパス（/blog/categories/…・/blog/topics/…）で、件数・組み合わせなし。札 28枚、分類の札 14px 大文字 #5266eb（4.59:1）、題は Tiempos Headline 21px。一覧に日付が無い（記事に「November 4, 2026」、`<time>` 0）。Company News で同じ記事が2回並ぶ。
+- **データ**：トップは Organization・FinancialService（award・OfferCatalog 17）・MobileApplication（AggregateRating 4.9・22,915件、画面に出ない）。ブログの一覧は JSON-LD 0、h2 43。lang="en" だけ。alt 無し 0（5ページ）。メール欄は placeholder だけで label なし。
+- **見た目の値**：`--color-{neutral,purple,blue,green,orange,beige}-base-0〜1000` と `--background-default` など役割の変数を光と闇の2組。地 #fbfcfd・見出し #272735（14.32:1）・本文 18px #535461（7.28:1）・暗 #171721 に #ededf3（15.25:1）。書体は自前の Arcadia（Text 360〜500・Display 320〜480）と Tiempos（ブログ）、全部 `font-display: optional`・代わりは `local(Arial)`。段は h1 49〜57／h2 42（SP 28）／カード 28／本文 18／ナビ 16／札 14／注 12（SP 10）。速さ .15s `cubic-bezier(.4,0,.2,1)`・ボタン .3s・地の色 .5s。
+- **動き**：reduce で、最初の画面の sticky を外し（`motion-safe:sticky`）、動画を最後の絵（6.38秒）で止め、区画の動画も 0秒で止める。桁が回る部品は fade に替え、View Transitions も 0s。@keyframes 43。
+- **重さ（PC/SP、measure.js・タグ除く）**：top 22.26/16.16MB、about 36.33/23.29、business 22.92/13.73、jobs 33.21/9.84（Mux の動画 23,822KB、SP は 1,754KB）、blog 38.99/17.50（先読み 27,131KB）。先読み（`?_rsc=`）は blog で 92本 18,435KB、Topics▾ を開くだけで +1,829KB。タグは GTM 2.4〜2.9MB・segment・facebook・同意の窓（transcend）0.5MB ほか約30ホスト。inspect.js：トップは FAIL 5（横スクロール scrollWidth 3,431px・本文 12px／SP 10px・13px 未満 55%）・WARN 6。
 
-## 真似る型（LayerX・Mistral AI・Linear の3つで確かめた）
+## 真似る型（LayerX・Mistral AI・Linear・Mercury の4つで確かめた）
 - 会社サイトは「志・事業の地図・ニュース・連絡先」に絞り、事業は1ページ（LayerX：アンカー、Mistral：/products/ のタイル5枚・2,344px、Linear：トップの柱4本＋柱ごとのページ）で並べ、プロダクトの本体と採用の応募は外へ渡す（LayerX：別ドメインと外部ATS、Mistral：Ashby、Linear：募集の詳細は自サイト・Apply だけ Ashby）。
 - ヘッダーの右端に、目立つ形の行動を置く（LayerX：Join Us の丸いボタン、Mistral：黒の Login と Get in touch、Linear：#e5e5e6 の Sign up）。ヘッダーは隠さない（Mistral 48px、Linear 73px・blur(20px)・下線 白8%）。下がり窓は、項目が8つ以下なら1列の小さな窓（LayerX 5項目、Mistral 1行 57px）、段階と1語の項目が混ざるなら1枚の板（Linear：860px に2行4つ＋1語4つ＋「New と最新の更新」の行、opacity と scale(.98→1) .16s、大きさの替わり .22s）。
 - トップは1文で始め、数字の帯を置かない（LayerX：h1 60px、Mistral：96px の1文＋最新の1件、Linear：h1 64px＋1文＋「New Loops →」）。1文は h1 にし、最初から見える状態で HTML に置く（Mistral は aria-hidden の p、Linear は JS を待って 6.4〜8.2 秒見えない）。
@@ -59,6 +73,13 @@ Astro＋Netlify。採用の募集は外の Ashby（2026-10-28 に 226件）。
 - 色・文字の段・速さを CSS 変数のトークンで持ち、会社・採用・ニュースを製品と同じ部品で組む（Mistral：光・闇・反転の3組、Linear：地4段・文字4段・見出し9段・速さ2つ）。文字の4段目は 4.5:1 まで上げる（Linear #62666d は 3.45:1）。
 - 採用の福利は組に分けて数字で書き、選考は職の系統ごとに段の数を書く（Mistral：福利3組、選考 4段と3段。Linear：有給5週・育休4か月・4年ごとに1か月）。募集は部署の見出しと 72px の行で並べる（Linear）が、件数と絞り込みを足す。
 - 人の多さは名前の量で見せる（Linear：写真8人＋名前173人＋出資者22人）。数字で書くなら会社概要の表の上に「いつの値か」を添える。
+
+- ▾ は押して開く全幅の板にし、列ごとに「大きな1項目＋1文＋小さな項目」、下の行に別の客の入口を置く（Mercury：列 415px×3・下に Personal Banking →、Linear：860px の板に段階4つ＋1語4つ＋「New」の行）。Esc で閉じてボタンへ戻す。
+- ヘッダーは隠さず、下の区画の地の色に .5s で合わせる（Mercury：透明 → #171721 → #f6f5f2 → #fbfcfd、`cubic-bezier(0,0,.6,1)`）。
+- 最初の画面は1文＋メール欄つきのボタン1つ（Mercury：Open account。Launch demo は2つ目）。製品は左の開閉4項目と右の画面の組で見せる（Mercury：開いた項目に点、右の動画が替わる）。
+- 規模の数字はニュースの題にし、記事へつなぐ（Mercury：「$1B in annualized revenue and 4+ years profitable」「$5.2B valuation」）。題の数字と記事の日付をそろえる。
+- 決まりの断り（銀行でない・計量の検定でない など）は最初の画面の下に1行、条件は上付きの番号で最後の脚注へ（Mercury：sticky の帯・脚注18個）。字は 14px 以上（Mercury は 12px／SP 10px で inspect の FAIL）。
+- reduce では、スクロールで送る動画を最後の絵で止め、sticky の箱を外す（Mercury：`motion-safe:sticky`、6.38秒で停止）。
 
 ## 反面教師
 - 会社概要に規模の数字（社員数・資本金）が無く、導入社数が本文に埋もれる（LayerX）。数字は会社概要かトップに置く。
@@ -74,3 +95,7 @@ Astro＋Netlify。採用の募集は外の Ashby（2026-10-28 に 226件）。
 - 採用がヘッダーに無く（Resources▾ の2番目）、トップの本文・Contact にも無い。23件の募集に件数・絞り込みが無い（Linear）。
 - 同じ数・題・日付が場所で違う：40,000社と 25,000社、変更履歴の題2つ、SEP 10 と September 14（Linear）。
 - `prefers-reduced-motion:reduced` の書き間違いで reduce の1行が効かない。JSON-LD・`<time>` が全ページで 0。見えたリンクを全部先読みし、トップで 42本・1,148KB（Linear）。
+- 採用はヘッダーの About▾ の3番目（14px）とフッターだけ、トップの本文に無い。77件・部署15に件数・絞り込みが無い（Mercury）。
+- ブログの一覧の札に日付が無く、記事にも `<time>` が無い。脚注と断り書きが 12px／SP 10px（Mercury）。
+- 会社ページに会社概要の表・沿革・創業者が無く JSON-LD にだけ。「1,000+」と「1000+」、会社ページの賞が 2023年のまま（Mercury）。
+- 先読みとタグで重い：blog の先読み 92本 18,435KB、Topics▾ を開くだけで +1,829KB、タグ約30ホスト（Mercury）。書体が全部 `font-display: optional`＋`local(Arial)` で、Arial の無い端末では既定の書体になる（Mercury）。

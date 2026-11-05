@@ -55,11 +55,27 @@ PC 1440×900 / SP 390×844。見たページ：トップ、分類の一覧（/en
 - **動き**：ボタンは白・1px #3c3830・影 1px 1px（ぼかし無し）、押すと ::after のライムの丸が中心から width と padding-bottom 0→150%（.2s cubic-bezier(.06,.43,.98,.09)）。single.css で :hover 191 に (hover:hover) 0、:focus-visible 2（js-focus-visible の補い）、prefers-reduced-motion 0、keyframes 16、cubic-bezier 72回。
 - **データと重さ**：記事に Yoast の Article（wordCount・articleSection）と別の NewsArticle の JSON-LD を両方。日付は ISO（+00:00）。一覧は CollectionPage。og: 10・twitter: 6。データ記事は図の題も h1 で h1 9つ、全ページの頭に空の h2 が4つ。重さ（解析・広告を除く）PC top 10.34MB / list 6.48MB / article 6.20MB / long 10.14MB / data 10.98MB（SP 7.98 / 5.88 / 5.88 / 7.05 / 10.92MB）。全部込みで下まで送ると article PC 8.88MB・177件・37ホスト、top 14.97MB・229件。CLS PC 0.0049〜0.0709、SP top 0.3450（書き手の行）・list 0.2403・article 0.1134。自社の JS は小さく（app.js 127KB・vendor.js 163KB）、部品の JS は `querySelector(…) && import()` でその部品があるページだけで読む。一覧の顔は表示 26×33 なのに元の jpg を CSS の背景で配る（1,329KB・651KB）。画像の width/height 無しは article 57枚中 45。
 
+### Tansa（https://tansajp.org/ ・2026-11-05 計測）
+PC 1440×900 / SP 390×844。見たページ：トップ、連載の一覧（/investigativejournal_category/union/）、ふつうの記事（/investigativejournal/15477/・高さ 8,501px）、長い記事（/investigativejournal/13400/・13,224px）。東京の非営利の探査報道。選んだ理由：連載のページ（写真の扉・部の帯・並べ替え）と、記事の終わりの寄付の欄。デザインの事例集・受賞歴は確かめられなかった。
+- **本文**：列 PC 720px（1行 約42字）・SP 360px（左右 15px）。游ゴシック体（Web フォント無し）16px／25.6px（1.6）・字間 .06em・#000、地 #f5f5f5（19.26:1）。段落の下 30px・字下げ無し。h2 PC 30px／48px・SP 20px／32px、`::after` に 2px #0095b4 の線、下 35px。キャプション 11.9px／19.04px。html は 10px（62.5%）。
+- **記事の頭**：連載名（17px 700 #0095b4・3.23:1）→ 題（**h2**・PC 38px／53.2px・SP 24px／33.6px・700・字間 .06em）→「2026年10月23日 17時26分　書き手」12px #333（`<time>` 無し・更新日無し）→ 共有6つ（32×32）→ 写真 720×480（srcset・width/height あり）。h1 はヘッダーとフッターのロゴ。
+- **目次**：無い（long 13,224px・h2 6・id はどれも空）。
+- **部品**：引用は白い面・文字 #0095b4（3.52:1）・内 25px 40px。long では出席者の名前と肩書の名簿に使う。開閉の箱（Easy Accordion：#eee・1px #e2e2e2・見出し 58px）に 44団体の一覧（開くと PC 2,286px）を畳む。写真 14枚中 alt="" 8。
+- **連載の扉（list）**：写真 PC 1440×828（ヘッダーの下端から画面の下端まで JS で実測）・SP 390×520（3:4）。文字の側だけに暗い帯（0→.88、SP は上から下へ 0→.94）。「シリーズ」12.15px・字間 .48em → 題 h1 Noto Serif JP 400 76.42px／91.7px・字間 .08em（SP 52.26px）→ 副題 28.81px・.1em → 写真の右下に撮影者 12.96px。明朝はこの4か所だけ（series.css のコメント）。大きさは `--u: min(1vw,.6vh)` に連載ごとの倍率。
+- **連載の帯**：扉の下に #14110f の帯「このシリーズの連載」。PC は1行 92px（部の名前 19px 700＋記事数 12.5px、縦の罫 白 .18）、SP は 54px の行。押すと `scrollIntoView`（reduced-motion なら auto）＋`pushState` で #id。
+- **部の束**：部の名前 30px（SP 24px）＋「29記事　最終更新 2026年10月4日」13px＋説明の全文 15px／28.5px → 先頭1本（題 23px・写真 520×347・関連2本）｜行（題 15px／23.25px 700＋日付 12px｜写真 124×83）。「初回から／最新から」75×36 は記事の日付で並べ替え（全ての記事は最新から、部は初回から）。class="on" だけで aria-pressed 無し。「もっと見る」+4（行は全部 HTML に入っていて通信無し）、「閉じる」で頭へ戻る。
+- **記事の終わり**：共有6つ → 前後の帯（上下 2px #d7d7d7、「次の記事へ」は1つ古い記事・rel="next" も古い方）→「（連載名）一覧へ」→ もっと読む（同じ連載の6本、PC 220px×3列・SP 写真 88×59 の行、連載名 12.5px #0095b4）→ 広告を取らない理由の白い面 → 寄付の欄。本文の終わりから下まで PC 3,151px（ページの37%）。本文の最後の段落に次の裁判の日。
+- **寄付の欄**：マンスリー（500〜10,000円の6つ）・ワンタイム（3,000〜50,000円の5つ）・年間（10,000〜300,000円の6つ）で金額の組が替わり、毎月の 2,000円に「いちばん多い金額」の札（11px・#0095b4）。「決済手数料を負担する」（3.6%）。Stripe Elements。フォームだけで PC 1,783px・SP 2,336px。送るボタン #ffd905 19px 700。
+- **広告と同意**：広告 0枠。Cookie Notice の帯（SP 390×116）。最初の h2 を過ぎると、画面の下の中央に誘いの画像（PC 540×323・SP 351×210、z-index 9999997、opacity .3s）。文字もボタンも PNG 1枚（PC も SP 用の 244KB）、行き先はメルマガ、外を押すとその回だけ消え、× で localStorage。Tab の最初が名前の無い ×。
+- **色**：#fff 39・#0095b4 23・#000 16・#d7d7d7 8・#ffd905 4・#f5f5f5 3（CSS 4本の回数）。連載のページは変数（--accent #5080a8 4.03:1／--accent-text #31566e 7.48:1／--text #16181c／--bg #f9fafc）。ダークモード無し。
+- **動き**：連載のページは opacity と transform だけ（扉の文字 1.1〜1.3s・遅れ .35〜1.3s、セクション translateY(24px) .65s を IntersectionObserver）で reduced-motion で止める。記事のテーマは reduced-motion 0、:focus-visible 0。
+- **データと重さ**：記事の JSON-LD は WebPage（ISO・+09:00）、description は写真のキャプションから始まり2つ。連載の一覧は JSON-LD 0・datetime の無い time 131個。CLS 0.0001〜0.0118。転送（解析込み・PC）：article 2,970KB／85件（SP 2,326KB）・long 2,835KB・list 20,068KB／284件（Stripe 1,978KB・hCaptcha 1,581KB・YouTube のサムネイル 1,526KB・Donorbox 1,141KB）・top 20,867KB（カードの PNG 2160×1440 を 341×227 で、最大 5,555KB）。jQuery 2本・Swiper 2組・GA 3つ。
+
 ## 真似る型
-ProPublica・The Markup・Grist（3つとも米国の非営利の報道）から。
+ProPublica・The Markup・Grist（米国の非営利の報道）と Tansa（日本の非営利の探査報道）から。
 1. **本文は 600〜754px・18〜22px・行間 1.6〜1.7・段落の間を取り、SP で縮めすぎない**。字下げ無し。SP は The Markup が 18px、Grist が 22px のまま、ProPublica は 16px。段落の間は 18〜32px（Grist は上 18px＝行間の半分）。
 2. **色は役割の少ない組で持つ**：本文・題の濃い色、リード・日時の灰1段、罫の灰1段、アクセント1色。ProPublica は灰6段＋青＋赤、The Markup は紺・灰・桃の3つ、Grist は文字と罫を #3c3830 の1色にして面（ライム・ラベンダー・桃）だけを替える。アクセントを文字の地に使うなら 4.5:1 まで濃くする（3サイトとも Donate が 3.3〜3.6:1）。
-3. **記事の頭は 分類 → 題 → リード → 書き手 → 日時（タイムゾーンか時刻まで）**。日時は「October 5, 2026, 5:00 am」（ProPublica）「8:00 a.m. UTC」（The Markup）のように時刻まで書く。Grist は日付・分類・共有を本文の左 300px の `dl` にまとめる。更新日は3サイトとも画面に無いので、足す。
+3. **記事の頭は 分類 → 題 → リード → 書き手 → 日時（タイムゾーンか時刻まで）**。Tansa は「2026年10月23日 17時26分」と日本語で時分まで。日時は「October 5, 2026, 5:00 am」（ProPublica）「8:00 a.m. UTC」（The Markup）のように時刻まで書く。Grist は日付・分類・共有を本文の左 300px の `dl` にまとめる。更新日は3サイトとも画面に無いので、足す。
 4. **題の書体で個性を出し、本文と UI は読みやすい組に任せる**：ProPublica は可変フォントの幅の軸（wdth 70）、The Markup は Ivar Display と点の帯、Grist は PolySans の題を大きさの -2% の字間で詰める。本文はセリフ、ラベルと日付はサンセリフで3書体まで。
 5. **広告を置かないなら、外のホストを1つ2つに抑える**：The Markup は記事 2.38MB・3ホスト。ProPublica は記事 12.66MB・148ホスト、Grist は全部込み 8.88MB・37ホスト（同意・上掛け・ポップアップ・広告で 1.5MB 超）。
 6. **動きは transform と opacity だけ・keyword か linear のイージング・reduced-motion で止める**：ProPublica は reduced-motion で animation:none、The Markup は no-preference の中にだけ書く（21か所）。Grist は reduced-motion 0 で、回り続ける線や付いてくる丸が止まらない。
@@ -67,6 +83,9 @@ ProPublica・The Markup・Grist（3つとも米国の非営利の報道）から
 8. **転載の条件を記事から1押しで出す**：ProPublica は無料転載のボタン、The Markup は CC BY-NC-ND の条件と HTML をその場でコピー、Grist は dl の Share/Republish に。
 9. **引用の多い本文は引用符をぶら下げる**：Grist は “ を -0.35em、‘ を -0.175em（段落の最初の字を見て JS がクラスを付ける）。
 10. **ページ送りに URL と rel="next"**：Grist は /energy/page/2/・`<link rel="next">`、SP は「1 of 196」と前後だけ。
+11. **連載は扉と部の帯と部の束で見せる**：Tansa は写真だけで1画面の扉（題だけ明朝 400・76px）→「この連載の部」の帯（部の名前と記事数、押すと #id）→ 部ごとに記事数・最終更新・説明の全文・先頭1本・行、「初回から／最新から」は記事の日付で並べ替え。
+12. **寄付の欄は種類で金額の組を替え、手数料の負担を選ばせ、広告を取らない理由を前に置く**（Tansa：毎月 500〜10,000円・1回 3,000〜50,000円・年間 10,000〜300,000円、手数料 3.6%）。決済の JS はこの欄に触れてから読む。
+13. **長い名簿・一覧は開閉の箱1行に畳む**（Tansa：44団体 2,286px を 58px に）。
 
 ## 反面教師
 - 編集用 JS（block-editor・editor・components で 2.8MB）を訪問者に配り、1ページ 10〜13MB になる（ProPublica）。
@@ -90,3 +109,10 @@ ProPublica・The Markup・Grist（3つとも米国の非営利の報道）から
 - Article と NewsArticle の JSON-LD を二重に置く（Grist：Yoast と独自の2組）。
 - 表示 26×33 の書き手の顔に、元の jpg（1,329KB）を CSS の背景で配る（Grist のトップ）。
 - 本文の終わり近くで、ページを暗くする丸いポップアップを出す（Grist：Wisepops 565KB）。
+- 「次の記事へ」が1つ古い記事を指し、rel="next" も古い方（Tansa）。
+- 記事の題が h2、h1 はヘッダーとフッターのロゴ（Tansa）。
+- 最初の h2 を過ぎると、文字の入った画像の誘いを画面の下に出す（Tansa：SP 25%、同意の帯と合わせて 39%、× に名前無し）。
+- 決済の JS を全記事で、連載の一覧で Donorbox・Stripe・hCaptcha を読む（Tansa：一覧の転送 20,068KB）。
+- トップのカードの写真を PNG 2160×1440（最大 5,555KB）で 341×227 に（Tansa）。
+- 並べ替えのボタンに aria-pressed が無く、選んだ方が読み上げられない（Tansa：class="on" だけ）。
+
