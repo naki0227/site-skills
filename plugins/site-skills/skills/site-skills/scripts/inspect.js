@@ -223,6 +223,8 @@ function probe() {
     { const T = document.body.innerText || ''; const c = T.match(/あと\s*\d+\s*日/); m.countdown = c ? c[0] : null;
       const e = T.match(/\d{4}\.\d{1,2}\.\d{1,2}\s*(?:MON|TUE|WED|THU|FRI|SAT|SUN)/i); m.engDate = e ? e[0] : null;
       const hq = [...document.querySelectorAll('h1,h2')].find(h => /[か？?][。]?$/.test(h.innerText.trim()) && h.innerText.trim().length > 6); m.quesHead = hq ? hq.innerText.trim().replace(/\s+/g, '').slice(0, 24) : null; }
+    // 本物か作例か 第4回（2026-11-06）：題の下に説明の文（2〜3行）を置いた4つが選ばれ、説明が1行（20字）だけの学童アプリは本物として通った
+    { let ex = 0; const ps = []; for (const e of document.querySelectorAll('p')) { const r = e.getBoundingClientRect(); if (!r.width || r.top + scrollY > vh || r.bottom + scrollY < 60) continue; if (e.closest('header,nav,footer,figure,aside,[aria-hidden="true"]')) continue; const st = getComputedStyle(e); if (st.visibility === 'hidden' || parseFloat(st.fontSize) >= 24) continue; const t = e.innerText.trim(); if (t.length < 12 || /Wikimedia|CC BY|CC0|写真/.test(t)) continue; ex += t.length; ps.push(t.slice(0, 16)); } m.explainFirst = ex >= 22 ? { n: ex, ex: ps.slice(0, 2) } : null; }
     const h1 = document.querySelector('h1'); m.heavyTitle = h1 && +getComputedStyle(h1).fontWeight >= 800 ? `h1 の太さ ${getComputedStyle(h1).fontWeight}` : null; }
   m.overflowX = document.documentElement.scrollWidth > innerWidth + 1;
   m.bodyBgRgb = rgb(m.bodyBg);
@@ -290,6 +292,7 @@ function judge(m, width) {
   if (m.accentWord && m.accentWord.length) add('WARN', 'accent-word', `大きな題の一語だけ色を替えている：${m.accentWord.slice(0, 3).join('・')}`, '題は1色で組む（第3回の見比べで AI っぽいと選ばれた。7業種の作例のうち6つで同じ作り方だった）');
   if (m.numLead) add('WARN', 'number-lead', `最初の画面の文に数字を詰めている：${m.numLead}`, '最初の一文の数字は1つまで。残りは下の章の表や本文へ（第3回の見比べ）');
   if (m.orangeCta && m.orangeCta.length) add('WARN', 'orange-cta', `最初の画面のボタンが橙・黄：${m.orangeCta.slice(0, 2).join('・')}`, '題材から取った色にする。橙・黄を使うなら、題材のどこの色かを1文で言える場合だけ（第3回で橙、第4回で黄が AI っぽいと選ばれた。橙をやめたら黄にそろった）');
+  if (m.explainFirst) add('WARN', 'explain-first', `最初の画面に説明の文が ${m.explainFirst.n}字：${m.explainFirst.ex.map(x => '「' + x + '…」').join('・')}`, '最初の画面はキャッチーなもの1つ（店の言葉の短い一言か、目を引く絵）とボタンにし、説明の文は下の章へ。残すなら1行・22字未満（本物か作例か 第4回：通った学童アプリは20字）');
   if (m.countdown) add('WARN', 'countdown', `残りの日数を出している：「${m.countdown}」`, '締め切りや開催は日付で書く（第5回の見比べで「あと26日」が AI っぽいと選ばれた）');
   if (m.engDate) add('WARN', 'eng-date', `英字の形の日付：「${m.engDate}」`, '「11月4日（水）」の形にする（第5回の見比べ）');
   if (m.quesHead) add('WARN', 'question-head', `問いかけの見出し：「${m.quesHead}」`, '何の店・何の道具かを言う見出しにする（第5回の見比べ）');
