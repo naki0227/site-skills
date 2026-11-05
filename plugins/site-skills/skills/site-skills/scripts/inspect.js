@@ -313,6 +313,14 @@ function judge(m, width) {
     if (out) { fs.mkdirSync(out, { recursive: true }); await p.screenshot({ path: path.join(out, `${name}-top.png`) }); await p.screenshot({ path: path.join(out, `${name}-full.png`), fullPage: true }); }
     const m = await p.evaluate(probe);
     all.push(...judge(m, vp.width));
+    // 最初の画面の明るさ（本物か作例か 第1回、2026-11-05：作例4つは明るさ 68〜84・白っぽい部分 2〜6%、同じ業種の実在4つは 151〜214・28〜74%。ユーザーは4つとも作例と見抜いた）
+    try {
+      await p.evaluate(() => scrollTo(0, 0));
+      const shot = (await p.screenshot({ type: 'jpeg', quality: 60 })).toString('base64');
+      const lum = await p.evaluate(async (b64) => { const im = new Image(); im.src = 'data:image/jpeg;base64,' + b64; await im.decode(); const c = document.createElement('canvas'); c.width = 180; c.height = Math.round(180 * im.height / im.width); const x = c.getContext('2d'); x.drawImage(im, 0, 0, c.width, c.height); const d = x.getImageData(0, 0, c.width, c.height).data; let s = 0, w = 0, n = 0; for (let i = 0; i < d.length; i += 4) { const v = (d[i] + d[i + 1] + d[i + 2]) / 3; s += v; if (v > 200) w++; n++; } return { mean: Math.round(s / n), white: Math.round(w / n * 100) }; }, shot);
+      console.log(`${name} 最初の画面の明るさ ${lum.mean}・白っぽい部分 ${lum.white}%`);
+      if (lum.mean < 110 && lum.white < 15 && !allow.includes('dark-first')) all.push({ lv: 'WARN', id: 'dark-first', width: vp.width, msg: `最初の画面が暗い：明るさ ${lum.mean}・白っぽい部分 ${lum.white}%（同じ業種の実在のサイトは 151〜214・28〜74%）`, fix: '明るい地に、色のある写真を余白で囲んで置き、文字は写真の外に濃い色で（references/aesthetic.md「本物か作例か」）。暗い写真の全面に白い題を重ねるのは、ポスター・告知・夜の催しなど題材に理由があるときだけ' });
+    } catch (e) { errors.push(`${name}: 明るさを測れない ${String(e).slice(0, 60)}`); }
     // 実際に描かれた書体（CSS の指定でなく、ブラウザが字を描いた書体）。標準の書体・どこでも使われる定番は使わない
     try {
       await p.evaluate(() => { let n = 0; for (const e of document.querySelectorAll('h1,h2,h3,p,a,button,li,dd,dt,figcaption,span')) { if (n > 80) break; const t = [...e.childNodes].some(x => x.nodeType === 3 && x.textContent.trim()); const r = e.getBoundingClientRect(); if (t && r.width && r.height) { e.setAttribute('data-insp-font', ''); n++; } } });
