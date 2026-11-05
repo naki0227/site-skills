@@ -87,12 +87,19 @@ ul,ol{padding:0;list-style:none}
 
 /* ---------- トップ：最初の画面 ---------- */
 .hero{padding:40px 0 96px}
-.hero-top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px 40px;flex-wrap:wrap;margin-bottom:22px}
-.hero h1{font-size:48px;font-weight:700;line-height:1.45;letter-spacing:.01em;text-wrap:balance;word-break:auto-phrase}
+.hero-main{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center;min-height:600px}
+.hero-photos{position:relative;height:460px}
+.hp{position:absolute;margin:0;border-radius:28px;overflow:hidden;background:var(--tray)}
+.hp img{width:100%;height:100%;object-fit:cover;display:block}
+.hp1{left:0;top:6px;width:74%;aspect-ratio:4/3;transform:rotate(-3deg)}
+.hp1 .credit{top:12px;bottom:auto}
+.hp2{right:0;bottom:0;width:58%;aspect-ratio:4/3;transform:rotate(4deg);border:8px solid var(--board)}
+.hp .credit{position:absolute;left:14px;bottom:10px;margin:0;font-size:13px;line-height:1.5;color:#fff;background:rgba(31,34,38,.62);padding:1px 8px;border-radius:3px}
+.hero-note{margin:28px 0 16px;font-size:13px;color:var(--muted)}
+.hero h1{font-size:40px;font-weight:700;line-height:1.45;letter-spacing:.01em;text-wrap:balance;word-break:auto-phrase}
 .kicker{font-size:16px;font-weight:700;color:var(--muted);margin-bottom:6px}
-.hero .sub{color:var(--muted);margin-top:8px;max-width:36em}
-.hero-top > div:first-child{flex:1 1 560px;min-width:0}
-.hero-cta{display:grid;justify-items:center;gap:6px}
+.hero .sub{color:var(--ink);margin-top:16px;font-size:20px;line-height:1.7}
+.hero-cta{margin-top:28px}
 
 /* ホワイトボード */
 .wb-wrap{display:block}
@@ -462,6 +469,8 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
   .nav{display:none}
   .menu-btn{display:block;margin-left:0}
   .wb-wrap{grid-template-columns:minmax(0,1fr)}
+  .hero-main{grid-template-columns:minmax(0,1fr);min-height:0}
+  .hero-photos{height:auto;aspect-ratio:1.25;max-width:560px}
   .nb-list{max-height:260px}
   .split,.case-top,.calls{grid-template-columns:minmax(0,1fr);gap:32px}
   .diag{grid-template-columns:1fr}
@@ -495,6 +504,7 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
   .logo{font-size:16px}
   .hero{padding:24px 0 44px}
   .hero-cta{width:100%}
+  .hero .sub{font-size:16px}
   .hero-cta .btn{width:100%}
   .wb{border-width:7px}
   .wb-head{padding:10px 10px 2px;font-size:16px}
@@ -580,15 +590,26 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
 <div class="page" data-page="top">
   <section class="hero" aria-labelledby="h-top">
     <div class="wrap">
-      <div class="hero-top">
-        <div>
-                    <h1 id="h-top" tabindex="-1">学童保育の出欠と連絡帳を、<br>ひとつのアプリに</h1>
-          <p class="sub">下校時刻表を入れておくと、来ていない子が出欠ボードに赤く出ます。<br>下のボードで、時刻を進めてみてください。</p>
+      <div class="hero-main">
+        <div class="hero-text">
+          <h1 id="h-top" tabindex="-1">学童の出欠と連絡帳を、<br>ひとつのアプリに</h1>
+          <p class="sub">下校時刻表を入れておくと、<br>来ていない子が出欠ボードに赤く出ます。</p>
+          <div class="hero-cta">
+            <button class="btn btn-main btn-lg" type="button" data-open="trial"><small>支払い情報の入力不要</small>30日間 無料で試す</button>
+          </div>
         </div>
-        <div class="hero-cta">
-          <button class="btn btn-main btn-lg" type="button" data-open="trial"><small>支払い情報の入力不要</small>30日間 無料で試す</button>
+        <div class="hero-photos">
+          <figure class="hp hp1">
+            <img src="photos/Schoolkids-wearing-hats-and-randoseru-in-Kugayama-Japan-Janu.jpg" alt="黄色い帽子をかぶり、黄色いカバーをつけたランドセルで下校する1年生の列を、うしろから写した写真" width="960" height="720">
+            <figcaption class="credit">写真 Mr. Brian（CC BY 2.0）</figcaption>
+          </figure>
+          <figure class="hp hp2">
+            <img src="photos/Randoseru-red-walkinggirls-feb14-2019.jpg" alt="赤いランドセルを背負って歩道を歩く2人の小学生を、うしろから写した写真" width="960" height="720">
+            <figcaption class="credit">写真 Nesnad（CC BY 4.0）</figcaption>
+          </figure>
         </div>
       </div>
+      <p class="hero-note">写真は実在の小学生の下校の様子（Wikimedia Commons）で、おかえりノートの利用者ではありません。<br>下の出欠ボードは触れます。時刻を進めてみてください。</p>
 
       <div class="wb-wrap" id="board">
         <div>
@@ -618,10 +639,6 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
         <h2 class="h2" id="h-time">学校から配られる下校時刻表を、月の初めに1回入れます</h2>
         <p class="lead">紙の表と同じ並び（学年×曜日）で打ち込みます。※印の個人面談や台風の臨時下校は、その日だけ時刻を変えます。赤くするまでの20分は、学校からの道のりに合わせてクラブごとに変えられます。</p>
       </div>
-      <figure class="walk">
-        <img src="photos/Schoolkids-wearing-hats-and-randoseru-in-Kugayama-Japan-Janu.jpg" alt="黄色い帽子をかぶり、黄色いカバーをつけたランドセルで下校する1年生の列を、うしろから写した写真" width="960" height="720" loading="lazy">
-        <figcaption>黄色い帽子は1年生のしるし。1年生は14:40、4年生は15:30と、学年で下校の時刻がちがいます。<span class="credit">写真：Mr. Brian／Wikimedia Commons／CC BY 2.0（実在の小学生の下校。おかえりノートの利用者ではありません）</span></figcaption>
-      </figure>
       <div class="print print-wide" aria-label="下校時刻表の例">
         <p class="ttl">令和8年度　10月　下校時刻表</p>
         <p class="from">みなと第二小学校</p>
