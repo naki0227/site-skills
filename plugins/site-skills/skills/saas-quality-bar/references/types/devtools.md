@@ -40,8 +40,22 @@
 - **見た目の値**：地 #f6f6f6（トップ・料金）／#f7f7f7（機能）、面 #fff・#f0f0f0、文字 #222（14.72:1）・#555（6.90:1）、黒い帯 #222。彩りは青だけ（#0f70eb は 4.28:1）。書体は Google Fonts の Inter＋Noto Sans JP、字間 -0.02em（52規則）・-0.04em（32）。角はボタン 8px・カード 12〜16px。部品すべてに `transition: all .3s cubic-bezier(.4,.4,0,1)`、:hover 595規則のうち opacity .75 が 97。keyframes 0。サイト自体が Studio 製（generator「Studio.Design.HRC」、CSS は HTML 内の style 19個・228KB）。
 - **データと重さ**：PC で top 17.56MB / features 20.30MB / pricing 4.40MB / customers 33.94MB / docs 2.28MB（SP 14.97 / 19.78 / 4.29 / 33.73 / 2.87MB）。事例一覧の題の帯が SVG 1枚 27,995KB（1440×385 に約 3,200×2,000 の PNG 7枚を base64 で埋めた書き出し）。アイコンに Material Symbols 1,469KB を全ページで読み、ボタンの名前に「arrow_forward」が入る。解析は GTM・Meta・Pinterest・HubSpot・OpenAI の計測・FirstPromoter。inspect：PC FAIL 1、SP FAIL 3（本文 13px・13px 未満 25%）。
 
+### Supabase（Supabase Pte. Ltd.、Postgres を中心にした開発基盤・海外）https://supabase.com/ — 2026-11-06
+- **最初の画面**：h1「Build in a weekend／Scale to millions」Manrope 46px/46px・500（SP 34/37.8）、2行目だけ #0e7e4e（5.02:1、暗い地では #4acd8b）。一文は右の列に #696969（5.40:1）で製品名6つ。主「Start your project」（地 #0e7e4e・字 #fafcfb 4.96:1・14px・高さ 38px・角 9.29px → /dashboard/sign-up）、副「Request a demo」（白に枠）。題の下 y=451 から製品7枚のカード（Database 538px・ほか 262px）で、中は SVG と DOM の模型。明暗は OS の設定に合わせる（地 #fdfdfd／#131413）。inspect の最初の画面 319字。
+- **製品の見せ方**：動画・canvas は5ページとも0。トップのカードの中で帯（marquee 35s×2・30s×3）と点（pulse .6s×9）が動く。/database の題の下は DOM の表（Filter・Sort・Insert、列 id int8・created_at timestamptz・email text・is_active bool、20行、13px、NULL は斜体の灰）。下の機能は PNG を明暗2枚ずつ（sql-editor.png 576KB と sql-editor-light.png）。トップに React のコード欄（6タブ・18行・「Read docs for React」）。
+- **機能の並べ方**：製品別6本（Database・Auth・Storage・Edge Functions・Compute・Realtime）をページ上のサブナビで行き来、いまのページに下線。1本の中は h1（黒→灰の2行）→ DOM の表 → 「2行の見出し＋一文＋左に4タブの名前（22px・500）＋右に画面」×3。タブは 8.0秒ごとに自動で送り、reduce でも止まらない。role="tab"・aria-selected なし。
+- **料金表**：FREE $0／PRO From $25（Most Popular）／TEAM From $599／ENTERPRISE Custom。プラン名も価格も Source Code Pro（価格 46px）。4列を線で分けた1枚の板で、PRO だけ 32px 上に出して 2px の濃い灰の縁と札（13px・地 oklch(0.394 0 0)）。ボタンは3枚が緑の塗り（15px・高さ 42px・角 9.72px）、Enterprise は白。月払いだけ（annual・yearly の語が0）、税は FAQ 1問（請求先の住所に応じて）。各行に超過の単価（100,000 MAU then $0.00325 per MAU）。Free は「1週間使わないと止まる・2つまで」を 14px の灰で。
+- **見積もり**：「How compute pricing works」で 1.プラン（Pro／Team の radio）2.プロジェクトごとの 11段のスライダー（Micro $10・Small $15・Medium $60・Large $110・XL $210・2XL $410・4XL $960・8XL $1,870・12XL $2,800・16XL $3,730）、段ごとに札（MICRO・LARGE）と中身の一行（8 GB RAM / 2 vCPUs / 接続数）。左に Plan subscription・Total Compute・Compute Credits −$10・Total（Pro・Micro 1つで $25、Large で $125、2つで $35、Team で $599）。Add Project は上限なし・消せない。合計の欄だけ桁区切りなし（$3745）。
+- **比較表**：8区分（Database・Auth・Storage・Realtime・Edge Functions・Dashboard・Platform Security and Compliance・Support）、PC は1つの table の tbody 78行（区分の行8を含む）で thead が top 62px・区分の th が top 135px の2段 sticky。SP は区分ごとの8つの表（2列・計62行）と「Change plan」の select が top 56px。行の名前の横に「About …」のボタン。FAQ 11問。
+- **AI 向け**：料金と事例の詳細に「Copy as Markdown・Ask ChatGPT・Ask Claude」、/pricing.md（How billing works の計算例つき）、/llms.txt、robots.txt に Content-Signal（ai-train・search・ai-input すべて yes）。ドキュメントの最初は「Agent Prompt／CLI」のタブとコピー。
+- **試すまで**：どのページからも1手で /dashboard/sign-up（Continue with GitHub／ChatGPT／SSO、または Email・Password）。カードの要否は書いていない。
+- **事例と信頼**：トップにロゴ12（6列2段）と、5社のアコーディオン（開いた1枚 752×480px・閉じた4枚 76px・角 8px・div role="button" aria-expanded・押すと .15s で幅が入れ替わる・自動では回らない）。/customers は47件・3列（347×176px・角 10.67px）、業種18・製品7の select に件数を添え、URL に ?industry=saas（30件）。詳細は h1 成果の一文 → 右に Company size・Use case・Products used → 引用 → 章5つ → Key results。ヘッダーに GitHub の星 114.5K。
+- **ドキュメント**：/docs は別の Next.js（CSS も別）。ヘッダーに Search ⌘K・Ask AI・Sign up。入口はフレームワーク15枚。
+- **見た目の値**：文字 #030303（20.28:1）・#696969・注 #a0a0a0（2.57:1）、枠は黒 8%（トップで91要素）、緑はボタン #0e7e4e と印 #3ecf8e、コードの予約語 #6b35dc。書体 Manrope（見出し 46・34・16）・Inter 450（本文 14〜15px が最多）・Source Code Pro（価格・コード 13px）、字間 normal。ボタン .2s cubic-bezier(.22,1,.36,1)・押すと scale .97（motion-safe の中だけ）、既定 .15s cubic-bezier(.4,0,.2,1)。reduce の規則は4種だけで、トップの animation 15個は reduce でも動く。
+- **データと重さ**：PC で top 8.07MB / features 7.42MB / pricing 5.40MB / customers 14.63MB / docs 34.76MB（SP 7.87 / 7.16 / 5.38 / 9.60 / 34.68MB）。docs は RSC の先読み 26,157KB（reference/javascript/introduction 8,309KB ほか言語別9本）、customers は Pages Router の _next/data の JSON 2,672KB。解析は自分のサブドメイン ss.supabase.com（GTM と gtag、853KB）を全ページで。構造化データはトップに Organization・WebSite・SoftwareApplication・Service＋OfferCatalog（価格なし）、料金・事例は BreadcrumbList だけ。inspect：PC FAIL 1（投稿の中の絵文字）・WARN 10。
+
 ## 真似る型
-見本3つ（Resend・microCMS・Studio）に共通するもの、または1つで測った値を出発点にするもの。値の出どころを添える。
+見本4つ（Resend・microCMS・Studio・Supabase）に共通するもの、または1つで測った値を出発点にするもの。値の出どころを添える。
 1. **行動は「試す」が主、副は読み手で決める**：Resend は「Documentation」（開発者がそのまま読む）、microCMS は「ビジネス職向けページ」（決める人を分ける）。Studio は「製品資料をダウンロード」（決める人へ渡す資料）。主は塗り、副は枠か文字（Studio は副を青い絵のボタンにして、主より目立つ）。登録の欄はメールとパスワードほどに少なく、カード欄なし（microCMS は「＼ クレジットカードの登録不要 ／」をボタンの直前に）。
 2. **コードをどこに置くかを先に決める**：使う人が開発者だけなら2画面目に言語の切り替えのあるコード欄（Resend 13言語）。編集者や決める人も読むなら、トップは「管理画面 → API」の1枚にして、コードはドキュメントへ（microCMS は4ページでコード0、機能のカードの最後にドキュメントの「設定方法」）。
 3. **料金は4枚、最後は「お問い合わせ」**：Resend（Free・Pro・Scale・Custom）、microCMS（Hobby・Team・Business・Enterprise）。個人と法人の両方が使うなら、Studio のように最初の切り替えを「ビジネス利用／個人利用」にして3枚ずつ（Enterprise は法人側の最後）。入口の文言は3枚で同じ。従量の単価と、上限を超えたらどうなるか（Resend の超過 $0.90/1,000通、microCMS の「超過時はAPI停止」「+20円/GB」）を表の中に書く。
@@ -51,6 +65,11 @@
 6. **年払いの値を大きく、もう一方の値を同じカードに小さく**：Studio は ¥3,980 /月（年払い）40px の下に「月払いの場合：¥5,460/月」12px。切り替えを押さなくても両方読める。比較表の価格にも払い方を書く（Studio は書き忘れ）。
 7. **比較表は決め手の区分だけ開いて始める**：Studio は8区分のうち公開・CMS・フォーム・ユーザー管理を開き、便利機能・セキュリティ・サポート・お支払いを閉じる（button＋aria-expanded）。microCMS は全部 `<details open>`。
 8. **最後の帯は3つの道**：Studio は「無料で試す／テンプレートから／プロに頼む」を全ページの最後に。作る道具なら「自分で・見本から・人に頼む」で、使う人の手間の順に並べる。
+
+9. **使う量で値段が変わるなら、料金の下に「プラン＋使う量−含まれる分」の見積もりを置く**：Supabase は Pro／Team と、プロジェクトごとの11段のスライダー（Micro $10〜16XL $3,730）、左に Plan・Compute・Credits −$10・Total。Resend は件数の9段のスライダーで合うプランだけを残す。どちらも段ごとに中身（Supabase は RAM・CPU・接続数）を出す。足した行は外せるようにし、数の書式を1つにそろえる（Supabase は消せず、合計だけ $3745）。
+10. **価格とプラン名を等幅の書体で組む**：Supabase は Source Code Pro で FREE・PRO と $0・$25・$599 を 46px。開発者向けなら、コードと同じ書体で桁をそろえる。
+11. **機能ページの題の下に、本物と同じ型の DOM の表かコード**：Supabase /database は列の型（int8・timestamptz・bool）と NULL まで再現した20行。Resend は2画面目に13言語のコード欄。画像にせず文字にすると、選べて軽い。
+12. **AI に読ませる道を料金・事例・ドキュメントに**：Supabase は「Copy as Markdown・Ask ChatGPT・Ask Claude」と /pricing.md、ドキュメントの最初に Agent Prompt。Resend のドキュメントにも AI への質問欄とページのコピー。
 
 ## 反面教師
 - 実績「17,000社以上・継続率99%」に時点・数え方なし。10月28日のトップに3月・2月のセミナーを「終了」の印なく出す（microCMS）。
@@ -65,3 +84,6 @@
 - 事例一覧の h1 が閉じた窓の中の「条件で探す」で、見えている題は div。アイコンの文字「arrow_forward」がボタンの名前に入る（Studio）。
 - 料金ページに税込み・税抜きの表記がない。比較表の価格に「（年払い）」がない。カードの割引率は計算で 22.6〜54.3% とばらつき、書かれない（Studio）。
 - SP の本文 13px、13px 未満が 25%（Studio、inspect の FAIL）。
+- reduce でもトップの帯・点（animation 15個）と機能ページのタブの 8秒の自動送りが動き、止めるボタンが無い。自動で送るタブに role="tab"・aria-selected が無い（Supabase）。
+- ドキュメントのトップが先読みで 34.76MB（RSC 26,157KB）、事例一覧がほかのページの JSON を 2,672KB 先読み（Supabase）。
+- 見積もりのプロジェクトを消せず、合計の欄だけ桁区切りが無い（$3745）。注の灰 #a0a0a0 が 2.57:1（Supabase）。

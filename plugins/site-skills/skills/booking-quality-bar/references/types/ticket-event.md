@@ -49,8 +49,23 @@
 - **動き**：主ボタンは `transition: all`（0s）で色が一瞬で替わる。CSS は box-shadow .3s ease が主。頭のスライドは自動で、prefers-reduced-motion は自社・券売り場とも0か所。
 - **重さ（PC / SP）**：トップ 10.70 / 4.21MB（テーマの中の JPEG 1枚 7,019KB、SP は読まない）、一覧 5.30 / 5.30MB、公演 4.27 / 3.94MB、席の画面 5.70 / 5.53MB（CSS 1本 2,341KB・JS 1,084KB）、案内 3.22 / 3.22MB。どのページにも同意の SDK（sdk.privacy-center.org、展開後 674KB）。sprite.svg 187KB を2つの URL で2回読む。
 
+### Barbican（https://www.barbican.org.uk/ ・2026-11-06・ロンドンの芸術センターの自社サイト。回の升は tickets.barbican.org.uk＝自社の Vue＋Spektrix の在庫）
+条件：トップ・What's on（?af[21]=21＝演劇とダンス）・公演 Hamlet Hail to the Thief（89回）・券売り場 /event/225191・Box office & ticketing information。PC 1440 と SP 390 で計測。席の画面（/choose-seats/…）は Spektrix の iframe がこの環境で 403 で、席の図・券種・合計は見ていない。
+
+- **検索（What's on）**：日の見出し（21.25px 700「Fri 6 Nov」）の下に演目のカード（PC 983×224・写真 280 幅、SP 366×433）。演目は回のある日ごとにくり返す（最初の30件のうち Hamlet 23件、続きは「Load More」）。カードに値段・時刻・空きは無い。日付は Today／Next 7 days／Next 30 days のチェックと From／To の1か月の暦（月曜始まり、上演の印なし）。Next 7 days は 115ms で並べ直すが URL に残らない。分野（`af[21]`）は URL に残る。件数・並べ替えなし。
+- **回の升（券売り場）**：月ごとの見出し「November 2026　28 dates」（24px 700 #484848＋#636363）の下に、升 176×144（横の送り 186・縦 154・6列・padding 16px・線 1px・角 6px）。SP は 351×84 の1列で、左に日と時刻、右に状態と値段。升の中は「Fri 6」17px 700／「7.45pm」17px 300／「Last few」17px 700／「from £50」17px 300＋→ の丸 22×22。配慮の回は右上に「CAP」「AD」「CHL」14px 700 の枠。升全体が1つのリンク（読み上げは「Choose seats for …, 7.45pm, Captioned, Last few」）。89回の内訳は 19:45 が63・14:30 が25・19:15 が1。
+- **空き（規則はソースで確認）**：回の状態は `t===0?"soldout":t/capacity*100<10?"low":"good"`（t は席種の残りの合計、定員 1,152 → 115席以下で「Last few」）。言葉は good＝なし／low＝「Last few」／soldout＝「Sold out」。色は空き #427b42・地 #ebf1eb（4.42:1）、残りわずか #006ebd・地 #e8f0f9（4.61:1）、売り切れ #893434（地は `color-mix(in oklab, 色 10%, white)`）。この演目は Last few 19・空き70・売り切れ0。数と凡例は升に出さない（残り2席の回も114席の回も同じ見た目）。時間指定の催しは別の規則で、日の状態は「残りのある回の数÷回の数 ≤25%」で low、時刻の帯は回ごとに good=1・low=.5・soldout=0 の平均が .75 以上で「plenty left」、0より上で「fewer left」、0で「none left」（読み上げ「2pm–3pm: 3 of 4 times left」）。
+- **絞り込み**：月送り ← → 43×43（線 #d14900）と Any time／Any price／Accessibility の3つ（160×43）。選択肢に件数（2.30pm［25］・7.15pm［1］・7.45pm［63］）、件数はほかの絞り込みを掛けた後の数、0件の選択肢は出さず、選べる値が1つになった欄（と月送り）は消える。選ぶと見出しが「25 performances　Clear filters」、月の見出しが「7 dates」。値段で絞ると升に「£35｜8」のチップ（値段 300・残り 700、14px）。開く 71ms・選ぶ 138ms・月送り 52ms、どれも通信 0KB。状態は URL に残らない。SP は ≡ 52×48 の中。
+- **値段**：升は券面の「from £30」（席種が1種類なら「£35」）。公演ページは「From £34 (including a £4 transaction fee)」で、同じ最安が £4 ずれる。手数料は1回の注文に £4（映画・Gallery・Pit は £1.50）、会員は無料。この演目は dynamic pricing で、API の値段は £18〜£199 の23種類（1回に7〜9席種）。
+- **詳細**：頭の帯とボタンの色が分野の色（演劇 #017e9d、白字 4.70:1）。題 51px 700（SP 34px）、「Check dates & book」225×54・角 8.5px を題の右（y=257）と本文の右（y=1,918）の2か所。SP に固定の帯は無い。PC はスクロールで「About · Accessibility · Related events · Venue」のタブ 1440×50 が上に貼り付く。Accessible performances に AD・CAP・Chilled の日時（券売り場の印と同じ回）。
+- **予約前の不安**：返券は開演の24時間前までに知らせればクレジット（12か月）に、1枚 £3。24時間を切った券は劇場が売り切れたあとに売れたら £3 を引いてクレジット。団体は14日前。これは券の案内の開閉「Returning your tickets」の中だけで、券売り場と公演ページに0語。支払いはカード・Google Pay・Apple Pay、現金不可。席の画面の帯は「Some tickets may be reserved for our Access Members」。
+- **データ**：JSON-LD は5ページとも0。回は自社の API `/api/v2/instances-info/<event>`（72KB：startUtc・capacity・席種ごとの count と price・字幕などの5属性・販売開始 members／general）を1回読み、月送りと絞り込みは通信なし。
+- **見た目**：#333（白地 12.63:1）と全体の橙 #d14900（白字 4.50:1）、分野ごとに10色（art #e60077・cinema #20882a・classical #946f2e・contemporary #402f79・theatre #017e9d・talks #5778a2 ほか）。書体は自社配信の Supreme LL（Black と Light の対比）、本文 17〜19.125px、line-height 1.3、字間 -0.01em。
+- **動き**：升のホバーは transition all（0秒）で地が線の色・白字に。公式サイトは opacity 300ms・all .2s ease が主。prefers-reduced-motion は公式サイト・券売り場とも0。トップは 4.6MB の動画が自動で流れる（停止の丸 56px）。
+- **重さ（PC / SP）**：券売り場 1.36 / 1.36MB（Vue 593KB・同意 234KB・datadog 150KB）、What's on 2.43 / 2.41MB、案内 2.03 / 2.03MB、トップ 8.91 / 9.01MB（動画 4,619KB）、公演 9.05 / 8.95MB（Google Maps の util.js 312KB を5回など JS 6.7MB）。Drupal の結合 CSS 約 960KB を全ページで読む。
+
 ## 真似る型
-見本は DICE（販売サービス）・Shakespeare's Globe（劇場の自社サイト）・Philharmonie de Paris（コンサートホールの自社サイト＋SecuTix）の3つ。
+見本は DICE（販売サービス）・Shakespeare's Globe（劇場の自社サイト）・Philharmonie de Paris（コンサートホールの自社サイト＋SecuTix）・Barbican（芸術センターの自社サイト＋Spektrix）の4つ。
 
 1. **値段は手数料込みで出し、含んだことを1文で添える**。DICE は「From £36.05」の下に「The price you'll pay. No surprises later.」、Globe は「£89–£29*」の * で「£3 per order・£1 per ticket を含む、立ち見は除く」を DETAILS と公演日の表の上の面（656×152）の2か所で言う。作るときは、合計の下に内訳の1行を置く。
 2. **公演日がいくつもある演目は、1行1回の表**（Globe：行 656×110、日付・時刻のボタン 120×43・値段の幅 13px 700、同じ日の2回は2行）。DICE は1公演1ページなので表が無い。作るときは、行に「日付・時刻のボタン・席種ごとの値段（と残り）」を並べ、配慮の回の印も行に入れる。
@@ -64,6 +79,11 @@
 9. **席の画面は「席種×料金区分」の行で、枚数の上限をその席種の残りの数にする**（Philharmonie：上限 1・3・4、1人9枚まで）。上限を数字でも横に書く（本家は書かない）。枚数を選んだら「◯枚　合計」と買うボタンの帯を画面下に貼り付ける（PC 1038×72・SP 358×104）。
 10. **席種は1つの色を持ち、詳細と席の画面で同じ色を使う**（Philharmonie：1 #ff9090・2 #ffc080・3 #ff90ff・4 #60b0ff、詳細の丸 16px と席の画面の左の線 4px）。
 11. **構造化データは回ごとの Event に、席種ごとの Offer と availability（InStock／OutOfStock）を入れる**（Philharmonie。DICE は AggregateOffer だけ、Globe は無し）。
+
+12. **回の多い演目（数十回）は、月ごとの見出しの下に升を並べ、升の地と線の色で状態を3つに分ける**（Barbican：176×144・6列、SP 351×84 の1列。空き #427b42／残りわずか #006ebd／売り切れ #893434、地は同じ色の10%。升の中は「日・時刻・状態の一語・値段」の4行）。Globe の1行1回の表（行 656×110）より、89回が PC 3,611px に収まる。
+13. **「残りわずか」は残り÷定員の比1つで決め、境目を凡例に書く**（Barbican：<10%＝1,152席の115席以下。本家は凡例を出さない）。時間指定の催しは「残りのある回の数÷回の数 ≤25%」で日を、時刻の帯は回の状態の平均で full／half／none。
+14. **絞り込みの選択肢に件数を付け、0件の選択肢と、値が1つしか無い欄は出さない。値段で絞ったら、升にその値段の残りを数で出す**（Barbican：「2.30pm［25］」、選ぶと「25 performances　Clear filters」。£35 で絞ると升に「£35｜8」）。
+15. **回のデータは1回の JSON で持ち、月送り・絞り込みは通信0で返す**（Barbican：instances-info 72KB、月送り 52ms・絞り込み 71〜138ms）。Globe のガイドツアーの暦も同じく HTML に持って月送りで通信しない。
 
 ## 反面教師
 - 残りが「LIMITED TICKETS」の一言だけで、SP は 8.32px。席種ごとの残りは席の画面まで出ない（Globe）。
@@ -85,3 +105,9 @@
 - 日付の select が自分の幅に収まらない（Philharmonie：24px・380px で「— 8:0」）。
 - 暦に公演の印が無く、`startDate` だけで終わりの日を持たない（Philharmonie）。
 - 英語の案内と販売条件で交換の回数が食い違う（Philharmonie：3回と4回）。規定は1か所から引く。
+- 升の値段は券面（「from £30」）、公演ページは手数料込み（「From £34 (including a £4 transaction fee)」）で、同じ回の最安がずれる（Barbican）。どちらも同じ規則で出し、手数料は合計の下の1行に。
+- 返券の締め（24時間前・クレジット・1枚 £3）が券の案内の開閉の中だけで、券売り場と公演ページに0語（Barbican）。回を選んだ面に、その回の日時から計算した締めを出す。
+- 「Last few」に数も凡例も無く、残り2席の回も114席の回も同じ見た目（Barbican）。
+- What's on が演目を日ごとにくり返し（30件中23件が同じ演目）、値段・空き・件数が無い。日付の範囲が URL に残らず、暦に上演の印が無い（Barbican）。
+- 公演ページで Google Maps の util.js（312KB）を5回読む（Barbican、地図関係で約 5MB）。押すまで読まない。
+- SP の公演ページに予約の固定の帯が無い（Barbican：ボタンは y=384 と 1,837 だけ）。

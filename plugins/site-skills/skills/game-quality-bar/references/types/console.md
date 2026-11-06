@@ -36,17 +36,33 @@
 - **表記**：ESRB M をフッターの画像 168×112（元は 108×48、alt「Jpeg V1.jpg」、リンクなし）で全ページに。文字の年齢区分は0件。権利は PC 13.86px／SP 9px（Privacy Policy は SP 6px）。hreflang は en-us と x-default だけ。h1 は5ページとも0。
 - **重さ**：measure.js：top PC 41.55／SP 35.41MB（mp4 17,448KB、JS 11,215KB、JSON 5,857KB、HTML 2,813KB はインラインの CSS 1,339KB を含む）、world 20.02MB、chara 13.91MB、news 13.55MB、buy 9.08MB。Typeform の renderer 1,603KB を top・world・chara で毎回。画像は Wix の変換で AVIF。
 
-## 真似る型（Z-A・P3R・Expedition 33 の3つで確かめた）
+### 『Baldur's Gate 3』公式（https://baldursgate3.game/ ・2026-11-06 解剖、2023 年発売・海外〔Larian Studios〕。歩いた5ページ：/・/about・/news・/news/hotfix-36-now-live_149・/merch。人物と購入は top の区画で独立したページなし）
+- **最初の画面**：`<video autoplay muted loop playsinline preload="metadata">` の全面（PC 1440×855）。`Homepage_All_2.mp4` 19,163,715B を読み込み 9.1 秒（SP 10.0 秒）から取る。評の一文（GameSpot）は動画に焼き込みで文字なし。その下に再生の輪 137×137 → h1「It's party time!」48.9px（SP 38px）→ 菱形の角の Get it now 246×58 → 「AVAILABLE NOW」13px・字間 3px → 機種のロゴ5つ（Steam・GOG・PS5 Pro Enhanced・Xbox Series X|S・Windows、y 745〜751）→ Deluxe edition。発売日は書かない。ヘッダー右に Buy now 144×58（SP はカートの絵 80×58）。
+- **トップの作り**：1枚に11区画（PC 12,133px）。Hero → Awards（受賞の画像22個）→ Origins（人物7人）→ 種族11・職業12 → Buy Now（y=3,332）→ Merch → News → Fanart 17枚 → Media → FAQ（機種・PC と Mac の必要環境・課金なし）→ フッター。
+- **動画**：トレーラーは `<a href="#" class="play">` を押して `youtube.com/embed/XuCfkgaaa08` の iframe をモーダルに作る。押す前の YouTube 0件、押して3秒で 1,155KB。モーダルは Esc で閉じず、閉じるは `div.modal-close` 20×24（名前なし・Tab 不可）、開いてもフォーカスは押した a のまま。/about は区画ごとの mp4 7本がすべて autoplay muted loop で 88,269KB（同じ 12,396KB を2回）。
+- **キャラクター**：7人を top の1区画で。PC は右の縦の列（Swiper、タイル約160×200、`swiper-slide` は role=group・aria-label「1 / 7」・tabindex −1）、SP は上の横の列。左に肩書き 13px・名前 h2 54.8px（SP 58px、135deg #fff→#fbcea0 66% のグラデーションの字）・紹介文 Gothic A1 14.99px／行 1.444・白 70%、その下に金の枠の札（Class・Race・Subrace の絵つき3つ＋Skill Proficiencies・Languages・Background）。文の入れ替えは opacity .4s、押して 35ms（矢印 80ms）、追加の通信 0KB。上下の矢印は `a href="#"` 17×32 で名前なし。URL は `/` のままで1人を指せない。声優・ボイスなし。
+- **ナビ**：`nav.menu` は position:fixed で地が無く、下がると金の字が本文の絵に重なる。項目は About（中に「Subpage 1〜4」の `href="#"` が残り Tab で止まる）・News & Updates・Press（`href="#"`）・Support・Merch・Mods・More。SP は `div.mobile-menu` 42×75（button でない・名前なし）で SITEMAP の開閉9項目。フォーカスは `a:focus{outline:0}` で Tab の40手とも枠なし。
+- **買う**：版3つ（Standard・Digital Deluxe・Physical Deluxe、200×66）を押すと 92ms で箱の絵・説明・同梱物（1行・6行・9行）・機種のボタンの行き先が替わる。Standard と Digital Deluxe は Steam・GOG・PS Store・Xbox・Windows の5つ（Windows は Xbox と同じ URL）、Physical Deluxe は PC・PS5・Xbox の3つで行き先は地域の Larian の店（`${region.hostname}`、この環境は eu.merch.larian.com）。版のボタンは href の無い `a` で Tab が届かない。機種のボタンは SVG だけで名前なし。値段は top に0件（/merch に Deluxe €79.99 だけ）。Digital Deluxe の同梱物の1行目は Steam を選んでも「Baldur's Gate 3 for PS5™ - Base Game」。フッターの `#buy-standard`・`#buy-dde`・`#buy-de` で版を選んだ状態に飛べる。
+- **ニュース**：/news は最新1件の大きな帯 → 検索・Hotfix／Patch・LATEST／OLDEST → 9枚の格子 → 11ページ。開くと URL が `?query=&order=az&categories=&page=1` になり、Hotfix で 148ms・`categories=1`。日付は英字 13px・字間 3px で `time` 0個、題は2行で切る。
+- **表記**：年齢区分はフッターだけに地域別4つ（ESRB US/Canada 181×86・PEGI Europe・USK Germany・ACB Australia / New Zealand、各 86×86）で、img に alt なし・地域名は下の文字。権利表記は Larian と Wizards of the Coast の2社。言語の切り替えは歩いたページに無い。
+- **安全と重さ**：CSS（412KB）に `prefers-reduced-motion` 0件、reduce でも最初の画面の mp4 は再生。top PC 47.26MB（measure.js、mp4 は別に 18.3MB）／SP 57.86MB、/about 94.92MB、/news 19.89MB、/merch 5.24MB。ニュースの絵が PNG で 2,565〜3,591KB、SP は PC 用と SP 用の両方を取る（cmsapi.larian.com PC 10件 14,516KB → SP 19件 25,441KB）。SP は top・news・article が幅 481px で横にはみ出し、/about は PC でも 1,489px。h1 は About・News・ニュース1件で0。/merch に CMS の空欄「[Missing Label]」が5か所。
+- **文字と色**：題は QuadraatOffcPro Demibold の大文字、本文は Gothic A1。大きさは 970〜1920px で伸びる clamp の7段（14–16〜48–60）。色は #fff 83・#000 63・#b1906a 39・#fbcea0 36・#c19976 17（#fbcea0／#000 14.44、#c19976／#000 8.09）。Cookie の帯のボタンは白／#c19976 で 2.60。
+
+## 真似る型（Z-A・P3R・Expedition 33・Baldur's Gate 3 の4つで確かめた）
 - **機種×版の値段・発売日・年齢区分を、1か所に文字で並べる。**Z-A は商品詳細の仕様表（14項目の定義リスト）、P3R は全ページ末尾の SPEC（7項目、価格は全版を1つの欄に）。どちらも値段と CERO が文字で読めるのはそこだけだった。作るときは、その表を購入の区画にも置き、年齢区分を値段の横に出す。
 - **パッケージの買う先は、ストアのボタン1つでなく店の一覧にする。**Z-A はダウンロードカード16チェーン＋ダウンロード番号6ショップの店名リスト、P3R は26店のカード（店舗オリジナル特典つき）を PS5／PS4 で切り替え。店ごとの特典があるなら、店のカードに特典名と版のボタンを入れる。ボタンの名前には店・版・機種を書く（P3R は117個とも名前が無い）。
 - **版は「パッケージ／ダウンロード」の2つのタブか区画で分ける。**Z-A は商品5枚を1つの詳細ページの `#anc01〜04` に分け、価格をパッケージ・DL・Switch 2 Edition の別に書く、P3R は 640×60 のタブ2つ。限定版の同梱物は版×品の ○×表にする（P3R：4版×6品）。
 - **トップの最初の数画面に「購入」への入口を置く。**Z-A は左の縦帯に「購入はこちら！」「予約はこちら！」、P3R は2画面目（y=1,139）に「BUY NOW!」。特設ページは「購入はこちら」を固定する（P3R：/expansion/ 300×97、/switch2/ 257×51）。
-- **最初の画面の真下に機種のリンクを並べ、ヘッダーの右端に買う入口を1つだけ別扱いで置く。**Expedition 33 は AVAILABLE NOW の帯の直下 y=828 に機種4つ（234×91）、ヘッダーは他 15px に対して Out Now だけ 20px の札（132×56）で、▾ の button（aria-expanded）から店4つ（100×41、新しいタブ）。Z-A の縦帯・P3R の2画面目の BUY NOW! と同じく、入口は最初の数画面に。
+- **最初の画面の真下に機種のリンクを並べ、ヘッダーの右端に買う入口を1つだけ別扱いで置く。**Expedition 33 は AVAILABLE NOW の帯の直下 y=828 に機種4つ（234×91）、ヘッダーは他 15px に対して Out Now だけ 20px の札（132×56）で、▾ の button（aria-expanded）から店4つ（100×41、新しいタブ）。Baldur's Gate 3 も AVAILABLE NOW の下 y 745〜751 に機種5つ、ヘッダー右に Buy now 144×58。Z-A の縦帯・P3R の2画面目の BUY NOW! と同じく、入口は最初の数画面に。
 - **版×品の比較は、PC は表、SP は版ごとに開く。**P3R は 4版×6品の ○×（ul と背景の絵）、Expedition 33 は 4版×6品（PC は画像1枚、SP は 362×46 の button 4つで1つだけ開く）。どちらも表が文字の table でないので、作るときは table と `button[aria-expanded]` を同じデータから作る。
-- **トレーラーは押してから埋め込む。**Z-A はサムネの `<button>` を押して `iframe_api`、Expedition 33 は菱形の再生を押して `iframe_api` → `autoplay=1&mute=1`。どちらも押す前の YouTube の通信は 0（P3R は読み込み時に iframe で 1.5MB）。
+- **トレーラーは押してから埋め込む。**Z-A はサムネの `<button>` を押して `iframe_api`、Expedition 33 は菱形の再生を押して `iframe_api` → `autoplay=1&mute=1`。どちらも押す前の YouTube の通信は 0（P3R は読み込み時に iframe で 1.5MB）。Baldur's Gate 3 も再生の輪を押して embed の iframe（押す前 0件、押して 1,155KB）。
 
 
 ## 真似る候補（見本1つ。2つ目で確かめたら「真似る型」へ上げる）
+- 版を選ぶと、箱の絵・同梱物・店のリンクの行き先が一緒に替わる。売っていない機種のボタンは消す（Baldur's Gate 3：Standard 1行・Digital Deluxe 6行・Physical Deluxe 9行、Physical は Steam・GOG が消えて3つ。92ms）。作るときは版を button（aria-pressed）にし、消すだけでなく理由と代わりの版を書き、値段を出す。
+- 版を選んだ状態をハッシュで指せる（Baldur's Gate 3：`#buy-standard`・`#buy-dde`・`#buy-de`）。
+- 人物は一覧の列と1人の詳細を同じ画面に置き、PC は右の縦の列・SP は上の横の列にする。詳細は能力の札（職・生まれ・得意）で（Baldur's Gate 3：7人、opacity .4s、押して 35ms）。作るときは列を名前のある button、1人を hash で。
+- 年齢区分を地域ごとに並べる（Baldur's Gate 3：ESRB・PEGI・USK・ACB の4つに地域名。ただしフッターだけで画像に alt なし）。
 - 人物のタブは `role="tab"` の roving tabindex（選んだ札だけ 0、← → でフォーカス）にし、選んだ札は面を抜いて文字だけにする（Expedition 33：8人、高さ 30px、他の札は #ECCFA3 の面）。ただし URL は変えていないので、作るときは #名前 を足す。
 - 写真・動画を作品の画風の縁（Expedition 33 は絵の具のかすれの PNG）で切り抜き、見出しを1つの記号（« »）で挟んで、全ページの部品をそろえる。
 - キャラクターは1人1URL、一覧はグループ見出しで分ける（Z-A。P3R はモーダルで URL なし、組の見出し S.E.E.S.／STREGA は同じ）。
@@ -68,3 +84,6 @@
 - 版の比較表を画像1枚にする（Expedition 33：`SKU_Matrix.png`、alt はファイル名）。人物のタブに URL が無い（Expedition 33：8人とも同じ URL）。
 - 見えていない区画の背景動画を読み込み時に取る（Expedition 33：Launch Trailer の背景 1080p 9,126KB、`preload="none"` でも autoplay）。
 - 日本語フォントを全字形の OTF のまま毎ページ取る（P3R：8,970KB、/stores/ の 88%）。PC でも SP 用の動画を取る（P3R：4本 9,335KB）。
+- 版と機種を選ばせて、値段を1つも出さない（Baldur's Gate 3：top 0件、/merch の Deluxe €79.99 だけ）。店のボタンを SVG のロゴだけにする（同：最初の画面5つ・購入5〜3つ）。版のボタンを href の無い `a` にして Tab が届かない（同）。
+- 固定のナビに地を敷かず、下がると本文に重なる（Baldur's Gate 3）。CMS の空欄（「[Missing Label]」「Subpage 1〜4」）を出したまま公開する（同）。
+- 区画ごとの動画を全部 autoplay にして読み込み時に取る（Baldur's Gate 3 の /about：7本 88,269KB、1本は2回）。

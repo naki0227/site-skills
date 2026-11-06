@@ -51,8 +51,21 @@ PC 1440×900 / SP 390×844。見たページ：トップ（/blog/・20本×39ペ
 - **動き**：keyframes 0。transition は See more の矢印（.15s cubic-bezier(.4,0,.2,1)）だけ。ホバーは時間なしの反転と opacity .5。:hover 20か所のうち本文のリンクと目次の2つは (pointer:fine) の中で、(pointer:coarse) には :active。:focus-visible 0・reduced-motion 0。
 - **重さ**：解析を除く・展開後 top 3.40MB／list 2.36MB／article 2.37MB／long 2.45MB（PC=SP）。記事の中で MathJax 3.0.1 780KB（数式 0 でも全記事・$ を区切りに）と Noto Sans JP 884KB（long 1,046KB）、Google Fonts の CSS 244KB。サイトの JS は scroll.js だけ・CSS 43KB。全部込みの転送 article 2,146KB・83件・8ホスト。トップの cover PNG は最大 877KB。
 
+### Smashing Magazine（https://www.smashingmagazine.com/ ・2026-11-06 計測）
+PC 1440×900 / SP 390×844、lang="en"。見たページ：トップ、分類「CSS」の一覧（/category/css/・500本を10本ずつ）、記事（/2026/05/building-self-correcting-color-systems-contrast-color/・15 min read・コード9・表1・h2 7・h3 9・高さ 17,647px）、長い記事（/2026/11/modern-css-might-make-your-front-end-more-complex/・コード8・表1・引用6・プルクオート2・CodePen 7枚・h2 10・h3 6・PC 28,255px／SP 34,620px）。選んだ理由：赤 #d33a2c の帯と猫の絵、Mija と Elena の2書体、写真の枠・上へ戻る・引用の印に繰り返す −11° の傾き。事例集・受賞歴は確かめられなかった。
+- **本文**：基準を `body{font-size:calc(.35842vw + .95296em)}`（1440px で 20.41px・390px で 18px）にし、本文はその 1.1倍。PC 700px の列（英文 約54字）・Elena 22.45px／34.80px（1.55）・#333（12.63:1）・段落の下 31.43px。SP 345px・19.8px／30.69px。`font-feature-settings:"onum" 1` で本文の数字も旧体。リンク #006fc6（5.14:1）・下線 1px。インラインのコードは Fira Code・地 #fff2ea。
+- **見出し**：h1 Mija 700・49.04px／58.85px（SP 32.24px）、幅 1176px で本文より広い。h2 Elena 700・27.6／41.4・上 41.4・capitalize（SP 24.98）。h3 Elena 700・21.6／32.4・uppercase・字間 1px（SP 18.98）。ol は ol のまま、CSS の counter で「01」を赤 0.7em。
+- **記事の頭**：書き手（Mija 18.37px・赤）/ 日付（small-caps 風・字間 1px・#585858）/ コメント数 → h1 → 灰の箱（#f6f6f6・角 11px・max-content）に「15 min read」・分類3つ・共有 → Quick summary（斜体 23.47px・#666・頭に赤 16px・字間 2px の「QUICK SUMMARY ↬」・下に 3px #e5e5e5）。右の列 336px（本文との間 140px）に書き手の写真 192px：赤 8px の枠を scale(.84) translateX(15%) rotate(−11deg)、中の写真を scale(1.2) rotate(11deg) で戻す。アイキャッチと画面の更新日は無い。
+- **目次**：無い（long 28,255px でも）。見出しの id は読める英語のスラッグで、題の後ろに `<a class="anchor">#</a>`（#767676・4.54:1）。`h2:target` に .4s の `fadeOut-headings`（#ffde95 → #fff1d2、左に 10px 張り出す影）と `scroll-margin-top:2rem`。いまの節・進み具合の線は無い。
+- **コード**：Fira Code 20.41／30.61（SP 18／27）。地 linear-gradient(#f5f2f0 → #fff)・1px #eee・角 11px・影3重。`resize:both` で読む人が広げられる。折り返さず横送り。break-out で 798px（本文 700px）。Prism のツールバーの Copy は `opacity:0` で `.code-toolbar:hover` のときだけ出る（SP・キーボードでは見えない）。言語名は出さない。Prism 30KB はコードのある記事だけで読む。色づけは #f5f2f0 に対して selector 3.20・keyword 3.94・comment 3.13・operator 3.25:1。
+- **表と引用**：表は th Mija 700・下 4px #ddd、偶数行 #f7f7f7。767px 以下で thead を消し、tr を 1px #eee・角 11px の箱に積み、td::before に data-label（4列×5行が SP で 345×1,968px・横送り無し）。引用は斜体 21.43／35.36・左 11px #e6e4e1・角 11px。プルクオートは Mija 700・32／48・字間 −.75px・左 80px に赤い引用符の札で、文全体が Twitter で共有するリンク。
+- **記事の終わり**：署名（赤いロゴ 35×46＋編集者の頭文字「(gg, yk)」#c0c0c0・1.82:1）→「Explore more on」と緑の札3つ（#137d54／#d6f3e7・4.36:1）→ 灰 8px の線 →「Our friends and supporters」の協賛 → 自社の宣伝3つ → コメントの欄（右 5/12、左 7/12 は空）。関連記事・次の記事・同じ書き手の記事は無い。
+- **一覧**：「CATEGORY」→ h1 → 関連の分類8つの緑の札 →「500 ARTICLES」。カードは写真 71px（赤い枠・−11°）＋「名前 wrote」→ 題 Mija 32.4／38.88 → 日付＋要約 20.4／33.5 → Read more…。間 81.63px（SP 45px）。写真10枚とも loading=eager・fetchpriority=high。ページ送りのリンクは `/categories/css/page/2/` → 301 → `/category/css/page/2/`、2ページ目の canonical は1ページ目（それ自体 301）、rel="next" 無し。
+- **右の列と広告**：書き手 → ニュースレター → 自社の宣伝3枚（336×797・412・849）。列ごと position:sticky・top −71px。SP は書き手の箱が本文の3画面ほど後に出て、宣伝は本文の途中 345×57 と終わり 381×93。配信タグの広告は無い。同意の窓は PC 右下 402×176、SP 下に全幅 390×168（20%）、「It’s okay.」は緑に白 2.75:1。gtag.js 166KB は同意の前に読む。
+- **データと重さ**：JSON-LD 0件（4ページとも）。article:published_time は `2026-11-03 10:00:00 +0000 UTC`（ISO でない）、modified_time は頭に空白で公開日と同じ。ダークモードは記事だけ（article-dark-mode-v3.css 11KB を media で読み、50の変数・地 #162c35・本文 #e5e5e5 11.53:1・h1 は虹のグラデーション）。展開後・解析除く：top 2.20MB、list 1.99MB、記事 PC 2.11MB／SP 1.80MB、long 1.89／1.80MB。JS 1,209KB（app.js 492KB・formik などの vendors 108KB・会員と決済の部品）。HTML 248KB（br 51KB）のうち `window.PRODUCTS` 128,756字を、同じ商品データ 129KB を API からもう一度。app.js は `<script delay>` で最初の操作か5秒後まで読まない。Web フォントはサブセット 15〜18KB×5 を FontFace で全部読み終えてから html に class を付けて切り替え、sessionStorage で2回目は最初から（saveData なら読まない）。それでも差し替えで article PC の CLS 0.1171。reduced-motion・(hover:hover)・:focus-visible はどれも 0件。メニューは aria-expanded と矢印キーに応じるが Esc で閉じない。
+
 ## 真似る型
-見本3つ（メルカリエンジニアリング・LINEヤフー Tech Blog・DeNA Engineering）から。作るときの出発点。
+見本4つ（メルカリエンジニアリング・LINEヤフー Tech Blog・DeNA Engineering・Smashing Magazine）から。作るときの出発点。
 - 本文の箱は 780〜790px、16〜18px、行間 1.75〜2.0、段落の間は 20〜35px。1行は約43〜49字（メルカリエンジニアリング 780px・18px／36px、LINEヤフー Tech Blog 790px・16px／28px・字間 -0.4px）。DeNA Engineering の 870px・17px は約51字で長い。
 - 本文の色は題より1段薄い灰にし、比は 6:1 以上を保つ（LINEヤフー Tech Blog：本文 #616161 6.19:1・題 #1f1f1f 16.48:1）。
 - 節の切れ目は罫でなく上の余白で見せる（メルカリエンジニアリング：h2 の上 120px＋60px、DeNA Engineering：h2 の上 100px＋左 4px の線、LINEヤフー Tech Blog：h2 の上 40px）。h3 は h2 より一段小さく（DeNA Engineering は h2 と同じ 33px で崩れる）。SP でも h1 を一番大きく。
@@ -63,6 +76,13 @@ PC 1440×900 / SP 390×844。見たページ：トップ（/blog/・20本×39ペ
 - アクセント色を濃くして、文字に使える1色にする（DeNA Engineering：#0e00de が白地で 10.13:1。題・リンク・札・いまの節・いまのページを同じ色で）。
 - ページ送りは本物の URL を持ち、前後の位置を invisible で取っておく（DeNA Engineering：60px の丸・いまは塗り、/page/2/）。
 - 記事の終わりに著者の顔（80px の丸・名前・一言）を置き、そのあと関連3本（LINEヤフー Tech Blog）。メルカリエンジニアリング・DeNA Engineering は著者紹介無し。
+
+- 本文を1本の式で伸び縮みさせ、行間は PC と SP で同じ比にする（Smashing Magazine：基準 calc(.35842vw + .95296em) の 1.1倍で PC 22.45px・SP 19.8px、行間 1.55。英文の 700px は約54字）。日本語なら 680px 前後で約36〜40字。
+- 本文より広く出すものを決める（Smashing Magazine：本文 700px、題 1176px、コード・図・表は break-out で 798px）。右の列がある組みでは、列との間に食い込ませる幅までにする。
+- 見出しの id と「#」を全部の h2・h3 に付け、飛んだ先を :target で一瞬だけ光らせる（Smashing Magazine：.4s・#ffde95 → #fff1d2・scroll-margin-top 2rem）。目次と組み合わせる。
+- コードの箱は読む人が広げられるようにし（Smashing Magazine：resize:both）、コピーはいつも見せる（Smashing Magazine はホバーでだけ出し、SP とキーボードで見えない）。
+- SP の表は1行を1つの箱に積み、td::before に列の名前を出す（Smashing Magazine：767px 以下で thead を消し data-label）。
+- リードに名前を付けて本文と分ける（Smashing Magazine：「QUICK SUMMARY ↬」赤 16px・字間 2px、斜体 23.47px、下に 3px の線）。読む時間は記事の頭の灰の箱に1行で（「15 min read」・分類・共有）。
 
 ## 反面教師
 - コードの言語を書かずに自動判定させ、全言語分の色づけ JS を全記事で読む（メルカリエンジニアリング：1.2MB、判定も外れる）。言語は書き手が指定し、使う言語だけ読む。
@@ -84,3 +104,9 @@ PC 1440×900 / SP 390×844。見たページ：トップ（/blog/・20本×39ペ
 - 関連が古い3本（2019〜2022年）だけで、次の記事・著者紹介が無い（DeNA Engineering）。
 - 開閉を checkbox と label で作り、＋の印が開いても変わらない。:focus-visible 0（DeNA Engineering）。
 - JSON-LD 0件・html に lang 無し・記事に h1 が4つ・time 要素も更新日も無い（DeNA Engineering）。
+- コピーのボタンを opacity:0 にしてホバーでだけ出す。SP とキーボードでは見えない（Smashing Magazine）。
+- 目次も関連も次の記事も無く、記事の終わりは分類の札3つと宣伝・コメントだけ（Smashing Magazine：long 28,255px・h2 10）。
+- 一覧の2ページ目の canonical が1ページ目（しかも 301 する URL）、ページ送りのリンクも 301（Smashing Magazine）。
+- 記事を読むだけで会員・決済・カートの JS（formik・yup・Checkout）と、商品データを HTML の中と API の2回（Smashing Magazine：128,756字＋129KB）。
+- Web フォントの差し替えで記事 PC の CLS 0.1171（Smashing Magazine）。size-adjust・ascent-override で端末の書体の寸法を合わせる。
+- 押す緑のボタンの白文字 2.75:1、署名 #c0c0c0 1.82:1（Smashing Magazine）。

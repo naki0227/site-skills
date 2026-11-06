@@ -133,4 +133,11 @@
 - [ ] 同じライブラリを2本読まない。CDN から読むならバージョンを固定する（Tansa：jQuery 3.7.1 と 3.2.1、unpkg の swiper はバージョン無し）
 - [ ] meta description を1つにし、写真のキャプションでなくリードから作る（Tansa：空の1つと、キャプションから始まる1つ）
 
+- [ ] コードのコピーのボタンをいつも見せる。ホバーでだけ出すなら :focus-within と SP（hover:none）でも出す（Smashing Magazine：opacity:0 で .code-toolbar:hover のときだけ）
+- [ ] すべての h2・h3 に読める id と「#」のリンクを付け、飛んだ先を :target で短く光らせ、scroll-margin-top を帯の高さ＋余白にする（Smashing Magazine：.4s・#ffde95 → #fff1d2・2rem）
+- [ ] SP で表を横に送らずに読めるか。列が4つ以上なら1行を1つの箱に積み、列の名前を data-label で出す（Smashing Magazine：767px 以下・4列×5行）
+- [ ] 一覧の2ページ目以降の canonical が自分の URL か。ページ送りのリンクが 301 しないか（Smashing Magazine：2ページ目の canonical が1ページ目の 301 する URL）
+- [ ] Web フォントに切り替えるときの CLS を測る。size-adjust・ascent-override で端末の書体と寸法を合わせる（Smashing Magazine：2段の読み込みでも記事 PC 0.1171）
+- [ ] 同じデータを HTML の中と API の両方で配らない（Smashing Magazine：商品の JSON 128,756字と 129KB）
+
 解剖で裏づけた項目が増えたら、ここに足す（どのサイトで確かめたかを添える）。
