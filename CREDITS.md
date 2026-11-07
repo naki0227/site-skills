@@ -15,8 +15,7 @@
 ## 写真
 | 使用例 | ファイル | 題 | 作者 | ライセンス | 元のページ |
 |---|---|---|---|---|---|
-| `gakudo-app` | `photos/Randoseru-red-walkinggirls-feb14-2019.jpg` | Randoseru-red-walkinggirls-feb14-2019 | Nesnad | CC BY 4.0 | https://commons.wikimedia.org/w/index.php?curid=76556868 |
-| `gakudo-app` | `photos/Schoolkids-wearing-hats-and-randoseru-in-Kugayama-Japan-Janu.jpg` | Schoolkids wearing hats and randoseru in Kugayama, Japan; January 2010 | Mr. Brian | CC BY 2.0 | https://commons.wikimedia.org/w/index.php?curid=45335693 |
+| `gakudo-app` | `photos/okaeri-kids-cutout.webp` | Randoseru-red-walkinggirls-feb14-2019（切り抜いて、紺・生成り・赤の3色に置き換えた） | Nesnad | CC BY 4.0 | https://commons.wikimedia.org/w/index.php?curid=76556868 |
 | `machikoba-recruit` | `photos/chuck-in-use-1920.jpg` | 3 Jaw Chuck in Use | David English | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=64980189 |
 | `machikoba-recruit` | `photos/chuck-in-use.jpg` | 3 Jaw Chuck in Use | David English | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=64980189 |
 | `machikoba-recruit` | `photos/five-axis.jpg` | SMTCL VMC0656e 5-axis machining center 20260331123404 | TurnOnTheNight | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=190307528 |
