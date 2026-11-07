@@ -78,11 +78,12 @@ body:not(.detail) .crumb{display:none}
 .poster{position:relative;height:calc(100vh - 72px);height:calc(100svh - 72px);min-height:640px;max-height:980px;background:var(--amber);color:var(--ink);overflow:hidden}
 .poster .rule{position:absolute;left:15px;right:15px;top:20px;height:2px;background:var(--ink)}
 .poster h1{position:absolute;left:0;right:0;top:34px;margin:0;text-align:center;font:700 clamp(78px,17.4vw,268px)/.86 "Fraunces",serif;font-variation-settings:"opsz" 144;letter-spacing:-.025em;color:var(--ink)}
-.roaster{position:absolute;right:3%;bottom:-150px;width:min(52vw,760px);height:auto}
+.roaster{position:absolute;right:2%;bottom:-86px;width:min(50vw,700px);height:auto}
+.moon{position:absolute;left:5%;top:38%;width:clamp(150px,20vw,300px);transform:rotate(-18deg)}
 .poster h1 .vh{font-size:16px}
 .next{z-index:2}
-.script{position:absolute;left:4%;top:54%;margin:0;font:700 clamp(34px,4vw,60px)/1 "Caveat",cursive;color:var(--stamp);transform:rotate(-5deg)}
-.star{position:absolute;left:30%;top:57%;width:clamp(110px,12vw,176px);transform:rotate(12deg)}
+.script{position:absolute;left:12%;top:52%;margin:0;font:700 clamp(40px,4.5vw,68px)/1 "Caveat",cursive;color:var(--stamp);transform:rotate(-5deg)}
+.star{position:absolute;left:33%;top:64%;width:clamp(110px,12vw,176px);transform:rotate(12deg)}
 .star text{font:700 34px "Fraunces",serif;fill:var(--amber)}
 .next{position:absolute;left:4%;bottom:44px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
 .next p{margin:0;font:600 clamp(18px,1.7vw,24px)/1.2 "Fraunces",serif;letter-spacing:.06em}
@@ -314,6 +315,9 @@ dialog[open]{animation:pop .2s var(--ease)}
   .pd{grid-template-columns:1fr;grid-template-areas:"lbl" "buy" "body";gap:20px}
   .buy{position:static}
 }
+@media (min-width:861px) and (max-height:800px){
+  .roaster{width:min(46vw,640px);bottom:-150px}
+}
 @media (max-width:860px){
   .roaster{width:62vw;right:2%}
   .star{left:auto;right:58%;top:60%}
@@ -321,9 +325,10 @@ dialog[open]{animation:pop .2s var(--ease)}
 @media (max-width:600px){
   .poster{min-height:600px}
   .poster h1{top:30px}
-  .roaster{width:90vw;right:-10vw;bottom:118px}
-  .script{top:24%;left:5%}
-  .star{left:5%;right:auto;top:33%;width:84px}
+  .roaster{width:86vw;right:-8vw;bottom:118px}
+  .moon{left:2%;top:30%;width:120px}
+  .script{top:22%;left:5%;font-size:38px}
+  .star{left:40%;right:auto;top:39%;width:76px}
   .tate{top:140px;font-size:14px}
   .next{left:15px;right:15px;bottom:20px;gap:12px}
   .next p{font-size:22px}
@@ -584,21 +589,31 @@ var ICON_PLUS = '<svg viewBox="0 0 16 16" stroke="currentColor" stroke-width="1.
 var ICON_TRASH = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 4.5h10M6.5 4.5V3h3v1.5M4.5 4.5l.6 8.5h5.8l.6-8.5"/></svg>';
 var regionSel = function(){return '<select data-region aria-label="お届け先の地域">'+REGIONS.map(function(x){return '<option value="'+x.k+'"'+(x.k===state.region?" selected":"")+'>'+x.nm+'</option>'}).join("")+'</select>'};
 
-// 焙煎機の平らな絵（丸・台形・半円だけ、3色。自分で描いた）
-var ROASTER = '<svg class="roaster" viewBox="0 0 600 700" aria-hidden="true">'+
-  '<mask id="moonm"><rect width="600" height="700" fill="#fff"/><circle cx="214" cy="196" r="140" fill="#000"/></mask>'+
-  '<circle cx="160" cy="250" r="150" fill="#d2402a" mask="url(#moonm)"/>'+
-  '<rect x="408" y="70" width="34" height="190" fill="#2b1a14"/><rect x="396" y="56" width="58" height="22" fill="#2b1a14"/>'+
-  '<polygon points="232,120 368,120 336,206 264,206" fill="#d2402a"/><rect x="284" y="206" width="32" height="40" fill="#2b1a14"/>'+
-  '<circle cx="300" cy="380" r="150" fill="#2b1a14"/>'+
-  '<circle cx="300" cy="380" r="112" fill="none" stroke="#e8a93a" stroke-width="10"/>'+
-  '<circle cx="300" cy="380" r="46" fill="#e8a93a"/><circle cx="300" cy="380" r="26" fill="#2b1a14"/>'+
-  '<rect x="336" y="420" width="120" height="26" fill="#2b1a14" transform="rotate(32 336 420)"/>'+
-  '<rect x="186" y="520" width="228" height="40" fill="#2b1a14"/>'+
-  '<path d="M80 620 a220 70 0 0 0 440 0z" fill="#d2402a"/>'+
-  '<g fill="#2b1a14"><ellipse cx="220" cy="636" rx="9" ry="6"/><ellipse cx="262" cy="648" rx="9" ry="6"/><ellipse cx="306" cy="640" rx="9" ry="6"/><ellipse cx="350" cy="650" rx="9" ry="6"/><ellipse cx="392" cy="636" rx="9" ry="6"/><ellipse cx="284" cy="664" rx="9" ry="6"/><ellipse cx="330" cy="668" rx="9" ry="6"/></g>'+
+// 焙煎機の平らな絵（横から見た小型のドラム焙煎機。3色だけ。自分で描いた）
+// 部品：豆を入れる漏斗とシャッター・回る釜の胴・前板の覗き窓・テストスプーンの取っ手・豆を出す口・丸い網の冷却槽と撹拌の腕・排気の管と朱の煙
+var ROASTER = '<svg class="roaster" viewBox="0 0 700 760" aria-hidden="true">'+
+  '<path d="M560 210 C548 150 600 128 584 72 C570 24 612 6 640 -20" fill="none" stroke="#d2402a" stroke-width="14" stroke-linecap="round"/>'+
+  '<path d="M520 300 L560 300 L560 214 L590 214 L590 330 L520 330 Z" fill="#2b1a14"/>'+
+  '<polygon points="300,96 470,96 418,198 352,198" fill="#d2402a"/>'+
+  '<rect x="292" y="84" width="186" height="18" fill="#2b1a14"/>'+
+  '<rect x="352" y="198" width="66" height="26" fill="#2b1a14"/><rect x="418" y="204" width="54" height="12" fill="#2b1a14"/><circle cx="476" cy="210" r="10" fill="#2b1a14"/>'+
+  '<rect x="196" y="224" width="340" height="230" rx="26" fill="#2b1a14"/>'+
+  '<g fill="none" stroke="#e8a93a" stroke-width="5"><path d="M270 236 V442"/><path d="M350 236 V442"/><path d="M430 236 V442"/></g>'+
+  '<circle cx="196" cy="338" r="132" fill="#2b1a14"/>'+
+  '<circle cx="196" cy="338" r="102" fill="none" stroke="#e8a93a" stroke-width="8"/>'+
+  '<circle cx="196" cy="338" r="54" fill="#e8a93a"/>'+
+  '<g fill="#2b1a14"><ellipse cx="178" cy="320" rx="9" ry="6" transform="rotate(-20 178 320)"/><ellipse cx="206" cy="314" rx="9" ry="6" transform="rotate(30 206 314)"/><ellipse cx="216" cy="342" rx="9" ry="6"/><ellipse cx="186" cy="350" rx="9" ry="6" transform="rotate(40 186 350)"/><ellipse cx="200" cy="370" rx="9" ry="6" transform="rotate(-10 200 370)"/><ellipse cx="170" cy="368" rx="9" ry="6"/></g>'+
+  '<rect x="18" y="276" width="96" height="20" fill="#2b1a14"/><circle cx="20" cy="286" r="18" fill="#d2402a"/>'+
+  '<polygon points="128,440 214,440 186,560 100,560" fill="#2b1a14"/>'+
+  '<rect x="236" y="454" width="280" height="22" fill="#2b1a14"/><rect x="254" y="476" width="22" height="120" fill="#2b1a14"/><rect x="474" y="476" width="22" height="120" fill="#2b1a14"/>'+
+  '<ellipse cx="240" cy="648" rx="200" ry="60" fill="#d2402a"/>'+
+  '<ellipse cx="240" cy="640" rx="176" ry="46" fill="#2b1a14"/>'+
+  '<g fill="#e8a93a"><circle cx="220" cy="600" r="2.6"/><circle cx="236" cy="600" r="2.6"/><circle cx="252" cy="600" r="2.6"/><circle cx="268" cy="600" r="2.6"/><circle cx="124" cy="614" r="2.6"/><circle cx="140" cy="614" r="2.6"/><circle cx="156" cy="614" r="2.6"/><circle cx="172" cy="614" r="2.6"/><circle cx="188" cy="614" r="2.6"/><circle cx="204" cy="614" r="2.6"/><circle cx="220" cy="614" r="2.6"/><circle cx="236" cy="614" r="2.6"/><circle cx="252" cy="614" r="2.6"/><circle cx="268" cy="614" r="2.6"/><circle cx="284" cy="614" r="2.6"/><circle cx="300" cy="614" r="2.6"/><circle cx="316" cy="614" r="2.6"/><circle cx="332" cy="614" r="2.6"/><circle cx="348" cy="614" r="2.6"/><circle cx="364" cy="614" r="2.6"/><circle cx="92" cy="628" r="2.6"/><circle cx="108" cy="628" r="2.6"/><circle cx="124" cy="628" r="2.6"/><circle cx="140" cy="628" r="2.6"/><circle cx="156" cy="628" r="2.6"/><circle cx="172" cy="628" r="2.6"/><circle cx="188" cy="628" r="2.6"/><circle cx="204" cy="628" r="2.6"/><circle cx="220" cy="628" r="2.6"/><circle cx="236" cy="628" r="2.6"/><circle cx="252" cy="628" r="2.6"/><circle cx="268" cy="628" r="2.6"/><circle cx="284" cy="628" r="2.6"/><circle cx="300" cy="628" r="2.6"/><circle cx="316" cy="628" r="2.6"/><circle cx="332" cy="628" r="2.6"/><circle cx="348" cy="628" r="2.6"/><circle cx="364" cy="628" r="2.6"/><circle cx="380" cy="628" r="2.6"/><circle cx="396" cy="628" r="2.6"/><circle cx="76" cy="642" r="2.6"/><circle cx="92" cy="642" r="2.6"/><circle cx="108" cy="642" r="2.6"/><circle cx="124" cy="642" r="2.6"/><circle cx="140" cy="642" r="2.6"/><circle cx="156" cy="642" r="2.6"/><circle cx="172" cy="642" r="2.6"/><circle cx="188" cy="642" r="2.6"/><circle cx="204" cy="642" r="2.6"/><circle cx="220" cy="642" r="2.6"/><circle cx="236" cy="642" r="2.6"/><circle cx="252" cy="642" r="2.6"/><circle cx="268" cy="642" r="2.6"/><circle cx="284" cy="642" r="2.6"/><circle cx="300" cy="642" r="2.6"/><circle cx="316" cy="642" r="2.6"/><circle cx="332" cy="642" r="2.6"/><circle cx="348" cy="642" r="2.6"/><circle cx="364" cy="642" r="2.6"/><circle cx="380" cy="642" r="2.6"/><circle cx="396" cy="642" r="2.6"/><circle cx="76" cy="656" r="2.6"/><circle cx="92" cy="656" r="2.6"/><circle cx="108" cy="656" r="2.6"/><circle cx="124" cy="656" r="2.6"/><circle cx="140" cy="656" r="2.6"/><circle cx="156" cy="656" r="2.6"/><circle cx="172" cy="656" r="2.6"/><circle cx="188" cy="656" r="2.6"/><circle cx="204" cy="656" r="2.6"/><circle cx="220" cy="656" r="2.6"/><circle cx="236" cy="656" r="2.6"/><circle cx="252" cy="656" r="2.6"/><circle cx="268" cy="656" r="2.6"/><circle cx="284" cy="656" r="2.6"/><circle cx="300" cy="656" r="2.6"/><circle cx="316" cy="656" r="2.6"/><circle cx="332" cy="656" r="2.6"/><circle cx="348" cy="656" r="2.6"/><circle cx="364" cy="656" r="2.6"/><circle cx="380" cy="656" r="2.6"/><circle cx="396" cy="656" r="2.6"/><circle cx="108" cy="670" r="2.6"/><circle cx="124" cy="670" r="2.6"/><circle cx="140" cy="670" r="2.6"/><circle cx="156" cy="670" r="2.6"/><circle cx="172" cy="670" r="2.6"/><circle cx="188" cy="670" r="2.6"/><circle cx="204" cy="670" r="2.6"/><circle cx="220" cy="670" r="2.6"/><circle cx="236" cy="670" r="2.6"/><circle cx="252" cy="670" r="2.6"/><circle cx="268" cy="670" r="2.6"/><circle cx="284" cy="670" r="2.6"/><circle cx="300" cy="670" r="2.6"/><circle cx="316" cy="670" r="2.6"/><circle cx="332" cy="670" r="2.6"/><circle cx="348" cy="670" r="2.6"/><circle cx="364" cy="670" r="2.6"/><circle cx="380" cy="670" r="2.6"/><circle cx="156" cy="684" r="2.6"/><circle cx="172" cy="684" r="2.6"/><circle cx="188" cy="684" r="2.6"/><circle cx="204" cy="684" r="2.6"/><circle cx="220" cy="684" r="2.6"/><circle cx="236" cy="684" r="2.6"/><circle cx="252" cy="684" r="2.6"/><circle cx="268" cy="684" r="2.6"/><circle cx="284" cy="684" r="2.6"/><circle cx="300" cy="684" r="2.6"/><circle cx="316" cy="684" r="2.6"/></g>'+
+  '<g fill="#d2402a"><rect x="236" y="560" width="8" height="80"/><rect x="120" y="636" width="240" height="8" transform="rotate(12 240 640)"/><circle cx="240" cy="640" r="14"/></g>'+
+  '<rect x="40" y="700" width="400" height="22" fill="#2b1a14"/>'+
   '</svg>';
-// 星形のステッカー（釜の大きさ）
+// 左の大きな三日月（店の名前から。焙煎機と左右でつり合う重さに）
+var MOON = '<svg class="moon" viewBox="0 0 300 300" aria-hidden="true"><mask id="moonm"><rect width="300" height="300" fill="#fff"/><circle cx="196" cy="118" r="128" fill="#000"/></mask><circle cx="150" cy="150" r="140" fill="#d2402a" mask="url(#moonm)"/></svg>';
 var STAR = '<svg class="star" viewBox="0 0 200 200" aria-hidden="true"><polygon points="100,6 121,62 180,40 150,94 196,130 136,140 132,198 100,150 68,198 64,140 4,130 50,94 20,40 79,62" fill="#d2402a"/><text x="100" y="114" text-anchor="middle">5kg</text></svg>';
 /* ---------- 一覧 ---------- */
 function quickLabel(b){return 'かごに入れる（200g・中挽き・'+yen(b.p200)+'円）'}
@@ -617,7 +632,7 @@ function renderList(){
   $("#main").innerHTML =
    '<section class="poster" aria-labelledby="h-shop"><span class="rule" aria-hidden="true"></span>'+
      '<h1 id="h-shop"><span lang="en">MIKAZUKI</span><span class="vh">三日月珈琲</span></h1>'+
-     ROASTER+
+     MOON+ROASTER+
      '<p class="script" lang="en">roasted Mon · Wed · Fri</p>'+
      STAR+
      '<p class="tate">三日月珈琲　福岡・薬院</p>'+
