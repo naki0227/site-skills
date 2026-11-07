@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第41回 定期演奏会｜朝凪東高校 吹奏楽部</title>
+<meta name="description" content="2026年12月26日（土）13:30開演、朝凪市民会館 大ホール。入場無料・整理券制。3部構成（クラシック／ポップス／3年生の引退ステージ）。">
+<!--
+  題材の特色：年に1回、部員52人が市民会館の大ホールで3部を通して吹く。入場は無料だが、1,100枚の整理券の番号順に入る。
+  考えの一文：このページでは、番号つきの整理券が、並ぶ時刻と列を教える部品になる。
+  最初の画面の形（taste.md「いまの好み」）：窓＝チューバを正面から見たベルの円、飾り＝トロンボーンのスライド（U字の2本の管）と整理券の紙。
+  色（aesthetic.md の3色）：地 #ffffff（譜面の白）／主 #2342b0（部のブレザーの青）／差し色 #e0a82e（真鍮）。文字は青みの黒 #141c3d。
+  見本の実測（scripts/sample.js、2026-11-07、PC 1440px）：本文は Noto Sans JP 16px・行間 2.0・#212121（miraiz-persol.jp）、
+    和文の題は Zen Kaku Gothic Antique 700（dokomi.de/ja 48px）、数字は Plus Jakarta Sans 700（miraiz-persol.jp 40px）、ボタンは丸（dokomi.de 495px・bestie-sports.co.jp 900px）、全幅の罫 0〜1本。
+    本文も dokomi.de と同じ Zen Kaku Gothic Antique にして、書体を2つにした。
+  主のスキル：game-quality-bar（イベント・ライブ／入場無料の日本の地方の催し）、副：lp-quality-bar（ポップ・参加型）。
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Zen+Kaku+Gothic+Antique:wght@400;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Event","name":"朝凪東高校 吹奏楽部 第41回 定期演奏会","startDate":"2026-12-26T13:30:00+09:00","endDate":"2026-12-26T16:20:00+09:00","doorTime":"13:00","eventStatus":"https://schema.org/EventScheduled","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","isAccessibleForFree":true,"location":{"@type":"Place","name":"朝凪市民会館 大ホール"},"organizer":{"@type":"Organization","name":"朝凪東高校 吹奏楽部"},"offers":{"@type":"Offer","price":"0","priceCurrency":"JPY","availabilityStarts":"2026-11-28T09:00:00+09:00","description":"入場無料・整理券制（全席自由）"}}
+</script>
+<style>
+:root{
+  --white:#ffffff; --blue:#2342b0; --brass:#e0a82e; --ink:#141c3d; --deep:#162a78;
+  --jp:"Zen Kaku Gothic Antique",sans-serif; --num:"Plus Jakarta Sans",sans-serif;
+  --t-short:.18s; --t-slide:5s;
+}
+@media (prefers-reduced-motion:reduce){:root{--t-short:0s;--t-slide:0s}}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--white);color:var(--ink);font-family:var(--jp);font-size:17px;line-height:1.9;word-break:auto-phrase;text-wrap:pretty;overflow-x:hidden}
+h1,h2,h3{font-weight:700;line-height:1.15;text-wrap:balance}
+a{color:inherit}
+img{display:block;max-width:100%}
+.n{font-family:var(--num);font-weight:800;letter-spacing:-.02em}
+:focus-visible{outline:3px solid var(--brass);outline-offset:3px}
+.bg-brass :focus-visible{outline-color:var(--blue)}
+
+/* ヘッダー：日付と会場をいつも出す（event.md：Lollapalooza のヘッダーの3行） */
+.top{position:sticky;top:0;z-index:20;background:var(--white);display:flex;align-items:center;gap:24px;padding:10px 32px;min-height:64px}
+.top .club{font-weight:700;font-size:17px;text-decoration:none;white-space:nowrap}
+.top .when{font-size:17px;margin-left:auto;white-space:nowrap}
+.top .when b{font-family:var(--num);font-weight:800}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--blue);color:var(--white);text-decoration:none;font-weight:700;border-radius:999px;padding:12px 26px;font-size:17px;line-height:1.3;transition:background var(--t-short)}
+.btn::after{content:"";width:10px;height:10px;border-right:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:rotate(-45deg)}
+@media (hover:hover) and (pointer:fine){.btn:hover{background:var(--deep)}}
+.top .btn{padding:9px 20px;font-size:17px}
+
+/* ---- 最初の画面：ベルの円・スライドの管・整理券 ---- */
+.hero{position:relative;min-height:calc(100svh - 64px);overflow:hidden;padding:56px 32px 48px}
+.bell{position:absolute;border-radius:50%;overflow:hidden;background:var(--deep)}
+.bell img{width:100%;height:100%;object-fit:cover}
+.bell::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:inset 0 0 0 26px var(--brass),inset 0 0 0 34px var(--white),inset 0 0 0 38px var(--brass)}
+.hero .bell{width:min(62vw,860px);aspect-ratio:1;right:max(-12vw,-170px);top:-40px}
+.hero .bell img{object-position:42% 60%}
+.slide{position:absolute;pointer-events:none}
+.slide path{fill:none;stroke:var(--brass);stroke-width:14;stroke-linecap:round}
+.slide .inner{transform-box:view-box;animation:pull var(--t-slide) ease-in-out infinite alternate}
+@keyframes pull{to{transform:translateX(-90px)}}
+.hero .slide{left:0;top:372px;width:60vw;height:110px;z-index:1}
+.lead-in{position:relative;z-index:3;max-width:640px}
+.lead-in .club{font-size:20px;font-weight:700;color:var(--blue)}
+.hero h1{font-size:clamp(56px,7.4vw,112px);color:var(--blue);margin:10px 0 0;letter-spacing:-.01em}
+.hero h1 small{display:block;font-size:44px;letter-spacing:0;margin-bottom:6px}
+.date{margin-top:150px;font-weight:700;font-size:28px;line-height:1.25;position:relative;z-index:3;color:var(--blue)}
+.date .big{font-size:clamp(56px,6.2vw,92px);color:var(--blue)}
+.date .big i{font-style:normal;font-family:var(--jp);font-size:.55em;margin:0 .06em}
+.date .time{display:block;margin-top:8px}
+.date .time b{font-family:var(--num);font-weight:800}
+.place{font-size:28px;font-weight:700;margin-top:10px;position:relative;z-index:3}
+.free{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:26px;position:relative;z-index:3}
+.free p{font-size:20px;font-weight:700}
+.free p b{background:var(--brass);padding:2px 8px}
+.ticket{position:absolute;z-index:4;background:var(--white);color:var(--blue);display:flex;border-radius:6px;box-shadow:0 0 0 3px var(--blue);font-weight:700}
+.ticket .stub{padding:14px 18px;border-right:3px dashed var(--blue);text-align:center;line-height:1.1}
+.ticket .stub small{display:block;font-size:14px}
+.ticket .stub .n{font-size:44px}
+.ticket .body{padding:14px 20px;font-size:14px;line-height:1.5}
+.ticket .body strong{display:block;font-size:20px;letter-spacing:.2em}
+.hero .ticket{right:calc(min(62vw,860px) - 180px - 12vw);bottom:110px;transform:rotate(-7deg)}
+.credit{font-size:14px;line-height:1.5}
+.credit a{text-underline-offset:2px}
+.hero .credit{position:absolute;left:32px;bottom:18px;max-width:560px;z-index:3}
+
+/* ---- 3つの部：同じベルの円とスライドの管を、章ごとに大きく ---- */
+.part{position:relative;overflow:hidden;padding:120px 32px}
+.bg-blue{background:var(--blue);color:var(--white)}
+.bg-brass{background:var(--brass);color:var(--ink)}
+.part-head{position:relative;z-index:3}
+.part-head .no{font-size:20px;font-weight:700}
+.part-head h2{font-size:clamp(44px,5.6vw,84px);margin-top:4px}
+.part-head .span{font-family:var(--num);font-weight:800;font-size:44px;margin-top:12px;line-height:1.1}
+.bg-blue .part-head .span{color:var(--brass)}
+.part-head .span i{font-style:normal;font-family:var(--jp);font-weight:700;font-size:20px;margin-left:.6em;letter-spacing:0}
+.bg-blue .part-head .span i{color:var(--white)}
+.prog{list-style:none;position:relative;z-index:3;margin-top:44px;max-width:620px}
+.prog li{padding:16px 0}
+.prog li + li{border-top:2px solid currentColor}
+.prog .who{display:block;font-size:17px;font-weight:700}
+.prog .what{display:block;font-size:28px;font-weight:700;line-height:1.45}
+.prog .note{display:block;font-size:17px;margin-top:2px}
+.part p.say{position:relative;z-index:3;max-width:34em;margin-top:28px}
+.part .credit{position:relative;z-index:3}
+
+.p1{display:grid;grid-template-columns:1fr 1.618fr;gap:0 48px;min-height:900px}
+.p1 .bell{width:min(50vw,720px);aspect-ratio:1;left:-14vw;top:120px}
+.p1 .bell img{object-position:58% 55%}
+.p1 .col{grid-column:2}
+.p1 .slide{right:-40px;top:72px;width:46vw;height:120px;transform:scaleX(-1)}
+.p1 .cap-1{position:absolute;left:32px;top:calc(120px + min(50vw,720px) + 24px);max-width:28vw;z-index:3}
+
+.p2{display:block}
+.p2 .tube{position:absolute;right:-6vw;top:110px;width:64vw;height:290px;border-radius:145px;overflow:hidden;z-index:2;background:var(--deep)}
+.p2 .tube img{width:100%;height:100%;object-fit:cover;object-position:50% 58%}
+.p2 .tube::after{content:"";position:absolute;inset:0;border-radius:145px;box-shadow:inset 0 0 0 16px var(--brass)}
+.p2 .bell.small{width:300px;aspect-ratio:1;right:22vw;top:470px;z-index:3;box-shadow:0 0 0 14px var(--white)}
+.p2 .bell.small img{object-position:60% 40%}
+.p2 .col{max-width:none}
+.p2 .prog{columns:2;column-gap:72px;max-width:none;margin-top:110px}
+.p2 .prog li{break-inside:avoid}
+.p2 .prog li:nth-child(4){border-top:0}
+.p2 .stage-note{position:relative;z-index:3;margin-top:24px;max-width:780px}
+.p2 .slide{right:-30px;bottom:50px;width:34vw;height:100px;transform:scaleX(-1)}
+
+.p3{padding-bottom:140px}
+.p3 .bell{width:min(56vw,780px);aspect-ratio:1;right:-10vw;top:90px}
+.p3 .bell::after{box-shadow:inset 0 0 0 26px var(--blue),inset 0 0 0 34px var(--brass),inset 0 0 0 38px var(--blue)}
+.p3 .bell img{object-position:40% 50%}
+.p3 .sax{position:absolute;width:250px;height:370px;border-radius:125px 125px 0 0;overflow:hidden;right:calc(min(56vw,780px) - 10vw - 120px);top:700px;z-index:3;outline:12px solid var(--brass)}
+.p3 .sax img{width:100%;height:100%;object-fit:cover}
+.p3 .col{max-width:600px}
+.seniors{position:relative;z-index:3;margin-top:56px;max-width:600px}
+.seniors h3{font-size:28px}
+.seniors table{border-collapse:collapse;margin-top:14px;width:100%;font-size:17px}
+.seniors th,.seniors td{text-align:left;padding:8px 0;border-top:2px solid var(--ink);font-weight:400}
+.seniors th{font-weight:700;width:40%}
+.seniors td.n{font-weight:800;text-align:right;font-size:20px}
+.p3 .cap-3{position:absolute;right:32px;bottom:44px;max-width:360px;text-align:right;z-index:3}
+
+/* ---- 整理券 ---- */
+.tk{position:relative;overflow:hidden;padding:120px 32px;display:grid;grid-template-columns:1fr 1.618fr;gap:48px 64px}
+.tk h2{font-size:clamp(44px,5.6vw,84px);color:var(--blue);grid-column:1/-1;position:relative;z-index:3}
+.tk .lead{grid-column:1/-1;font-size:20px;font-weight:700;max-width:30em;position:relative;z-index:3}
+.where{list-style:none;position:relative;z-index:3;grid-column:1;grid-row:3}
+.where li{padding:20px 0}
+.where li + li{border-top:2px solid var(--blue)}
+.where h3{font-size:28px;color:var(--blue)}
+.where p{font-size:17px}
+.where .hours{font-weight:700}
+.rules{grid-column:1;grid-row:4/span 3;list-style:none;position:relative;z-index:3}
+.rules li{padding:8px 0 8px 22px;position:relative}
+.rules li::before{content:"";position:absolute;left:0;top:.8em;width:10px;height:10px;border-radius:50%;background:var(--brass)}
+.finder{grid-column:2;grid-row:3/span 2;position:relative;z-index:3;align-self:start}
+.finder .face{background:var(--blue);color:var(--white);border-radius:40px;padding:48px 48px 40px;position:relative}
+.finder h3{font-size:28px}
+.finder .face > p{margin-top:6px}
+.big-ticket{margin-top:28px;background:var(--white);color:var(--blue);border-radius:8px;display:grid;grid-template-columns:auto 1fr;transform:rotate(-2deg)}
+.big-ticket .stub{padding:22px 26px;border-right:3px dashed var(--blue);text-align:center}
+.big-ticket .stub label{display:block;font-weight:700;font-size:14px}
+.big-ticket input{font:inherit;font-family:var(--num);font-weight:800;font-size:44px;width:4.2ch;border:0;border-bottom:3px solid var(--blue);color:var(--blue);background:transparent;text-align:center;line-height:1.1;padding:0}
+.big-ticket input:focus-visible{outline-offset:6px}
+.big-ticket .out{padding:22px 28px;line-height:1.5;font-weight:700}
+.big-ticket .out .row{font-size:20px}
+.big-ticket .out .go{font-size:28px;line-height:1.3;margin:4px 0}
+.big-ticket .out .go b{font-family:var(--num);font-weight:800}
+.big-ticket .out .lane{display:inline-block;background:var(--brass);color:var(--ink);padding:0 10px;border-radius:6px}
+.range{display:block;width:100%;margin-top:26px;accent-color:var(--brass);height:32px}
+.groups{width:100%;border-collapse:collapse;margin-top:22px;font-size:17px}
+.groups th,.groups td{padding:7px 6px;text-align:left;border-top:1px solid rgba(255,255,255,.5);font-weight:400}
+.groups thead th{font-weight:700;border-top:0}
+.groups td.n{font-weight:800}
+.groups tr.on td{background:var(--brass);color:var(--ink)}
+.tk .queue{grid-column:2;grid-row:5;position:relative;width:calc(100% + 32px);height:400px;border-radius:200px 0 0 200px;overflow:hidden;z-index:1}
+.tk .queue img{width:100%;height:100%;object-fit:cover;object-position:40% 60%}
+.tk .cap-q{grid-column:2;grid-row:6;position:relative;z-index:3;margin-top:-32px;max-width:560px}
+
+/* ---- 行き方 ---- */
+.go-sec{position:relative;overflow:hidden;padding:120px 32px 100px}
+.go-sec h2{font-size:clamp(44px,5.6vw,84px);position:relative;z-index:3}
+.go-grid{display:grid;grid-template-columns:1.618fr 1fr;gap:48px;margin-top:110px;position:relative;z-index:3}
+.map{background:var(--white);border-radius:40px;padding:12px}
+.map svg{display:block;width:100%;height:auto}
+.ways{list-style:none}
+.ways li{padding:16px 0}
+.ways li + li{border-top:2px solid rgba(255,255,255,.6)}
+.ways h3{font-size:28px;color:var(--brass)}
+.ways b.n{font-size:20px}
+.bus-times{display:flex;flex-wrap:wrap;gap:6px 16px;font-family:var(--num);font-weight:800;font-size:20px;margin-top:4px}
+.go-sec .bell{width:300px;aspect-ratio:1;right:-40px;top:-50px;z-index:1}
+.go-sec .bell::after{box-shadow:inset 0 0 0 20px var(--brass),inset 0 0 0 26px var(--blue),inset 0 0 0 30px var(--brass)}
+.go-sec .bell img{object-position:70% 50%}
+.go-sec .cap-b{position:relative;z-index:3;margin-top:24px;max-width:600px}
+.weather{position:relative;z-index:3;margin-top:56px;background:var(--brass);color:var(--ink);border-radius:999px;padding:22px 40px;font-weight:700;font-size:20px;max-width:980px}
+
+footer{padding:72px 32px 48px;position:relative;overflow:hidden}
+footer .slide{left:-30px;bottom:30px;width:34vw;height:100px}
+.foot{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;position:relative;z-index:2}
+footer h2{font-size:20px;color:var(--blue);margin-bottom:8px}
+footer ul{list-style:none}
+footer li{padding:3px 0}
+footer .credits li{font-size:14px;line-height:1.6;padding:4px 0}
+.foot-note{margin-top:48px;font-size:14px;position:relative;z-index:2;margin-left:38vw}
+
+/* ---- スマホ ---- */
+@media (max-width:760px){
+  body{font-size:16px}
+  .top{padding:8px 16px;gap:10px;min-height:56px}
+  .top .club{font-size:16px}
+  .top .when{display:none}
+  .top .btn{margin-left:auto;padding:8px 14px;font-size:16px}
+  html{scroll-padding-top:64px}
+  .hero{padding:24px 16px 32px;min-height:0}
+  .hero .bell{width:330px;right:-110px;top:200px}
+  .hero .slide{top:310px;width:300px;height:60px}
+  .lead-in .club{font-size:16px}
+  .hero h1{font-size:54px}
+  .date{margin-top:380px;font-size:24px}
+  .date .big{font-size:54px}
+  .date .big i{font-size:28px}
+  .place{font-size:24px}
+  .free p{font-size:24px}
+  .hero .ticket{right:16px;bottom:auto;top:470px;transform:rotate(-6deg)}
+  .ticket .stub .n{font-size:28px}
+  .prog .who,.prog .note,.groups{font-size:16px}
+  .part-head .span{font-size:28px}
+  .finder h3{font-size:24px}
+  .ticket .body{display:none}
+  .hero .credit{position:static;text-align:left;margin-top:20px;max-width:none}
+  .part{padding:80px 16px}
+  .p1,.p2{display:block;min-height:0}
+  .p1 .bell{position:relative;width:340px;left:-40px;top:0;margin:0 0 0}
+  .p1{padding-top:40px}
+  .p1 .slide,.p2 .slide{display:none}
+  .p1 .cap-1{position:static;max-width:none;margin-top:28px}
+  .p2 .tube{position:relative;right:auto;top:auto;width:520px;height:170px;border-radius:85px;margin:0 0 36px -16px}
+  .p2 .tube::after{border-radius:85px}
+  .p2 .prog{columns:1;margin-top:40px}
+  .p2 .prog li:nth-child(4){border-top:2px solid currentColor}
+  .p2{padding-top:40px}
+  .p2 .bell.small{position:relative;right:auto;top:-60px;width:180px;margin-left:auto;margin-bottom:-60px}
+  .p2 .stage-note{margin-top:20px}
+  .p3 .bell{position:relative;width:330px;right:auto;top:0;margin:40px 0 0 auto;left:60px}
+  .p3 .sax{position:relative;right:auto;top:-120px;width:160px;height:240px;margin-bottom:-120px}
+  .p3 .cap-3{position:static;text-align:left;max-width:none;margin-top:16px}
+  .prog .what{font-size:20px}
+  .tk{display:block;padding:80px 16px}
+  .tk .lead{font-size:20px;margin-top:16px}
+  .where{margin-top:32px}
+  .finder{margin-top:40px}
+  .finder .face{padding:32px 20px 28px;border-radius:28px}
+  .big-ticket{grid-template-columns:1fr;transform:rotate(-1.5deg)}
+  .big-ticket .stub{border-right:0;border-bottom:3px dashed var(--blue)}
+  .big-ticket .out .go{font-size:24px}
+  .rules{margin-top:36px}
+  .tk .queue{width:340px;height:300px;margin:40px -16px 0 auto;border-radius:150px 0 0 150px}
+  .tk .cap-q{margin:12px 0 0;max-width:none}
+  .go-grid{margin-top:40px}
+  .go-sec{padding-top:230px}
+  .go-sec{padding:80px 16px}
+  .go-grid{display:block}
+  .map{border-radius:24px;padding:6px}
+  .ways{margin-top:28px}
+  .go-sec .bell{width:190px;right:-30px;top:-20px}
+  .weather{border-radius:28px;padding:20px 22px;font-size:20px}
+  footer{padding:56px 16px 40px}
+  .foot{display:block}
+  .foot > div + div{margin-top:32px}
+  .foot-note{margin-left:0}
+  footer .slide{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="club" href="#top">朝凪東高校 吹奏楽部</a>
+  <p class="when"><b>12</b>月<b>26</b>日（土）<b>13:30</b>開演　朝凪市民会館 大ホール</p>
+  <a class="btn" href="#seiriken">整理券</a>
+</header>
+
+<main id="top">
+<section class="hero" aria-labelledby="t">
+  <div class="bell"><img src="photos/-20060416-001.jpg" alt="ホールの舞台で、指揮者の前に大人数の吹奏楽が並んで演奏している" width="1280" height="960" fetchpriority="high"></div>
+  <svg class="slide" viewBox="0 0 900 120" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><g class="inner"><path d="M-40 26 H800 A34 34 0 0 1 800 94 H-40"/><path d="M640 26 V94" style="stroke-width:8"/></g></svg>
+  <div class="lead-in">
+    <p class="club">朝凪東高校 吹奏楽部</p>
+    <h1 id="t"><small>第41回</small>定期演奏会</h1>
+  </div>
+  <p class="date"><span class="big n">12<i>月</i>26<i>日</i></span>（土）
+    <span class="time"><b>13:30</b> 開演（<b>13:00</b> 開場）</span></p>
+  <p class="place">朝凪市民会館 大ホール</p>
+  <div class="free">
+    <p>入場無料　<b>整理券が要ります</b></p>
+    <a class="btn" href="#seiriken">整理券のもらい方</a>
+  </div>
+  <div class="ticket" aria-hidden="true">
+    <div class="stub"><small>No.</small><span class="n">0001</span></div>
+    <div class="body"><strong>整理券</strong>第41回 定期演奏会<br>全席自由・番号順に入場</div>
+  </div>
+  <p class="credit">円の中：よその吹奏楽の演奏会。写真：S1197320／Wikimedia Commons／<a href="https://commons.wikimedia.org/w/index.php?curid=133200453">CC BY-SA 3.0</a></p>
+</section>
+
+<section class="part p1 bg-blue" id="part1" aria-labelledby="h-p1">
+  <div class="bell"><img src="photos/Sydney-University-Wind-Orchestra-and-Verbrugghen-Hall.jpg" alt="客席の後ろから見た演奏会。舞台の吹奏楽と、聴いている人たち" width="1280" height="727" loading="lazy"></div>
+  <svg class="slide" viewBox="0 0 900 120" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><g class="inner"><path d="M-40 26 H800 A34 34 0 0 1 800 94 H-40"/></g></svg>
+  <div class="col">
+    <div class="part-head">
+      <p class="no">第1部</p>
+      <h2 id="h-p1">クラシック</h2>
+      <p class="span">13:30–14:20<i>全員・52人</i></p>
+    </div>
+    <ol class="prog">
+      <li><span class="who">スーザ</span><span class="what">行進曲「星条旗よ永遠なれ」</span></li>
+      <li><span class="who">ホルスト</span><span class="what">吹奏楽のための第1組曲 変ホ長調</span><span class="note">シャコンヌ／間奏曲／行進曲</span></li>
+      <li><span class="who">ワーグナー</span><span class="what">歌劇「ローエングリン」より エルザの大聖堂への行列</span></li>
+      <li><span class="who">チャイコフスキー</span><span class="what">スラヴ行進曲</span></li>
+    </ol>
+    <p class="say">指揮は顧問の宇佐美 健。休憩は15分（14:20–14:35）。曲の間なら、席を立って出入りできます。</p>
+  </div>
+  <p class="credit cap-1">円の中：シドニー大学ウインドオーケストラの演奏会。写真：Philip Terry Graham／Wikimedia Commons／<a href="https://commons.wikimedia.org/w/index.php?curid=63801318">CC BY 2.0</a></p>
+</section>
+
+<section class="part p2" id="part2" aria-labelledby="h-p2">
+  <div class="tube"><img src="photos/Izumo-HS-Honor-Green-Marching-Band-8383132498-.jpg" alt="帽子と白い上着の高校生が、トランペットを構えて通りを行進している" width="1280" height="853" loading="lazy"></div>
+  <div class="col">
+    <div class="part-head">
+      <p class="no">第2部</p>
+      <h2 id="h-p2" style="color:var(--blue)">ポップス</h2>
+      <p class="span">14:35–15:25<i>1年生18人の初ステージ</i></p>
+    </div>
+    <ol class="prog">
+      <li><span class="who">J. ウィナー</span><span class="what">茶色の小瓶</span></li>
+      <li><span class="who">アメリカ民謡</span><span class="what">聖者の行進</span><span class="note">客席の通路を歩いて吹きます</span></li>
+      <li><span class="who">L. プリマ</span><span class="what">シング・シング・シング</span><span class="note">ドラムは2年生</span></li>
+      <li><span class="who">岡野貞一 ほか</span><span class="what">ふるさとメドレー</span><span class="note">故郷／朧月夜／紅葉</span></li>
+      <li><span class="who">賛美歌</span><span class="what">アメイジング・グレイス</span><span class="note">トランペットのソロ</span></li>
+    </ol>
+  </div>
+  <div class="stage-note">
+    <p class="say" style="margin-top:0">休憩は10分（15:25–15:35）。</p>
+    <p class="credit" style="margin-top:12px">横長の窓：Izumo HS Honor Green Marching Band の行進。写真：Prayitno／Wikimedia Commons／<a href="https://commons.wikimedia.org/w/index.php?curid=65742097">CC BY 2.0</a></p>
+  </div>
+  <svg class="slide" viewBox="0 0 900 120" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><g class="inner"><path d="M-40 26 H800 A34 34 0 0 1 800 94 H-40"/></g></svg>
+</section>
+
+<section class="part p3 bg-brass" id="part3" aria-labelledby="h-p3">
+  <div class="bell"><img src="photos/-1718590239-.jpg" alt="制服の高校生が、屋外のステージで並んで演奏している" width="1280" height="960" loading="lazy" style="object-position:20% 50%"></div>
+  <div class="sax"><img src="photos/-2792563416-.jpg" alt="学校の渡り廊下で、ひとりでサックスを吹いている人" width="500" height="747" loading="lazy"></div>
+  <div class="col">
+    <div class="part-head">
+      <p class="no">第3部</p>
+      <h2 id="h-p3">3年生の<br>引退ステージ</h2>
+      <p class="span">15:35–16:20<i>3年生15人が前の列に</i></p>
+    </div>
+    <ol class="prog">
+      <li><span class="who">ドヴォルザーク</span><span class="what">交響曲第9番「新世界より」第4楽章</span></li>
+      <li><span class="who">ホルスト</span><span class="what">吹奏楽のための第2組曲 ヘ長調 より<span style="white-space:nowrap">「ダーガソンによる幻想曲」</span></span></li>
+      <li><span class="who">エルガー</span><span class="what">行進曲「威風堂々」第1番</span></li>
+    </ol>
+    <p class="say">最後に、部長の小野寺 沙和があいさつをします。花束・お手紙は、ロビーの受付で3年生の名前の箱に預かります。</p>
+    <div class="seniors">
+      <h3>3年生15人のパート</h3>
+      <table>
+        <tr><th>フルート・クラリネット</th><td>フルート2・クラリネット3</td><td class="n">5</td></tr>
+        <tr><th>サックス</th><td>アルト1・テナー1</td><td class="n">2</td></tr>
+        <tr><th>トランペット・ホルン</th><td>トランペット3・ホルン1</td><td class="n">4</td></tr>
+        <tr><th>トロンボーン・ユーフォニアム</th><td>トロンボーン2・ユーフォニアム1</td><td class="n">3</td></tr>
+        <tr><th>打楽器</th><td>ティンパニ</td><td class="n">1</td></tr>
+      </table>
+    </div>
+  </div>
+  <p class="credit cap-3">大きな円：屋外のステージで演奏する高校生。写真：Charlotte Marillet／Wikimedia Commons／<a href="https://commons.wikimedia.org/w/index.php?curid=65948511">CC BY-SA 2.0</a><br>縦の窓：渡り廊下でサックスを吹く人。写真：Shinichi Sugiyama／Wikimedia Commons／<a href="https://commons.wikimedia.org/w/index.php?curid=37021359">CC BY-SA 2.0</a></p>
+</section>
+
+<section class="tk" id="seiriken" aria-labelledby="h-tk">
+  <h2 id="h-tk">整理券のもらい方</h2>
+  <p class="lead">11月28日（土）から、3か所で配ります。1人4枚まで。なくなり次第終わります（全部で1,100枚）。</p>
+  <ul class="where">
+    <li><h3>朝凪市民会館 1階 窓口</h3><p class="hours">9:00–20:00（月曜は休館）</p><p>会館の正面玄関を入って右。</p></li>
+    <li><h3>朝凪東高校 事務室</h3><p class="hours">平日 9:00–16:30</p><p>正門で受付に名前を書いてから入ってください。</p></li>
+    <li><h3>朝凪駅前 観光案内所</h3><p class="hours">9:00–18:00（12月1日（火）まで）</p><p>駅の北口を出て左。300枚だけ置きます。</p></li>
+  </ul>
+  <div class="finder" data-ui>
+    <div class="face">
+      <h3>整理券の番号と、並ぶ時刻</h3>
+      <p>当日は整理券の番号順に入ります。右上の番号を入れてください。</p>
+      <div class="big-ticket">
+        <div class="stub"><label for="no">整理券 No.</label><input id="no" type="number" inputmode="numeric" min="1" max="1100" value="352"></div>
+        <div class="out" aria-live="polite">
+          <p class="row" id="o-row">B列に並んでください</p>
+          <p class="go"><b id="o-meet">12:50</b> 集合 → <b id="o-in">13:05</b> 入場</p>
+          <p>正面玄関の前に、<span class="lane" id="o-lane">B</span> の札が立っています。</p>
+        </div>
+      </div>
+      <input class="range" id="no-range" type="range" min="1" max="1100" value="352" aria-label="整理券の番号を動かして選ぶ">
+      <table class="groups" id="groups">
+        <thead><tr><th>番号</th><th>列</th><th>集合</th><th>入場</th></tr></thead>
+        <tbody>
+          <tr data-to="200"><td class="n">1–200</td><td>A</td><td class="n">12:45</td><td class="n">13:00</td></tr>
+          <tr data-to="400"><td class="n">201–400</td><td>B</td><td class="n">12:50</td><td class="n">13:05</td></tr>
+          <tr data-to="600"><td class="n">401–600</td><td>C</td><td class="n">12:55</td><td class="n">13:10</td></tr>
+          <tr data-to="800"><td class="n">601–800</td><td>D</td><td class="n">13:00</td><td class="n">13:15</td></tr>
+          <tr data-to="1100"><td class="n">801–1100</td><td>E</td><td class="n">13:05</td><td class="n">13:20</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:14px">13:25からは、番号に関係なく入れます。</p>
+    </div>
+  </div>
+  <ul class="rules">
+    <li>整理券1枚で1人が入れます。席は自由です。</li>
+    <li>小学生になる前のお子さんは、ひざの上なら整理券は要りません。</li>
+    <li>車いすの席は8席あります。学校の代表電話で、吹奏楽部の宇佐美までお知らせください。</li>
+    <li>残りがあれば、当日12:00から会館1階で配ります。残りの枚数は、毎週金曜にこのページで書きかえます（11月7日現在、配る前です）。</li>
+    <li>電話・メールでの取り置き、郵送はしていません。</li>
+  </ul>
+  <div class="queue"><img src="photos/Brisbane-City-Hall-Foyer-crowd-queueing-for-James-Morrison-c.jpg" alt="ホールのロビーの階段に、開場を待つ人が並んでいる" width="960" height="1280" loading="lazy"></div>
+  <p class="credit cap-q">アーチの中：演奏会の開場を待って並ぶ人（ブリスベン市庁舎のロビー）。写真：John Robert McPherson／Wikimedia Commons／<a href="https://commons.wikimedia.org/w/index.php?curid=100208126">CC BY-SA 4.0</a></p>
+</section>
+
+<section class="go-sec bg-blue" id="access" aria-labelledby="h-go">
+  <div class="bell"><img src="photos/Miyagi-kotsu-Hatatate-west-park.jpg" alt="停留所に路線バスが着くところ。屋根の下で人が待っている" width="500" height="374" loading="lazy"></div>
+  <h2 id="h-go">市民会館への行き方</h2>
+  <div class="go-grid">
+    <div class="map" data-ui>
+      <svg viewBox="0 0 640 420" role="img" aria-labelledby="map-t">
+        <title id="map-t">朝凪駅北口から市民会館まで：海岸通りを東へ歩いて13分、バスなら市民会館前で降りてすぐ。臨時駐車場の朝凪東高校からは歩いて9分。</title>
+        <rect width="640" height="420" fill="#fff"/>
+        <path d="M0 350 C140 338 260 365 640 320" stroke="#2342b0" stroke-width="2" fill="none" stroke-dasharray="2 8"/>
+        <text x="40" y="395" font-size="24" fill="#2342b0" font-family="Zen Kaku Gothic Antique">海</text>
+        <path d="M20 250 H620" stroke="#141c3d" stroke-width="10" stroke-linecap="round"/>
+        <text x="190" y="236" font-size="24" fill="#141c3d" font-family="Zen Kaku Gothic Antique" font-weight="700">海岸通り</text>
+        <path d="M110 30 V250" stroke="#141c3d" stroke-width="6"/>
+        <path d="M470 110 V250" stroke="#141c3d" stroke-width="6"/>
+        <rect x="20" y="120" width="190" height="52" rx="26" fill="#2342b0"/>
+        <text x="115" y="155" font-size="24" fill="#fff" text-anchor="middle" font-family="Zen Kaku Gothic Antique" font-weight="700">朝凪駅 北口</text>
+        <path d="M110 250 H440" stroke="#e0a82e" stroke-width="8" stroke-dasharray="1 14" stroke-linecap="round"/>
+        <circle cx="510" cy="250" r="66" fill="#e0a82e"/>
+        <circle cx="510" cy="250" r="52" fill="#fff"/>
+        <circle cx="510" cy="250" r="46" fill="#2342b0"/>
+        <text x="510" y="244" font-size="24" fill="#fff" text-anchor="middle" font-family="Zen Kaku Gothic Antique" font-weight="700">市民</text>
+        <text x="510" y="272" font-size="24" fill="#fff" text-anchor="middle" font-family="Zen Kaku Gothic Antique" font-weight="700">会館</text>
+        <circle cx="590" cy="330" r="10" fill="#141c3d"/>
+        <text x="560" y="380" font-size="24" fill="#141c3d" font-family="Zen Kaku Gothic Antique" text-anchor="middle">バス停</text>
+        <rect x="380" y="40" width="180" height="52" rx="8" fill="#141c3d"/>
+        <text x="470" y="75" font-size="24" fill="#fff" text-anchor="middle" font-family="Zen Kaku Gothic Antique" font-weight="700">朝凪東高校</text>
+        <text x="250" y="140" font-size="24" fill="#141c3d" font-family="Zen Kaku Gothic Antique">臨時駐車場から</text>
+        <text x="250" y="172" font-size="24" fill="#141c3d" font-family="Zen Kaku Gothic Antique">徒歩9分</text>
+        <text x="270" y="296" font-size="24" fill="#141c3d" text-anchor="middle" font-family="Zen Kaku Gothic Antique" font-weight="700">駅から徒歩13分</text>
+      </svg>
+    </div>
+    <ul class="ways">
+      <li><h3>電車</h3><p>臨海線 朝凪駅の北口から、海岸通りを東へ歩いて13分。</p></li>
+      <li><h3>バス</h3><p>北口2番のりば「市民会館前」行き。4分、運賃 <b class="n">190</b>円。開演に間に合う便：</p><p class="bus-times"><span>12:05</span><span>12:25</span><span>12:45</span><span>13:05</span></p></li>
+      <li><h3>車</h3><p>会館の駐車場は210台（1回300円）。昼には満車になる見込みです。臨時駐車場は朝凪東高校のグラウンド（120台・無料・12:00から）。</p></li>
+      <li><h3>自転車</h3><p>会館の西側に80台。</p></li>
+    </ul>
+  </div>
+  <p class="credit cap-b">円の中：停留所に着く路線バス（宮城交通）。写真：Mutimaro／Wikimedia Commons／<a href="https://commons.wikimedia.org/w/index.php?curid=8743068">CC BY-SA 3.0</a></p>
+  <p class="weather">雨や雪でも開きます。大雪などで取りやめるときは、当日7:00までにこのページのいちばん上に書きます。</p>
+</section>
+</main>
+
+<footer>
+  <svg class="slide" viewBox="0 0 900 120" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><g class="inner"><path d="M-40 26 H800 A34 34 0 0 1 800 94 H-40"/></g></svg>
+  <div class="foot">
+    <div>
+      <h2>主催・お問い合わせ</h2>
+      <p>朝凪東高校 吹奏楽部（顧問 宇佐美 健）<br>学校の代表電話へ（平日 16:00–18:00）</p>
+      <p style="margin-top:10px">後援：朝凪市・朝凪市教育委員会</p>
+    </div>
+    <div>
+      <h2>このページ</h2>
+      <ul>
+        <li><a href="#part1">第1部 クラシック</a></li>
+        <li><a href="#part2">第2部 ポップス</a></li>
+        <li><a href="#part3">第3部 3年生の引退ステージ</a></li>
+        <li><a href="#seiriken">整理券のもらい方</a></li>
+        <li><a href="#access">市民会館への行き方</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>写真の出典</h2>
+      <ul class="credits">
+        <li>どの写真も朝凪東高校の写真ではありません（Wikimedia Commons の自由に使える写真）。</li>
+        <li>S1197320（CC BY-SA 3.0）・Philip Terry Graham（CC BY 2.0）・Prayitno（CC BY 2.0）・Charlotte Marillet（CC BY-SA 2.0）・Shinichi Sugiyama（CC BY-SA 2.0）・John Robert McPherson（CC BY-SA 4.0）・Mutimaro（CC BY-SA 3.0）</li>
+      </ul>
+    </div>
+  </div>
+  <p class="foot-note">会場での録音・撮影はご遠慮ください。2階に親子室（12席）があります。学校名・人名・会場・駅はすべて架空です。</p>
+</footer>
+
+<script>
+(() => {
+  const no = document.getElementById('no'), range = document.getElementById('no-range');
+  const rows = [...document.querySelectorAll('#groups tbody tr')];
+  const lanes = ['A','B','C','D','E'], meet = ['12:45','12:50','12:55','13:00','13:05'], inn = ['13:00','13:05','13:10','13:15','13:20'];
+  const set = (v, from) => {
+    v = Math.round(+v);
+    if (!v || v < 1 || v > 1100) { document.getElementById('o-row').textContent = '番号は1から1100までです'; rows.forEach(r => r.classList.remove('on')); return; }
+    const i = rows.findIndex(r => v <= +r.dataset.to);
+    rows.forEach((r, k) => r.classList.toggle('on', k === i));
+    document.getElementById('o-row').textContent = lanes[i] + '列に並んでください';
+    document.getElementById('o-meet').textContent = meet[i];
+    document.getElementById('o-in').textContent = inn[i];
+    document.getElementById('o-lane').textContent = lanes[i];
+    if (from !== 'no') no.value = v;
+    if (from !== 'range') range.value = v;
+  };
+  no.addEventListener('input', () => set(no.value, 'no'));
+  range.addEventListener('input', () => set(range.value, 'range'));
+  set(no.value);
+})();
+</script>
+</body>
+</html>
