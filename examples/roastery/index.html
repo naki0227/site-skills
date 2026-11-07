@@ -7,7 +7,7 @@
 <meta name="description" content="福岡・薬院の小さな焙煎所、三日月珈琲の通販。豆は12種類、200gと500g、挽き方を選べます。毎週 月・水・金に焙煎して翌日発送。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Caveat:wght@700&family=Shippori+Mincho:wght@500&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
 {"@type":"ListItem","position":1,"name":"三日月珈琲","item":"https://example.com/"},
@@ -23,13 +23,15 @@
   - 一覧の列・sticky の列・カートの流れは ec-quality-bar（とらや・Allbirds）。
 */
 :root{
-  --bg:#f8f7f3;
+  --bg:#f7e7c4;      /* 地：琥珀を薄めた色（下の章） */
+  --amber:#e8a93a;   /* 主：月明かりと、焙煎の途中の豆の琥珀 */
+  --flame:#d2402a;   /* 差し色：焙煎機の火の朱（大きな字・絵だけ） */
   --ink:#2b1a14;      /* 焦げ茶 */
   --ink2:#5a4339;     /* 注記・出典だけ（地の上で 8.0:1） */
   --rule:#d8cfc6;     /* 罫 */
-  --kraft:#d9bf98;    /* ラベルのクラフト紙 */
-  --kraft2:#ecdcc2;   /* 薄いクラフト（記録用紙） */
-  --stamp:#8f1d14;    /* 朱のスタンプ（クラフトの上で 5.9:1） */
+  --kraft:#e8a93a;    /* 豆のラベル（主の琥珀） */
+  --kraft2:#f2d39a;   /* 薄い琥珀（記録用紙・ボタンの面） */
+  --stamp:#9e2a18;    /* 朱を濃くした小さな字（品切れ・未選択・エラー） */
   --ease:cubic-bezier(.25,.46,.45,.94);   /* とらや */
   --serif:"Shippori Mincho","Yu Mincho",serif;
   --sans:"Noto Sans JP","Yu Gothic",sans-serif;
@@ -69,36 +71,24 @@ button,select,input{font:inherit;color:inherit}
 .lead p{margin:6px 0 0;font-size:16px;max-width:40em}
 body:not(.detail) .crumb{display:none}
 /* 最初の画面：焙煎機から豆を出す写真を暗くして全面に敷き、題を重ねる（ai-tells 見比べ第3回・aesthetic 4） */
-/* 最初の画面：層を作る（aesthetic「本物か作例か 第2回」）。手本の作り方：
-   j.organic coffee＝生成りの地に角丸の大きな写真、線の人物の絵と縦書きの一言を写真の外に、下に商品の小さな写真を重ねてはみ出させる。
-   SUNNY DAYS COFFEE＝大きな写真を枠に入れ、丸く切り抜いた2枚目を枠の角に重ね、丸の外に輪を回す。
-   THREE TIMES COFFEE＝色の面の上に、破いた紙の形に切り抜いた写真、縦書きの一言を写真に重ねる。
-   ここでは：クラフト紙の色の面（袋の地）・破いた縁の写真・丸い写真と回る英字の刻印・線で描いた袋の絵・縦書きの題を重ねる。 */
-.hero{background:var(--bg);padding:16px 0 56px;overflow:hidden}
-.stage{position:relative;max-width:1230px;margin:0 auto;padding:0 15px;height:760px}
-.stage>*{position:absolute}
-.field{left:15px;top:40px;width:44%;height:700px;background:var(--kraft)}
-.hero h1{left:9%;top:68px;writing-mode:vertical-rl;font:500 88px/1.06 var(--serif);margin:0;letter-spacing:.12em;color:var(--ink)}
-/* 作り込みは1つだけ：コーヒー袋の口を留めるブリキのタイ（題の横の2pxの線と、両端の折り返し） */
-.tie{left:calc(9% + 120px);top:76px;width:2px;height:400px;background:var(--ink)}
-.tie::before,.tie::after{content:"";position:absolute;left:-4px;width:10px;height:6px;background:var(--ink)}
-.tie::before{top:0}.tie::after{bottom:0}
-.htxt{left:calc(15px + 4%);top:610px;width:36%;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
-.hero p{margin:0;font:500 26px/1.4 var(--serif)}
-.hero .go{display:inline-flex;align-items:center;height:52px;padding:0 26px;margin-top:16px;background:var(--ink);color:#fff;font-weight:700;text-decoration:none;transition:opacity .2s var(--ease)}
-@media (hover:hover) and (pointer:fine){.hero .go:hover{opacity:.8}}
-.ph{margin:0}
-.ph img{display:block;width:100%;height:100%;object-fit:cover}
-.ph figcaption{position:absolute;margin:0;font-size:13px;line-height:1.5;color:#fff;text-shadow:0 0 6px rgba(0,0,0,.7)}
-.ph figcaption a{color:inherit}
-.pa{right:15px;top:0;width:58%;aspect-ratio:3/2;clip-path:polygon(0% 1.0%,4% 0.5%,8% 2.1%,12% 0.2%,16% 1.7%,20% 1.2%,24% 0.2%,28% 1.6%,32% 0.1%,36% 1.4%,40% 0.2%,44% 0.3%,48% 1.4%,52% 2.6%,56% 0.4%,60% 0.7%,64% 2.0%,68% 3.0%,72% 1.8%,76% 1.3%,80% 3.1%,84% 0.1%,88% 2.7%,92% 0.9%,96% 0.5%,100% 0.4%,100% 99.2%,95% 97.9%,90% 99.5%,85% 98.5%,80% 98.3%,75% 99.0%,70% 98.6%,65% 99.8%,60% 99.8%,55% 99.5%,50% 98.2%,45% 98.9%,40% 99.2%,35% 98.5%,30% 98.8%,25% 99.2%,20% 97.9%,15% 98.2%,10% 99.4%,5% 98.5%,0% 98.6%)}
-.pa figcaption{right:16px;top:28px;text-align:right}
-.pb{left:37%;top:430px;width:280px;height:280px;border-radius:50%;overflow:hidden}
-.pb figcaption{left:0;right:0;bottom:30px;text-align:center}
-.ring{left:calc(37% - 50px);top:380px;width:380px;height:380px;animation:turn 60s linear infinite}
-.ring text{font:500 17px var(--sans);fill:var(--ink)}
-@keyframes turn{to{transform:rotate(360deg)}}
-.bag{right:calc(15px + 5%);top:440px;width:200px}
+/* 最初の画面：幾何学の平らな絵のポスター（aesthetic「最初の画面の作り方の方向」、2026-11-07）。
+   題材の特色：月・水・金に5kgの釜で焼く焙煎所。→ 色は3つだけ：月明かりと焙煎途中の豆の琥珀（地）・深煎りの焦げ茶（字と釜）・火の朱（月と星と手書き）。
+   主役は焙煎機1台を、丸・台形・半円だけの平らな絵で。画面幅いっぱいの英字の名前の下半分に重ね、下の端からはみ出させる。
+   日本語は名前と場所だけを右端に縦書きで小さく。次の焙煎は英字の1行。 */
+.poster{position:relative;height:calc(100vh - 72px);height:calc(100svh - 72px);min-height:640px;max-height:980px;background:var(--amber);color:var(--ink);overflow:hidden}
+.poster .rule{position:absolute;left:15px;right:15px;top:20px;height:2px;background:var(--ink)}
+.poster h1{position:absolute;left:0;right:0;top:34px;margin:0;text-align:center;font:700 clamp(78px,17.4vw,268px)/.86 "Fraunces",serif;font-variation-settings:"opsz" 144;letter-spacing:-.025em;color:var(--ink)}
+.roaster{position:absolute;right:3%;bottom:-150px;width:min(52vw,760px);height:auto}
+.poster h1 .vh{font-size:16px}
+.next{z-index:2}
+.script{position:absolute;left:4%;top:54%;margin:0;font:700 clamp(34px,4vw,60px)/1 "Caveat",cursive;color:var(--stamp);transform:rotate(-5deg)}
+.star{position:absolute;left:30%;top:57%;width:clamp(110px,12vw,176px);transform:rotate(12deg)}
+.star text{font:700 34px "Fraunces",serif;fill:var(--amber)}
+.next{position:absolute;left:4%;bottom:44px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.next p{margin:0;font:600 clamp(18px,1.7vw,24px)/1.2 "Fraunces",serif;letter-spacing:.06em}
+.next a{display:inline-flex;align-items:center;height:48px;padding:0 24px;background:var(--ink);color:var(--amber);font-weight:700;text-decoration:none;transition:opacity .2s var(--ease)}
+@media (hover:hover) and (pointer:fine){.next a:hover{opacity:.85}}
+.tate{position:absolute;right:15px;top:clamp(190px,24vw,330px);margin:0;writing-mode:vertical-rl;font:500 16px/1.6 var(--serif);letter-spacing:.2em;color:var(--ink)}
 
 /* 次の焙煎（黒板）。最初の画面の主役は、いちばん近い焙煎日の1回だけ */
 .board{background:var(--ink);color:var(--kraft2);padding:24px 28px 28px}
@@ -239,9 +229,6 @@ body:not(.detail) .crumb{display:none}
 .log td{font-weight:600;line-height:32px}
 .log td,.log th{padding:0;vertical-align:bottom}
 .log .sig{text-align:right;margin:0;font-size:15px;line-height:32px}
-.photo{margin:24px 0 0}
-.photo img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}
-.photo figcaption{font-size:13px;line-height:1.7;color:var(--ink2);margin-top:8px}
 .brewt{width:100%;border-collapse:collapse;font-size:14px}
 .brewt th,.brewt td{border-top:1px solid var(--rule);padding:9px 8px 9px 0;text-align:left}
 .brewt thead th{font:13px var(--mono);color:var(--ink2);font-weight:400}
@@ -328,33 +315,19 @@ dialog[open]{animation:pop .2s var(--ease)}
   .buy{position:static}
 }
 @media (max-width:860px){
-  .stage{height:780px}
-  .field{width:52%;height:440px;top:24px}
-  .pa{width:60%}
-  .hero h1{font-size:64px;top:48px;left:7%}
-  .tie{left:calc(7% + 88px);top:56px;height:300px}
-  .pb{left:28%;top:330px;width:220px;height:220px}
-  .ring{left:calc(28% - 40px);top:290px;width:300px;height:300px}
-  .bag{top:360px;width:150px}
-  .htxt{top:600px;left:15px;width:calc(100% - 30px)}
-  .field{height:460px}
+  .roaster{width:62vw;right:2%}
+  .star{left:auto;right:58%;top:60%}
 }
 @media (max-width:600px){
-  .hero{padding:8px 0 40px}
-  .stage{height:690px}
-  .field{left:0;width:58%;height:400px;top:16px}
-  .pa{right:0;top:44px;width:64%}
-  .pa figcaption{right:8px;top:18px}
-  .hero h1{font-size:54px;top:30px;left:18px}
-  .tie{left:84px;top:36px;height:250px}
-  .pb{left:30%;top:250px;width:170px;height:170px}
-  .pb figcaption{bottom:34px;font-size:13px}
-  .ring{left:calc(30% - 30px);top:220px;width:230px;height:230px}
-  .ring text{font-size:19px}
-  .bag{right:4px;top:340px;width:96px}
-  .htxt{top:470px;left:15px;width:calc(100% - 30px);gap:14px}
-  .hero p{font-size:24px}
-  .hero .go{width:100%;justify-content:center}
+  .poster{min-height:600px}
+  .poster h1{top:30px}
+  .roaster{width:90vw;right:-10vw;bottom:118px}
+  .script{top:24%;left:5%}
+  .star{left:5%;right:auto;top:33%;width:84px}
+  .tate{top:140px;font-size:14px}
+  .next{left:15px;right:15px;bottom:20px;gap:12px}
+  .next p{font-size:22px}
+  .next a{width:100%;justify-content:center}
   .hd .wrap{height:54px;gap:10px}
   .hd nav{display:none}
   .logo small{display:none}
@@ -611,15 +584,22 @@ var ICON_PLUS = '<svg viewBox="0 0 16 16" stroke="currentColor" stroke-width="1.
 var ICON_TRASH = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 4.5h10M6.5 4.5V3h3v1.5M4.5 4.5l.6 8.5h5.8l.6-8.5"/></svg>';
 var regionSel = function(){return '<select data-region aria-label="お届け先の地域">'+REGIONS.map(function(x){return '<option value="'+x.k+'"'+(x.k===state.region?" selected":"")+'>'+x.nm+'</option>'}).join("")+'</select>'};
 
-var BAG = '<svg class="bag" viewBox="0 0 200 250" aria-hidden="true" fill="none" stroke="#2b1a14" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">'+
-  '<path d="M38 34 C40 30 47 29 58 29.5 L148 28 C156 28.4 160 31 160.6 35.5 L168 226 C168.4 233 164 237 156 237.4 L46 238.6 C37 238.9 33 235 32.6 228 Z" fill="#efe3cc"/>'+
-  '<path d="M37 33 L33.5 12 C34 9.6 36 8.4 39 8.6 L157 7.2 C160.5 7.1 162.2 8.8 162 12.4 L160 34" fill="#e2d1b0"/>'+
-  '<path d="M44 20.5 L152 19.2" stroke-dasharray="5 6"/>'+
-  '<path d="M62 92 C61 88 64 86 69 86 L134 85 C139 85 141.5 87.6 141.4 92 L142.6 158 C142.8 163 140 165.4 135 165.6 L70 166.8 C65 166.9 62.6 164.4 62.4 159.6 Z" fill="#d9bf98"/>'+
-  '<path d="M108 104 C97 104 90 113 91 124 C92 135 101 142 111 141 C104 137 100 130 100.5 122 C101 114 105 108 112 105 Z" fill="#2b1a14" stroke-width="1.6"/>'+
-  '<path d="M75 151 L129 150.2" stroke-width="1.6"/>'+
-  '<path d="M74 192 C92 191 112 190.6 130 191.4 M80 204 C96 203.4 110 203 124 203.6" stroke-width="1.4"/>'+
+// 焙煎機の平らな絵（丸・台形・半円だけ、3色。自分で描いた）
+var ROASTER = '<svg class="roaster" viewBox="0 0 600 700" aria-hidden="true">'+
+  '<mask id="moonm"><rect width="600" height="700" fill="#fff"/><circle cx="214" cy="196" r="140" fill="#000"/></mask>'+
+  '<circle cx="160" cy="250" r="150" fill="#d2402a" mask="url(#moonm)"/>'+
+  '<rect x="408" y="70" width="34" height="190" fill="#2b1a14"/><rect x="396" y="56" width="58" height="22" fill="#2b1a14"/>'+
+  '<polygon points="232,120 368,120 336,206 264,206" fill="#d2402a"/><rect x="284" y="206" width="32" height="40" fill="#2b1a14"/>'+
+  '<circle cx="300" cy="380" r="150" fill="#2b1a14"/>'+
+  '<circle cx="300" cy="380" r="112" fill="none" stroke="#e8a93a" stroke-width="10"/>'+
+  '<circle cx="300" cy="380" r="46" fill="#e8a93a"/><circle cx="300" cy="380" r="26" fill="#2b1a14"/>'+
+  '<rect x="336" y="420" width="120" height="26" fill="#2b1a14" transform="rotate(32 336 420)"/>'+
+  '<rect x="186" y="520" width="228" height="40" fill="#2b1a14"/>'+
+  '<path d="M80 620 a220 70 0 0 0 440 0z" fill="#d2402a"/>'+
+  '<g fill="#2b1a14"><ellipse cx="220" cy="636" rx="9" ry="6"/><ellipse cx="262" cy="648" rx="9" ry="6"/><ellipse cx="306" cy="640" rx="9" ry="6"/><ellipse cx="350" cy="650" rx="9" ry="6"/><ellipse cx="392" cy="636" rx="9" ry="6"/><ellipse cx="284" cy="664" rx="9" ry="6"/><ellipse cx="330" cy="668" rx="9" ry="6"/></g>'+
   '</svg>';
+// 星形のステッカー（釜の大きさ）
+var STAR = '<svg class="star" viewBox="0 0 200 200" aria-hidden="true"><polygon points="100,6 121,62 180,40 150,94 196,130 136,140 132,198 100,150 68,198 64,140 4,130 50,94 20,40 79,62" fill="#d2402a"/><text x="100" y="114" text-anchor="middle">5kg</text></svg>';
 /* ---------- 一覧 ---------- */
 function quickLabel(b){return 'かごに入れる（200g・中挽き・'+yen(b.p200)+'円）'}
 function renderList(){
@@ -635,18 +615,14 @@ function renderList(){
   var kindBtns = [["all","すべて"],["single","シングル"],["blend","ブレンド"],["decaf","デカフェ"]];
   var chip = function(group,v,l){return '<button type="button" class="chip" data-'+group+'="'+v+'" aria-pressed="'+(state[group]===v)+'">'+l+'</button>'};
   $("#main").innerHTML =
-   '<section class="hero" aria-labelledby="h-shop"><div class="stage">'+
-     '<div class="field" aria-hidden="true"></div>'+
-     '<figure class="ph pa"><img src="photos/Beans-Dropping-from-a-Coffee-Roaster.jpg" alt="焙煎機の釜から、焼き上がった豆を冷却槽に出すところ" width="1920" height="1278" fetchpriority="high">'+
-       '<figcaption>焙煎機から豆を出すところ<br><span class="nw">Jkafader、<a href="https://commons.wikimedia.org/w/index.php?curid=27929316">CC BY-SA 3.0</a></span></figcaption></figure>'+
-     '<svg class="ring" viewBox="0 0 380 380" aria-hidden="true"><defs><path id="ringpath" d="M190 190 m-172 0 a172 172 0 1 1 344 0 a172 172 0 1 1 -344 0"/></defs><text><textPath href="#ringpath" textLength="1078" lengthAdjust="spacing">MIKAZUKI COFFEE ROASTERS · YAKUIN FUKUOKA · </textPath></text></svg>'+
-     '<figure class="ph pb"><img src="photos/Coffee-Beans-in-a-Cooling-Tray.jpg" alt="冷却槽の中でかき混ぜられる、焼き上がったコーヒー豆" width="1280" height="1923">'+
-       '<figcaption>冷却槽の豆<br><span class="nw">Jkafader、<a href="https://commons.wikimedia.org/w/index.php?curid=27929313">CC BY-SA 3.0</a></span></figcaption></figure>'+
-     BAG+
-     '<h1 id="h-shop">三日月珈琲</h1><span class="tie" aria-hidden="true"></span>'+
-     '<div class="htxt"><p>月・水・金に焼いています</p>'+
-     '<a class="go" href="#next">次の焙煎を見る</a></div>'+
-   '</div></section>'+
+   '<section class="poster" aria-labelledby="h-shop"><span class="rule" aria-hidden="true"></span>'+
+     '<h1 id="h-shop"><span lang="en">MIKAZUKI</span><span class="vh">三日月珈琲</span></h1>'+
+     ROASTER+
+     '<p class="script" lang="en">roasted Mon · Wed · Fri</p>'+
+     STAR+
+     '<p class="tate">三日月珈琲　福岡・薬院</p>'+
+     '<div class="next"><p lang="en">NEXT ROAST — '+["SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY"][days[0].d.getDay()]+'</p><a href="#next">豆を選ぶ</a></div>'+
+   '</section>'+
    '<div class="wrap">'+
    '<div class="lead" id="next"><h2>次の焙煎</h2><p>福岡・薬院の焙煎所です。豆は焼く曜日が決まっていて、焼いた翌日に発送します。<br>この回の釜に入れる豆を選べます。ほかの豆は、下の一覧からどうぞ。</p></div>'+
    '<section class="board" aria-labelledby="h-board">'+(function(){
@@ -752,8 +728,6 @@ function renderItem(id){
       '</tbody></table><p class="sig">— 吉住</p></div>'+
       '<h2>この豆のこと</h2><p>'+esc(b.desc)+'</p>'+
       (b.voice?'<p class="voice">'+esc(b.voice)+'</p>':'')+
-      '<figure class="photo"><img src="photos/Coffee-Beans-in-a-Cooling-Tray.jpg" alt="冷却槽の中でかき混ぜられる、焼き上がったコーヒー豆" width="1280" height="1923" loading="lazy">'+
-        '<figcaption>焼き上がった豆は、冷却槽で混ぜながら冷まします。<br>写真：冷却槽の豆<span class="nw">（Jkafader、<a href="https://commons.wikimedia.org/w/index.php?curid=27929313">CC BY-SA 3.0</a>）</span></figcaption></figure>'+
       '<h2>淹れ方の目安</h2>'+
       '<table class="brewt"><thead><tr><th>道具</th><th>豆</th><th>湯</th><th>温度</th><th>時間</th></tr></thead><tbody>'+
         '<tr><td>ペーパー（中挽き）</td><td>15g</td><td>240ml</td><td>'+t+'℃</td><td>2分30秒</td></tr>'+
@@ -978,7 +952,7 @@ $("#shipTable tbody").innerHTML = REGIONS.map(function(x){return '<tr><th>'+x.nm
 /* 使ったスキル */
 var SK = [
  ["選び方","site-skills の表で「商品を探して買ってもらう」→ 主 ec-quality-bar。雰囲気のために副 lp-quality-bar。仕上げに site-skills の references/ai-tells.md を全部当てはめて作り直した。"],
- ["題の下のタイ","作り込みは1つだけ：題の下の2pxの線と両端の折り返し（コーヒー袋の口を留めるブリキのタイ）。親セッションの依頼「題材の部品から取った小さな手がかりを1つだけ」（ORBITO の命綱と同じ考え方）。"],
+ ["英字の名前と主役","画面幅いっぱいの英字の名前「MIKAZUKI」（Fraunces 700）を後ろに、焙煎機の絵をその下半分に重ねて下の端からはみ出させる。飾りは手書きの英字（Caveat）と星形の「5kg」（釜の大きさ）の2つ。日本語は右端の縦書きの名前と場所だけ、次の焙煎は英字の1行。"],
  ["次の焙煎（黒板）","題材でしか成り立たない部品（ai-tells「最後の問い」）。最初の画面の主役は、いちばん近い焙煎日・5kg 釜の空き・地域への着日と「この回の釜に入れる」だけ（ai-tells「情報の密度：1画面に主役を1つ」）。ほかの焙煎日は「ほかの焙煎日 2回分を見る」で開く。型はスキルに無く自分で決めた。"],
  ["この回の釜に入れる","最初の画面の本物のボタン（site-skills critique.md：最初の画面に主な行動のボタン）。黒板のいちばん近い焙煎日の行で豆を選び、200g・中挽きでそのままかごへ（容量と挽き方は、かごに入った後でなく詳細で変えられる）。型はスキルに無く自分で決めた。"],
  ["スマホ","絞り込みは「絞り込み・並べ替え」の1つのボタンにたたむ（Allbirds の SP：全画面のフォームで適用）。黒板の下に商品が見える。"],
@@ -995,14 +969,14 @@ var SK = [
  ["お届けの3行","焙煎日→発送日→着日を桁をそろえて3行。焙煎してから送る店の流れで、スキルに型は無い。賞味期限は「届いた日から約○日」（ec checklist・とらや）。"],
  ["SP の固定バー","sticky bottom:0・白95%（とらや）。上に焙煎日→着日と送料の1行（ec checklist：とらやの反面教師 y=2352）。"],
  ["焙煎記録","投入温度・1ハゼ・煎り止めを、記録用紙の罫に明朝で。題材でしか成り立たない部品。スキルに型は無い。"],
- ["写真の枠","最初の画面に焙煎機から豆を出す写真、詳細に冷却槽の豆の写真（Wikimedia Commons、CC BY-SA 3.0）。何が写っているかと出典を写真の端に重ねる（ai-tells 見比べ第3回・make.md 6）。三日月珈琲の店の写真ではないと出典に書いた。"],
+ ["最初の画面の絵","写真は使わない。主役は焙煎機1台と三日月を、丸・台形・半円だけの平らな絵（自分で描いた SVG）で（aesthetic「最初の画面の作り方の方向」、2026-11-07：9枚のうち CAFE のポスターの形）。"],
  ["かごに入れる","ページを移らず右からドロワー PC 530px・SP 全画面（ec rules 1：Allbirds）。知らせは role=status（とらや）。ボタンは2秒「かごに入れました」（とらやの「✓ 追加しました」）。"],
  ["送料無料まで","ドロワーの頭に「あと○円で送料無料」と太いバー、数量で言い直す、数量1の − はごみ箱（Allbirds）。送料はかごの中で金額に（とらやの反面教師）。焙煎日の違う豆は遅いほうにそろえる、と着日を出すのは自分で決めた。"],
  ["包装","商品ごとに「必須」、未選択だと理由をボタンの下に（ec checklist・とらや）。ギフト箱165円は別の行（Allbirds の反面教師）。"],
  ["案内の窓","送料・返品・支払い・特商法を詳細から1手の窓に（ec rules 3）。返品の条件と連絡先を分ける（Allbirds の反面教師）。"],
- ["色と文字","Web Design Clip の食品・飲料の店35件の中央値に寄せた：地は明るい生成り #f8f7f3（手本10件の最初の画面は明るさ中央値 約158・白っぽい部分 約32%）、主は焦げ茶、差し色はクラフト紙。題は Shippori Mincho 48px・500（篠栗珈琲焙煎所）、本文は Noto Sans JP 16px・行間2・400、文字の左端 240px、章の間 88px、全幅の罫0本。"],
+ ["色と文字","色は3つだけ：月明かりと焙煎途中の豆の琥珀 #e8a93a・深煎りの焦げ茶 #2b1a14・火の朱 #d2402a（小さな字は濃い朱 #9e2a18）。下の章の地は琥珀を薄めた #f7e7c4。書体は英字 Fraunces・手書き Caveat・名前 Shippori Mincho・本文 Noto Sans JP。"],
  ["データ","BreadcrumbList と、詳細ごとに Product＋Offer（ec rules 5）。"],
- ["重さ・動き","外部は Google Fonts の Shippori Mincho と Noto Sans JP、写真2枚。動きは transform と opacity、.1/.2/.4s（とらや）。prefers-reduced-motion で全部止める。"],
+ ["重さ・動き","外部は Google Fonts だけ（写真は使わない）。動きは transform と opacity、.1/.2/.4s（とらや）。prefers-reduced-motion で全部止める。"],
 ];
 $("#skrows").innerHTML = SK.map(function(r){return '<tr><th>'+r[0]+'</th><td>'+r[1]+'</td></tr>'}).join("");
 
