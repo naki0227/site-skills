@@ -56,7 +56,22 @@
 - **データ**：lang=ja、JSON-LD 0、hreflang 0、トップの description は空。画像は alt 属性なし各ページ4枚、残りは alt=""。
 - **重さ（PC/SP）**：top 9.15/8.94MB（fv_salonia_01.jpg 1,602KB）、about 6.40/6.40（company_mv.jpg 1,735KB＋SP 用 318KB を両方で読む）、business 5.35/5.35、recruit 16.40/14.44（recruit_message.jpg 6,177KB）、news 5.51/5.51。全ページに JS 720KB・CSS 541KB・TypeSquare 1MB 前後・アクセシビリティの道具 890KB（sdk.hellouniweb.com）・GTM 1,581KB（SP トップ）。
 
-## 真似る型（3サイト：Valmont・日清食品グループ・I-ne）
+### Kering（https://www.kering.com/en/ 、2026-11-07 解剖。選んだ理由：持ち株会社の会社サイトで、メゾン13の丸い札・柱の名前を札にしたモザイク・ヘッダーの株価・自サイトの求人 1,654件を、白・#f1e4db・黒と2書体で全ページに通す。事例集・受賞歴は確かめられなかった。海外・ユーロネクスト・パリ）
+
+- **ナビ（PC）**：fixed 66px・隠さない（最初は地が透明、送ると #fff）。左上に SHARE PRICE 187,20 €（11px Medium）と言語、中央のロゴの左に GROUP・HOUSES・TALENT、右に SUSTAINABILITY・FINANCE・PRESS、右端に JOIN US（#897550）。ナビの文字は Akzidenz-Grotesk Std Ext 8px・字間 1.6px、押せる幅 115×66px。
+- **メガメニュー**：GROUP の板は高さ 304px・地 rgba(241,228,218,.9)・opacity .3s。群6つ（DISCOVER KERING・CULTURE AND HERITAGE・OUR GOVERNANCE・KERING FOR WOMEN・NEWS・KERING HIGHLIGHTS）を 181px の3列×2段、群名 10px Medium 下線・項目 11px Light、中央ぞろえ。ホバーだけで開き、Tab では開かず aria-expanded なし。
+- **SP のナビ**：左上の線3本（button でない span 15×12px、名前なし）→ 写真を地にした7本の帯（GROUP〜JOIN US）、下に株価・SNS・5言語。
+- **トップの順番**：①写真の送り 843px（14枚・1枚 15秒、進行の線は width を 15s linear）＋メゾンの丸い札13（60×60px、#f1e4db の 94px の帯）②モザイク 1,229px（11枚・a は7つ、222px の格子に 444×615／222×307／444×307、札 18px 字間 3.6px＋題 Portrait 32px を写真の上に白で）③TALENT の帯 412px（求人の検索欄）④FINANCE の帯 430px（株価の輪・KEY FIGURES・KERING SHARE）。h1 は「Kering: French Luxury Group | Kering」を clip で隠し、会社の説明の1文はトップに無い（Group のページの 17px の1段落で初めて出る）。
+- **下のページ**：Group・Houses・Talent・Press とも、パンくず（#f1e4db の帯）→ T+ T- と読み上げ → 写真のモザイク → 題 Portrait 50px（SP 32px）＋17px の1段落＋縁のボタン → 地を市松にした2列のカード、の同じ部品の並べ替え。h1 は全ページ隠す。
+- **信頼の材料**：数字は /en/finance/about-kering/ の表（12行×2025・2024*・Change、UPDATE ON 02/10/2026、注3つ。売上 14,675百万€ −13%、純利益 72 −94%、社員 43,731人 −7% と減った年もそのまま）。持ち主は「42%-owned by Artémis」。沿革・統治は GROUP の板の群に。代表メッセージは無い。
+- **用事への導線**：採用は JOIN US・TALENT・トップの検索の帯・モザイク2枚・Houses と Talent の Jobs for you 12件。求人一覧は自サイトで「1654 results」、絞り込み4つ（HOUSE・COUNTRY・DEPARTMENT・CONTRACT TYPE）、地図に6地域の件数（322・53・38・778・429・34＝1,654）。見つからないときは CV を送る・求人の通知。地域が「Northern_america」と内部の値のまま、右上がこのページだけ SIGN IN。問い合わせはフッターと Group の最後で、相手ごとの窓口のページへ。
+- **ニュース**：トップに一覧なし（モザイクの PRESS 1枚）。Group 6件・Press 12件を2列のカード（写真 174px＋日付 8px＋題 22px＋SNS 3つ）。一覧 /en/press/news/ は12件ずつ READ MORE、TOPIC 7つ（checkbox・件数なし）・BY PERIOD 3つ・キーワード。Finance を選ぶと ?thematics=finance で約 8KB だけ取り直す。TOPIC と BY PERIOD の板が同時に開いて重なり、id="finance" が2つ。日付は PUBLISHED ON 11/06/2026（MM/DD/YYYY）。
+- **データ**：lang=en、5言語（en・fr・it・cn・jp）。JSON-LD は Organization（＋VideoObject）だけで BreadcrumbList・JobPosting なし。alt の無い画像 16〜28枚／ページ。
+- **色・文字**：#fff 12・#000 9・#f1e4db 6 が画面のほぼ全部（CSS 変数はベージュ18段・青9段・茶14段）。書体は Portrait（ttf 65KB、300）と Akzidenz-Grotesk Std Ext Regular／Medium。段は 80（SP 47）・50（32）・32（20）・22（14）・17（14）・18・10・8px（SP 7px）。大きさは calc(var(--font-size-offset) + Npx) の21か所で、T+ T- で全体を変えられる。灰 #818181 3.90:1・金 #897550 4.45:1（どちらも 8px）。
+- **動き**：.9s cubic-bezier(.42,0,.36,1.01)・opacity .2s ease-in・板 .3s。keyframes 16。株価の輪 8s／6s の無限回転。prefers-reduced-motion は CSS に0で、reduce でも16の動き。
+- **重さ（PC/SP）**：top 4.48/3.87MB（JS 2,593KB＝58%）、group 4.02/3.74、houses 4.42/4.10、talent 4.30/3.96、press 7.64/7.43（reCAPTCHA の同じ JS を4回・836KB×4）。全ページ共通の 602-….js 1,235KB と同意の窓 531KB。写真は Next.js の画像で webp、SP は w=640（トップの webp PC 1,289KB → SP 642KB）。60px の丸い札に w=3840 の png（113KB）。
+
+## 真似る型（4サイト：Valmont・日清食品グループ・I-ne・Kering）
 - **ナビは左に「事業や世界」、右に「用事」**。Valmont は左に事業2つ▾、右に Careers・Company・Investors。日清は左に商品情報・企業情報、右にお客さま窓口・リクルート↗・オンラインストア↗。別ドメインは↗で区別する（3サイトとも）。項目が6つ前後で全部が同じ重さなら、I-ne のように英大文字（13.7px・字間 .1em）と和（9.5px）を2段にして右に寄せ、順を 会社 → 事業 → お知らせ → サステナ → IR → 採用 にする。
 - **下の段の出し方は2通り**。項目に1文を添えたいときは画面の端を 10px 残した黒いパネル（Valmont：題＋1文＋2列のリスト、1,420×520px）。項目が多く1文が要らないときは、文字の行を段々に足す（日清：2段目4項目→3段目 6〜12項目、16px 太字、後ろは blur 5px＋黒 10%）。どちらも SP は全画面の開閉で、いまの世界を開いて出す（日清）。3つ目は I-ne の、どの項目も同じ位置・同じ幅（870px・角丸 10.5px）の白い吹き出しで、上に写真＋題＋丸い矢印、下に3列のリスト、高さだけ行数で変える（232／282／333px）。
 - **ヘッダーは下へ読むと隠れ、上へ戻すと出すか、隠さずに地を替える**（Valmont：76px を隠し上へ 38px 戻すと黒い浮きバー、日清：94.5px を transform .4s cubic-bezier(.19,1,.22,1)。I-ne：82px を隠さず、暗い区画で透明＋白字・明るい区画で白 .85）。
@@ -69,6 +84,11 @@
 - **会社概要は7行前後の表と、番号つきの拠点**（I-ne：商号・本社・役員・設立・資本金「YYYY年MM月DD日現在」・事業内容・グループ＋拠点 01〜07 のアンカー）。Valmont は表が無く反面教師、日清は会社トップに数字も表も無く入口から。
 - **問い合わせは用件で担当のフォームを分ける**（I-ne：同意 → 個人／用件7つ → 用件ごとのフォーム。電話は初めての問い合わせを受けないと会社概要に書く）。Valmont は5欄で用件無し。
 - **採用はグループの入口で振り分け、各社の採用サイトへ ↗ で渡す**（日清：新卒・キャリア・アルムナイ＋16社、Valmont：US／AUS・NZ／Global の3つ、I-ne：キャリア・新卒の2枚 → HRMOS）。採用ページでは右下に応募の入口を固定する（I-ne：221×42px）。3サイトとも採用トップに件数が無い。
+
+- **グループの会社が多いなら、最初の画面の下に丸い札の帯を置き、選ぶとその会社の写真へ送る**（Kering：メゾン13・60×60px・#f1e4db の 94px の帯）。日清は会社を「グループ会社」の絞り込みに、I-ne はブランドを事業ページの札にした。トップの最初の画面から子会社へ1手で行けたのは Kering だけ。
+- **トップの2つ目の区画は、柱の名前を添えたモザイクで「どの柱の新しい話か」を先に言う**（Kering：11枚、222px の格子、HOUSES・FINANCE・PRESS・TALENT の札＋題）。札を題の上の小さなラベルにせず、題の下か同じ行に置く。
+- **IR の今の値を1つ、全ページのヘッダーに常に置く**（Kering：左上の SHARE PRICE 187,20 €）。株価が無い会社は次の決算発表日でよい（日清の checklist「次の決算発表日を1行で」と同じ考え）。
+- **数字の表は、時点・前年・増減の列と、組み替えの注を付け、減った年もそのまま出す**（Kering：Key figures 12行、UPDATE ON 02/10/2026、−94%）。Valmont の数字4列には時点が無かった。
 
 ## 反面教師
 - トップの1文の誤字「has a been」（HTML に PC 用・SP 用の2つの文があり、画面に出る方だけ誤り）、「infastructure」「reimbursment」、Company のメガメニューの1文が Careers の流用。白地の文字に #828282（3.84:1）・#c0c0c0（1.82:1）。`lang` 空、構造化データ無し（Valmont 2026-10-25）。
@@ -88,3 +108,8 @@
 - 最初の画面が 4 秒近く白く、h1 は中身が空で aria-label だけ。reduce の CSS 0、WebGL と 2.56 秒のページ送りがそのまま（I-ne）。
 - 採用ページの写真1枚 6,177KB、全ページにアクセシビリティの道具 890KB と GTM 1.5MB（I-ne）。
 - 送りのボタンが左「← NEXT」右「PREV →」で向きと逆に読める。日付 #888（3.54:1）・札 3.17:1・主の色の小さな字 4.46:1（I-ne）。
+- 全ページの h1 を clip で隠し、トップの h1 は title と同じ文。見える文字は写真の中の「KERING HIGHLIGHTS」で、何の会社かの1文がトップに無い（Kering 2026-11-07）。
+- ナビ・日付・絞り込みの名前が 8px、SP の日付・フッター 7px、SP の本文 14px（Kering）。上品さは字間と書体の幅で出せていたので、大きさを削る必要は無かった。
+- メガメニューがホバーだけで Tab では開かず、SP のメニューは名前の無い span（Kering）。
+- ニュースの TOPIC に件数なし、2つの板が同時に開いて重なる、id の重複、日付は MM/DD/YYYY（Kering）。
+- Press の購読フォームのために reCAPTCHA の JS を4回読み、ほかのページより約 3.3MB 重い。reduce の CSS 0 で、15秒の送りに止めるボタンなし（Kering）。

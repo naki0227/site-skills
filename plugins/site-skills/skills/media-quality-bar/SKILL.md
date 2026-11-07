@@ -19,7 +19,7 @@ description: メディア・ブログ・読みもののサイトを作る・直�
 | 下位タイプ | 向く題材 | 見本（解剖したサイト） | ファイル |
 |---|---|---|---|
 | ニュース | 新聞・ニュースサイト | ProPublica、The Markup、Grist、Tansa | `types/news.md` |
-| オウンドメディア | 企業・ブランド・財団の読みもの | 北欧、暮らしの道具店、Quanta Magazine、YAMAP MAGAZINE | `types/owned.md` |
+| オウンドメディア | 企業・ブランド・財団の読みもの | 北欧、暮らしの道具店、Quanta Magazine、YAMAP MAGAZINE、ほぼ日 | `types/owned.md` |
 | レシピ・ハウツー | レシピ、手順の説明 | King Arthur Baking、白ごはん.com、Great British Chefs | `types/recipe-howto.md` |
 | 技術ブログ | 開発者のブログ・技術記事 | メルカリエンジニアリング、LINEヤフー Tech Blog、DeNA Engineering、Smashing Magazine | `types/tech-blog.md` |
 

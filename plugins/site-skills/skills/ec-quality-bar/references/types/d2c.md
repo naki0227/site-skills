@@ -50,16 +50,32 @@
 - **配色・文字**：文字は #3C422E の1色、地 #F6E6D9・面 #FFF4EC、主のボタン #D1E030、選んだ状態 #9EEF80。文字と地はどれも 7:1 以上（7.17〜9.65）。ボタンは丸い枠に 6px の市松の影を 4px ずらし、ホバーで前面が translate(4px,4px) .3s。区切りは全部 1px の点線。本文・値段・ボタンはタイプライター体 GT Alpina Typewriter（PC 16px・SP 15px）、題は ITC Garamond Condensed（60〜120px・字間 −1.44〜−3.6px）、札は Apercu。woff2 は1ページ 308KB。
 - **データ・重さ**：詳細の JSON-LD は Product＋Offer＋AggregateRating と ProductGroup（4つの量）。一覧は BreadcrumbList。重さ PC：top 96.16MB／list 148.97MB／item 52.23MB／cart 46.72MB／FAQ 48.49MB。メニュー（Shop の中）に隠れた autoplay の動画5本が毎ページ約37MB。reduced motion で再生は止まるが5本とも読む。JS は毎ページ約9MB（詳細では checkout-web の JS 約1.6MB も先読み）。
 
+### Fellow（https://fellowproducts.com/ ・2026-11-07 計測・コーヒーの道具（電気ケトル・グラインダー）・US・Shopify 自前のテーマ）
+- **位置づけ**：電気ケトル Stagg EKG・グラインダー・コーヒーメーカーを主に、カップ・豆・替えの部品まで約440品。主力の品は「型 × 色」の1ページで深く売る（詳細 PC 高さ 10,260px：購入の列 2,394px → How it works → Take a closer look → What is Studio Edition? → Compare Kettles → Reviews 2,852px → FAQ → You May Also Like）。サイトの事例集・受賞は確かめられなかった。
+- **一覧**（/collections/kettles、6品）：PC 4列（323px・列間29px・行間48px）・SP 2列（175px）。カードは 4:5 の写真（地 #e5e7eb）→ 星と評価 14px → 名前 14px → 値段 12px と色見本（直径12px）2つ＋「+8」10px。整備品は黒の札「Refurbished」と枠の「20% off」、打ち消し線と #9d523a の値段と「Save $35」。件数「6 items」12px。上に型ごとの写真カード6枚の横送り「Categories」。main の img 14枚中 10枚 lazy。
+- **絞り込み**：「+ Filter & Sort」で左から 400px（SP 386px）の窓が 0.20秒。並べ替えの select（Featured）と「Color / Material」9色に件数「Pink (2)」。色を押すと約 1.5MB 読んで、窓の下に「Apply Filters (2 results)」220×40 と「Remove all」。押して 0.45秒・104KB で反映、URL に sort_by=manual と filter（robots.txt は sort_by を禁止）。反映後は写真がその色の写真に替わるが、色見本は替わらず、星と評価が消える。チップは「Filter & Sort (1)」と「Clear All」だけ。押せるのは 16px の丸だけ。
+- **詳細のファーストビュー**：PC 900px に 名前 32px（y=153）・値段 14px（名前の右端）・星「4.6 | 2245 Reviews」・Model・Color 10・保証の窓（Mulberry 290×42 ×2）・在庫「In Stock + Ready to Ship」・数量 117×40 と Add to Cart 479×40（y=719）・分割払い2行まで入る。写真は主 790×820 の下に 394×493 を2列で6枚（最後は 841KB の GIF）。写真の列と購入の列は両方 sticky。SP は名前 y=732、Add to Cart は最初から下に固定。
+- **型と色（値段が色で違う）**：Model（Pro／Pro Studio Edition、53×32・143×32、未選択の枠 #e0e0dd）× Color（直径22px、本体と取っ手の2色を半分ずつの丸、間 10px）。木の取っ手の8色 $199.95、Matte Black・White $179.95、Studio $199.95／$229.95。色を押すと 0.27秒・767KB で値段・分割払いの額（$18.05→$16.24/mo）・写真・?variant= が替わる。Studio を押すと、その型に無い8色は幅0で消え2色が残る（言葉の説明なし）。
+- **品切れ**（Stagg Pour-Over、3色中2色が品切れ）：Matte White は斜線と opacity .5 で残り、選ぶと灰の点「Sold out」・数量 disabled・白地に黒い枠の「Notify Me When Available」。入荷の時期なし。Polished Steel は見本ごと出ない。
+- **カートに入れる**：type="submit"。押して PC 0.40秒で opacity .6、1.14秒で disabled、1.46秒で右から 420px（SP 全幅）のドロワー（<modal-dialog>、role・aria-modal なし、URL に ?modals=cart-drawer-dialog）。同時に Mulberry の iframe の窓「Add Extended Protection」が重なり、**$44.95 の 5 Year が最初から選ばれた状態**、断るのは下の文字のリンク「I don't want to protect my purchase」。保証の無い $29.95 のマグは窓なし。通信 1,583KB。
+- **ドロワー**：頭に $75 までのバー 400×10（地 #dfdfdf・#307f0f）と「Add $45.05 to get free US shipping.」、届くと「Congrats, you've got free US ground shipping.」と合計の上に #9d523a の「Shipping　Free」。届く前は Shipping の行が無い。品の行（写真 120×150・Model・Color・数量 116×38・ごみ箱）、＋で PC 1.18〜1.42秒（88〜115KB）で言い直す。「Add Gift Box + Note」、おすすめ（PC「Why Not Add」、SP「You May Also Like」は $200・$400 と丸めた値段）、足元に「200K+ 5 Star Reviews | Easy 30 Day Returns」。/cart は ?modals=cart-drawer-dialog でトップとドロワー。
+- **買う前の不安**：告知の帯（回る）の1本と、ボタンの下の「Fast + Free US Shipping｜30-day Returns｜2+ Year Warranty」12px（リンクでない）・Shop Promise の「Free returns」。送料の金額はどこにも無く、案内は「calculated by our carriers at checkout」「1-2 business days」で出荷「up to 10 days」で届く。
+- **配色・文字**：地 #fff、文字 #1e1e1f（16.66）、副 #767474（4.65）、差し色 #9d523a（5.67）は値段と送料の行と札だけ。ボタンは #1e1e1f の丸（角 1000px）、ホバー #767474。見出しは Fellow Solar（トップの題 40px 500・字間 −1.6px）、ほかは Söhne 400 の1つの太さで 32・24・14・12・10px。動きはボタン .15s ease-in-out、頭の出し入れ .4s cubic-bezier(.25,.46,.45,.94)。
+- **データ・重さ**：詳細は Product・AggregateRating（4.6／2244）・BreadcrumbList・FAQPage、一覧は ItemList・BreadcrumbList。Offer は1つで price $179.95 と sku（$199.95 の色）が食い違う。PC top 21.98MB／list 19.64MB／item 27.63MB／cart 23.50MB／guide 19.46MB。JS 15〜19MB（checkout-web 158本 3.8MB を毎ページ）、詳細は 86ホスト、同じ2書体を13本・約 1.8MB。最初の訪問で中央に 800×600 のメール登録の窓（Attentive）。
+
 ## 真似る型
-見本3つ（Our Place・BASE FOOD・Graza）から。
+見本4つ（Our Place・BASE FOOD・Graza・Fellow）から。
 1. **買い方の選択肢は、幅いっぱいのラジオカードか行にし、選んだ1つに条件や次の選択を出す。**Our Place は単品／セット3枚（464px、未選択 113〜129px、選んだ1枚 195〜203px に色）、BASE FOOD は継続／一回の2枚（432px、305px／76px）、Graza は1回／定期便の2行（約56px・点線の区切り、行の右に値段）で、定期便を選ぶと頻度の選択が出る。未選択の枠は 3:1 以上にする（Our Place #D2D5D8 1.47・BASE FOOD #c8c8c8 1.67 は足りない。Graza は #3C422E の 1px で足りる）。
 2. **選ぶ段を「形 → 数 → 買い方」と同じ形のカードで重ね、最初の画面（PC 900px）に全部入れる。**Graza：形 215×95 の2枚・数 4枚・買い方 2行・ボタン y=838。数のカードは「1・2・3・6組」、上の札に得を書く。札は実際に安くなる率か円にする（Graza は2つの率を足した数で 1〜1.5 ポイント大きい）。
 3. **金額は、比べる元を打ち消し線か「Value」で横に置き、選ぶたびに通信なしで言い直す。ボタンの文字にも合計を入れる。**Our Place「$239.95（$284 Value）」、BASE FOOD「¥3,060（打ち消し）¥2,448、2回目以降 ¥2,748」、Graza「Subscribe – $87.96 $77.40」（0.05秒）。比べる元は、実際に別々に買う合計にする（Graza の $43.98 は単品2本の合計 $42.98 より $1 高い＝反面教師）。
-4. **SP でも購入のボタンを下に固定する。**Our Place は最初から 358×48、BASE FOOD は購入の列を過ぎてから 390×71。Graza は固定なしでボタンが y=1288（反面教師）。出すなら IntersectionObserver で、押したら購入の列へ戻す。
-5. **カートに入れてもページを移らない。**Our Place はドロワー（422px、2段の目標）、BASE FOOD はトースト（role="status"、約4秒）、Graza はドロワー（384px、詳細から 1.17秒・一覧のカードから 1.04秒）。3つとも送料の金額を言わない（反面教師）。
+4. **SP でも購入のボタンを下に固定する。**Our Place は最初から 358×48、BASE FOOD は購入の列を過ぎてから 390×71、Fellow は最初から 390×59 と、列を過ぎてから上に「名前・選んだ型と色・値段」の 390×61。Graza は固定なしでボタンが y=1288（反面教師）。出すなら IntersectionObserver で、押したら購入の列へ戻す。
+5. **カートに入れてもページを移らない。**Our Place はドロワー（422px、2段の目標）、BASE FOOD はトースト（role="status"、約4秒）、Graza はドロワー（384px、詳細から 1.17秒・一覧のカードから 1.04秒）、Fellow はドロワー（420px、1.46秒、頭に $75 までのバーと残りの金額）。4つとも送料の金額を言わない（反面教師）。
 6. **定期便の条件は、選ぶカードの中か購入のボタンの直下に書く。**BASE FOOD の「4週間ごとに自動でお届け／いつでもスキップ・解約が可能（配送日の5日前まで）」、Graza の 14px「Skip, Edit or Cancel Anytime」。変更の締め切りの日数まで書く（Graza に無い）。
 7. **品数が少ないなら、一覧は全部を1ページに出し、カードに値段入りのボタンを置く。**Graza：16件・「Add – $45」317×34、BASE FOOD：31品を1ページ。ただし件数は出す（3つとも件数なし）。
-8. **文字を1色にして、地を2段に分ける。**Graza：#3C422E、ページ #F6E6D9・購入の列とドロワー #FFF4EC、どの組み合わせも 7:1 以上。
+8. **文字を1色にして、地を2段に分ける。**Graza：#3C422E、ページ #F6E6D9・購入の列とドロワー #FFF4EC、どの組み合わせも 7:1 以上。Fellow：#1e1e1f と #767474 の2段、写真の地 #f5f5f5／#e5e7eb、差し色 #9d523a は値段と送料の行だけ。
+9. **色で値段が違う品は、色を押した瞬間に値段・分割払いの額・URL を言い直し、一覧は「〜から」で一番安い値段にする。**Fellow：$199.95／$179.95 を 0.27秒で。一覧が $199.95 で「〜から」なし、比べる表と JSON-LD が $179.95 なのは反面教師。
+10. **二つの軸（型×色）は、上の軸で選べない下の値を消し、消したことを1行で言う。**Fellow：Studio Edition で10色→2色（言葉なし）。
+11. **本体と取っ手の2つの素材は、1つの丸を半分ずつ塗った見本で見せる。**Fellow：直径22px、選ぶと外にもう1つの輪。
 
 ## 反面教師
 - 売り切れの色を画面から消し、入荷通知も無い。8色中3色が見えない（Our Place）。丸を残して斜線、選んだら入荷通知に（Allbirds の型）。
@@ -82,3 +98,9 @@
 - 一覧の16枚中14枚とメニューに、隠れた autoplay の動画。一覧 149MB、毎ページ約37MB。reduced motion でも読む（Graza）。動画は指を乗せたとき・開いたときに src を入れる。
 - 品切れのボタンが主のボタンと同じ地 #D1E030 のまま、写真もそのまま（Graza）。
 - 数の札と「New!」が 10px（Graza）。
+- 入れると 1.46秒で、別会社の保証の窓が「5 Year $44.95」を最初から選んだ状態でドロワーに重なり、断るのは小さな文字のリンク（Fellow）。付け足しの有料の品は最初は選ばず、購入の列の未チェックの欄にする。
+- 押して 0.40秒で opacity .6 にするだけで、文字も印も変わらず 1.14秒まで押せる（Fellow）。
+- 絞り込みで押せるのは 16px の丸だけで、反映後に色の名前のチップが無く、星が消え、色見本は替わらない（Fellow）。
+- 同じ商品の品切れの色で、1色は斜線で残し、1色は見本ごと消す（Fellow の Stagg Pour-Over）。
+- SP のドロワーのおすすめが「$200」「$400」と丸めた値段で、詳細の $199.95 と違う（Fellow）。
+- 約束の3行「Fast + Free US Shipping｜30-day Returns｜2+ Year Warranty」と「Free returns」がリンクでない（Fellow）。

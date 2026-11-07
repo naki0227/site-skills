@@ -52,6 +52,21 @@
 - **表記**：権利はフッター1行（ポータル 10px）。言語・hreflang・JSON-LD なし。top は h1 なし。スクリプトのエラー2種（`twTimeline is not defined` ほか）。
 - **重さ**（解析タグ除く）：top PC 8.24／SP 8.27MB、world 1.76、chara 2.33、news 2.19、buy 3.92MB（PC では隠れた期のビジュアル4枚 2,051KB を取る）。どのページも Google Fonts の CSS 224KB・utility.css 191KB・第3期は背景の写真 406KB。
 
+### 攻殻機動隊グローバルサイト（https://theghostintheshell.jp/ ・2026-11-07 解剖、シリーズ全体のポータル。2026年7月放送の TV アニメの特設は別ドメイン theghostintheshell-anime.jp。歩いた5ページ：/・/introduction・/series/theghostintheshell・/news・/videogram、ほかに /streaming。Web Design Clip 掲載）
+- **枠**：Next.js（_next/static・_next/data の JSON）＋Swiper。画像は WordPress の CMS（cms.theghostintheshell.jp）と CloudFront。書体は Adobe Fonts（urw-din・roc-grotesk-wide）と Google Fonts（Inter・Noto Sans JP・Libre Barcode 128）。
+- **最初の画面（top）**：士郎正宗の絵を20枚の層（背景・人物・光の点5・煙4・題の文字の PNG 3・「WORLD of SHIROW MASAMUNE」の PNG 3、計 2,618KB）に分けて重ねる。スクロール 400px で背景 160px（0.4倍）・題 50px（0.125倍）、マウスでも動く。放送日・ボタンは無く、h1 は左上のロゴ（89×95、alt「攻殻機動隊 GHOST IN THE SHELL」）。PC も SP も両方の版の層を取る。
+- **オープニング**：初回だけ mp4 7.893s（muted、Content-Length 16,229,408B）を全面に流し、2.0〜9.0s は body overflow hidden。Cookie `firstVisit=visited` で2回目は出さない。飛ばすボタンなし、reduce でも流れる。
+- **動画**：top の MOVIE GALLERY は左に YouTube 640×362、右に PV 5本（日付・種類・題の文字）。行は `li`（tabIndex −1）で、押すと src を `autoplay=1` に替える。PC は読み込み 2.0s で1本、SP は5本とも iframe にする（YouTube 47件・2,373KB）。
+- **人物**：一覧ページは無く、作品のページの「// CHARACTER」に大きな絵（1273×716 を 631px）・名前 32px・紹介文 16px/31px、下にサムネ 121×121 を6列×2段で11人。Swiper（loop・speed 300ms・keyboard／a11y なし）。サムネは `li`（tabIndex −1）で Tab が届かず、選ぶと暗くするだけ。URL は変わらない。声優は STAFF_CAST に役名と2列で。
+- **ナビ**：右上の斜線3本（PC 125×86・SP 70×58）が横線3本になり、ヘッダーの下に14項目＋SNS が横一列で下りる（height .6s・遅れ .3s）。開閉は href なしの `a`（名前なし）で Tab が届かず、閉じたメニューの14項目には Tab が止まる。Esc で閉じない。項目のホバーは赤 #f00e0e99・青 #4413e366 の影を .69s で揺らす。
+- **見る・買う**：/streaming は10作×4〜5社の文字のリンク47本（Netflix・バンダイチャンネル・Hulu・dアニメストア・Prime Video）、/videogram は Blu-ray 9点で、店のリンクは9本とも文字「SHOP」（品番つき URL・新しいタブ）。値段・発売日は2ページとも0件。2026年7月放送の TV アニメの行が2ページとも無い（ニュースには Blu-ray BOX BCXA-2098 のお知らせ）。
+- **ニュース**：Series 8・Categories 9 の17個の radio（label for つきの本物の input）。選ぶと 25→20枚に絞るが URL は変わらない。ページ送りは `/news/page/2` の本物のリンク。カード 270×265 は右下を 45.986px で切った SVG の線3本の枠で、ホバーで stroke-dashoffset 299→0、角の 8×8 の四角が 4.5s（ホバーで .9s）で点滅しながら落ちる。日付 10px #646464（3.19:1）、題 12px/21px、`time` 0件。
+- **配色**：地 #111・文字 #fff（68回）、差し色 #32f5c8（7回）は M.M.A. の記事と作品のページの見出しだけ。色は絵に任せる。
+- **文字**：章の題は roc-grotesk-wide 32px 400＋「_」（NEWS_）、シリーズ名 62px 900。本文 urw-din→Noto Sans JP 16px/31px・字間 .64px、ニュースの題 12px。inspect：本文 12px・13px 未満 97%。
+- **動き**：keyframes 175個（CSS Modules で同じ5つを複製）、linear 22・ease-out 2・cubic-bezier(.165,.84,.44,1) 2。光の点 2.4s（遅れ 0／.7／1／1.8／2s）、煙 5〜6s（不透明度 1→.8）。reduced-motion は CSS 7ファイルに0件、reduce でも animation 33個。
+- **表記**：権利表記8行（12px）をフッターに。JP／EN の切り替え（11px、選んでいない方 #595959 で 2.7:1）。帯の画像の alt が「/」。
+- **重さ**（measure.js、解析タグ除く）：top PC 58.95／SP 72.89MB（mp4 12,786KB、SP は JS 16.6MB）、world 3.02、chara 16.89、news 27.20（PNG 20,569KB、Lee.png 4,842KB）、buy 7.92MB。CMS の絵を原寸 PNG のまま background-image に（1000×1414 の 2,683KB を 256×144 のカードに）。
+
 ## 真似る候補（見本1つ。2つ目で確かめたら「真似る型」へ上げる）
 - 入口で音の有無を選ばせ、音なしを文字のボタンにする（Wicked：72px の丸＋192×48）。音のファイルは「音あり」を押してから取る。
 - 世界観は場所の単位で URL を切り、どの場所にも同じ入口（ようこそ＋地名＋操作の説明3つ＋始める）を置く（Wicked：5部屋）。
@@ -63,6 +78,10 @@
 - 章に番号（PAGE 01〜10）を振り、メニューと見出しに同じ番号を1つの表から出す（SAKAMOTO DAYS は2ページでずれた）。
 - 人物の陣営ごとに色を1つ、一覧の名前とホバーの面に使う（SAKAMOTO DAYS：5陣営、background-size 0→100% .4s）。
 - 同じ人物の差分を「VISUAL CHANGE 1/3」で替え、差分は詳細を開いたときに先に取る（SAKAMOTO DAYS：押しても通信0）。
+- キービジュアルを層の画像に分け、背景 0.4倍・題 0.125倍の視差と、光の点（2.4s・遅れをずらす）・煙（5〜6s）を重ねる。動画1本より軽い（攻殻機動隊：20枚 2,618KB）。reduce で止め、片方の版だけ取る。
+- オープニングは初回だけ、Cookie で覚える（攻殻機動隊：7.9s・`firstVisit`）。真似るときは飛ばすボタンと reduce の分岐を足す。
+- ニュースの絞り込みを label つきの radio で作り、Tab と矢印で選べるようにする（攻殻機動隊：17個）。選んだ値は URL に残す。
+- 配信を作品×社の文字のリンクで（攻殻機動隊 /streaming：10作×4〜5社・47本）。表にすると欠けている社が分かる。
 
 ## 真似る型（Wicked と SAKAMOTO DAYS の2つで確かめた）
 - 「いま何ができるか」をロゴの近くに日付で出し、時期で替える（Wicked：「ON SALE NOW. DIGITAL, 4K UHD & BLU-RAY.」12px、SAKAMOTO DAYS：「2027.01.ON AIR」1402×273）。どちらも弱点があった（Wicked は 12px、SAKAMOTO DAYS は画像で最初の画面の外）ので、文字で組み、最初の画面に入る大きさで、日・曜日・時刻まで書く。
@@ -75,6 +94,9 @@
 - （【推しの子】で3つ目、反対の例）予告を押すまで埋め込まないのは SAKAMOTO DAYS の /movie/ だけで、【推しの子】は top も各話も読み込み時に埋め込む。
 - 作中の組織（事務所・局・学校）のサイトという体裁のページを1枚持つ（【推しの子】/talent/：所属6人・法人向けの問い合わせ）。見本1つ。
 - 期ごとに URL の木を分け、ポータルで期を並べる（【推しの子】/Season1/〜/Season4/）。見本1つ。
+- （攻殻機動隊で4つ目、反対の例）人物を1ページの中の切り替えだけにすると、1人を URL で指せない（攻殻機動隊：11人とも `/series/theghostintheshell` のまま、サムネは li で Tab も届かない）。
+- （攻殻機動隊で4つ目、反対の例）予告の一覧を読み込み時に埋め込むサイトがまた1つ（攻殻機動隊：PC 1本・SP 5本）。押すまで作らないのは SAKAMOTO DAYS の /movie/ だけ。
+- （攻殻機動隊で4つ目）見る・買う先を文字のリンクで並べるのは手本どおり（47本）だが、値段・発売日・最新作の行が無い。
 
 ## 反面教師
 - 和文の本文を画面比で縮め、SP で 16px を割る（SAKAMOTO DAYS：750px 基準で 12.48px）。
@@ -91,3 +113,7 @@
 - 全リンクに 200ms の幕を掛け、人物を替えるのに 2.4〜2.5秒（【推しの子】）。
 - 配信のボタンの多くがサービスのトップへ行き、日付・最速の別が無い。Blu-ray のページに店のリンクが0件（【推しの子】）。
 - 同じピンクが CSS に8通りの値（【推しの子】）。
+- 買う・観るのページが新作に追いついていない（攻殻機動隊：2026年7月放送の TV アニメが /videogram・/streaming に0行）。
+- 人物のサムネ・動画の一覧・メニューの開閉が li・href なしの a で、キーボードで1つも選べない（攻殻機動隊）。
+- オープニングに飛ばすボタンが無く、reduce でも流す（攻殻機動隊：7.9s）。
+- 店のリンクの名前が9本とも「SHOP」（攻殻機動隊 /videogram）。
