@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>おあいこ — ふたり暮らしの家計簿アプリ</title>
+<meta name="description" content="レシートを撮ると、払った人ごとに分けて、月末に「どっちがいくら渡すか」を1行で出す、ふたり暮らしの家計簿アプリ。無料と月額380円の2つのプラン。">
+<!--
+  site-skills の作例（架空のアプリ。名前・会社・値段・機能はすべて作り物）。
+  選んだスキル：lp-quality-bar（雰囲気：やわらかいアプリ types/soft-app.md ＝ Family の「画面の途中の状態を見せる」）。
+  題材の特色：ふたりで払ったレシートが冷蔵庫に溜まり、月末に「どっちがいくら渡すか」が1行で決まる。
+  考えの一文：このページでは、月末の精算の1行（ゆうき → みお 3,412円）が、レシートのいちばん下の合計欄になる。
+  最初の画面：好みの台帳（taste.md）の「青が主・写真を形で抜く・大きな字と形を1枚に重ねる」に寄せ、
+    窓の形＝感熱紙のレシート（上下がギザギザに切れた細長い紙）、飾りの形＝冷蔵庫のマグネット（丸）とレシートの切り口。
+    aesthetic.md「大きな名前と主役を前後に組む」：画面の幅いっぱいの名前「おあいこ」を後ろに、レシートと写真を下半分に重ねる。
+  色（3色）：家計簿ノートに使う2色ボールペンの青と赤＝ふたりの色。
+    主 #1a42bf（青。ゆうきの色・大きな面）／地 #f6f5f0（感熱紙の白）／差し色 #c42b2b（赤。みおの色・精算の金額）。文字は #15171c。
+    比率：青の面・紙の白・赤の面を、章ごとにほぼ同じ量で（ヒーローと料金は青、使い方と質問は紙、ダウンロードは赤）。
+  手本の実測（scripts/sample.js、2026-11-07、PC 1440px）：
+    Zaim（zaim.net）本文 Noto Sans JP 16px・行間1.6・題 700・ボタン角丸 40px・地 白・全幅の罫 1本
+    OsidOri（osidori.co、夫婦の家計簿）題 40px・700・地 白・塗りのボタン 0
+    tetetoco.jp（アプリ）題 48〜64px・地 #f6f6f6・ボタン角丸 60px
+    Family（family.co）題 44px・500・字間 −.031em・ボタン角丸 32px・章の間 p50 96px
+    → 本文 Noto Sans JP 17px／1.8、題は 700（800 以上にしない）、ボタンはまる（999px）、罫は使わず地の色で区切る、数字は Plus Jakarta Sans（miraiz-persol.jp の数字の書体）。
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#1a42bf; --paper:#f6f5f0; --red:#c42b2b; --ink:#15171c;
+  --white:#fff; --deep:#12318f;
+  --num:"Plus Jakarta Sans","Noto Sans JP",sans-serif;
+  --ease:cubic-bezier(.19,1,.22,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",sans-serif;font-size:17px;line-height:1.8;word-break:auto-phrase;text-wrap:pretty;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{display:block;max-width:100%}
+h1,h2,h3{font-weight:700;line-height:1.25;letter-spacing:-.02em}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+
+/* 窓の形：レシートの上下の切り口（ギザギザ） */
+.zig{--z:12px;
+  -webkit-mask:conic-gradient(from 135deg at top,#0000,#000 1deg 89deg,#0000 90deg) top/calc(var(--z)*2) var(--z) repeat-x,linear-gradient(#000 0 0) center/100% calc(100% - var(--z)*2) no-repeat,conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) bottom/calc(var(--z)*2) var(--z) repeat-x;
+  mask:conic-gradient(from 135deg at top,#0000,#000 1deg 89deg,#0000 90deg) top/calc(var(--z)*2) var(--z) repeat-x,linear-gradient(#000 0 0) center/100% calc(100% - var(--z)*2) no-repeat,conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) bottom/calc(var(--z)*2) var(--z) repeat-x}
+.zig-top{--z:12px;
+  -webkit-mask:conic-gradient(from 135deg at top,#0000,#000 1deg 89deg,#0000 90deg) top/calc(var(--z)*2) var(--z) repeat-x,linear-gradient(#000 0 0) bottom/100% calc(100% - var(--z)) no-repeat;
+  mask:conic-gradient(from 135deg at top,#0000,#000 1deg 89deg,#0000 90deg) top/calc(var(--z)*2) var(--z) repeat-x,linear-gradient(#000 0 0) bottom/100% calc(100% - var(--z)) no-repeat}
+.shot{position:absolute;overflow:hidden;background:var(--deep)}
+.shot img{width:100%;height:100%;object-fit:cover}
+/* 飾りの形：冷蔵庫のマグネット（ふたりの頭文字） */
+.mag{position:absolute;z-index:6;width:78px;height:78px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:34px;line-height:1}
+.mag.mi{background:var(--red);color:var(--white)}
+.mag.yu{background:var(--white);color:var(--blue)}
+.credit{font-size:14px;line-height:1.5}
+
+/* ボタン：まる・塗り1種 */
+.btn{display:inline-flex;align-items:center;gap:12px;min-height:58px;padding:0 30px;border-radius:999px;font-weight:700;font-size:17px;white-space:nowrap;text-decoration:none;transition:transform .2s var(--ease),background-color .2s}
+.btn small{font-weight:400;font-size:14px}
+.btn.on-blue{background:var(--paper);color:var(--blue)}
+.btn.on-paper{background:var(--blue);color:var(--paper)}
+@media (hover:hover) and (pointer:fine){.btn:hover{transform:translateY(-2px)}}
+.btn:active{transform:translateY(1px)}
+
+/* ---------- ヘッダー ---------- */
+.top{position:absolute;z-index:20;left:0;right:0;top:0;display:flex;align-items:center;justify-content:space-between;padding:22px 4vw;color:var(--paper)}
+.logo{font-weight:700;font-size:24px;letter-spacing:-.02em;text-decoration:none}
+.top nav ul{display:flex;gap:28px;list-style:none;align-items:center;font-size:16px;font-weight:700}
+.top nav a{text-decoration:none}
+.top nav .btn{min-height:44px;padding:0 20px;font-size:16px}
+@media (hover:hover) and (pointer:fine){.top nav a:not(.btn):hover{text-decoration:underline;text-underline-offset:6px}}
+
+/* ---------- 最初の画面 ---------- */
+.hero{position:relative;background:var(--blue);color:var(--paper);height:max(780px,100svh);overflow:hidden}
+.hero h1{position:absolute;left:2.6vw;top:96px;z-index:1;font-size:min(18.6vw,268px);line-height:1;letter-spacing:-.05em;white-space:nowrap}
+.hero h1 .what{position:absolute;left:.4vw;top:-6px;font-size:0;width:1px;height:1px;overflow:hidden}
+.tate{position:absolute;right:2.2vw;top:110px;z-index:3;writing-mode:vertical-rl;font-size:20px;font-weight:700;letter-spacing:.12em;line-height:1.6}
+.h-shot{left:33vw;top:356px;width:20vw;height:450px;transform:rotate(-5deg);z-index:2}
+.h-shot img{transform:scale(2.05);transform-origin:46% 100%}
+.h-credit{position:absolute;left:33.5vw;top:826px;z-index:3;width:21vw;color:var(--paper)}
+.rcpt{position:absolute;z-index:4;background:var(--white);color:var(--ink);font-family:var(--num);font-weight:600}
+.h-rcpt{left:58vw;top:376px;width:390px;transform:rotate(4deg);padding:30px 28px 60px;min-height:900px}
+.rcpt .r-head{font-family:"Noto Sans JP";font-weight:700;font-size:20px;display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.rcpt .r-head span{font-size:14px;font-weight:400}
+.rcpt ul{list-style:none;font-size:16px;line-height:1.7}
+.rcpt li{display:grid;grid-template-columns:3.4em 1fr 1.6em 4.4em;gap:6px;align-items:baseline}
+.rcpt li .st{font-family:"Noto Sans JP";font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rcpt li .who{font-family:"Noto Sans JP";font-weight:700;font-size:14px;text-align:center}
+.who.m{color:var(--red)} .who.y{color:var(--blue)}
+.rcpt li .yen{text-align:right}
+.rcpt .cut{height:0;border-top:2px dashed #b9bcc6;margin:12px 0}
+.rcpt .sum{display:flex;justify-content:space-between;font-size:16px;line-height:1.8;font-family:"Noto Sans JP";font-weight:400}
+.rcpt .sum b{font-family:var(--num);font-weight:600}
+.rcpt .settle{margin-top:8px;font-family:"Noto Sans JP";font-weight:700;font-size:20px;line-height:1.3}
+.rcpt .settle .amt{display:block;font-family:var(--num);font-weight:700;color:var(--red);font-size:72px;letter-spacing:-.04em;line-height:1.05;margin-top:4px}
+.rcpt .settle .amt small{font-size:28px;font-family:"Noto Sans JP"}
+.h-mag1{left:calc(58vw + 290px);top:336px}
+.h-mag2{left:calc(33vw - 30px);top:334px}
+.h-act{position:absolute;left:4vw;bottom:64px;z-index:5;max-width:28vw}
+.h-act p{font-size:20px;font-weight:700;line-height:1.6;margin-bottom:22px}
+
+/* ---------- 章の共通 ---------- */
+.sec{position:relative;overflow:hidden;padding:128px 6vw}
+.sec.blue{background:var(--blue);color:var(--paper)}
+.sec.paper{background:var(--paper);color:var(--ink)}
+.sec.red{background:var(--red);color:var(--white)}
+.sec h2{font-size:clamp(34px,3.4vw,50px);position:relative;z-index:3}
+.lead{font-size:17px;max-width:32em;margin-top:22px;position:relative;z-index:3}
+
+/* できること（触れる精算） */
+.split-grid{display:grid;grid-template-columns:minmax(0,46fr) minmax(0,40fr);gap:7vw;margin-top:64px;position:relative;z-index:3;align-items:start}
+.big-rcpt{position:relative;background:var(--white);color:var(--ink);padding:44px 40px 52px;transform:rotate(-1.5deg)}
+.big-rcpt .r-head{font-size:22px}
+.ratio{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 16px;font-family:"Noto Sans JP";font-weight:400;font-size:16px}
+.seg{display:inline-flex;flex-wrap:wrap;background:var(--paper);border-radius:24px;padding:4px}
+.seg button{font:inherit;font-weight:700;font-size:14px;white-space:nowrap;border:0;background:transparent;color:var(--ink);padding:8px 14px;border-radius:999px;cursor:pointer;min-height:40px}
+.seg button[aria-pressed=true]{background:var(--blue);color:var(--paper)}
+.rows{list-style:none}
+.rows li{display:grid;grid-template-columns:4em minmax(0,1fr) auto auto 5.2em;gap:10px;align-items:center;padding:7px 0;font-size:16px}
+.rows li .d{font-family:var(--num);font-weight:600}
+.rows li .st{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rows li .yen{font-family:var(--num);font-weight:600;text-align:right}
+.rows li.mine .st,.rows li.mine .yen{color:#5d606b;text-decoration:line-through;text-decoration-thickness:1px}
+.tg{font:inherit;font-weight:700;font-size:14px;border:0;cursor:pointer;min-width:44px;min-height:40px;border-radius:999px;padding:0 12px}
+.tg.payer[data-v=m]{background:var(--red);color:var(--white)}
+.tg.payer[data-v=y]{background:var(--blue);color:var(--paper)}
+.tg.kind{background:var(--paper);color:var(--ink)}
+.tg.kind[data-v=self]{background:var(--ink);color:var(--paper)}
+.big-rcpt .cut{margin:18px 0 14px}
+.result{position:sticky;top:40px}
+.s-shot{position:relative;width:calc(100% + 6vw);height:400px;margin-bottom:-60px;transform:rotate(3deg)}
+.s-shot img{object-position:50% 45%}
+.s-credit{position:relative;z-index:4;margin:76px 0 0;color:var(--paper)}
+.res-card{position:relative;z-index:4;background:var(--white);color:var(--ink);padding:40px 36px 40px;margin-top:24px;transform:rotate(-2deg)}
+.res-card .when{font-size:16px}
+.res-card .line{font-size:30px;font-weight:700;line-height:1.35;margin-top:6px}
+.res-card .line .y{color:var(--blue)} .res-card .line .m{color:var(--red)}
+.res-card .amt{font-family:var(--num);font-weight:700;font-size:clamp(72px,8vw,124px);letter-spacing:-.045em;line-height:1;color:var(--red);margin-top:8px;font-variant-numeric:tabular-nums}
+.res-card .amt small{font-family:"Noto Sans JP";font-size:.32em;letter-spacing:0}
+.res-card .why{font-size:16px;margin-top:14px;line-height:1.7}
+.res-wrap,.plan-wrap,.end-wrap{position:relative}
+.res-wrap .mag{right:-14px;top:-12px}
+
+/* 使い方 */
+.how{list-style:none;position:relative;z-index:3;margin-top:72px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3vw}
+.how li:nth-child(2){margin-top:120px}
+.how li:nth-child(3){margin-top:240px}
+.how .verb{font-size:clamp(64px,7vw,104px);color:var(--blue);line-height:1;letter-spacing:-.04em;margin-bottom:22px}
+.how li:nth-child(3) .verb{color:var(--red)}
+.how p{font-size:17px;max-width:22em;margin-top:22px}
+.how li:first-child .w-shot{position:relative;margin:72px 0 0 -9vw;width:28vw;height:420px;transform:rotate(-4deg)}
+.phone{position:relative;width:min(100%,300px);aspect-ratio:300/600;background:var(--ink);border-radius:44px;padding:12px}
+.screen{width:100%;height:100%;background:var(--white);border-radius:34px;overflow:hidden;position:relative;font-size:14px;line-height:1.5;color:var(--ink)}
+.scr-cam{background:#2b2d33;color:var(--paper)}
+.scr-cam .frame{position:absolute;left:16%;right:16%;top:13%;bottom:22%;border:3px solid var(--paper);border-radius:6px}
+.scr-cam .paperr{position:absolute;left:21%;right:21%;top:16%;bottom:25%;background:var(--white);color:var(--ink);padding:14px 12px;font-size:13px;line-height:1.7}
+.scr-cam .paperr b{display:block;font-size:14px}
+.scr-cam .paperr .tot{font-family:var(--num);font-weight:700;font-size:20px;margin-top:8px;display:block}
+.scr-cam .shutter{position:absolute;left:50%;bottom:6%;width:62px;height:62px;margin-left:-31px;border-radius:50%;background:var(--paper);box-shadow:0 0 0 5px #2b2d33,0 0 0 8px var(--paper)}
+.scr-cam .hint{position:absolute;left:0;right:0;top:4%;text-align:center;font-size:13px}
+.scr-list{padding:44px 16px 16px}
+.scr-list .t{font-weight:700;font-size:16px;margin-bottom:10px}
+.scr-list .it{display:grid;grid-template-columns:30px 1fr auto;gap:8px;align-items:center;padding:9px 0}
+.scr-list .it i{font-style:normal;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:13px}
+.scr-list .it i.m{background:var(--red);color:var(--white)} .scr-list .it i.y{background:var(--blue);color:var(--paper)}
+.scr-list .it b{font-family:var(--num);font-weight:600}
+.scr-list .it.self{color:#5d606b}
+.scr-list .it.self b{text-decoration:line-through}
+.scr-list .press{margin-top:10px;background:var(--paper);border-radius:14px;padding:10px 12px;font-size:13px}
+.scr-pay{padding:44px 18px 18px;background:var(--paper)}
+.scr-pay .t{font-weight:700;font-size:16px}
+.scr-pay .one{margin-top:30px;background:var(--white);padding:18px 14px}
+.scr-pay .one .l{font-weight:700;font-size:17px}
+.scr-pay .one .a{font-family:var(--num);font-weight:700;font-size:44px;letter-spacing:-.04em;color:var(--red);line-height:1.1}
+.scr-pay .done{margin-top:18px;display:block;text-align:center;background:var(--blue);color:var(--paper);border-radius:999px;padding:12px;font-weight:700;font-size:15px}
+.scr-pay .note{margin-top:14px;font-size:13px}
+.w-shot img{object-position:60% 50%}
+.w-credit{margin-top:28px;max-width:22em}
+
+/* 料金 */
+.plans{position:relative;z-index:3;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:4vw;margin-top:72px;max-width:min(980px,66vw);align-items:start}
+.plan{background:var(--white);color:var(--ink);padding:48px 40px 56px}
+.plan.free{transform:rotate(-2.5deg);margin-top:60px}
+.plan.plus{transform:rotate(2deg)}
+.plan h3{font-size:30px}
+.plan .for{font-size:16px;margin-top:6px}
+.plan dl{margin-top:20px;font-size:16px}
+.plan dl div{display:flex;justify-content:space-between;gap:16px;padding:7px 0}
+.plan dt{font-weight:400}
+.plan dd{font-weight:700;text-align:right}
+.plan .total{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.plan .total span{font-weight:700;font-size:20px}
+.plan .total b{font-family:var(--num);font-weight:700;font-size:clamp(64px,6.4vw,96px);letter-spacing:-.045em;line-height:1}
+.plan .total b small{font-family:"Noto Sans JP";font-size:22px;letter-spacing:0}
+.plan.plus .total b{color:var(--red)}
+.plan .sub{font-size:16px;margin-top:8px}
+.plan-wrap .mag{right:-18px;top:-26px}
+.p-shot{right:-3vw;top:110px;width:25vw;height:600px;transform:rotate(5deg);z-index:2}
+.p-credit{position:absolute;right:4vw;top:752px;width:20vw;z-index:3;text-align:right}
+.plans-note{position:relative;z-index:3;margin-top:48px;font-size:16px;max-width:40em}
+
+/* よくある質問 */
+.faq-wrap{display:grid;grid-template-columns:minmax(0,34fr) minmax(0,56fr);gap:7vw;align-items:start}
+.f-shot{position:relative;width:calc(100% + 6vw);margin-left:-6vw;height:720px;transform:rotate(-3deg)}
+.f-shot img{object-position:50% 60%}
+.f-credit{margin-top:28px}
+.faq{margin-top:40px;position:relative;z-index:3}
+.faq details{background:var(--white);margin-bottom:12px}
+.faq summary{list-style:none;cursor:pointer;padding:22px 64px 22px 26px;font-weight:700;font-size:20px;position:relative;line-height:1.5}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";position:absolute;right:24px;top:50%;width:26px;height:26px;margin-top:-13px;border-radius:50%;background:var(--blue);
+  -webkit-mask:linear-gradient(#000 0 0) center/12px 2px no-repeat,linear-gradient(#000 0 0) center/2px 12px no-repeat;mask:none}
+.faq summary::before{content:"";position:absolute;right:24px;top:50%;width:26px;height:26px;margin-top:-13px;border-radius:50%;background:var(--blue)}
+.faq summary::after{background:var(--paper);width:12px;height:2px;right:31px;margin-top:-1px;border-radius:0;-webkit-mask:none;transition:transform .2s var(--ease)}
+.faq summary i{position:absolute;right:36px;top:50%;width:2px;height:12px;margin-top:-6px;background:var(--paper);z-index:1;transition:transform .2s var(--ease)}
+.faq details[open] summary i{transform:scaleY(0)}
+.faq .a{padding:0 26px 24px;font-size:17px}
+@media (hover:hover) and (pointer:fine){.faq summary:hover{color:var(--blue)}}
+
+/* ダウンロード */
+.dl{padding:120px 6vw 140px;min-height:1010px}
+.dl-name{position:absolute;left:2vw;bottom:-0.16em;font-size:min(21vw,300px);font-weight:700;line-height:1;letter-spacing:-.05em;color:var(--paper);opacity:1;z-index:1;white-space:nowrap}
+.dl h2{color:var(--white)}
+.dl .lead{color:var(--white)}
+.stores{position:relative;z-index:5;display:flex;gap:14px;flex-wrap:wrap;margin-top:36px}
+.btn.on-red{background:var(--white);color:var(--ink)}
+.dl .req{position:relative;z-index:5;font-size:16px;margin-top:16px}
+.end-wrap{position:absolute;right:7vw;top:100px;width:340px;z-index:4;transform:rotate(5deg)}
+.end-rcpt{position:relative;padding:40px 30px 46px}
+.end-rcpt .settle .amt{color:var(--blue)}
+.end-wrap .mag{left:-30px;top:-22px}
+.d-shot{right:calc(7vw + 390px);top:250px;width:21vw;height:330px;transform:rotate(-6deg);z-index:3}
+.d-credit{position:absolute;right:calc(7vw + 390px);top:610px;width:21vw;z-index:4;color:var(--white)}
+
+/* フッター */
+footer{background:var(--ink);color:var(--paper);padding:64px 6vw 48px;font-size:16px}
+.f-grid{display:grid;grid-template-columns:1fr 2fr;gap:6vw}
+footer .logo{font-size:28px}
+footer ul{list-style:none;display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:6px}
+footer a{text-decoration:none}
+@media (hover:hover) and (pointer:fine){footer a:hover{text-decoration:underline}}
+.credits{margin-top:40px;font-size:14px;line-height:1.7}
+.credits h3{font-size:15px;margin-bottom:6px;letter-spacing:0}
+.credits li{display:block}
+.fine{margin-top:28px;font-size:14px}
+
+/* ---------- スマホ ---------- */
+@media (max-width:760px){
+  body{font-size:16px}
+  .top{padding:16px}
+  .top .logo{visibility:hidden}
+  .top nav li:not(:last-child){display:none}
+  .hero{height:auto;min-height:100svh;padding-bottom:40px}
+  .hero h1{position:relative;left:auto;top:auto;padding:74px 0 0 8px;font-size:25.5vw}
+  .tate{display:none}
+  .h-shot{left:4vw;top:236px;width:42vw;height:290px}
+  .h-credit{left:4vw;top:548px;width:40vw}
+  .h-rcpt{left:45vw;top:220px;width:52vw;min-height:0;padding:28px 14px 34px;transform:rotate(4deg)}
+  .h-rcpt li:nth-child(n+4):not(.etc){display:none}
+  br.pc{display:none}
+  .rcpt li{grid-template-columns:1fr 1.2em 3.6em;font-size:13px}
+  .rcpt li .d{display:none}
+  .rcpt .r-head{font-size:15px}
+  .rcpt .r-head span{display:none}
+  .rcpt .sum{font-size:13px}
+  .rcpt .sum.more{display:none}
+  .rcpt .settle{font-size:15px}
+  .rcpt .settle .amt{font-size:40px}
+  .rcpt .settle .amt small{font-size:16px}
+  .h-rcpt{top:206px}
+  .h-mag1{left:auto;right:6vw;top:182px;width:58px;height:58px;font-size:26px}
+  .h-mag2{left:2vw;top:214px;width:58px;height:58px;font-size:26px}
+  .h-act{position:relative;left:auto;bottom:auto;max-width:none;margin:520px 16px 0}
+  .h-act p{font-size:20px}
+  .sec{padding:88px 16px}
+  .split-grid,.faq-wrap,.plans{grid-template-columns:minmax(0,1fr);gap:48px}
+  .big-rcpt{padding:34px 16px 40px;transform:none}
+  .rows li{grid-template-columns:3.2em minmax(0,1fr) auto auto;gap:6px;font-size:15px}
+  .rows li .yen{grid-column:2;grid-row:2;text-align:left}
+  .rows li .tg{grid-row:span 2}
+  .result{position:relative;top:auto}
+  .s-shot{width:calc(100% + 16px);height:300px}
+  .res-card{padding:30px 22px}
+  .seg button{padding:8px 10px}
+  .res-card .line{font-size:24px}
+  .how{grid-template-columns:minmax(0,1fr);gap:64px}
+  .how li:nth-child(n){margin-top:0}
+  .phone{width:250px}
+  .how li:first-child .w-shot{margin:56px 0 0 -16px;width:80vw;height:300px}
+  .plan{padding:40px 22px 44px}
+  .plan.free{margin-top:0;transform:rotate(-1.5deg)}
+  .plan.plus{transform:rotate(1.5deg)}
+  .plan-wrap .mag{right:-6px}
+  .p-shot{position:relative;right:auto;top:auto;width:84vw;height:300px;margin:64px 0 0 auto}
+  .p-credit{position:relative;right:auto;top:auto;width:auto;margin-top:28px}
+  .f-shot{width:calc(100% + 16px);margin-left:-16px;height:340px}
+  .faq summary{font-size:17px;padding:18px 58px 18px 18px}
+  .faq .a{padding:0 18px 20px;font-size:16px}
+  .dl{min-height:0;padding-bottom:200px}
+  .end-wrap{position:relative;right:auto;top:auto;width:auto;margin:56px 10px 0;transform:rotate(3deg)}
+  .d-shot{position:relative;right:auto;top:auto;width:70vw;height:260px;margin:48px 0 0}
+  .d-credit{position:relative;right:auto;top:auto;width:auto;margin-top:28px}
+  .dl-name{font-size:23vw}
+  .f-grid{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="logo" href="#top">おあいこ</a>
+  <nav aria-label="ページの中">
+    <ul>
+      <li><a href="#split">できること</a></li>
+      <li><a href="#how">使い方</a></li>
+      <li><a href="#price">料金</a></li>
+      <li><a href="#faq">よくある質問</a></li>
+      <li><a class="btn on-blue" href="#download">ダウンロード</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="top">
+<section class="hero" aria-label="おあいこ">
+  <h1>おあいこ<span class="what">ふたり暮らしの家計簿アプリ</span></h1>
+  <p class="tate" aria-hidden="true">ふたり暮らしの家計簿アプリ</p>
+
+  <figure class="shot h-shot zig">
+    <img src="photos/Ozeki-Togoshi-Ginza.jpg" alt="商店街のスーパーの店先で、野菜や果物を選ぶ買い物客" width="960" height="720" fetchpriority="high">
+  </figure>
+  <figure class="h-credit credit">
+    <figcaption>戸越銀座のスーパーの店先。写真：Suikotei／Wikimedia Commons／CC BY-SA 4.0</figcaption>
+  </figure>
+
+  <figure class="rcpt h-rcpt zig-top" data-ui aria-label="11月のふたりのレシートと、月末の精算">
+    <div class="r-head">11月のふたり <span>レシート10枚</span></div>
+    <ul>
+      <li><span class="d">11/01</span><span class="st">まるや 西荻窪店</span><span class="who m">み</span><span class="yen">2,846</span></li>
+      <li><span class="d">11/03</span><span class="st">ドラッグこいけ</span><span class="who y">ゆ</span><span class="yen">1,298</span></li>
+      <li><span class="d">11/08</span><span class="st">まるや 西荻窪店</span><span class="who y">ゆ</span><span class="yen">4,105</span></li>
+      <li><span class="d">11/09</span><span class="st">ホームセンター大島</span><span class="who m">み</span><span class="yen">1,980</span></li>
+      <li><span class="d">11/12</span><span class="st">八百屋さかい</span><span class="who m">み</span><span class="yen">1,132</span></li>
+      <li class="etc"><span class="d"></span><span class="st">ほか3枚</span><span class="who"></span><span class="yen">13,023</span></li>
+    </ul>
+    <div class="cut"></div>
+    <div class="sum"><span>ふたりの分</span><b>24,384</b></div>
+    <div class="sum more"><span>みお 15,604／ゆうき 8,780</span><b>半分ずつ</b></div>
+    <div class="cut"></div>
+    <div class="settle">11月30日の精算<br>ゆうき → みお<span class="amt">3,412<small>円</small></span></div>
+  </figure>
+  <span class="mag mi h-mag1" aria-hidden="true">み</span>
+  <span class="mag yu h-mag2" aria-hidden="true">ゆ</span>
+
+  <div class="h-act">
+    <p>レシートを撮るだけの、<br>ふたりの家計簿。</p>
+    <a class="btn on-blue" href="#download">無料でダウンロード <small>iPhone・Android</small></a>
+  </div>
+</section>
+
+<section class="sec blue" id="split" aria-labelledby="split-h">
+  <h2 id="split-h">払った人ごとに分けて、<br class="pc">月末に1行で出します</h2>
+  <p class="lead">レシートを撮ったスマホの持ち主が「払った人」になります。ふたりの分は決めた割合で分け、自分だけの買い物は外します。</p>
+
+  <div class="split-grid">
+    <div class="big-rcpt zig" data-ui>
+      <div class="rcpt-in">
+        <div class="r-head" style="font-weight:700;font-size:22px;display:flex;justify-content:space-between;align-items:baseline">11月のレシート <span style="font-size:15px;font-weight:400">2026年11月1日〜30日</span></div>
+        <div class="ratio">分け方
+          <span class="seg" role="group" aria-label="ふたりの分の分け方">
+            <button type="button" data-r="0.5" aria-pressed="true">半分ずつ</button>
+            <button type="button" data-r="0.6" aria-pressed="false">みお6：ゆうき4</button>
+            <button type="button" data-r="0.4" aria-pressed="false">みお4：ゆうき6</button>
+          </span>
+        </div>
+        <ul class="rows" id="rows"></ul>
+        <div class="cut" style="height:0;border-top:2px dashed #b9bcc6"></div>
+        <div class="sum" style="display:flex;justify-content:space-between;font-size:16px"><span>ふたりの分</span><b id="shared" style="font-family:var(--num)">24,384円</b></div>
+        <div class="sum" style="display:flex;justify-content:space-between;font-size:16px"><span>自分の分（精算に入れない）</span><b id="selfsum" style="font-family:var(--num)">2,180円</b></div>
+      </div>
+    </div>
+
+    <div class="result">
+      <figure class="shot s-shot zig">
+        <img src="photos/Cashier-counter-at-SM-Supermarket-2024-01-27-.jpg" alt="スーパーのレジで会計をする客と店員" width="1280" height="975" loading="lazy">
+      </figure>
+      <p class="s-credit credit">スーパーのレジ（フィリピン）。レシートはここで受け取ります。写真：Wide Awake!／Wikimedia Commons／CC BY 4.0</p>
+      <div class="res-wrap"><span class="mag mi" aria-hidden="true">み</span>
+      <div class="res-card zig" data-ui aria-live="polite">
+        <div class="when">11月30日（月）の精算</div>
+        <div class="line" id="line"><span class="y">ゆうき</span> → <span class="m">みお</span></div>
+        <div class="amt" id="amt">3,412<small>円</small></div>
+        <div class="why" id="why">みおが 15,604円、ゆうきが 8,780円払いました。ふたりの分 24,384円を半分ずつにすると、ひとり 12,192円です。</div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec paper" id="how" aria-labelledby="how-h">
+  <h2 id="how-h">レシートを撮ってから、<br>月末に渡すまで</h2>
+  <ol class="how">
+    <li>
+      <h3 class="verb">撮る</h3>
+      <div class="phone" data-ui aria-hidden="true"><div class="screen scr-cam">
+        <div class="hint">レシートを枠に入れてください</div>
+        <div class="frame"></div>
+        <div class="paperr"><b>まるや 西荻窪店</b>2026年11月22日 18:42<br>鶏もも肉 ほか12点<span class="tot">合計 2,964円</span></div>
+        <div class="shutter"></div>
+      </div></div>
+      <p>店名・日付・合計を読み取ります。撮った人が払った人として残るので、名前を選ぶ手間はありません。</p>
+      <figure class="shot w-shot zig">
+        <img src="photos/Woman-using-smartphone-while-working-at-home-with-laptop-and.jpg" alt="家の机でスマートフォンを見る人" width="1280" height="854" loading="lazy">
+      </figure>
+      <p class="w-credit credit">家の机でスマートフォンを見る人。写真：Shixart1985／Wikimedia Commons／CC BY 2.0</p>
+    </li>
+    <li>
+      <h3 class="verb">分ける</h3>
+      <div class="phone" data-ui aria-hidden="true"><div class="screen scr-list">
+        <div class="t">11月のレシート</div>
+        <div class="it"><i class="m">み</i><span>まるや 西荻窪店</span><b>2,964</b></div>
+        <div class="it"><i class="y">ゆ</i><span>本屋 ことば堂</span><b>1,540</b></div>
+        <div class="it self"><i class="y">ゆ</i><span>自分の分</span><b>1,540</b></div>
+        <div class="it"><i class="m">み</i><span>こもれび家具</span><b>6,682</b></div>
+        <div class="it"><i class="y">ゆ</i><span>まるや 西荻窪店</span><b>3,377</b></div>
+        <div class="press">長押しで「自分の分」に。相手には「自分の分 1枚」とだけ見えます。</div>
+      </div></div>
+      <p>ふたりの分は決めた割合で分けます。自分だけの買い物は長押しで外します。中身は相手に見えません。</p>
+    </li>
+    <li>
+      <h3 class="verb">渡す</h3>
+      <div class="phone" data-ui aria-hidden="true"><div class="screen scr-pay">
+        <div class="t">11月30日（月）の精算</div>
+        <div class="one"><div class="l">ゆうき → みお</div><div class="a">3,412円</div></div>
+        <span class="done">渡した</span>
+        <div class="note">「渡した」を押すと、ふたりとも 0円 に戻ります。</div>
+      </div></div>
+      <p>締め日に、どっちがいくら渡すかを1行で知らせます。締め日は月末のほか、給料日（25日など）にも変えられます。</p>
+    </li>
+  </ol>
+</section>
+
+<section class="sec blue" id="price" aria-labelledby="price-h">
+  <h2 id="price-h">料金</h2>
+  <p class="lead">ふたりで1つの契約です。どちらかが払えば、ふたりとも同じ機能を使えます。</p>
+  <div class="plans">
+    <div class="plan free zig">
+      <h3>無料</h3>
+      <p class="for">まず1か月、試すなら</p>
+      <dl>
+        <div><dt>撮れるレシート</dt><dd>ふたりで月30枚</dd></div>
+        <div><dt>分け方</dt><dd>半分ずつ</dd></div>
+        <div><dt>締め日</dt><dd>月末だけ</dd></div>
+        <div><dt>見られる記録</dt><dd>直近12か月</dd></div>
+        <div><dt>家賃・光熱費の登録</dt><dd>2件まで</dd></div>
+      </dl>
+      <div class="cut" style="height:0;border-top:2px dashed #b9bcc6;margin:18px 0"></div>
+      <div class="total"><span>合計</span><b>0<small>円</small></b></div>
+    </div>
+    <div class="plan-wrap"><span class="mag mi" aria-hidden="true">み</span>
+    <div class="plan plus zig">
+      <h3>おあいこプラス</h3>
+      <p class="for">毎月の買い物が多いふたりに</p>
+      <dl>
+        <div><dt>撮れるレシート</dt><dd>無制限</dd></div>
+        <div><dt>分け方</dt><dd>自由に（6：4、7：3 など）</dd></div>
+        <div><dt>締め日</dt><dd>好きな日（給料日など）</dd></div>
+        <div><dt>見られる記録</dt><dd>ずっと</dd></div>
+        <div><dt>家賃・光熱費の登録</dt><dd>何件でも</dd></div>
+        <div><dt>品目ごとの仕分け</dt><dd>あり</dd></div>
+        <div><dt>CSV の書き出し</dt><dd>あり</dd></div>
+      </dl>
+      <div class="cut" style="height:0;border-top:2px dashed #b9bcc6;margin:18px 0"></div>
+      <div class="total"><span>月額</span><b>380<small>円</small></b></div>
+      <p class="sub">年払いなら 3,800円（2か月分お得）。税込。<br>最初の1か月は無料です。</p>
+    </div></div>
+  </div>
+  <p class="plans-note">プラスは、アプリの中の「設定 → プラン」からいつでも始められ、いつでも解約できます。解約すると次の更新日から無料プランに戻り、それまでの記録は残ります。</p>
+  <figure class="shot p-shot zig">
+    <img src="photos/Crowds-of-Nishiki-Market-27816395458-.jpg" alt="人でにぎわう市場の通り" width="1280" height="960" loading="lazy">
+  </figure>
+  <p class="p-credit credit">京都・錦市場の人通り。写真：Ajay Suresh／Wikimedia Commons／CC BY 2.0</p>
+</section>
+
+<section class="sec paper" id="faq" aria-labelledby="faq-h">
+  <div class="faq-wrap">
+    <div>
+      <figure class="shot f-shot zig">
+        <img src="photos/Tamachi-Shotengai.jpg" alt="アーケードの商店街を歩く人たち" width="1280" height="960" loading="lazy">
+      </figure>
+      <p class="f-credit credit">アーケードの商店街（Tamachi Shotengai）。写真：御門桜（MIKADO, Sakura）／Wikimedia Commons／CC BY-SA 3.0</p>
+    </div>
+    <div>
+      <h2 id="faq-h">よくある質問</h2>
+      <div class="faq">
+        <details open><summary>ふたりとも、アプリを入れる必要がありますか<i></i></summary>
+          <div class="a">はい。それぞれのスマホに入れ、片方が出す6桁の招待コードを、もう片方が入れるとつながります。撮った人が払った人になるので、ひとりだけでは分けられません。</div></details>
+        <details><summary>カードや電子マネーで払ったときは<i></i></summary>
+          <div class="a">レシートがあれば、払い方に関係なく同じように撮れます。レシートの出ない支払い（家賃・光熱費・ネットの買い物）は、金額と払った人を手で入れます。</div></details>
+        <details><summary>レシートがうまく読み取れなかったら<i></i></summary>
+          <div class="a">撮ったあとの画面で、店名・日付・合計を直せます。合計だけ合っていれば、精算には困りません。</div></details>
+        <details><summary>相手に見られたくない買い物は<i></i></summary>
+          <div class="a">長押しで「自分の分」にすると、相手の画面には「自分の分 1枚」とだけ出ます。店名・金額・写真は、撮った人にしか見えません。</div></details>
+        <details><summary>お金の送金まで、アプリがしてくれますか<i></i></summary>
+          <div class="a">いいえ。おあいこは「どっちがいくら渡すか」を出すところまでです。渡し方は、現金でも、銀行や送金アプリでもかまいません。渡したら「渡した」を押してください。</div></details>
+        <details><summary>途中で割合を変えたら、前の月はどうなりますか<i></i></summary>
+          <div class="a">変えた月から新しい割合になり、締めた月の精算は変わりません（割合を変えられるのはおあいこプラスです）。</div></details>
+        <details><summary>ふたりの片方が機種を変えたら<i></i></summary>
+          <div class="a">新しいスマホで同じアカウントにログインすれば、記録はそのまま引き継がれます。</div></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec red dl" id="download" aria-labelledby="dl-h">
+  <h2 id="dl-h">ダウンロード</h2>
+  <p class="lead">アプリは無料です。ふたりのスマホに入れて、招待コードでつないでください。</p>
+  <div class="stores">
+    <a class="btn on-red" href="https://apps.apple.com/">App Store で入手</a>
+    <a class="btn on-red" href="https://play.google.com/store/apps">Google Play で入手</a>
+  </div>
+  <p class="req">iPhone は iOS 16 以降、Android は 10 以降で使えます。</p>
+
+  <div class="end-wrap"><span class="mag yu" aria-hidden="true">ゆ</span>
+  <figure class="rcpt end-rcpt zig" data-ui aria-label="渡したあとの精算">
+    <div class="r-head">11月30日（月）</div>
+    <div class="sum"><span>ゆうき → みお</span><b>3,412</b></div>
+    <div class="sum"><span>渡しました</span><b>18:05</b></div>
+    <div class="cut"></div>
+    <div class="settle">残り<span class="amt">0<small>円</small></span></div>
+  </figure></div>
+  <figure class="shot d-shot zig">
+    <img src="photos/Kai-Wei-Supermarket-shoppers-December-2018.jpg" alt="市場の売り場で品物を選ぶ買い物客" width="1280" height="853" loading="lazy">
+  </figure>
+  <p class="d-credit credit">売り場で品物を選ぶ人たち（Kai Wei Supermarket、2018年12月）。写真：Jason Zhang／Wikimedia Commons／CC BY-SA 3.0</p>
+  <div class="dl-name" aria-hidden="true">おあいこ</div>
+</section>
+</main>
+
+<footer>
+  <div class="f-grid">
+    <div><a class="logo" href="#top">おあいこ</a><p style="margin-top:8px">ふたり暮らしの家計簿アプリ</p></div>
+    <div>
+      <ul>
+        <li><a href="terms.html">利用規約</a></li>
+        <li><a href="privacy.html">プライバシーポリシー</a></li>
+        <li><a href="tokushoho.html">特定商取引法に基づく表記</a></li>
+        <li><a href="help.html">ヘルプ</a></li>
+        <li><a href="contact.html">お問い合わせ</a></li>
+        <li><a href="company.html">運営会社</a></li>
+      </ul>
+      <div class="credits">
+        <h3>写真の出典（どれも Wikimedia Commons。アプリ・店とは関係ありません）</h3>
+        <ul>
+          <li>Ozeki Togoshi-Ginza — Suikotei — CC BY-SA 4.0</li>
+          <li>Cashier counter at SM Supermarket (2024-01-27) — Wide Awake! — CC BY 4.0</li>
+          <li>Woman using smartphone while working at home with laptop and breakfast on the desk — Shixart1985 — CC BY 2.0</li>
+          <li>Crowds of Nishiki Market — Ajay Suresh — CC BY 2.0</li>
+          <li>Tamachi Shotengai — 御門桜（MIKADO, Sakura）— CC BY-SA 3.0</li>
+          <li>Kai Wei Supermarket shoppers, December 2018 — Jason Zhang — CC BY-SA 3.0</li>
+        </ul>
+      </div>
+      <p class="fine">このページは site-skills の作例です。アプリ「おあいこ」、店名、人名、料金はすべて架空です。</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  // 11月のレシート（作例の値）。who: m=みお y=ゆうき、kind: both=ふたりの分 self=自分の分
+  const R = [
+    ['11/01','まるや 西荻窪店',2846,'m','both'],
+    ['11/03','ドラッグこいけ',1298,'y','both'],
+    ['11/04','パン ひなた',640,'m','self'],
+    ['11/08','まるや 西荻窪店',4105,'y','both'],
+    ['11/09','ホームセンター大島',1980,'m','both'],
+    ['11/12','八百屋さかい',1132,'m','both'],
+    ['11/15','まるや 西荻窪店',3377,'y','both'],
+    ['11/18','本屋 ことば堂',1540,'y','self'],
+    ['11/20','こもれび家具',6682,'m','both'],
+    ['11/22','まるや 西荻窪店',2964,'m','both']
+  ].map(([d, st, yen, who, kind]) => ({ d, st, yen, who, kind }));
+  let ratio = 0.5; // みおの割合
+  const yen = n => n.toLocaleString('ja-JP');
+  const rows = document.getElementById('rows');
+  R.forEach((r, i) => {
+    const li = document.createElement('li');
+    li.innerHTML = `<span class="d">${r.d}</span><span class="st">${r.st}</span>` +
+      `<button type="button" class="tg payer" data-i="${i}"></button>` +
+      `<button type="button" class="tg kind" data-i="${i}"></button>` +
+      `<span class="yen">${yen(r.yen)}</span>`;
+    rows.appendChild(li);
+  });
+  const draw = () => {
+    rows.querySelectorAll('li').forEach((li, i) => {
+      const r = R[i];
+      const p = li.querySelector('.payer'), k = li.querySelector('.kind');
+      p.dataset.v = r.who; p.textContent = r.who === 'm' ? 'み' : 'ゆ';
+      p.setAttribute('aria-label', `${r.st} ${r.yen}円 払った人：${r.who === 'm' ? 'みお' : 'ゆうき'}（押すと入れ替え）`);
+      k.dataset.v = r.kind; k.textContent = r.kind === 'both' ? 'ふたり' : '自分';
+      k.setAttribute('aria-label', `${r.st}：${r.kind === 'both' ? 'ふたりの分' : '自分の分'}（押すと入れ替え）`);
+      li.classList.toggle('mine', r.kind === 'self');
+    });
+    const both = R.filter(r => r.kind === 'both');
+    const shared = both.reduce((s, r) => s + r.yen, 0);
+    const self = R.filter(r => r.kind === 'self').reduce((s, r) => s + r.yen, 0);
+    const paidM = both.filter(r => r.who === 'm').reduce((s, r) => s + r.yen, 0);
+    const paidY = shared - paidM;
+    const shareM = Math.round(shared * ratio), shareY = shared - shareM;
+    const diff = paidM - shareM; // 正：ゆうきがみおに渡す
+    document.getElementById('shared').textContent = yen(shared) + '円';
+    document.getElementById('selfsum').textContent = yen(self) + '円';
+    const line = document.getElementById('line'), amt = document.getElementById('amt');
+    if (diff === 0) line.innerHTML = 'ふたりとも 0円';
+    else line.innerHTML = diff > 0 ? '<span class="y">ゆうき</span> → <span class="m">みお</span>' : '<span class="m">みお</span> → <span class="y">ゆうき</span>';
+    amt.innerHTML = yen(Math.abs(diff)) + '<small>円</small>';
+    const how = ratio === 0.5 ? `半分ずつにすると、ひとり ${yen(shareM)}円です。` : `みお ${Math.round(ratio * 10)}：ゆうき ${10 - Math.round(ratio * 10)} にすると、みお ${yen(shareM)}円・ゆうき ${yen(shareY)}円です。`;
+    document.getElementById('why').textContent = `みおが ${yen(paidM)}円、ゆうきが ${yen(paidY)}円払いました。ふたりの分 ${yen(shared)}円を${how}`;
+  };
+  rows.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    const r = R[+b.dataset.i];
+    if (b.classList.contains('payer')) r.who = r.who === 'm' ? 'y' : 'm';
+    else r.kind = r.kind === 'both' ? 'self' : 'both';
+    draw();
+  });
+  document.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => {
+    ratio = +b.dataset.r;
+    document.querySelectorAll('.seg button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    draw();
+  }));
+  draw();
+})();
+</script>
+</body>
+</html>
