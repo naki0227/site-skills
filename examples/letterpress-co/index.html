@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>汐見印刷｜名刺・冊子・パッケージの印刷（オフセット・活版）</title>
+<meta name="description" content="汐見町の印刷会社（架空）。オフセット印刷と活版印刷で、名刺・冊子・パッケージを刷ります。名刺は100枚から。見積もりの相談と工場見学を受け付けています。">
+<!--
+  site-skills の使用例（架空の会社）。一発テスト第2回。
+  主のスキル：corporate-quality-bar（中小・地域企業 sme-local）。副：lp-quality-bar（タイポグラフィの制作会社 type-studio・素材の会社 material-sample は線引きだけ）。
+  題材の特色：創業70年、社員18人。同じ工場の1階に、オフセットの機械と活版の機械と11万8千本の活字がある。1956年から刷り出しを1枚ずつ綴じた「刷り見本帳」が412冊。
+  考えの一文（画面に出さない）：このページでは、刷り出しの紙の四隅のトンボと端のカラーバーが、どの章の「紙」にもなり、活字の駒とインキ盤の形が写真の窓になる。
+  手本の測定（scripts/sample.js、MUUUUU.ORG「本・出版・印刷」から8件、work/oneshot2/letterpress-co/sample.jsonl）：
+    地は白 #fff が5件（fujiwara-i #f9f9f9）。全幅の罫は8件中7件で0本。
+    見出しは明朝 Noto Serif JP 500（isaka.co.jp 68px・縦書き）、本文は Noto Sans JP（taiheisha 16px・行間1.88、fujiwara-i 16px・1.8・字間 .06em）→ 題は Noto Serif JP 500、本文は Noto Sans JP 400 16px・1.85。
+    差し色の実例：isaka.co.jp のロゴと問い合わせのボタンが朱赤。印刷の会社の赤には根がある。
+  3色（aesthetic.md）：地 #ffffff（上質紙の白）／主 #c8102e（金赤のインキ。校正の赤字の色でもある）／差し色 #0a7cb3（4色機のシアンの版。カラーバーと日付）。文字は墨 #1c1b1a。
+    ほかの作例の主の色（青・琥珀・織部の緑・焦げ茶）と色相が重ならない。
+  分け方：白銀比（1:1.414、紙の比）を章の大きな分け方に通す。
+  最初の画面の形（taste.md）：刷り出しの1枚。四隅のトンボと下端のカラーバーの間に、縦書きの大きな「汐見印刷」、活字の駒の形の窓（活版で組む人の写真）、インキ盤の丸い窓（活版印刷機の写真）を重ねる。
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"株式会社 汐見印刷（架空）","foundingDate":"1956-04","numberOfEmployees":18,"description":"オフセット印刷と活版印刷の印刷会社（site-skills の作例。架空の会社です）"}
+</script>
+<style>
+:root{
+  --paper:#ffffff;   /* 地：上質紙の白 */
+  --red:#c8102e;     /* 主：金赤のインキ・校正の赤字 */
+  --cyan:#0a7cb3;    /* 差し色：シアンの版（白地で 4.62:1） */
+  --ink:#1c1b1a;     /* 墨 */
+  --ink2:#45423f;    /* 補足の文字（白地で 10:1） */
+  --red-deep:#a50d25;
+  --serif:"Noto Serif JP",serif;
+  --sans:"Noto Sans JP",sans-serif;
+  --gut:clamp(20px,5vw,72px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.85 var(--sans);letter-spacing:.04em;word-break:auto-phrase;overflow-x:hidden}
+h1,h2,h3,p,li,dd,dt,td,th{text-wrap:pretty}
+a{color:inherit}
+img{display:block;max-width:100%}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+
+/* ヘッダー：隠さない薄い帯（corporate rules 4） */
+.hd{position:fixed;inset:0 0 auto 0;z-index:50;height:64px;display:flex;align-items:center;gap:28px;padding:0 var(--gut);background:rgba(255,255,255,.94)}
+.hd .logo{font:700 20px/1 var(--serif);letter-spacing:.12em;text-decoration:none;color:var(--ink)}
+.hd nav{margin-left:auto}
+.hd nav ul{display:flex;gap:24px;list-style:none}
+.hd nav a{text-decoration:none;font-size:15px;font-weight:500}
+.hd nav a:hover{color:var(--red)}
+.hd .tel{font:700 16px/1 var(--sans);text-decoration:none;color:var(--red)}
+.hd .cta{background:var(--red);color:#fff;text-decoration:none;font-weight:700;font-size:15px;padding:12px 18px;line-height:1}
+.hd .cta:hover{background:var(--red-deep)}
+.menu-btn{display:none}
+
+/* トンボ（どの章の紙にも付ける） */
+.sheet{position:relative}
+.sheet>.tombo{position:absolute;width:44px;height:44px;pointer-events:none;color:var(--ink)}
+.sheet>.tombo.tl{top:18px;left:18px}.sheet>.tombo.tr{top:18px;right:18px;transform:scaleX(-1)}
+.sheet>.tombo.bl{bottom:18px;left:18px;transform:scaleY(-1)}.sheet>.tombo.br{bottom:18px;right:18px;transform:scale(-1,-1)}
+.on-red>.tombo{color:#fff}
+
+/* 写真の窓：活字の駒（左の辺に2つの溝） と インキ盤（丸） */
+.koma{position:relative;overflow:hidden;
+  -webkit-mask:radial-gradient(circle 26px at 0 64%,#0000 97%,#000 100%),radial-gradient(circle 26px at 0 76%,#0000 97%,#000 100%);
+  -webkit-mask-composite:source-in;
+  mask:radial-gradient(circle 26px at 0 64%,#0000 97%,#000 100%),radial-gradient(circle 26px at 0 76%,#0000 97%,#000 100%);
+  mask-composite:intersect}
+.koma img,.disc img{width:100%;height:100%;object-fit:cover}
+.disc{border-radius:50%;overflow:hidden}
+.credit{font-size:14px;line-height:1.55;color:var(--ink2);letter-spacing:.02em}
+.credit a{color:inherit}
+.on-red .credit{color:#fff}
+
+/* ===== 最初の画面：刷り出しの1枚 ===== */
+.hero{min-height:max(760px,100svh);padding:96px var(--gut) 128px;display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,.72fr);gap:0 clamp(24px,3vw,56px);align-items:center;overflow:hidden}
+.hero h1{writing-mode:vertical-rl;font:500 clamp(104px,11.2vw,172px)/1 var(--serif);letter-spacing:.06em;color:var(--red);align-self:start;margin-top:12px;white-space:nowrap}
+.hero h1 small{display:block;font:500 18px/1.6 var(--serif);letter-spacing:.3em;color:var(--red);margin-right:.4em;margin-top:.4em}
+.hero-art{position:relative;height:min(640px,72svh);min-height:540px}
+.hero-art .koma{position:absolute;left:0;top:0;width:min(540px,78%);height:calc(100% - 56px)}
+.hero-art .koma img{object-position:58% 50%}
+.hero-art .face{position:absolute;left:0;top:0;width:min(540px,78%);height:96px;background:var(--red);color:#fff;font:700 74px/96px var(--serif);text-align:center;transform:scaleX(-1);z-index:2}
+.hero-art .disc{position:absolute;right:-8%;bottom:4%;width:min(380px,56%);aspect-ratio:1;border:14px solid var(--paper);z-index:3}
+.hero-art .disc img{object-position:40% 60%}
+.hero-art .credit{position:absolute;left:0;bottom:0;max-width:540px}
+.meishi{position:absolute;left:38%;top:12%;z-index:4;width:300px;aspect-ratio:91/55;background:#fff;color:var(--ink);padding:18px 20px;transform:rotate(-4deg);border:1px solid #e3dfda;display:grid;grid-template-rows:auto auto 1fr;font-family:var(--serif)}
+.meishi .m-co{font-size:13px;letter-spacing:.14em;color:var(--red);font-weight:700}
+.meishi .m-role{font-size:13px;margin-top:8px}
+.meishi .m-name{font-size:26px;letter-spacing:.3em;align-self:center;font-weight:500}
+.meishi .m-ad{font-size:13px;letter-spacing:.04em;font-family:var(--sans)}
+.hero-txt{align-self:center;padding-top:120px}
+.hero>.tombo.tl,.hero>.tombo.tr{top:78px}
+.hero-txt .lead{font:500 clamp(24px,2.1vw,30px)/1.5 var(--serif);letter-spacing:.06em}
+.hero-txt .since{font-size:18px;margin-top:10px;color:var(--ink2)}
+.btn{display:inline-block;background:var(--red);color:#fff;text-decoration:none;font-weight:700;font-size:18px;padding:18px 30px;line-height:1.2;border:0;cursor:pointer;font-family:var(--sans);letter-spacing:.06em}
+.btn:hover{background:var(--red-deep)}
+.btn.on-red{background:#fff;color:var(--red)}
+.btn.on-red:hover{background:#ffe9ec}
+.hero-txt .btn{margin-top:32px}
+.hero-txt .tel-line{margin-top:16px;font-size:16px}
+.hero-txt .tel-line a{font-weight:700;color:var(--red);text-decoration:none}
+.colorbar{position:absolute;left:var(--gut);right:var(--gut);bottom:40px;height:28px;display:flex}
+.colorbar svg{display:block;width:100%;height:100%}
+
+/* ===== 章の共通 ===== */
+.sec,.hero{overflow:clip}
+.sec{padding:clamp(88px,10vw,140px) var(--gut)}
+.sec{--vh:clamp(120px,10vw,168px);position:relative}
+.sec h2{font:500 clamp(40px,5vw,72px)/1.2 var(--serif);letter-spacing:.06em}
+/* 章の題は、最初の画面の名前と同じ縦書きの大きな明朝で、紙の左端に立てる */
+@media (min-width:901px){
+  .sec{padding-left:calc(var(--gut) + var(--vh))}
+  .sec>h2,.sec .vt{position:absolute;left:var(--gut);top:clamp(88px,10vw,140px);writing-mode:vertical-rl;font:500 clamp(72px,7.4vw,112px)/1.05 var(--serif);letter-spacing:.08em;color:var(--red);white-space:nowrap}
+  .on-red>h2,.on-red .vt,.recruit .vt{color:#fff}
+}
+.sec .intro{font-size:18px;max-width:34em;margin-top:20px}
+
+/* 刷れるもの（金赤の面） */
+.works{background:var(--red);color:#fff;overflow:hidden}
+.works-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:clamp(32px,5vw,80px);align-items:start}
+.works ul{list-style:none;margin-top:48px}
+.works li{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.5fr);gap:8px 36px;padding:30px 0;align-items:baseline}
+.works li+li{border-top:1px solid rgba(255,255,255,.55)}
+.works .what{font:500 clamp(48px,6.4vw,96px)/1 var(--serif);letter-spacing:.04em}
+.works dl{display:grid;grid-template-columns:7.5em 1fr;gap:4px 12px;font-size:16px}
+.works dt{font-weight:700}
+.works .price{font:700 22px/1.4 var(--sans)}
+.works-photo{position:relative;margin-right:calc(var(--gut)*-1 - 120px);margin-top:40px}
+.works-photo .disc{width:min(560px,40vw);aspect-ratio:1;border:16px solid #fff}
+.works-photo .credit{margin-top:14px;max-width:420px}
+.works .note{margin-top:28px;font-size:16px}
+.works{padding-bottom:96px}
+
+/* 名刺の見積もり（触れる1つ） */
+.est{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.414fr);gap:clamp(32px,5vw,88px);align-items:start}
+.est-side .koma{width:100%;max-width:460px;aspect-ratio:3/4;margin-top:40px}
+.est-side .credit{margin-top:12px;max-width:440px}
+.picker fieldset{border:0;margin-bottom:28px}
+.picker legend{font:700 18px/1.4 var(--sans);margin-bottom:12px}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg label{position:relative}
+.seg input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.seg span{display:block;min-width:76px;text-align:center;padding:12px 16px;border:2px solid var(--ink);font-weight:700;font-size:17px;line-height:1.2;cursor:pointer}
+.seg input:checked+span{background:var(--ink);color:#fff}
+.seg input:focus-visible+span{outline:3px solid var(--cyan);outline-offset:3px}
+.ticket{margin-top:12px;background:#fff;border:2px solid var(--red);color:var(--ink)}
+.ticket-hd{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;background:var(--red);color:#fff;padding:12px 20px;font-weight:700;font-size:17px}
+.ticket table{width:100%;border-collapse:collapse;font-size:16px}
+.ticket th,.ticket td{padding:14px 20px;text-align:left;vertical-align:top;border-top:1px solid #e6c9ce}
+.ticket thead th{border-top:0;font-size:17px}
+.ticket tbody th{font-weight:500;width:8.5em;color:var(--ink2)}
+.ticket td.sum{font:700 26px/1.3 var(--sans);color:var(--ink)}
+.ticket .rec{color:var(--red);font-weight:700;white-space:nowrap}
+.ticket .na{color:var(--ink2)}
+.ticket-ft{padding:14px 20px 18px;font-size:15px;border-top:1px solid #e6c9ce;color:var(--ink2)}
+
+/* 設備 */
+.equip{background:#fff}
+.equip>.intro{margin-bottom:180px}
+.equip-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.414fr);gap:clamp(32px,5vw,88px);align-items:center;margin-top:72px}
+.equip-row.rev{grid-template-columns:minmax(0,1.414fr) minmax(0,1fr)}
+.equip-row.rev .equip-photo{order:2}
+.equip h3{font:500 clamp(56px,7vw,112px)/1 var(--serif);color:var(--red);letter-spacing:.04em}
+.equip h3 .en{display:block;font:500 18px/1.6 var(--sans);color:var(--ink);letter-spacing:.06em;margin-top:14px}
+.equip table{width:100%;border-collapse:collapse;margin-top:28px;font-size:16px}
+.equip th,.equip td{text-align:left;padding:12px 12px 12px 0;border-bottom:1px solid #d9d6d2;vertical-align:top}
+.equip thead th{font-size:15px;color:var(--ink2);font-weight:500}
+.equip td.y{font-family:var(--serif);font-weight:700;white-space:nowrap;color:var(--cyan)}
+.equip-photo .disc{width:min(560px,120%);aspect-ratio:1;margin-left:calc((var(--gut) + var(--vh))*-1 - 20px)}
+.equip-photo .koma{width:min(560px,100%);aspect-ratio:4/5;margin-left:auto;margin-right:calc(var(--gut)*-1)}
+.equip-photo .credit{margin-top:12px;max-width:440px}
+.equip-row.rev .equip-photo .credit{margin-left:auto}
+.equip .kata{margin-top:96px;display:grid;grid-template-columns:minmax(0,1.414fr) minmax(0,1fr);gap:clamp(32px,5vw,88px);align-items:end}
+.equip .kata .koma{width:100%;aspect-ratio:16/10}
+.equip .kata h3{font-size:clamp(44px,5vw,76px)}
+
+/* 仕事の流れ：作業伝票 */
+.flow{background:var(--red);color:#fff}
+.flow-top{display:grid;grid-template-columns:minmax(0,1.414fr) minmax(0,1fr);gap:clamp(32px,5vw,80px);align-items:end}
+.flow-top .koma{width:100%;aspect-ratio:4/3;margin-right:calc(var(--gut)*-1)}
+.slip{margin-top:56px;background:#fff;color:var(--ink);display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
+.slip>div{padding:18px 16px 22px;border-left:1px solid #e6c9ce;min-height:220px;display:flex;flex-direction:column}
+.slip>div:first-child{border-left:0}
+.slip .step{font:700 20px/1.3 var(--serif)}
+.slip .hanko{width:58px;height:58px;border:3px solid var(--red);border-radius:50%;color:var(--red);font:700 15px/52px var(--serif);text-align:center;margin:14px 0;letter-spacing:0}
+.slip .who{font-size:15px;color:var(--ink2);line-height:1.6}
+.slip .day{margin-top:auto;padding-top:12px;font-weight:700;color:var(--cyan);font-size:16px}
+.flow .after{margin-top:28px;font-size:17px;max-width:44em}
+
+/* 会社概要 */
+.company-grid{display:grid;grid-template-columns:minmax(0,1.414fr) minmax(0,1fr);gap:clamp(32px,5vw,88px);align-items:start;margin-top:48px}
+.company table{width:100%;border-collapse:collapse;font-size:16px}
+.company th,.company td{text-align:left;padding:14px 16px 14px 0;border-bottom:1px solid #d9d6d2;vertical-align:top}
+.company th{width:7.5em;font-weight:700}
+.company .asof{font-size:15px;color:var(--ink2);margin-top:12px}
+.company .side .koma{width:100%;aspect-ratio:3/4;margin-right:calc(var(--gut)*-1)}
+.company .side .credit{margin-top:12px}
+.history{margin-top:96px}
+.history h3{font:500 clamp(36px,4vw,56px)/1.2 var(--serif)}
+.history ol{list-style:none;margin-top:28px;columns:2;column-gap:clamp(32px,5vw,88px)}
+.history li{display:grid;grid-template-columns:4.2em 1fr;gap:16px;padding:12px 0;break-inside:avoid;border-bottom:1px solid #d9d6d2}
+.history .yr{font:700 22px/1.4 var(--serif);color:var(--red)}
+
+/* お知らせ */
+.news{min-height:620px}
+.news ul{list-style:none;margin-top:32px}
+.news li{display:grid;grid-template-columns:12em 6em 1fr;gap:16px;padding:20px 0;border-bottom:1px solid #d9d6d2;align-items:baseline}
+.news time{color:var(--cyan);font-weight:700}
+.news .cat{font-size:15px;color:var(--ink2)}
+
+/* 採用 */
+.recruit{background:var(--cyan);color:#fff;overflow:hidden}
+.recruit-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.414fr);gap:clamp(32px,5vw,88px);align-items:center}
+.recruit .disc{width:min(620px,130%);aspect-ratio:1;margin-left:calc((var(--gut) + var(--vh))*-1 - 60px);border:16px solid #fff}
+.recruit .disc img{object-position:30% 50%}
+.recruit .credit{color:#fff;margin-top:12px}
+.recruit h2{font-size:clamp(40px,5vw,72px)}
+.recruit dl{display:grid;grid-template-columns:7em 1fr;gap:10px 16px;margin-top:28px;font-size:17px}
+.recruit dt{font-weight:700}
+.recruit .btn{margin-top:32px;background:#fff;color:var(--ink)}
+.recruit .btn:hover{background:#e8f3fa}
+
+/* お問い合わせ */
+.contact-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.414fr);gap:clamp(32px,5vw,88px);margin-top:48px;align-items:start}
+.desks{list-style:none}
+.desks li{padding:20px 0;border-bottom:1px solid #d9d6d2}
+.desks h3{font:700 20px/1.4 var(--serif)}
+.desks p{margin-top:6px}
+.desks a{font-weight:700;color:var(--red)}
+.no{margin-top:24px;font-size:16px}
+form .row{margin-bottom:22px}
+form label,form .lb{display:block;font-weight:700;margin-bottom:8px}
+form .opt{font-weight:400;color:var(--ink2);font-size:15px;margin-left:.5em}
+form input,form select,form textarea{width:100%;font:400 17px/1.5 var(--sans);padding:12px 14px;border:2px solid var(--ink);background:#fff;color:var(--ink);border-radius:0}
+form textarea{min-height:140px}
+form .help{font-size:15px;color:var(--ink2);margin-top:6px}
+form .err{font-size:15px;color:var(--red);margin-top:6px;font-weight:700}
+form .privacy{font-size:15px;color:var(--ink2);margin:8px 0 20px}
+#sent{margin-top:16px;font-weight:700;color:var(--cyan)}
+
+/* フッター */
+.ft{background:var(--ink);color:#fff;padding:72px var(--gut) 40px}
+.ft-grid{display:grid;grid-template-columns:minmax(0,1.414fr) minmax(0,1fr) minmax(0,1fr);gap:40px}
+.ft .name{font:700 28px/1.3 var(--serif);letter-spacing:.1em}
+.ft ul{list-style:none}
+.ft li{padding:4px 0}
+.ft a{text-decoration:none}
+.ft a:hover{text-decoration:underline}
+.ft .credits{margin-top:56px;font-size:14px;line-height:1.7;color:#cfcac4}
+.ft .credits a{color:#cfcac4}
+.ft .fic{margin-top:16px;font-size:14px;color:#cfcac4}
+
+/* ===== スマホ ===== */
+@media (max-width:900px){
+  .hd{gap:12px;height:58px}
+  .hd nav,.hd .tel{display:none}
+  .hd .cta{margin-left:auto;padding:11px 14px;font-size:14px}
+  .hero{grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto auto;padding:84px 20px 104px;gap:24px 12px;min-height:auto}
+  .hero h1{font-size:clamp(76px,22vw,104px);grid-row:1;margin-top:0}
+  .hero h1 small{font-size:15px}
+  .hero-art{grid-row:1;grid-column:2;height:440px;min-height:0}
+  .hero-art .koma,.hero-art .face{width:88%}
+  .hero-art .face{height:64px;font-size:48px;line-height:64px}
+  .hero-art .disc{width:58%;right:-14%;bottom:-4%;border-width:10px}
+  .hero-art .credit{position:static;margin-top:452px;font-size:13px}
+  .meishi{width:200px;left:auto;right:-4%;top:30%;padding:10px 12px}
+  .meishi .m-name{font-size:18px}
+  .meishi .m-co,.meishi .m-role,.meishi .m-ad{font-size:13px}
+  .meishi .m-ad{display:none}
+  .hero-txt{grid-column:1/-1;padding-bottom:0}
+  .hero-txt .btn{margin-top:22px;width:100%;text-align:center}
+  .colorbar{bottom:32px;height:22px;left:20px;right:20px}
+  .sheet>.tombo{width:30px;height:30px}
+  .sheet>.tombo.tl{top:10px;left:10px}.sheet>.tombo.tr{top:10px;right:10px}.sheet>.tombo.bl{bottom:10px;left:10px}.sheet>.tombo.br{bottom:10px;right:10px}
+  .hd~main .hero>.tombo.tl,.hd~main .hero>.tombo.tr{top:64px}
+  .works-grid,.est,.equip-row,.equip-row.rev,.equip .kata,.flow-top,.company-grid,.recruit-grid,.contact-grid{grid-template-columns:minmax(0,1fr)}
+  .equip-row.rev .equip-photo{order:0}
+  .equip>.intro{margin-bottom:0}
+  .works li{grid-template-columns:1fr}
+  .works-photo{margin:8px calc(var(--gut)*-1) 0 auto;width:86%}
+  .works-photo .disc{width:100%;margin-right:-18%}
+  .est-side .koma{margin-left:-20px;width:78%;margin-top:28px}
+  .equip-photo .disc{margin-left:-60px;width:92%}
+  .equip-photo .koma{width:84%;margin-right:-20px}
+  .slip{grid-template-columns:1fr}
+  .slip>div{min-height:0;border-left:0;border-top:1px solid #e6c9ce;display:grid;grid-template-columns:62px 1fr;gap:4px 14px;align-items:center;padding:14px 16px}
+  .slip>div:first-child{border-top:0}
+  .slip .hanko{grid-row:1/4;margin:0}
+  .slip .day{margin-top:0;padding-top:0}
+  .history ol{columns:1}
+  .news li{grid-template-columns:1fr;gap:2px}
+  .recruit .disc{margin-left:-90px;width:96%}
+  .ft-grid{grid-template-columns:1fr}
+  .ticket table{font-size:15px;table-layout:fixed}
+  .ticket th,.ticket td{padding:10px 8px}
+  .ticket tbody th{width:4.6em}
+  .ticket .rec{white-space:normal}
+  .seg span{min-width:0;padding:11px 12px}
+  .ticket td.sum{font-size:21px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- トンボ（角トンボ）：二重の線と、内側の小さな十字の線 -->
+  <symbol id="tombo" viewBox="0 0 44 44"><path d="M0 14H30M0 20H24M14 0V30M20 0V24" fill="none" stroke="currentColor" stroke-width="1.2"/></symbol>
+</svg>
+
+<header class="hd">
+  <a class="logo" href="#top">汐見印刷</a>
+  <nav aria-label="サイト内">
+    <ul>
+      <li><a href="#works">刷れるもの</a></li>
+      <li><a href="#estimate">見積もり</a></li>
+      <li><a href="#equipment">設備</a></li>
+      <li><a href="#flow">仕事の流れ</a></li>
+      <li><a href="#company">会社概要</a></li>
+      <li><a href="#recruit">採用</a></li>
+    </ul>
+  </nav>
+  <a class="tel" href="tel:0559001956">0559-00-1956</a>
+  <a class="cta" href="#contact">お問い合わせ</a>
+</header>
+
+<main id="top">
+  <!-- 最初の画面：刷り出しの1枚 -->
+  <section class="hero sheet" aria-label="汐見印刷">
+    <svg class="tombo tl" aria-hidden="true"><use href="#tombo"/></svg>
+    <svg class="tombo tr" aria-hidden="true"><use href="#tombo"/></svg>
+    <svg class="tombo bl" aria-hidden="true"><use href="#tombo"/></svg>
+    <svg class="tombo br" aria-hidden="true"><use href="#tombo"/></svg>
+
+    <h1>汐見印刷<small>株式会社（架空）</small></h1>
+
+    <div class="hero-art">
+      <div class="koma"><img src="photos/Letterpress-printing-at-Printopia-2024-by-Tatiana-Harper.jpg" alt="活字の箱を囲み、版を組む人たち" width="1280" height="853" fetchpriority="high"></div>
+      <div class="face" aria-hidden="true">刷</div>
+      <div class="meishi" aria-label="活版で刷った汐見印刷の名刺の見本"><p class="m-co">株式会社 汐見印刷</p><p class="m-role">活版の係</p><p class="m-name">長尾 拓真</p></div>
+      <div class="disc"><img src="photos/photo-138375949.jpg" alt="活版印刷機のローラーと版盤" width="960" height="721"></div>
+      <p class="credit">活版の催しで版を組む人（豪州）Tatiana Harper／CC BY-SA 4.0<br>活版印刷機（台湾）氏子／CC BY-SA 4.0</p>
+    </div>
+
+    <div class="hero-txt">
+      <p class="lead">オフセットと<br>活版の印刷所</p>
+      <p class="since">1956年から、汐見町で。</p>
+      <a class="btn" href="#contact">見積もりを相談する</a>
+    </div>
+
+    <div class="colorbar" aria-hidden="true"><svg viewBox="0 0 120 10" preserveAspectRatio="none"><g shape-rendering="crispEdges">
+        <rect x="0" width="10" height="10" fill="#c8102e"/><rect x="10" width="10" height="10" fill="#d9586d"/><rect x="20" width="10" height="10" fill="#e9a0ab"/><rect x="30" width="10" height="10" fill="#f6d9dd"/>
+        <rect x="40" width="10" height="10" fill="#1c1b1a"/><rect x="50" width="10" height="10" fill="#6b6865"/><rect x="60" width="10" height="10" fill="#bdb9b4"/>
+        <rect x="70" width="10" height="10" fill="#0a7cb3"/><rect x="80" width="10" height="10" fill="#5aa6cf"/><rect x="90" width="10" height="10" fill="#b2d6ea"/>
+        <rect x="100" width="10" height="10" fill="#c8102e"/><rect x="110" width="10" height="10" fill="#1c1b1a"/></g></svg></div>
+  </section>
+
+  <!-- 刷れるもの -->
+  <section class="sec works sheet on-red" id="works" aria-labelledby="works-h">
+    <svg class="tombo tl" aria-hidden="true"><use href="#tombo"/></svg>
+    <svg class="tombo tr" aria-hidden="true"><use href="#tombo"/></svg>
+    <div class="works-grid">
+      <div>
+        <h2 id="works-h" class="vt">刷れるもの</h2>
+        <p class="intro">名刺は100枚、冊子は50部、箱は300個から刷ります。<br>どれも、校了の日から数えた営業日で納めます。</p>
+        <ul>
+          <li>
+            <h3 class="what">名刺</h3>
+            <dl>
+              <dt>刷り方</dt><dd>活版（1〜2色）／オフセット（1〜4色）</dd>
+              <dt>最小</dt><dd>100枚から</dd>
+              <dt>紙</dt><dd>コットン紙 0.6mm、上質紙、色上質ほか28種</dd>
+              <dt>納期</dt><dd>校了から3〜4営業日</dd>
+              <dt>目安</dt><dd class="price">100枚 6,270円から（税込）</dd>
+            </dl>
+          </li>
+          <li>
+            <h3 class="what">冊子</h3>
+            <dl>
+              <dt>刷り方</dt><dd>オフセット（本文1〜4色）、表紙だけ活版も</dd>
+              <dt>最小</dt><dd>中綴じ 50部から／無線綴じ 100部から</dd>
+              <dt>大きさ</dt><dd>A5・B5・A4、8〜128ページ</dd>
+              <dt>納期</dt><dd>校了から7営業日</dd>
+              <dt>目安</dt><dd class="price">A5 中綴じ16ページ 50部 39,600円から（税込）</dd>
+            </dl>
+          </li>
+          <li>
+            <h3 class="what">箱</h3>
+            <dl>
+              <dt>刷り方</dt><dd>オフセット4色＋打ち抜き、活版の箔押し</dd>
+              <dt>最小</dt><dd>300個から</dd>
+              <dt>形</dt><dd>組み箱・スリーブ・台紙・紙の袋</dd>
+              <dt>納期</dt><dd>校了から12営業日（抜き型を新しく作るとき）</dd>
+              <dt>目安</dt><dd class="price">抜き型 22,000円から＋刷りと抜き（税込）</dd>
+            </dl>
+          </li>
+        </ul>
+        <p class="note">ほかに、封筒・はがき・ショップカード・ポスター（菊全判まで）を刷ります。</p>
+      </div>
+      <figure class="works-photo">
+        <div class="disc"><img src="photos/Bookbinding-1.jpg" alt="綴じ台で糸を通して本を綴じる人の手元" width="500" height="375" loading="lazy"></div>
+        <figcaption class="credit">本を糸で綴じる人（チェコ）Michal Maňas／CC BY 2.5</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 名刺の見積もり（触れる1つ） -->
+  <section class="sec sheet" id="estimate" aria-labelledby="est-h">
+    <svg class="tombo tl" aria-hidden="true"><use href="#tombo"/></svg>
+    <svg class="tombo tr" aria-hidden="true"><use href="#tombo"/></svg>
+    <div class="est">
+      <div class="est-side">
+        <h2 id="est-h" class="vt">見積もり</h2>
+        <p class="intro">活版は文字がへこむ手ざわり、オフセットは値段と早さ。<br>部数と色を選ぶと、両方の値段と納期が出ます。</p>
+        <figure>
+          <div class="koma"><img src="photos/photo-129264678.jpg" alt="壁一面の字架に並ぶ金属の活字" width="960" height="960" loading="lazy"></div>
+          <figcaption class="credit">台湾の活版印刷所の字架　氏子／CC BY-SA 4.0</figcaption>
+        </figure>
+      </div>
+      <div class="picker">
+        <fieldset>
+          <legend>部数</legend>
+          <div class="seg">
+            <label><input type="radio" name="qty" value="100" checked><span>100枚</span></label>
+            <label><input type="radio" name="qty" value="200"><span>200枚</span></label>
+            <label><input type="radio" name="qty" value="500"><span>500枚</span></label>
+            <label><input type="radio" name="qty" value="1000"><span>1,000枚</span></label>
+            <label><input type="radio" name="qty" value="3000"><span>3,000枚</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>色（片面）</legend>
+          <div class="seg">
+            <label><input type="radio" name="col" value="1" checked><span>墨1色</span></label>
+            <label><input type="radio" name="col" value="2"><span>墨＋金赤</span></label>
+            <label><input type="radio" name="col" value="4"><span>4色（写真入り）</span></label>
+          </div>
+        </fieldset>
+        <div class="ticket" aria-live="polite">
+          <div class="ticket-hd"><span>見積もり（作業伝票の控え）</span><span id="t-sum">名刺 100枚・墨1色</span></div>
+          <table>
+            <thead><tr><th scope="col"></th><th scope="col">活版</th><th scope="col">オフセット</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">機械</th><td>プラテン機（1961年・1974年製）</td><td>菊半裁2色機／菊全判4色機</td></tr>
+              <tr><th scope="row">版</th><td id="lp-plate">樹脂凸版 1枚</td><td id="of-plate">CTP の刷版 1枚</td></tr>
+              <tr><th scope="row">合計（税込）</th><td class="sum" id="lp-sum">6,270円</td><td class="sum" id="of-sum">3,740円</td></tr>
+              <tr><th scope="row">1枚あたり</th><td id="lp-unit">62.7円</td><td id="of-unit">37.4円</td></tr>
+              <tr><th scope="row">納期</th><td id="lp-day">校了から4営業日</td><td id="of-day">校了から3営業日</td></tr>
+              <tr><th scope="row">向いている方</th><td id="lp-rec" class="rec">文字がへこむ手ざわり</td><td id="of-rec"></td></tr>
+            </tbody>
+          </table>
+          <p class="ticket-ft">紙はコットン紙 0.6mm（活版）・上質紙 220kg（オフセット）の値段です。データ入稿のとき。原稿から組むときは組版料 3,300円を足します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 設備 -->
+  <section class="sec equip sheet" id="equipment" aria-labelledby="eq-h">
+    <svg class="tombo tl" aria-hidden="true"><use href="#tombo"/></svg>
+    <svg class="tombo tr" aria-hidden="true"><use href="#tombo"/></svg>
+    <h2 id="eq-h">設備</h2>
+    <p class="intro">本社工場の1階に、活版とオフセットの機械が並んでいます。どちらで刷るかは、見積もりのときに決めます。</p>
+
+    <div class="equip-row">
+      <figure class="equip-photo">
+        <div class="disc"><img src="photos/photo-138375949.jpg" alt="活版印刷機のインキのローラー" width="960" height="721" loading="lazy"></div>
+        <figcaption class="credit">活版印刷機のローラー（台湾）氏子／CC BY-SA 4.0</figcaption>
+      </figure>
+      <div>
+        <h3>活版<span class="en">金属の活字か樹脂の版を、紙に押して刷ります</span></h3>
+        <table>
+          <thead><tr><th scope="col">機械</th><th scope="col">年</th><th scope="col">刷れる大きさ</th></tr></thead>
+          <tbody>
+            <tr><td>手フート（創業のときの1台）</td><td class="y">1956</td><td>はがきまで・1色</td></tr>
+            <tr><td>プラテン機 1号機</td><td class="y">1961</td><td>A5まで・1色</td></tr>
+            <tr><td>プラテン機 2号機（箔押しもできます）</td><td class="y">1974</td><td>A5まで・1色</td></tr>
+            <tr><td>活字　明朝 5号・9〜16ポイント・初号</td><td class="y">—</td><td>約11万8千本・字架18本</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="equip-row rev">
+      <figure class="equip-photo">
+        <div class="koma"><img src="photos/photo-147024737-2.jpg" alt="オフセット印刷機の操作台の前に立つ人" width="960" height="720" loading="lazy"></div>
+        <figcaption class="credit">オフセット機の前のオペレーター（韓国）Aaaatu／CC BY-SA 4.0</figcaption>
+      </figure>
+      <div>
+        <h3>オフセット<span class="en">版のインキを一度ゴムに移してから、紙に刷ります</span></h3>
+        <table>
+          <thead><tr><th scope="col">機械</th><th scope="col">年</th><th scope="col">刷れる大きさ</th></tr></thead>
+          <tbody>
+            <tr><td>菊全判 4色機</td><td class="y">2015</td><td>636×939mm・4色</td></tr>
+            <tr><td>菊半裁 2色機</td><td class="y">1998</td><td>469×636mm・2色</td></tr>
+            <tr><td>CTP（刷版を焼く機械）</td><td class="y">2009</td><td>菊全判の版まで</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="kata">
+      <figure>
+        <div class="koma"><img src="photos/Operating-Industrial-paper-cutting-machine-trichy-3.jpg" alt="断裁機のハンドルを回して紙を切る人" width="960" height="720" loading="lazy"></div>
+        <figcaption class="credit">断裁機で紙を切る人（インド）Siyaulhaque／CC BY-SA 4.0</figcaption>
+      </figure>
+      <div>
+        <h3>加工</h3>
+        <table>
+          <tbody>
+            <tr><td>断裁機</td><td class="y">2011</td><td>1台</td></tr>
+            <tr><td>中綴じ機・無線綴じ機</td><td class="y">2006</td><td>各1台</td></tr>
+            <tr><td>打ち抜き機（箱・台紙）</td><td class="y">2019</td><td>1台</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 仕事の流れ -->
+  <section class="sec flow sheet on-red" id="flow" aria-labelledby="flow-h">
+    <svg class="tombo tl" aria-hidden="true"><use href="#tombo"/></svg>
+    <svg class="tombo tr" aria-hidden="true"><use href="#tombo"/></svg>
+    <div class="flow-top">
+      <div>
+        <h2 id="flow-h" class="vt">仕事の流れ</h2>
+        <p class="intro">仕事ごとに作業伝票を1枚起こし、終わった係が判を押して次へ回します。下は、活版の名刺100枚のときの伝票です。</p>
+      </div>
+      <figure>
+        <div class="koma"><img src="photos/Apprentice-linotype-operator-at-Queensland-Times-Ipswich-197.jpg" alt="鋳植機の鍵盤で文字を打つ見習いの人" width="960" height="620" loading="lazy"></div>
+        <figcaption class="credit">1975年、鋳植機を打つ見習い（豪州）Queensland State Archives／CC0</figcaption>
+      </figure>
+    </div>
+    <div class="slip" role="list">
+      <div role="listitem"><p class="step">受付</p><p class="hanko">営業</p><p class="who">電話・メール・来店で。紙の見本帳を見ながら決めます</p><p class="day">1日目</p></div>
+      <div role="listitem"><p class="step">組版</p><p class="hanko">組版</p><p class="who">データを確かめるか、原稿から活字で組みます</p><p class="day">1〜2日目</p></div>
+      <div role="listitem"><p class="step">校正</p><p class="hanko">組版</p><p class="who">PDF と、活版は試し刷り1枚。赤字はそこに書き込みます</p><p class="day">直しは2回まで無料</p></div>
+      <div role="listitem"><p class="step">校了</p><p class="hanko">お客</p><p class="who">「この通り刷ってよい」の返事を受けた日から数えます</p><p class="day">ここから4営業日</p></div>
+      <div role="listitem"><p class="step">製版</p><p class="hanko">活版</p><p class="who">樹脂凸版を焼くか、活字の版を締めます</p><p class="day">校了の翌日</p></div>
+      <div role="listitem"><p class="step">印刷</p><p class="hanko">活版</p><p class="who">刷り出しの1枚を見本帳に綴じてから、本刷りに入ります</p><p class="day">2〜3日目</p></div>
+      <div role="listitem"><p class="step">断裁・納品</p><p class="hanko">加工</p><p class="who">切りそろえて箱に詰め、来店か宅配で</p><p class="day">4日目</p></div>
+    </div>
+    <p class="after">1956年からの刷り出しを綴じた見本帳は412冊あります。工場見学の日に、どの年のものでも開いて見られます。</p>
+  </section>
+
+  <!-- 会社概要 -->
+  <section class="sec company sheet" id="company" aria-labelledby="co-h">
+    <svg class="tombo tl" aria-hidden="true"><use href="#tombo"/></svg>
+    <svg class="tombo tr" aria-hidden="true"><use href="#tombo"/></svg>
+    <h2 id="co-h">会社概要</h2>
+    <div class="company-grid">
+      <div>
+        <table>
+          <tbody>
+            <tr><th scope="row">商号</th><td>株式会社 汐見印刷（架空の会社です）</td></tr>
+            <tr><th scope="row">創業</th><td>1956年4月</td></tr>
+            <tr><th scope="row">代表</th><td>代表取締役 長尾 拓真（3代目）</td></tr>
+            <tr><th scope="row">資本金</th><td>1,000万円</td></tr>
+            <tr><th scope="row">社員</th><td>18名（営業・受付 3／組版 3／刷版・オフセット 5／活版 2／断裁・製本・加工 4／総務 1）</td></tr>
+            <tr><th scope="row">本社工場</th><td>汐見町三丁目4-12（架空の住所）<br>汐見駅から歩いて9分。来店用の駐車場 3台</td></tr>
+            <tr><th scope="row">電話</th><td><a href="tel:0559001956">0559-00-1956</a>（架空の番号）</td></tr>
+            <tr><th scope="row">営業時間</th><td>平日 8:30〜17:30　土日祝 定休日（工場見学のある第2土曜は 10:00〜12:00 だけ開けます）</td></tr>
+            <tr><th scope="row">仕事</th><td>名刺・封筒・はがき・冊子・カタログ・ポスター・箱と台紙の印刷と加工、活版の箔押し</td></tr>
+          </tbody>
+        </table>
+        <p class="asof">2026年11月現在</p>
+      </div>
+      <figure class="side">
+        <div class="koma"><img src="photos/Letterpress-printing-at-Printopia-2024-by-Tatiana-Harper.jpg" alt="活字の箱から活字を拾う人たち" width="1280" height="853" loading="lazy" style="object-position:72% 50%"></div>
+        <figcaption class="credit">活字を拾う人たち（豪州）Tatiana Harper／CC BY-SA 4.0</figcaption>
+      </figure>
+    </div>
+
+    <div class="history">
+      <h3>沿革</h3>
+      <ol>
+        <li><span class="yr">1956</span><span>4月、長尾清次が汐見町の米屋の2階で創業。手フート1台と活字の棚4本から。</span></li>
+        <li><span class="yr">1961</span><span>プラテン機の1号機を入れる。名刺と伝票の注文が増える。</span></li>
+        <li><span class="yr">1968</span><span>汐見町三丁目に工場を建てて移る（いまの本社工場）。</span></li>
+        <li><span class="yr">1974</span><span>プラテン機の2号機を入れ、箔押しを始める。</span></li>
+        <li><span class="yr">1979</span><span>有限会社 汐見印刷になる。</span></li>
+        <li><span class="yr">1987</span><span>菊半裁の単色機でオフセット印刷を始める。</span></li>
+        <li><span class="yr">1998</span><span>菊半裁2色機に入れ替える。</span></li>
+        <li><span class="yr">2004</span><span>株式会社になる。長尾和子が2代目の代表に。</span></li>
+        <li><span class="yr">2006</span><span>中綴じ機・無線綴じ機を入れ、冊子を社内で綴じ始める。</span></li>
+        <li><span class="yr">2009</span><span>CTP を入れ、フィルムの製版をやめる。</span></li>
+        <li><span class="yr">2015</span><span>菊全判4色機を入れる。</span></li>
+        <li><span class="yr">2019</span><span>打ち抜き機を入れ、箱と台紙を始める。</span></li>
+        <li><span class="yr">2022</span><span>長尾拓真が3代目の代表に。</span></li>
+        <li><span class="yr">2026</span><span>創業70年。刷り見本帳が412冊になる。</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- お知らせ -->
+  <section class="sec news" aria-labelledby="news-h">
+    <h2 id="news-h">お知らせ</h2>
+    <ul>
+      <li><time datetime="2026-11-04">2026年11月4日</time><span class="cat">工場見学</span><span>11月14日（第2土曜）の工場見学は満席になりました。次は12月12日（土）です。</span></li>
+      <li><time datetime="2026-10-20">2026年10月20日</time><span class="cat">活版</span><span>年賀状の活版印刷の受付を始めました。12月12日に校了のものまで、年内に納めます。</span></li>
+      <li><time datetime="2026-10-01">2026年10月1日</time><span class="cat">料金</span><span>用紙の値上がりにより、10月1日の受付分から冊子の見積もりを改めました。</span></li>
+    </ul>
+  </section>
+
+  <!-- 採用 -->
+  <section class="sec recruit sheet on-red" id="recruit" aria-labelledby="rec-h">
+    <svg class="tombo tl" aria-hidden="true"><use href="#tombo"/></svg>
+    <svg class="tombo tr" aria-hidden="true"><use href="#tombo"/></svg>
+    <div class="recruit-grid">
+      <figure>
+        <div class="disc"><img src="photos/Letterpress-printing-at-Printopia-2024-by-Tatiana-Harper.jpg" alt="前かけをして活字の版を組む人" width="1280" height="853" loading="lazy"></div>
+        <figcaption class="credit">版を組む人（豪州）Tatiana Harper／CC BY-SA 4.0</figcaption>
+      </figure>
+      <div>
+        <h2 id="rec-h">活版の見習い 1名募集</h2>
+        <dl>
+          <dt>仕事</dt><dd>活版の名刺・カードの組版と印刷。最初の半年は、2号機の刷りと活字の棚の整理から</dd>
+          <dt>月給</dt><dd>22万4千円から（経験なし）。経験は面接で決めます</dd>
+          <dt>時間</dt><dd>8:30〜17:30（休憩60分）、残業は月10時間ほど</dd>
+          <dt>休み</dt><dd>土日祝、年間休日121日（2026年度）</dd>
+          <dt>勤務地</dt><dd>本社工場（汐見町三丁目）</dd>
+          <dt>選考</dt><dd>職場見学（1時間）→ 面接 → 1日いっしょに刷る</dd>
+        </dl>
+        <a class="btn" href="#contact" data-topic="recruit">職場見学を申し込む</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- お問い合わせ -->
+  <section class="sec sheet" id="contact" aria-labelledby="ct-h">
+    <svg class="tombo tl" aria-hidden="true"><use href="#tombo"/></svg>
+    <svg class="tombo tr" aria-hidden="true"><use href="#tombo"/></svg>
+    <h2 id="ct-h">お問い合わせ</h2>
+    <div class="contact-grid">
+      <div>
+        <ul class="desks">
+          <li><h3>見積もり・印刷の相談</h3><p>営業・受付（3名）　<a href="tel:0559001956">0559-00-1956</a><br>平日 8:30〜17:30。紙の見本は来店で見られます</p></li>
+          <li><h3>活版の名刺・カード</h3><p>活版の係（2名）が受けます。手ざわりの見本を郵送できます（無料・1回まで）</p></li>
+          <li><h3>工場見学</h3><p>毎月第2土曜 10:00〜11:30、1回8名まで。下のフォームで申し込んでください</p></li>
+          <li><h3>採用</h3><p>総務（1名）　職場見学はいつでも受けます</p></li>
+        </ul>
+        <p class="no">受けていない仕事：当日に仕上げる特急、布や木への印刷、シールのラベル。</p>
+      </div>
+      <form id="form" novalidate>
+        <div class="row">
+          <label for="f-topic">用件</label>
+          <select id="f-topic" name="topic">
+            <option value="estimate">見積もり・印刷の相談</option>
+            <option value="kappan">活版の名刺・カード</option>
+            <option value="tour">工場見学の申し込み</option>
+            <option value="recruit">採用・職場見学</option>
+          </select>
+        </div>
+        <div class="row"><label for="f-name">お名前</label><input id="f-name" name="name" autocomplete="name" required></div>
+        <div class="row"><label for="f-org">会社名・店名<span class="opt">任意</span></label><input id="f-org" name="org" autocomplete="organization"></div>
+        <div class="row"><label for="f-mail">メール</label><input id="f-mail" name="email" type="email" autocomplete="email" required><p class="err" id="e-mail" hidden>メールの形になっていません。「@」の前後を確かめてください。</p></div>
+        <div class="row"><label for="f-tel">電話<span class="opt">任意</span></label><input id="f-tel" name="tel" type="tel" autocomplete="tel"></div>
+        <div class="row"><label for="f-body">内容</label><textarea id="f-body" name="body" placeholder="刷りたいもの・部数・ほしい日"></textarea><p class="help">わかる範囲で。部数と、ほしい日があると見積もりが早くなります。</p></div>
+        <p class="privacy">いただいた名前と連絡先は、この問い合わせの返事にだけ使います。</p>
+        <button class="btn" type="submit">送る</button>
+        <p id="sent" role="status"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="ft">
+  <div class="ft-grid">
+    <div>
+      <p class="name">汐見印刷</p>
+      <p>汐見町三丁目4-12　<a href="tel:0559001956">0559-00-1956</a><br>平日 8:30〜17:30</p>
+    </div>
+    <ul>
+      <li><a href="#works">刷れるもの</a></li>
+      <li><a href="#estimate">見積もり</a></li>
+      <li><a href="#equipment">設備</a></li>
+      <li><a href="#flow">仕事の流れ</a></li>
+    </ul>
+    <ul>
+      <li><a href="#company">会社概要・沿革</a></li>
+      <li><a href="#recruit">採用</a></li>
+      <li><a href="#contact">お問い合わせ</a></li>
+      <li><a href="#contact">工場見学</a></li>
+    </ul>
+  </div>
+  <p class="credits">写真はすべて Wikimedia Commons の自由に使える写真で、汐見印刷の写真ではありません。
+    <a href="https://commons.wikimedia.org/w/index.php?curid=164639110">Tatiana Harper（CC BY-SA 4.0）</a>・
+    <a href="https://commons.wikimedia.org/w/index.php?curid=129264678">氏子「活版印刷字架」（CC BY-SA 4.0）</a>・
+    <a href="https://commons.wikimedia.org/w/index.php?curid=138375949">氏子「活版印刷機」（CC BY-SA 4.0）</a>・
+    <a href="https://commons.wikimedia.org/w/index.php?curid=147024737">Aaaatu（CC BY-SA 4.0）</a>・
+    <a href="https://commons.wikimedia.org/w/index.php?curid=62255950">Queensland State Archives（CC0）</a>・
+    <a href="https://commons.wikimedia.org/w/index.php?curid=176306751">Siyaulhaque（CC BY-SA 4.0）</a>・
+    <a href="https://commons.wikimedia.org/w/index.php?curid=3168127">Michal Maňas（CC BY 2.5）</a></p>
+  <p class="fic">site-skills の作例です。会社・人・住所・電話番号・値段はすべて架空です。</p>
+</footer>
+
+<script>
+(() => {
+  const yen = n => n.toLocaleString('ja-JP') + '円';
+  const per = n => (Math.round(n * 10) / 10).toLocaleString('ja-JP', {minimumFractionDigits: 1, maximumFractionDigits: 1}) + '円';
+  // 活版：版代 1色 3,300円・100枚ごとに 1色 1,650円・コットン紙 100枚 1,320円（4色は刷れない）
+  const lp = (n, c) => c === 4 ? null : c * 3300 + c * Math.ceil(n / 100) * 1650 + Math.ceil(n / 100) * 1320;
+  // オフセット：段取り 2,200円＋刷版 1色 1,100円・100枚ごとに 330円＋1色 110円（他の仕事と面付けして刷る）
+  const of = (n, c) => 2200 + c * 1100 + Math.ceil(n / 100) * (330 + c * 110);
+  const colName = {1: '墨1色', 2: '墨＋金赤', 4: '4色（写真入り）'};
+  const $ = id => document.getElementById(id);
+  function update() {
+    const n = +document.querySelector('[name=qty]:checked').value;
+    const c = +document.querySelector('[name=col]:checked').value;
+    const a = lp(n, c), b = of(n, c);
+    $('t-sum').textContent = `名刺 ${n.toLocaleString('ja-JP')}枚・${colName[c]}`;
+    $('of-plate').textContent = `CTP の刷版 ${c}枚`;
+    $('of-sum').textContent = yen(b); $('of-unit').textContent = per(b / n);
+    $('of-day').textContent = `校了から${n >= 3000 ? 4 : 3}営業日`;
+    if (a === null) {
+      $('lp-plate').textContent = '—'; $('lp-sum').textContent = '刷れません';
+      $('lp-unit').textContent = '—'; $('lp-day').textContent = '—';
+      $('lp-rec').textContent = '写真はオフセットで'; $('lp-rec').className = 'na';
+      $('of-rec').textContent = 'こちらで刷ります'; $('of-rec').className = 'rec';
+      return;
+    }
+    $('lp-plate').textContent = `樹脂凸版 ${c}枚`;
+    $('lp-sum').textContent = yen(a); $('lp-unit').textContent = per(a / n);
+    $('lp-day').textContent = `校了から${n >= 1000 ? 6 : 4}営業日`;
+    const lpBetter = n <= 500;
+    $('lp-rec').textContent = lpBetter ? '文字がへこむ手ざわり' : '手ざわりがほしいときだけ';
+    $('lp-rec').className = lpBetter ? 'rec' : 'na';
+    $('of-rec').textContent = lpBetter ? '安く、早く' : 'この部数ならこちら';
+    $('of-rec').className = lpBetter ? 'na' : 'rec';
+  }
+  document.querySelectorAll('[name=qty],[name=col]').forEach(r => r.addEventListener('change', update));
+  update();
+
+  // 採用のボタンから来たら、用件を採用にする
+  document.querySelectorAll('[data-topic]').forEach(a => a.addEventListener('click', () => { $('f-topic').value = a.dataset.topic; }));
+  // 作例なので送らない
+  $('form').addEventListener('submit', e => {
+    e.preventDefault();
+    const m = $('f-mail'); const bad = m.value && !m.checkValidity();
+    $('e-mail').hidden = !bad;
+    if (bad) { m.focus(); return; }
+    if (!$('f-name').value || !m.value) { $('sent').textContent = 'お名前とメールを書いてください。'; return; }
+    $('sent').textContent = 'これは作例のため、送信はしていません。実際の問い合わせ先はありません。';
+  });
+})();
+</script>
+</body>
+</html>
