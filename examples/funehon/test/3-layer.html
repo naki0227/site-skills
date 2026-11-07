@@ -1,0 +1,47 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>案3 重ねて細かく</title>
+<!-- 部品は今のまま、札・値札・旗・写真を重ね、端からはみ出させた -->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@500;700&family=Yomogi&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#1d3fcf;--wh:#f4f1e8;--or:#ff5a1f;--navy:#0d2690}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--blue);color:var(--wh)}
+body{font-family:"Zen Kaku Gothic New",sans-serif;font-size:16px;line-height:1.8;word-break:auto-phrase;overflow-x:hidden}
+.sec{position:relative;overflow:hidden;padding:110px 6vw 120px;min-height:100vh}
+.big{font-family:"Dela Gothic One";font-weight:400;font-size:clamp(56px,8vw,124px);line-height:1.05;letter-spacing:-.02em;position:relative;z-index:4}
+.big span{color:var(--or)}
+.lead{font-size:18px;font-weight:700;max-width:30em;margin:20px 0 36px;position:relative;z-index:4}
+.pw{position:absolute;overflow:hidden;background:var(--navy)}
+.pw img{width:100%;height:100%;object-fit:cover;display:block}
+.cap{font-size:14px;line-height:1.5}
+
+.ship{position:absolute;left:-4vw;top:450px;width:78vw;z-index:2;transform:rotate(-3deg)}
+.ship .floor{fill:#f4f1e8}.ship .t{font-family:"Dela Gothic One";font-size:30px;fill:#1d3fcf}
+.ship .st circle{fill:#ff5a1f}.ship .st text{font-family:"Dela Gothic One";font-size:15px;fill:#fff;text-anchor:middle}
+.tk{position:absolute;z-index:4;background:var(--wh);color:var(--blue);border-radius:14px;padding:14px 18px 14px 24px;width:230px;box-shadow:0 0 0 0 transparent;
+ -webkit-mask:radial-gradient(circle at 0 50%,transparent 9px,#000 10px);mask:radial-gradient(circle at 0 50%,transparent 9px,#000 10px)}
+.tk b{display:block;font-size:17px;line-height:1.45}.tk .no{font-family:"Dela Gothic One";color:#c93700;margin-right:8px}
+.tk span{font-size:15px}
+.tag{position:absolute;z-index:5;background:#ff5a1f;color:#fff;font-family:"Dela Gothic One";font-size:22px;padding:6px 16px 6px 26px;border-radius:6px 999px 999px 6px}
+.tag::before{content:"";position:absolute;left:9px;top:50%;width:9px;height:9px;margin-top:-4.5px;border-radius:50%;background:var(--blue)}
+.p-books{right:-5vw;top:40px;width:28vw;aspect-ratio:1;border-radius:50%;box-shadow:0 0 0 16px var(--navy);z-index:1}
+.p-stack{right:6vw;bottom:-40px;width:26vw;height:300px;border-radius:160px 160px 20px 160px;z-index:3}
+.sticker{position:absolute;z-index:6;width:120px;height:120px;border-radius:18px;background:conic-gradient(var(--or) 25%,var(--wh) 0 50%,var(--or) 0 75%,var(--wh) 0);background-size:40px 40px;transform:rotate(14deg)}
+.hand{position:absolute;z-index:6;font-family:"Yomogi";font-size:26px;color:var(--wh);transform:rotate(-5deg)}
+
+</style></head><body>
+<section class="sec" style="min-height:1120px">
+<div class="pw p-books"><img src="../photos/Books-bookshelf-bookstore-159778.jpg" alt="棚に並んだ本の背"></div>
+<div class="pw p-stack"><img src="../photos/Paris-75005-Quai-de-Montebello-Bouquinistes-20071014.jpg" alt="パリのセーヌ河岸の古本屋の箱（Benh LIEU SONG, CC BY-SA 3.0）"></div>
+<h2 class="big">24の古本屋が<br>乗ります</h2>
+<p class="lead">売り場は3つの階。番号は船の上の店の場所です。</p>
+<svg class="ship" viewBox="0 0 1200 470" aria-hidden="true"><rect x="820" y="0" width="60" height="40" fill="#f4f1e8"/><rect x="820" y="0" width="60" height="14" fill="#ff5a1f"/><rect class="floor" x="300" y="40" width="620" height="92" rx="14"/><text class="t" x="324" y="82">4階 甲板</text><g class="st"><circle cx="374" cy="108" r="17"/><text x="374" y="114">1</text></g><g class="st"><circle cx="441" cy="108" r="17"/><text x="441" y="114">2</text></g><g class="st"><circle cx="509" cy="108" r="17"/><text x="509" y="114">3</text></g><g class="st"><circle cx="576" cy="108" r="17"/><text x="576" y="114">4</text></g><g class="st"><circle cx="644" cy="108" r="17"/><text x="644" y="114">5</text></g><g class="st"><circle cx="711" cy="108" r="17"/><text x="711" y="114">6</text></g><g class="st"><circle cx="779" cy="108" r="17"/><text x="779" y="114">7</text></g><g class="st"><circle cx="846" cy="108" r="17"/><text x="846" y="114">8</text></g><rect class="floor" x="180" y="142" width="860" height="96" rx="14"/><text class="t" x="204" y="184">3階 客室</text><g class="st"><circle cx="259" cy="214" r="17"/><text x="259" y="220">1</text></g><g class="st"><circle cx="337" cy="214" r="17"/><text x="337" y="220">2</text></g><g class="st"><circle cx="415" cy="214" r="17"/><text x="415" y="220">3</text></g><g class="st"><circle cx="493" cy="214" r="17"/><text x="493" y="220">4</text></g><g class="st"><circle cx="571" cy="214" r="17"/><text x="571" y="220">5</text></g><g class="st"><circle cx="649" cy="214" r="17"/><text x="649" y="220">6</text></g><g class="st"><circle cx="727" cy="214" r="17"/><text x="727" y="220">7</text></g><g class="st"><circle cx="805" cy="214" r="17"/><text x="805" y="220">8</text></g><g class="st"><circle cx="883" cy="214" r="17"/><text x="883" y="220">9</text></g><g class="st"><circle cx="961" cy="214" r="17"/><text x="961" y="220">10</text></g><rect class="floor" x="80" y="248" width="1060" height="92" rx="14"/><text class="t" x="104" y="290">2階 車両甲板</text><g class="st"><circle cx="202" cy="316" r="17"/><text x="202" y="322">1</text></g><g class="st"><circle cx="365" cy="316" r="17"/><text x="365" y="322">2</text></g><g class="st"><circle cx="528" cy="316" r="17"/><text x="528" y="322">3</text></g><g class="st"><circle cx="692" cy="316" r="17"/><text x="692" y="322">4</text></g><g class="st"><circle cx="855" cy="316" r="17"/><text x="855" y="322">5</text></g><g class="st"><circle cx="1018" cy="316" r="17"/><text x="1018" y="322">6</text></g><path d="M20 350 L1180 350 L1090 460 L120 460 Z" fill="#f4f1e8"/><circle cx="230" cy="402" r="22" fill="#1d3fcf"/><circle cx="335" cy="402" r="22" fill="#1d3fcf"/><circle cx="440" cy="402" r="22" fill="#1d3fcf"/><circle cx="545" cy="402" r="22" fill="#1d3fcf"/><circle cx="650" cy="402" r="22" fill="#1d3fcf"/><circle cx="755" cy="402" r="22" fill="#1d3fcf"/><circle cx="860" cy="402" r="22" fill="#1d3fcf"/><circle cx="965" cy="402" r="22" fill="#1d3fcf"/></svg>
+<div class="tk" style="left:46vw;top:400px;transform:rotate(-4deg)"><b><span class="no">D-1</span>汐見書房</b><span>船と海の本・海図</span></div><div class="tk" style="left:62vw;top:470px;transform:rotate(3deg)"><b><span class="no">D-4</span>ひなた文庫</b><span>文庫・新書 3冊500円</span></div><div class="tk" style="left:54vw;top:590px;transform:rotate(-2deg)"><b><span class="no">C-1</span>二階堂古書店</b><span>郷土史・古地図</span></div><div class="tk" style="left:70vw;top:660px;transform:rotate(5deg)"><b><span class="no">C-4</span>ふるほん波止場</b><span>ミステリー</span></div><div class="tk" style="left:44vw;top:740px;transform:rotate(2deg)"><b><span class="no">C-7</span>Book & Tide</b><span>洋書</span></div><div class="tk" style="left:60vw;top:820px;transform:rotate(-3deg)"><b><span class="no">V-1</span>トラック書店 ろ号</b><span>100円均一の棚</span></div><div class="tk" style="left:76vw;top:300px;transform:rotate(-6deg)"><b><span class="no">V-3</span>古書 錨屋</b><span>全集・箱入り</span></div><div class="tk" style="left:38vw;top:860px;transform:rotate(4deg)"><b><span class="no">V-6</span>ふなだんす</b><span>古本と古道具</span></div>
+<span class="tag" style="left:30vw;top:780px;transform:rotate(-8deg)">3冊 500円</span>
+<span class="tag" style="left:15vw;top:1000px;transform:rotate(6deg)">100円均一</span>
+<span class="tag" style="left:84vw;top:300px;transform:rotate(-4deg)">箱入り全集</span>
+<div class="sticker" style="left:39vw;top:330px"></div>
+<p class="hand" style="left:8vw;top:950px">雨の日は 甲板→客室へ</p>
+</section>
+</body></html>
