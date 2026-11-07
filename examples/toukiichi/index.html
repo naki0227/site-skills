@@ -264,33 +264,34 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
 .hero .name{position:absolute;left:0;right:0;top:calc(56px + 4%);margin:0;text-align:center;font:900 clamp(52px,12.6vw,200px)/.86 var(--display);font-variation-settings:"SOFT" 100,"WONK" 1,"opsz" 144;letter-spacing:-.02em;color:var(--kinari);white-space:nowrap}
 .hero .name .sub{display:block;font-size:.34em;letter-spacing:.14em;margin-top:.12em;font-variation-settings:"SOFT" 100,"opsz" 144}
 .ware{position:absolute;height:auto;filter:drop-shadow(0 18px 22px rgba(31,42,92,.28))}
-.w-ozara{width:38%;left:31%;top:46%;transform:rotate(-6deg)}
-.w-chawan{width:41%;right:-7%;bottom:-17%}
-.w-oribe{width:27%;left:-7%;bottom:-24%;transform:rotate(9deg)}
-.w-muko{width:21%;left:19%;bottom:-3%;transform:rotate(-4deg)}
-.hand{position:absolute;z-index:2;left:6%;top:41%;margin:0;font:400 clamp(30px,3.4vw,52px)/1 var(--brush);color:var(--kinari);transform:rotate(-8deg)}
+.w-ozara{width:37%;left:30%;top:calc(56px + 4% + 15.4vw);transform:rotate(-6deg)}
+.w-chawan{width:39%;right:-6%;bottom:-8%}
+.w-oribe{width:12%;left:10%;top:2%;transform:rotate(11deg)}
+.w-muko{width:14%;left:64%;top:8%;transform:rotate(-7deg)}
+.hand{position:absolute;z-index:2;left:13%;top:60%;margin:0;font:400 clamp(30px,3.4vw,52px)/1 var(--brush);color:var(--kinari);transform:rotate(-8deg)}
 .star{position:absolute;right:21%;top:44%;width:clamp(96px,10vw,148px);height:auto}
-.when{position:absolute;left:var(--pad);top:calc(41% + 150px);margin:0;font:900 clamp(26px,2.4vw,36px)/1.2 var(--display);letter-spacing:.06em;color:var(--kinari)}
-.hero .go{position:absolute;left:var(--pad);top:calc(41% + 78px);display:inline-flex;align-items:center;height:48px;padding:0 26px;border-radius:24px;background:var(--ai);color:var(--kinari);font:700 15px/1 var(--gothic);text-decoration:none}
+.when{position:absolute;left:var(--pad);top:68%;margin:0;font:900 clamp(26px,2.4vw,36px)/1.2 var(--display);letter-spacing:.06em;color:var(--kinari)}
+.hero .go{position:absolute;left:var(--pad);top:calc(68% + 64px);display:inline-flex;align-items:center;height:48px;padding:0 26px;border-radius:24px;background:var(--ai);color:var(--kinari);font:700 15px/1 var(--gothic);text-decoration:none}
 .tate{position:absolute;z-index:2;right:16px;top:calc(56px + 5%);margin:0;writing-mode:vertical-rl;font:500 15px/1.6 var(--mincho);letter-spacing:.2em;color:var(--kinari)}
-.hero .credit{position:absolute;left:var(--pad);right:var(--pad);top:30px;margin:0;font:400 13px/1.4 var(--gothic);color:var(--kinari);text-align:right}
+.hero .credit{position:absolute;left:var(--pad);right:170px;bottom:10px;margin:0;font:400 13px/1.4 var(--gothic);color:var(--kinari);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .hero .credit a{color:inherit}
 @media (max-width:860px){
   .hero{height:auto;min-height:0;padding:44px 0 0}
   .hero .name{position:relative;top:0;font-size:12.2vw}
   .hero::before{top:22px}
   .hero .credit{top:auto}
-  .hero .stack{position:relative;height:118vw;margin-top:-6vw}
+  .hero .stack{position:relative;height:112vw;margin-top:-12vw}
   .w-ozara{width:66%;left:4%;top:4%}
   .w-chawan{width:72%;right:-14%;bottom:-6%}
-  .w-oribe{width:46%;left:-12%;bottom:-2%}
-  .w-muko{display:none}
-  .hand{left:auto;right:5%;top:38%;font-size:30px}
-  .star{right:6%;top:0;width:86px}
+  .w-oribe{width:40%;left:-10%;top:auto;bottom:2%}
+  .w-muko{width:26%;left:auto;right:3%;top:-12vw}
+  .w-ozara{top:13%}
+  .hand{left:auto;right:7%;top:auto;bottom:-13%;font-size:30px}
+  .star{right:auto;left:62%;top:42%;width:86px}
   .hero .go,.when{position:relative;left:auto;top:auto;bottom:auto;margin:0 var(--pad)}
-  .hero .go{margin-top:18px;width:calc(100% - var(--pad)*2);justify-content:center;height:52px}
-  .when{display:block;margin-top:14px;padding-bottom:12px}
-  .hero .credit{position:relative;right:auto;bottom:auto;display:block;padding:0 var(--pad) 18px;text-align:left}
+  .hero .go{margin-top:14px;width:calc(100% - var(--pad)*2);justify-content:center;height:52px}
+  .when{display:block;margin-top:14px}
+  .hero .credit{position:relative;left:auto;right:auto;bottom:auto;display:block;white-space:normal;padding:14px 150px 16px var(--pad);text-align:left}
   .tate{display:none}
 }
 </style>
@@ -324,9 +325,9 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
       <img class="ware w-chawan" src="photos/cut-chawan.webp" width="900" height="782" alt="">
       <svg class="star" viewBox="0 0 120 120" role="img" aria-label="窯元41軒"><path d="M60 4 70 34 101 22 90 52 118 64 88 74 98 105 68 92 56 119 46 90 15 102 27 72 2 58 32 47 22 16 52 29Z" fill="#1f2a5c"/><text x="60" y="58" text-anchor="middle" font-family="Fraunces, serif" font-weight="900" font-size="30" fill="#f6eee0">41</text><text x="60" y="80" text-anchor="middle" font-family="Fraunces, serif" font-weight="900" font-size="15" letter-spacing="1.5" fill="#f6eee0">KILNS</text></svg>
     </div>
-    <a class="go" href="#access">行き方を調べる</a>
     <p class="when" lang="en">MAY 3–4, 2027</p>
-    <p class="credit">器：美濃焼（志野茶碗・織部角鉢・絵志野大皿・志野向付）を切り抜いて藍と生成りに色を変えた／写真 Daderot・Wmpearl, CC0 1.0（<a href="https://commons.wikimedia.org/w/index.php?curid=31408730">Wikimedia Commons</a>）</p>
+    <a class="go" href="#access">行き方を調べる</a>
+    <p class="credit">器：美濃焼4点の写真（Daderot・Wmpearl, CC0 1.0／<a href="https://commons.wikimedia.org/w/index.php?curid=31408730">Wikimedia Commons</a>）を切り抜いて藍と生成りに色を変えた</p>
   </section>
 
   <div class="wrap">
