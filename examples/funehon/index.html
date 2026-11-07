@@ -70,7 +70,14 @@ nav a{text-decoration:none;background:var(--wh);color:var(--blue);padding:6px 16
 .pw{position:absolute;overflow:hidden;background:#0d2690;z-index:2}
 .pw img{width:100%;height:100%;object-fit:cover;display:block}
 /* 1 船と24店 */
-.p-books{right:-5vw;top:60px;width:30vw;aspect-ratio:1;border-radius:50%;box-shadow:0 0 0 16px #0d2690}
+.p-kanda{right:-3vw;top:70px;width:46vw;height:430px;border-radius:200px 200px 24px 200px}
+.p-kanda img{object-position:40% 60%}
+.p-quai{right:31vw;top:400px;width:250px;height:250px;border-radius:50%;box-shadow:0 0 0 14px #0d2690;z-index:3}
+.p-quai img{object-position:70% 50%}
+.p-jimbo{left:-4vw;top:760px;width:30vw;height:1000px;border-radius:24px 220px 220px 24px}
+.cap{font-size:14px;line-height:1.55;position:relative;z-index:3}
+.cap-shops{position:absolute;right:4vw;top:500px;width:22vw}
+.shopcol{margin-left:30vw;margin-top:230px;position:relative;z-index:3}
 .decks{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;position:relative;z-index:3}
 .decks button{font:inherit;font-weight:700;font-size:17px;border:3px solid var(--wh);background:transparent;color:var(--wh);border-radius:999px;padding:8px 20px;cursor:pointer}
 .decks button[aria-pressed=true]{background:var(--wh);color:var(--blue)}
@@ -83,7 +90,7 @@ nav a{text-decoration:none;background:var(--wh);color:var(--blue);padding:6px 16
 .plan .st text{font-family:"Dela Gothic One";font-size:15px;fill:#fff;text-anchor:middle;pointer-events:none}
 .plan .st.off{opacity:.18}
 .count{font-family:"Dela Gothic One";font-size:28px;margin-bottom:16px;position:relative;z-index:3}
-.list{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;position:relative;z-index:3}
+.list{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;position:relative;z-index:3}
 .list li{background:var(--wh);color:var(--blue);border-radius:14px;padding:16px 18px 16px 22px;display:grid;grid-template-columns:auto 1fr;gap:0 12px;align-items:baseline;
   -webkit-mask:radial-gradient(circle at 0 50%,transparent 9px,#000 10px);mask:radial-gradient(circle at 0 50%,transparent 9px,#000 10px)}
 .list .no{font-family:"Dela Gothic One";font-size:24px;color:#c93700;grid-row:span 2}
@@ -94,17 +101,19 @@ nav a{text-decoration:none;background:var(--wh);color:var(--blue);padding:6px 16
 .flagbig{position:absolute;left:-90px;top:70px;width:300px;height:300px;border-radius:36px;background:conic-gradient(var(--or) 25%,var(--wh) 0 50%,var(--or) 0 75%,var(--wh) 0);background-size:100px 100px;border:6px solid var(--or);transform:rotate(-12deg);z-index:1}
 .ringbig{position:absolute;right:-110px;bottom:-90px;width:380px;height:380px;z-index:1}
 .c2{margin-left:18vw;position:relative;z-index:3}
-.qa{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:40px;position:relative;z-index:3;margin-right:6vw}
+.qa{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:calc(20vw - 60px);position:relative;z-index:3;margin-right:6vw}
 .qa>div{background:var(--blue);color:var(--wh);padding:40px 30px 34px}
 .qa>div:nth-child(1){border-radius:120px 120px 24px 120px}
 .qa>div:nth-child(2){border-radius:24px;margin-top:60px}
 .qa>div:nth-child(3){border-radius:24px 120px 120px 120px}
 .qa h3{font-family:"Dela Gothic One";font-weight:400;font-size:30px;margin-bottom:12px}
 .qa p{font-size:17px}
-.p-wake{right:4vw;top:70px;width:34vw;height:16vw;border-radius:999px;box-shadow:0 0 0 14px var(--blue)}
+.p-wake{right:4vw;top:60px;width:38vw;height:20vw;border-radius:999px;box-shadow:0 0 0 14px var(--blue)}
+.cap-wake{position:absolute;right:6vw;top:calc(60px + 20vw + 22px);width:30vw;text-align:right}
 /* 3 行き方 */
 .p-deck{right:-4vw;top:120px;width:42vw;height:640px;border-radius:220px 220px 24px 220px}
-.p-deck img{object-position:50% 70%}
+.p-deck img{object-position:96% 75%}
+.cap-deck{position:absolute;right:4vw;top:780px;width:34vw;text-align:right}
 .tickets{display:flex;gap:16px;margin:30px 0 40px;position:relative;z-index:3;flex-wrap:wrap}
 .tk{background:var(--wh);color:var(--blue);border-radius:16px;padding:16px 26px;display:flex;gap:16px;align-items:baseline;
   -webkit-mask:radial-gradient(circle at 0 50%,transparent 10px,#000 11px),radial-gradient(circle at 100% 50%,transparent 10px,#000 11px);-webkit-mask-composite:source-in;mask:radial-gradient(circle at 0 50%,transparent 10px,#000 11px),radial-gradient(circle at 100% 50%,transparent 10px,#000 11px);mask-composite:intersect}
@@ -127,13 +136,18 @@ footer small{grid-column:1/-1;font-size:14px;padding-top:18px;line-height:1.7}
 @media (max-width:900px){
   .sec{padding:80px 16px}
   .list{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .p-books{width:44vw;right:-12vw;top:20px}
+  .p-kanda{position:relative;right:auto;top:auto;width:100%;height:46vh;margin:24px 0 0;border-radius:120px 120px 18px 120px}
+  .p-quai{position:relative;right:auto;top:auto;width:44vw;height:44vw;margin:-60px 0 0 auto}
+  .p-jimbo{display:none}
+  .cap-shops,.cap-wake,.cap-deck{position:relative;right:auto;top:auto;width:auto;text-align:left;margin:12px 0}
+  .shopcol{margin:32px 0 0}
   .flagbig{width:160px;height:160px;background-size:53px 53px;left:-50px;top:30px}
   .ringbig{width:220px;height:220px;right:-80px;bottom:-60px}
   .c2{margin-left:0;padding-top:110px}
-  .qa{grid-template-columns:1fr;margin-right:0}
+  .qa{grid-template-columns:1fr;margin-right:0;margin-top:32px}
   .qa>div:nth-child(2){margin-top:0}
-  .p-wake{width:56vw;height:26vw;right:16px;top:40px}
+  .p-wake{position:relative;width:100%;height:40vw;right:auto;top:auto;margin-top:120px}
+  .c2{padding-top:24px}
   .p-deck{position:relative;right:auto;top:auto;width:100%;height:44vh;margin:24px 0}
   .nextblob{padding:48px 32px;border-radius:40px;margin:40px 0 0}
   footer{grid-template-columns:1fr}
@@ -162,9 +176,13 @@ footer small{grid-column:1/-1;font-size:14px;padding-top:18px;line-height:1.7}
 
 <main>
   <section class="sec bl" id="shops">
-    <div class="pw p-books"><img src="photos/Books-bookshelf-bookstore-159778.jpg" alt="棚に並んだ本の背"></div>
+    <div class="pw p-kanda"><img src="photos/Kanda-furuhon-matsuri-2019-60th-.jpg" alt="神田古本まつり（2019年）の、棚の前を歩く人たち"></div>
+    <div class="pw p-quai"><img src="photos/Bouquinistes-Paris-2013-PD-4.jpg" alt="パリのセーヌ河岸の古本屋で本を見る人たち"></div>
+    <div class="pw p-jimbo"><img src="photos/Used-bookstore-in-Jimbocho-50495926321-.jpg" alt="神保町の古本屋の店先"></div>
+    <p class="cap cap-shops">写真は神田古本まつり（2019年）、パリのセーヌ河岸、神保町の古本屋。古本市の人の流れはこんな感じです。</p>
     <h2 class="big">24の古本屋が<br>乗ります</h2>
     <p class="lead">売り場は3つの階。甲板は外の風の中、客室はじゅうたんの和室と椅子席、車両甲板には移動書店のトラックが入ります。乗り口は船尾の車両甲板です。</p>
+    <div class="shopcol">
     <div class="decks" role="group" aria-label="階を選ぶ">
       <button type="button" data-deck="all" aria-pressed="true">ぜんぶ</button>
       <button type="button" data-deck="D" aria-pressed="false">4階 甲板</button>
@@ -237,12 +255,14 @@ footer small{grid-column:1/-1;font-size:14px;padding-top:18px;line-height:1.7}
       <li data-deck="V"><span class="no">V-5</span><b>ぶっくまる</b><span>学習参考書・辞書（東浜）</span></li>
       <li data-deck="V"><span class="no">V-6</span><b>港の古道具 ふなだんす</b><span>古本と古道具（古町）</span></li>
     </ul>
+    </div>
   </section>
 
   <section class="sec cr">
     <div class="flagbig" aria-hidden="true"></div>
     <svg class="ringbig" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="36" fill="none" stroke="#ff5a1f" stroke-width="24"/><circle cx="50" cy="50" r="36" fill="none" stroke="#1d3fcf" stroke-width="24" stroke-dasharray="13 43.5" transform="rotate(-6 50 50)"/></svg>
-    <div class="pw p-wake"><img src="photos/Wake-behind-a-ferry.jpg" alt="フェリーの航跡（瀬戸内海）"></div>
+    <div class="pw p-wake"><img src="photos/Paris-75005-Quai-de-Montebello-Bouquinistes-20071014.jpg" alt="パリのセーヌ河岸の古本屋の箱"></div>
+    <p class="cap cap-wake">セーヌ河岸の古本屋。箱の前で、手に取って選びます。</p>
     <div class="c2">
       <h2 class="big">来る<span>前</span>に</h2>
       <div class="qa">
@@ -254,7 +274,8 @@ footer small{grid-column:1/-1;font-size:14px;padding-top:18px;line-height:1.7}
   </section>
 
   <section class="sec bl" id="access">
-    <div class="pw p-deck"><img src="photos/Islands-in-the-Seto-Inland-Sea-6453371577-.jpg" alt="フェリーの甲板と瀬戸内海の島"></div>
+    <div class="pw p-deck"><img src="photos/Vanino-ferry-boarding-2016.jpg" alt="岸壁を歩いてフェリーに乗りに行く人たち（ワニノ港）"></div>
+    <p class="cap cap-deck">岸壁を歩いて船へ（ワニノ港）。かもや丸も、船尾の車両甲板から歩いて乗ります。</p>
     <h2 class="big">行き方</h2>
     <div class="tickets">
       <div class="tk"><b>11.22</b><span>土曜<br>10:00–16:00</span></div>
@@ -286,7 +307,7 @@ footer small{grid-column:1/-1;font-size:14px;padding-top:18px;line-height:1.7}
   <div><p class="logo">ふねの<br>古本<span>市</span></p><p>主催：鴨谷港古本市実行委員会</p></div>
   <ul><li><a href="#shops">出店する本屋</a></li><li><a href="#shops">船内の地図</a></li><li><a href="#access">行き方</a></li></ul>
   <ul><li><a href="#">出店の案内</a></li><li><a href="#">お問い合わせ</a></li><li><a href="#">過去の古本市</a></li></ul>
-  <small>写真（Wikimedia Commons）：甲板 Maarten Heerlien（CC BY 2.0）、丸窓 Jeremy Segrott（CC BY 2.0）、本の背 Pixabay（CC0）、航跡 メルビル（CC BY-SA 4.0）。<br>これは site-skills の使用例で、催し・港・船・店はすべて架空です。</small>
+  <small>写真（Wikimedia Commons）：甲板 Maarten Heerlien（CC BY 2.0）、丸窓 Jeremy Segrott（CC BY 2.0）、本の背 Pixabay（CC0）、神田古本まつり みそがい（CC BY-SA 4.0）、セーヌ河岸 Thirunavukkarasye-Raveendran（CC BY-SA 4.0）・Benh LIEU SONG（CC BY-SA 3.0）、神保町 Real Estate Japan（CC BY 2.0）、ワニノ港 Vladimir Elistratov（CC BY-SA 4.0）。<br>これは site-skills の使用例で、催し・港・船・店はすべて架空です。</small>
 </footer>
 <script>
 (()=>{const bs=[...document.querySelectorAll('.decks button')],li=[...document.querySelectorAll('.list li')],fl=[...document.querySelectorAll('.plan .floor')],st=[...document.querySelectorAll('.plan .st')],ct=document.querySelector('.count');

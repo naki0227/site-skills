@@ -22,6 +22,7 @@
 | `funehon` | `photos/Paris-75005-Quai-de-Montebello-Bouquinistes-20071014.jpg` | File:Paris 75005 Quai de Montebello Bouquinistes 20071014.jpg | Benh LIEU SONG | CC BY-SA 3.0 | https://commons.wikimedia.org/w/index.php?curid=2929515 |
 | `funehon` | `photos/Plymouth-through-a-ferry-porthole-16783618309-.jpg` | Plymouth through a ferry porthole (16783618309) | Jeremy Segrott from Cardiff, Wales, UK | CC BY 2.0 | https://commons.wikimedia.org/w/index.php?curid=57214161 |
 | `funehon` | `photos/Used-bookstore-in-Jimbocho-50495926321-.jpg` | Used bookstore in Jimbocho (50495926321) | Real Estate Japan from Tokyo, Japan | CC BY 2.0 | https://commons.wikimedia.org/w/index.php?curid=95364527 |
+| `funehon` | `photos/Vanino-ferry-boarding-2016.jpg` | File:Vanino ferry boarding 2016.jpg | Vladimir Elistratov | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=55933381 |
 | `funehon` | `photos/Wake-behind-a-ferry.jpg` | Wake behind a ferry | メルビル | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=58353297 |
 | `gakudo-app` | `photos/okaeri-kids-cutout.webp` | Randoseru-red-walkinggirls-feb14-2019（2人を切り抜き、少し明るくした） | Nesnad | CC BY 4.0 | https://commons.wikimedia.org/w/index.php?curid=76556868 |
 | `machikoba-recruit` | `photos/five-axis.jpg` | SMTCL VMC0656e 5-axis machining center 20260331123404 | TurnOnTheNight | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=190307528 |
