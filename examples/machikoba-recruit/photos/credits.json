@@ -60,15 +60,15 @@
     ]
   },
   {
-    "file": "worker-cutout.png",
-    "title": "Lathe machinist（作業者を手で囲って切り抜き、紺と黄の2色の網点に変えた）",
-    "creator": "Shadychiri",
-    "license": "CC BY-SA 4.0",
-    "page": "https://commons.wikimedia.org/w/index.php?curid=52627559",
-    "source_file": "Lathe-machinist.jpg",
+    "file": "shaft-cutout.webp",
+    "title": "Raemnadelschaft（旋盤で削った軸を手で囲って切り抜き、水平に回して青焼きの2色に変え、左端を破断線で切った）",
+    "creator": "Dirk Gräfe",
+    "license": "CC BY-SA 3.0",
+    "page": "https://commons.wikimedia.org/w/index.php?curid=4201886",
+    "source_file": "Raemnadelschaft.jpg",
     "size": [
-      770,
-      1540
+      1040,
+      376
     ]
   }
 ]

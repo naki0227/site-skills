@@ -20,8 +20,8 @@
 | `machikoba-recruit` | `photos/flywheel-lathe.jpg` | Metal lathe used to produce flywheels | Work With Sounds | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=38217955 |
 | `machikoba-recruit` | `photos/lathe-chuck.jpg` | Lathe Chuck | Andrew Magill from Boulder, USA | CC BY 2.0 | https://commons.wikimedia.org/w/index.php?curid=2977616 |
 | `machikoba-recruit` | `photos/machining-center.jpg` | HAAS CNC Machining Center | Psychlist1972 | CC BY 2.0 | https://commons.wikimedia.org/w/index.php?curid=193560471 |
+| `machikoba-recruit` | `photos/shaft-cutout.webp` | Raemnadelschaft（旋盤で削った軸を手で囲って切り抜き、水平に回して青焼きの2色に変え、左端を破断線で切った） | Dirk Gräfe | CC BY-SA 3.0 | https://commons.wikimedia.org/w/index.php?curid=4201886 |
 | `machikoba-recruit` | `photos/vernier.jpg` | Vernier calipers (2) | Al Riaz Uddin Ripon | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=130406704 |
-| `machikoba-recruit` | `photos/worker-cutout.png` | Lathe machinist（作業者を手で囲って切り抜き、紺と黄の2色の網点に変えた） | Shadychiri | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=52627559 |
 | `sento` | `photos/Shoes-boxes-at-a-Sento---Tokyo-area---Dec-22-2021.jpg` | Shoes boxes at a Sento - Tokyo area - Dec 22 2021 | Nesnad | CC BY 4.0 | https://commons.wikimedia.org/w/index.php?curid=113582446 |
 | `sento` | `photos/noren-yu-duotone.webp` | Noren at a sento by udono in Yoyogi, Tokyo（切り抜いて藍と生成りの2色に変えた） | udono from Public bath h | CC BY 2.0 | https://commons.wikimedia.org/w/index.php?curid=2798594 |
 | `toukiichi` | `photos/Noborigama-Tokoname-01.jpg` | Noborigama Tokoname 01 | Gryffindor | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=63887246 |
