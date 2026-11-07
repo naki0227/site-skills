@@ -15,6 +15,12 @@
 ## 写真
 | 使用例 | ファイル | 題 | 作者 | ライセンス | 元のページ |
 |---|---|---|---|---|---|
+| `bakery` | `photos/Baking-Bread-Communal-Oven-2011.jpg` | File:Baking Bread Communal Oven, 2011.jpg | travelwayoflife | CC BY-SA 2.0 | https://commons.wikimedia.org/w/index.php?curid=56839418 |
+| `bakery` | `photos/Eating-a-curry-pan-at-Brighton-and-Hove-Japanese-Club-Open-D.jpg` | Eating a curry pan at Brighton and Hove Japanese Club Open Day 2023 | Andy Li | CC0 1.0 | https://commons.wikimedia.org/w/index.php?curid=133546688 |
+| `bakery` | `photos/HK-TKT-Tai-Kok-Tsui-Olympian-City-mall-shop-Japanese-bakery-.jpg` | HK TKT 大角咀 Tai Kok Tsui 奧海城 Olympian City mall shop Japanese bakery September 2021 SS2 10 | DAIAZLN oka | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=109814093 |
+| `bakery` | `photos/Peacemaker-ship-bell.jpg` | Peacemaker ship bell | Doug Coldwell | CC BY-SA 3.0 | https://commons.wikimedia.org/w/index.php?curid=33987559 |
+| `bakery` | `photos/Ships-Galley-HMS-M33.jpg` | Ships Galley, HMS M33 | www.mgaylard.co.uk and thanks for looking | CC BY 2.0 | https://commons.wikimedia.org/w/index.php?curid=139440713 |
+| `bakery` | `photos/Yagiri-no-watashi-2020-01-19.jpg` | Yagiri no watashi 2020-01-19 | Asanagi | CC0 1.0 | https://commons.wikimedia.org/w/index.php?curid=86074903 |
 | `brass-concert` | `photos/-1718590239-.jpg` | 吹奏楽 (1718590239) | Charlotte Marillet from Tokyo, Japan | CC BY-SA 2.0 | https://commons.wikimedia.org/w/index.php?curid=65948511 |
 | `brass-concert` | `photos/-20060416-001.jpg` | 吹奏楽編成による演奏風景 20060416 001 | S1197320 | CC BY-SA 3.0 | https://commons.wikimedia.org/w/index.php?curid=133200453 |
 | `brass-concert` | `photos/-2792563416-.jpg` | 吹奏楽 (2792563416) | Shinichi Sugiyama | CC BY-SA 2.0 | https://commons.wikimedia.org/w/index.php?curid=37021359 |

@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>鷺ノ瀬ベーカリー｜鷺ノ瀬川の渡し場の上のパン屋</title>
+<meta name="description" content="鷺ノ瀬町のパン屋。朝6時から。食パンは7時と11時に焼き上がります。">
+<!--
+  site-skills の使用例（架空の店）。主のスキル：lp-quality-bar（町の店・縦書きの写真日記 town-diary を出発点に、温かい飲食 food は線引きだけ）。
+  題材の特色：店主は船の厨房に18年いた。船の鐘は 7時も11時も「6つ」（六点鐘）。だから食パンの焼き上がりに、店先の号鐘を6つ鳴らす。
+  考えの一文：このページでは、船の時鐘（7時も11時も六点鐘）が、焼き上がりの時刻を知らせる部品になる。
+  台帳（taste.md）：青が主・写真を題材の形で抜く・大きな字と写真と形を1枚に重ねる・どの章にも人か場面。
+  窓の形：山型食パンの断面（3つの山）と、船の号鐘。飾りの形：鐘の打ち方（2つずつの点）と、川の波線。
+  3色：地 #ffffff（白）／主 #1f4e9e（鷺ノ瀬川の深いところの青）／差し色 #e2a93b（号鐘の真鍮と、食パンの焼き色）。文字は主と同じ色相の濃紺 #14254a。
+  分け方：最初の画面は 白 62：川の青 38（黄金比）。書体：題と数字は Shippori Mincho B1（町の店の看板の明朝。阿部守商店の明朝の題を手本に）、本文は Noto Sans JP（zaim・bestie・miraiz の本文）。
+  手本の実測（scripts/sample.js、2026-11-07）：abemamoru-shouten.com 明朝の題 34px・600／筆の絵と写真を重ねる。lunecroissanterie.com 大きな字 115px とパンの切り抜き。northman-hokkaido.com 写真を形で抜いて並べる。chevroncoffee.jp 罫0・ボタン1。
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Shippori+Mincho+B1:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#ffffff; --river:#1f4e9e; --brass:#e2a93b; --ink:#14254a; --river-deep:#173d7d;
+  --serif:"Shippori Mincho B1",serif; --sans:"Noto Sans JP",sans-serif;
+  --t-short:.3s; --t-mid:.6s; --ease:cubic-bezier(.2,.7,.2,1);
+}
+@media (prefers-reduced-motion:reduce){:root{--t-short:0s;--t-mid:0s}}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+section,footer{overflow-x:clip}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.85;word-break:auto-phrase;text-wrap:pretty;overflow-x:hidden}
+a{color:inherit}
+img{display:block;width:100%;height:100%;object-fit:cover}
+h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.3}
+.num{font-family:var(--serif);font-weight:700;font-feature-settings:"palt";line-height:1}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.loaf{clip-path:url(#loaf)}
+.bell{clip-path:url(#bell)}
+.dots{display:block;fill:var(--brass);overflow:visible}
+.cap{font-size:16px;line-height:1.65}
+
+/* ---- ナビ ---- */
+.nav{position:absolute;top:0;left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:22px 48px;font-size:16px;font-weight:700}
+.nav .logo{font-family:var(--serif);font-size:20px;text-decoration:none}
+.nav ul{display:flex;gap:28px;list-style:none}
+.nav ul a{text-decoration:none}
+@media (hover:hover) and (pointer:fine){.nav ul a:hover{text-decoration:underline;text-underline-offset:6px}}
+
+/* ---- 最初の画面 ---- */
+.hero{position:relative;height:100svh;min-height:760px;max-height:1000px;overflow:hidden}
+.hero .river{position:absolute;left:0;right:0;bottom:0;height:41%;background:var(--river)}
+.hero .river>svg{position:absolute;left:0;top:-58px;width:100%;height:60px}
+.hero h1{position:absolute;left:48px;top:17%;font-size:48px;color:var(--river);z-index:3}
+.hero .lead{position:absolute;left:52px;top:calc(17% + 140px);font-size:24px;font-family:var(--serif);font-weight:600;z-index:3}
+.hero .w-loaf{position:absolute;left:33%;top:6%;width:45%;height:90%;z-index:2}
+.hero .w-loaf img{object-position:50% 60%}
+.hero .w-bell{position:absolute;right:2%;top:8%;width:17%;aspect-ratio:1/1.12;z-index:4}
+.hero .w-bell img{object-position:72% 30%}
+.hero .clapper{position:absolute;right:calc(2% + 8.5% - 14px);top:calc(8% + 17vw*1.064 + 6px);width:28px;height:28px;border-radius:50%;background:var(--brass);z-index:4}
+.hero .bake{position:absolute;left:48px;bottom:5%;z-index:3;color:#fff}
+.hero .bake p{font-size:20px;font-weight:700;margin-bottom:6px}
+.hero .bake .row{display:flex;align-items:center;gap:18px}
+.hero .bake .dots{width:120px;height:auto}
+.hero .bake .num{font-size:120px;color:var(--brass);letter-spacing:-.02em}
+.hero .bake .row+.row{margin-top:6px}
+.hero .open{position:absolute;right:48px;bottom:6%;z-index:5;color:#fff;text-align:right}
+.hero .open .num{font-size:48px;display:block}
+.hero .open span{display:block;font-size:20px;font-weight:700;margin:6px 0 18px}
+.btn{display:inline-block;background:#fff;color:var(--river);font-weight:700;font-size:20px;text-decoration:none;padding:14px 30px;border-radius:999px;transition:transform var(--t-short) var(--ease)}
+@media (hover:hover) and (pointer:fine){.btn:hover{transform:translateY(-2px)}}
+.btn:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--brass);outline-offset:3px}
+.hero .credit{position:absolute;left:52px;top:calc(17% + 200px);width:24%;z-index:4}
+
+/* ---- 焼き上がり（触れる1つ） ---- */
+.bakeup{position:relative;padding:120px 0 120px}
+.bakeup .w-big{position:absolute;left:-60px;top:60px;width:44vw;max-width:680px;aspect-ratio:1/1.12;z-index:2}
+.bakeup .w-big img{object-position:35% 50%}
+.bakeup .cap-big{position:absolute;left:48px;top:calc(60px + min(44vw,680px)*1.12 + 14px);width:34vw;max-width:520px}
+.bakeup .text{margin-left:46vw;max-width:620px;padding-right:48px}
+.bakeup h2{font-size:48px;color:var(--river)}
+.bakeup .text p{margin-top:20px}
+.panel{position:relative;margin:56px 0 0 36vw;background:var(--river);color:#fff;padding:56px 48px 56px 12vw;border-radius:0}
+.panel .clock{display:flex;align-items:flex-end;gap:28px;flex-wrap:wrap}
+.panel .clock .num{font-size:120px;color:var(--brass)}
+.panel .clock .bells{padding-bottom:14px}
+.panel .clock .bells b{display:block;font-size:20px;margin-bottom:8px}
+.panel .dots circle{fill:rgba(255,255,255,.28)}
+.panel .dots circle.on{fill:var(--brass)}
+.panel label{display:block;font-weight:700;margin:26px 0 8px}
+.panel input[type=range]{width:100%;max-width:640px;accent-color:var(--brass);height:32px}
+.panel .ticks{display:flex;justify-content:space-between;max-width:640px;font-size:16px}
+.panel .note{font-size:24px;font-family:var(--serif);font-weight:600;margin-top:24px;min-height:2em}
+.shelf{list-style:none;margin-top:28px;columns:2;column-gap:40px;max-width:820px}
+.shelf li{break-inside:avoid;display:flex;justify-content:space-between;gap:12px;padding:7px 0;font-size:17px}
+.shelf li em{font-style:normal;font-weight:700;white-space:nowrap}
+.shelf li.on em{color:#fff}
+.shelf li.on em::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--brass);margin-right:8px;vertical-align:1px}
+.shelf li.off{opacity:.62}
+
+/* ---- 品と値段 ---- */
+.menu{position:relative;padding:40px 0 140px}
+.menu .board{position:relative;margin:0 6vw 0 -2vw;background:var(--river);color:#fff;padding:230px 7vw 90px 9vw;clip-path:url(#loafwide)}
+.menu h2{font-size:48px}
+.menu .sub{margin-top:8px;font-size:17px}
+.menu .groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px 72px;margin-top:48px}
+.menu h3{font-size:24px;display:flex;align-items:baseline;gap:14px}
+.menu h3 .num{font-size:30px;color:var(--brass)}
+.menu dl{margin-top:12px}
+.menu dl div{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:8px 0}
+.menu dt{font-size:20px}
+.menu dt small{font-size:16px;display:block;line-height:1.5}
+.menu dd{font-family:var(--serif);font-weight:700;font-size:24px;color:var(--brass);white-space:nowrap}
+.menu dd small{font-size:16px;color:#fff;margin-left:2px}
+.menu .w-eat{position:absolute;right:-30px;top:-10px;width:26vw;max-width:400px;aspect-ratio:1/.92;z-index:3}
+.menu .cap-eat{position:absolute;right:calc(min(26vw,400px) + 10px);top:200px;width:300px;color:#fff;z-index:3}
+.menu .foot{margin-top:40px;font-size:17px}
+
+/* ---- 店主のこと ---- */
+.owner{position:relative;padding:60px 0 140px;min-height:760px}
+.owner .w-galley{position:absolute;right:-50px;top:0;width:46vw;max-width:700px;aspect-ratio:1/1.12}
+.owner .cap-galley{position:absolute;right:48px;top:calc(min(46vw,700px)*1.12 + 14px);width:34vw;max-width:480px}
+.owner .text{max-width:600px;margin-left:8vw}
+.owner h2{font-size:48px;color:var(--river)}
+.owner .text p{margin-top:20px}
+.owner .watch{margin-top:40px;display:grid;grid-template-columns:auto 1fr;gap:6px 24px;align-items:center;max-width:460px}
+.owner .watch .num{font-size:30px;color:var(--river)}
+.owner .watch .hit .num{color:var(--ink)}
+.owner .watch-cap{font-size:16px;margin-top:12px}
+
+/* ---- 行き方 ---- */
+.access{position:relative;background:var(--river);color:#fff;padding:120px 48px 110px}
+.access>svg.wave{position:absolute;left:0;top:-38px;width:100%;height:40px}
+.access h2{font-size:48px}
+.access .grid{display:grid;grid-template-columns:1.618fr 1fr;gap:56px;margin-top:40px;align-items:start}
+.access .map{width:100%;height:auto;display:block}
+.access .w-ferry{width:100%;aspect-ratio:1/.9;margin-top:-200px;position:relative}
+.access .ways{margin-top:28px}
+.access .ways div{padding:12px 0}
+.access .ways b{font-family:var(--serif);font-size:24px;display:block}
+.access .addr{font-family:var(--serif);font-weight:600;font-size:24px;margin-top:10px}
+.access .cap{margin-top:12px}
+
+/* ---- フッター ---- */
+footer{padding:64px 48px 56px;font-size:16px}
+footer nav ul{list-style:none;display:flex;flex-wrap:wrap;gap:12px 32px;font-weight:700;font-size:16px}
+footer .name{font-family:var(--serif);font-weight:700;font-size:30px;color:var(--river);margin-bottom:16px}
+footer .credits{margin-top:28px;max-width:980px;line-height:1.7}
+
+/* ---- スマホ ---- */
+@media (max-width:820px){
+  body{font-size:16px}
+  .nav{padding:16px}
+  .nav ul{display:none}
+  .hero{height:auto;min-height:0;max-height:none;padding:72px 16px 0}
+  .hero h1{position:relative;left:auto;top:auto;font-size:48px}
+  .hero .lead{position:relative;left:auto;top:auto;font-size:20px;margin-top:8px}
+  .hero .w-loaf{position:relative;left:auto;top:auto;width:100%;height:auto;aspect-ratio:1/.95;margin-top:20px}
+  .hero .w-bell{width:24%;right:12px;top:58px}
+  .hero h1{margin-right:26%}
+  .hero .clapper{display:none}
+  .hero .credit{position:relative;left:auto;right:auto;top:auto;width:auto;margin-top:10px}
+  .hero .river{position:relative;height:auto;margin:60px -16px 0;padding:8px 16px 44px}
+  .hero .bake,.hero .open{position:relative;left:auto;right:auto;bottom:auto;text-align:left}
+  .hero .bake .num{font-size:72px}
+  .hero .bake .dots{width:96px}
+  .hero .open{margin-top:24px}
+  .bakeup{padding:80px 16px}
+  .bakeup .w-big{position:relative;left:-16px;top:auto;width:88vw;max-width:none}
+  .bakeup .cap-big{position:relative;left:auto;top:auto;width:auto;margin-top:10px}
+  .bakeup .text{margin:28px 0 0;padding:0}
+  .bakeup h2,.menu h2,.owner h2,.access h2{font-size:30px}
+  .panel{margin:40px -16px 0;padding:36px 16px}
+  .panel .clock .num{font-size:84px}
+  .shelf{columns:1}
+  .menu{padding:60px 0 80px}
+  .menu .w-eat{position:relative;right:auto;top:auto;width:76vw;max-width:none;margin-left:auto}
+  .menu .cap-eat{position:relative;right:auto;top:auto;width:auto;margin:10px 16px 0;color:var(--ink)}
+  .menu .board{margin:20px 0 0;padding:110px 16px 60px;clip-path:url(#loafsp)}
+  .menu .groups{grid-template-columns:1fr;gap:36px}
+  .owner{padding:40px 16px 80px;min-height:0}
+  .owner .w-galley{position:relative;right:-16px;top:auto;width:84vw;max-width:none;margin-left:auto}
+  .owner .cap-galley{position:relative;right:auto;top:auto;width:auto;margin-top:10px}
+  .owner .text{margin:28px 0 0}
+  .access{padding:80px 16px}
+  .access .grid{grid-template-columns:1fr;gap:28px}
+  .access .w-ferry{margin-top:0}
+  footer{padding:48px 16px}
+}
+</style>
+</head>
+<body>
+<!-- 窓の形（山型食パンの断面・号鐘）。objectBoundingBox なので、どの大きさの箱にも使える -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <clipPath id="loaf" clipPathUnits="objectBoundingBox"><path d="M0,.34C0,.13 .08,.03 .19,.03C.26,.03 .31,.07 .335,.12C.36,.05 .42,0 .5,0C.58,0 .64,.05 .665,.12C.69,.07 .74,.03 .81,.03C.92,.03 1,.13 1,.34L.97,1L.03,1Z"/></clipPath>
+  <clipPath id="bell" clipPathUnits="objectBoundingBox"><path d="M.43,.07L.43,0L.57,0L.57,.07C.77,.09 .83,.22 .84,.4C.85,.62 .89,.78 1,.88L1,.95L0,.95L0,.88C.11,.78 .15,.62 .16,.4C.17,.22 .23,.09 .43,.07Z"/></clipPath>
+  <clipPath id="loafwide" clipPathUnits="objectBoundingBox"><path d="M0,.1C0,.03 .06,0 .17,0C.25,0 .3,.02 .335,.045C.37,.015 .43,0 .5,0C.57,0 .63,.015 .665,.045C.7,.02 .75,0 .83,0C.94,0 1,.03 1,.1L1,1L0,1Z"/></clipPath>
+  <clipPath id="loafsp" clipPathUnits="objectBoundingBox"><path d="M0,.035C0,.01 .07,0 .17,0C.25,0 .3,.008 .335,.016C.37,.005 .43,0 .5,0C.57,0 .63,.005 .665,.016C.7,.008 .75,0 .83,0C.93,0 1,.01 1,.035L1,1L0,1Z"/></clipPath>
+</svg>
+
+<header class="nav">
+  <a class="logo" href="#top">鷺ノ瀬ベーカリー</a>
+  <nav aria-label="ページ内"><ul><li><a href="#bake">焼き上がり</a></li><li><a href="#menu">品と値段</a></li><li><a href="#owner">店主</a></li><li><a href="#access">行き方</a></li></ul></nav>
+</header>
+
+<main id="top">
+<section class="hero">
+  <h1>鷺ノ瀬<br>ベーカリー</h1>
+  <p class="lead">川の渡し場の上で、朝6時から。</p>
+  <figure class="w-loaf loaf"><img src="photos/HK-TKT-Tai-Kok-Tsui-Olympian-City-mall-shop-Japanese-bakery-.jpg" alt="かごに並んだ食パンと菓子パン（香港の日本式のパン屋）" fetchpriority="high" width="1280" height="960"></figure>
+  <figure class="w-bell bell"><img src="photos/Peacemaker-ship-bell.jpg" alt="帆船の甲板に下がる真鍮の号鐘" width="960" height="720"></figure>
+  <span class="clapper" aria-hidden="true"></span>
+  <p class="credit cap">写真：かごの食パン（香港の日本式のパン屋）DAIAZLN oka／CC BY-SA 4.0、帆船の号鐘 Doug Coldwell／CC BY-SA 3.0（Wikimedia Commons）</p>
+  <div class="river">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0,60L0,34C120,8 240,8 360,34S600,60 720,34S960,8 1080,34S1320,60 1440,34L1440,60Z" fill="#1f4e9e"/></svg>
+    <div class="bake">
+      <p>食パンの焼き上がり</p>
+      <div class="row"><span class="num">7:00</span><svg class="dots" width="162" height="18" viewBox="0 0 162 18" aria-hidden="true"><circle cx="9" cy="9" r="9"/><circle cx="33" cy="9" r="9"/><circle cx="69" cy="9" r="9"/><circle cx="93" cy="9" r="9"/><circle cx="129" cy="9" r="9"/><circle cx="153" cy="9" r="9"/></svg><span class="sr">鐘を6つ</span></div>
+      <div class="row"><span class="num">11:00</span><svg class="dots" width="162" height="18" viewBox="0 0 162 18" aria-hidden="true"><circle cx="9" cy="9" r="9"/><circle cx="33" cy="9" r="9"/><circle cx="69" cy="9" r="9"/><circle cx="93" cy="9" r="9"/><circle cx="129" cy="9" r="9"/><circle cx="153" cy="9" r="9"/></svg><span class="sr">鐘を6つ</span></div>
+    </div>
+    <div class="open">
+      <span class="num">6:00–14:00</span>
+      <span>定休日 月・火</span>
+      <a class="btn" href="#menu">品と値段を見る</a>
+    </div>
+  </div>
+</section>
+
+<section class="bakeup" id="bake" aria-labelledby="bake-h">
+  <figure class="w-big bell"><img src="photos/Baking-Bread-Communal-Oven-2011.jpg" alt="窯からパンを出す職人" loading="lazy" width="1280" height="929"></figure>
+  <p class="cap cap-big">窯からパンを出す人（共同の窯、2011年）。写真：travelwayoflife／Wikimedia Commons／CC BY-SA 2.0</p>
+  <div class="text">
+    <h2 id="bake-h">焼き上がりの時刻</h2>
+    <p>食パンは1日2回、7時と11時に窯から出します。焼き上がると、店先に下げた船の鐘を6つ鳴らします。</p>
+    <p>船では30分ごとに鐘を打ち、4時間の当直のあいだに1つずつ増えていきます。7時も11時も、鳴るのは6つです。店主が船の厨房で毎朝聞いていた音なので、そのまま店の合図にしました。</p>
+  </div>
+  <div class="panel" data-ui>
+    <div class="clock">
+      <span class="num" id="clk">7:00</span>
+      <div class="bells"><b id="bellword">船の鐘は6つ</b><svg class="dots" id="belldots" width="222" height="18" viewBox="0 0 222 18" aria-hidden="true"><circle cx="9" cy="9" r="9"/><circle cx="33" cy="9" r="9"/><circle cx="69" cy="9" r="9"/><circle cx="93" cy="9" r="9"/><circle cx="129" cy="9" r="9"/><circle cx="153" cy="9" r="9"/><circle cx="189" cy="9" r="9"/><circle cx="213" cy="9" r="9"/></svg></div>
+    </div>
+    <label for="t">来る時刻を選ぶと、そのころ棚にあるものが分かります</label>
+    <input type="range" id="t" min="0" max="16" step="1" value="2" aria-describedby="note">
+    <div class="ticks" aria-hidden="true"><span>6:00</span><span>8:00</span><span>10:00</span><span>12:00</span><span>14:00</span></div>
+    <p class="note" id="note" aria-live="polite">食パン（7時の回）が焼き上がります。鐘を6つ鳴らします。</p>
+    <ul class="shelf" id="shelf"></ul>
+  </div>
+</section>
+
+<section class="menu" id="menu" aria-labelledby="menu-h">
+  <figure class="w-eat loaf"><img src="photos/Eating-a-curry-pan-at-Brighton-and-Hove-Japanese-Club-Open-D.jpg" alt="カレーパンを食べる人" loading="lazy" width="960" height="1280"></figure>
+  <p class="cap cap-eat">カレーパンを食べる人（ブライトンの日本の催し）。写真：Andy Li／Wikimedia Commons／CC0</p>
+  <div class="board">
+    <h2 id="menu-h">品と値段</h2>
+    <p class="sub">値段はすべて税込です。毎日この15品を焼きます。</p>
+    <div class="groups">
+      <div>
+        <h3>食パン <span class="num">7:00・11:00</span></h3>
+        <dl>
+          <div><dt>角食パン<small>1斤</small></dt><dd>380<small>円</small></dd></div>
+          <div><dt>山食パン<small>1.5斤</small></dt><dd>520<small>円</small></dd></div>
+          <div><dt>ライ麦入り食パン<small>1斤・11時の回だけ</small></dt><dd>450<small>円</small></dd></div>
+        </dl>
+      </div>
+      <div>
+        <h3>朝のパン <span class="num">6:00から</span></h3>
+        <dl>
+          <div><dt>塩バターロール</dt><dd>140<small>円</small></dd></div>
+          <div><dt>あんパン<small>こしあん</small></dt><dd>180<small>円</small></dd></div>
+          <div><dt>クリームパン</dt><dd>200<small>円</small></dd></div>
+          <div><dt>焼きそばパン</dt><dd>230<small>円</small></dd></div>
+          <div><dt>カレーパン<small>牛すじのカレー</small></dt><dd>240<small>円</small></dd></div>
+          <div><dt>ベーコンエピ</dt><dd>260<small>円</small></dd></div>
+        </dl>
+      </div>
+      <div>
+        <h3>サンド <span class="num">11:00から</span></h3>
+        <dl>
+          <div><dt>たまごサンド</dt><dd>320<small>円</small></dd></div>
+          <div><dt>ハムカツサンド</dt><dd>380<small>円</small></dd></div>
+          <div><dt>焼き鯖サンド<small>玉ねぎと</small></dt><dd>420<small>円</small></dd></div>
+        </dl>
+      </div>
+      <div>
+        <h3>焼き菓子と飲みもの</h3>
+        <dl>
+          <div><dt>食パンの耳のラスク</dt><dd>150<small>円</small></dd></div>
+          <div><dt>スコーン</dt><dd>220<small>円</small></dd></div>
+          <div><dt>コーヒー<small>持ち帰り</small></dt><dd>200<small>円</small></dd></div>
+        </dl>
+      </div>
+    </div>
+    <p class="foot">食パンの取り置きは、前の日の14時までに店頭でどうぞ。</p>
+  </div>
+</section>
+
+<section class="owner" id="owner" aria-labelledby="owner-h">
+  <figure class="w-galley bell"><img src="photos/Ships-Galley-HMS-M33.jpg" alt="船の厨房（ギャレー）。コンロと調理台が壁に沿って並ぶ" loading="lazy" width="851" height="1280"></figure>
+  <p class="cap cap-galley">船の厨房（イギリスの記念艦 M33）。店主の働いた貨物船の厨房も、このくらいの広さでした。写真：www.mgaylard.co.uk／Wikimedia Commons／CC BY 2.0</p>
+  <div class="text">
+    <h2 id="owner-h">店主のこと</h2>
+    <p>店主は、内航の貨物船とフェリーの厨房で18年、乗組員の食事を作ってきました。船の朝ごはんは、4時の当直が明ける前に用意します。パンを焼き始めたのもそのころで、揺れる厨房で毎朝14人分を焼いていました。</p>
+    <p>船を降りて、育った鷺ノ瀬町に戻り、渡し場の石段の上の空き家で店を始めました。仕込みはいまも3時半からです。</p>
+    <div class="watch" aria-label="朝の当直（4時から8時）の鐘の数">
+      <span class="num">4:30</span><svg class="dots" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="7"/></svg>
+      <span class="num">5:30</span><svg class="dots" width="66" height="14" viewBox="0 0 66 14" aria-hidden="true"><circle cx="7" cy="7" r="7"/><circle cx="27" cy="7" r="7"/><circle cx="59" cy="7" r="7"/></svg>
+      <span class="num">6:30</span><svg class="dots" width="118" height="14" viewBox="0 0 118 14" aria-hidden="true"><circle cx="7" cy="7" r="7"/><circle cx="27" cy="7" r="7"/><circle cx="59" cy="7" r="7"/><circle cx="79" cy="7" r="7"/><circle cx="111" cy="7" r="7"/></svg>
+      <span class="num hit">7:00</span><svg class="dots" width="138" height="14" viewBox="0 0 138 14" aria-hidden="true"><circle cx="7" cy="7" r="7"/><circle cx="27" cy="7" r="7"/><circle cx="59" cy="7" r="7"/><circle cx="79" cy="7" r="7"/><circle cx="111" cy="7" r="7"/><circle cx="131" cy="7" r="7"/></svg>
+      <span class="num">8:00</span><svg class="dots" width="190" height="14" viewBox="0 0 190 14" aria-hidden="true"><circle cx="7" cy="7" r="7"/><circle cx="27" cy="7" r="7"/><circle cx="59" cy="7" r="7"/><circle cx="79" cy="7" r="7"/><circle cx="111" cy="7" r="7"/><circle cx="131" cy="7" r="7"/><circle cx="163" cy="7" r="7"/><circle cx="183" cy="7" r="7"/></svg>
+    </div>
+    <p class="watch-cap">朝の当直（4時から8時）で打つ鐘の数。8つで当直が替わります。</p>
+  </div>
+</section>
+
+<section class="access" id="access" aria-labelledby="access-h">
+  <svg class="wave" viewBox="0 0 1440 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0,40L0,22C120,6 240,6 360,22S600,38 720,22S960,6 1080,22S1320,38 1440,22L1440,40Z" fill="#1f4e9e"/></svg>
+  <h2 id="access-h">行き方</h2>
+  <p class="addr">鷺ノ瀬町 渡し場通り 2-14</p>
+  <div class="grid">
+    <div>
+      <svg class="map" viewBox="0 0 800 460" role="img" aria-label="鷺ノ瀬駅から店まで、川沿いに歩いて7分。対岸の東岸からは渡し舟で川を渡る">
+        <path d="M0,300C160,250 300,330 460,290S700,220 800,250L800,350C700,320 600,380 460,390S160,350 0,400Z" fill="#ffffff" fill-opacity=".14"/>
+        <text x="610" y="330" fill="#fff" font-size="22" font-family="Noto Sans JP">鷺ノ瀬川</text>
+        <path d="M70,80L70,200L330,200L330,270" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M0,70L800,70" stroke="#fff" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round"/>
+        <rect x="40" y="52" width="70" height="36" fill="#fff"/>
+        <text x="75" y="77" text-anchor="middle" fill="#1f4e9e" font-size="22" font-weight="700" font-family="Noto Sans JP">駅</text>
+        <text x="122" y="48" fill="#fff" font-size="22" font-family="Noto Sans JP">鷺ノ瀬駅（みなせ鉄道）</text>
+        <text x="96" y="232" fill="#fff" font-size="22" font-family="Noto Sans JP">渡し場通り　徒歩7分</text>
+        <path d="M330,272L330,430" stroke="#e2a93b" stroke-width="4" stroke-dasharray="10 10"/>
+        <text x="345" y="380" fill="#fff" font-size="22" font-family="Noto Sans JP">渡し舟 3分</text>
+        <text x="300" y="456" fill="#fff" font-size="22" font-family="Noto Sans JP">東岸の舟着き場</text>
+        <circle cx="330" cy="248" r="20" fill="#e2a93b"/>
+        <text x="362" y="242" fill="#fff" font-size="26" font-weight="700" font-family="Shippori Mincho B1">鷺ノ瀬ベーカリー</text>
+        <text x="362" y="266" fill="#fff" font-size="20" font-family="Noto Sans JP">店の裏に駐車場3台</text>
+      </svg>
+    </div>
+    <div>
+      <figure class="w-ferry loaf"><img src="photos/Yagiri-no-watashi-2020-01-19.jpg" alt="川の舟着き場で渡し舟を待つ人たち" loading="lazy" width="1280" height="960"></figure>
+      <p class="cap">江戸川の矢切の渡しで、舟を待つ人たち（2020年1月）。鷺ノ瀬の渡し舟も、このくらいの舟です。写真：Asanagi／Wikimedia Commons／CC0</p>
+      <div class="ways">
+        <div><b>電車</b>みなせ鉄道 鷺ノ瀬駅から、渡し場通りを川へ下って徒歩7分。</div>
+        <div><b>渡し舟</b>東岸からは町営の渡し舟で3分。片道 大人150円・子ども70円、7時から17時まで。舟が向こう岸にいるときは、舟着き場の板を叩くと迎えに来ます。</div>
+        <div><b>車・自転車</b>店の裏に駐車場が3台分、自転車置き場があります。</div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <p class="name">鷺ノ瀬ベーカリー</p>
+  <p>鷺ノ瀬町 渡し場通り 2-14　営業時間 6:00–14:00（売り切れたら閉めます）　定休日 月・火</p>
+  <nav aria-label="フッター" style="margin-top:20px"><ul><li><a href="#bake">焼き上がりの時刻</a></li><li><a href="#menu">品と値段</a></li><li><a href="#owner">店主のこと</a></li><li><a href="#access">行き方</a></li></ul></nav>
+  <p class="credits cap">写真はすべて Wikimedia Commons から：かごの食パン DAIAZLN oka（CC BY-SA 4.0）、帆船の号鐘 Doug Coldwell（CC BY-SA 3.0）、共同の窯 travelwayoflife（CC BY-SA 2.0）、カレーパン Andy Li（CC0）、船の厨房 www.mgaylard.co.uk（CC BY 2.0）、矢切の渡し Asanagi（CC0）。どれも題材の店の写真ではありません。<br>これは site-skills の使用例です。店・町・川・鉄道・店主はすべて架空です。</p>
+</footer>
+
+<script>
+// 触れる1つ：来る時刻（6:00〜14:00、30分ごと）を選ぶと、船の鐘の数と、棚にあるものが替わる
+(function(){
+  var t=document.getElementById('t'); if(!t) return;
+  // from：並ぶ時刻、out：ふだん売り切れる時刻（時間。9.5＝9:30）。食パンは回ごとに [並ぶ, 売り切れ]
+  var items=[
+    {n:'角食パン',b:[[7,9.5],[11,13]]},{n:'山食パン',b:[[7,10],[11,13.5]]},{n:'ライ麦入り食パン',b:[[11,13]]},
+    {n:'塩バターロール',b:[[6,11.5]]},{n:'あんパン',b:[[6,12]]},{n:'クリームパン',b:[[6,11]]},{n:'焼きそばパン',b:[[6,10.5]]},
+    {n:'カレーパン',b:[[6,10]]},{n:'ベーコンエピ',b:[[6,12]]},
+    {n:'たまごサンド',b:[[11,13]]},{n:'ハムカツサンド',b:[[11,13.5]]},{n:'焼き鯖サンド',b:[[11,12.5]]},
+    {n:'食パンの耳のラスク',b:[[6,14]]},{n:'スコーン',b:[[6,13]]},{n:'コーヒー',b:[[6,14]]}
+  ];
+  var fmt=function(h){var m=Math.round((h%1)*60);return Math.floor(h)+':'+(m<10?'0':'')+m};
+  var kan=['','1つ','2つ','3つ','4つ','5つ','6つ','7つ','8つ'];
+  var shelf=document.getElementById('shelf'),clk=document.getElementById('clk'),note=document.getElementById('note'),word=document.getElementById('bellword'),dots=document.querySelectorAll('#belldots circle');
+  function state(it,h){
+    for(var i=0;i<it.b.length;i++){var r=it.b[i];
+      if(h<r[0]) return {c:'off',w:fmt(r[0])+'から'};
+      if(h<r[1]) return {c:'on',w:'並んでいます'};
+    }
+    return {c:'off',w:'売り切れのことが多い'};
+  }
+  function draw(){
+    var h=6+(+t.value)/2, half=(+t.value)%2;
+    var bells=((Math.floor(h)*2+half)%8)||8;
+    clk.textContent=fmt(h);
+    word.textContent='船の鐘は'+kan[bells];
+    Array.prototype.forEach.call(dots,function(d,i){d.classList.toggle('on',i<bells)});
+    t.setAttribute('aria-valuetext',fmt(h)+'、船の鐘は'+kan[bells]);
+    var msg = h===7?'食パン（7時の回）が焼き上がります。鐘を6つ鳴らします。'
+            : h===11?'食パン（11時の回）とサンドが並びます。鐘を6つ鳴らします。'
+            : h===6?'開店です。朝のパンと焼き菓子が並んでいます。'
+            : h>=14?'閉店の時刻です。売り切れたら、もっと早く閉めます。'
+            : '次の焼き上がりは'+(h<7?'7:00':h<11?'11:00':'明日の7:00')+'です。';
+    note.textContent=msg;
+    shelf.innerHTML=items.map(function(it){var s=state(it,h);return '<li class="'+s.c+'"><span>'+it.n+'</span><em>'+s.w+'</em></li>'}).join('');
+  }
+  t.addEventListener('input',draw); draw();
+})();
+</script>
+</body>
+</html>
