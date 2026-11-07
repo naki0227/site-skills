@@ -1,0 +1,708 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>いぬの美容室 ももとこむぎ｜空き枠と予約</title>
+<meta name="description" content="柿ノ木台の住宅街にある、トリマー2人・1日6頭までの犬のトリミングサロン。空き枠、犬の大きさとコースの料金、初めての方のワクチンの証明書、取り消しの決まり、行き方。（site-skills の作例。店は架空です）">
+<!--
+  site-skills の作例（架空の店。名前・場所・駅・料金・時間割・トリマーの名前はすべて作り物）。
+  依頼主の希望（決まりの順のいちばん上）：「キュートで、やさしい感じにしたい」。
+  主の色：#7452b8（仕上げに耳へ結ぶリボンの藤色。この店はリボンを藤色1色に決めている、という設定）
+  選んだスキル：主 booking-quality-bar（レンタル・体験 types/rental-activity.md：Othership・Lost Shore・チームラボプラネッツ・東京スカイツリー）。副は使わない（見た目は site-skills の taste.md と aesthetic.md）。
+  題材の特色：トリマー2人がそれぞれ1日3頭、合わせて6頭。ケージの扉に、その日預かる犬の名札を6枚下げる。仕上げに耳へ藤色のリボンを結ぶ。
+  考えの一文：このページでは、ケージの扉に下げる6枚のお預かり札が、その日の空き枠を選ぶ部品になる。
+  最初の画面の形（taste.md「いまの好み」）：窓＝犬の足の裏（大きな掌球と4つの指球）の形で写真を抜く。飾り＝仕上げのリボン（差し色の杏）と、お預かり札。
+    「キュート・やさしい」は、丸い書体（Zen Maru Gothic・Quicksand）、角を「まる」に1回で決める、藤色と杏の淡い面、で出す。
+  色（aesthetic.md の3色）：地 #fdfbff（シャンプーの泡の白に藤色をひとしずく）／主 #7452b8（リボンの藤色）／差し色 #e8935a（トイプードルの毛色のアプリコット）。文字は #2b1f3d。
+    ほかの作例の主（青 5つ・紺・辰砂の赤・金赤・翡翠・琥珀・朱・赤）と色相をずらした（藤色は約260°、青の作例は約228°）。
+  手本の測定（work/oneshot3/dog-salon/sample.jsonl、scripts/sample.js、PC 1440px、8件中8件が開けた）：
+    - 地：Othership #ece8e3・東京スカイツリー #ffffff・Lost Shore #ffffff → 白に寄せた #fdfbff。
+    - 大きな字：東京スカイツリー Quicksand 80px 400（丸い英字）・Othership Lido Cond 72px・Resy 48px 700 → 店名は Zen Maru Gothic 700、数字は Quicksand。
+    - ボタン：東京スカイツリー 角 17.5px（まる）・Othership 5px・Lost Shore 0 → まる1種。
+    - 全幅の罫：Lost Shore 0・スカイツリー 0・Othership 1 → 罫は引かない。
+    - 本文：チームラボプラネッツ 14px 行間2・#444 → 本文は 17px・行間1.9・#2b1f3d（灰色にしない）。
+  予約の型（rental-activity.md の「真似る型」）：1 枠は時刻順に全部、埋まった札も残す／3 残りは数で（その日の空き n/6）／4 大きさで札を絞り、押せない理由を出す／
+    5 札を選んだらその場で料金とお迎えの目安／6 取り消し無料の締めを、選んだ日から日付に直して合計のすぐ下に／10 初めての日の確かめごと（ワクチン）は申し込みのそばに／
+    11 受付の開き方を日の帯のそばに／13 選んだ内容は貼り付く面に（SP は画面下の帯）。
+  残した WARN（scripts/inspect.js）：jp-head-size・photo-cover は taste.md に寄せたため（大きな店名＋足の裏の形で抜いた写真）。
+    explain-first の2つめは「4,620円から（小型・税込）」で、値段は最初の画面に字で出すのが booking の決まり（決まりの順 3 が 5 に勝つ）。
+  決まりの順（site-skills SKILL.md）：1 依頼主の「キュートで、やさしい」→ 2 taste（大きな字＋形で抜いた写真・どの章にも人）→ 3 booking の実測（流れ・値段・締め）→ 4 aesthetic → 5 inspect。
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&family=Quicksand:wght@500;700&display=swap">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"いぬの美容室 ももとこむぎ（架空）",
+ "description":"柿ノ木台の住宅街にある犬のトリミングサロン。トリマー2人、1日6頭まで。site-skills の作例で、店は架空です。",
+ "address":{"@type":"PostalAddress","addressRegion":"（架空）","addressLocality":"柿ノ木台","streetAddress":"2丁目14-3"},
+ "telephone":"000-000-0000",
+ "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Thursday","Friday","Saturday","Sunday"],"opens":"09:30","closes":"18:00"}],
+ "makesOffer":[
+  {"@type":"Offer","name":"シャンプーコース 小型","price":"4620","priceCurrency":"JPY"},
+  {"@type":"Offer","name":"部分カットコース 小型","price":"5610","priceCurrency":"JPY"},
+  {"@type":"Offer","name":"カットコース 小型","price":"6820","priceCurrency":"JPY"},
+  {"@type":"Offer","name":"シャンプーコース 中型","price":"6380","priceCurrency":"JPY"},
+  {"@type":"Offer","name":"カットコース 大型","price":"12430","priceCurrency":"JPY"}
+ ]}
+</script>
+<style>
+:root{
+  --ground:#fdfbff;   /* シャンプーの泡の白 */
+  --main:#7452b8;     /* リボンの藤色 */
+  --main-deep:#5a3d97;
+  --tint:#efe8fa;     /* 藤色の淡い面 */
+  --accent:#e8935a;   /* アプリコットの毛色 */
+  --accent-tint:#fbe9dc;
+  --accent-ink:#a9531c;
+  --ink:#2b1f3d;
+  --ink-soft:#4a3d5c;
+  --r:999px;
+  --jp:"Zen Maru Gothic",system-ui,sans-serif;
+  --num:"Quicksand","Zen Maru Gothic",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;word-break:auto-phrase;line-break:strict;background:var(--ground);color:var(--ink);font-family:var(--jp);font-weight:500;font-size:17px;line-height:1.9;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:var(--main-deep)}
+.num{font-family:var(--num);font-weight:700;font-feature-settings:"tnum"}
+.wrap{max-width:1280px;margin:0 auto;padding:0 48px}
+.svgdefs{position:absolute;width:0;height:0}
+:focus-visible{outline:3px solid var(--accent-ink);outline-offset:3px}
+
+/* ヘッダー */
+.top{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 48px;max-width:1280px;margin:0 auto}
+.top .logo{font-weight:700;font-size:17px;color:var(--main);text-decoration:none}
+.top nav{display:flex;gap:26px;font-size:15px}
+.top nav a{color:var(--ink);text-decoration:none}
+.top nav a:hover{color:var(--main)}
+
+/* 足の裏の窓 */
+.pad{clip-path:url(#padShape);overflow:hidden}
+.pad img,.toe img{width:100%;height:100%;object-fit:cover}
+.toe{border-radius:50%;overflow:hidden}
+.cap{font-size:16px;line-height:1.6;color:var(--ink-soft)}
+.cap a{color:inherit}
+
+/* 最初の画面 */
+.hero{position:relative;overflow-x:clip;max-width:1280px;margin:0 auto;padding:10px 48px 110px;display:grid;grid-template-columns:1.1fr 1fr;gap:24px;align-items:center;min-height:760px}
+.hero .kind{font-size:26px;font-weight:700;color:var(--ink);margin:0}
+.hero h1{margin:0;font-size:clamp(64px,10vw,140px);line-height:1.02;font-weight:700;color:var(--main);letter-spacing:-.02em;position:relative}
+.hero h1 .bow{display:inline-block;vertical-align:top;width:.5em;height:.4em;margin:-.08em 0 0 -.06em;transform:rotate(18deg)}
+.hero .lead{font-size:20px;margin:22px 0 0;max-width:30em}
+.next{display:flex;align-items:flex-start;gap:22px;margin-top:34px;flex-wrap:wrap}
+.hangtag{position:relative;background:#fff;color:var(--ink);border-radius:18px 18px 40px 40px;padding:28px 26px 20px;min-width:230px;text-align:center;transform:rotate(-3deg);outline:2px solid var(--main)}
+.hangtag::before{content:"";position:absolute;top:10px;left:50%;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:var(--ground);outline:2px solid var(--main)}
+.hangtag::after{content:"";position:absolute;bottom:100%;left:50%;width:2px;height:26px;background:var(--main)}
+.hangtag b{display:block;font-family:var(--num);font-size:40px;line-height:1.2;color:var(--main)}
+.hangtag span{font-size:15px}
+.cta{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:0 34px;border-radius:var(--r);background:var(--main);color:#fff;font:700 18px/1 var(--jp);text-decoration:none;border:0;cursor:pointer}
+.cta:hover{background:var(--main-deep)}
+.cta[aria-disabled=true]{background:#d9cfe9;color:#3f3355;cursor:not-allowed}
+.next .from{font-size:17px;margin:8px 0 0}
+.next .from b{font-family:var(--num);font-size:26px;color:var(--accent-ink)}
+
+.paw{position:relative;height:700px}
+.paw .pad{position:absolute;left:4%;right:0;bottom:0;height:62%}
+.paw .toe{position:absolute;width:30%;aspect-ratio:.82}
+.paw .t1{left:0;top:26%;transform:rotate(-24deg)}
+.paw .t2{left:22%;top:4%;transform:rotate(-8deg)}
+.paw .t3{left:52%;top:2%;transform:rotate(8deg)}
+.paw .t4{left:69%;top:22%;transform:rotate(26deg)}
+.toe.fill{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:12px}
+.t2.fill{background:var(--main);color:#fff}
+.t4.fill{background:var(--accent-tint);color:var(--ink)}
+.toe.fill b{font-family:var(--num);font-size:26px;line-height:1.25}
+.toe.fill span{font-size:15px;line-height:1.5}
+.paw .cap{position:absolute;right:0;bottom:-78px;text-align:right;max-width:420px}
+
+/* 章の見出し */
+h2{font-size:clamp(36px,4.6vw,60px);line-height:1.2;margin:0 0 18px;font-weight:700;color:var(--main)}
+h3{font-size:26px;margin:0 0 10px;font-weight:700}
+section{position:relative}
+.book-grid>*,.price-grid>*,.fv-grid>*,.cx-grid>*,.ac-grid>*,.hero>*{min-width:0}
+
+/* 1 空き枠 */
+.book{background:var(--tint);padding:110px 0 120px;margin-top:40px}
+.book-grid{display:grid;grid-template-columns:380px 1fr;gap:56px;align-items:start}
+.book .side{position:sticky;top:20px}
+.book .side .pad{width:520px;height:440px;margin-left:-190px}
+.book .side .cap{margin:6px 0 0}
+fieldset{border:0;margin:0 0 38px;padding:0}
+legend{font-size:26px;font-weight:700;margin-bottom:12px;padding:0}
+legend small{font-size:15px;font-weight:500;color:var(--ink-soft);margin-left:10px}
+.choices{display:flex;flex-wrap:wrap;gap:10px}
+.choice{position:relative}
+.choice input{position:absolute;opacity:0;pointer-events:none}
+.choice label{display:flex;flex-direction:column;justify-content:center;min-height:64px;padding:8px 24px;border-radius:var(--r);background:#fff;border:2px solid #d4c6ec;cursor:pointer;line-height:1.35}
+.choice label b{font-size:17px}
+.choice label span{font-size:15px;color:var(--ink-soft)}
+.choice input:checked+label{background:var(--main);border-color:var(--main);color:#fff}
+.choice input:checked+label span{color:#efe8fa}
+.choice input:focus-visible+label{outline:3px solid var(--accent-ink);outline-offset:3px}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.day{min-height:88px;border-radius:30px;background:#fff;border:2px solid #d4c6ec;font:500 15px/1.35 var(--jp);color:var(--ink);cursor:pointer;padding:6px 2px}
+.day span{display:block}
+.day b{display:block;font-family:var(--num);font-size:26px}
+.day[aria-pressed=true]{background:var(--main);border-color:var(--main);color:#fff}
+.day:disabled{background:transparent;border-style:dashed;color:#5d516e;cursor:not-allowed}
+.note{font-size:15px;color:var(--ink-soft);margin:10px 0 0}
+.rack{display:grid;grid-template-columns:auto 1fr;gap:18px 20px;align-items:center;margin-top:8px}
+.rack .who{font-weight:700;font-size:17px;line-height:1.4}
+.rack .who span{display:block;font-size:15px;font-weight:500;color:var(--ink-soft)}
+.hooks{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding-top:26px;position:relative}
+.hooks::before{content:"";position:absolute;left:-10px;right:-10px;top:6px;height:6px;border-radius:3px;background:#cdbfe6}
+.tag{position:relative;min-height:122px;border-radius:16px 16px 44px 44px;background:#fff;border:2px solid var(--main);font:500 15px/1.4 var(--jp);color:var(--ink);cursor:pointer;padding:24px 6px 10px}
+.tag::before{content:"";position:absolute;top:8px;left:50%;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:var(--tint);border:2px solid var(--main)}
+.tag::after{content:"";position:absolute;bottom:100%;left:50%;width:2px;height:22px;background:var(--main)}
+.tag b{display:block;font-family:var(--num);font-size:26px;line-height:1.25}
+.tag .st{display:block;font-size:15px}
+.tag[aria-pressed=true]{background:var(--main);color:#fff;transform:rotate(-4deg)}
+.tag.taken{background:#e9e3f2;border-style:dashed;border-color:#8a7aa6;color:#4c405e;cursor:not-allowed}
+.tag.off{background:#fff;border-style:dashed;border-color:#a99bc2;color:#4c405e;cursor:not-allowed}
+.tag.taken::before,.tag.off::before{border-color:#8a7aa6}
+.why{font-size:15px;color:var(--accent-ink);margin:12px 0 0;min-height:1.5em}
+
+.sum{margin-top:30px;background:#fff;border-radius:40px;padding:34px 36px 36px}
+.sum h3{color:var(--main)}
+.sum dl{display:grid;grid-template-columns:7.5em 1fr;gap:6px 14px;margin:0 0 14px}
+.sum dt{color:var(--ink-soft);font-size:15px;padding-top:3px}
+.sum dd{margin:0;font-size:17px}
+.total{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:6px 0 4px}
+.total b{font-family:var(--num);font-size:40px;line-height:1.1;color:var(--main)}
+.total span{font-size:15px}
+.cancel-line{background:var(--accent-tint);border-radius:22px;padding:10px 18px;font-size:17px;margin:12px 0 18px}
+.first{margin:0 0 18px}
+.first label{display:flex;gap:10px;align-items:flex-start;font-size:17px;line-height:1.6;margin:6px 0;cursor:pointer}
+.first input{width:22px;height:22px;margin-top:2px;accent-color:var(--main);flex:none}
+.first .checks{margin:6px 0 0 30px}
+.first .checks[hidden]{display:none}
+.done{font-size:17px;background:var(--tint);border-radius:22px;padding:12px 18px;margin:14px 0 0}
+
+.bar{display:none}
+
+/* 2 料金 */
+.price{padding:130px 0 120px;overflow:hidden}
+.price-grid{display:grid;grid-template-columns:1fr 500px;gap:40px;align-items:start}
+.price .pad{width:720px;height:760px;margin-right:-260px}
+.price .sticky{position:sticky;top:30px}
+.price .lead{font-size:20px;max-width:34em;margin:0 0 30px}
+.sizes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:0 0 30px}
+.size{border-radius:36px;padding:22px 22px 20px;background:var(--tint);line-height:1.6}
+.size b{display:block;font-size:26px;color:var(--main)}
+.size .kg{font-family:var(--num);font-size:20px;font-weight:700}
+.size p{margin:4px 0 0;font-size:15px}
+.size.on{background:var(--main);color:#fff}
+.size.on b{color:#fff}
+table.fee{width:100%;border-collapse:collapse;font-size:17px}
+.fee th,.fee td{padding:16px 12px;text-align:left;border-bottom:2px solid #e2d8f2;vertical-align:top}
+.fee thead th{font-size:17px;color:var(--ink-soft);font-weight:700}
+.fee tbody th{font-size:20px}
+.fee tbody th span{display:block;font-size:15px;font-weight:500;color:var(--ink-soft);line-height:1.6}
+.fee td{font-family:var(--num);font-weight:700;font-size:26px;white-space:nowrap}
+.fee td small{display:block;font-family:var(--jp);font-weight:500;font-size:15px;color:var(--ink-soft)}
+.fee .on{background:var(--tint);color:var(--main-deep)}
+.opts{display:grid;grid-template-columns:1fr;gap:0;margin-top:40px;font-size:17px;max-width:620px}
+.opts h3{color:var(--main)}
+.opts div{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:2px dotted #e2d8f2}
+.opts b{font-family:var(--num);white-space:nowrap}
+
+/* 3 初めての方 */
+.first-visit{background:var(--main);color:#fff;padding:130px 0 130px;overflow:hidden}
+.first-visit h2{color:#fff}
+.fv-grid{display:grid;grid-template-columns:520px 1fr;gap:60px;align-items:center}
+.first-visit .pad{width:620px;height:640px;margin-left:-150px}
+.first-visit .cap{color:#fff}
+.first-visit .lead{font-size:20px;margin:0 0 28px}
+.card{background:#fff;color:var(--ink);border-radius:30px 30px 60px 60px;padding:34px 36px 34px;position:relative;transform:rotate(1.5deg)}
+.card::before{content:"";position:absolute;top:14px;left:50%;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--main)}
+.card h3{text-align:center;color:var(--main);margin-top:12px}
+.card ul{list-style:none;margin:0;padding:0}
+.card li{display:grid;grid-template-columns:30px 1fr;gap:8px;padding:12px 0;border-bottom:2px dashed #e2d8f2;font-size:17px;line-height:1.7}
+.card li:last-child{border-bottom:0}
+.card li::before{content:"";width:22px;height:22px;border-radius:50%;border:2px solid var(--main);margin-top:4px}
+.card li b{color:var(--main-deep)}
+.first-visit .after{margin:26px 0 0;font-size:17px}
+
+/* 4 取り消し */
+.cancel{padding:130px 0 120px;overflow:hidden}
+.cx-grid{display:grid;grid-template-columns:1fr 420px;gap:50px;align-items:center}
+.cancel .toe{width:520px;height:600px;transform:rotate(12deg);margin-right:-150px}
+.cancel .cap{margin-top:30px;text-align:right}
+.ruler{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:34px 0 20px;position:relative}
+.ruler::before{content:"";position:absolute;left:0;right:0;top:38px;height:8px;border-radius:4px;background:linear-gradient(90deg,var(--main) 0 33.3%,var(--accent) 33.3% 66.6%,#2b1f3d 66.6%)}
+.ruler div{padding:64px 18px 0 0;position:relative}
+.ruler div::before{content:"";position:absolute;top:28px;left:0;width:28px;height:28px;border-radius:50%;background:#fff;border:4px solid var(--main)}
+.ruler div:nth-child(2)::before{border-color:var(--accent)}
+.ruler div:nth-child(3)::before{border-color:#2b1f3d}
+.ruler b{display:block;font-family:var(--num);font-size:60px;line-height:1.05;color:var(--main)}
+.ruler div:nth-child(2) b{color:var(--accent-ink)}
+.ruler div:nth-child(3) b{color:var(--ink)}
+.ruler .when{font-size:17px;font-weight:700;margin:6px 0 2px}
+.ruler p{margin:0;font-size:17px;line-height:1.7}
+.cancel .more{font-size:17px;max-width:40em}
+
+/* 5 行き方 */
+.access{background:var(--tint);padding:130px 0 120px;overflow:hidden}
+.ac-grid{display:grid;grid-template-columns:1.45fr 1fr;gap:56px;align-items:start}
+.ac-left{position:relative;padding-bottom:180px}
+.map{background:#fff;border-radius:48px;padding:12px;position:relative}
+.map svg{display:block;width:100%;height:auto}
+.map .cap{padding:6px 18px 8px}
+.access .toe{position:absolute;right:-24px;bottom:0;width:330px;height:330px;border:10px solid var(--tint)}
+.access .ac-left>.cap{position:absolute;left:0;bottom:60px;max-width:380px}
+.access dl{display:grid;grid-template-columns:6.5em 1fr;gap:10px 16px;margin:0 0 26px;font-size:17px}
+.access dt{font-weight:700;color:var(--main)}
+.access dd{margin:0}
+
+/* フッター */
+footer{background:var(--ink);color:#f3eefb;padding:90px 0 60px}
+footer .name{font-size:clamp(48px,7vw,96px);font-weight:700;color:#cbb8f0;margin:0;line-height:1.1}
+footer p{max-width:46em}
+footer .credits{font-size:15px;line-height:1.8;color:#d9cfe9;margin-top:30px}
+footer .credits a{color:#d9cfe9}
+
+@media (max-width:1100px){
+  .hero{grid-template-columns:1fr;min-height:0}
+  .paw{height:560px;max-width:620px}
+  .book-grid,.price-grid,.fv-grid,.cx-grid,.ac-grid{grid-template-columns:1fr}
+  .book .side{position:static}
+  .book .side .pad,.price .pad,.first-visit .pad{width:100%;margin:0;height:420px}
+  .cancel .toe{width:420px;height:460px;margin:0 auto}
+}
+@media (max-width:720px){
+  body{font-size:17px}
+  .wrap{padding:0 16px}
+  .top{padding:12px 16px}
+  .top nav{display:none}
+  .hero{padding:0 16px 40px;gap:8px}
+  .hero .kind{font-size:20px}
+  .hero h1{font-size:60px}
+  .hero .lead{font-size:17px;margin-top:14px}
+  .paw{height:330px;order:-1;margin:0 -16px 84px}
+  .book .side{order:2}
+  .paw .cap{left:16px;right:16px;bottom:-76px;max-width:none;text-align:left;font-size:15px}
+  .paw .pad{height:58%}
+  .toe.fill b{font-size:17px}
+  .toe.fill span{font-size:15px}
+  .next{margin-top:22px;gap:16px}
+  .hangtag{min-width:0;padding:24px 18px 16px}
+  .hangtag b{font-size:26px}
+  .book,.price,.first-visit,.cancel,.access{padding:72px 0 80px}
+  .book .side .pad,.price .pad,.first-visit .pad{height:320px;width:auto;margin:0 -16px}
+  .choice label{padding:8px 18px;min-height:56px}
+  .days{gap:4px}
+  .day{border-radius:20px;min-height:76px;font-size:15px}
+  .day b{font-size:20px}
+  .rack{grid-template-columns:1fr;gap:6px}
+  .hooks{gap:10px}
+  .tag{min-height:108px;font-size:15px;border-radius:14px 14px 34px 34px}
+  .tag b{font-size:20px}
+  .tag .st{font-size:15px}
+  .sum{border-radius:28px;padding:26px 20px}
+  .sum dl{grid-template-columns:6em 1fr}
+  .total b{font-size:40px}
+  .sizes{grid-template-columns:1fr}
+  .fee th,.fee td{padding:12px 4px}
+  .fee td small{white-space:normal}
+  .paw .t4{left:64%}
+  .paw .t1{left:2%}
+  .fee td{font-size:20px}
+  .fee thead th{font-size:15px}
+  .opts{grid-template-columns:1fr}
+  .card{padding:28px 20px}
+  .cancel .toe{width:300px;height:340px}
+  .ruler{grid-template-columns:1fr;gap:6px}
+  .ruler::before{left:12px;right:auto;top:0;bottom:0;width:6px;height:auto;background:linear-gradient(180deg,var(--main) 0 33.3%,var(--accent) 33.3% 66.6%,#2b1f3d 66.6%)}
+  .ruler div{padding:0 0 18px 50px}
+  .ruler div::before{top:8px;left:0}
+  .ruler b{font-size:40px}
+  .ac-left{padding-bottom:0}
+  .access .toe{position:relative;right:auto;width:260px;height:260px;margin:-50px -16px 0 auto}
+  .access .ac-left>.cap{position:static;max-width:none;text-align:right}
+  .map{border-radius:28px}
+  .bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:5;background:#fff;padding:10px 16px calc(10px + env(safe-area-inset-bottom));align-items:center;justify-content:space-between;gap:12px;box-shadow:0 -2px 12px rgba(43,31,61,.14)}
+  .bar p{margin:0;font-size:15px;line-height:1.4}
+  .bar b{font-family:var(--num);font-size:26px;color:var(--main)}
+  .bar .cta{min-height:48px;padding:0 20px;font-size:17px}
+  footer{padding-bottom:110px}
+}
+</style>
+</head>
+<body>
+<svg class="svgdefs" aria-hidden="true" focusable="false">
+  <defs>
+    <clipPath id="padShape" clipPathUnits="objectBoundingBox">
+      <path d="M0.5,0.04 C0.7,0.04 0.83,0.24 0.93,0.48 C1.03,0.74 0.92,0.97 0.7,0.96 C0.62,0.955 0.56,0.9 0.5,0.9 C0.44,0.9 0.38,0.955 0.3,0.96 C0.08,0.97 -0.03,0.74 0.07,0.48 C0.17,0.24 0.3,0.04 0.5,0.04Z"/>
+    </clipPath>
+    <symbol id="bow" viewBox="0 0 120 90">
+      <path d="M60 44 C44 18 10 4 6 26 C3 44 30 54 60 46Z" fill="#e8935a"/>
+      <path d="M60 44 C76 18 110 4 114 26 C117 44 90 54 60 46Z" fill="#e8935a"/>
+      <path d="M56 46 L40 86 L52 80 L58 88 L62 50Z M64 46 L80 86 L68 80 L62 88 L58 50Z" fill="#d97d42"/>
+      <ellipse cx="60" cy="45" rx="11" ry="10" fill="#d97d42"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="top">
+  <a class="logo" href="#">ももとこむぎ</a>
+  <nav aria-label="ページの中">
+    <a href="#book">空き枠</a><a href="#price">コースと料金</a><a href="#first">初めての方</a><a href="#cancel">取り消し</a><a href="#access">行き方</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero" aria-labelledby="h1">
+  <div>
+    <p class="kind">いぬの美容室</p>
+    <h1 id="h1">ももと<svg class="bow" viewBox="0 0 120 90" aria-hidden="true"><use href="#bow"/></svg><br>こむぎ</h1>
+    <p class="lead">柿ノ木台の、トリマー2人の犬の美容室</p>
+    <div class="next">
+      <div class="hangtag" data-object>
+        <span>次に空いている札</span>
+        <b id="heroNext">11月8日（日）14:30</b>
+        <span id="heroWho">佐倉が担当</span>
+      </div>
+      <div>
+        <a class="cta" href="#book">空き枠を見る</a>
+        <p class="from">シャンプーコース <b>4,620</b>円から<br>（小型・税込）</p>
+      </div>
+    </div>
+  </div>
+  <div class="paw">
+    <div class="toe t1"><img src="photos/At-the-dog-groomers-4-Wilton---geograph-org-uk---1669899.jpg" alt="トリミング台の上で、白いテリアの体にバリカンをあてるトリマー" width="500" height="375"></div>
+    <div class="toe t2 fill"><span>受付</span><b class="num">9:30<br>12:00<br>14:30</b></div>
+    <div class="toe t3"><img src="photos/At-the-dog-groomers-1-Wilton---geograph-org-uk---1669850.jpg" alt="青い洗い場の湯船に入った、ぬれた白いテリア" width="500" height="667"></div>
+    <div class="toe t4 fill"><span>1日に</span><b class="num">6頭</b><span>まで</span></div>
+    <div class="pad"><img src="photos/At-the-dog-groomers-6-Wilton---geograph-org-uk---1669959.jpg" alt="トリミング台の白いテリアのあごに手を添えるトリマー" width="500" height="376"></div>
+    <p class="cap">足の窓の写真：イギリス・ウィルトンの犬の美容室（この店ではありません）。写真：Maigheach-gheal／Wikimedia Commons／CC BY-SA 2.0</p>
+  </div>
+</section>
+
+<section class="book" id="book" aria-labelledby="h-book">
+  <div class="wrap book-grid">
+    <div class="side">
+      <div class="pad"><img loading="lazy" src="photos/At-the-dog-groomers-5-Wilton---geograph-org-uk---1669923.jpg" alt="首輪を外した白いテリアの首まわりを、はさみで整えるトリマーの手" width="500" height="375"></div>
+      <p class="cap">首まわりをはさみで整えるところ（ウィルトンの犬の美容室。写真：Maigheach-gheal／Wikimedia Commons／CC BY-SA 2.0）</p>
+      <div class="sum" id="sum" aria-live="polite">
+        <h3>えらんだ内容</h3>
+        <dl>
+          <dt>犬の大きさ</dt><dd id="sSize">小型（7kg未満）</dd>
+          <dt>コース</dt><dd id="sCourse">シャンプーコース</dd>
+          <dt>日と受付</dt><dd id="sWhen">札をえらんでください</dd>
+          <dt>お迎えの目安</dt><dd id="sPick">―</dd>
+        </dl>
+        <div class="total"><b class="num" id="sTotal">4,620</b><span>円（税込）</span></div>
+        <p class="note" style="margin:0">当日ふえるのは、毛玉とノミだけです（始める前にお話しします）。</p>
+        <p class="cancel-line" id="sCancel">取り消しは、来店の前日18:00まで無料です。</p>
+        <div class="first">
+          <label><input type="checkbox" id="isFirst"> 初めて来店する</label>
+          <div class="checks" id="firstChecks" hidden>
+            <label><input type="checkbox" class="fc"> 狂犬病の予防注射の証明書（1年以内）を持っていく</label>
+            <label><input type="checkbox" class="fc"> 混合ワクチンの証明書（1年以内）を持っていく</label>
+            <label><input type="checkbox" class="fc"> ノミ・ダニの予防を1か月以内にしている</label>
+          </div>
+        </div>
+        <a class="cta" id="go" href="#book" aria-disabled="true">予約の内容を確かめる</a>
+        <p class="why" id="goWhy">まず、空いている札を1枚えらんでください。</p>
+        <p class="done" id="done" hidden>ここまでが作例です。この店は架空なので、予約は確定しません。</p>
+      </div>
+    </div>
+
+    <form id="form" onsubmit="return false">
+      <h2 id="h-book">空き枠をえらぶ</h2>
+      <p class="note" style="font-size:17px;color:var(--ink);margin:0 0 34px">ケージの扉に下げる札は、1日6枚。佐倉と野々村が3頭ずつお預かりします。大きさとコースを決めて、空いている札をえらんでください。</p>
+
+      <fieldset>
+        <legend>犬の大きさ<small>体重で決めます</small></legend>
+        <div class="choices" id="sizeChoices">
+          <div class="choice"><input type="radio" name="size" id="z-s" value="s" checked><label for="z-s"><b>小型</b><span>7kg未満</span></label></div>
+          <div class="choice"><input type="radio" name="size" id="z-m" value="m"><label for="z-m"><b>中型</b><span>7〜15kg未満</span></label></div>
+          <div class="choice"><input type="radio" name="size" id="z-l" value="l"><label for="z-l"><b>大型</b><span>15〜30kg・札2枚</span></label></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>コース</legend>
+        <div class="choices" id="courseChoices">
+          <div class="choice"><input type="radio" name="course" id="c-sh" value="sh" checked><label for="c-sh"><b>シャンプー</b><span id="p-sh">4,620円</span></label></div>
+          <div class="choice"><input type="radio" name="course" id="c-pa" value="pa"><label for="c-pa"><b>部分カット</b><span id="p-pa">5,610円</span></label></div>
+          <div class="choice"><input type="radio" name="course" id="c-cu" value="cu"><label for="c-cu"><b>カット</b><span id="p-cu">6,820円</span></label></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>日<small>2か月先の同じ日まで受け付けます（いまは1月7日まで）</small></legend>
+        <div class="days" id="days"></div>
+        <p class="note">数字はその日の空いている札の数（6枚のうち）。水曜と第3火曜は定休日です。</p>
+      </fieldset>
+
+      <fieldset>
+        <legend id="tagLegend">札</legend>
+        <div class="rack" id="rack">
+          <div class="who">佐倉 真帆<span>小型・中型のカット</span></div>
+          <div class="hooks" id="hooks-s"></div>
+          <div class="who">野々村 瞳<span>シャンプー・大型犬</span></div>
+          <div class="hooks" id="hooks-n"></div>
+        </div>
+        <p class="why" id="tagWhy"></p>
+      </fieldset>
+    </form>
+  </div>
+</section>
+
+<section class="price" id="price" aria-labelledby="h-price">
+  <div class="wrap price-grid">
+    <div>
+      <h2 id="h-price">コースと料金（税込）</h2>
+      <p class="lead">料金は犬の大きさとコースで決まります。どのコースにも、爪切り・耳そうじ・足裏のバリカン・肛門腺しぼりが入っています。</p>
+      <div class="sizes" id="sizeCards">
+        <div class="size" data-size="s"><b>小型</b><span class="kg">〜7kg</span><p>トイプードル、チワワ、ミニチュアダックス、ポメラニアン</p></div>
+        <div class="size" data-size="m"><b>中型</b><span class="kg">7〜15kg</span><p>柴犬、コーギー、ビーグル、ミニチュアシュナウザー</p></div>
+        <div class="size" data-size="l"><b>大型</b><span class="kg">15〜30kg</span><p>ゴールデン、ラブラドール。30kgをこえる子は電話でご相談ください</p></div>
+      </div>
+      <table class="fee" id="fee">
+        <thead><tr><th scope="col">コース</th><th scope="col" data-size="s">小型</th><th scope="col" data-size="m">中型</th><th scope="col" data-size="l">大型</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">シャンプー<span>シャンプー・ブロー・爪切り・耳そうじ</span></th><td data-size="s">4,620<small>約1時間半</small></td><td data-size="m">6,380<small>約2時間</small></td><td data-size="l">9,240<small>約3時間</small></td></tr>
+          <tr><th scope="row">部分カット<span>シャンプーに、顔・足先・おしりのカット</span></th><td data-size="s">5,610<small>約2時間</small></td><td data-size="m">7,480<small>約2時間半</small></td><td data-size="l">10,560<small>約3時間半</small></td></tr>
+          <tr><th scope="row">カット<span>シャンプーに、全身のカット（テディベアカットも）</span></th><td data-size="s">6,820<small>約2時間半</small></td><td data-size="m">8,910<small>約3時間</small></td><td data-size="l">12,430<small>約4時間</small></td></tr>
+        </tbody>
+      </table>
+      <div class="opts">
+        <h3>足せるもの・コースのほか</h3>
+        <div><span>歯みがき</span><b>550円</b></div>
+        <div><span>炭酸泉（小・中・大）</span><b>1,100／1,320／1,650円</b></div>
+        <div><span>毛玉ほどき（15分ごと・当日お話しして）</span><b>550円</b></div>
+        <div><span>ノミが見つかったときの駆除シャンプー</span><b>1,100円</b></div>
+        <div><span>爪切りだけ（予約なし・9:30〜17:00）</span><b>660／770／990円</b></div>
+        <div><span>初めての日のカウンセリング（15分）</span><b>0円</b></div>
+      </div>
+    </div>
+    <div class="sticky">
+      <div class="pad"><img loading="lazy" src="photos/Dog-Walk-8548992109.jpg" alt="散歩の途中で立ち止まる、大きさのちがう3頭の犬と飼い主たち" width="960" height="643"></div>
+      <p class="cap">大きさのちがう犬たちの散歩（アメリカ・オースティン。写真：MarkScottAustinTX／Wikimedia Commons／CC BY-SA 2.0）</p>
+    </div>
+  </div>
+</section>
+
+<section class="first-visit" id="first" aria-labelledby="h-first">
+  <div class="wrap fv-grid">
+    <div>
+      <div class="pad"><img loading="lazy" src="photos/Bundesarchiv-Bild-183-2005-0624-513-Berlin-Staupeimpfung-f-r.jpg" alt="ベルリンで、犬にジステンパーの予防接種をする人たち（白黒の古い写真）" width="500" height="654"></div>
+      <p class="cap">ベルリンの犬のジステンパーの予防接種（Bundesarchiv, Bild 183-2005-0624-513／Wikimedia Commons／CC BY-SA 3.0）</p>
+    </div>
+    <div>
+      <h2 id="h-first">初めて来る日は</h2>
+      <p class="lead">ほかの子と同じ部屋で過ごすので、ワクチンの証明書を2枚見せてください。受付の15分前に来ていただき、肌や耳の様子、苦手なことを聞いてから始めます。</p>
+      <div class="card" data-object>
+        <h3>初めての日の持ちもの</h3>
+        <ul>
+          <li><span><b>狂犬病の予防注射</b>の証明書か注射済票。1年以内のもの</span></li>
+          <li><span><b>混合ワクチン</b>の証明書。1年以内のもの（子犬は3回目から2週間あけて、生後4か月から）</span></li>
+          <li><span><b>ノミ・ダニの予防</b>を1か月以内に。していない子は、見つかったら駆除シャンプー（1,100円）にします</span></li>
+          <li><span>ヒート中の女の子、前の日から吐いたりおなかをこわしている子は、日を替えてください。取り消し料はかかりません</span></li>
+        </ul>
+      </div>
+      <p class="after">11歳をこえた子は、途中で休みながら進めるので、お迎えが30分ほど遅くなります。ごはんは来る2時間前までに。</p>
+    </div>
+  </div>
+</section>
+
+<section class="cancel" id="cancel" aria-labelledby="h-cancel">
+  <div class="wrap cx-grid">
+    <div>
+      <h2 id="h-cancel">取り消しと日の替え方</h2>
+      <p class="cancel-pick" id="cxFor" style="font-size:19px;margin:0">えらんだ札：まだえらんでいません（例として11月12日（木）9:30で計算しています）</p>
+      <div class="ruler">
+        <div><b class="num">0円</b><p class="when" id="cx1">11月11日（水）18:00まで</p><p>無料で取り消し・日の替えができます。ウェブとLINEは定休日も受け付けます。</p></div>
+        <div><b class="num">50%</b><p class="when" id="cx2">11月11日（水）18:00から当日の受付まで</p><p>コース料金の半分（<span id="cx2yen">2,310円</span>）。体調不良とヒートのときは0円です。</p></div>
+        <div><b class="num">100%</b><p class="when">連絡なしで来られなかったとき</p><p>コース料金の全額（<span id="cx3yen">4,620円</span>）。次の予約は、電話でお受けします。</p></div>
+      </div>
+      <p class="more">遅れそうなときは電話をください。30分をこえると、次の子の札に重なるので、コースを短くするか日を替えてご相談します。</p>
+    </div>
+    <div>
+      <div class="toe"><img loading="lazy" src="photos/Dog-walking-woman.jpg" alt="横断歩道をわたる、黒い小型犬を連れた人" width="960" height="664"></div>
+      <p class="cap">黒い小型犬と歩く人（写真：Amin／Wikimedia Commons／CC BY-SA 4.0）</p>
+    </div>
+  </div>
+</section>
+
+<section class="access" id="access" aria-labelledby="h-access">
+  <div class="wrap ac-grid">
+    <div class="ac-left">
+<div class="map">
+      <svg viewBox="0 0 640 460" role="img" aria-labelledby="mapT">
+        <title id="mapT">柿ノ木台駅の南口から店までの道（架空の地図）</title>
+        <rect width="640" height="460" rx="36" fill="#f6f1fd"/>
+        <path d="M0 96 H640" stroke="#d9cdee" stroke-width="34"/>
+        <path d="M0 96 H640" stroke="#fff" stroke-width="4" stroke-dasharray="14 12"/>
+        <path d="M150 96 V460" stroke="#e7def5" stroke-width="22"/>
+        <path d="M150 300 H640" stroke="#e7def5" stroke-width="22"/>
+        <path d="M430 96 V300" stroke="#e7def5" stroke-width="18"/>
+        <rect x="200" y="140" width="190" height="120" rx="60" fill="#dcefd9"/>
+        <text x="295" y="206" text-anchor="middle" font-size="18" fill="#3d5a3a" font-family="Zen Maru Gothic">かきのき公園</text>
+        <rect x="40" y="58" width="180" height="76" rx="38" fill="#7452b8"/>
+        <text x="130" y="103" text-anchor="middle" font-size="20" fill="#fff" font-family="Zen Maru Gothic" font-weight="700">柿ノ木台駅</text>
+        <text x="130" y="160" text-anchor="middle" font-size="16" fill="#2b1f3d" font-family="Zen Maru Gothic">南口</text>
+        <path d="M150 140 V300 H470" fill="none" stroke="#e8935a" stroke-width="8" stroke-linecap="round" stroke-dasharray="2 16"/>
+        <text x="190" y="290" font-size="16" fill="#a9531c" font-family="Zen Maru Gothic">歩いて7分（約550m）</text>
+        <circle cx="500" cy="300" r="40" fill="#7452b8"/>
+        <use href="#bow" x="472" y="246" width="56" height="42"/>
+        <text x="500" y="370" text-anchor="middle" font-size="18" fill="#2b1f3d" font-family="Zen Maru Gothic" font-weight="700">ももとこむぎ</text>
+        <rect x="560" y="232" width="70" height="44" rx="22" fill="#fff" stroke="#7452b8" stroke-width="2"/>
+        <text x="595" y="260" text-anchor="middle" font-size="15" fill="#2b1f3d" font-family="Zen Maru Gothic">P 2台</text>
+        <text x="170" y="418" font-size="15" fill="#4a3d5c" font-family="Zen Maru Gothic">パン屋の角を右へ。白い外壁に藤色の扉</text>
+      </svg>
+      <p class="cap">架空の地図です。駅・公園・道は作り物です。</p>
+    </div>
+<div class="toe"><img loading="lazy" src="photos/Tokyo-dog-walking-14360792564.jpg" alt="3頭の犬を連れて自転車を押す人（東京の歩道、白黒）" width="960" height="675"></div>
+      <p class="cap">東京の歩道で犬と歩く人（写真：Roberto Ciucci／Wikimedia Commons／CC BY 2.0）</p>
+    </div>
+    <div>
+      <h2 id="h-access">行き方と営業時間</h2>
+      <dl>
+        <dt>住所</dt><dd>柿ノ木台2丁目14-3（架空）</dd>
+        <dt>電車</dt><dd>柿ノ木台駅の南口から歩いて7分。<wbr>公園の南側の道を東へ</dd>
+        <dt>車</dt><dd>店の前に2台。うまっていたら、公園の東のコインパーキング（30分220円）をお使いください</dd>
+        <dt>受付</dt><dd><span class="num">9:30・12:00・14:30</span>（お迎えは18:00まで）</dd>
+        <dt>定休日</dt><dd>水曜・第3火曜</dd>
+        <dt>電話</dt><dd><span class="num">000-000-0000</span>（作例のため番号はありません）</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="bar" id="bar" aria-hidden="true">
+  <p><span id="barWhen">札をえらんでください</span><br><b class="num" id="barTotal">4,620</b>円（税込）</p>
+  <a class="cta" href="#sum" tabindex="-1">内容を見る</a>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p class="name">ももとこむぎ</p>
+    <p>いぬの美容室 ももとこむぎは、site-skills の作例として作った架空の店です。名前・場所・料金・トリマーはすべて作り物で、このページから予約は確定しません。</p>
+    <p class="credits">写真（すべて Wikimedia Commons。この店や、店の犬ではありません）：
+      At the dog groomers (1)(4)(5)(6), Wilton — Maigheach-gheal, CC BY-SA 2.0（<a href="https://commons.wikimedia.org/w/index.php?curid=173816905">1</a>・<a href="https://commons.wikimedia.org/w/index.php?curid=173817598">4</a>・<a href="https://commons.wikimedia.org/w/index.php?curid=173817913">5</a>・<a href="https://commons.wikimedia.org/w/index.php?curid=173818394">6</a>）／
+      Dog Walk — MarkScottAustinTX, CC BY-SA 2.0（<a href="https://commons.wikimedia.org/w/index.php?curid=37601115">元のページ</a>）／
+      Bundesarchiv Bild 183-2005-0624-513, Berlin, Staupeimpfung für Hunde — CC BY-SA 3.0（<a href="https://commons.wikimedia.org/w/index.php?curid=5348411">元のページ</a>）／
+      Dog walking woman — Amin, CC BY-SA 4.0（<a href="https://commons.wikimedia.org/w/index.php?curid=68718600">元のページ</a>）／
+      Tokyo dog walking — Roberto Ciucci, CC BY 2.0（<a href="https://commons.wikimedia.org/w/index.php?curid=76144008">元のページ</a>）</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var PRICE={sh:{s:4620,m:6380,l:9240},pa:{s:5610,m:7480,l:10560},cu:{s:6820,m:8910,l:12430}};
+  var MIN={sh:{s:90,m:120,l:180},pa:{s:120,m:150,l:210},cu:{s:150,m:180,l:240}};
+  var CNAME={sh:'シャンプーコース',pa:'部分カットコース',cu:'カットコース'};
+  var SNAME={s:'小型（7kg未満）',m:'中型（7〜15kg未満）',l:'大型（15〜30kg）'};
+  var TIMES=['9:30','12:00','14:30'];
+  var START=[570,720,870];
+  var WD=['日','月','火','水','木','金','土'];
+  // 11月8日（日）〜14日（土）。各日 [佐倉1,2,3, 野々村1,2,3]、1=予約済み。null=定休日
+  var DAYS=[
+    {d:8,w:0,t:[1,1,0,1,1,1]},
+    {d:9,w:1,t:[0,1,0,1,0,0]},
+    {d:10,w:2,t:[1,1,1,1,0,1]},
+    {d:11,w:3,t:null},
+    {d:12,w:4,t:[0,0,1,0,0,1]},
+    {d:13,w:5,t:[1,1,1,1,1,0]},
+    {d:14,w:6,t:[1,1,1,1,1,1]}
+  ];
+  var st={size:'s',course:'sh',day:0,pick:null};
+  var $=function(id){return document.getElementById(id)};
+  var yen=function(n){return n.toLocaleString('ja-JP')};
+  var hm=function(m){return Math.floor(m/60)+':'+String(m%60).padStart(2,'0')};
+  var dlabel=function(i){var x=DAYS[i];return '11月'+x.d+'日（'+WD[x.w]+'）'};
+  function prevDay(i){var d=DAYS[i].d-1,w=(DAYS[i].w+6)%7;return '11月'+d+'日（'+WD[w]+'）'}
+  function freeCount(t){return t?t.filter(function(v){return !v}).length:0}
+
+  function renderDays(){
+    var box=$('days');box.innerHTML='';
+    DAYS.forEach(function(x,i){
+      var b=document.createElement('button');b.type='button';b.className='day';
+      if(!x.t){b.disabled=true;b.innerHTML='<span>'+x.d+'日</span><span>'+WD[x.w]+'</span><b>休</b>';b.setAttribute('aria-label','11月'+x.d+'日 '+WD[x.w]+'曜 定休日');}
+      else{var n=freeCount(x.t);b.innerHTML='<span>'+x.d+'日</span><span>'+WD[x.w]+'</span><b>'+n+'</b>';b.setAttribute('aria-label','11月'+x.d+'日 '+WD[x.w]+'曜 空いている札 '+n+'枚');}
+      b.setAttribute('aria-pressed',i===st.day?'true':'false');
+      b.addEventListener('click',function(){st.day=i;st.pick=null;renderDays();renderTags();summary();});
+      box.appendChild(b);
+    });
+  }
+  function canTake(k){
+    var t=DAYS[st.day].t;if(!t||t[k])return {ok:false,why:''};
+    var who=k<3?0:1,slot=k%3;
+    if(st.size==='l'){
+      if(who===0)return {ok:false,why:'大型犬は野々村が札2枚ぶん続けて担当します'};
+      if(slot===2||t[k+1])return {ok:false,why:'大型犬は、続く札も空いているときだけえらべます'};
+      if(START[slot]+MIN[st.course].l>1080)return {ok:false,why:'お迎えが18:00をこえるのでえらべません'};
+    }
+    if(START[slot]+MIN[st.course][st.size]>1080)return {ok:false,why:'お迎えが18:00をこえるのでえらべません'};
+    return {ok:true};
+  }
+  function renderTags(){
+    var t=DAYS[st.day].t;var whys=[];
+    $('tagLegend').textContent=dlabel(st.day)+'の札';
+    [['hooks-s',0],['hooks-n',3]].forEach(function(p){
+      var box=$(p[0]);box.innerHTML='';
+      for(var j=0;j<3;j++){
+        var k=p[1]+j;var b=document.createElement('button');b.type='button';b.className='tag';
+        var c=canTake(k);var label;
+        var picked=st.pick!==null&&(k===st.pick||(st.size==='l'&&k===st.pick+1));
+        if(t[k]){b.classList.add('taken');label='予約済み';b.disabled=true;}
+        else if(!c.ok){b.classList.add('off');label='えらべません';b.disabled=true;if(c.why&&whys.indexOf(c.why)<0)whys.push(c.why);}
+        else{label=picked?'えらびました':'空き';}
+        if(picked&&!t[k]){b.disabled=false;label='えらびました';b.classList.remove('off');}
+        b.innerHTML='<b>'+TIMES[j]+'</b><span class="st">'+label+'</span>';
+        b.setAttribute('aria-pressed',picked?'true':'false');
+        b.setAttribute('aria-label',(k<3?'佐倉 ':'野々村 ')+TIMES[j]+' '+label);
+        (function(k,ok){if(ok)b.addEventListener('click',function(){st.pick=k;renderTags();summary();});})(k,c.ok);
+        box.appendChild(b);
+      }
+    });
+    $('tagWhy').textContent=freeCount(t)===0?'この日は6枚とも埋まっています。ほかの日をえらんでください。':whys.join('。');
+  }
+  function summary(){
+    var p=PRICE[st.course][st.size];
+    $('sSize').textContent=SNAME[st.size];
+    $('sCourse').textContent=CNAME[st.course];
+    $('sTotal').textContent=yen(p);$('barTotal').textContent=yen(p);
+    ['sh','pa','cu'].forEach(function(c){$('p-'+c).textContent=yen(PRICE[c][st.size])+'円'});
+    var i=st.day;
+    if(st.pick!==null){
+      var slot=st.pick%3,who=st.pick<3?'佐倉':'野々村';
+      var w=dlabel(i)+' '+TIMES[slot]+'（'+who+(st.size==='l'?'・札2枚':'')+'）';
+      $('sWhen').textContent=w;$('barWhen').textContent=dlabel(i)+' '+TIMES[slot];
+      $('sPick').textContent=hm(START[slot]+MIN[st.course][st.size])+'ごろ（電話でお知らせします）';
+      $('sCancel').textContent=prevDay(i)+' 18:00まで無料。それ以降は '+yen(Math.round(p/2))+'円（半分）です。';
+      $('cxFor').textContent='えらんだ札：'+dlabel(i)+' '+TIMES[slot]+'・'+CNAME[st.course]+'（'+SNAME[st.size].replace(/（.*/,'')+'）';
+      $('cx1').textContent=prevDay(i)+' 18:00まで';
+      $('cx2').textContent=prevDay(i)+' 18:00から当日の受付まで';
+    }else{
+      $('sWhen').textContent='札をえらんでください';$('barWhen').textContent='札をえらんでください';$('sPick').textContent='―';
+      $('sCancel').textContent='取り消しは、来店の前日18:00まで無料です。';
+    }
+    $('cx2yen').textContent=yen(Math.round(p/2))+'円';$('cx3yen').textContent=yen(p)+'円';
+    document.querySelectorAll('[data-size]').forEach(function(el){el.classList.toggle('on',el.getAttribute('data-size')===st.size)});
+    gate();
+  }
+  function gate(){
+    var go=$('go'),why='';
+    if(st.pick===null)why='まず、空いている札を1枚えらんでください。';
+    else if($('isFirst').checked&&[].some.call(document.querySelectorAll('.fc'),function(c){return !c.checked}))why='初めての方は、3つの確かめごとに印を付けてください。';
+    go.setAttribute('aria-disabled',why?'true':'false');$('goWhy').textContent=why;
+    if(why)$('done').hidden=true;
+  }
+  document.querySelectorAll('input[name=size]').forEach(function(r){r.addEventListener('change',function(){st.size=r.value;st.pick=null;renderTags();summary();})});
+  document.querySelectorAll('input[name=course]').forEach(function(r){r.addEventListener('change',function(){st.course=r.value;if(st.pick!==null&&!canTake(st.pick).ok)st.pick=null;renderTags();summary();})});
+  $('isFirst').addEventListener('change',function(){$('firstChecks').hidden=!this.checked;gate();});
+  document.querySelectorAll('.fc').forEach(function(c){c.addEventListener('change',gate)});
+  $('go').addEventListener('click',function(e){e.preventDefault();if(this.getAttribute('aria-disabled')==='true'){$('goWhy').focus&&0;return;}$('done').hidden=false;});
+  renderDays();renderTags();summary();
+})();
+</script>
+</body>
+</html>
