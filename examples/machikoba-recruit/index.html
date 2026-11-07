@@ -7,7 +7,7 @@
 <meta name="description" content="東大阪・高井田の切削加工の町工場、河内精機。NC旋盤・マシニングセンタの機械オペレーターを2名募集。月給21万3,400円から（高卒）、土日祝休み、未経験可。工場見学から受け付けます。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Klee+One:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Klee+One:wght@600&family=Big+Shoulders:wght@800;900&family=Permanent+Marker&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
 {"@type":"Organization","name":"株式会社河内精機","foundingDate":"1965","numberOfEmployees":{"@type":"QuantitativeValue","value":38},"address":{"@type":"PostalAddress","addressRegion":"大阪府","addressLocality":"東大阪市","streetAddress":"高井田西4丁目"},"description":"精密な金属部品の切削加工（架空の会社。site-skills の使用例）"},
@@ -20,16 +20,17 @@
    文字の左端 208px（1440px）／ヘッダー 87px／全幅の罫 0本（22件）／ボタンの角はまる（30件中19件）／地は白
    書体（CSS の先頭）：Noto Sans JP 10・Zen Kaku Gothic New 6・メイリオ 3 → Noto Sans JP（Zen Kaku Gothic New は作例にそろいすぎて ai-font に入った）
    最初の画面（手本12件、2026-11-05）：明るさの中央値 208・白っぽい部分 80%。明るい地に色のある写真を角丸・丸・組み合わせで置き、題は写真の外に濃い色
-   色は3つ：地＝白に近い紙 #fbfbf6、主＝作業着の紺 #1f2d4a（ボタンも紺）、差し色＝安全表示の黄 #f5c400（工程の棒だけ）
-   朱 #c8322d とマーカーの赤・青は、検査印とホワイトボードの中だけ（題材の物の色）
+   色は3つ（2026-11-07 の方向）：切粉の黄 #f3ad1c・作業着の青 #2546d0・紺 #162048。最初の画面は上下2段の地（黄／青）に紺の英字、
+   人は紺と黄の2色の網点。下の章は地を白に近い紙のまま、主＝紺、差し色＝黄、検査印とマーカーは青。写真は白黒に
    作り込みは1つ：章の題の下の寸法線（両端に止めの線がある2pxの線） */
 :root{
-  --navy:#1f2d4a; --navy-sub:#c9d2de;
-  --yellow:#f5c400; --black:#1a1a1a;
-  --paper:#fbfbf6; --paper2:#f1f2ec; --rule:#aab2bb; --rule-l:#d6dbe0; --ink:#1f2d4a; --sub:#5a6470; --stamp:#c8322d;
-  --wb:#f7f8f5; --alu:#b9bec3; --mk-r:#c62828; --mk-b:#2456a6;
+  --navy:#162048; --navy-sub:#cdd5f3; --cobalt:#2546d0;
+  --yellow:#f3ad1c; --black:#1a1a1a;
+  --paper:#fbfbf6; --paper2:#f1f2ec; --rule:#aab2bb; --rule-l:#d6dbe0; --ink:#162048; --sub:#5a6470; --stamp:#2546d0;
+  --wb:#f7f8f5; --alu:#b9bec3; --mk-r:#2546d0; --mk-b:#2546d0;
   --err:#c62828;
   --sans:"Noto Sans JP",sans-serif;
+  --disp:"Big Shoulders","Arial Narrow",sans-serif; --marker:"Permanent Marker",cursive;
   --hand:"Klee One","Yu Kyokasho","YuKyokasho",cursive;
   --mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,"Noto Sans Mono CJK JP",monospace;
   --wrap:1072px;
@@ -81,54 +82,35 @@ button,input,select,textarea{font:inherit;color:inherit}
 .spmenu li a{display:block;padding:16px 0;border-bottom:1px solid var(--rule-l);text-decoration:none;font-size:var(--t3);font-weight:700}
 @media (max-width:959px){ .gnav,.hd .go{display:none} .burger{display:block} }
 
-/* ── 最初の画面（第6回）：手本の鶴田電機（recruit.tsuruta-electric.co.jp）と同じく、写真2枚で画面の幅を分け、それぞれに色を multiply で重ねる
-   （左＝安全表示の黄、右＝鋼の青）。日本語の一言は 44px にして写真の下に。ノギスで測る先輩の絵とホワイトボードは写真の上に重ねる */
-.hero{position:relative;padding:80px 0 48px;background:var(--paper);color:var(--ink);overflow:hidden}
-.duo{position:relative;display:grid;grid-template-columns:1fr 1fr;height:560px}
-.duo figure{position:relative;margin:0;overflow:hidden}
-.duo img{display:block;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.08) brightness(1.08);mix-blend-mode:multiply}
-.duo .d-a{background:#f5c400}
-.duo .d-a img{object-position:22% 50%}
-.duo .d-b{background:#8fb3dd}
-.duo figcaption{position:absolute;left:12px;bottom:8px;margin:0;font-size:var(--t1);line-height:1.4;color:var(--ink);background:rgba(251,251,246,.86);padding:2px 8px 3px}
-.duo figcaption a{color:inherit}
-.duo .d-b figcaption{left:auto;right:12px}
-.ha-fig{position:absolute;left:calc(50% - 150px);bottom:-36px;width:236px;z-index:2}
-.ha-fig svg{display:block;width:100%;height:auto}
-.duo .wb{position:absolute;right:max(24px,calc((100vw - 1024px) / 2));top:40px;width:320px;z-index:2}
-.hero-txt{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 40px;align-items:end;padding-top:56px}
-.hero .call{margin:0;font-size:44px;font-weight:700;color:var(--navy);line-height:1.35}
-.hero .tag{margin:8px 0 0;font-size:24px;font-weight:500}
-.hero .note{margin:8px 0 0;font-size:var(--t1)}
-.hero .note a{color:inherit}
+/* ── 最初の画面（2026-11-07 の方向）：主役1つ＝よその工場の作業者を手で囲って切り抜き、紺の網点と切粉の黄の2色に。
+   上下2段の地（切粉の黄／作業着の青）に、2つに割った大きな英字 KAWACHI | SEIKI を後ろに置き、人を前に重ねる。
+   日本語は右端の縦書き1行だけ。人の下の切り口と荒れた端は画面の下の外へ出す */
+.hero{position:relative;height:max(640px,100svh);min-height:640px;padding:0;background:linear-gradient(var(--yellow) 0 64%,var(--cobalt) 64% 100%);color:var(--navy);overflow:hidden}
+.hero .name{position:absolute;left:clamp(16px,2.2vw,32px);right:clamp(56px,5vw,80px);bottom:calc(36% + 28px);display:flex;justify-content:space-between;margin:0;font-family:var(--disp);font-weight:900;font-size:clamp(96px,14.4vw,240px);line-height:.8;letter-spacing:-.01em;color:var(--navy);pointer-events:none}
+.hero .worker{position:absolute;z-index:1;left:calc(50% + 32px);bottom:-14%;height:96%;width:auto;transform:translateX(-50%);max-width:none}
+.hero .stamp{position:absolute;left:clamp(16px,6vw,96px);top:118px;width:116px;height:116px;transform:rotate(-12deg)}
+.hero .stamp svg{display:block;width:100%;height:100%}
+.hero .hand{position:absolute;left:calc(50% + 200px);top:104px;margin:0;font-family:var(--marker);font-size:30px;line-height:1.1;color:var(--cobalt);transform:rotate(-7deg);white-space:nowrap}
+.hero .tate{position:absolute;right:clamp(14px,1.6vw,28px);top:104px;margin:0;writing-mode:vertical-rl;font-size:15px;font-weight:700;letter-spacing:.14em;line-height:1;color:var(--navy)}
+.hero .tate span{display:block;margin-top:.9em}
+.hero .low{position:absolute;left:clamp(16px,2vw,32px);right:200px;pointer-events:none;bottom:24px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;color:var(--yellow)}
+.hero .low a{color:inherit;pointer-events:auto}
+.hero .next,.hero .cr{background:var(--cobalt)}
+.hero .next{margin:0;font-family:var(--disp);font-weight:800;font-size:clamp(32px,3vw,44px);line-height:1.1;letter-spacing:.02em}
+.hero .next a{text-decoration-thickness:2px;text-underline-offset:4px}
+.hero .cr{margin:0;font-size:13px;line-height:1.5;text-align:right;max-width:20em;color:#fff}
 @media (max-width:959px){
-  .hero{padding:80px 0 32px}
-  .duo{grid-template-columns:1fr;height:auto}
-  .duo figure{height:240px}
-  .ha-fig{left:auto;right:12px;top:150px;bottom:auto;width:130px}
-  .duo figcaption{top:8px;bottom:auto}
-  .duo .d-b figcaption{left:12px;right:150px}
-  .duo .wb{position:relative;right:auto;top:auto;width:auto;margin:-28px 16px 0 16px}
-  .duo .wb button{font-size:var(--t2)}
-  .hero-txt{grid-template-columns:1fr;padding-top:28px}
-  .hero .call{font-size:32px}
+  .hero{height:max(660px,100svh);background:linear-gradient(var(--yellow) 0 70%,var(--cobalt) 70% 100%)}
+  .hero .name{left:16px;right:16px;top:100px;bottom:auto;flex-direction:column;align-items:flex-start;font-size:min(24vw,170px);line-height:.84}
+  .hero .name span:last-child{align-self:flex-end}
+  .hero .worker{left:auto;right:-6px;transform:none;height:64%;bottom:-8%}
+  .hero .stamp{left:12px;top:calc(112px + 1.68 * min(24vw,170px));width:80px;height:80px}
+  .hero .hand{display:none}
+  .hero .low{display:contents}
+  .hero .next{position:absolute;left:16px;top:calc(204px + 1.68 * min(24vw,170px));width:auto;font-size:26px;color:var(--cobalt);background:var(--yellow)}
+  .hero .cr{position:absolute;right:16px;top:calc(104px + 1.68 * min(24vw,170px));width:220px;text-align:right;font-size:13px;line-height:1.45;color:var(--navy);background:var(--yellow)}
+  .hero .tate{top:auto;bottom:20px;right:auto;left:18px;font-size:14px;color:#fff;background:var(--cobalt)}
 }
-
-/* ホワイトボード */
-.wb{background:var(--alu);padding:10px 10px 22px;position:relative;box-shadow:0 2px 0 #8e9399}
-.wb-in{background:var(--wb);color:var(--black);padding:16px 18px 20px;font-family:var(--hand)}
-.wb .mag{position:absolute;top:-4px;width:18px;height:18px;border-radius:50%;background:var(--mk-r);box-shadow:0 1px 0 #7a1a1a}
-.wb h2{margin:0 0 4px;font-size:var(--t3);font-weight:600;line-height:1.3}
-.wb .who{margin:0 0 12px;font-size:var(--t1);color:var(--mk-b)}
-.wb ul{list-style:none;margin:0;padding:0}
-
-.wb button{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;width:100%;min-height:44px;align-items:center;background:transparent;border:0;padding:2px 4px;text-align:left;cursor:pointer;font-family:var(--hand);font-size:var(--t3);font-weight:600}
-.wb .left{color:var(--mk-b);font-size:var(--t1)}
-.wb .full{color:var(--mk-r)}
-.wb button[aria-disabled="true"]{cursor:not-allowed}
-.wb button[aria-disabled="true"] .d{text-decoration:line-through;text-decoration-color:var(--mk-r);text-decoration-thickness:2px;color:#5d6166}
-.wb button.is-picked{background:#fff3b0}
-.wb .note{margin:12px 0 0;font-size:var(--t1);color:var(--mk-r)}
 
 /* ── 章の頭：題はそのまま書く。太いゴシック＋リード */
 section{padding:clamp(64px,8.4vw,120px) 0}
@@ -143,7 +125,7 @@ section{padding:clamp(64px,8.4vw,120px) 0}
 
 /* 写真：Wikimedia Commons の自由に使える実写（よその工場・道具）。河内精機の物として見せず、何が写っているかと出典を書く */
 .photo{margin:0}
-.photo img{display:block;width:100%;height:auto;object-fit:cover;background:#cfd8d1}
+.photo img{display:block;width:100%;height:auto;object-fit:cover;background:#cfd8d1;filter:grayscale(1) contrast(1.05)}
 .photo figcaption{margin-top:8px;font-size:var(--t1);line-height:1.6}
 .photo figcaption .cr{color:var(--sub)}
 .nw{white-space:nowrap}
@@ -356,7 +338,6 @@ dialog.skills::backdrop{background:rgba(31,45,74,.6)}
 @media (hover:hover) and (pointer:fine){
   .gnav a:hover{border-color:var(--rule)}
   .plain:hover,.more:hover,.skillbtn:hover,.news a:hover .t,.route a:hover{opacity:.72}
-  .wb button:not([aria-disabled="true"]):hover .d{text-decoration:underline;text-decoration-color:var(--mk-b)}
   .tabs button:not([aria-selected="true"]):hover{opacity:.8}
 }
 @media (prefers-reduced-motion:reduce){
@@ -393,58 +374,14 @@ dialog.skills::backdrop{background:rgba(31,45,74,.6)}
 
 <main id="main">
 <section class="hero" id="top" aria-labelledby="h1">
-  <div class="duo">
-    <figure class="d-a"><picture><source media="(max-width:959px)" srcset="photos/chuck-in-use.jpg"><img src="photos/chuck-in-use-1920.jpg" width="1920" height="1080" alt="旋盤のチャックにつかんだ丸棒を刃物で削っているところ" fetchpriority="high"></picture>
-      <figcaption>よその工場の旋盤：<a href="https://commons.wikimedia.org/w/index.php?curid=64980189" target="_blank" rel="noopener">David English</a> CC BY-SA 4.0</figcaption></figure>
-    <figure class="d-b"><img src="photos/machining-center-1200.jpg" width="1200" height="900" alt="マシニングセンタと、刃物の番号を書いたホワイトボード" fetchpriority="high">
-      <figcaption>よその工場のマシニングセンタ：<a href="https://commons.wikimedia.org/w/index.php?curid=193560471" target="_blank" rel="noopener">Psychlist1972</a> CC BY 2.0</figcaption></figure>
-    <div class="ha-fig"><svg viewBox="0 0 240 290" role="img" aria-label="作業着と帽子の先輩が、ノギスで丸い部品の外径を測っている絵">
-  <defs><filter id="ol" x="-15%" y="-15%" width="130%" height="130%"><feMorphology in="SourceAlpha" operator="dilate" radius="5" result="d"/><feFlood flood-color="#fff"/><feComposite in2="d" operator="in" result="w"/><feMerge><feMergeNode in="w"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-  <g filter="url(#ol)">
-    <path d="M36 290 L40 206 Q46 164 86 154 L154 154 Q194 164 200 206 L204 290 Z" fill="#3a5686"/>
-    <path d="M98 154 L120 186 L142 154 Z" fill="#e9eef4"/>
-    <path d="M92 154 L120 190 L148 154" fill="none" stroke="#1f2d4a" stroke-width="2.2" stroke-linejoin="round"/>
-    <path d="M120 190 V290" stroke="#1f2d4a" stroke-width="1.6"/>
-    <rect x="148" y="176" width="26" height="14" rx="2" fill="#fff" stroke="#1f2d4a" stroke-width="1.2"/>
-    <rect x="108" y="130" width="24" height="28" fill="#e9b892"/>
-    <ellipse cx="88" cy="106" rx="7" ry="10" fill="#f2cba8"/>
-    <ellipse cx="120" cy="104" rx="32" ry="37" fill="#f2cba8"/>
-    <path d="M87 96 Q88 58 120 56 Q152 58 153 96 Z" fill="#1f2d4a"/>
-    <path d="M86 96 Q120 88 170 98 Q168 104 152 103 Q120 98 88 102 Z" fill="#16213a"/>
-    <circle cx="120" cy="74" r="7" fill="#fff"/>
-    <path d="M104 114 q6 4 12 0 M128 114 q6 4 12 0" fill="none" stroke="#1f2d4a" stroke-width="2.4" stroke-linecap="round"/>
-    <path d="M114 128 q6 3 12 0" fill="none" stroke="#9a5a45" stroke-width="2" stroke-linecap="round"/>
-    <path d="M44 214 Q46 252 76 252 L82 238 Q66 236 66 204 Z" fill="#2c4672" stroke="#1f2d4a" stroke-width="1.5" stroke-linejoin="round"/>
-    <path d="M196 212 Q192 244 152 240 L150 224 Q176 224 176 200 Z" fill="#2c4672" stroke="#1f2d4a" stroke-width="1.5" stroke-linejoin="round"/>
-    <g stroke="#1f2d4a" stroke-width="1.6" stroke-linejoin="round">
-      <rect x="62" y="214" width="150" height="9" rx="1.5" fill="#d5dbe2"/>
-      <path d="M62 223 H76 V242 L69 250 H62 Z" fill="#d5dbe2"/>
-      <rect x="120" y="209" width="20" height="18" rx="2" fill="#d5dbe2"/>
-      <path d="M120 227 H132 V242 L126 250 H120 Z" fill="#d5dbe2"/>
-      <circle cx="98" cy="240" r="16" fill="#d9b878"/>
-      <path d="M150 214v5M160 214v4M170 214v5M180 214v4M190 214v5M200 214v4" fill="none"/>
-    </g>
-    <circle cx="80" cy="246" r="10" fill="#f2cba8" stroke="#c99877" stroke-width="1"/>
-    <circle cx="146" cy="232" r="10" fill="#f2cba8" stroke="#c99877" stroke-width="1"/>
-  </g>
-</svg>
-</div>
-      <div class="wb" role="region" aria-labelledby="wbT">
-      <span class="mag" style="left:22px" aria-hidden="true"></span><span class="mag" style="right:22px;background:var(--mk-b);box-shadow:0 1px 0 #13306a" aria-hidden="true"></span>
-      <div class="wb-in">
-      <h2 id="wbT">工場見学できる日</h2>
-      <ul id="wbList"></ul>
-      </div>
-    </div>
-  </div>
-  <div class="wrap hero-txt">
-    <div>
-      <h1 id="h1" class="call">測る人になろう！</h1>
-      <p class="tag">機械オペレーターを2名募集しています</p>
-    </div>
-    <div>
-      <a class="go" href="#form">工場見学を申し込む<small>私服で大丈夫です</small></a>
-    </div>
+  <p class="name" aria-hidden="true"><span>KAWACHI</span><span>SEIKI</span></p>
+  <img class="worker" src="photos/worker-cutout.png" width="770" height="1540" alt="青い作業着の人が、フライス盤のハンドルを握って加工物をのぞきこんでいる（よその工場の写真を切り抜いたもの）" fetchpriority="high">
+  <div class="stamp" aria-hidden="true"><svg viewBox="0 0 120 120"><path d="M60 4 69 22 88 14 89 35 109 39 98 56 112 71 93 79 96 99 76 98 69 117 55 104 40 115 34 96 14 95 19 75 4 62 19 49 10 30 30 28 33 8 50 19Z" fill="var(--cobalt)"/><text x="60" y="56" text-anchor="middle" font-family="Big Shoulders,sans-serif" font-weight="800" font-size="17" fill="var(--yellow)">SINCE</text><text x="60" y="82" text-anchor="middle" font-family="Big Shoulders,sans-serif" font-weight="900" font-size="30" fill="var(--yellow)">1965</text></svg></div>
+  <p class="hand" aria-hidden="true">measure twice, cut once.</p>
+  <h1 id="h1" class="tate">河内精機<span>機械オペレーター2名募集</span></h1>
+  <div class="low">
+    <p class="next" lang="en"><a href="#form">Tours: Wed &amp; Sat →</a></p>
+    <p class="cr">写真：<a href="https://commons.wikimedia.org/w/index.php?curid=52627559" target="_blank" rel="noopener">Shadychiri</a>／Wikimedia Commons／CC BY-SA 4.0。よその工場の人を切り抜いて、2色に変えた</p>
   </div>
 </section>
 
@@ -598,7 +535,7 @@ dialog.skills::backdrop{background:rgba(31,45,74,.6)}
             <div class="f full" id="f-date">
               <label for="date">見学の希望日<span class="req">必須</span></label>
               <select id="date" name="date" aria-describedby="e-date h-date"><option value="">選んでください</option></select>
-              <span class="hint" id="h-date">ホワイトボードと同じ日です。満員の日は選べません。</span>
+              <span class="hint" id="h-date">水曜16時と土曜10時です。満員の日は選べません。</span>
               <span class="err" id="e-date">見学の希望日を選んでください。</span>
             </div>
             <div class="f" id="f-name"><label for="name">お名前<span class="req">必須</span></label><input type="text" id="name" name="name" autocomplete="name" placeholder="辻本 航大" aria-describedby="e-name"><span class="err" id="e-name">お名前を入れてください。</span></div>
@@ -678,16 +615,9 @@ dialog.skills::backdrop{background:rgba(31,45,74,.6)}
   const SLOTS=(()=>{const out=[],d=new Date();d.setHours(0,0,0,0);const left=[2,0,3,1,3,2];let n=0;
     while(out.length<6){d.setDate(d.getDate()+1);const w=d.getDay();if(w===3||w===6){const t=w===3?'16:00':'10:00';out.push({label:`${d.getMonth()+1}/${d.getDate()}（${WD[w]}）${t}〜`,value:`${d.getMonth()+1}月${d.getDate()}日（${WD[w]}）${t}〜`,left:left[n++]})}}
     return out})();
-  const wb=$('#wbList'),sel=$('#date');
-  wb.innerHTML=SLOTS.slice(0,4).map((s,i)=>`<li><button type="button" data-i="${i}" ${s.left?'':'aria-disabled="true"'}><span class="d">${s.label}</span>${s.left?`<span class="left">あと${s.left}人</span>`:'<span class="full">満</span>'}</button></li>`).join('');
+  const sel=$('#date');
   SLOTS.forEach(s=>{const o=document.createElement('option');o.value=s.value;o.textContent=s.value+(s.left?`　あと${s.left}人`:'　満員');o.disabled=!s.left;sel.appendChild(o)});
   {const o=document.createElement('option');o.value='ほかの日を相談したい';o.textContent='ほかの日を相談したい';sel.appendChild(o)}
-  wb.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const s=SLOTS[b.dataset.i];
-    if(!s.left)return;
-    wb.querySelectorAll('button').forEach(x=>x.classList.toggle('is-picked',x===b));
-    sel.value=s.value;if(!form.elements.kind.value)form.querySelector('input[value="見学してから応募"]').checked=true;
-    syncDate();touched.add('date');touched.add('kind');check('date');check('kind');count();
-    $('#formBox').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});setTimeout(()=>sel.focus({preventScroll:true}),reduce?0:400)});
 
   /* ── 部品の図（題材の図面）：段ごとの [長さ, 外径] から側面図を描く */
   const PARTS={
@@ -776,7 +706,7 @@ dialog.skills::backdrop{background:rgba(31,45,74,.6)}
   function syncDate(){const skip=val('kind')==='すぐ応募';$('#f-date').hidden=skip;if(skip)$('#f-date').classList.remove('is-err')}
   function count(){const req=['kind','date','name','kana','age','now','tel','agree'].filter(k=>!(k==='date'&&val('kind')==='すぐ応募'));const done=req.filter(k=>RULES[k]()).length;$('#filled').textContent=`必須 ${req.length}項目のうち ${done} 項目を入れました`;const l=val('q').length,c=$('#qCount');c.textContent=`${l} / 400`;c.classList.toggle('over',l>400)}
   form.addEventListener('input',e=>{const k=e.target.name;if(k==='kind')syncDate();if(k&&touched.has(k))check(k);count()});
-  form.addEventListener('change',e=>{const k=e.target.name;if(k){touched.add(k);check(k)}if(k==='date')wb.querySelectorAll('button').forEach(x=>x.classList.toggle('is-picked',SLOTS[x.dataset.i].value===sel.value));count()});
+  form.addEventListener('change',e=>{const k=e.target.name;if(k){touched.add(k);check(k)}count()});
   form.addEventListener('focusout',e=>{const k=e.target.name;if(k&&e.target.type!=='radio'&&e.target.value!==''){touched.add(k);check(k)}});
   const prog=[...document.querySelectorAll('#prog li')];
   function go(n){[1,2,3].forEach(i=>{$('#step'+i).hidden=i!==n});prog.forEach((li,i)=>{if(i===n-1)li.setAttribute('aria-current','step');else li.removeAttribute('aria-current');li.classList.toggle('done',i<n-1)});
@@ -793,7 +723,7 @@ dialog.skills::backdrop{background:rgba(31,45,74,.6)}
       const d=new Date();$('#rid').textContent=`KS-${String(d.getFullYear()).slice(2)}${String(d.getMonth()+1).padStart(2,'0')}-${Math.floor(Math.random()*9000)+1000}`;
       $('#doneMsg').textContent=`${val('name')}さん、ありがとうございます。2営業日以内に、採用担当の西岡から ${val('tel')} に電話します。06で始まる知らない番号からかかってきます。`+(val('kind')!=='すぐ応募'?`見学の日（希望：${val('date')}）は、その電話で決めます。`:'');
       go(3)},900)});
-  $('#again').addEventListener('click',()=>{form.reset();touched.clear();form.querySelectorAll('.is-err').forEach(x=>x.classList.remove('is-err'));form.querySelectorAll('[aria-invalid]').forEach(x=>x.removeAttribute('aria-invalid'));wb.querySelectorAll('.is-picked').forEach(x=>x.classList.remove('is-picked'));syncDate();count();go(1)});
+  $('#again').addEventListener('click',()=>{form.reset();touched.clear();form.querySelectorAll('.is-err').forEach(x=>x.classList.remove('is-err'));form.querySelectorAll('[aria-invalid]').forEach(x=>x.removeAttribute('aria-invalid'));syncDate();count();go(1)});
   count();
 
   /* ── ヘッダー：Valmont（高さを過ぎて下へは隠す、上へ高さの半分戻したら出す） */
@@ -818,13 +748,12 @@ dialog.skills::backdrop{background:rgba(31,45,74,.6)}
     ['作る前に決めること','site-skills','行動＝工場見学の申し込み（同じフォームで応募も可）。相手＝東大阪・八尾の10代後半〜20代（求人票・学校・Instagram から）。動かない理由＝暑い・きついの印象／未経験の不安／給料と休みが見えない。証拠＝給料・残業・休日・定着の実数、先輩の声、記録票と日報。'],
     ['手本の実測','site-skills SKILL.md 手順1・aesthetic.md','Web Design Clip の「採用」「コーポレート」から製造・建設・中小の44件を選び、開けた日本語の35件を sample.js で測った中央値：本文 16px・行間1.8・400、和文の題 37px・700、章の題 27px・700、文字の左端 208px、ヘッダー 87px、全幅の罫 0本、ボタンの角はまる。これに合わせた（README）。'],
     ['作り込み','site-skills・ai-tells（作り込みは1つ）','章の題の下の寸法線（両端に止めの線がある2pxの線）。図面の寸法の線から取った。'],
-    ['見出し','site-skills・ai-tells.md／make.md 5','知りたいことをそのまま：「機械オペレーターを2名募集しています」。下に何の会社かと仕事を言う3行、給料と休みの1行（数字は1つ）。'],
-    ['最初の画面の行動','site-skills・ai-tells.md','ボタンは「工場見学を申し込む」の1つだけ（2つ並びをやめた）。'],
-    ['ホワイトボード（見学できる日）','自分で決めた（ai-tells「題材でしか成り立たない部品」）','事務所前の予定ボードを手書きの書体（Klee One）で組む。押すとフォームの日付に入る。満員は線で消す。'],
-    ['色','site-skills・aesthetic.md（3色）／手本35件','地は手本どおり白に近い紙 #fbfbf6（手本の地は白・透明が22件）。主は作業着の紺 #1f2d4a、差し色は安全表示の黄 #f5c400（ボタンと工程の棒）。朱とマーカーの色は検査印とホワイトボードの中だけ。床の緑とトラテープはやめた。'],
-    ['文字','site-skills・aesthetic.md「業種の手本を先に測る」／手本35件','Zen Kaku Gothic New（手本の CSS の先頭で Noto Sans JP 10件に次ぐ6件）。本文 16px・行間1.8・太さ400、題 48px・太さ700（手本の和文の題 37px・700、上位1/4 は 50px 前後）、章の題 28px・700（手本 27px・700）。手書きの書体（ボード・測った値・日報のメモ）と等幅（図番・時刻）は題材の物の中だけ。'],
+    ['最初の画面','site-skills・aesthetic.md「最初の画面の作り方の方向」','主役1つ＝よその工場の作業者を、輪郭に手で点を打って囲み OpenCV の grabCut で切り抜き、紺と黄の2色の網点に。後ろに2つに割った大きな英字 KAWACHI | SEIKI（Big Shoulders）、上下2段の地（切粉の黄／作業着の青）。飾りは2つ：星形の SINCE 1965 と手書きの measure twice, cut once.。日本語は右端の縦書き1行「河内精機　機械オペレーター2名募集」だけ。見学日は英字1行。'],
+    ['最初の画面の行動','site-skills・ai-tells.md','ヘッダーの「工場見学を申し込む」と、英字の1行（申し込み欄へ）。ボタンを2つ並べない。'],
+        ['色','site-skills・aesthetic.md「最初の画面の作り方の方向」（2〜3色）','切粉の黄 #f3ad1c・作業着の青 #2546d0・紺 #162048 の3色。下の章の地は白に近い紙のまま、検査印・マーカーの赤も青にそろえ、写真は白黒にした。'],
+    ['文字','site-skills・aesthetic.md「最初の画面の作り方の方向」／手本35件','英字の名前は Big Shoulders（工場の銘板のような太い長体。ほかの使用例と違う書体）、手書きの一行は Permanent Marker。本文は Noto Sans JP 16px・行間1.8・太さ400、章の題 28px・700（手本 27px・700）。手書きの書体（測った値・日報のメモ）と等幅（図番・時刻）は題材の物の中だけ。'],
     ['検査記録票・作業日報','site-skills・ai-tells.md','「写真に頼らず見せられるもの（図面・表）を主役にする」。部品の図面は記録票の中に入れた。'],
-    ['写真','site-skills・ai-tells.md／make.md 6・aesthetic.md 2・4','最初の画面は旋盤のチャックの実写をモノクロにして紺を重ね、題を上に（出典は写真の右下に小さく重ねた）。仕事の章ははずみ車を削る旋盤、人の章は顔の写らない道具と機械。どれも Wikimedia Commons の自由に使える写真で、「よその工場」と出典を書いた。'],
+    ['写真','site-skills・aesthetic.md「最初の画面の作り方の方向」','最初の画面の人は Wikimedia Commons の写真（Shadychiri、CC BY-SA 4.0）から切り抜いて色を変えたもの。顔が小さく写る全身の写真を選び、網点にした。仕事の章ははずみ車を削る旋盤、人の章は顔の写らない道具と機械を白黒で。どれも「よその工場」と出典を書いた。'],
     ['ヘッダー','corporate・startup.md／enterprise.md／手本35件','LayerX：ナビ5つ＋右端に採用の入口。Valmont：下へは隠し、上へ高さの半分戻すと出す。高さは手本の中央値 87px に寄せて 80px（戻すのは 40px）。'],
     ['トップに数字の帯を置かない','corporate・rules.md 5／ai-tells','数字は「給料・休み・残業」の表の、それを確かめる行に置いた（4つの横並びをやめた）。'],
     ['人の行','corporate・rules.md 6','LayerX：カードでなく全幅の行、内側 28px・1行 196px。'],
