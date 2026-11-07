@@ -7,7 +7,7 @@
 <meta name="description" content="岐阜県瀬戸ノ口町の陶器市。2027年5月3日（月・祝）・4日（火・祝）に、窯元41軒が本町通りほかに並びます。会場マップ・出店窯元・イベント・アクセス・雨天時のご案内。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Shippori+Mincho+B1:wght@500&family=Klee+One:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,900,100,1&family=Caveat+Brush&family=Noto+Sans+JP:wght@400;700&family=Shippori+Mincho+B1:wght@500&family=Klee+One:wght@600&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Event","name":"第38回 瀬戸ノ口陶器市","startDate":"2027-05-03T09:00+09:00","endDate":"2027-05-04T15:00+09:00","eventStatus":"https://schema.org/EventScheduled","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","isAccessibleForFree":true,"location":{"@type":"Place","name":"瀬戸ノ口駅前広場・本町通り・窯垣の小径・旧瀬戸ノ口小学校・登り窯跡広場","address":{"@type":"PostalAddress","addressRegion":"岐阜県","addressLocality":"瀬戸ノ口町","addressCountry":"JP"}},"organizer":{"@type":"Organization","name":"瀬戸ノ口陶器市実行委員会"},"description":"窯元41軒が並ぶ2日間の陶器市（架空の催し・site-skills の使用例）"}
 </script>
@@ -22,8 +22,9 @@
   - 小さな手がかりは1つ：のぼり（最初の画面の「第三十八回」の縦の旗と、章の題の左の竿）。
 */
 :root{
-  --paper:#fff; --kinari:#f7f3ea; --kaiyu:#d9e2d6; --sumi:#1a1714; --rule:#ccc; --mute:#5f5852; --pale:#f2f0ed;
-  --oribe:#2f5a41; --shu:#b30000; --shino:#f3ede4;
+  --paper:#fff; --kinari:#f6eee0; --kaiyu:#f1dccb; --sumi:#1b1f33; --rule:#d9cbb8; --mute:#4b4a5c; --pale:#f1e6d6;
+  --ai:#1f2a5c; --tsuchi:#b34a24; --oribe:#1f2a5c; --shu:#b2441d; --shino:#f6eee0;
+  --display:"Fraunces","Shippori Mincho B1",serif; --brush:"Caveat Brush",cursive;
   --ease:cubic-bezier(.25,.46,.45,.94); --t1:.1s; --t2:.2s; --t3:.4s;
   --mincho:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif;
   --hand:"Klee One","Shippori Mincho B1",serif;
@@ -40,7 +41,7 @@ button,input,select{font:inherit;color:inherit}
 :focus-visible{outline:none;box-shadow:0 0 0 4px var(--sumi);border-radius:2px}
 .wrap{max-width:calc(var(--max) + var(--pad) * 2);margin:0 auto;padding:0 var(--pad)}
 .sp-br{display:none}
-.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.vh{font-size:16px!important;position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* 開催状況とヘッダー */
 .site-head{position:sticky;top:0;z-index:20}
@@ -58,35 +59,6 @@ button,input,select{font:inherit;color:inherit}
 .pill[disabled]{opacity:.35;cursor:not-allowed}
 .head .pill{height:40px;padding:0 20px;font-size:14px}
 
-/* 最初の画面：層を作る（手本：植物×匠の灰の帯＋不定形の写真、ママフェスの重ねた札と縦書きの題、燕三条のはみ出す写真の帯）。
-   生成りの地 → 灰釉の色の面 → のぼり（縦書きの題）→ アーチの写真 → 角丸の写真（右にはみ出す）→ 丸の写真 → 会場案内図のチラシ（下の会場マップと同じ図）。題は1色（白）でのぼりに。 */
-.hero{background:var(--kinari);overflow:hidden}
-.stage{position:relative;height:clamp(600px,calc(100svh - 132px),780px);max-width:1440px;margin:0 auto}
-.stage > *{position:absolute;margin:0}
-.kaiyu{left:20%;right:0;top:50%;bottom:0;background:var(--kaiyu)}
-.nobori{left:max(24px,8%);top:0;width:150px;height:90%;background:var(--oribe);color:#fff;writing-mode:vertical-rl;display:flex;align-items:center;justify-content:center;gap:18px;padding:36px 0 40px}
-.nobori::before{content:"";position:absolute;left:-14px;top:-40px;bottom:-40px;width:5px;background:#8a6a45}
-.nobori::after{content:"";position:absolute;left:-12px;top:24px;bottom:24px;width:16px;background:repeating-linear-gradient(to bottom,transparent 0 46px,var(--oribe) 46px 62px)}
-.nobori h1{margin:0;font:500 66px/1 var(--mincho);letter-spacing:.06em;white-space:nowrap}
-.nobori .kai{font:500 20px/1 var(--mincho);letter-spacing:.3em;white-space:nowrap;flex:none}
-.ph{object-fit:cover;display:block}
-.ph-street{left:27%;width:36%;top:9%;height:80%;border-radius:50% 50% 0 0 / 30% 30% 0 0;object-position:52% 70%}
-.ph-plates{left:59%;width:30%;top:5%;height:40%;border-radius:28px;object-position:50% 40%}
-.ph-kiln{left:21%;top:5%;width:180px;height:180px;border-radius:50%;border:6px solid var(--kinari);object-position:30% 50%}
-.hero-text{left:67%;right:var(--pad);bottom:13%}
-.hero .date{margin:0 0 24px;font:500 60px/1.2 var(--mincho);white-space:nowrap}
-.hero .date small{font-size:20px}
-.hero .date .dw{display:block;font-size:18px;line-height:1.6;margin-top:4px}
-.hero .yr{display:block;font:500 24px/1.4 var(--mincho)}
-.hero .lead-1{margin:12px 0 20px;font-size:16px;line-height:1.8}
-.hero .pill{height:52px;padding:0 32px;border-radius:26px;font-size:16px}
-/* 会場案内図のチラシ：本物の陶器市で配る・サイトに載せる会場図を、下の会場マップと同じ図（<use>）で。押すと会場マップへ */
-.flyer{left:44%;top:64%;width:250px;padding:10px 12px 12px;background:#fff;border:1px solid var(--sumi);text-decoration:none;transform:rotate(-3deg)}
-.flyer b{display:flex;justify-content:space-between;align-items:baseline;font:500 18px/1.3 var(--mincho);margin-bottom:6px}
-.flyer b span{font:400 13px var(--gothic)}
-.flyer svg{display:block;width:100%;height:auto}
-.hero-credit{left:calc(20% + 20px);bottom:14px;font-size:13px;line-height:1.5}
-.hero-credit a{color:inherit}
 
 /* 章 */
 section.ch{padding:120px 0 0}
@@ -244,17 +216,6 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
   .skills-btn:hover{opacity:.7}
 }
 @media (min-width:601px) and (max-width:1200px){
-  .stage{height:760px}
-  .kaiyu{top:58%}
-  .nobori{height:92%;width:120px}
-  .nobori h1{font-size:54px}
-  .ph-street{left:28%;width:38%;top:7%;height:49%}
-  .ph-plates{left:63%;width:34%;top:4%;height:32%}
-  .ph-kiln{left:20%;top:3%;width:140px;height:140px}
-  .hero-text{left:28%;right:var(--pad);top:62%;bottom:auto}
-  .flyer{left:auto;right:var(--pad);top:auto;bottom:13%;width:220px}
-  .hero-credit{left:28%}
-  .hero .date{font-size:44px}
 }
 @media (min-width:601px) and (max-width:860px){
 }
@@ -270,27 +231,6 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
   section.ch{padding-top:88px}
 }
 @media (max-width:600px){
-  .stage{height:auto;padding-top:480px}
-  .kaiyu{left:18%;top:210px;bottom:auto;height:270px}
-  .nobori{left:24px;width:84px;top:0;height:460px;gap:12px;padding:20px 0 24px}
-  .nobori::after{background:repeating-linear-gradient(to bottom,transparent 0 34px,var(--oribe) 34px 46px)}
-  .nobori h1{font-size:40px}
-  .nobori .kai{font-size:14px}
-  .ph-street{left:34%;width:62%;top:16px;height:280px}
-  .ph-plates{left:56%;width:52%;top:280px;height:150px;border-radius:20px}
-  .ph-kiln{left:27%;top:250px;width:112px;height:112px;border-width:4px}
-  .hero-text{background:var(--kaiyu)}
-  .hero-credit{background:var(--kaiyu)}
-  .flyer{left:auto;right:8px;top:404px;width:150px;padding:6px 8px 8px}
-  .flyer b{font-size:14px}
-  .flyer b span{display:none}
-  .hero-text,.hero-credit{position:static}
-  .hero-text{padding:24px var(--pad) 8px;margin-top:-1px}
-  .hero-credit{padding:0 var(--pad) 28px;text-align:left}
-  .stage{padding-top:480px}
-  .hero .date{font-size:32px;white-space:normal}
-  .hero .date small{font-size:16px}
-  .hero .pill{width:100%}
   .map-box{overflow-x:auto}
   .map-box svg{width:640px;max-width:none}
   .map-hint{display:block}
@@ -310,12 +250,48 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
 }
 @media (max-width:430px){
   .logo{font-size:18px}
-  .hero .date{font-size:28px}
   .head .bar{gap:12px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{transition-duration:0s!important;animation:none!important}
+}
+
+/* 最初の画面（2026-11-07 の方向）：陶土の朱を1色に塗った地に、画面幅いっぱいの英字の名前、その前に藍と生成りの2色に置き換えて切り抜いた美濃の器4つ（大きさを変え、右下と左の外へはみ出す）。
+   3色：陶土の朱 #b34a24（地）・藍 #1f2a5c（器の影・字）・生成り #f6eee0（名前・器の光）。飾りは手書きの英字1つと星形1つ。日本語は右端の縦書き1行だけ。 */
+.hero{position:relative;background:var(--tsuchi);color:var(--kinari);overflow:hidden;height:clamp(600px,calc(100svh - 100px),860px)}
+.hero::before{content:"";position:absolute;left:var(--pad);right:var(--pad);top:56px;height:1px;background:rgba(246,238,224,.55)}
+.hero .name{position:absolute;left:0;right:0;top:calc(56px + 4%);margin:0;text-align:center;font:900 clamp(52px,12.6vw,200px)/.86 var(--display);font-variation-settings:"SOFT" 100,"WONK" 1,"opsz" 144;letter-spacing:-.02em;color:var(--kinari);white-space:nowrap}
+.hero .name .sub{display:block;font-size:.34em;letter-spacing:.14em;margin-top:.12em;font-variation-settings:"SOFT" 100,"opsz" 144}
+.ware{position:absolute;height:auto;filter:drop-shadow(0 18px 22px rgba(31,42,92,.28))}
+.w-ozara{width:38%;left:31%;top:46%;transform:rotate(-6deg)}
+.w-chawan{width:41%;right:-7%;bottom:-17%}
+.w-oribe{width:27%;left:-7%;bottom:-24%;transform:rotate(9deg)}
+.w-muko{width:21%;left:19%;bottom:-3%;transform:rotate(-4deg)}
+.hand{position:absolute;z-index:2;left:6%;top:41%;margin:0;font:400 clamp(30px,3.4vw,52px)/1 var(--brush);color:var(--kinari);transform:rotate(-8deg)}
+.star{position:absolute;right:21%;top:44%;width:clamp(96px,10vw,148px);height:auto}
+.when{position:absolute;left:var(--pad);top:calc(41% + 150px);margin:0;font:900 clamp(26px,2.4vw,36px)/1.2 var(--display);letter-spacing:.06em;color:var(--kinari)}
+.hero .go{position:absolute;left:var(--pad);top:calc(41% + 78px);display:inline-flex;align-items:center;height:48px;padding:0 26px;border-radius:24px;background:var(--ai);color:var(--kinari);font:700 15px/1 var(--gothic);text-decoration:none}
+.tate{position:absolute;z-index:2;right:16px;top:calc(56px + 5%);margin:0;writing-mode:vertical-rl;font:500 15px/1.6 var(--mincho);letter-spacing:.2em;color:var(--kinari)}
+.hero .credit{position:absolute;left:var(--pad);right:var(--pad);top:30px;margin:0;font:400 13px/1.4 var(--gothic);color:var(--kinari);text-align:right}
+.hero .credit a{color:inherit}
+@media (max-width:860px){
+  .hero{height:auto;min-height:0;padding:44px 0 0}
+  .hero .name{position:relative;top:0;font-size:12.2vw}
+  .hero::before{top:22px}
+  .hero .credit{top:auto}
+  .hero .stack{position:relative;height:118vw;margin-top:-6vw}
+  .w-ozara{width:66%;left:4%;top:4%}
+  .w-chawan{width:72%;right:-14%;bottom:-6%}
+  .w-oribe{width:46%;left:-12%;bottom:-2%}
+  .w-muko{display:none}
+  .hand{left:auto;right:5%;top:38%;font-size:30px}
+  .star{right:6%;top:0;width:86px}
+  .hero .go,.when{position:relative;left:auto;top:auto;bottom:auto;margin:0 var(--pad)}
+  .hero .go{margin-top:18px;width:calc(100% - var(--pad)*2);justify-content:center;height:52px}
+  .when{display:block;margin-top:14px;padding-bottom:12px}
+  .hero .credit{position:relative;right:auto;bottom:auto;display:block;padding:0 var(--pad) 18px;text-align:left}
+  .tate{display:none}
 }
 </style>
 </head>
@@ -338,19 +314,19 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
 
 <main id="top">
   <section class="hero" aria-labelledby="h-title">
-    <div class="stage">
-      <div class="kaiyu" aria-hidden="true"></div>
-      <img class="ph ph-plates" src="photos/Hasami-ware-plates.jpg" width="960" height="720" alt="積み重ねた藍の模様の皿（長崎県波佐見町の波佐見焼）">
-      <img class="ph ph-street" src="photos/Arita-tokichi-200804.jpg" width="1280" height="960" alt="陶器市の通り。軒先に器を並べた店の前を、袋を提げた人が歩いている（佐賀県有田町の有田陶器市）">
-      <img class="ph ph-kiln" src="photos/Noborigama-Tokoname-01.jpg" width="1280" height="742" alt="れんがの登り窯（愛知県常滑市）">
-      <a class="flyer" href="#map" aria-label="会場案内図（会場マップへ）"><b>会場案内図<span>A〜E 41軒</span></b><svg viewBox="0 0 800 500" aria-hidden="true"><use href="#mapSvg"/></svg></a>
-      <div class="nobori"><span class="kai" aria-hidden="true">第三十八回</span><h1 id="h-title">瀬戸ノ口陶器市</h1></div>
-      <div class="hero-text">
-        <p class="date"><span class="yr">2027年</span>5月3日・4日<small class="dw">月曜・火曜の祝日に開きます</small></p>
-        <a class="pill" href="#access">行き方を調べる</a>
-      </div>
-      <p class="hero-credit">写真：有田陶器市（Atsasebo, CC BY-SA 3.0）・波佐見焼の皿（Nesnad, CC BY 4.0）・<br>常滑の登り窯（Gryffindor, CC BY-SA 4.0）／<a href="https://commons.wikimedia.org/w/index.php?curid=9228610">Wikimedia</a> <a href="https://commons.wikimedia.org/w/index.php?curid=116465207">Commons</a></p>
+    <h1 class="name" id="h-title"><span lang="en">SETONOKUCHI</span><span class="sub" lang="en">POTTERY FAIR</span><span class="vh">瀬戸ノ口陶器市</span></h1>
+    <p class="tate">第三十八回　瀬戸ノ口陶器市</p>
+    <div class="stack">
+      <p class="hand" lang="en" aria-hidden="true">the 38th!</p>
+      <img class="ware w-ozara" src="photos/cut-ozara.webp" width="900" height="715" alt="">
+      <img class="ware w-oribe" src="photos/cut-oribe.webp" width="900" height="787" alt="">
+      <img class="ware w-muko" src="photos/cut-mukouzuke.webp" width="900" height="446" alt="">
+      <img class="ware w-chawan" src="photos/cut-chawan.webp" width="900" height="782" alt="">
+      <svg class="star" viewBox="0 0 120 120" role="img" aria-label="窯元41軒"><path d="M60 4 70 34 101 22 90 52 118 64 88 74 98 105 68 92 56 119 46 90 15 102 27 72 2 58 32 47 22 16 52 29Z" fill="#1f2a5c"/><text x="60" y="58" text-anchor="middle" font-family="Fraunces, serif" font-weight="900" font-size="30" fill="#f6eee0">41</text><text x="60" y="80" text-anchor="middle" font-family="Fraunces, serif" font-weight="900" font-size="15" letter-spacing="1.5" fill="#f6eee0">KILNS</text></svg>
     </div>
+    <a class="go" href="#access">行き方を調べる</a>
+    <p class="when" lang="en">MAY 3–4, 2027</p>
+    <p class="credit">器：美濃焼（志野茶碗・織部角鉢・絵志野大皿・志野向付）を切り抜いて藍と生成りに色を変えた／写真 Daderot・Wmpearl, CC0 1.0（<a href="https://commons.wikimedia.org/w/index.php?curid=31408730">Wikimedia Commons</a>）</p>
   </section>
 
   <div class="wrap">
@@ -634,7 +610,7 @@ var FROM={
 };
 
 var SKILLS=[
- ['最初の画面','site-skills／aesthetic.md「本物か作例か」','手本の催し10件の最初の画面（明るさの中央値 約211・白っぽい部分 約74%、写真は色のまま余白で囲む・切り抜く、題は写真の外に濃い色）に寄せた。「本物か作例か 第2回・第5回」で層を作る：生成りの地・灰釉の色の面・のぼり（題）・アーチ／角丸／丸の写真3枚を、大きさを変えて重ね、面や画面の端からはみ出させる'],
+ ['最初の画面','site-skills／aesthetic.md「最初の画面の作り方の方向」（2026-11-07）','陶土の朱 #b34a24 の1色の地に、画面幅いっぱいの英字 SETONOKUCHI（Fraunces 900）、その前に美濃焼4つ（志野茶碗・織部角鉢・絵志野大皿・志野向付）を手で輪郭を打って grabCut で切り抜き、藍と生成りの2色に置き換えて大きさを変えて重ねる。飾りは手書きの the 38th! と星形の 41 KILNS、日本語は右端の縦書き1行'],
  ['題の書体と太さ','site-skills／aesthetic.md「業種の手本を先に測る」','手本23件のいちばん大きい字は中央値 39.5px・太さ 400（80px 以上が5件）。題は 80px・太さ 500（Shippori Mincho B1）を墨色で。明朝はリュウミン・筑紫明朝・つくしA を使う手本がある'],
  ['本文','site-skills／手本23件の中央値','Noto Sans JP（Web フォントでいちばん多い）400・16px・行間 1.75。本文の色は #000 が10件なので黒に近い <code>#1a1714</code>'],
  ['文字の左端と余白','site-skills／手本23件の中央値','文字の左端 261px → 本文の幅 1000px。何も無い帯 72px（上位1割 199px）→ 章の間 120px'],
