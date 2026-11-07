@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ふねの古本市 2026 — 鴨谷港（B：窓）</title>
+<!--
+  題材の特色：年に2回だけ、港に泊まったフェリーの船室と甲板が古本の売り場になる。
+  考えの一文：このページでは、船の青い外板が地になり、窓（丸窓・角の丸い客室窓）から甲板と本が見える。
+  好みの台帳（taste.md）：第5回いちばんの dokomi.de の組み方（青の地を写真の窓で抜く・色の形を散らす・日付と数字の札）に寄せた。
+  色：地 #1d3fcf（船体の青）／明 #f4f1e8（甲板の白ペンキ）／差し色 #ff5a1f（救命浮環の橙）。飾りの形は国際信号旗（市松の N 旗）と救命浮環。
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#1d3fcf;--wh:#f4f1e8;--or:#ff5a1f}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--blue);color:var(--wh)}
+body{font-family:"Zen Kaku Gothic New",sans-serif;font-size:16px;line-height:1.8;word-break:auto-phrase;overflow-x:hidden}
+a{color:inherit}
+.hero{position:relative;height:100svh;min-height:680px;overflow:hidden}
+nav{position:absolute;top:22px;left:32px;right:32px;display:flex;justify-content:space-between;align-items:center;z-index:6;font-weight:700;font-size:15px}
+nav .logo{font-family:"Dela Gothic One";font-size:22px;letter-spacing:.02em}
+nav ul{display:flex;gap:10px;list-style:none}
+nav a{text-decoration:none;background:var(--wh);color:var(--blue);padding:6px 16px;border-radius:999px}
+.win{position:absolute;overflow:hidden;background:#0d2690}
+.win img{width:100%;height:100%;object-fit:cover;display:block}
+.w1{left:4vw;top:12vh;width:44vw;height:52vh;border-radius:120px 120px 24px 120px}
+.w1 img{object-position:50% 70%}
+.w2{right:6vw;top:11vh;width:24vw;aspect-ratio:1;border-radius:50%;box-shadow:0 0 0 14px #0d2690}
+.w3{left:51vw;top:44vh;width:19vw;height:30vh;border-radius:999px}
+.w3 img{object-position:30% 50%}
+.name{position:absolute;left:3vw;bottom:5vh;font-family:"Dela Gothic One";font-weight:400;font-size:clamp(64px,9.4vw,150px);line-height:1;letter-spacing:-.02em;z-index:4;color:var(--wh)}
+.name span{color:var(--or)}
+.flag{position:absolute;width:120px;height:120px;z-index:5;background:conic-gradient(var(--or) 25%,var(--wh) 0 50%,var(--or) 0 75%,var(--wh) 0);background-size:60px 60px;border-radius:14px}
+.f1{left:calc(4vw + 44vw - 70px);top:8vh;transform:rotate(9deg)}
+.ring{position:absolute;right:calc(6vw + 24vw - 60px);top:calc(11vh + 24vw - 80px);width:130px;height:130px;z-index:5}
+.blob{position:absolute;right:-6vw;bottom:-14vh;width:36vw;height:36vw;border-radius:46% 54% 40% 60%/55% 45% 55% 45%;background:var(--wh);z-index:2}
+.card{position:absolute;right:4vw;bottom:7vh;z-index:5;background:var(--blue);color:var(--wh);border-radius:22px;padding:20px 24px;width:380px;border:3px solid var(--wh)}
+.card .date{font-family:"Dela Gothic One";font-size:38px;line-height:1.1;white-space:nowrap}
+.card .date small{font-size:17px}
+.card p{font-size:15px;font-weight:700;margin:6px 0 14px;line-height:1.7}
+.card .num{display:flex;gap:16px;font-size:14px;margin-bottom:14px}
+.card .num b{font-family:"Dela Gothic One";font-size:30px;font-weight:400;display:block;line-height:1}
+.card a{display:block;text-align:center;background:var(--or);color:#fff;text-decoration:none;padding:10px;border-radius:999px;font-weight:700;font-size:19px}
+.credit{line-height:1.5;position:absolute;left:51vw;right:calc(4vw + 400px);bottom:7vh;font-size:14px;z-index:5;line-height:1.5}
+@media (max-width:700px){
+  .hero{height:auto;min-height:100svh;padding:76px 0 24px}
+  nav{left:16px;right:16px;top:16px}nav ul{display:none}
+  .win{position:relative;left:auto;right:auto;top:auto}
+  .w1{width:78vw;height:44vh;margin-left:4vw;border-radius:80px 80px 18px 80px}
+  .w2{position:absolute;width:40vw;right:4vw;top:42vh;box-shadow:0 0 0 8px #0d2690}
+  .w3{display:none}
+  .f1{width:72px;height:72px;background-size:36px 36px;left:auto;right:8vw;top:84px}
+  .ring{display:none}
+  .name{position:relative;left:0;bottom:auto;margin:28px 16px 0;font-size:16.5vw}
+  .blob{display:none}
+  .card{position:relative;right:auto;bottom:auto;margin:20px 16px 0;width:auto}
+  .credit{line-height:1.5;position:relative;left:auto;top:auto;max-width:none;margin:16px}
+}
+</style>
+</head>
+<body>
+<section class="hero">
+  <nav><span class="logo">ふねの古本市</span><ul><li><a href="#">出店する本屋</a></li><li><a href="#">船内の地図</a></li><li><a href="#">行き方</a></li></ul></nav>
+  <div class="blob" aria-hidden="true"></div>
+  <div class="win w1"><img src="photos/Islands-in-the-Seto-Inland-Sea-6453371577-.jpg" alt="フェリーの甲板と瀬戸内海の島"></div>
+  <div class="win w2"><img src="photos/Plymouth-through-a-ferry-porthole-16783618309-.jpg" alt="フェリーの丸窓から見た港の町（プリマス）"></div>
+  <div class="win w3"><img src="photos/Books-bookshelf-bookstore-159778.jpg" alt="棚に並んだ本の背"></div>
+  <div class="flag f1" aria-hidden="true"></div>
+  <svg class="ring" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="36" fill="none" stroke="#ff5a1f" stroke-width="24"/><circle cx="50" cy="50" r="36" fill="none" stroke="#f4f1e8" stroke-width="24" stroke-dasharray="13 43.5" transform="rotate(-6 50 50)"/></svg>
+  <h1 class="name">ふねの<br>古本<span>市</span></h1>
+  <div class="card">
+    <div class="date">11.22<small> 土 </small>–23<small> 日</small></div>
+    <p>鴨谷港 第2岸壁に泊まるフェリー「かもや丸」。<br>船室と甲板が、2日だけ<wbr>古本の売り場になります。</p>
+    <div class="num"><span><b>24</b>古本屋</span><span><b>10–16</b>時</span><span><b>0</b>円で乗船</span></div>
+    <a href="#">出店する本屋を見る</a>
+  </div>
+  <p class="credit">写真（Wikimedia Commons）<br>甲板：Maarten Heerlien（CC BY 2.0）<br>丸窓：Jeremy Segrott（CC BY 2.0）<br>本の背：Pixabay（CC0）<br>架空の催しの作例です。</p>
+</section>
+</body>
+</html>
