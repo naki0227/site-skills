@@ -1,0 +1,56 @@
+[
+ {
+  "file": "runner-cutout.webp",
+  "title": "Edinburgh marathon runner",
+  "creator": "JJZG123458923",
+  "license": "CC BY-SA 4.0",
+  "page": "https://commons.wikimedia.org/w/index.php?curid=48497591",
+  "source_file": "Edinburgh-marathon-runner.jpg",
+  "note": "人の輪郭で切り抜き、白い縁を足し、胸のゼッケンの大会名の帯を青で塗りつぶした"
+ },
+ {
+  "file": "road-runners.webp",
+  "title": "2015 Copenhagen Half Marathon runners",
+  "creator": "Guillaume Baviere from Copenhagen, Denmark",
+  "license": "CC BY-SA 2.0",
+  "page": "https://commons.wikimedia.org/w/index.php?curid=47952331",
+  "source_file": "2015-Copenhagen-Half-Marathon-runners.jpg",
+  "note": "WebP に変換"
+ },
+ {
+  "file": "girls-run.webp",
+  "title": "Girls run the Annual Dete Big Run",
+  "creator": "Devon Concar",
+  "license": "CC BY-SA 4.0",
+  "page": "https://commons.wikimedia.org/w/index.php?curid=77095905",
+  "source_file": "Girls-run-the-Annual-Dete-Big-Run.jpg",
+  "note": "WebP に変換"
+ },
+ {
+  "file": "runner-spectators.webp",
+  "title": "Runner finishes marathon and smiles at spectators in busy street during city event",
+  "creator": "Shixart1985",
+  "license": "CC BY 2.0",
+  "page": "https://commons.wikimedia.org/w/index.php?curid=193163342",
+  "source_file": "Runner-finishes-marathon-and-smiles-at-spectators-in-busy-st.jpg",
+  "note": "WebP に変換"
+ },
+ {
+  "file": "water-station.webp",
+  "title": "Water station Rimi Riga Marathon 2021 Vanšu bridge",
+  "creator": "Riga Marathon",
+  "license": "CC BY-SA 2.0",
+  "page": "https://commons.wikimedia.org/w/index.php?curid=124172873",
+  "source_file": "Water-station-Rimi-Riga-Marathon-2021-Van-u-bridge.jpg",
+  "note": "左の約6割を切り取った（右の協賛社名を外すため）"
+ },
+ {
+  "file": "start-crowd.webp",
+  "title": "Run Melbourne Half Marathon Starting Line",
+  "creator": "KeepActive Australia from Melbourne, VIC, Australia",
+  "license": "CC BY-SA 4.0",
+  "page": "https://commons.wikimedia.org/w/index.php?curid=127926645",
+  "source_file": "Run-Melbourne-Half-Marathon-Starting-Line.jpg",
+  "note": "スタートの門より下の人の列だけを切り取った（門の協賛社名を外すため）"
+ }
+]

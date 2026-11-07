@@ -38,6 +38,7 @@
 | `dance-school` | `photos/Breakdancer---Faneuil-Hall-cropped.jpg` | Breakdancer - Faneuil Hall cropped | Chris Kirkman from Chapel Hill, North Carolina, United States | CC BY 2.0 | https://commons.wikimedia.org/w/index.php?curid=30580872 |
 | `dance-school` | `photos/Fuego-Dance-Crew-at-California-Dance-Festival-2025-01.jpg` | Fuego Dance Crew at California Dance Festival 2025 01 | Rosiestep | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=168516835 |
 | `dance-school` | `photos/Marthe-Weijers-hiphop-dancer.jpg` | Marthe Weijers, hiphop dancer | Industrees | CC0 1.0 | https://commons.wikimedia.org/w/index.php?curid=97151561 |
+| `dance-school` | `photos/NwFusionTapM-cut.webp` | File:NwFusionTapM.jpg（背景を消して切り抜いた。元：NwFusionTapM.jpg） | Lambtron | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=30760202 |
 | `dance-school` | `photos/NwFusionTapM.jpg` | File:NwFusionTapM.jpg | Lambtron | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=30760202 |
 | `dance-school` | `photos/Sf-international-hiphop-dancefest.jpg` | Sf-international-hiphop-dancefest | Geeklizzard | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=96482700 |
 | `dog-salon` | `photos/At-the-dog-groomers-1-Wilton---geograph-org-uk---1669850.jpg` | At the dog groomers (1), Wilton - geograph.org.uk - 1669850 | Maigheach-gheal | CC BY-SA 2.0 | https://commons.wikimedia.org/w/index.php?curid=173816905 |

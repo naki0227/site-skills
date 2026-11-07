@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ほんまちダンス教室 5678｜生徒募集・体験レッスン</title>
+<meta name="description" content="三根市・本町アーケード2階のダンス教室。ヒップホップ・ジャズ・キッズの週14クラスの時間割、月謝、体験レッスン（1回1,100円）の申し込み、2027年3月21日の発表会、行き方。（site-skills の作例。教室・市・人名は架空です）">
+<!--
+  site-skills の作例（架空の教室。教室の名前・三根市・本町アーケード・先生の名前・料金・時間割・発表会はすべて作り物）。
+  依頼主の希望（決まりの順のいちばん上）：「かっこよくてキュートに。ヒーローは大きなタイポグラフィと人の写真をバーンと」→ SKILL.md の最初の画面の型②。
+  主の色：#0a8049（バミリテープの緑。この教室はスタジオの床と発表会の舞台の立ち位置を、緑と桃色のビニールテープで印をつける、という設定）
+  選んだスキル：主 lp-quality-bar（1ページで知ってもらい、体験を申し込んでもらう）。雰囲気は types/athlete-type-mix.md（Lando Norris：2書体を1文に混ぜる）を主に、
+    types/pop.md（学校・参加型）を色の使い方の支えに。時間割と体験の枠は booking-quality-bar の types/rental-activity.md の「真似る型」1・3・4・6・10・11 を借りた。
+  題材の特色：先生がレッスンの頭にかける「5、6、7、8」のカウントが、教室の名前になっている。床には立ち位置の印のバミリテープ（緑と桃色）。
+  考えの一文：このページでは、レッスンの頭のカウント「5・6・7・8」が最初の画面の大きな字になり、床のバミリテープが写真を抜く窓と時間割の札になる。
+  色（aesthetic.md の3色）：地 #ffffff と床の淡い緑 #e3f3ea／主 #0a8049（緑のテープ）／差し色 #f2468a（桃色のテープ）。文字 #13241b。
+    ほかの作例の主（青 5つ・紺・辰砂・金赤・翡翠 #0b6f6b〔約178°〕・琥珀・朱・赤・紫・きみどり〔約74°〕・藤色）と色相をずらした（この緑は約152°）。
+  手本の測定（work/oneshot4/dance-school/sample.jsonl、scripts/sample.js、PC 1440px、9件中9件が開けた）：
+    - landonorris.com：宣言 Mona Sans 106px と Brier 110px を1文に混ぜる → 数字と章の英字は Mona Sans（幅 125・900）、混ぜる語は Instrument Serif の斜体。
+    - heartdemic.heralbony.com：Instrument Serif 100px 400、本文 Noto Sans JP 16px・行間 1.5 → 本文は Noto Sans JP 17px・行間 1.9。
+    - miraiz-persol.jp：本文 Noto Sans JP 16px・行間 2・#212121、罫 7・ボタン 3（角 0）→ 文字 #13241b。人を形で抜き、字を周りに組む。
+    - yoichi-shumputei.com：和文の題 Shippori Antique 70px 400、縦書きの名前 → 名前は縦書き（書体は3つまでなので Noto Sans JP 700）。
+    - kanayama-g.co.jp/recruit-lp：英字の章の題 49px・ボタン まる（1440px）・罫 0 → ボタンは「まる」1種、全幅の罫は引かない。
+    - ableton.com・lostshore.com・othership.us（種類のスキルの手本）：罫 0〜1、ボタン 4〜22（角 0〜5）。
+  残した WARN の理由は報告に書く（photo-cover：切り抜いた人を大きく置く型②。taste.md に寄せたため）。
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,200..900&family=Instrument+Serif:ital@0;1&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="photos/NwFusionTapM-cut.webp" fetchpriority="high">
+<style>
+/* 色：地・床・主・差し色・文字（aesthetic.md）。有彩色は緑と桃色のテープだけに持たせる */
+:root{
+  --ground:#ffffff;
+  --floor:#e3f3ea;        /* スタジオの床（主の緑のごく淡い色） */
+  --main:#0a8049;         /* 緑のバミリテープ（白の字で 5.0:1） */
+  --main-deep:#06603a;
+  --pink:#f2468a;         /* 桃色のバミリテープ（白の地で 3.5:1。大きな字と面だけ） */
+  --pink-soft:#ffd7e6;
+  --ink:#13241b;
+  --ink-2:#34463c;        /* 補足（白で 9.6:1） */
+  --full:#6b7a71;         /* 満員の札の字（床の色で 4.6:1） */
+  /* 書体：数字と英字＝Mona Sans、混ぜる語＝Instrument Serif の斜体、和文＝Noto Sans JP */
+  --sans:"Mona Sans",system-ui,sans-serif;
+  --serif:"Instrument Serif",serif;
+  --jp:"Noto Sans JP",sans-serif;
+  --gut:clamp(16px,4.4vw,64px);
+  --ease:cubic-bezier(.34,1.3,.64,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--jp);font-size:17px;line-height:1.9;word-break:auto-phrase;text-wrap:pretty;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3,p,ol,ul,dl,dd,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+.en{font-family:var(--sans);font-variation-settings:"wdth" 125;font-weight:900;letter-spacing:-.02em;line-height:.8}
+.it{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em}
+.skip{position:absolute;left:-999px}
+.skip:focus{left:8px;top:8px;z-index:50;background:#fff;padding:8px 12px}
+:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+
+/* 頭のバー */
+.bar{position:absolute;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;gap:28px;padding:18px var(--gut)}
+.logo{display:flex;align-items:baseline;gap:10px;text-decoration:none;font-weight:700;font-size:15px}
+.logo b{font-family:var(--sans);font-variation-settings:"wdth" 125;font-weight:900;font-size:26px;color:var(--main);letter-spacing:-.02em}
+.bar nav{display:flex;gap:22px;margin-left:auto;font-size:15px;font-weight:700}
+.bar nav a{text-decoration:none}
+.bar .go{background:var(--main);color:#fff;border-radius:999px;padding:9px 20px;text-decoration:none;font-weight:700;font-size:15px;transition:transform .2s var(--ease),background .2s}
+@media (hover:hover) and (pointer:fine){.bar nav a:hover{color:var(--main)}.bar .go:hover{background:var(--main-deep);transform:translateY(-2px)}}
+
+/* ── 最初の画面：大きなカウントと、跳ぶ人 ── */
+.hero{position:relative;height:max(720px,100svh);max-height:1000px;overflow:hidden;background:linear-gradient(var(--ground) 0 78%,var(--floor) 78%)}
+.count{position:absolute;left:calc(var(--gut) + 92px);right:calc(var(--gut) - .6vw);bottom:22%;display:flex;justify-content:space-between;align-items:flex-end;font-size:min(27vw,420px);color:var(--main);user-select:none;z-index:1}
+.count span{display:block}
+.count .seven{font-family:var(--serif);font-style:italic;font-weight:400;font-variation-settings:normal;color:var(--pink);font-size:1.06em;line-height:.74;letter-spacing:0;transform:translateY(.02em)}
+.dancer{position:absolute;z-index:3;height:90%;width:auto;bottom:8%;left:52%;transform:translateX(-58%)}
+.name{position:absolute;z-index:5;left:var(--gut);top:104px;writing-mode:vertical-rl;font-size:44px;line-height:1.15;font-weight:700;letter-spacing:.04em}
+.name small{display:block;font-size:22px;letter-spacing:.2em;margin-top:.2em}
+.tape{position:absolute;height:34px;background:var(--pink);clip-path:polygon(0 8%,2% 0,98% 6%,100% 0,99% 100%,97% 92%,1% 100%,0 90%);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:16px;letter-spacing:.06em}
+.tape.g{background:var(--main)}
+.mark{position:absolute;z-index:2;width:150px;height:150px}
+.mark .tape{width:150px;top:58px;left:0}
+.mark .tape:first-child{transform:rotate(45deg)}
+.mark .tape:last-child{transform:rotate(-45deg)}
+.mark.m1{left:calc(52% - 112px);bottom:1%}
+.mark.m2{right:31%;bottom:3%;transform:scale(.7) rotate(8deg)}
+.name-tape{z-index:6;width:150px;transform:rotate(-6deg)}
+.lead{position:absolute;z-index:6;left:var(--gut);bottom:4.5%;display:flex;align-items:flex-end;gap:26px;flex-wrap:wrap}
+.decl{position:absolute;z-index:2;right:var(--gut);top:104px;text-align:right;font-family:var(--sans);font-variation-settings:"wdth" 112;font-weight:800;font-size:clamp(40px,6.4vw,96px);line-height:.95;letter-spacing:-.02em}
+.decl .it{font-size:1.18em;letter-spacing:-.02em}
+.lead p{font-size:17px;font-weight:700;line-height:1.6}
+.btn{display:inline-flex;align-items:center;gap:12px;background:var(--main);color:#fff;text-decoration:none;font-weight:700;font-size:18px;border-radius:999px;padding:16px 30px;border:0;cursor:pointer;font-family:var(--jp);transition:transform .25s var(--ease),background .2s}
+.btn::after{content:"";width:9px;height:9px;border-top:2.5px solid currentColor;border-right:2.5px solid currentColor;transform:rotate(45deg)}
+@media (hover:hover) and (pointer:fine){.btn:hover{background:var(--main-deep);transform:translateY(-3px)}}
+.btn:active{transform:translateY(1px)}
+.credit{position:absolute;z-index:6;right:var(--gut);bottom:14px;max-width:380px;font-size:14px;line-height:1.55;color:var(--ink-2);text-align:right}
+.credit a{color:inherit}
+
+/* ── 章の共通：大きな英字の題と、テープの窓 ── */
+main>section,footer{position:relative;overflow:hidden;overflow:clip}
+.chap{padding:120px var(--gut) 120px}
+.big{display:block;font-size:clamp(84px,15vw,230px);color:var(--main);white-space:nowrap}
+.big .it{color:var(--pink);font-size:.62em;margin-left:.08em}
+h2{font-size:clamp(28px,3vw,40px);line-height:1.35;font-weight:700;margin:.35em 0 .5em}
+.window{position:relative;margin:0}
+.window img{width:100%;height:var(--h,560px);object-fit:cover;clip-path:polygon(0 3%,3% 0,30% 2.5%,60% 0,97% 2%,100% 0,100% 97%,98% 100%,70% 97.5%,40% 100%,2% 98%,0 100%)}
+.window figcaption{font-size:16px;line-height:1.55;color:var(--ink-2);margin-top:10px;max-width:460px}
+figcaption span,.credit span{display:inline-block}
+.window .strip{position:absolute;z-index:2;width:120px}
+
+/* ── 時間割 ── */
+.classes{background:var(--floor);padding-top:96px;overflow:hidden}
+.classes .head{display:grid;grid-template-columns:1fr 1.05fr;gap:0 48px;align-items:start}
+.classes .head .big{grid-column:1/-1;position:relative;z-index:3}
+.classes .big{margin-left:-.06em}
+.classes .window{--h:560px;margin-right:calc(-1 * var(--gut));transform:rotate(-3deg);margin-top:-110px}
+.classes .window .strip{left:-30px;top:40px;transform:rotate(-12deg)}
+.classes .intro{font-size:18px;max-width:34em}
+.ages{display:flex;flex-wrap:wrap;gap:10px;margin:34px 0 10px}
+.ages button{font-family:var(--jp);font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;color:var(--ink);border-radius:999px;padding:8px 18px;cursor:pointer;transition:transform .2s var(--ease)}
+.ages button[aria-pressed="true"]{background:var(--ink);color:#fff}
+@media (hover:hover) and (pointer:fine){.ages button:hover{transform:translateY(-2px)}}
+.hint{font-size:16px;color:var(--ink-2);min-height:1.9em}
+.week{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:56px}
+.day h3{font-family:var(--sans);font-variation-settings:"wdth" 125;font-weight:900;font-size:22px;line-height:1;margin-bottom:12px;display:flex;align-items:baseline;gap:8px}
+.day h3 span{font-family:var(--jp);font-size:16px;font-weight:700}
+.cls{position:relative;background:#fff;padding:14px 14px 16px;margin-bottom:12px;transition:opacity .25s,transform .25s var(--ease);clip-path:polygon(0 0,100% 2%,99% 100%,1% 98%)}
+.cls::before{content:"";position:absolute;left:0;top:0;bottom:0;width:8px;background:var(--main)}
+.cls.jazz::before{background:var(--pink)}
+.cls time{display:block;font-family:var(--sans);font-variation-settings:"wdth" 100;font-weight:700;font-size:17px;line-height:1.3}
+.cls b{display:block;font-size:17px;line-height:1.45;margin:4px 0 2px}
+.cls .who{font-size:14px;line-height:1.5;color:var(--ink-2)}
+.cls .left{display:block;margin-top:8px;font-size:14px;line-height:1.5;font-weight:700;color:var(--main-deep)}
+.cls.full .left{color:var(--full)}
+.cls .pick{margin-top:8px;font-family:var(--jp);font-size:14px;font-weight:700;background:none;border:0;padding:0;color:var(--main-deep);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.cls.full .pick{display:none}
+.week.filtered .cls.off{opacity:.28;transform:scale(.97)}
+.week.filtered .cls.on{transform:translateY(-3px)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:20px;font-size:15px;color:var(--ink-2)}
+.legend i{display:inline-block;width:22px;height:10px;margin-right:8px;background:var(--main);vertical-align:middle}
+.legend i.j{background:var(--pink)}
+
+/* ── 月謝 ── */
+.fee{display:grid;grid-template-columns:1fr 1.618fr;gap:0 64px;align-items:start;overflow:hidden}
+.fee .window{--h:980px;transform:rotate(2.5deg);margin-left:calc(-1 * var(--gut));margin-top:40px}
+.fee .window figcaption{padding-left:calc(var(--gut) + 24px)}
+.fee .window .strip{right:-24px;top:-6px;transform:rotate(14deg)}
+.fee .price{position:relative;z-index:3;margin-left:-200px;margin-top:-10px}
+.fee .price .en{font-size:clamp(90px,13vw,200px);color:var(--main);display:block}
+.fee .price .en small{font-size:.4em;margin-right:.05em}
+.fee .price p{font-size:18px;font-weight:700;margin-top:14px;margin-left:200px}
+/* 月謝袋（教室が配る紙の袋。data-object） */
+.envelope{position:relative;margin-top:44px;background:#fff;padding:34px 36px 40px;box-shadow:0 0 0 2px var(--main);max-width:640px}
+.envelope::before{content:"";position:absolute;left:0;right:0;top:-18px;height:20px;background:var(--main);clip-path:polygon(0 100%,4% 0,96% 0,100% 100%)}
+.envelope .top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;color:var(--main);font-weight:700}
+.envelope .top strong{font-size:30px;letter-spacing:.3em}
+.envelope .top span{font-size:15px}
+.envelope dl{margin-top:20px}
+.envelope .row{display:grid;grid-template-columns:1fr auto;gap:12px;padding:10px 0;border-bottom:1px solid #b9dcc8}
+.envelope dt{font-size:17px}
+.envelope dt small{display:block;font-size:14px;color:var(--ink-2);line-height:1.5}
+.envelope dd{font-family:var(--sans);font-variation-settings:"wdth" 100;font-weight:700;font-size:20px;text-align:right;white-space:nowrap}
+.envelope dd small{font-family:var(--jp);font-size:14px;font-weight:400}
+.stamps{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;margin-top:22px}
+.stamps span{background:var(--floor);font-size:13px;text-align:center;padding:6px 0 30px;line-height:1.2;color:var(--main-deep);font-weight:700}
+.stamps span.done{background:radial-gradient(circle at 50% 72%,var(--pink) 0 9px,transparent 10px),var(--floor)}
+.fee .notes{margin-top:22px;font-size:16px;max-width:38em}
+.fee .notes li{padding-left:1em;text-indent:-1em}
+.fee .notes li::before{content:"・"}
+
+/* ── 体験 ── */
+.trial{background:var(--pink-soft);overflow:hidden}
+.trial .grid{display:grid;grid-template-columns:1.618fr 1fr;gap:56px;align-items:start}
+.trial .big{color:var(--main)}
+.trial .big .it{color:var(--ink)}
+.trial .window{--h:900px;margin-left:calc(-1 * var(--gut));transform:rotate(-2deg);margin-top:20px}
+.trial .window .strip{right:40px;bottom:-14px;transform:rotate(-8deg)}
+.trial .yen{font-size:clamp(64px,7vw,110px);color:var(--main);display:block;margin:6px 0 22px}
+.steps{counter-reset:s;margin:22px 0 0}
+.steps li{position:relative;padding:0 0 14px 46px;font-size:17px}
+.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:-2px;font-family:var(--sans);font-variation-settings:"wdth" 125;font-weight:900;font-size:30px;line-height:1;color:var(--pink)}
+.form{background:#fff;padding:30px 30px 34px;margin-top:26px;clip-path:polygon(0 1%,100% 0,99.5% 100%,0 99%)}
+.form label{display:block;font-size:15px;font-weight:700;margin:14px 0 6px}
+.form label:first-child{margin-top:0}
+.form input,.form select{width:100%;font:inherit;font-size:17px;padding:11px 12px;border:2px solid var(--ink);border-radius:0;background:#fff;color:var(--ink)}
+.form .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form .btn{margin-top:22px;width:100%;justify-content:center}
+.form .cancel{font-size:15px;margin-top:12px;line-height:1.6}
+.form output{display:block;margin-top:12px;font-weight:700;color:var(--main-deep);font-size:16px}
+.form .err{color:#b0124f}
+
+/* ── 発表会 ── */
+.stage{padding:0 0 120px}
+.stage .photo{position:relative;height:min(78vh,720px);margin:0}
+.stage .photo{overflow:hidden}
+.stage .photo img{width:100%;height:100%;object-fit:cover;object-position:50% 100%;transform:scale(1.28);transform-origin:100% 92%}
+.stage .photo figcaption{position:absolute;right:var(--gut);top:16px;text-align:right;font-size:16px;color:#fff;max-width:520px;line-height:1.55;text-shadow:0 1px 2px #000}
+.stage .big{position:relative;z-index:2;margin-top:-.3em;margin-left:calc(var(--gut) - .05em);font-size:clamp(84px,13vw,190px)}
+.stage .cols{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:start;padding:0 var(--gut);margin-top:24px}
+.stage .info dt{font-size:15px;color:var(--ink-2);font-weight:700;margin-top:16px}
+.stage .info dd{font-size:19px;font-weight:700;line-height:1.6}
+.stage .info dd.date{font-size:clamp(26px,2.6vw,34px);line-height:1.3;color:var(--main)}
+/* プログラム（発表会で配る二つ折りの紙。data-object） */
+.program{position:relative;background:#fff;box-shadow:0 0 0 2px var(--ink);padding:30px 34px 36px;transform:rotate(1.5deg);margin-top:-250px;z-index:3}
+.program .tape{position:absolute;top:-16px;left:40%;width:130px;transform:rotate(-4deg)}
+.program h3{font-size:22px;line-height:1.4;text-align:center}
+.program h3 small{display:block;font-family:var(--serif);font-style:italic;font-weight:400;font-size:28px;color:var(--pink)}
+.program ol{counter-reset:p;margin-top:16px;columns:2;column-gap:30px}
+.program li{counter-increment:p;break-inside:avoid;font-size:15px;line-height:1.5;padding:5px 0 5px 34px;position:relative}
+.program li::before{content:counter(p);position:absolute;left:0;top:4px;font-family:var(--sans);font-variation-settings:"wdth" 100;font-weight:700;font-size:16px;color:var(--main)}
+.program li.part{counter-increment:none;padding-left:0;font-weight:700;color:var(--ink-2)}
+.program li.part::before{content:none}
+.program li.p2{break-before:column}
+
+/* ── 行き方 ── */
+.access{background:var(--floor);overflow:hidden}
+.access .grid{display:grid;grid-template-columns:1.618fr 1fr;gap:56px;align-items:start;margin-top:10px}
+.map{background:#fff;width:100%;height:auto}
+.access .window{--h:520px;transform:rotate(3deg);margin-right:calc(-1 * var(--gut));margin-top:-120px}
+.access .window .strip{left:20px;top:-14px;transform:rotate(-6deg)}
+.access dl{margin-top:24px}
+.access dt{font-size:15px;color:var(--ink-2);font-weight:700;margin-top:14px}
+.access dd{font-size:18px;line-height:1.7}
+
+/* フッター */
+footer{background:var(--ink);color:#fff;padding:70px var(--gut) 48px}
+footer .en{font-size:clamp(70px,12vw,170px);color:var(--main);display:block;margin-bottom:24px;filter:brightness(1.35)}
+footer .links{display:flex;flex-wrap:wrap;gap:10px 28px;font-weight:700;font-size:16px}
+footer .links a{text-decoration:none}
+footer .links a:hover{text-decoration:underline}
+footer h2{font-size:18px;margin:44px 0 10px}
+footer .credits li{font-size:14px;line-height:1.7;color:#d6e2dc}
+footer .note{font-size:14px;color:#d6e2dc;margin-top:28px}
+
+/* 動き：最初の画面のカウントが1つずつ出る（1回だけ）。reduced-motion と saveData では出さない */
+@media (prefers-reduced-motion:no-preference){
+  .js-motion .count span{animation:pop .5s var(--ease) both}
+  .js-motion .count span:nth-child(2){animation-delay:.15s}
+  .js-motion .count span:nth-child(3){animation-delay:.3s}
+  .js-motion .count span:nth-child(4){animation-delay:.45s}
+  .js-motion .dancer{animation:rise .7s var(--ease) .55s both}
+}
+@keyframes pop{from{opacity:0;transform:translateY(.12em) scale(.9)}}
+@keyframes rise{from{opacity:0;transform:translate(-58%,40px)}}
+
+/* ── 幅ごと ── */
+@media (max-width:1100px){
+  .bar nav{display:none}
+  .week{grid-template-columns:repeat(3,1fr)}
+  .fee{grid-template-columns:1fr}
+  .fee .window{--h:520px;max-width:560px}
+  .fee .price{margin-left:0;margin-top:-140px}
+  .fee .price p{margin-left:0}
+  .stage .cols{grid-template-columns:1fr}
+  .program{margin-top:0}
+}
+@media (max-width:760px){
+  body{font-size:16px}
+  .chap{padding:80px var(--gut)}
+  .bar{padding:14px var(--gut)}
+  .bar .go{padding:8px 16px;font-size:14px}
+  .logo span{display:none}
+  .bar .go{white-space:nowrap;margin-left:auto}
+  .hero{height:auto;min-height:0;max-height:none;display:flex;flex-direction:column;background:linear-gradient(var(--ground) 0 620px,var(--floor) 620px)}
+  .name{position:relative;order:1;left:auto;top:auto;writing-mode:horizontal-tb;margin-top:80px;padding:0 var(--gut);font-size:30px;line-height:1.3;letter-spacing:.02em}
+  .name small{display:block;font-size:17px;letter-spacing:.1em}
+  .count{left:4px;right:4px;top:178px;bottom:auto;display:grid;grid-template-columns:1fr 1fr;font-size:46vw;line-height:.82}
+  .count span:nth-child(even){text-align:right}
+  .count .seven{font-size:1.04em}
+  .dancer{height:540px;top:118px;bottom:auto;left:54%}
+  .mark.m1{left:auto;right:10px;bottom:auto;top:556px;transform:scale(.6)}
+  .mark.m2{display:none}
+  .decl{position:relative;order:2;right:auto;top:auto;text-align:left;padding:0 var(--gut);margin-top:500px;font-size:36px;z-index:4}
+  .lead{position:relative;order:3;left:auto;bottom:auto;padding:14px var(--gut) 0;gap:14px}
+  .lead .btn{width:100%;justify-content:center}
+  .window{transform:none!important;margin-top:24px!important}
+  .window figcaption{padding-left:0!important}
+  .fee .window figcaption{padding-left:var(--gut)!important}
+  .week{margin-top:36px}
+  .credit{position:relative;order:4;right:auto;bottom:auto;text-align:left;padding:16px var(--gut) 22px;max-width:none}
+  .big{font-size:64px}
+  .stage .big{font-size:64px}
+  .classes .head .big{grid-column:auto}
+  .classes .window{margin-top:20px}
+  .fee .price{margin-left:0}
+  .fee .price p{margin-left:0}
+  .fee .window figcaption{padding-left:calc(var(--gut) + 24px)}
+  .classes .head{grid-template-columns:1fr}
+  .classes .window{--h:340px;margin-top:0}
+  .week{grid-template-columns:1fr}
+  .day{display:block}
+  .trial .grid,.access .grid{grid-template-columns:1fr;gap:30px}
+  .trial .window{--h:360px}
+  .access .window{--h:360px;margin-top:0;margin-left:0}
+  .form{padding:22px 18px 26px}
+  .form .two{grid-template-columns:1fr}
+  .envelope{padding:28px 18px 32px}
+  .envelope .top strong{font-size:24px}
+  .stamps{grid-template-columns:repeat(6,1fr)}
+  .fee .window{order:2;--h:440px;margin:30px 0 0 calc(-1 * var(--gut))}
+  .fee .price{margin-top:0}
+  .program{padding:26px 18px 30px;transform:none}
+  .program ol{columns:1}
+  .program li.p2{break-before:auto}
+  .stage .photo{height:420px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">本文へ</a>
+<header class="bar">
+  <a class="logo" href="#top"><b>5678</b><span>ほんまちダンス教室</span></a>
+  <nav aria-label="ページの中">
+    <a href="#classes">時間割</a><a href="#fee">月謝</a><a href="#trial">体験</a><a href="#stage">発表会</a><a href="#access">行き方</a>
+  </nav>
+  <a class="go" href="#trial">体験を申し込む</a>
+</header>
+
+<main id="main">
+<section class="hero" id="top" aria-labelledby="h1">
+  <div class="count en" aria-hidden="true"><span>5</span><span>6</span><span class="seven">7</span><span>8</span></div>
+  <img class="dancer" src="photos/NwFusionTapM-cut.webp" width="394" height="1147" alt="黒い衣装と長い手袋で、両腕を上げて跳ぶダンサー（切り抜き）" fetchpriority="high">
+  <p class="decl" lang="en">Hip hop,<br><span class="it">Jazz</span> &amp; Kids</p>
+  <h1 class="name" id="h1">ほんまちダンス教室<small>生徒募集</small></h1>
+  <div class="mark m1" aria-hidden="true"><span class="tape g"></span><span class="tape"></span></div>
+  <div class="mark m2" aria-hidden="true"><span class="tape"></span><span class="tape g"></span></div>
+  <div class="lead">
+    <div>
+      <p>4歳から大人まで。体験は1,100円</p>
+    </div>
+    <a class="btn" href="#trial">体験レッスンを申し込む</a>
+  </div>
+  <p class="credit"><span>写真：舞台で跳ぶタップダンサー</span><span>（米国の公演）。</span><span>この教室の先生・生徒ではありません。</span><span><a href="https://commons.wikimedia.org/w/index.php?curid=30760202">Lambtron</a>／CC BY-SA 4.0（切り抜き）</span></p>
+</section>
+
+<section class="classes chap" id="classes" aria-labelledby="h-classes">
+  <div class="head">
+    <span class="big en" aria-hidden="true">CLASS<span class="it">weekly</span></span>
+    <div>
+      <h2 id="h-classes">時間割（2026年11月）</h2>
+      <p class="intro">月曜から土曜まで、週14クラス。スタジオは1部屋（36畳）なので、同じ時間に2つのクラスはありません。</p>
+      <div class="ages" role="group" aria-label="通う人の年齢でしぼる">
+        <button type="button" data-age="k" aria-pressed="false">4〜6歳</button>
+        <button type="button" data-age="e" aria-pressed="false">小学1〜3年</button>
+        <button type="button" data-age="u" aria-pressed="false">小学4〜6年</button>
+        <button type="button" data-age="j" aria-pressed="false">中学・高校</button>
+        <button type="button" data-age="a" aria-pressed="false">大人</button>
+      </div>
+      <p class="hint" id="hint" aria-live="polite">年齢を選ぶと、入れるクラスと次の回の体験の残りが出ます。</p>
+    </div>
+    <figure class="window">
+      <span class="tape strip g" aria-hidden="true"></span>
+      <img src="photos/Marthe-Weijers-hiphop-dancer.jpg" width="960" height="797" alt="床に手をついて踊るヒップホップのダンサー（白黒）" loading="lazy">
+      <figcaption><span>写真：床に手をついて踊るヒップホップのダンサー</span><span>（オランダ）。</span><span>この教室の先生・生徒ではありません。</span><span>Industrees／CC0</span></figcaption>
+    </figure>
+  </div>
+
+  <div class="week" id="week">
+    <div class="day"><h3>MON<span>月</span></h3>
+      <article class="cls" data-ages="k" data-id="mon1"><time>16:30–17:20</time><b>キッズ ヒップホップ 入門</b><span class="who">4〜6歳・KEI 先生</span><span class="left">11月9日（月） <br>体験の残り&nbsp;2人</span><button class="pick" type="button">この回で申し込む</button></article>
+      <article class="cls full" data-ages="e" data-id="mon2"><time>17:30–18:30</time><b>キッズ ヒップホップ</b><span class="who">小学1〜3年・KEI 先生</span><span class="left">11月9日（月）<br>満員（次は11月16日）</span></article>
+      <article class="cls" data-ages="j a" data-id="mon3"><time>19:30–20:45</time><b>ヒップホップ 初級</b><span class="who">中学生〜大人・KEI 先生</span><span class="left">11月9日（月） <br>体験の残り&nbsp;2人</span><button class="pick" type="button">この回で申し込む</button></article>
+    </div>
+    <div class="day"><h3>TUE<span>火</span></h3>
+      <article class="cls jazz" data-ages="e u" data-id="tue1"><time>17:00–18:00</time><b>キッズ ジャズ</b><span class="who">小学1〜6年・MANA 先生</span><span class="left">11月10日（火） <br>体験の残り&nbsp;1人</span><button class="pick" type="button">この回で申し込む</button></article>
+      <article class="cls jazz" data-ages="j a" data-id="tue2"><time>19:00–20:15</time><b>ジャズ 初級</b><span class="who">中学生〜大人・MANA 先生</span><span class="left">11月10日（火） <br>体験の残り&nbsp;2人</span><button class="pick" type="button">この回で申し込む</button></article>
+      <article class="cls jazz" data-ages="a" data-id="tue3"><time>20:30–21:30</time><b>ストレッチと基礎</b><span class="who">大人・MANA 先生</span><span class="left">11月10日（火） <br>体験の残り&nbsp;2人</span><button class="pick" type="button">この回で申し込む</button></article>
+    </div>
+    <div class="day"><h3>WED<span>水</span></h3>
+      <article class="cls" data-ages="u" data-id="wed1"><time>17:30–18:30</time><b>キッズ ヒップホップ</b><span class="who">小学4〜6年・KEI 先生</span><span class="left">11月11日（水） <br>体験の残り&nbsp;2人</span><button class="pick" type="button">この回で申し込む</button></article>
+      <article class="cls" data-ages="j a" data-id="wed2"><time>19:00–20:15</time><b>ヒップホップ 中級</b><span class="who">中学生〜大人・KEI 先生</span><span class="left">11月11日（水） <br>体験の残り&nbsp;1人</span><button class="pick" type="button">この回で申し込む</button></article>
+    </div>
+    <div class="day"><h3>THU<span>木</span></h3>
+      <article class="cls jazz" data-ages="k" data-id="thu1"><time>17:00–17:50</time><b>キッズ ジャズ 入門</b><span class="who">4〜6歳・MANA 先生</span><span class="left">11月12日（木） <br>体験の残り&nbsp;2人</span><button class="pick" type="button">この回で申し込む</button></article>
+      <article class="cls jazz full" data-ages="j a" data-id="thu2"><time>19:30–20:45</time><b>ジャズ 中級</b><span class="who">中学生〜大人・MANA 先生</span><span class="left">11月12日（木）<br>満員（次は11月19日）</span></article>
+    </div>
+    <div class="day"><h3>FRI<span>金</span></h3>
+      <article class="cls" data-ages="j" data-id="fri1"><time>18:00–19:15</time><b>ジュニア ヒップホップ</b><span class="who">中学・高校・RYO 先生</span><span class="left">11月13日（金） <br>体験の残り&nbsp;2人</span><button class="pick" type="button">この回で申し込む</button></article>
+    </div>
+    <div class="day"><h3>SAT<span>土</span></h3>
+      <article class="cls jazz" data-ages="k" data-id="sat1"><time>10:00–10:50</time><b>キッズ 入門（ヒップホップとジャズ）</b><span class="who">4〜6歳・MANA 先生</span><span class="left">11月14日（土） <br>体験の残り&nbsp;1人</span><button class="pick" type="button">この回で申し込む</button></article>
+      <article class="cls" data-ages="e u" data-id="sat2"><time>11:00–12:00</time><b>キッズ ヒップホップ</b><span class="who">小学1〜6年・RYO 先生</span><span class="left">11月14日（土） <br>体験の残り&nbsp;2人</span><button class="pick" type="button">この回で申し込む</button></article>
+      <article class="cls" data-ages="a" data-id="sat3"><time>13:00–14:15</time><b>大人 はじめてのヒップホップ</b><span class="who">大人・RYO 先生</span><span class="left">11月14日（土） <br>体験の残り&nbsp;2人</span><button class="pick" type="button">この回で申し込む</button></article>
+    </div>
+  </div>
+  <p class="legend"><span><i></i>ヒップホップ</span><span><i class="j"></i>ジャズ・ストレッチ</span><span>体験は1回に2人まで。満員の回は次の週に入れます。日曜・祝日は休み。</span></p>
+</section>
+
+<section class="chap" id="fee" aria-labelledby="h-fee">
+  <div class="fee">
+    <figure class="window">
+      <span class="tape strip" aria-hidden="true"></span>
+      <img src="photos/Aislinn-Dance-Recital-Spring-2012-012-7331758244.jpg" width="960" height="1442" alt="発表会の舞台で、衣装を着て並んで踊る2人の女の子" loading="lazy" style="object-position:50% 30%">
+      <figcaption><span>写真：ダンス教室の発表会で踊る子ども</span><span>（米国ジョージア州、2012年）。</span><span>この教室の生徒ではありません。</span><span>John Trainor／CC BY 2.0</span></figcaption>
+    </figure>
+    <div>
+      <span class="big en" aria-hidden="true">FEE<span class="it">monthly</span></span>
+      <h2 id="h-fee">月謝と入会金（税込）</h2>
+      <div class="price">
+        <span class="en"><small>¥</small>5,500</span>
+        <p>4〜6歳のキッズ、週1回の月謝です。</p>
+      </div>
+      <div class="envelope" data-object="月謝袋">
+        <div class="top"><strong>月謝袋</strong><span>ほんまちダンス教室</span></div>
+        <dl>
+          <div class="row"><dt>キッズ 4〜6歳<small>週1回・50分</small></dt><dd>5,500<small>円</small></dd></div>
+          <div class="row"><dt>キッズ 小学生<small>週1回・60分</small></dt><dd>6,050<small>円</small></dd></div>
+          <div class="row"><dt>中学生〜大人<small>週1回・75分</small></dt><dd>6,600<small>円</small></dd></div>
+          <div class="row"><dt>週2回<small>どの組み合わせでも</small></dt><dd>11,000<small>円</small></dd></div>
+          <div class="row"><dt>通い放題<small>中学生〜大人</small></dt><dd>13,200<small>円</small></dd></div>
+          <div class="row"><dt>入会金<small>体験した月に入会すると半額の 2,750円</small></dt><dd>5,500<small>円</small></dd></div>
+        </dl>
+        <div class="stamps" aria-label="受け取りの印の欄（4月から3月）">
+          <span class="done">4月</span><span class="done">5月</span><span class="done">6月</span><span class="done">7月</span><span class="done">8月</span><span class="done">9月</span><span class="done">10月</span><span>11月</span><span>12月</span><span>1月</span><span>2月</span><span>3月</span>
+        </div>
+      </div>
+      <ul class="notes">
+        <li>月謝はこの袋に入れて、月の最初のレッスンの日に持ってきてください（口座振替もできます）。</li>
+        <li>スポーツ安全保険に入ります。中学生以下 800円、大人 1,850円（年1回、4月）。</li>
+        <li>兄弟・姉妹で通うと、2人目から月謝が550円引きです。</li>
+        <li>8月はお盆の1週、12月は年末の1週が休みで、月謝は同じです。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="trial chap" id="trial" aria-labelledby="h-trial">
+  <div class="grid">
+    <div>
+      <span class="big en" aria-hidden="true">TRIAL<span class="it">first</span></span>
+      <figure class="window">
+        <span class="tape strip" aria-hidden="true"></span>
+        <img src="photos/Fuego-Dance-Crew-at-California-Dance-Festival-2025-01.jpg" width="960" height="637" alt="白い壁の前で、髪をなびかせて踊る2人のダンサー" loading="lazy" style="object-position:40% 30%">
+        <figcaption><span>写真：ダンスの催しで踊るダンスグループ</span><span>（米国カリフォルニア州、2025年）。</span><span>この教室の生徒ではありません。</span><span>Rosiestep／CC BY-SA 4.0</span></figcaption>
+      </figure>
+    </div>
+    <div>
+      <h2 id="h-trial">体験レッスンの申し込み</h2>
+      <span class="yen en">¥1,100</span>
+      <p>1回だけ、いつものクラスに入って一緒に踊ります。当日に現金でお支払いください。</p>
+      <ol class="steps">
+        <li>下でクラスと日を選んで送る。前の日までに、教室から電話かメールで確かめます。</li>
+        <li>当日は15分前に。動きやすい服、室内用の運動靴、飲み物、タオルを持ってきてください。</li>
+        <li>終わったあと、入会するかはその日に決めなくてかまいません。その月のうちに入会すると入会金が半額です。</li>
+      </ol>
+      <form class="form" id="form" novalidate>
+        <label for="f-class">クラスと日</label>
+        <select id="f-class" name="class" required>
+          <option value="">選んでください</option>
+          <option value="mon1">11月9日（月）16:30 キッズ ヒップホップ 入門（残り2人）</option>
+          <option value="mon3">11月9日（月）19:30 ヒップホップ 初級（残り2人）</option>
+          <option value="tue1">11月10日（火）17:00 キッズ ジャズ（残り1人）</option>
+          <option value="tue2">11月10日（火）19:00 ジャズ 初級（残り2人）</option>
+          <option value="tue3">11月10日（火）20:30 ストレッチと基礎（残り2人）</option>
+          <option value="wed1">11月11日（水）17:30 キッズ ヒップホップ（残り2人）</option>
+          <option value="wed2">11月11日（水）19:00 ヒップホップ 中級（残り1人）</option>
+          <option value="thu1">11月12日（木）17:00 キッズ ジャズ 入門（残り2人）</option>
+          <option value="fri1">11月13日（金）18:00 ジュニア ヒップホップ（残り2人）</option>
+          <option value="sat1">11月14日（土）10:00 キッズ 入門（残り1人）</option>
+          <option value="sat2">11月14日（土）11:00 キッズ ヒップホップ（残り2人）</option>
+          <option value="sat3">11月14日（土）13:00 大人 はじめてのヒップホップ（残り2人）</option>
+          <option value="" disabled>11月9日（月）17:30 キッズ ヒップホップ（満員）</option>
+          <option value="" disabled>11月12日（木）19:30 ジャズ 中級（満員）</option>
+        </select>
+        <div class="two">
+          <div><label for="f-name">踊る人のお名前</label><input id="f-name" name="name" autocomplete="off" required></div>
+          <div><label for="f-age">年齢・学年</label><input id="f-age" name="age" autocomplete="off" placeholder="例：小学2年" required></div>
+        </div>
+        <label for="f-tel">電話番号（保護者の方）</label>
+        <input id="f-tel" name="tel" type="tel" inputmode="tel" autocomplete="off" required>
+        <button class="btn" type="submit">体験を申し込む</button>
+        <p class="cancel" id="cancel">取り消しは、前の日の20時までに電話で（無料）。</p>
+        <output id="out" aria-live="polite"></output>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="stage" id="stage" aria-labelledby="h-stage">
+  <figure class="photo">
+    <img src="photos/Sf-international-hiphop-dancefest.jpg" width="1280" height="960" alt="色の照明が当たる舞台に、大勢のダンサーが並ぶ" loading="lazy">
+    <figcaption><span>写真：ヒップホップのダンスフェスティバルの舞台</span><span>（米国サンフランシスコ）。</span><span>この教室の発表会ではありません。</span><span>Geeklizzard／CC BY-SA 4.0</span></figcaption>
+  </figure>
+  <span class="big en" aria-hidden="true">STAGE<span class="it">in March</span></span>
+  <div class="cols">
+    <div>
+      <h2 id="h-stage">第12回 発表会</h2>
+      <dl class="info">
+        <dt>日にち</dt><dd class="date">2027年3月21日（日）<br>開場 13:00・開演 13:30</dd>
+        <dt>会場</dt><dd>三根市民会館 大ホール（1,012席）</dd>
+        <dt>見に来る方</dt><dd>入場無料・整理券なし。どなたでも入れます。</dd>
+        <dt>出る人</dt><dd>全14クラスの生徒。出演費 8,800円（衣装代こみ）。<br>申し込みは11月30日（月）まで。12月に入会した人も出られます。</dd>
+      </dl>
+    </div>
+    <div class="program" data-object="発表会のプログラム">
+      <span class="tape g" aria-hidden="true"></span>
+      <h3><small>Programme</small>第12回 ほんまちダンス教室 発表会</h3>
+      <ol>
+        <li class="part">第1部 13:30〜</li>
+        <li>キッズ 入門（土）</li>
+        <li>キッズ ヒップホップ 入門（月）</li>
+        <li>キッズ ジャズ 入門（木）</li>
+        <li>キッズ ヒップホップ（月）</li>
+        <li>キッズ ジャズ（火）</li>
+        <li>キッズ ヒップホップ（土）</li>
+        <li>キッズ ヒップホップ（水）</li>
+        <li class="part">休憩 15分</li>
+        <li class="part p2">第2部 14:40〜</li>
+        <li>大人 はじめてのヒップホップ（土）</li>
+        <li>ストレッチと基礎（火）</li>
+        <li>ジャズ 初級（火）</li>
+        <li>ヒップホップ 初級（月）</li>
+        <li>ジュニア ヒップホップ（金）</li>
+        <li>ジャズ 中級（木）</li>
+        <li>ヒップホップ 中級（水）</li>
+        <li>先生3人の作品</li>
+        <li>全員で踊るフィナーレ</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="access chap" id="access" aria-labelledby="h-access">
+  <span class="big en" aria-hidden="true">ACCESS<span class="it">2F</span></span>
+  <h2 id="h-access">行き方</h2>
+  <div class="grid">
+    <div>
+      <svg class="map" viewBox="0 0 800 460" role="img" aria-label="三根駅の東口を出て、駅前通りを北へ2本目の本町アーケードに入り、左手3軒目の2階">
+        <rect width="800" height="460" fill="#fff"/>
+        <path d="M0 380H800" stroke="#13241b" stroke-width="16"/><path d="M0 380H800" stroke="#fff" stroke-width="10" stroke-dasharray="26 18"/>
+        <rect x="70" y="392" width="230" height="50" fill="#13241b"/><text x="185" y="424" fill="#fff" font-size="22" font-weight="700" text-anchor="middle" font-family="Noto Sans JP">三根駅</text>
+        <text x="320" y="425" fill="#13241b" font-size="18" font-family="Noto Sans JP">東口</text>
+        <path d="M300 360V60" stroke="#c9d6cf" stroke-width="44"/>
+        <text x="300" y="44" fill="#34463c" font-size="17" text-anchor="middle" font-family="Noto Sans JP">駅前通り</text>
+        <path d="M322 210H780" stroke="#e3f3ea" stroke-width="64"/>
+        <path d="M322 178H780M322 242H780" stroke="#0a8049" stroke-width="4" stroke-dasharray="2 10"/>
+        <text x="560" y="217" fill="#06603a" font-size="19" font-weight="700" text-anchor="middle" font-family="Noto Sans JP">本町アーケード</text>
+        <rect x="420" y="96" width="120" height="74" fill="#f2468a"/><path d="M480 170V196" stroke="#f2468a" stroke-width="4"/>
+        <text x="480" y="128" fill="#fff" font-size="17" font-weight="700" text-anchor="middle" font-family="Noto Sans JP">2階が教室</text>
+        <text x="480" y="152" fill="#fff" font-size="14" text-anchor="middle" font-family="Noto Sans JP">1階 たなか文具店</text>
+        <rect x="620" y="272" width="130" height="70" fill="#c9d6cf"/><text x="685" y="304" fill="#13241b" font-size="15" text-anchor="middle" font-family="Noto Sans JP">市営本町</text><text x="685" y="326" fill="#13241b" font-size="15" text-anchor="middle" font-family="Noto Sans JP">駐車場</text>
+        <path d="M300 372V210H472" fill="none" stroke="#0a8049" stroke-width="6" stroke-linecap="round"/>
+        <path d="M460 200l14 10-14 10" fill="none" stroke="#0a8049" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="200" y="250" fill="#06603a" font-size="17" font-weight="700" text-anchor="middle" font-family="Noto Sans JP">歩いて4分</text>
+      </svg>
+      <dl>
+        <dt>住所</dt><dd>三根市本町2丁目8-5 本町アーケード内 2階（入口はたなか文具店の右の階段）</dd>
+        <dt>電車</dt><dd>三根駅の東口から歩いて4分</dd>
+        <dt>車・自転車</dt><dd>市営本町駐車場（30分100円）。自転車はアーケードの裏の置き場に。</dd>
+        <dt>受付</dt><dd>月〜金 16:00〜21:30・土 9:30〜14:30・日曜と祝日は休み<br>電話 012-345-5678（架空）</dd>
+      </dl>
+    </div>
+    <figure class="window">
+      <span class="tape strip g" aria-hidden="true"></span>
+      <img src="photos/Breakdancer---Faneuil-Hall-cropped.jpg" width="500" height="666" alt="人だかりの前で、片手で逆立ちするブレイクダンサー" loading="lazy" style="object-position:50% 40%">
+      <figcaption><span>写真：広場の人だかりの前で踊るブレイクダンサー</span><span>（米国ボストン）。</span><span>この教室の先生・生徒ではありません。</span><span>Chris Kirkman／CC BY 2.0</span></figcaption>
+    </figure>
+  </div>
+</section>
+</main>
+
+<footer>
+  <span class="en" aria-hidden="true">5678</span>
+  <nav class="links" aria-label="ページの中">
+    <a href="#classes">時間割</a><a href="#fee">月謝と入会金</a><a href="#trial">体験レッスン</a><a href="#stage">発表会</a><a href="#access">行き方と受付時間</a><a href="#credits">写真の出典</a>
+  </nav>
+  <h2 id="credits">写真の出典（Wikimedia Commons）</h2>
+  <ul class="credits">
+    <li>最初の画面：<a href="https://commons.wikimedia.org/w/index.php?curid=30760202">NwFusionTapM.jpg</a>（Lambtron、CC BY-SA 4.0）を切り抜いて使用</li>
+    <li>時間割：<a href="https://commons.wikimedia.org/w/index.php?curid=97151561">Marthe Weijers, hiphop dancer</a>（Industrees、CC0）</li>
+    <li>月謝：<a href="https://commons.wikimedia.org/w/index.php?curid=30377594">Aislinn Dance Recital Spring 2012-012</a>（John Trainor、CC BY 2.0）</li>
+    <li>体験：<a href="https://commons.wikimedia.org/w/index.php?curid=168516835">Fuego Dance Crew at California Dance Festival 2025</a>（Rosiestep、CC BY-SA 4.0）</li>
+    <li>発表会：<a href="https://commons.wikimedia.org/w/index.php?curid=96482700">Sf-international-hiphop-dancefest</a>（Geeklizzard、CC BY-SA 4.0）</li>
+    <li>行き方：<a href="https://commons.wikimedia.org/w/index.php?curid=30580872">Breakdancer - Faneuil Hall cropped</a>（Chris Kirkman、CC BY 2.0）</li>
+  </ul>
+  <p class="note">site-skills の作例です。教室・三根市・本町アーケード・先生の名前・料金・発表会は架空で、写真の人はこの教室と関係ありません。申し込みのフォームは送信しません。</p>
+</footer>
+
+<script>
+(function(){
+  var save = navigator.connection && navigator.connection.saveData;
+  if (!save) document.documentElement.classList.add('js-motion');
+
+  /* 触れる1つ：年齢で時間割をしぼり、次の回の体験の残りを数で出す */
+  var week = document.getElementById('week'), hint = document.getElementById('hint');
+  var btns = document.querySelectorAll('.ages button');
+  var names = {k:'4〜6歳', e:'小学1〜3年', u:'小学4〜6年', j:'中学・高校', a:'大人'};
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){
+      var on = b.getAttribute('aria-pressed') !== 'true';
+      btns.forEach(function(x){ x.setAttribute('aria-pressed','false'); });
+      var cls = week.querySelectorAll('.cls');
+      if (!on){ week.classList.remove('filtered'); cls.forEach(function(c){ c.classList.remove('on','off'); }); hint.textContent = '年齢を選ぶと、入れるクラスと次の回の体験の残りが出ます。'; return; }
+      b.setAttribute('aria-pressed','true');
+      var age = b.dataset.age, n = 0, seats = 0, full = 0;
+      week.classList.add('filtered');
+      cls.forEach(function(c){
+        var hit = c.dataset.ages.split(' ').indexOf(age) > -1;
+        c.classList.toggle('on', hit); c.classList.toggle('off', !hit);
+        if (hit){ n++; if (c.classList.contains('full')) full++; else { var m = c.querySelector('.left').textContent.match(/残り\s(\d)人/); if (m) seats += +m[1]; } }
+      });
+      hint.textContent = names[age] + 'が入れるクラスは週' + n + 'つ。来週の体験は合わせてあと' + seats + '人' + (full ? '（満員の回が' + full + 'つ）' : '') + '。';
+    });
+  });
+
+  /* 札の「この回で申し込む」で、申し込みの欄にその回を入れる */
+  var sel = document.getElementById('f-class');
+  week.querySelectorAll('.pick').forEach(function(p){
+    p.addEventListener('click', function(){
+      sel.value = p.closest('.cls').dataset.id;
+      showCancel();
+      document.getElementById('trial').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+      setTimeout(function(){ sel.focus({preventScroll:true}); }, 400);
+    });
+  });
+
+  /* 取り消しの締めを、選んだ回の日付に直して出す */
+  var cancel = document.getElementById('cancel');
+  function showCancel(){
+    var t = sel.options[sel.selectedIndex].text.match(/^11月(\d+)日/);
+    cancel.textContent = t ? '取り消しは、11月' + (t[1] - 1) + '日の20時までに電話で（無料）。' : '取り消しは、前の日の20時までに電話で（無料）。';
+  }
+  sel.addEventListener('change', showCancel);
+
+  document.getElementById('form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var out = document.getElementById('out'), f = e.target;
+    var miss = [].filter.call(f.querySelectorAll('[required]'), function(x){ return !x.value.trim(); });
+    if (miss.length){ out.className = 'err'; out.textContent = (miss[0].labels[0] ? miss[0].labels[0].textContent : '') + 'が空いています。入れてからもう一度押してください。'; miss[0].focus(); return; }
+    out.className = '';
+    out.textContent = sel.options[sel.selectedIndex].text.replace(/（残り\d人）/, '') + 'で受け付けました（作例のため、送信はしていません）。';
+  });
+})();
+</script>
+</body>
+</html>

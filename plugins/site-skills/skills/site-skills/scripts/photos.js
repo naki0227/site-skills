@@ -61,7 +61,10 @@ function thumb(url, w) {
     // 日本語の題は記号だけになるので「photo」を頭に付ける（「-2023.jpg」は ls や rm がオプションと間違えた）。同じ名前があれば番号を足す
     let base = r.title.replace(/^File:/, '').replace(/\.[a-z]+$/i, '').replace(/[^\w-]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
     if (!/[A-Za-z0-9]{3}/.test(base)) base = 'photo-' + (r.page.match(/curid=(\d+)/) || [, Date.now()])[1] + (base ? '-' + base : '');
-    let name = base + '.jpg'; for (let k = 2; fs.existsSync(path.join(b, name)); k++) name = `${base}-${k}.jpg`;
+    // 同じ写真（同じ元のページ）を取り直したときは、同じ名前に上書きし、credits.json にも二重に書かない
+    const creditsPath = path.join(b, 'credits.json');
+    const prev = fs.existsSync(creditsPath) ? JSON.parse(fs.readFileSync(creditsPath, 'utf8')).find(x => x.page === r.page) : null;
+    let name = prev ? prev.file : base + '.jpg'; if (!prev) for (let k = 2; fs.existsSync(path.join(b, name)); k++) name = `${base}-${k}.jpg`;
     const file = path.join(b, name);
     // 頼んだ幅で失敗したら、小さい幅、元の画像の順に取り直す。画像でない物は消して、出典も書かない
     const tries = [...STEPS.filter(x => x <= w).reverse().map(x => thumb(r.url, x)), r.url];
@@ -70,7 +73,8 @@ function thumb(url, w) {
     if (!ok) { console.error('取れなかった（取りすぎで断られた）。少し待つか、別の番号を取る'); process.exit(1); }
     const credits = path.join(b, 'credits.json');
     const list = fs.existsSync(credits) ? JSON.parse(fs.readFileSync(credits, 'utf8')) : [];
-    list.push({ file: name, title: r.title, creator: r.creator, license: r.license, page: r.page });
+    const at = list.findIndex(x => x.page === r.page); const row = { file: name, title: r.title, creator: r.creator, license: r.license, page: r.page };
+    if (at >= 0) list[at] = row; else list.push(row);
     fs.writeFileSync(credits, JSON.stringify(list, null, 1));
     console.log(`${file}\n出典の書き方：写真：${r.creator}／Wikimedia Commons／${r.license}（${r.page}）`);
     return;
