@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>器の一覧｜三筋沢窯 オンラインショップ</title>
+<meta name="description" content="長野の山あいの窯元・三筋沢窯の通販。10月の窯出しの器12種を、藁白・飴・灰釉・辰砂の釉の色から選べます。送料と届く日、月に1回の窯焚きの予定も。（架空の窯元・site-skills の作例）">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"三筋沢窯","item":"https://example.com/"},
+{"@type":"ListItem","position":2,"name":"器の一覧","item":"https://example.com/shop/"}]}
+</script>
+<style>
+/*
+  site-skills の作例（架空の窯元。名前・場所・値段・在庫・予定はすべて作り物）。
+  選んだスキル：ec-quality-bar（総合・雑貨 general.md：同じ形を何色も売る器。KINTO の「色は1つの商品の選択肢・色で値段が違う」、
+  中川政七商店の「一覧のカードから入れる」、ほぼ日手帳の「在庫ありの切り替えは帯でその場で」「知っておいてほしいこと」）。副は使わない。
+  題材の特色：月に1回だけ薪の窯を焚くので、在庫は前の窯出しの残りだけ。売り切れの色は、次の窯出しの発売日まで買えない。
+  考えの一文：このページでは、窯から引き出す「色見（いろみ）」のかけらが、釉の色を選ぶ部品になり、器は実測図（左半分が断面）で並ぶ。
+  手本（scripts/sample.js、work/oneshot2/kiln-shop/sample*.jsonl）：KOHORO・cotogoto・1616/arita japan・マルミツポテリ。
+  - 地は白に近い色（KOHORO・cotogoto #fff）、文字は黒に近い色（KOHORO #1a1a1a・1616 #231f20）。色は器が持つ。
+  - 見出しは明朝の 400〜600（cotogoto Shippori Mincho 600・1616 游明朝 400・マルミツ 40px 400）。本文はゴシック（16px に上げる）。
+  - ボタンの角は 2〜3px（KOHORO 2・cotogoto 3）。全幅の罫はほぼ無い（1〜4本）。
+  3色：地 藁白（わら灰の白い釉）#fbf9f4・主 辰砂（銅の赤い釉）#8e1d3b・差し色 灰釉の青緑 #356456。
+  主の色の由来：この窯の4つの釉のうち、1回の窯で20点ほどしか赤くならない辰砂。ほかの作例の主（青・織部の緑・飴の琥珀・朱）と色相をずらした。
+  分け方：最初の画面と釉の章は 1:1.618（辰砂の面 38.2%）。
+  台帳（taste.md）：題材の窓の形＝穴窯の焚き口のアーチ、飾り＝色見のかけら。大きな明朝の題＋アーチで抜いた写真＋色見を1枚に重ねる。
+*/
+:root{
+  --wara:#fbf9f4; --tile:#f1ebe0; --tile2:#e8e0d2;
+  --shinsha:#8e1d3b; --shinsha-d:#6c1530;
+  --kaiyu:#356456;
+  --ink:#221a1b; --sub:#4a3f41;
+  --g-W:#ebe5d7; --g-A:#7b4214; --g-H:#8e9c7e; --g-S:#8e1d3b;
+  --mincho:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif;
+  --sans:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --pad:clamp(16px,4.4vw,64px);
+  --ease:cubic-bezier(.25,.46,.45,.94);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--wara);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.8;word-break:auto-phrase;text-wrap:pretty;overflow-x:clip}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--mincho);font-weight:500;margin:0;line-height:1.3;text-wrap:balance}
+p{margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--kaiyu);outline-offset:2px}
+.skip{position:absolute;left:8px;top:-60px;background:var(--ink);color:#fff;padding:8px 14px;z-index:100}
+.skip:focus{top:8px}
+.credit{font-size:14px;line-height:1.6;color:var(--sub)}
+
+/* ヘッダー */
+.hd{position:sticky;top:0;z-index:30;background:var(--wara);height:64px;display:flex;align-items:center;gap:32px;padding:0 var(--pad)}
+.logo{font-family:var(--mincho);font-weight:700;font-size:20px;text-decoration:none;letter-spacing:.06em;white-space:nowrap}
+.logo small{font-family:var(--sans);font-weight:400;font-size:14px;letter-spacing:0;margin-left:10px;color:var(--sub)}
+.nav{display:flex;gap:24px;margin-left:auto}
+.nav a{text-decoration:none;font-size:16px;padding:6px 0;border-bottom:2px solid transparent}
+.nav a:hover{border-color:var(--shinsha)}
+.cart-btn{background:var(--ink);color:#fff;border:0;border-radius:2px;height:40px;padding:0 16px;font-size:16px;font-weight:700;white-space:nowrap}
+.cart-btn b{display:inline-block;min-width:1.4em;margin-left:6px;background:#fff;color:var(--ink);border-radius:999px;font-size:14px;line-height:1.5;text-align:center}
+.cart-btn:hover{background:var(--shinsha)}
+
+/* 最初の画面：辰砂の面 38.2% と、焚き口のアーチで抜いた写真と、色見 */
+.hero{position:relative;display:grid;grid-template-columns:38.2% 1fr;min-height:min(820px,calc(100vh - 64px));overflow:hidden}
+.hero-l{background:var(--shinsha);color:#fff;padding:72px 0 64px var(--pad);display:flex;flex-direction:column;position:relative;z-index:1}
+.hero-l .where{font-size:16px}
+.hero h1{font-size:clamp(56px,6.4vw,92px);line-height:1.12;margin:20px 0 22px;letter-spacing:.04em}
+.hero .kinds{font-family:var(--mincho);font-size:24px;line-height:1.4}
+.hero .next{margin-top:auto;padding-top:40px}
+.hero .next span{display:block;font-size:16px}
+.hero .next strong{display:block;font-family:var(--mincho);font-weight:500;font-size:30px;line-height:1.3}
+.go{display:inline-flex;align-items:center;justify-content:center;margin-top:24px;height:52px;padding:0 32px;background:#fff;color:var(--shinsha);font-weight:700;font-size:16px;text-decoration:none;border-radius:2px;align-self:flex-start;transition:background .2s var(--ease)}
+.go:hover{background:var(--tile)}
+.hero-r{position:relative;min-height:640px;z-index:2}
+.arch{position:absolute;left:-150px;top:56px;width:min(520px,42vw);bottom:0;border-radius:999px 999px 0 0;overflow:hidden;background:var(--tile2);outline:14px solid var(--wara)}
+.arch img{width:100%;height:calc(100% - 64px);object-fit:cover;object-position:50% 40%}
+.arch figcaption{position:absolute;left:0;right:0;bottom:0;height:64px;background:var(--wara);padding:8px 14px 10px 20px;font-size:14px;line-height:1.55;color:var(--sub)}
+.tate{position:absolute;right:var(--pad);top:48px;writing-mode:vertical-rl;font-family:var(--mincho);font-weight:700;font-size:clamp(40px,4.4vw,64px);letter-spacing:.18em;color:var(--shinsha);line-height:1}
+.tate small{display:block;font-size:16px;font-weight:500;letter-spacing:.1em;margin-top:16px;font-family:var(--sans)}
+.iromi{position:absolute;left:calc(min(520px,42vw) - 110px);right:calc(var(--pad) + 150px);top:150px}
+.iromi .rod{position:absolute;left:-30px;right:-110px;top:0;height:4px;background:var(--ink);border-radius:2px}
+.iromi p{position:absolute;top:-40px;left:0;font-size:16px}
+.iromi ul{list-style:none;margin:0;padding:0;display:flex;justify-content:space-around;gap:8px}
+.iromi li a{display:flex;flex-direction:column;align-items:center;text-decoration:none;gap:8px;transform-origin:50% 0}
+.iromi li a::before{content:"";width:2px;height:26px;background:var(--ink)}
+.iromi svg{width:clamp(64px,6vw,88px);height:auto;transition:transform .3s var(--ease)}
+.iromi li a:hover svg{transform:rotate(-6deg)}
+.iromi li span{font-family:var(--mincho);font-size:20px;line-height:1.2}
+.iromi li em{font-style:normal;font-size:14px;color:var(--sub)}
+.cup{position:absolute;right:calc(var(--pad) + 40px);bottom:28px;width:min(400px,30vw);text-decoration:none;display:block}
+.cup svg{width:100%;height:auto;display:block}
+.cup span{display:block;font-family:var(--mincho);font-size:24px;line-height:1.35;margin-top:6px;text-align:right}
+.cup:hover span{text-decoration:underline}
+
+/* 章 */
+.sec{position:relative;padding:112px var(--pad)}
+.sec-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 28px;margin-bottom:28px}
+.sec-h h2{font-size:clamp(34px,3.6vw,52px)}
+.sec-h p{font-size:16px}
+
+/* 一覧 */
+.bar{position:sticky;top:64px;z-index:20;background:var(--wara);display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px;padding:14px 0;margin-bottom:24px}
+.bar .grp{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.bar .lab{font-size:14px;color:var(--sub);margin-right:4px}
+.chip{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 12px;background:var(--tile);border:0;border-radius:2px;font-size:16px}
+.chip svg{width:22px;height:22px}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff}
+.chip:hover{background:var(--tile2)}
+.chip[aria-pressed="true"]:hover{background:var(--ink)}
+.chip small{font-size:14px;opacity:.85}
+.toggle{display:inline-flex;align-items:center;gap:8px;font-size:16px;cursor:pointer}
+.toggle input{width:20px;height:20px;accent-color:var(--shinsha)}
+.count{margin-left:auto;font-size:16px}
+.count b{font-family:var(--mincho);font-size:24px;font-weight:500}
+.cond{display:none;align-items:center;gap:8px;font-size:16px}
+.cond.on{display:inline-flex}
+.cond button{height:36px;padding:0 12px;background:transparent;border:0;text-decoration:underline;font-size:16px}
+.scale{font-size:14px;color:var(--sub);margin:-8px 0 24px}
+
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:48px 24px;list-style:none;margin:0;padding:0}
+.card{display:flex;flex-direction:column}
+.card[hidden]{display:none}
+.zu{position:relative;background:var(--tile);aspect-ratio:240/170;display:flex;align-items:flex-end}
+.zu svg{width:100%;height:auto;display:block}
+.card .size{font-size:14px;color:var(--sub);line-height:1.5}
+.card h3{font-size:20px;margin-top:14px}
+.price{font-size:16px;margin-top:2px}
+.price b{font-family:var(--mincho);font-size:20px;font-weight:500}
+.price small{font-size:14px}
+.sws{display:flex;gap:4px;margin-top:10px;flex-wrap:wrap}
+.sw{display:flex;flex-direction:column;align-items:center;gap:0;width:52px;padding:4px 0 2px;background:transparent;border:0;border-bottom:3px solid transparent;font-size:14px;line-height:1.4}
+.sw svg{width:30px;height:30px}
+.sw[aria-pressed="true"]{border-bottom-color:var(--ink);font-weight:700}
+.sw.out svg{opacity:.45}
+.sw.out span{text-decoration:line-through}
+.stock{margin-top:8px;font-size:16px;line-height:1.6;min-height:3.2em}
+.stock .low{color:var(--shinsha);font-weight:700}
+.stock .nx{color:var(--kaiyu);font-weight:700}
+.add{margin-top:10px;height:46px;border:0;border-radius:2px;background:var(--shinsha);color:#fff;font-weight:700;font-size:16px;transition:background .2s var(--ease)}
+.add:hover{background:var(--shinsha-d)}
+.add:disabled{background:var(--tile2);color:var(--ink);cursor:default;font-weight:400;font-size:16px}
+.add.busy{background:var(--shinsha-d)}
+.scene{grid-column:1/-1;margin:0;position:relative;display:grid;grid-template-columns:1fr;align-content:start}
+.scene .win{border-radius:999px 999px 0 0;overflow:hidden;aspect-ratio:21/8;background:var(--tile2)}
+.scene .win img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.scene figcaption{margin-top:12px;font-size:16px;line-height:1.7}
+.scene figcaption .credit{display:block;margin-top:2px}
+.empty{display:none;padding:56px 0;font-size:20px}
+.empty.on{display:block}
+.empty button{margin-top:14px;height:44px;padding:0 20px;background:var(--ink);color:#fff;border:0;border-radius:2px;font-weight:700}
+
+/* 釉の色：辰砂の面に、大きな色見 */
+.glaze{background:var(--shinsha);color:#fff;display:grid;grid-template-columns:1.618fr 1fr;gap:0 64px;overflow:hidden}
+.glaze .sec-h p{color:#fff}
+.glist{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:48px 40px}
+.glist li{display:grid;grid-template-columns:auto 1fr;gap:4px 20px;align-items:start}
+.glist svg{width:132px;height:132px;grid-row:span 3}
+.glist h3{font-size:30px;line-height:1.2}
+.glist h3 small{font-size:16px;font-family:var(--sans);margin-left:8px}
+.glist p{font-size:16px}
+.glist .on{font-size:16px;color:#f3e3e7}
+.know{margin-top:64px;max-width:52em}
+.know h3{font-size:24px}
+.know ul{margin:16px 0 0;padding:0 0 0 1.2em}
+.know li{margin:6px 0}
+.glaze .side{position:relative;margin:-112px calc(var(--pad) * -1) -112px 0}
+.glaze .side .win{position:absolute;inset:56px 0 0 0;border-radius:999px 0 0 0;overflow:hidden;background:var(--shinsha-d)}
+.glaze .side img{width:100%;height:100%;object-fit:cover}
+.glaze .side figcaption{position:absolute;left:0;right:0;bottom:0;background:var(--shinsha-d);color:#fff;padding:10px 16px 12px;font-size:14px;line-height:1.6}
+.glaze .side figcaption .credit{color:#f3e3e7}
+
+/* 送料と届く日 */
+.ship{display:grid;grid-template-columns:1fr 1.618fr;gap:0 72px;align-items:start}
+.ship .photo{position:sticky;top:96px;margin:0 0 0 calc(var(--pad) * -1)}
+.ship .photo .win{border-radius:0 999px 999px 0;overflow:hidden;aspect-ratio:4/4.6;background:var(--tile2)}
+.ship .photo img{width:100%;height:100%;object-fit:cover}
+.ship .photo figcaption{margin:12px 0 0 var(--pad);font-size:16px}
+.when{font-family:var(--mincho);font-size:clamp(26px,2.6vw,38px);line-height:1.45;margin:8px 0 32px}
+.when em{font-style:normal;color:var(--shinsha)}
+table{border-collapse:collapse;width:100%}
+.tbl th,.tbl td{text-align:left;padding:12px 12px 12px 0;border-top:1px solid #cfc5b5;font-weight:400;vertical-align:top}
+.tbl thead th{font-size:14px;color:var(--sub);border-top:0;padding-bottom:6px}
+.tbl tbody tr:last-child td,.tbl tbody tr:last-child th{border-bottom:1px solid #cfc5b5}
+.tbl td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.tbl .day{font-family:var(--mincho);font-size:20px;white-space:nowrap}
+.rules{display:grid;grid-template-columns:1fr 1fr;gap:28px 40px;margin-top:40px}
+.rules h3{font-size:20px;margin-bottom:6px}
+.rules p{font-size:16px}
+.rules b{color:var(--shinsha)}
+
+/* 窯焚きの予定 */
+.kiln{background:var(--tile);overflow:hidden}
+.kiln-top{display:grid;grid-template-columns:1.618fr 1fr;gap:0 64px;align-items:start}
+.chart{margin-top:64px;background:var(--wara);padding:28px 32px 20px}
+.chart svg{width:100%;height:auto;display:block;font-family:var(--sans)}
+.chart .cap{font-size:14px;color:var(--sub);margin-top:8px}
+.steps{list-style:none;margin:32px 0 0;padding:0}
+.steps li{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:4px 32px;padding:16px 0;border-top:1px solid #cfc5b5;align-items:baseline}
+.steps li b{display:block;font-family:var(--mincho);font-weight:500;font-size:30px;line-height:1.3}
+.steps li span{display:block;font-size:16px}
+.steps li.sale b{color:var(--shinsha)}
+.kiln .person{position:relative;margin:0 calc(var(--pad) * -1) 0 0}
+.kiln .person{margin-top:24px}
+.kiln .person .win{border-radius:999px 999px 0 0;overflow:hidden;aspect-ratio:3/3.9;background:var(--tile2)}
+.kiln .person img{width:100%;height:100%;object-fit:cover;filter:grayscale(1)}
+.kiln .person figcaption{margin-top:12px;font-size:16px;padding-right:var(--pad)}
+.later{display:grid;grid-template-columns:repeat(3,1fr);gap:24px 48px;margin-top:72px;list-style:none;padding:0}
+.later li{padding-top:16px;border-top:3px solid var(--ink)}
+.later h3{font-size:24px}
+.later .d{font-family:var(--mincho);font-size:30px;line-height:1.3;margin-top:8px;color:var(--shinsha)}
+.later .rest .d{color:var(--ink)}
+.later p{margin-top:6px}
+
+/* フッター */
+.ft{background:var(--ink);color:#f2ede6;padding:72px var(--pad) 96px;font-size:16px;line-height:1.9}
+.ft-in{display:grid;grid-template-columns:1.2fr 1fr 1.6fr;gap:40px 56px}
+.ft h2{font-size:24px;color:#fff;margin-bottom:12px}
+.ft h3{font-size:20px;color:#fff;margin-bottom:8px}
+.ft ul{list-style:none;margin:0;padding:0}
+.ft a{color:#f2ede6}
+.ft .credit{color:#d9d0c6;font-size:14px}
+.ft .fic{margin-top:40px;color:#d9d0c6;font-size:14px}
+
+/* カート */
+.toast{position:fixed;z-index:60;left:50%;bottom:24px;transform:translate(-50%,140%);width:min(560px,calc(100% - 32px));background:var(--ink);color:#fff;padding:16px 20px 18px;border-radius:2px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;transition:transform .3s var(--ease)}
+.toast{visibility:hidden}
+.toast.on{transform:translate(-50%,0);visibility:visible}
+.toast p{flex:1 1 260px;font-size:16px;line-height:1.6}
+.toast button{height:40px;padding:0 16px;background:#fff;color:var(--ink);border:0;border-radius:2px;font-weight:700}
+dialog{border:0;padding:0;width:min(480px,100%);max-height:100dvh;height:100dvh;margin:0 0 0 auto;background:var(--wara);color:var(--ink)}
+dialog::backdrop{background:rgba(34,26,27,.5)}
+.cd{padding:24px 24px 32px;display:flex;flex-direction:column;min-height:100%}
+.cd-h{display:flex;align-items:center;justify-content:space-between}
+.cd-h h2{font-size:24px}
+.x{height:40px;padding:0 14px;background:var(--tile);border:0;border-radius:2px}
+.lines{list-style:none;margin:16px 0 0;padding:0}
+.lines li{display:grid;grid-template-columns:1fr auto;gap:4px 12px;padding:14px 0;border-top:1px solid #cfc5b5}
+.lines .q{display:flex;align-items:center;gap:4px}
+.lines .q button{width:36px;height:36px;background:var(--tile);border:0;border-radius:2px;font-size:20px}
+.lines .q button:disabled{color:#8a7f80;cursor:default}
+.lines .q output{min-width:2em;text-align:center}
+.lines .lim{grid-column:1/-1;font-size:14px;color:var(--sub)}
+.sum{margin-top:auto;padding-top:20px}
+.sum div{display:flex;justify-content:space-between;padding:4px 0}
+.sum .tot{font-size:20px;font-weight:700}
+.sum .free{color:var(--kaiyu);font-weight:700;margin-top:8px}
+.checkout{margin-top:16px;width:100%;height:52px;background:var(--shinsha);color:#fff;border:0;border-radius:2px;font-weight:700;font-size:16px}
+.cd .none{margin-top:24px}
+
+@media (max-width:1100px){
+  .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .glist{grid-template-columns:1fr}
+}
+@media (max-width:820px){
+  .nav{display:none}
+  .cart-btn{margin-left:auto}
+  .logo small{display:none}
+  .hero{grid-template-columns:1fr;min-height:0}
+  .hero-l{padding:40px 16px 128px}
+  .hero h1{font-size:60px;margin:12px 0 14px}
+  .hero .kinds{font-size:24px}
+  .hero .next{padding-top:24px}
+  .hero .next strong{font-size:24px}
+  .hero-r{min-height:0;padding:0 16px 32px;margin-top:-104px;z-index:3}
+  .arch{position:relative;left:auto;top:auto;width:76%;height:420px;outline:10px solid var(--wara)}
+  .arch img{height:calc(100% - 92px)}
+  .arch figcaption{height:92px}
+  .cup{position:relative;right:auto;bottom:auto;width:62%;margin:32px 0 0 auto}
+  .cup span{font-size:20px}
+  .tate{top:auto;bottom:auto;right:16px;margin-top:0;position:absolute;top:128px;font-size:40px}
+  .tate small{font-size:14px}
+  .iromi{position:relative;left:auto;right:auto;top:auto;margin-top:72px}
+  .iromi .rod{left:-16px;right:-16px}
+  .iromi svg{width:64px}
+  .iromi li span{font-size:20px}
+  .sec{padding:72px 16px}
+  .bar{top:64px;gap:10px 16px;padding:10px 0}
+  .bar .grp.kind{display:none}
+  .count{margin-left:0}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 12px}
+  .card h3{font-size:20px}
+  .scene .win{aspect-ratio:4/3}
+  .sw{width:40px;font-size:14px}
+  .sw svg{width:26px;height:26px}
+  .stock{font-size:14px;min-height:4.8em}
+  .add{font-size:16px}
+  .glaze{grid-template-columns:1fr}
+  .glist svg{width:96px;height:96px}
+  .glist h3{font-size:24px}
+  .glaze .side{margin:48px -16px -72px -16px;height:420px}
+  .glaze .side .win{inset:0 0 0 0;border-radius:999px 999px 0 0}
+  .ship{grid-template-columns:1fr}
+  .ship .photo{position:relative;top:auto;margin:0 0 40px -16px;width:92%}
+  .ship .photo .win{aspect-ratio:4/3.4}
+  .ship .photo figcaption{margin-left:16px}
+  .tbl th,.tbl td{padding-right:8px;font-size:16px}
+  .tbl .day{font-size:16px;white-space:normal}
+  .rules{grid-template-columns:1fr}
+  .kiln-top{grid-template-columns:1fr}
+  .chart{padding:12px 8px 10px;margin-left:-8px;margin-right:-8px}
+  .steps li{grid-template-columns:1fr}
+  .steps li b{font-size:24px}
+  .kiln .person{margin:40px -16px 0 25%}
+  .later{grid-template-columns:1fr}
+  .ft-in{grid-template-columns:1fr}
+}
+@media (max-width:420px){
+  .hero h1{font-size:54px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#list">器の一覧へ</a>
+<header class="hd">
+  <a class="logo" href="#top">三筋沢窯<small>オンラインショップ</small></a>
+  <nav class="nav" aria-label="このページの中">
+    <a href="#list">器の一覧</a>
+    <a href="#glaze">釉の色</a>
+    <a href="#ship">送料と届く日</a>
+    <a href="#kiln">窯焚きの予定</a>
+  </nav>
+  <button class="cart-btn" type="button" id="cartBtn" aria-haspopup="dialog">カート<b id="cartN">0</b></button>
+</header>
+
+<main id="top">
+<section class="hero" aria-labelledby="h1">
+  <div class="hero-l">
+    <p class="where">長野の山あいの窯元の通販</p>
+    <h1 id="h1">十月の<br>窯出し</h1>
+    <p class="kinds">器12種・釉の色4つ</p>
+    <div class="next">
+      <span>次の窯出しの発売</span>
+      <strong>11月27日（金）20時</strong>
+    </div>
+    <a class="go" href="#list">器を選ぶ</a>
+  </div>
+  <div class="hero-r">
+    <figure class="arch">
+      <img src="photos/Anagama-lighting-2517048606.jpg" alt="薪の窯の焚き口に火を入れる人たち。窯のまわりに人が集まっている" width="500" height="667">
+      <figcaption>穴窯に火を入れるところ（米国の陶芸工房）。三筋沢窯の写真ではありません。<br>写真：carmichaellibrary／Wikimedia Commons／CC BY 2.0</figcaption>
+    </figure>
+    <div class="iromi">
+      <span class="rod" aria-hidden="true"></span>
+      <p>色見（いろみ）から選ぶ</p>
+      <ul>
+        <li><a href="#list" data-pick="W"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#ring-W"/></svg><span>藁白</span><em>12種</em></a></li>
+        <li><a href="#list" data-pick="A"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#ring-A"/></svg><span>飴</span><em>12種</em></a></li>
+        <li><a href="#list" data-pick="H"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#ring-H"/></svg><span>灰釉</span><em>12種</em></a></li>
+        <li><a href="#list" data-pick="S"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#ring-S"/></svg><span>辰砂</span><em>5種</em></a></li>
+      </ul>
+    </div>
+    <a class="cup" href="#c-yunomi" data-pick="S">
+      <svg viewBox="40 52 160 104" aria-hidden="true"><line x1="120" x2="120" y1="58" y2="156" stroke="#4a3f41" stroke-dasharray="6 4"/><path d="M120 66 L159 66 C158 105 156 133 150 142 L148 150 L120 150 Z" fill="#8e1d3b" stroke="#221a1b" stroke-width="1.2"/><circle cx="146" cy="96" r="2.4" fill="#4f6b52"/><circle cx="151" cy="104" r="1.5" fill="#4f6b52"/><g transform="translate(240 0) scale(-1 1)"><path d="M159 66 C158 105 156 133 150 142 L148 150 L120 150" fill="none" stroke="#221a1b" stroke-width="4" stroke-linejoin="round"/></g><line x1="50" x2="190" y1="150.5" y2="150.5" stroke="#221a1b"/></svg>
+      <span>湯呑・辰砂 残り1点</span>
+    </a>
+    <p class="tate" aria-hidden="true">三筋沢窯<small>みすじさわがま</small></p>
+  </div>
+</section>
+
+<section class="sec" id="list" aria-labelledby="list-h">
+  <div class="sec-h">
+    <h2 id="list-h">器の一覧</h2>
+    <p>10月26日（月）に窯出しした器の、残りの在庫です。</p>
+  </div>
+  <div class="bar" role="group" aria-label="絞り込み">
+    <div class="grp" id="glazeChips">
+      <span class="lab">釉の色</span>
+      <button class="chip" type="button" data-g="" aria-pressed="true">すべて</button>
+      <button class="chip" type="button" data-g="W" aria-pressed="false"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#ring-W"/></svg>藁白</button>
+      <button class="chip" type="button" data-g="A" aria-pressed="false"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#ring-A"/></svg>飴</button>
+      <button class="chip" type="button" data-g="H" aria-pressed="false"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#ring-H"/></svg>灰釉</button>
+      <button class="chip" type="button" data-g="S" aria-pressed="false"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#ring-S"/></svg>辰砂</button>
+    </div>
+    <label class="toggle"><input type="checkbox" id="inStock">在庫のあるものだけ</label>
+    <p class="count" aria-live="polite"><b id="countN">12</b>種<span id="countS">・在庫 0点</span></p>
+    <p class="cond" id="cond"><span id="condT"></span><button type="button" id="condX">条件を外す</button></p>
+  </div>
+  <p class="scale">器の絵は実測図です（左半分が断面、右半分が外から見た形）。縮尺はすべて同じです。</p>
+  <ul class="grid" id="grid"></ul>
+  <div class="empty" id="empty" role="status"><p id="emptyT"></p><button type="button" id="emptyX">条件を外す</button></div>
+</section>
+
+<section class="sec glaze" id="glaze" aria-labelledby="glaze-h">
+  <div>
+    <div class="sec-h">
+      <h2 id="glaze-h">釉の色</h2>
+      <p>どの器も、4つの釉から選べます（辰砂は5種だけ）。</p>
+    </div>
+    <ul class="glist">
+      <li><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#ring-W"/></svg><h3>藁白<small>わらじろ</small></h3><p>稲わらの灰を混ぜた白。厚くかかった所は青みが出ます。</p><p class="on">12種すべて</p></li>
+      <li><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#ring-A"/></svg><h3>飴<small>あめ</small></h3><p>鉄で出す飴色。縁の薄い所は黒く、底にたまると明るくなります。</p><p class="on">12種すべて</p></li>
+      <li><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#ring-H"/></svg><h3>灰釉<small>はいゆう</small></h3><p>窯で燃やした赤松の灰から作ります。流れて、くぼみに緑がたまります。</p><p class="on">12種すべて</p></li>
+      <li><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#ring-S2"/></svg><h3>辰砂<small>しんしゃ</small></h3><p>銅で出す赤。窯の手前の段でしか赤くならず、1回の窯で20点ほどです。どの器も660円高くなります。</p><p class="on">湯呑・豆皿・小鉢・片口・ぐい呑</p></li>
+    </ul>
+    <div class="know">
+      <h3>知っておいてほしいこと</h3>
+      <ul>
+        <li>同じ釉でも、窯の中の場所で色が変わります。絵の色と同じにはなりません。</li>
+        <li>藁白と灰釉には細かいひび（貫入）が入り、使ううちにお茶の色が染みます。</li>
+        <li>辰砂は、くすんだ赤や、緑の斑点が出ることがあります。</li>
+        <li>電子レンジは使えます。食洗機・オーブン・直火は使えません。</li>
+        <li>底はやすりをかけていますが、塗りの机には敷物をおすすめします。</li>
+      </ul>
+    </div>
+  </div>
+  <figure class="side">
+    <div class="win"><img src="photos/Inside-of-Shigaraki-climbing-kiln.jpg" alt="登り窯の中。棚に焼く前の器が並んでいる" loading="lazy" width="960" height="720"></div>
+    <figcaption>焼く前の器を棚に詰めた登り窯の中（滋賀・信楽）。三筋沢窯の窯ではありません。<span class="credit"><br>写真：Motokoka／Wikimedia Commons／CC BY-SA 4.0</span></figcaption>
+  </figure>
+</section>
+
+<section class="sec ship" id="ship" aria-labelledby="ship-h">
+  <figure class="photo">
+    <div class="win"><img src="photos/Wood-fired-kilns.jpg" alt="薪の窯の前に、白い器が高く積み重ねてある" loading="lazy" width="960" height="720"></div>
+    <figcaption>窯の前に積んだ焼く前の器（場所は不明）。三筋沢窯の写真ではありません。<br><span class="credit">写真：作者不明／Wikimedia Commons／CC BY-SA 3.0</span></figcaption>
+  </figure>
+  <div>
+    <div class="sec-h"><h2 id="ship-h">送料と届く日</h2></div>
+    <p class="when">11月8日（日）までのご注文は、<br><em>11月9日（月）</em>に発送します。</p>
+    <table class="tbl">
+      <caption class="credit" style="caption-side:bottom;text-align:left;padding-top:10px">発送は月・水・金。日時の指定ができます（午前・14〜16時・16〜18時・18〜20時・19〜21時）。</caption>
+      <thead><tr><th scope="col">お届け先</th><th scope="col">送料（税込）</th><th scope="col">11月9日発送で届く日</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">関東・信越・北陸・中部・近畿</th><td class="num">1,180円</td><td class="day">11月10日（火）</td></tr>
+        <tr><th scope="row">東北・中国・四国</th><td class="num">1,390円</td><td class="day">11月11日（水）</td></tr>
+        <tr><th scope="row">九州</th><td class="num">1,610円</td><td class="day">11月11日（水）</td></tr>
+        <tr><th scope="row">北海道</th><td class="num">1,940円</td><td class="day">11月12日（木）</td></tr>
+        <tr><th scope="row">沖縄・離島</th><td class="num">2,830円</td><td class="day">11月13日（金）〜</td></tr>
+      </tbody>
+    </table>
+    <div class="rules">
+      <div><h3>送料無料</h3><p><b>16,500円以上</b>のご注文は、どこへでも送料無料です。</p></div>
+      <div><h3>包み方</h3><p>1つずつ紙で包み、仕切りのある箱に入れます。箱は器8点まで。9点からは2箱でも送料は1回分です。</p></div>
+      <div><h3>割れて届いたら</h3><p>届いた日から7日以内に、写真を添えてご連絡ください。同じ器を送るか、代金を返します。</p></div>
+      <div><h3>返品</h3><p>色や形が気に入らないときの返品は、届いた日から7日以内・未使用に限ります。送料はご負担ください。</p></div>
+      <div><h3>支払い</h3><p>クレジットカード・銀行振込・代金引換（手数料330円）。</p></div>
+      <div><h3>次の窯出しの器</h3><p>11月27日（金）20時の発売分は、12月2日（水）から順に発送します。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec kiln" id="kiln" aria-labelledby="kiln-h">
+  <div class="kiln-top">
+    <div>
+      <div class="sec-h">
+        <h2 id="kiln-h">窯焚きの予定</h2>
+        <p>窯を焚くのは月に1回。11月の窯には約380点を詰めます。</p>
+      </div>
+      <ol class="steps">
+        <li><b>11月16日（月）〜18日（水）</b><span>窯詰め。棚に器を並べる</span></li>
+        <li><b>11月19日（木）朝6時</b><span>火入れ。ここから2日半、交代で薪をくべる</span></li>
+        <li><b>11月21日（土）夕方</b><span>1250℃で火を止め、4日かけて冷ます</span></li>
+        <li><b>11月25日（水）</b><span>窯出し。割れ・ゆがみを見て、売れる器を選ぶ</span></li>
+        <li class="sale"><b>11月27日（金）20時</b><span>このページで発売。<br>売り切れの色の多くが戻ります</span></li>
+      </ol>
+    </div>
+    <figure class="person">
+      <div class="win"><img src="photos/Anagama-Kiln-1989.jpg" alt="薪を積んだ穴窯のそばに立つ人" loading="lazy" width="960" height="716"></div>
+      <figcaption>薪の穴窯と、窯のそばに立つ人（1989年）。三筋沢窯の写真ではありません。<br><span class="credit">写真：MaryEK／Wikimedia Commons／CC BY-SA 4.0</span></figcaption>
+    </figure>
+  </div>
+  <div class="chart">
+        <svg viewBox="0 0 900 330" role="img" aria-labelledby="chartT">
+          <title id="chartT">11月の窯の予定と窯の中の温度。11月16日から18日に窯詰め、19日朝6時に火入れ、21日夕方に1250度で火を止め、25日に窯出し、27日20時に発売</title>
+          <g font-size="17" fill="#4a3f41">
+            <text x="20" y="64">1250℃</text><text x="20" y="168">800℃</text><text x="20" y="262">0℃</text>
+          </g>
+          <g stroke="#d8cfc2" stroke-width="1">
+            <line x1="90" x2="890" y1="60" y2="60"/><line x1="90" x2="890" y1="164" y2="164"/><line x1="90" x2="890" y1="258" y2="258"/>
+          </g>
+          <g id="days" font-size="15" fill="#221a1b" text-anchor="middle"></g>
+          <rect x="90" y="40" width="200" height="218" fill="#e8e0d2"/>
+          <text x="190" y="150" text-anchor="middle" font-size="20" fill="#221a1b">窯詰め</text>
+          <polyline fill="none" stroke="#8e1d3b" stroke-width="5" stroke-linejoin="round" points="290,256 320,230 360,180 400,120 440,82 490,60 500,60 530,120 570,180 630,224 690,246 756,252"/>
+          <circle cx="490" cy="60" r="7" fill="#8e1d3b"/>
+          <text x="500" y="38" font-size="17" fill="#8e1d3b" text-anchor="middle">21日 夕方に火を止める</text>
+          <text x="296" y="290" font-size="17" fill="#221a1b">19日 朝6時 火入れ</text>
+          <g font-size="20" text-anchor="middle">
+            <rect x="756" y="40" width="66" height="218" fill="#356456"/>
+            <text x="789" y="150" fill="#fff" writing-mode="tb">窯出し</text>
+            <rect x="822" y="40" width="68" height="218" fill="#8e1d3b" opacity="1"/>
+            <text x="856" y="150" fill="#fff" writing-mode="tb">発売</text>
+          </g>
+        </svg>
+        <p class="cap">窯の中の温度は、いつもの焚き方の目安です。薪は赤松で、約60時間焚き続けます。</p>
+      </div>
+  <ul class="later">
+    <li><h3>12月の窯</h3><p class="d">12月25日（金）20時 発売</p><p>火入れは12月17日（木）、窯出しは12月23日（水）。</p></li>
+    <li class="rest"><h3>1月は焚きません</h3><p class="d">雪で薪を運べないため</p><p>1月の発売はありません。12月の窯の在庫を続けて売ります。</p></li>
+    <li><h3>2月の窯</h3><p class="d">2月26日（金）20時 発売</p><p>火入れは2月18日（木）、窯出しは2月24日（水）。</p></li>
+  </ul>
+</section>
+</main>
+
+<footer class="ft">
+  <div class="ft-in">
+    <div>
+      <h2>三筋沢窯</h2>
+      <p>長野県の山あい、三筋沢の集落の窯元。薪の窯を月に1回焚いています。</p>
+      <p>受付：平日10時〜16時（窯焚きの3日間はお返事が遅れます）</p>
+    </div>
+    <div>
+      <h3>ご利用案内</h3>
+      <ul>
+        <li><a href="#ship">送料と届く日</a></li>
+        <li><a href="#ship">返品と、割れて届いたとき</a></li>
+        <li><a href="#kiln">窯焚きの予定</a></li>
+        <li><a href="#top">特定商取引法に基づく表記</a></li>
+        <li><a href="#top">お問い合わせ</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>写真の出典</h3>
+      <ul class="credit">
+        <li>穴窯の火入れ：carmichaellibrary／Wikimedia Commons／CC BY 2.0（<a href="https://commons.wikimedia.org/w/index.php?curid=29689669">元のページ</a>）</li>
+        <li>信楽の登り窯の中：Motokoka／Wikimedia Commons／CC BY-SA 4.0（<a href="https://commons.wikimedia.org/w/index.php?curid=80697519">元のページ</a>）</li>
+        <li>窯の前に積んだ器：作者不明／Wikimedia Commons／CC BY-SA 3.0（<a href="https://commons.wikimedia.org/w/index.php?curid=115337681">元のページ</a>）</li>
+        <li>穴窯（1989年）：MaryEK／Wikimedia Commons／CC BY-SA 4.0（<a href="https://commons.wikimedia.org/w/index.php?curid=57117189">元のページ</a>）</li>
+        <li>ろくろをひく陶工：Steve Bozak／Wikimedia Commons／CC BY 2.0（<a href="https://commons.wikimedia.org/w/index.php?curid=36254749">元のページ</a>）</li>
+      </ul>
+    </div>
+  </div>
+  <p class="fic">三筋沢窯は架空の窯元です（site-skills の作例）。名前・場所・値段・在庫・予定はすべて作り物で、写真は窯のまわりの世界の本物の写真です。</p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><p id="toastT"></p><button type="button" id="toastCart">カートを見る</button></div>
+
+<dialog id="cart" aria-labelledby="cart-h">
+  <div class="cd">
+    <div class="cd-h"><h2 id="cart-h">カート</h2><button class="x" type="button" id="cartClose">閉じる</button></div>
+    <ul class="lines" id="lines"></ul>
+    <p class="none" id="cartNone">カートは空です。<a href="#list" id="cartBack">器の一覧へ戻る</a></p>
+    <div class="sum" id="sum">
+      <div><span>小計（税込）</span><span id="sub"></span></div>
+      <div><span>送料（関東・中部・近畿の場合）</span><span id="fee"></span></div>
+      <div class="tot"><span>合計</span><span id="tot"></span></div>
+      <p class="free" id="free"></p>
+      <button class="checkout" type="button" id="checkout">ご注文手続きへ</button>
+      <p class="credit" id="coNote" hidden>作例のため、ここから先はありません。</p>
+    </div>
+  </div>
+</dialog>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- 色見：窯から鉄の棒で引き出す、穴のあいたかけら -->
+    <symbol id="ring-W" viewBox="0 0 100 100"><path fill-rule="evenodd" fill="#ebe5d7" stroke="#221a1b" stroke-width="2" d="M50 4a46 46 0 1 1 0 92a46 46 0 1 1 0-92zM50 34a16 16 0 1 0 0 32a16 16 0 1 0 0-32z"/></symbol>
+    <symbol id="ring-A" viewBox="0 0 100 100"><path fill-rule="evenodd" fill="#7b4214" stroke="#221a1b" stroke-width="2" d="M50 4a46 46 0 1 1 0 92a46 46 0 1 1 0-92zM50 34a16 16 0 1 0 0 32a16 16 0 1 0 0-32z"/><path fill="none" stroke="#2c1606" stroke-width="5" d="M50 7a43 43 0 0 1 43 43"/></symbol>
+    <symbol id="ring-H" viewBox="0 0 100 100"><path fill-rule="evenodd" fill="#8e9c7e" stroke="#221a1b" stroke-width="2" d="M50 4a46 46 0 1 1 0 92a46 46 0 1 1 0-92zM50 34a16 16 0 1 0 0 32a16 16 0 1 0 0-32z"/><path fill="#56705a" d="M24 70c6 10 14 16 26 18c-6-6-8-12-6-20c-8 4-14 4-20 2z"/></symbol>
+    <symbol id="ring-S" viewBox="0 0 100 100"><path fill-rule="evenodd" fill="#8e1d3b" stroke="#221a1b" stroke-width="2" d="M50 4a46 46 0 1 1 0 92a46 46 0 1 1 0-92zM50 34a16 16 0 1 0 0 32a16 16 0 1 0 0-32z"/><circle cx="72" cy="28" r="4" fill="#4f6b52"/><circle cx="80" cy="40" r="2.5" fill="#4f6b52"/></symbol>
+    <symbol id="ring-S2" viewBox="0 0 100 100"><path fill-rule="evenodd" fill="#8e1d3b" stroke="#fbf9f4" stroke-width="3" d="M50 4a46 46 0 1 1 0 92a46 46 0 1 1 0-92zM50 34a16 16 0 1 0 0 32a16 16 0 1 0 0-32z"/><circle cx="72" cy="28" r="4" fill="#7fa283"/><circle cx="80" cy="40" r="2.5" fill="#7fa283"/></symbol>
+  </defs>
+</svg>
+
+<script>
+(() => {
+  const G = { W: '藁白', A: '飴', H: '灰釉', S: '辰砂' };
+  const GC = { W: '#ebe5d7', A: '#7b4214', H: '#8e9c7e', S: '#8e1d3b' };
+  const NEXT = '11月27日（金）20時';
+  // 在庫は10月の窯の残り。nx は11月の窯で焼く予定の数（売り切れの色だけ）
+  const items = [
+    { id: 'meshi-l', name: '飯碗（大）', size: '径12.6・高さ7.2cm', price: 3520, kind: 'ご飯と汁', st: { W: 3, A: 0, H: 2 }, nx: { A: 4 }, o: 'M183 78 C181 113 166 137 150 142 L148 150 L120 150' },
+    { id: 'meshi-s', name: '飯碗（小）', size: '径11.4・高さ6.6cm', price: 3190, kind: 'ご飯と汁', st: { W: 1, A: 4, H: 0 }, nx: { H: 4 }, o: 'M177 84 C175 116 160 137 146 142 L145 150 L120 150' },
+    { id: 'yunomi', name: '湯呑', size: '径7.8・高さ8.4cm', price: 2640, kind: 'お茶と酒', st: { W: 2, A: 3, H: 1, S: 1 }, nx: {}, o: 'M159 66 C158 105 156 133 150 142 L148 150 L120 150' },
+    { id: 'hira7', name: '平皿 七寸', size: '径21.2・高さ3.0cm', price: 4620, kind: '皿と鉢', st: { W: 2, A: 1, H: 0 }, nx: { H: 3 }, o: 'M226 120 C222 133 200 141 170 143 L168 150 L120 150' },
+    { id: 'hira5', name: '平皿 五寸', size: '径15.4・高さ2.4cm', price: 2860, kind: '皿と鉢', st: { W: 4, A: 2, H: 3 }, nx: {}, o: 'M197 126 C194 137 178 142 158 143 L157 150 L120 150' },
+    { id: 'mame', name: '豆皿 三寸', size: '径9.6・高さ1.8cm', price: 1320, kind: '皿と鉢', st: { W: 6, A: 5, H: 4, S: 2 }, nx: {}, o: 'M168 132 C166 140 156 143 146 144 L145 150 L120 150' },
+    { id: 'hachi6', name: '鉢 六寸', size: '径18.5・高さ6.8cm', price: 4180, kind: '皿と鉢', st: { W: 0, A: 2, H: 1 }, nx: { W: 3 }, o: 'M212 82 C208 117 182 139 156 142 L154 150 L120 150' },
+    { id: 'kobachi', name: '小鉢', size: '径12.0・高さ5.5cm', price: 2420, kind: '皿と鉢', st: { W: 3, A: 0, H: 2, S: 1 }, nx: { A: 5 }, o: 'M180 95 C178 123 163 140 146 142 L145 150 L120 150' },
+    { id: 'mug', name: 'マグカップ', size: '径8.4・高さ9.0cm・300ml', price: 3850, kind: 'お茶と酒', st: { W: 2, A: 2, H: 0 }, nx: { H: 4 }, o: 'M162 60 L161 141 L156 150 L120 150', h: 'M161 77 C186 77 188 117 161 121' },
+    { id: 'katakuchi', name: '片口', size: '径12.8・高さ7.0cm・360ml', price: 4950, kind: 'お茶と酒', st: { W: 1, A: 0, H: 1, S: 0 }, nx: { A: 3, S: 1 }, o: 'M184 80 C183 115 168 138 148 142 L147 150 L120 150', sp: 'M183 80 L201 73 L198 85 Z' },
+    { id: 'tokkuri', name: '徳利 一合半', size: '径9.2・高さ14.0cm', price: 5280, kind: 'お茶と酒', st: { W: 0, A: 1, H: 1 }, nx: { W: 2 }, o: 'M137 10 L136 22 C136 40 166 60 166 100 C166 130 156 142 148 144 L147 150 L120 150' },
+    { id: 'guinomi', name: 'ぐい呑', size: '径6.6・高さ5.0cm', price: 2310, kind: 'お茶と酒', st: { W: 2, A: 1, H: 2, S: 2 }, nx: {}, o: 'M153 100 C153 125 148 140 142 143 L141 150 L120 150' }
+  ];
+  const yen = n => n.toLocaleString('ja-JP') + '円';
+  const priceOf = (it, g) => it.price + (g === 'S' ? 660 : 0);
+  const sel = {}; // 各カードで選んだ色
+  items.forEach(it => { sel[it.id] = Object.keys(it.st).find(g => it.st[g] > 0) || 'W'; });
+  const cart = []; // {id, g, q}
+  const inCart = (id, g) => (cart.find(l => l.id === id && l.g === g) || { q: 0 }).q;
+
+  const zu = it => {
+    const fill = 'M120 ' + it.o.match(/^M\d+ (\d+)/)[1] + ' L' + it.o.slice(1) + ' Z';
+    const top = Math.min(...[...it.o.matchAll(/ (\d+)(?= |$)/g)].map(m => +m[1]));
+    return `<svg viewBox="0 0 240 170" aria-hidden="true">
+      <line x1="120" x2="120" y1="${top - 8}" y2="158" stroke="#4a3f41" stroke-width="1" stroke-dasharray="6 4"/>
+      ${it.h ? `<path d="${it.h}" fill="none" stroke="#221a1b" stroke-width="9" stroke-linecap="round"/><path class="gl-s" d="${it.h}" fill="none" stroke-width="5" stroke-linecap="round"/>` : ''}
+      <path class="gl" d="${fill}" stroke="#221a1b" stroke-width="1.5"/>
+      ${it.sp ? `<path class="gl" d="${it.sp}" stroke="#221a1b" stroke-width="1.5"/>` : ''}
+      <g transform="translate(240 0) scale(-1 1)"><path d="${it.o}" fill="none" stroke="#221a1b" stroke-width="5" stroke-linejoin="round"/></g>
+      <line x1="20" x2="220" y1="150.5" y2="150.5" stroke="#221a1b" stroke-width="1"/>
+    </svg>`;
+  };
+
+  const grid = document.getElementById('grid');
+  grid.innerHTML = items.map(it => `
+    <li class="card" id="c-${it.id}" data-id="${it.id}">
+      <div class="zu">${zu(it)}</div>
+      <h3>${it.name}</h3>
+      <p class="size">${it.size}</p>
+      <p class="price"><b class="pv"></b><small>（税込）</small></p>
+      <div class="sws" role="group" aria-label="${it.name}の釉の色">${Object.keys(it.st).map(g => `<button type="button" class="sw" data-g="${g}"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#ring-${g}"/></svg><span>${G[g]}</span></button>`).join('')}</div>
+      <p class="stock"></p>
+      <button type="button" class="add">カートに入れる</button>
+    </li>`).join('');
+  // 一覧の中の場面（ろくろ）。写真の行は2列ぶん
+  const scene = document.createElement('li');
+  scene.className = 'scene';
+  scene.innerHTML = `<figure style="margin:0"><div class="win"><img src="photos/Master-potter-at-work-Icheon.jpg" alt="ろくろの前で器の形をととのえる陶工" loading="lazy" width="1280" height="853"></div><figcaption>ろくろで器をひく陶工（韓国・利川）。三筋沢窯の人ではありません。<span class="credit">写真：Steve Bozak／Wikimedia Commons／CC BY 2.0</span></figcaption></figure>`;
+  grid.insertBefore(scene, grid.children[8]);
+
+  const draw = it => {
+    const c = document.getElementById('c-' + it.id), g = sel[it.id], n = it.st[g] - inCart(it.id, g);
+    c.querySelectorAll('.gl').forEach(p => p.setAttribute('fill', GC[g]));
+    c.querySelectorAll('.gl-s').forEach(p => p.setAttribute('stroke', GC[g]));
+    c.querySelector('.pv').textContent = yen(priceOf(it, g));
+    c.querySelectorAll('.sw').forEach(b => {
+      const k = b.dataset.g, out = it.st[k] === 0;
+      b.setAttribute('aria-pressed', String(k === g));
+      b.classList.toggle('out', out);
+      b.setAttribute('aria-label', G[k] + (out ? '（売り切れ）' : '（残り' + it.st[k] + '点）'));
+    });
+    const s = c.querySelector('.stock'), a = c.querySelector('.add');
+    if (it.st[g] === 0) {
+      s.innerHTML = `${G[g]}は売り切れ。<span class="nx">${NEXT}に${it.nx[g] ? it.nx[g] + '点' : ''}発売予定</span>`;
+      a.disabled = true; a.textContent = '売り切れ';
+    } else if (n <= 0) {
+      s.innerHTML = `${G[g]}の${it.st[g]}点は、すべてカートに入っています。`;
+      a.disabled = true; a.textContent = 'カートに入っています';
+    } else {
+      s.innerHTML = `${G[g]}・<span class="${n <= 2 ? 'low' : ''}">残り${n}点</span>`;
+      a.disabled = false; a.textContent = 'カートに入れる';
+    }
+  };
+
+  // 絞り込み
+  let fG = '', fStock = false;
+  const chips = [...document.querySelectorAll('#glazeChips .chip')];
+  const apply = () => {
+    let shown = 0, pcs = 0;
+    items.forEach(it => {
+      const c = document.getElementById('c-' + it.id);
+      let ok = !fG || fG in it.st;
+      if (ok && fG) sel[it.id] = fG; // 色で絞ったら、カードの色もその色に移す
+      if (ok && fStock) ok = fG ? it.st[fG] > 0 : Object.values(it.st).some(v => v > 0);
+      c.hidden = !ok;
+      if (ok) { shown++; pcs += fG ? it.st[fG] : Object.values(it.st).reduce((x, y) => x + y, 0); }
+      draw(it);
+    });
+    scene.hidden = !!(fG || fStock);
+    document.getElementById('countN').textContent = shown;
+    document.getElementById('countS').textContent = '・在庫 ' + pcs + '点';
+    chips.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.g === fG)));
+    const parts = [fG && G[fG] + 'のある器', fStock && '在庫のあるものだけ'].filter(Boolean);
+    document.getElementById('cond').classList.toggle('on', parts.length > 0);
+    document.getElementById('condT').textContent = parts.join('・');
+    const em = document.getElementById('empty');
+    em.classList.toggle('on', shown === 0);
+    if (shown === 0) document.getElementById('emptyT').textContent = `「${parts.join('・')}」の器は、いまありません。次の発売は${NEXT}です。条件を外すと12種に戻ります。`;
+  };
+  const clear = () => { fG = ''; fStock = false; document.getElementById('inStock').checked = false; apply(); };
+  chips.forEach(b => b.addEventListener('click', () => { fG = b.dataset.g; apply(); }));
+  document.getElementById('inStock').addEventListener('change', e => { fStock = e.target.checked; apply(); });
+  document.getElementById('condX').addEventListener('click', clear);
+  document.getElementById('emptyX').addEventListener('click', clear);
+  document.querySelectorAll('[data-pick]').forEach(a => a.addEventListener('click', () => { fG = a.dataset.pick; apply(); }));
+
+  grid.addEventListener('click', e => {
+    const card = e.target.closest('.card'); if (!card) return;
+    const it = items.find(x => x.id === card.dataset.id);
+    const sw = e.target.closest('.sw');
+    if (sw) { sel[it.id] = sw.dataset.g; draw(it); return; }
+    const add = e.target.closest('.add');
+    if (add && !add.disabled) {
+      add.classList.add('busy'); add.textContent = '入れています…';
+      setTimeout(() => {
+        add.classList.remove('busy');
+        const g = sel[it.id];
+        const l = cart.find(x => x.id === it.id && x.g === g);
+        if (l) l.q++; else cart.push({ id: it.id, g, q: 1 });
+        draw(it); renderCart();
+        const sub = total();
+        showToast(`${it.name}（${G[g]}）をカートに入れました。小計 ${yen(sub)}。` + (sub >= 16500 ? '送料は無料です。' : `あと${yen(16500 - sub)}で送料無料。`));
+      }, 250);
+    }
+  });
+
+  // カート
+  const total = () => cart.reduce((s, l) => s + priceOf(items.find(x => x.id === l.id), l.g) * l.q, 0);
+  const count = () => cart.reduce((s, l) => s + l.q, 0);
+  const dlg = document.getElementById('cart');
+  const renderCart = () => {
+    document.getElementById('cartN').textContent = count();
+    const ul = document.getElementById('lines');
+    ul.innerHTML = cart.map((l, i) => {
+      const it = items.find(x => x.id === l.id), max = it.st[l.g];
+      return `<li><span>${it.name}（${G[l.g]}）<br>${yen(priceOf(it, l.g))}</span>
+        <span class="q"><button type="button" data-i="${i}" data-d="-1" aria-label="1つ減らす">−</button><output>${l.q}</output><button type="button" data-i="${i}" data-d="1" aria-label="1つ増やす" ${l.q >= max ? 'disabled' : ''}>＋</button></span>
+        ${l.q >= max ? `<span class="lim">在庫が${max}点なので、これ以上は増やせません。</span>` : ''}</li>`;
+    }).join('');
+    const empty = cart.length === 0, sub = total(), fee = empty ? 0 : (sub >= 16500 ? 0 : 1180);
+    document.getElementById('cartNone').hidden = !empty;
+    document.getElementById('sum').hidden = empty;
+    document.getElementById('sub').textContent = yen(sub);
+    document.getElementById('fee').textContent = fee ? yen(fee) : '無料';
+    document.getElementById('tot').textContent = yen(sub + fee);
+    document.getElementById('free').textContent = sub >= 16500 ? '16,500円以上なので、送料は無料です。' : `あと${yen(16500 - sub)}で送料無料です。`;
+  };
+  document.getElementById('lines').addEventListener('click', e => {
+    const b = e.target.closest('button[data-i]'); if (!b || b.disabled) return;
+    const l = cart[+b.dataset.i]; l.q += +b.dataset.d;
+    if (l.q <= 0) cart.splice(+b.dataset.i, 1);
+    renderCart(); items.forEach(draw);
+  });
+  const openCart = () => { renderCart(); if (dlg.showModal) dlg.showModal(); };
+  document.getElementById('cartBtn').addEventListener('click', openCart);
+  document.getElementById('toastCart').addEventListener('click', openCart);
+  document.getElementById('cartClose').addEventListener('click', () => dlg.close());
+  document.getElementById('cartBack').addEventListener('click', () => dlg.close());
+  document.getElementById('checkout').addEventListener('click', () => { document.getElementById('coNote').hidden = false; });
+  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+  let tt;
+  const showToast = t => { const el = document.getElementById('toast'); document.getElementById('toastT').textContent = t; el.classList.add('on'); clearTimeout(tt); tt = setTimeout(() => el.classList.remove('on'), 6000); };
+
+  // 窯の予定の日付（16日〜27日）
+  const days = document.getElementById('days');
+  const w = '日月火水木金土';
+  for (let d = 16; d <= 27; d++) {
+    const x = 90 + (d - 16) * 66.6 + 33;
+    const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    t.setAttribute('x', x); t.setAttribute('y', 320);
+    t.textContent = d + '（' + w[new Date(2026, 10, d).getDay()] + '）';
+    t.setAttribute('font-size', '16');
+    days.appendChild(t);
+  }
+  apply(); renderCart();
+})();
+</script>
+</body>
+</html>
