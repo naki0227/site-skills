@@ -25,8 +25,8 @@
 | `machikoba-recruit` | `photos/machining-center-1200.jpg` | HAAS CNC Machining Center | Psychlist1972 | CC BY 2.0 | https://commons.wikimedia.org/w/index.php?curid=193560471 |
 | `machikoba-recruit` | `photos/machining-center.jpg` | HAAS CNC Machining Center | Psychlist1972 | CC BY 2.0 | https://commons.wikimedia.org/w/index.php?curid=193560471 |
 | `machikoba-recruit` | `photos/vernier.jpg` | Vernier calipers (2) | Al Riaz Uddin Ripon | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=130406704 |
-| `sento` | `photos/A-Japanese-public-bath-in-museum---Flickr---odako1.jpg` | A Japanese public bath in museum - Flickr - odako1 | Koichi Oda | CC BY-SA 2.0 | https://commons.wikimedia.org/w/index.php?curid=55885722 |
 | `sento` | `photos/Shoes-boxes-at-a-Sento---Tokyo-area---Dec-22-2021.jpg` | Shoes boxes at a Sento - Tokyo area - Dec 22 2021 | Nesnad | CC BY 4.0 | https://commons.wikimedia.org/w/index.php?curid=113582446 |
+| `sento` | `photos/noren-yu-duotone.webp` | Noren at a sento by udono in Yoyogi, Tokyo（切り抜いて藍と生成りの2色に変えた） | udono from Public bath h | CC BY 2.0 | https://commons.wikimedia.org/w/index.php?curid=2798594 |
 | `toukiichi` | `photos/Arita-tokichi-200804.jpg` | Arita tokichi 200804 | user:Atsasebo | CC BY-SA 3.0 | https://commons.wikimedia.org/w/index.php?curid=9228610 |
 | `toukiichi` | `photos/Hasami-ware-plates.jpg` | Hasami ware - Nishiyama - March 28 2022 various | Nesnad | CC BY 4.0 | https://commons.wikimedia.org/w/index.php?curid=116465207 |
 | `toukiichi` | `photos/Noborigama-Tokoname-01.jpg` | Noborigama Tokoname 01 | Gryffindor | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=63887246 |
