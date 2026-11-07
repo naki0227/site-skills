@@ -1,10 +1,10 @@
 // 手本のサイトを測る（runs・heads の fam は CSS で指定した書体の先頭。この環境に無いヒラギノ・游ゴシックも名前で数えられる）：余白（何も無い帯の高さ）・文字の左端・本文と見出しの大きさ／行間／字間／太さ・実際に描かれた書体（和文と英字）・商品一覧（列・間・写真の縦横・商品名）・罫・ボタン・地の色（PC 1440px）
-// 使い方：node sample.js <URLを1行ずつ書いたファイル> <出力.jsonl> [並列数]。最初の画面は shots2/ に保存
+// 使い方：node scripts/sample.js <URLを1行ずつ書いたファイル> <出力.jsonl> [並列数]。出力は毎回書き直す。最初の画面は <出力.jsonl と同じフォルダ>/shots2/ に保存
 const { chromium } = require('playwright');
 const fs = require('fs');
 const [, , listFile, outFile, par = '8'] = process.argv;
 const urls = fs.readFileSync(listFile, 'utf8').split(/\s+/).filter(Boolean);
-fs.mkdirSync('shots2', { recursive: true });
+const SHOTS = require('path').join(require('path').dirname(outFile || '.'), 'shots2'); fs.mkdirSync(SHOTS, { recursive: true });
 
 function probe() {
   const vis = e => { const s = getComputedStyle(e); if (s.display === 'none' || s.visibility === 'hidden' || +s.opacity === 0) return null; const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0 ? r : null; };
@@ -74,7 +74,7 @@ function probe() {
 
 (async () => {
   const b = await chromium.launch({ args: ['--ignore-certificate-errors'] });
-  const q = [...urls]; const out = fs.createWriteStream(outFile, { flags: 'a' });
+  const q = [...urls]; const out = fs.createWriteStream(outFile, { flags: 'w' });
   async function one(u) {
     const ctx = await b.newContext({ viewport: { width: 1440, height: 900 }, locale: 'ja-JP' }); const p = await ctx.newPage();
     const res = { u };
@@ -84,7 +84,7 @@ function probe() {
       for (let i = 0; i < 6; i++) { await p.mouse.wheel(0, 900); await p.waitForTimeout(300); }
       await p.evaluate(() => scrollTo(0, 0)); await p.waitForTimeout(900);
       const name = new URL(u).hostname.replace('www.', '') + (new URL(u).pathname.length > 1 ? '_' + new URL(u).pathname.replace(/\W+/g, '_').slice(0, 30) : '');
-      res.shot = `shots2/${name}.jpg`; await p.screenshot({ path: res.shot, type: 'jpeg', quality: 60 });
+      res.shot = `${SHOTS}/${name}.jpg`; await p.screenshot({ path: res.shot, type: 'jpeg', quality: 60 });
       Object.assign(res, await p.evaluate(probe));
       // 実際に描かれた書体（和文の塊・英字の塊に分けて）
       const c = await ctx.newCDPSession(p); await c.send('DOM.enable'); await c.send('CSS.enable');
