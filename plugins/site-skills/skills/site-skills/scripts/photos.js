@@ -1,6 +1,7 @@
 // 使い方:
 //   node scripts/photos.js search "<英語の検索語>" <出力フォルダ>   … Wikimedia Commons の自由に使える写真を探す（CC0・CC BY・CC BY-SA だけ）
 //   node scripts/photos.js get <番号> <出力フォルダ> [幅]            … 直前の検索の <番号> を幅 1280px（既定。500/960/1280/1920 のどれか）で取り、credits.json に出典を書く
+// 候補を見比べるときは、作業用のフォルダ（work/ の下）に search・get して見て、使う物だけ作例の photos/ に search・get し直す（候補が credits.json に入らないように）。
 // 直前の検索は <出力フォルダ>/.photos-last.json に置く（並行して動く作り手どうしで上書きしないため。2026-11-07 の一発テストで4人がぶつかった）。
 // 出力フォルダを付けずに search したときだけ、共有の一時ファイルを使う。
 // 写真の枠を灰色の箱のままにしないための道具。題材そのものの写真が無いとき、題材の「まわりの世界」（産地・道具・素材・町）の本物の写真を使う。
@@ -40,13 +41,14 @@ function thumb(url, w) {
   if (cmd === 'search' && a) {
     // 前の検索の結果が残っていると、この検索が時間切れになったときに get が前の写真を取ってしまう（町工場の作り直しで起きた）。先に消す
     const LAST = lastFor(b); if (b) fs.mkdirSync(b, { recursive: true });
-    try { fs.unlinkSync(LAST); } catch (e) { }
     const q = encodeURIComponent(a);
     const d = curlJSON(`https://api.openverse.org/v1/images/?q=${q}&license=cc0,by,by-sa&source=wikimedia&page_size=12`);
-    const rows = (d.results || []).map((r, i) => ({ n: i + 1, title: r.title, creator: r.creator, license: `${r.license === 'cc0' ? 'CC0' : 'CC ' + r.license.toUpperCase()} ${r.license_version}`, url: r.url, page: r.foreign_landing_url, w: r.width, h: r.height }));
-    fs.writeFileSync(LAST, JSON.stringify({ q: a, rows }, null, 1));
+    const clean = t => (t || '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+    const rows = (d.results || []).map((r, i) => ({ n: i + 1, title: clean(r.title), creator: clean(r.creator) || '作者不明（Commons に記載なし）', license: `${r.license === 'cc0' ? 'CC0' : 'CC ' + r.license.toUpperCase()} ${r.license_version}`, url: r.url, page: r.foreign_landing_url, w: r.width, h: r.height }));
+    // 見つからなかったときは、前の検索の結果をそのまま残す（0件で上書きして、前の番号で get できなくなっていた）。見つかったときだけ書き直す
+    if (rows.length) fs.writeFileSync(LAST, JSON.stringify({ q: a, rows }, null, 1));
     for (const r of rows) console.log(`${String(r.n).padStart(2)}. ${r.title.slice(0, 50)}｜${(r.creator || '').slice(0, 24)}｜${r.license}｜${r.w}×${r.h}\n    ${r.page}`);
-    if (!rows.length) console.log('見つからなかった。英語の別の言い方（素材・道具・地名）で探す');
+    if (!rows.length) console.log('見つからなかった（前の検索の結果はそのまま残した）。英語の別の言い方（素材・道具・地名）で探す');
     return;
   }
   if (cmd === 'get' && a && b) {
