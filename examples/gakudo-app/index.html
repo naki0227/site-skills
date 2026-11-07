@@ -7,7 +7,7 @@
 <meta name="description" content="放課後児童クラブ（学童保育）の出欠ボードと保護者からの連絡をアプリにまとめる「おかえりノート」。学校の下校時刻表と入室の記録を突き合わせ、まだ来ていない子を赤で出します。30日間無料、支払い情報の入力は不要です。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Zen+Maru+Gothic:wght@400;500;700&family=Klee+One:wght@400;600&family=Shippori+Mincho:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Klee+One:wght@400;600&family=Shippori+Mincho:wght@500;700&display=swap">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"おかえりノート","applicationCategory":"BusinessApplication","operatingSystem":"iOS, Android, Web","offers":[{"@type":"Offer","name":"ライト","price":"6980","priceCurrency":"JPY"},{"@type":"Offer","name":"スタンダード","price":"11480","priceCurrency":"JPY"},{"@type":"Offer","name":"ワイド","price":"17800","priceCurrency":"JPY"},{"@type":"Offer","name":"法人・自治体","price":"9860","priceCurrency":"JPY"}]}
 </script>
@@ -87,26 +87,23 @@ ul,ol{padding:0;list-style:none}
 
 /* ---------- トップ：最初の画面 ---------- */
 .hero{padding:0 0 96px}
-/* 最初の画面：名前マグネットの黄を1色で塗り、画面幅いっぱいの OKAERI NOTE（Bagel Fat One）の前に、
-   切り抜いて紺・生成り・赤の3色にしたランドセルの2人を置く。手描きの落書き（吹き出し・星・ハート・にっこり・波線・矢印）は全部紺の同じ線 */
-.cover{position:relative;height:clamp(600px,calc(100svh - 70px),800px);max-width:1440px;margin:0 auto;overflow:hidden;background:var(--m1);border-top:3px solid var(--blue)}
-.name{position:absolute;inset:0;margin:0;font-family:"Bagel Fat One","Zen Maru Gothic",sans-serif;font-weight:400;color:var(--blue);line-height:.86;letter-spacing:-.01em;font-size:min(20.5vw,295px);pointer-events:none}
-.name .w1{position:absolute;left:3.5%;top:5%}
-.name .w2{position:absolute;left:3.5%;top:45%}
-.kids{position:absolute;right:2%;bottom:-150px;width:auto;height:min(720px,calc(100svh - 70px + 60px));max-width:none;z-index:2;filter:drop-shadow(0 0 0 transparent)}
+/* 最初の画面（coneti の形）：生成りの地に淡い桃と淡い青の不定形の塗りを2つ、その前に写真の色のまま切り抜いたランドセルの2人。
+   名前は赤い吹き出しの中に Zen Maru Gothic の日本語で。手書きの一言と、手描きのハート・×・にっこりは赤と紺の同じ線 */
+.cover{position:relative;height:clamp(600px,calc(100svh - 70px),800px);max-width:1440px;margin:0 auto;overflow:hidden;background:#fffaf1}
+.blob{position:absolute;z-index:0;pointer-events:none}
+.blob-a{right:5%;top:7%;width:min(46%,640px);height:88%;background:#fbe1dc;border-radius:56% 44% 61% 39% / 46% 58% 42% 54%;transform:rotate(-8deg)}
+.blob-b{left:3%;top:13%;width:min(42%,580px);height:58%;background:#e1e8f6;border-radius:42% 58% 37% 63% / 58% 41% 59% 42%;transform:rotate(6deg)}
+.kids{position:absolute;right:10%;bottom:-7%;width:auto;height:96%;max-width:none;z-index:2}
 .dd{position:absolute;z-index:3;overflow:visible}
-.bubble{left:43%;top:30%;width:220px;transform:rotate(-6deg)}
-.star{left:88%;top:52%;width:156px;transform:rotate(10deg)}
-.heart{display:none}
-.smile{left:calc(5% + 236px);bottom:44px;width:72px;transform:rotate(8deg)}
-.squig{display:none}
-.arrow{left:57%;top:45%;width:150px;transform:rotate(18deg)}
-.hand{position:absolute;left:40%;top:2%;z-index:3;font-family:"Klee One",cursive;font-weight:600;font-size:36px;color:#d8402f;transform:rotate(-3deg);line-height:1;-webkit-text-stroke:1px #d8402f;white-space:nowrap}
-.tate{position:absolute;right:26px;top:110px;z-index:3;writing-mode:vertical-rl;font-size:16px;font-weight:700;letter-spacing:.2em;color:var(--blue)}
-.cover-cta{position:absolute;left:5%;bottom:54px;z-index:4}
-.btn-cover{background:var(--blue);color:#fff6d8;border-radius:30px;min-height:52px;padding:8px 28px;font-size:17px}
-.cover-cta .en{margin-top:8px;font-family:"Klee One",cursive;font-size:20px;color:var(--blue)}
-.cover .credit{position:absolute;left:5%;bottom:14px;z-index:4;margin:0;font-size:13px;color:var(--blue);background:var(--m1);padding:0 6px}
+.logo-bubble{left:6%;top:21%;width:min(42vw,560px);z-index:3}
+.heart{left:calc(6% + min(40vw,530px));top:12%;width:60px;transform:rotate(-12deg)}
+.batsu{right:4.5%;top:14%;width:40px;transform:rotate(8deg)}
+.batsu2{left:calc(7% + 300px);bottom:15%;width:30px;transform:rotate(-10deg)}
+.smile{left:calc(6% + min(36vw,480px));top:calc(21% + min(18vw,236px));width:58px;transform:rotate(10deg)}
+.hand{position:absolute;left:7%;bottom:64px;z-index:3;margin:0;font-family:"Klee One",cursive;font-weight:600;font-size:22px;color:var(--blue);transform:rotate(-4deg);line-height:1.4;white-space:nowrap}
+.cover-cta{position:absolute;left:7%;top:calc(21% + min(18vw,236px) + 44px);z-index:4}
+.btn-cover{background:var(--blue);color:#fff;border-radius:30px;min-height:52px;padding:8px 28px;font-size:17px}
+.cover .credit{position:absolute;left:7%;bottom:16px;z-index:4;margin:0;font-size:13px;color:var(--ink);background:#fffaf1;padding:0 6px 0 0}
 .board-h{margin:72px 0 20px}
 .board-hint{display:block;font-size:16px;font-weight:400;margin-top:6px}
 .hero-note{margin:8px 0 20px;font-size:16px;color:var(--ink)}
@@ -479,8 +476,11 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
   .nav{display:none}
   .menu-btn{display:block;margin-left:0}
   .wb-wrap{grid-template-columns:minmax(0,1fr)}
-  .cover{height:760px}
-  .kids{left:16%;height:680px;bottom:-120px}
+  .cover{height:720px}
+  .kids{right:2%;height:90%;bottom:-8%}
+  .logo-bubble{width:46vw}
+  .cover-cta{top:calc(21% + 20vw + 40px)}
+  .smile{left:calc(6% + 40vw);top:calc(21% + 18vw)}
   .nb-list{max-height:260px}
   .split,.case-top,.calls{grid-template-columns:minmax(0,1fr);gap:32px}
   .diag{grid-template-columns:1fr}
@@ -517,17 +517,18 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
   .menu-btn{min-width:0;padding:0 10px;white-space:nowrap}
   .logo{font-size:16px}
   .hero{padding:0 0 44px}
-  .cover{height:720px}
-  .name{font-size:26vw;line-height:.9}
-  .name .w1{left:4%;top:3%}
-  .name .w2{left:4%;top:19%}
-  .kids{right:-4%;height:440px;bottom:-70px}
-  .bubble{left:2%;top:47%;width:150px}
-  .star{left:auto;right:8px;top:30%;width:84px}
-  .smile,.arrow{display:none}
-  .hand{left:4%;top:38%;font-size:26px}
-  .tate{display:none}
-  .cover-cta{left:16px;right:16px;bottom:52px}
+  .cover{height:700px}
+  .blob-b{left:-10%;top:4%;width:92%;height:32%}
+  .blob-a{right:-14%;top:40%;width:96%;height:56%}
+  .logo-bubble{left:16px;top:44px;width:calc(100% - 64px)}
+  .hand{left:22px;top:254px;bottom:auto;font-size:19px}
+  .kids{right:-2%;height:390px;bottom:-56px}
+  .heart{left:auto;right:84px;top:300px;width:46px}
+  .batsu{right:22px;top:246px;width:30px}
+  .cover .credit{left:16px;bottom:14px;padding:0 6px}
+  .batsu2{display:none}
+  .smile{left:auto;right:22px;top:30px;width:44px}
+  .cover-cta{left:16px;right:16px;top:auto;bottom:52px}
   .btn-cover{width:100%}
   .hero-cta{width:100%}
   .hero .sub{font-size:16px}
@@ -617,20 +618,19 @@ dialog::backdrop{background:rgba(31,34,38,.55)}
   <section class="hero" aria-labelledby="h-top">
     <div class="cover">
       <h1 id="h-top" class="sr" tabindex="-1">おかえりノート</h1>
-      <div class="name" aria-hidden="true"><span class="w1">OKAERI</span><span class="w2">NOTE</span></div>
-      <img class="kids" src="photos/okaeri-kids-cutout.webp" alt="赤いランドセルを背負って歩く2人の小学生のうしろ姿（写真を切り抜いて色を変えたもの）" width="711" height="776">
-      <svg class="dd bubble" viewBox="0 0 260 150" aria-hidden="true"><path d="M30 30 C 70 12, 190 10, 228 28 C 252 40, 254 92, 230 106 C 200 122, 120 120, 96 118 L 62 142 L 70 114 C 40 110, 18 96, 16 70 C 14 50, 18 38, 30 30 Z" fill="#fff6d8" stroke="#1a336b" stroke-width="5" stroke-linejoin="round"/><text x="134" y="68" text-anchor="middle" dominant-baseline="middle" font-family="Zen Maru Gothic, sans-serif" font-weight="700" font-size="42" fill="#1a336b">おかえり</text></svg>
-      <svg class="dd star" viewBox="0 0 120 120" aria-hidden="true"><path d="M61 7 L75 45 L113 45 L83 70 L95 109 L60 86 L26 108 L38 70 L7 46 L46 42 Z" fill="#d8402f" stroke="#1a336b" stroke-width="4.5" stroke-linejoin="round"/><text x="60" y="66" text-anchor="middle" dominant-baseline="middle" font-family="Klee One, cursive" font-weight="600" font-size="20" fill="#fff6d8">15:00</text></svg>
-      <svg class="dd heart" viewBox="0 0 100 90" aria-hidden="true"><path d="M50 82 C 20 60, 6 41, 12 24 C 18 8, 41 6, 50 27 C 58 6, 82 7, 88 23 C 95 41, 79 61, 50 82 Z" fill="none" stroke="#1a336b" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <svg class="dd smile" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 8 C 76 7, 93 27, 92 52 C 91 78, 72 94, 48 93 C 24 92, 7 74, 8 49 C 9 26, 26 9, 50 8 Z M36 39 L37 47 M63 38 L63 46 M30 60 C 40 74, 62 75, 71 59" fill="none" stroke="#1a336b" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <svg class="dd squig" viewBox="0 0 220 60" aria-hidden="true"><path d="M6 40 C 30 6, 48 6, 58 32 C 68 56, 90 54, 100 28 C 110 4, 132 6, 140 30 C 148 54, 172 52, 182 26 C 188 12, 204 8, 214 18" fill="none" stroke="#1a336b" stroke-width="4.5" stroke-linecap="round"/></svg>
-      <svg class="dd arrow" viewBox="0 0 160 120" aria-hidden="true"><path d="M12 102 C 40 44, 88 22, 140 24 M120 9 L142 24 L123 42" fill="none" stroke="#1a336b" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <p class="hand" aria-hidden="true">see you after school!</p>
-      <p class="tate">学童保育の出欠と連絡帳のアプリ</p>
+      <div class="blob blob-a" aria-hidden="true"></div>
+      <div class="blob blob-b" aria-hidden="true"></div>
+      <img class="kids" src="photos/okaeri-kids-cutout.webp" alt="赤いランドセルを背負って歩く2人の小学生のうしろ姿（写真を切り抜いたもの）" width="558" height="700">
+      <svg class="dd logo-bubble" viewBox="0 0 560 230" aria-hidden="true"><path d="M44 22 C 150 6, 420 4, 516 20 C 548 26, 556 52, 554 98 C 552 142, 544 166, 512 172 C 420 186, 230 186, 150 182 L 92 222 L 104 178 C 64 174, 22 166, 12 132 C 4 104, 4 60, 14 40 C 20 28, 30 24, 44 22 Z" fill="#d8402f"/><text x="283" y="98" text-anchor="middle" dominant-baseline="middle" font-family="Zen Maru Gothic, sans-serif" font-weight="700" font-size="70" letter-spacing="2" fill="#fff">おかえりノート</text></svg>
+      <svg class="dd heart" viewBox="0 0 100 90" aria-hidden="true"><path d="M50 80 C 22 60, 8 42, 13 25 C 19 9, 41 8, 50 28 C 58 8, 81 9, 87 24 C 93 42, 77 61, 50 80 Z" fill="none" stroke="#d8402f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="dd batsu" viewBox="0 0 60 60" aria-hidden="true"><path d="M12 10 C 26 26, 36 36, 50 50 M48 11 C 34 24, 24 36, 11 49" fill="none" stroke="#1a336b" stroke-width="6.5" stroke-linecap="round"/></svg>
+      <svg class="dd batsu2" viewBox="0 0 60 60" aria-hidden="true"><path d="M12 10 C 26 26, 36 36, 50 50 M48 11 C 34 24, 24 36, 11 49" fill="none" stroke="#d8402f" stroke-width="6.5" stroke-linecap="round"/></svg>
+      <svg class="dd smile" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 8 C 76 7, 93 27, 92 52 C 91 78, 72 94, 48 93 C 24 92, 7 74, 8 49 C 9 26, 26 9, 50 8 Z M36 39 L37 47 M63 38 L63 46 M30 60 C 40 74, 62 75, 71 59" fill="none" stroke="#1a336b" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <p class="hand">出欠も、連絡帳も、ここで。</p>
       <div class="cover-cta">
         <button class="btn btn-cover" type="button" data-open="trial">30日間 無料で試す</button>
       </div>
-      <p class="credit">写真 Nesnad・CC BY 4.0（切り抜いて色を変えた）</p>
+      <p class="credit">写真 Nesnad・CC BY 4.0（切り抜いた）</p>
     </div>
     <div class="wrap">
       <h2 class="h2 board-h">出欠ボードを触ってみる <span class="board-hint">名前を押すと来所・帰宅へ。「5分すすめる」で時刻が進みます。</span></h2>
@@ -1471,7 +1471,7 @@ function openCase(id) {
 /* ---------- 使ったスキル ---------- */
 const S = { saas: 'saas-quality-bar', lp: 'lp-quality-bar', tells: 'site-skills／ai-tells.md' };
 const SKILLS = [
-  ['最初の画面', '黄1色の地に画面幅いっぱいの OKAERI NOTE（Bagel Fat One）、その前に切り抜いて紺・生成り・赤の3色にしたランドセルの2人。手描きの吹き出し「おかえり」・15:00 の星・矢印・にっこりは全部紺の同じ線。日本語は右端の縦書き1行とボタンだけ', 'tells', 'aesthetic.md「最初の画面の作り方の方向」（2026-11-07、coneti の形）', '—', '切り抜きは手で打った輪郭を grabCut に渡した。'],
+  ['最初の画面', '生成りの地に淡い桃と淡い青の不定形の塗りを2つ、その前に写真の色のまま切り抜いたランドセルの2人（うしろ姿）。名前は赤い吹き出しの中の Zen Maru Gothic の「おかえりノート」。手書きの一言（Klee One）と、手描きのハート・×・にっこりは赤と紺の同じ線。日本語は名前・一言・ボタンだけ', 'tells', 'aesthetic.md「雰囲気は題材の世界から取る」・印象と配色の表の coneti の作例（白地に不定形の塗り・吹き出しのロゴ・手書き・ステッカー）', '—', '切り抜きは手で打った輪郭を grabCut に渡した。2色に置き換えず、少し明るくしただけ。'],
   ['全体', '本文 16px・行間 1.8・太さ 400、題 48px・太さ 700、文字の左端 228px、ボタンの角 30px、地は白', 'own', '—', '—', 'Web Design Clip の app・web-service・baby-kids から42件を scripts/sample.js で測り、開けた日本語の32件の中央値に寄せた（スキルの値ではなく、手本の実測）。'],
   ['色と文字', '題と本文の書体は Zen Maru Gothic', 'own', '—', '—', '同じ32件のうち子ども・保育向けの12件で、本文・いちばん大きい字の書体としていちばん多かった（全体では Noto Sans JP が8件で最多）。'],
   ['全体', '4ページの流れ（トップ→機能→料金→導入事例）', 'saas', '業務SaaS（types/business.md）', 'Backlog', 'Backlog の top / features / pricing / customers の順と役割を翻訳。'],
