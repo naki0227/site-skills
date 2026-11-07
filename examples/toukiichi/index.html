@@ -7,7 +7,7 @@
 <meta name="description" content="岐阜県瀬戸ノ口町の陶器市。2027年5月3日（月・祝）・4日（火・祝）に、窯元41軒が本町通りほかに並びます。会場マップ・出店窯元・イベント・アクセス・雨天時のご案内。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,900,100,1&family=Caveat+Brush&family=Noto+Sans+JP:wght@400;700&family=Shippori+Mincho+B1:wght@500&family=Klee+One:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Yuji+Boku&family=Noto+Sans+JP:wght@400;700&family=Shippori+Mincho+B1:wght@500;800&family=Klee+One:wght@600&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Event","name":"第38回 瀬戸ノ口陶器市","startDate":"2027-05-03T09:00+09:00","endDate":"2027-05-04T15:00+09:00","eventStatus":"https://schema.org/EventScheduled","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","isAccessibleForFree":true,"location":{"@type":"Place","name":"瀬戸ノ口駅前広場・本町通り・窯垣の小径・旧瀬戸ノ口小学校・登り窯跡広場","address":{"@type":"PostalAddress","addressRegion":"岐阜県","addressLocality":"瀬戸ノ口町","addressCountry":"JP"}},"organizer":{"@type":"Organization","name":"瀬戸ノ口陶器市実行委員会"},"description":"窯元41軒が並ぶ2日間の陶器市（架空の催し・site-skills の使用例）"}
 </script>
@@ -22,9 +22,9 @@
   - 小さな手がかりは1つ：のぼり（最初の画面の「第三十八回」の縦の旗と、章の題の左の竿）。
 */
 :root{
-  --paper:#fff; --kinari:#f6eee0; --kaiyu:#f1dccb; --sumi:#1b1f33; --rule:#d9cbb8; --mute:#4b4a5c; --pale:#f1e6d6;
-  --ai:#1f2a5c; --tsuchi:#b34a24; --oribe:#1f2a5c; --shu:#b2441d; --shino:#f6eee0;
-  --display:"Fraunces","Shippori Mincho B1",serif; --brush:"Caveat Brush",cursive;
+  --paper:#fff; --kinari:#f1e8d8; --kaiyu:#f1dccb; --sumi:#2a1a12; --rule:#d9cbb8; --mute:#4b4a5c; --pale:#f1e6d6;
+  --ai:#4a2a1c; --tsuchi:#2f5d45; --oribe:#2f5d45; --shu:#9a3b1e; --shino:#f1e8d8;
+  --fude:"Yuji Boku","Shippori Mincho B1",serif;
   --ease:cubic-bezier(.25,.46,.45,.94); --t1:.1s; --t2:.2s; --t3:.4s;
   --mincho:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif;
   --hand:"Klee One","Shippori Mincho B1",serif;
@@ -257,42 +257,37 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
   *,*::before,*::after{transition-duration:0s!important;animation:none!important}
 }
 
-/* 最初の画面（2026-11-07 の方向）：陶土の朱を1色に塗った地に、画面幅いっぱいの英字の名前、その前に藍と生成りの2色に置き換えて切り抜いた美濃の器4つ（大きさを変え、右下と左の外へはみ出す）。
-   3色：陶土の朱 #b34a24（地）・藍 #1f2a5c（器の影・字）・生成り #f6eee0（名前・器の光）。飾りは手書きの英字1つと星形1つ。日本語は右端の縦書き1行だけ。 */
+/* 最初の画面（2026-11-07 二度目）：雰囲気は窯の町の陶器市の世界から。織部の緑を1色に塗った地に、のぼりの筆の字で縦に大きく「瀬戸ノ口 陶器市」。
+   その前に、鉄釉の茶→志野の白の2色に置き換えて切り抜いた美濃焼4つ。飾りは窯の印（陶印）の丸1つで「三十八」。日本語は名前・日付・行き方だけ。
+   3色：織部の緑 #2f5d45（地）・志野の白 #f1e8d8（名前・器の光）・鉄釉の茶 #4a2a1c（器の影・印の字・ボタン）。 */
 .hero{position:relative;background:var(--tsuchi);color:var(--kinari);overflow:hidden;height:clamp(600px,calc(100svh - 100px),860px)}
-.hero::before{content:"";position:absolute;left:var(--pad);right:var(--pad);top:56px;height:1px;background:rgba(246,238,224,.55)}
-.hero .name{position:absolute;left:0;right:0;top:calc(56px + 4%);margin:0;text-align:center;font:900 clamp(52px,12.6vw,200px)/.86 var(--display);font-variation-settings:"SOFT" 100,"WONK" 1,"opsz" 144;letter-spacing:-.02em;color:var(--kinari);white-space:nowrap}
-.hero .name .sub{display:block;font-size:.34em;letter-spacing:.14em;margin-top:.12em;font-variation-settings:"SOFT" 100,"opsz" 144}
-.ware{position:absolute;height:auto;filter:drop-shadow(0 18px 22px rgba(31,42,92,.28))}
-.w-ozara{width:37%;left:30%;top:calc(56px + 4% + 15.4vw);transform:rotate(-6deg)}
-.w-chawan{width:39%;right:-6%;bottom:-8%}
-.w-oribe{width:12%;left:10%;top:2%;transform:rotate(11deg)}
-.w-muko{width:14%;left:64%;top:8%;transform:rotate(-7deg)}
-.hand{position:absolute;z-index:2;left:13%;top:60%;margin:0;font:400 clamp(30px,3.4vw,52px)/1 var(--brush);color:var(--kinari);transform:rotate(-8deg)}
-.star{position:absolute;right:21%;top:44%;width:clamp(96px,10vw,148px);height:auto}
-.when{position:absolute;left:var(--pad);top:68%;margin:0;font:900 clamp(26px,2.4vw,36px)/1.2 var(--display);letter-spacing:.06em;color:var(--kinari)}
-.hero .go{position:absolute;left:var(--pad);top:calc(68% + 64px);display:inline-flex;align-items:center;height:48px;padding:0 26px;border-radius:24px;background:var(--ai);color:var(--kinari);font:700 15px/1 var(--gothic);text-decoration:none}
-.tate{position:absolute;z-index:2;right:16px;top:calc(56px + 5%);margin:0;writing-mode:vertical-rl;font:500 15px/1.6 var(--mincho);letter-spacing:.2em;color:var(--kinari)}
-.hero .credit{position:absolute;left:var(--pad);right:170px;bottom:10px;margin:0;font:400 13px/1.4 var(--gothic);color:var(--kinari);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hero .name{position:absolute;right:9%;top:5%;margin:0;writing-mode:vertical-rl;font:400 clamp(80px,9.6vw,140px)/1.12 var(--fude);letter-spacing:.04em;color:var(--kinari)}
+.hero .name span{display:block}
+.hero .name .l2{margin-top:1.1em}
+.ware{position:absolute;height:auto;filter:drop-shadow(0 16px 20px rgba(20,30,22,.35))}
+.w-ozara{width:38%;left:6%;bottom:-14%;transform:rotate(-7deg)}
+.w-chawan{width:30%;left:41%;bottom:-17%}
+.w-oribe{width:15%;left:44%;top:14%;transform:rotate(10deg)}
+.w-muko{width:17%;left:28%;top:36%;transform:rotate(-6deg)}
+.inn{position:absolute;right:calc(9% + 2.5 * clamp(80px,9.6vw,140px));top:11%;width:clamp(92px,8.6vw,124px);height:auto}
+.hero .date{position:absolute;left:var(--pad);top:9%;margin:0;font:800 clamp(30px,3.1vw,46px)/1.25 var(--mincho);color:var(--kinari)}
+.hero .date small{display:block;font-size:.45em;font-weight:500;letter-spacing:.1em}
+.hero .go{position:absolute;left:var(--pad);top:calc(9% + clamp(118px,10vw,150px));display:inline-flex;align-items:center;height:48px;padding:0 26px;border-radius:24px;background:var(--kinari);color:var(--ai);font:700 15px/1 var(--gothic);text-decoration:none}
+.hero .credit{position:absolute;left:var(--pad);right:170px;bottom:10px;margin:0;font:400 13px/1.4 var(--gothic);color:var(--kinari);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;z-index:2;text-shadow:0 0 3px #2a1a12,0 0 6px #2a1a12}
 .hero .credit a{color:inherit}
 @media (max-width:860px){
-  .hero{height:auto;min-height:0;padding:44px 0 0}
-  .hero .name{position:relative;top:0;font-size:12.2vw}
-  .hero::before{top:22px}
-  .hero .credit{top:auto}
-  .hero .stack{position:relative;height:112vw;margin-top:-12vw}
-  .w-ozara{width:66%;left:4%;top:4%}
-  .w-chawan{width:72%;right:-14%;bottom:-6%}
-  .w-oribe{width:40%;left:-10%;top:auto;bottom:2%}
-  .w-muko{width:26%;left:auto;right:3%;top:-12vw}
-  .w-ozara{top:13%}
-  .hand{left:auto;right:7%;top:auto;bottom:-13%;font-size:30px}
-  .star{right:auto;left:62%;top:42%;width:86px}
-  .hero .go,.when{position:relative;left:auto;top:auto;bottom:auto;margin:0 var(--pad)}
-  .hero .go{margin-top:14px;width:calc(100% - var(--pad)*2);justify-content:center;height:52px}
-  .when{display:block;margin-top:14px}
-  .hero .credit{position:relative;left:auto;right:auto;bottom:auto;display:block;white-space:normal;padding:14px 150px 16px var(--pad);text-align:left}
-  .tate{display:none}
+  .hero{height:auto;padding:28px 0 0}
+  .hero .date,.hero .go{position:relative;left:auto;top:auto;margin:0 var(--pad)}
+  .hero .date{font-size:30px}
+  .hero .go{margin-top:14px}
+  .hero .stack{position:relative;height:150vw;margin-top:8px}
+  .hero .name{right:5%;top:0;font-size:19vw}
+  .inn{right:auto;left:6%;top:4%;width:84px}
+  .w-ozara{width:70%;left:-10%;bottom:4%}
+  .w-chawan{width:54%;left:auto;right:-6%;bottom:-8%}
+  .w-oribe{width:30%;left:10%;top:26%}
+  .w-muko{display:none}
+  .hero .credit{position:relative;left:auto;right:auto;bottom:auto;display:block;white-space:normal;padding:12px 150px 16px var(--pad)}
 }
 </style>
 </head>
@@ -315,19 +310,17 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
 
 <main id="top">
   <section class="hero" aria-labelledby="h-title">
-    <h1 class="name" id="h-title"><span lang="en">SETONOKUCHI</span><span class="sub" lang="en">POTTERY FAIR</span><span class="vh">瀬戸ノ口陶器市</span></h1>
-    <p class="tate">第三十八回　瀬戸ノ口陶器市</p>
-    <div class="stack">
-      <p class="hand" lang="en" aria-hidden="true">the 38th!</p>
-      <img class="ware w-ozara" src="photos/cut-ozara.webp" width="900" height="715" alt="">
-      <img class="ware w-oribe" src="photos/cut-oribe.webp" width="900" height="787" alt="">
-      <img class="ware w-muko" src="photos/cut-mukouzuke.webp" width="900" height="446" alt="">
-      <img class="ware w-chawan" src="photos/cut-chawan.webp" width="900" height="782" alt="">
-      <svg class="star" viewBox="0 0 120 120" role="img" aria-label="窯元41軒"><path d="M60 4 70 34 101 22 90 52 118 64 88 74 98 105 68 92 56 119 46 90 15 102 27 72 2 58 32 47 22 16 52 29Z" fill="#1f2a5c"/><text x="60" y="58" text-anchor="middle" font-family="Fraunces, serif" font-weight="900" font-size="30" fill="#f6eee0">41</text><text x="60" y="80" text-anchor="middle" font-family="Fraunces, serif" font-weight="900" font-size="15" letter-spacing="1.5" fill="#f6eee0">KILNS</text></svg>
-    </div>
-    <p class="when" lang="en">MAY 3–4, 2027</p>
+    <p class="date">5月3日・4日<small>2027年　月曜・火曜の祝日</small></p>
     <a class="go" href="#access">行き方を調べる</a>
-    <p class="credit">器：美濃焼4点の写真（Daderot・Wmpearl, CC0 1.0／<a href="https://commons.wikimedia.org/w/index.php?curid=31408730">Wikimedia Commons</a>）を切り抜いて藍と生成りに色を変えた</p>
+    <div class="stack">
+      <h1 class="name" id="h-title"><span>瀬戸ノ口</span><span class="l2">陶器市</span></h1>
+      <img class="ware w-oribe" src="photos/cut-oribe.webp" width="900" height="788" alt="">
+      <img class="ware w-muko" src="photos/cut-mukouzuke.webp" width="900" height="445" alt="">
+      <img class="ware w-ozara" src="photos/cut-ozara.webp" width="900" height="740" alt="">
+      <img class="ware w-chawan" src="photos/cut-chawan.webp" width="900" height="781" alt="">
+      <svg class="inn" viewBox="0 0 120 120" role="img" aria-label="第三十八回"><circle cx="60" cy="60" r="56" fill="#f1e8d8"/><circle cx="60" cy="60" r="47" fill="none" stroke="#4a2a1c" stroke-width="3"/><text x="60" y="56" text-anchor="middle" font-family="Yuji Boku, serif" font-size="25" fill="#4a2a1c">三十八</text><text x="60" y="84" text-anchor="middle" font-family="Yuji Boku, serif" font-size="22" fill="#4a2a1c">回</text></svg>
+    </div>
+    <p class="credit">器：美濃焼4点の写真（Daderot・Wmpearl, CC0 1.0／<a href="https://commons.wikimedia.org/w/index.php?curid=31408730">Wikimedia Commons</a>）を切り抜いて鉄釉の茶と志野の白に色を変えた</p>
   </section>
 
   <div class="wrap">
@@ -611,7 +604,7 @@ var FROM={
 };
 
 var SKILLS=[
- ['最初の画面','site-skills／aesthetic.md「最初の画面の作り方の方向」（2026-11-07）','陶土の朱 #b34a24 の1色の地に、画面幅いっぱいの英字 SETONOKUCHI（Fraunces 900）、その前に美濃焼4つ（志野茶碗・織部角鉢・絵志野大皿・志野向付）を手で輪郭を打って grabCut で切り抜き、藍と生成りの2色に置き換えて大きさを変えて重ねる。飾りは手書きの the 38th! と星形の 41 KILNS、日本語は右端の縦書き1行'],
+ ['最初の画面','site-skills／aesthetic.md「最初の画面の作り方の方向」（2026-11-07）','aesthetic.md「雰囲気は題材の世界から取る」：織部の緑の1色の地に、のぼりの筆の字（Yuji Boku）で縦に大きく「瀬戸ノ口 陶器市」、その前に美濃焼4つ（手で輪郭を打って grabCut で切り抜き、鉄釉の茶→志野の白の2色に）を大きさを変えて重ねる。飾りは窯の印の丸「三十八回」1つ'],
  ['題の書体と太さ','site-skills／aesthetic.md「業種の手本を先に測る」','手本23件のいちばん大きい字は中央値 39.5px・太さ 400（80px 以上が5件）。題は 80px・太さ 500（Shippori Mincho B1）を墨色で。明朝はリュウミン・筑紫明朝・つくしA を使う手本がある'],
  ['本文','site-skills／手本23件の中央値','Noto Sans JP（Web フォントでいちばん多い）400・16px・行間 1.75。本文の色は #000 が10件なので黒に近い <code>#1a1714</code>'],
  ['文字の左端と余白','site-skills／手本23件の中央値','文字の左端 261px → 本文の幅 1000px。何も無い帯 72px（上位1割 199px）→ 章の間 120px'],
