@@ -44,9 +44,9 @@
    動きは transition だけ、イージング cubic-bezier(.25,.46,.45,.94)、.1 / .2 / .4s。 */
 :root{
   /* 2026-11-07：色は3色だけ。ペンキ絵の空の水色・のれんの藍・のれんの「ゆ」の朱 */
-  --sky:#bfe0ec; --shu:#c9341a;
+  --sky:#cfe9f3; --shu:#c9341a;
   --bg:#eef6f9; --ink:#13254a; --sub:#2f4466; --hover:#4a5f84; --line:#a9c9d6; --face:#d6eaf1;
-  --ai:#1d3f7a; --ai-face:#d6eaf1; --beni:#c8361d;
+  --ai:#14306b; --ai-face:#d6eaf1; --beni:#c8361d;
   --wood:#bfe0ec; --wood-edge:#1d3f7a; --wood-ink:#13254a; --off:#e3eef2; --off-ink:#4a5f84;
   --mark:#a82a14;
   --serif:"Gloock","Times New Roman",serif; --script:"Shadows Into Light",cursive;
@@ -86,26 +86,27 @@ h1,h2,h3{font-family:var(--mincho);font-weight:400;line-height:1.5;margin:0}
    色はペンキ絵の空の水色・のれんの藍・「ゆ」の朱の3色だけ。英字は Gloock、手書きの英字は Shadows Into Light（ほかの使用例と重ならない書体）。
    日本語は右端の縦書き1行と、ボタンだけ。空きは英字の1行 */
 .hero{position:relative;height:calc(100vh - 70px);min-height:600px;max-height:900px;overflow:hidden;background:var(--sky);color:var(--ai)}
-.hero .name{position:absolute;left:0;right:0;bottom:15%;margin:0;font-family:var(--serif);font-weight:400;font-size:min(20vw,290px,40vh);line-height:.8;letter-spacing:-.02em;text-align:center;white-space:nowrap;color:var(--ai)}
-.hero .nph{position:absolute;left:0;width:100%;bottom:39%;margin:0;z-index:2;pointer-events:none}
+/* 字は画面いっぱい・中ほど。のれんは字より手前の層で、3枚の裾が字の上半分を隠す */
+.hero .name{position:absolute;left:0;right:0;top:42%;margin:0;font-family:var(--serif);font-weight:400;font-size:min(25vw,380px,38vh);line-height:.8;letter-spacing:-.03em;text-align:center;white-space:nowrap;color:var(--ai)}
+.hero .rod{position:absolute;z-index:3;left:17%;width:66%;top:44px;height:12px;border-radius:6px;background:#0d1f45}
+.hero .nph{position:absolute;z-index:2;left:19%;width:62%;top:50px;margin:0;transform:rotate(-2.4deg);transform-origin:0 0;pointer-events:none}
 .hero .nph img{display:block;width:100%;height:auto}
-.hero .hand{position:absolute;z-index:3;left:calc(7% + 300px);bottom:84px;margin:0;font-family:var(--script);font-size:40px;line-height:1;color:var(--shu);transform:rotate(-6deg)}
-.hero .line{position:absolute;z-index:3;left:7%;bottom:36px;margin:0;font-family:var(--serif);font-size:20px;letter-spacing:.06em}
-.hero .tate{position:absolute;z-index:3;right:28px;top:58%;margin:0;writing-mode:vertical-rl;font-size:16px;letter-spacing:.3em;font-weight:700}
-.hero .btn{position:absolute;z-index:3;left:calc(7% + 300px);bottom:24px}
-.hero .credit{position:absolute;z-index:3;right:16px;top:10px;margin:0;font-size:14px;max-width:min(560px,60%);text-align:right;color:#fff4e2;text-shadow:0 0 4px rgba(19,37,74,.9)}
-.hero .credit a{color:#fff4e2}
+.hero .hand{position:absolute;z-index:3;right:4%;top:120px;margin:0;font-family:var(--script);font-size:60px;line-height:1;color:var(--shu);transform:rotate(-8deg)}
+.hero .line{position:absolute;z-index:3;left:7%;bottom:58px;margin:0;font-family:var(--serif);font-size:20px;letter-spacing:.08em}
+.hero .tate{position:absolute;z-index:3;left:28px;top:120px;margin:0;writing-mode:vertical-rl;font-size:16px;letter-spacing:.3em;font-weight:700}
+.hero .btn{position:absolute;z-index:3;left:calc(7% + 320px);bottom:46px}
+.hero .credit{position:absolute;z-index:3;left:0;right:0;bottom:8px;margin:0;font-size:13px;text-align:center;white-space:nowrap}
 .hero h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 @media (max-width:860px){
   .hero{height:calc(100vh - 60px);min-height:620px;max-height:none}
-  .hero .nph{left:-38%;width:176%;bottom:auto;top:-6%}
-  .hero .name{font-size:30vw;bottom:auto;top:30%;white-space:normal;line-height:.82}
-  .hero .hand{left:16px;bottom:290px;font-size:32px}
-  .hero .line{left:16px;right:56px;bottom:236px;font-size:16px}
-  .hero .tate{right:14px;top:auto;bottom:150px}
-  .hero .btn{left:16px;right:auto;bottom:168px}
-  .hero .credit{left:16px;right:56px;top:auto;bottom:86px;max-width:none;text-align:left;font-size:14px;color:var(--ai);text-shadow:none}
-  .hero .credit a{color:var(--ai)}
+  .hero .rod{left:2%;width:96%;top:28px;height:10px}
+  .hero .nph{left:4%;width:92%;top:34px}
+  .hero .name{font-size:31vw;top:19%;white-space:normal;line-height:.82}
+  .hero .hand{right:auto;left:16px;top:auto;bottom:258px;font-size:40px;transform:rotate(-6deg)}
+  .hero .line{left:16px;right:16px;bottom:206px;font-size:16px}
+  .hero .tate{left:auto;right:12px;top:auto;bottom:150px}
+  .hero .btn{left:16px;bottom:144px}
+  .hero .credit{left:16px;right:16px;bottom:86px;white-space:normal;text-align:left;font-size:13px}
 }
 .top{padding-block:80px}
 .top > .wrap > h2{font-size:32px}
@@ -346,12 +347,13 @@ dialog[open] .sheet.in{opacity:1;transform:translateY(0)}
 <section class="hero" aria-labelledby="hero-h">
   <h1 id="hero-h">十条湯のサウナ</h1>
   <p class="name" aria-hidden="true">JUJO-YU</p>
+  <div class="rod" aria-hidden="true"></div>
   <figure class="nph"><img src="photos/noren-yu-duotone.webp" width="1600" height="706" alt="銭湯ののれん。波の柄に、大きく「ゆ」の字。"></figure>
   <p class="hand" aria-hidden="true">sauna, 6 seats</p>
   <p class="line" lang="en">SAUNA BY RESERVATION</p>
   <p class="tate">十条湯　サウナの予約</p>
   <a class="btn" href="#book">空きを見る</a>
-  <p class="credit">のれんの写真：udono／<a href="https://commons.wikimedia.org/w/index.php?curid=2798594" target="_blank" rel="noopener">Wikimedia Commons</a>／CC BY 2.0（切り抜いて色を変えた。十条湯ののれんではありません）</p>
+  <p class="credit">のれんの写真：udono／<a href="https://commons.wikimedia.org/w/index.php?curid=2798594" target="_blank" rel="noopener">Wikimedia Commons</a>／CC BY 2.0　切り抜いて色を変えた。十条湯ののれんではありません</p>
 </section>
 
 <section class="top" id="book" aria-labelledby="book-h">
