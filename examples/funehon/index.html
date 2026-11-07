@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ふねの古本市 2026 秋 — 鴨谷港 第2岸壁</title>
+<!--
+  題材の特色：年に2回だけ、港に泊まったフェリーの船室と甲板が古本の売り場になる。
+  考えの一文：このページでは、船の青い外板が地になり、窓（丸窓・角の丸い客室窓）から甲板と本が見える。
+  好みの台帳（taste.md）：第5回いちばんの dokomi.de の組み方（青の地を写真の窓で抜く・色の形を散らす・日付と数字の札）に寄せた。
+  色：地 #1d3fcf（船体の青）／明 #f4f1e8（甲板の白ペンキ）／差し色 #ff5a1f（救命浮環の橙）。飾りの形は国際信号旗（市松の N 旗）と救命浮環。
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#1d3fcf;--wh:#f4f1e8;--or:#ff5a1f}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--blue);color:var(--wh)}
+body{font-family:"Zen Kaku Gothic New",sans-serif;font-size:16px;line-height:1.8;word-break:auto-phrase;overflow-x:hidden}
+a{color:inherit}
+.hero{position:relative;height:100svh;min-height:680px;overflow:hidden}
+nav{position:absolute;top:22px;left:32px;right:32px;display:flex;justify-content:space-between;align-items:center;z-index:6;font-weight:700;font-size:15px}
+nav .logo{font-family:"Dela Gothic One";font-size:22px;letter-spacing:.02em}
+nav ul{display:flex;gap:10px;list-style:none}
+nav a{text-decoration:none;background:var(--wh);color:var(--blue);padding:6px 16px;border-radius:999px}
+.win{position:absolute;overflow:hidden;background:#0d2690}
+.win img{width:100%;height:100%;object-fit:cover;display:block}
+.w1{left:4vw;top:12vh;width:44vw;height:52vh;border-radius:120px 120px 24px 120px}
+.w1 img{object-position:50% 70%}
+.w2{right:6vw;top:11vh;width:24vw;aspect-ratio:1;border-radius:50%;box-shadow:0 0 0 14px #0d2690}
+.w3{left:51vw;top:44vh;width:19vw;height:30vh;border-radius:999px}
+.w3 img{object-position:30% 50%}
+.name{position:absolute;left:3vw;bottom:5vh;font-family:"Dela Gothic One";font-weight:400;font-size:clamp(64px,9.4vw,150px);line-height:1;letter-spacing:-.02em;z-index:4;color:var(--wh)}
+.name span{color:var(--or)}
+.flag{position:absolute;width:120px;height:120px;z-index:5;background:conic-gradient(var(--or) 25%,var(--wh) 0 50%,var(--or) 0 75%,var(--wh) 0);background-size:60px 60px;border-radius:14px}
+.f1{left:calc(4vw + 44vw - 70px);top:8vh;transform:rotate(9deg)}
+.ring{position:absolute;right:calc(6vw + 24vw - 60px);top:calc(11vh + 24vw - 80px);width:130px;height:130px;z-index:5}
+.blob{position:absolute;right:-6vw;bottom:-14vh;width:36vw;height:36vw;border-radius:46% 54% 40% 60%/55% 45% 55% 45%;background:var(--wh);z-index:2}
+.card{position:absolute;right:4vw;bottom:7vh;z-index:5;background:var(--blue);color:var(--wh);border-radius:22px;padding:20px 24px;width:380px;border:3px solid var(--wh)}
+.card .date{font-family:"Dela Gothic One";font-size:38px;line-height:1.1;white-space:nowrap}
+.card .date small{font-size:17px}
+.card p{font-size:15px;font-weight:700;margin:6px 0 14px;line-height:1.7}
+.card .num{display:flex;gap:16px;font-size:14px;margin-bottom:14px}
+.card .num b{font-family:"Dela Gothic One";font-size:30px;font-weight:400;display:block;line-height:1}
+.card a{display:block;text-align:center;background:var(--or);color:#fff;text-decoration:none;padding:10px;border-radius:999px;font-weight:700;font-size:19px}
+.credit{line-height:1.5;position:absolute;left:51vw;right:calc(4vw + 400px);bottom:7vh;font-size:14px;z-index:5;line-height:1.5}
+@media (max-width:700px){
+  .hero{height:auto;min-height:100svh;padding:76px 0 24px}
+  nav{left:16px;right:16px;top:16px}nav ul{display:none}
+  .win{position:relative;left:auto;right:auto;top:auto}
+  .w1{width:78vw;height:44vh;margin-left:4vw;border-radius:80px 80px 18px 80px}
+  .w2{position:absolute;width:40vw;right:4vw;top:42vh;box-shadow:0 0 0 8px #0d2690}
+  .w3{display:none}
+  .f1{width:72px;height:72px;background-size:36px 36px;left:auto;right:8vw;top:84px}
+  .ring{display:none}
+  .name{position:relative;left:0;bottom:auto;margin:28px 16px 0;font-size:16.5vw}
+  .blob{display:none}
+  .card{position:relative;right:auto;bottom:auto;margin:20px 16px 0;width:auto}
+  .credit{line-height:1.5;position:relative;left:auto;top:auto;max-width:none;margin:16px}
+}
+
+/* ---- 下の章 ---- */
+main{background:var(--wh);color:var(--blue)}
+.sec{padding:120px 6vw;position:relative}
+.sec h2 .fl{display:inline-block;width:.8em;height:.8em;vertical-align:-.05em;margin-left:.3em;border-radius:8px;background:conic-gradient(var(--or) 25%,var(--wh) 0 50%,var(--or) 0 75%,var(--wh) 0);background-size:50% 50%;border:3px solid var(--or);transform:rotate(8deg)}
+.sec h2{font-family:"Dela Gothic One";font-weight:400;font-size:clamp(36px,4.4vw,64px);line-height:1.2;margin-bottom:20px}
+.lead{font-size:18px;font-weight:700;max-width:40em;margin-bottom:40px}
+/* 船内の地図 */
+.ship{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:48px;align-items:start}
+.decks{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.decks button{font:inherit;font-weight:700;font-size:17px;border:3px solid var(--blue);background:var(--wh);color:var(--blue);border-radius:999px;padding:8px 20px;cursor:pointer}
+.decks button[aria-pressed=true]{background:var(--blue);color:var(--wh)}
+.plan{width:100%;height:auto;display:block}
+.plan .floor{fill:#dfe6fb;stroke:var(--blue);stroke-width:3;transition:fill .2s}
+.plan .floor.on{fill:var(--blue)}
+.plan text{font-family:"Zen Kaku Gothic New";font-weight:700;font-size:20px;fill:var(--blue)}
+.plan .on+text,.plan text.on{fill:var(--wh)}
+.plan .st{fill:var(--or);transition:opacity .2s}.plan .st.off{opacity:.15}
+.plan .hull{fill:none;stroke:var(--blue);stroke-width:4}
+.note{font-size:16px;margin-top:14px}
+.list{list-style:none;columns:2;column-gap:28px}
+.list li{break-inside:avoid;padding:10px 0;display:grid;grid-template-columns:3.4em 1fr;gap:2px 10px}
+.list .no{font-family:"Dela Gothic One";font-size:18px;grid-row:span 2;color:#c93700}
+.list b{font-size:18px}
+.list span{font-size:16px}
+.list li[hidden]{display:none}
+.count{font-weight:700;margin-bottom:10px}
+/* 雨の日・持ち物 */
+.blue{background:var(--blue);color:var(--wh)}
+.qa{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px}
+.qa h3{font-size:22px;margin-bottom:8px}
+.qa p{font-size:17px}
+.portrow{display:flex;gap:28px;margin-bottom:56px;align-items:center;flex-wrap:wrap}
+.portrow .pw{width:min(260px,40vw);aspect-ratio:1;border-radius:50%;overflow:hidden;box-shadow:0 0 0 12px #0d2690;flex:none}
+.portrow .pw img{width:100%;height:100%;object-fit:cover;display:block}
+.portrow .pw.wide{width:min(520px,60vw);aspect-ratio:2/1;border-radius:999px}
+/* 行き方 */
+.access{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:start}
+.route{width:100%;height:auto}
+.route text{font-family:"Zen Kaku Gothic New";font-weight:700;font-size:20px;fill:var(--blue)}
+dl.info{display:grid;grid-template-columns:7em 1fr;gap:12px 16px;font-size:17px}
+dl.info dt{font-weight:700}
+.next{position:relative;overflow:hidden;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;background:var(--or);color:#fff;border-radius:28px;padding:36px 40px;margin-top:80px}
+.next p{font-size:19px;font-weight:700}
+.next b{font-family:"Dela Gothic One";font-weight:400;font-size:clamp(28px,3vw,40px);display:block;line-height:1.2}
+.next a{background:var(--wh);color:var(--blue);text-decoration:none;font-weight:700;font-size:18px;padding:12px 26px;border-radius:999px}
+footer{background:var(--blue);color:var(--wh);padding:64px 6vw 40px;display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:32px;font-size:16px}
+footer .logo{font-family:"Dela Gothic One";font-size:28px;line-height:1.2;margin-bottom:10px}
+footer ul{list-style:none;line-height:2.1}
+footer a{text-decoration:none}
+footer small{grid-column:1/-1;font-size:14px;border-top:2px solid #ffffff55;padding-top:18px;line-height:1.7}
+@media (max-width:900px){
+  .ship,.access{grid-template-columns:1fr}
+  .qa{grid-template-columns:1fr}
+  .list{columns:1}
+  footer{grid-template-columns:1fr}
+  .sec{padding:80px 16px}
+  .portrow{gap:16px}.nring{display:none}dl.info{grid-template-columns:4.5em 1fr}.next{padding:28px 24px}.portrow .pw{width:34vw}.portrow .pw.wide{width:50vw}
+}
+</style>
+</head>
+<body>
+<section class="hero">
+  <nav><span class="logo">ふねの古本市</span><ul><li><a href="#shops">出店する本屋</a></li><li><a href="#shops">船内の地図</a></li><li><a href="#access">行き方</a></li></ul></nav>
+  <div class="blob" aria-hidden="true"></div>
+  <div class="win w1"><img src="photos/Islands-in-the-Seto-Inland-Sea-6453371577-.jpg" alt="フェリーの甲板と瀬戸内海の島"></div>
+  <div class="win w2"><img src="photos/Plymouth-through-a-ferry-porthole-16783618309-.jpg" alt="フェリーの丸窓から見た港の町（プリマス）"></div>
+  <div class="win w3"><img src="photos/Books-bookshelf-bookstore-159778.jpg" alt="棚に並んだ本の背"></div>
+  <div class="flag f1" aria-hidden="true"></div>
+  <svg class="ring" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="36" fill="none" stroke="#ff5a1f" stroke-width="24"/><circle cx="50" cy="50" r="36" fill="none" stroke="#f4f1e8" stroke-width="24" stroke-dasharray="13 43.5" transform="rotate(-6 50 50)"/></svg>
+  <h1 class="name">ふねの<br>古本<span>市</span></h1>
+  <div class="card">
+    <div class="date">11.22<small> 土 </small>–23<small> 日</small></div>
+    <p>鴨谷港 第2岸壁に泊まるフェリー「かもや丸」。<br>船室と甲板が、2日だけ<wbr>古本の売り場になります。</p>
+    <div class="num"><span><b>24</b>古本屋</span><span><b>10–16</b>時</span><span><b>0</b>円で乗船</span></div>
+    <a href="#shops">出店する本屋を見る</a>
+  </div>
+  <p class="credit">写真（Wikimedia Commons）<br>甲板：Maarten Heerlien（CC BY 2.0）<br>丸窓：Jeremy Segrott（CC BY 2.0）<br>本の背：Pixabay（CC0）<br>架空の催しの作例です。</p>
+</section>
+
+<main>
+  <section class="sec" id="shops">
+    <h2>船内の地図と、24の古本屋<span class="fl" aria-hidden="true"></span></h2>
+    <p class="lead">売り場は3つの階に分かれています。甲板は外の風の中、客室はじゅうたんの和室と椅子席、車両甲板は車を止める階に移動書店のトラックが入ります。</p>
+    <div class="ship">
+      <div>
+        <div class="decks" role="group" aria-label="階を選ぶ">
+          <button type="button" data-deck="all" aria-pressed="true">ぜんぶ</button>
+          <button type="button" data-deck="D" aria-pressed="false">4階 甲板</button>
+          <button type="button" data-deck="C" aria-pressed="false">3階 客室</button>
+          <button type="button" data-deck="V" aria-pressed="false">2階 車両甲板</button>
+        </div>
+        <svg class="plan" viewBox="0 0 760 440" role="img" aria-label="フェリーかもや丸を横から見た図。上から4階の甲板（8店）、3階の客室（10店）、2階の車両甲板（6店）">
+          <rect x="500" y="8" width="44" height="52" fill="#1d3fcf"/><rect x="500" y="8" width="44" height="14" fill="#ff5a1f"/>
+          <rect class="floor on" data-deck="D" x="170" y="60" width="430" height="74" rx="10"/><text x="190" y="92">4階 甲板</text>
+          <rect class="floor on" data-deck="C" x="100" y="142" width="560" height="78" rx="10"/><text x="120" y="176">3階 客室</text>
+          <rect class="floor on" data-deck="V" x="50" y="228" width="660" height="76" rx="10"/><text x="70" y="262">2階 車両甲板</text>
+          <circle class="st" data-deck="D" cx="195" cy="116" r="9"/><circle class="st" data-deck="D" cx="219" cy="116" r="9"/><circle class="st" data-deck="D" cx="243" cy="116" r="9"/><circle class="st" data-deck="D" cx="267" cy="116" r="9"/><circle class="st" data-deck="D" cx="291" cy="116" r="9"/><circle class="st" data-deck="D" cx="315" cy="116" r="9"/><circle class="st" data-deck="D" cx="339" cy="116" r="9"/><circle class="st" data-deck="D" cx="363" cy="116" r="9"/><circle class="st" data-deck="C" cx="125" cy="202" r="9"/><circle class="st" data-deck="C" cx="149" cy="202" r="9"/><circle class="st" data-deck="C" cx="173" cy="202" r="9"/><circle class="st" data-deck="C" cx="197" cy="202" r="9"/><circle class="st" data-deck="C" cx="221" cy="202" r="9"/><circle class="st" data-deck="C" cx="245" cy="202" r="9"/><circle class="st" data-deck="C" cx="269" cy="202" r="9"/><circle class="st" data-deck="C" cx="293" cy="202" r="9"/><circle class="st" data-deck="C" cx="317" cy="202" r="9"/><circle class="st" data-deck="C" cx="341" cy="202" r="9"/><circle class="st" data-deck="V" cx="75" cy="288" r="9"/><circle class="st" data-deck="V" cx="99" cy="288" r="9"/><circle class="st" data-deck="V" cx="123" cy="288" r="9"/><circle class="st" data-deck="V" cx="147" cy="288" r="9"/><circle class="st" data-deck="V" cx="171" cy="288" r="9"/><circle class="st" data-deck="V" cx="195" cy="288" r="9"/>
+          <path d="M20 312 L740 312 L680 420 L110 420 Z" fill="#1d3fcf"/>
+          <circle cx="170" cy="356" r="16" fill="#f4f1e8"/><circle cx="240" cy="356" r="16" fill="#f4f1e8"/><circle cx="310" cy="356" r="16" fill="#f4f1e8"/><circle cx="380" cy="356" r="16" fill="#f4f1e8"/><circle cx="450" cy="356" r="16" fill="#f4f1e8"/><circle cx="520" cy="356" r="16" fill="#f4f1e8"/><circle cx="590" cy="356" r="16" fill="#f4f1e8"/><circle cx="660" cy="356" r="16" fill="#f4f1e8"/>
+          <text x="40" y="440" style="font-size:17px">← 船首（島の側）</text><text x="560" y="440" style="font-size:17px">船尾・乗り口 →</text>
+        </svg>
+        <p class="note">乗り口は船尾の車両甲板（2階）です。階段とエレベーターで3階・4階へ上がれます。</p>
+      </div>
+      <div>
+        <p class="count" aria-live="polite">24店</p>
+        <ul class="list">
+        <li data-deck="D"><span class="no">D-1</span><b>汐見書房</b><span>船と海の本・海図（鴨谷）</span></li>
+        <li data-deck="D"><span class="no">D-2</span><b>古書いかり</b><span>山と旅の本（汐留町）</span></li>
+        <li data-deck="D"><span class="no">D-3</span><b>ほんの港</b><span>絵本・児童書（鴨谷）</span></li>
+        <li data-deck="D"><span class="no">D-4</span><b>ひなた文庫</b><span>文庫・新書 3冊500円（東浜）</span></li>
+        <li data-deck="D"><span class="no">D-5</span><b>凪書店</b><span>詩集・句集（島崎）</span></li>
+        <li data-deck="D"><span class="no">D-6</span><b>とんぼ堂</b><span>昆虫と植物の図鑑（古町）</span></li>
+        <li data-deck="D"><span class="no">D-7</span><b>紙ひこうき</b><span>古い雑誌・付録（鴨谷）</span></li>
+        <li data-deck="D"><span class="no">D-8</span><b>浜の本棚</b><span>料理と暮らしの本（西浜）</span></li>
+        <li data-deck="C"><span class="no">C-1</span><b>二階堂古書店</b><span>郷土史・古地図（古町）</span></li>
+        <li data-deck="C"><span class="no">C-2</span><b>青灯社</b><span>美術書・図録（鴨谷）</span></li>
+        <li data-deck="C"><span class="no">C-3</span><b>くじら書房</b><span>漫画（昭和〜平成）（島崎）</span></li>
+        <li data-deck="C"><span class="no">C-4</span><b>ふるほん波止場</b><span>ミステリーと推理小説（東浜）</span></li>
+        <li data-deck="C"><span class="no">C-5</span><b>文月堂</b><span>和本・古い教科書（汐留町）</span></li>
+        <li data-deck="C"><span class="no">C-6</span><b>みちくさ文庫</b><span>エッセイ・随筆（鴨谷）</span></li>
+        <li data-deck="C"><span class="no">C-7</span><b>Book & Tide</b><span>洋書・ペーパーバック（港通り）</span></li>
+        <li data-deck="C"><span class="no">C-8</span><b>灯台書林</b><span>写真集（島崎）</span></li>
+        <li data-deck="C"><span class="no">C-9</span><b>こぐま書店</b><span>絵本の原書（西浜）</span></li>
+        <li data-deck="C"><span class="no">C-10</span><b>古本 帆</b><span>建築とデザインの本（古町）</span></li>
+        <li data-deck="V"><span class="no">V-1</span><b>トラック書店 ろ号</b><span>100円均一の棚（移動書店）</span></li>
+        <li data-deck="V"><span class="no">V-2</span><b>しまめぐり号</b><span>旅と鉄道の本（移動書店）</span></li>
+        <li data-deck="V"><span class="no">V-3</span><b>古書 錨屋</b><span>全集・箱入りの本（鴨谷）</span></li>
+        <li data-deck="V"><span class="no">V-4</span><b>レコードと本 ソナー</b><span>音楽の本とレコード（港通り）</span></li>
+        <li data-deck="V"><span class="no">V-5</span><b>ぶっくまる</b><span>学習参考書・辞書（東浜）</span></li>
+        <li data-deck="V"><span class="no">V-6</span><b>港の古道具 ふなだんす</b><span>古本と古道具（古町）</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec blue">
+    <div class="portrow">
+      <div class="pw wide"><img src="photos/Wake-behind-a-ferry.jpg" alt="フェリーの航跡（瀬戸内海）"></div>
+      <div class="pw"><img src="photos/Books-bookshelf-bookstore-159778.jpg" alt="棚に並んだ本の背"></div>
+    </div>
+    <h2>来る前に</h2>
+    <div class="qa">
+      <div><h3>雨の日</h3><p>雨でも開きます。甲板の8店は客室の後ろの広間に移ります。風が強く船の出入りに差し支える日は、前の日の18時までにこのページでお知らせします。</p></div>
+      <div><h3>お金と袋</h3><p>支払いは店ごとに違います。現金だけの店が半分ほどあるので、小銭を持ってきてください。袋は出ないことが多いので、大きめの袋があると便利です。</p></div>
+      <div><h3>船の中で</h3><p>乗船券も乗船名簿もいりません。靴のまま入れます。船は岸壁に泊まったままで、出航はしません。車両甲板は床に段差があるので、足もとに気をつけてください。</p></div>
+    </div>
+  </section>
+
+  <section class="sec" id="access">
+    <h2>行き方</h2>
+    <div class="access">
+      <svg class="route" viewBox="0 0 640 300" role="img" aria-label="鴨谷駅から港通りを南へ歩いて12分で鴨谷港フェリーターミナル、その先の第2岸壁にかもや丸が泊まる">
+        <line x1="60" y1="70" x2="560" y2="70" stroke="#1d3fcf" stroke-width="4" stroke-dasharray="4 10" stroke-linecap="round"/>
+        <circle cx="60" cy="70" r="16" fill="#1d3fcf"/><text x="24" y="40">鴨谷駅 南口</text>
+        <circle cx="330" cy="70" r="12" fill="#f4f1e8" stroke="#1d3fcf" stroke-width="4"/><text x="270" y="40">港通り（徒歩12分）</text>
+        <circle cx="560" cy="70" r="16" fill="#ff5a1f"/><text x="372" y="118">フェリーターミナル</text>
+        <path d="M120 200 L560 200 L530 260 L150 260 Z" fill="#1d3fcf"/><text x="250" y="238" style="fill:#f4f1e8">第2岸壁　かもや丸</text>
+        <line x1="560" y1="86" x2="560" y2="196" stroke="#ff5a1f" stroke-width="4"/>
+      </svg>
+      <dl class="info">
+        <dt>場所</dt><dd>鴨谷港 第2岸壁（フェリーターミナルの南側）</dd>
+        <dt>電車</dt><dd>鴨谷駅 南口から港通りを南へ、徒歩12分</dd>
+        <dt>バス</dt><dd>鴨谷駅前 3番乗り場から「フェリーターミナル」行き、終点で降りてすぐ（約6分）</dd>
+        <dt>車</dt><dd>ターミナルの駐車場 120台（2日とも無料）。満車のときは港通りの市営駐車場へ</dd>
+        <dt>日時</dt><dd>2026年11月22日（土）・23日（日・祝）10:00–16:00</dd>
+        <dt>入場</dt><dd>無料</dd>
+      </dl>
+    </div>
+    <div class="next">
+      <p><b>次は 2027年5月</b>春の回の出店の受付は、2027年2月に始めます。</p>
+      <a href="#">出店の案内を見る</a>
+      <svg class="nring" aria-hidden="true" viewBox="0 0 100 100" style="position:absolute;right:28%;top:-38px;width:150px;height:150px;opacity:.9"><circle cx="50" cy="50" r="36" fill="none" stroke="#f4f1e8" stroke-width="22"/><circle cx="50" cy="50" r="36" fill="none" stroke="#1d3fcf" stroke-width="22" stroke-dasharray="13 43.5"/></svg>
+    </div>
+  </section>
+</main>
+<footer>
+  <div><p class="logo">ふねの<br>古本市</p><p>主催：鴨谷港古本市実行委員会</p></div>
+  <ul><li><a href="#shops">出店する本屋</a></li><li><a href="#shops">船内の地図</a></li><li><a href="#access">行き方</a></li></ul>
+  <ul><li><a href="#">出店の案内</a></li><li><a href="#">お問い合わせ</a></li><li><a href="#">過去の古本市</a></li></ul>
+  <small>写真（Wikimedia Commons）：甲板 Maarten Heerlien（CC BY 2.0）、丸窓 Jeremy Segrott（CC BY 2.0）、本の背 Pixabay（CC0）、航跡 メルビル（CC BY-SA 4.0）。<br>これは site-skills の使用例で、催し・港・船・店はすべて架空です。</small>
+</footer>
+<script>
+(()=>{const bs=[...document.querySelectorAll('.decks button')],li=[...document.querySelectorAll('.list li')],fl=[...document.querySelectorAll('.plan .floor')],ct=document.querySelector('.count');
+const names={all:'',D:'4階 甲板に',C:'3階 客室に',V:'2階 車両甲板に'};
+bs.forEach(b=>b.addEventListener('click',()=>{const d=b.dataset.deck;bs.forEach(x=>x.setAttribute('aria-pressed',x===b));
+let n=0;li.forEach(l=>{const on=d==='all'||l.dataset.deck===d;l.hidden=!on;if(on)n++});
+fl.forEach(f=>f.classList.toggle('on',d==='all'||f.dataset.deck===d));document.querySelectorAll('.plan .st').forEach(c=>c.classList.toggle('off',!(d==='all'||c.dataset.deck===d)));ct.textContent=names[d]+n+'店';}));})();
+</script>
+</body>
+</html>
