@@ -134,4 +134,12 @@
 - [ ] ニュースの絞り込みは label つきの radio か button で、選んだ値を URL（`?cat=`）に残す（攻殻機動隊は radio 17個が手本、URL は変わらない）
 - [ ] CMS に上げた絵は、カードの表示幅に合わせた縮小版を img（alt つき）で出す（攻殻機動隊は 1000×1414 の PNG 2,683KB を 256×144 の background-image）
 
+- [ ] （フェス）出演者は1つのデータ（日・ステージ・開始・終了）から日の一覧と A-Z を作り、選んだ日・見え方・開いた1組を URL の query に残した。開いた URL を直接開いても同じ状態になる（Tomorrowland Thailand の `?day=`・`?page=artists`・`&artist=` は手本）
+- [ ] （フェス）1組の重ねは `<dialog>` で、Esc・名前のある 44px 以上の閉じる・フォーカスの戻りがある。ほかのフェス・回の部品の言葉（「Week 1」など）が残っていない（Tomorrowland Thailand は4つとも無く、1週末に Week 1）
+- [ ] （フェス）時刻・ステージが未定なら、仮の値を出さずに「時間割は〇月〇日に出す」と日付で書いた（Tomorrowland Thailand は全組 12:00〜12:01 の仮と MORE ARTISTS TO BE ANNOUNCED だけ）
+- [ ] （フェス）売り切れても券種の値段は文字で残し、SOLD OUT の札と並べ、行の下にリセール・キャンセル待ち・次回の案内の日時を書いた（Tomorrowland Thailand は値段と札は手本、次の一手が無い）
+- [ ] テーマの世界のタブは、選ばれたタブの動画だけを取り、ほかのタブの mp4 は押されてから src を入れる。reduce なら autoplay しない（Tomorrowland の Consciencia は見えない5本 14,036KB を読み込み時に）
+- [ ] 言語の切り替えの名前は、その言語での言語名（中文・ไทย）にした（Tomorrowland Thailand は「中國人」）
+- [ ] Cookie の同意の前に、広告・解析のタグを読んでいない（Tomorrowland Thailand は押す前に TikTok 288KB・Facebook 227KB）
+
 解剖で裏づけた項目が増えたら、ここに足す（どのサイトで確かめたかを添える）。

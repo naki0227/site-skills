@@ -54,8 +54,26 @@ PC 1440×900 / SP 390×844。見たページ：トップ、分類「Chicken reci
 - **色と文字**：#3e3e3e（10.70:1）に役割の色3つ：緑 #47af9d（番号・組名・2.66:1）、橙 #ff8300（シェフ名・2.47:1）、青 #0895c1（材料名と分類・3.45:1）。Lato（300・400・400i・700）と PT Serif 400 を Google Fonts から。:hover 62 に (hover:hover) 11、reduced-motion 1、カードのホバーで skeleton-pulse 1.4s infinite。
 - **重さ**：measure.js（広告を除く・展開後）PC top 9.20MB／list 4.91MB／article 5.47MB／long 5.16MB（SP 5.42／4.68／4.88／4.84MB）。全ページで自社 JS 1,918KB と Stripe 1,145KB。全部込みの転送 article PC 3,445KB・111件・23ホスト、SP 2,396KB・86件・11ホスト。写真は srcset と width/height で大きさが合っている。
 
+### Ottolenghi（https://ottolenghi.co.uk/ ・2026-11-08 計測）
+PC 1440×900 / SP 390×844。見たページ：トップ、分類「Mains」（/pages/mains-recipes）、ふつうのレシピ（/pages/recipes/fried-aubergines-zhoug-date-molasses・材料14行・手順4）、長いレシピ（/pages/recipes/parsnip-pear-tarte-tatin・材料13行・手順10）。Shopify のテーマ（制作 STUDIO GRAFT）。同意は Preferences → Reject all で閉じてから測った。選んだ理由：写真と題を割る記事の頭・材料の砂の面・細い数字の手順・大小を混ぜた一覧・赤い面に白い切り絵の食材辞典。受賞・事例集は確かめられなかった。
+- **記事の頭**：grid 55fr 45fr・min-height calc(100vh − ヘッダー − 帯)。左に写真 744×993（1000×1334 を cover、上と左だけ 15px 空け、スライド）、右は上に丸いボタン4つ（80×44・地 #fcf7f2・角 40px）、下に NEW（50px の赤い丸）→ 題 h1 56px／56px 400 #cd001a・text-wrap:balance（SP 34.13px・写真の上）→ 罫 1px #f9f2ec → Serves 4 as a side／Prep 20 min／Cook 50 min（14px・space-between、SP は縦3行）。本から取った回だけ右下に本の表紙 100px。日付・書き手は画面に無い。
+- **リード**：24px／28.8px 300・幅 900px 中央（SP 21.57px／25.88px で 13行）。
+- **材料**：380px の面（地 #fcf7f2・内 40px 45px、SP 330px・内 20px）。table の2列で量の td 80px・nowrap、行 14px／18.2px・上下 6px。組の見出しは em の斜体・#1b1b1b80（3.27:1）・下に 1px 16% の罫。量はグラム・ml が先、さじは tsp／tbsp。自社で売る品だけ #cd001a の店へのリンク（article 2・long 6）。PC は面が sticky top 40px（long：面 649px＜手順 1,479px で効く。article：同じ高さで効かない）。
+- **手順**：ol を counter で、::before に 22px 300 #cd001a・min-width 25px。文字 Riforma 300・18px／23.4px（1.3）・幅 825px（1行 約110字）、罫 1px #f9f2ec（白地 1.11:1）と上 30px・間 45px。SP 15px／19.5px・300・間 30px。工程の量は文の中だけ。
+- **一手ずつ（Follow Mode）**：全画面の grid（header／steps／footer、PC は写真｜手順）、scroll-snap-type:y mandatory、まだの手順 opacity .25 を .5s、ホイールは 100ms debounce で1手、Back／Next step、進み具合の線（width を %）、開くと navigator.wakeLock.request()・visibilitychange で取り直し・閉じたら release。ただし入口 .js-recipe-follow-start が調べた6本とも無く、手順も「All done」だけ（data-steps="0"）。
+- **目次**：無い（PC 4,941px／6,237px、本文の見出しは Ingredients と Method の2つ）。
+- **記事の終わり**：Cooking notes（Commentify・Login で投稿）→ Share with friends（48px の丸5つ）→ You may also like（地 #f9f2ec・縦長 380/507・正方形・横長 582/435 を混ぜた横送り、幅 27.5%／45%）→ Instagram 6枚。次の1本の導線・同じ分類の一覧は無い。
+- **一覧**：「← RECIPES」11px .08em と題 56px 赤｜説明 18px 300。Masonry 4列・間 30px、14枚に大 675×675 ×2・縦長 323×516 ×4・正方形 323×323 ×8。題 18px 300、ホバーで色 .2s と写真 scale(1.025) .2s。NEW の丸を写真の角に −10px。Load more（button 130×38）で +14枚・33〜71ms・URL が ?page=2→3→4。カードは配る HTML に0枚で、Storefront API の metaobjects を 250件ずつ3回（643件・470KB）取ってブラウザで分類に絞る。写真 1000px を 323px に・width/height 無し・alt 空 9／14。
+- **絞り込み**（/pages/recipes）：上の帯に MEAL/COURSE 15・COLLECTION 6・MAIN INGREDIENT 8・SEASON/OCCASION 8・BOOK 13（12px .12em 大文字）。開くと地 #fcf7f2 に2列（771ms）。項目は button の中に四角の div（aria-pressed 無し）。選ぶと ?filter.main_ingredient=Aubergines（再読み込みで残る）、帯の下に選んだ名前と CLEAR ALL。件数は出ない。SP はアコーディオン。
+- **トップ**：全幅スライド 1410×754（題 78px 白・小さなラベル）→ What to cook this week 3本 → レストランの帯（YouTube の背景動画2本で 8.5MB）→ 特集4本（頭に 6px の赤い点）→ 商品 → Substack の登録 → Foodipedia（282×440 の #cd001a に白い切り絵の食材5枚）。
+- **広告と同意**：他社の広告 0。Pandectes の同意の最初の面は Accept と Preferences だけで、Reject all は Preferences の中（PC 1440×436）の href の無い a、黒い幕で本文を止める。記事を開いて約6秒で Klaviyo の窓を2枚重ねる（写真 2,466KB＋1,790KB の JPEG）。CLS PC 0.022〜0.025・SP 0.0004〜0.0013。
+- **データ**：Recipe の JSON-LD は6本中3本が JSON として読めない（末尾のカンマ・生の改行）。読めるものも prepTime・cookTime・recipeYield・dateModified 無し、datePublished は日付だけ、author は Organization。og:image は http の .heic（*/* なら 2962×3950 の JPEG 1,695KB）。og:type website。lang="en"・ダーク 0。
+- **色と文字**：#cd001a 85回・#fff 84・#f9f2ec 36・#fcf7f2 25・#1b1b1b。#cd001a は白地 5.82:1・砂 5.46:1。書体 Riforma（Lineto）の 300 と 400 の2つ（woff2 93KB）、大きさは Bootstrap の RFS（h1 1200px で 78px、h2 56px）、本文 18px（SP 15px）・行の高さ 1.3。
+- **動き**：矢印リンクの下線 ::after scaleX .3s、カード color .2s＋scale(1.025) .2s、ボタン background-color .3s、スクロールで fadeIn .5s cubic-bezier(.37,0,.63,1)。:hover 149 に (hover:hover) 3、自前の部品に reduced-motion 0。
+- **重さ**：measure.js PC top 21.49MB／list 11.59MB／article 16.73MB／long 13.42MB（SP 18.90／11.22／11.24／9.17MB）。全ページで checkout-web の JS 1,637KB。全部込み article PC 20,741KB・339件・23ホスト（自社 11,572KB・Klaviyo の写真 4,256KB・GTM 2,132KB）。
+
 ## 真似る型
-見本3つ（King Arthur Baking・白ごはん.com・Great British Chefs）から。作るときの出発点。
+見本4つ（King Arthur Baking・白ごはん.com・Great British Chefs・Ottolenghi）から。作るときの出発点。
 - 記事の頭に「時間」を大きく置き、その横に要約を開くボタン（King Arthur Baking：HANDS-ON／BAKE／TOTAL TIME の欄、白ごはん.com：「調理時間：40分」19px 700＋「大まかな流れをチェック」）。要約は工程を2組（下ごしらえ／調理と仕上げ）・8行前後に縮める（白ごはん.com）。
 - 工程を読みながら材料を見られるようにする。PC は材料の列を手順の横に（King Arthur Baking：材料 325px・手順の面 785px。固定はしない）、SP は右下の丸いボタン（60px）から下のシート（max 60vh）で呼び戻す（白ごはん.com）。作るときは PC の材料の列を sticky にする（2サイトとも固定していない）。
 - 工程の中で、その工程で使う量をもう一度書く。文の中に書いて地の色で目立たせる（白ごはん.com：.bg 地 #fffadf）か、手順の下に枠で書き直す（Great British Chefs：550px の枠・11手順のうち8）。合計の量は使う手順ごとに割る（同：14本 → 7本と7本）。
@@ -67,7 +85,12 @@ PC 1440×900 / SP 390×844。見たページ：トップ、分類「Chicken reci
 - 工程の写真はその節の直後に、表示の倍の大きさで揃える（白ごはん.com：元 448×298 を PC 195×130・SP 342×227、King Arthur Baking：1024×684 を 522×349）。番号は ol と counter（King Arthur Baking の丸 20px）。
 - 一覧のカードは比率の箱で写真の寸法を決める（白ごはん.com：2:3・padding-top 148.333%、縦長に撮った別カット）。
 - 保存の目安・時短のような使う人の条件を、分類の札と同じ形で題の下に置く（白ごはん.com：「冷蔵で3〜4日保存可能」）。
-- 手順の見出しのそばに、画面を消さない切り替え（Wake Lock）と、手順の写真の出し入れ（King Arthur Baking）。
+- 手順の見出しのそばに、画面を消さない切り替え（Wake Lock）と、手順の写真の出し入れ（King Arthur Baking）。手順を1つずつ全画面で送る形にするなら、scroll-snap で1手ずつ・まだの手順は opacity .25・下に戻る／次へと進み具合の線（Ottolenghi の Follow Mode。入口のボタンを必ず出す）。
+- 記事の頭は写真と題を 55:45 に割って画面の高さいっぱいに置き、題の下は「量・下ごしらえ・加熱」の時間の1行だけ（Ottolenghi：min-height calc(100vh − 帯)・題 56px・14px の3つ）。
+- 材料は量の列を固定幅（80〜96px）にした2列で、砂色の面に。手順より短いときだけ sticky が効くので、面の高さと手順の高さを比べて決める（Ottolenghi：380px・top 40px）。
+- 手順の番号は数字だけを細く色で（counter・22px 300）、手順の間は罫と 45px（Ottolenghi）。罫は白地で 1.3:1 以上（同 #f9f2ec は 1.11:1）。
+- 一覧は大きな札（2列×2段）・縦長・正方形を混ぜ、間 30px（Ottolenghi：14枚に 2・4・8）。絞り込みと「もっと見る」は URL（?filter.〜・?page=2）に残す（同）。件数と aria-pressed は足す。
+- 分類の入口を、ブランドの一色の面に白い切り絵の食材の札にする（Ottolenghi の Foodipedia：282×440）。
 
 ## 反面教師
 - 単位のつまみが div role="button"・tabIndex -1、手順の文の中の量と温度は替わらない、換算が「7 1/16 oz」（Great British Chefs）。
@@ -85,3 +108,8 @@ PC 1440×900 / SP 390×844。見たページ：トップ、分類「Chicken reci
 - SP の本文 14px／21px・下のタブ 9px、固定の広告とタブで画面の下 20%（白ごはん.com）。
 - 一覧 831件を1ページ（PC 52,092px・15.41MB）、lazyload の class なのに src 直書き（白ごはん.com）。
 - YouTube の埋め込みを最初から読む（白ごはん.com：記事で転送 約1MB・展開 3.5MB）。
+- Follow Mode（手順を1つずつ・Wake Lock）を全レシピに配るのに入口のボタンが無く、手順も入っていない（Ottolenghi）。
+- 分類の一覧が全レシピ 643件の JSON（470KB）を取ってから絞り、カードを HTML に1枚も配らない（Ottolenghi）。
+- Recipe の JSON-LD が6本中3本で JSON として読めない（末尾のカンマ・生の改行）、時間と量が無い（Ottolenghi）。
+- 同意の最初の面に Reject が無く、記事を開いて6秒で全面の窓を2枚重ねる（写真 4.2MB）（Ottolenghi）。
+- SP の手順 15px／19.5px（1.3）・300、手順の罫 1.11:1（Ottolenghi）。

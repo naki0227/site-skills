@@ -150,4 +150,12 @@
 - [ ] ヘッダーの小さな絵（日替わりの絵など）を、表示の何十倍もの大きさで配らない（ほぼ日：date_261107.png 2363px・482KB を 36px で）
 - [ ] 枚ごとに地の色を替えるヒーローは、文字の色も枚ごとに持たせ、その組で 4.5:1 を計算する（ほぼ日：data-text-color、白／#c1ab53 2.28:1）
 
+- [ ] 手順を1つずつ見せる画面を作ったら、入口のボタンを手順の見出しのそばに出し、手順の数が入っているかを確かめる（Ottolenghi：Follow Mode の JS・CSS・HTML を配るのに入口 0・data-steps="0"）
+- [ ] 分類の一覧は、その分類の最初のページを HTML で配る。全件の JSON を取ってからブラウザで絞らない（Ottolenghi：643件・470KB で 14枚）
+- [ ] JSON-LD を JSON として読めるか、公開前にパースして確かめる（Ottolenghi：6本中3本が末尾のカンマ・生の改行で読めない）
+- [ ] 材料の面を sticky にするなら、面が手順より短い記事で効くかを確かめる（Ottolenghi：long 面 649px＜手順 1,479px で効き、article は同じ高さで効かない）
+- [ ] 絞り込みの項目は button と aria-pressed で、選んだ後の件数を出す（Ottolenghi：四角の div だけ・件数無し。URL ?filter.〜 に残すのは良い）
+- [ ] 同意の最初の面に、Accept と同じ大きさの Reject を button で置く（Ottolenghi：Reject all は Preferences の中の href の無い a）
+- [ ] og:image を 1200×630 前後の JPEG か PNG にする（Ottolenghi：http の .heic・2962×3950・1,695KB）
+
 解剖で裏づけた項目が増えたら、ここに足す（どのサイトで確かめたかを添える）。

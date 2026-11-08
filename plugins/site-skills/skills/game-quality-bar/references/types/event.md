@@ -5,7 +5,7 @@
 
 ## 下位の型
 同じ「イベント」でも、見本で別れた。作るものがどちらに近いかを先に決める。
-- **チケット制のフェス・ライブ**（Lollapalooza、Primavera Sound Barcelona）：最初の画面は出演者のポスターかチケット、出演者の一覧と時間割が中心、購入ボタンが全ページに。
+- **チケット制のフェス・ライブ**（Lollapalooza、Primavera Sound、Tomorrowland Thailand Barcelona）：最初の画面は出演者のポスターかチケット、出演者の一覧と時間割が中心、購入ボタンが全ページに。
 - **配信が主の授賞式・ショーケース**（見本は The Game Awards）：会場の券は少なく、主な行動は「カレンダーに入れる・どこで見るか」。中心は本番までの日数・候補と受賞者・過去の回。トップは本番の前・最中・後で形を替える。
 - **入場無料か少額の、日本の地方の催し**（陶器市・祭り・マルシェ。見本は笠間の陶炎祭）：買うボタンは無い。中心は会場図・出店者一覧・行き方と駐車場・雨の扱い。出店者は数十〜数百件、会場図は印刷物（PDF）が正本になりやすい。
 
@@ -57,6 +57,19 @@
 - **文字**：gellix（自前 woff2 400／600／700、Arial に size-adjust 104.87% の代わり）と、名前が `"ABC Arizona Serif Unlicensed Trial"` の serif（年 100px・日付 56px・About の h1 100px #f2a366）。章の題 75px／82.5 大文字（SP 36〜40）、本文 20px／22px。transition は .2s ease が96回、ボタンのホバーは `inset 0 0 0 2px #fff`。フォーカスは変数1つ（白 2px・offset 3px）。
 - **重さ**（展開後）：top PC 14.26MB／SP 10.12MB（動画を流すと PC 転送 12秒で 17.4MB）、about 7.88／3.19、faq 7.31／4.62、rewind 5.73／2.73、news 5.35／3.64。各ページの背景を PNG のまま（top の poster 8,333KB と登録の帯 3,169KB、faq 5,003KB、about 3,368KB）。Rewind の絵は w=1920 の webp を 196px で。全ページで BugHerd（不具合報告）の embed.js を2回、SP は Firebase の認証 iframe 283KB。JSON-LD 0件、`lang="en"` のみ。`tools/inspect.js` は top で FAIL 0／WARN 13（Cookie の帯を含む）。
 
+### Tomorrowland Thailand 公式（https://thailand.tomorrowland.com/en/welcome/ ・ 2026-11-08 解剖、本番 2026-12-11〜13 の33日前・4券種とも売り切れ。歩いたページ：/en/welcome/・テーマの世界 consciencia.tomorrowland.com・/en/line-up/・stories.tomorrowland.com/news・/en/tickets/festival-passes/）
+- **枠**：Thailand は Next.js、テーマの世界と Stories は Webflow。全体のナビ・フッター・出演者の一覧を components.tomorrowland.com の web component（`tml-footer`・`tml-live-lineup event="TL26TH"`）で4フェス共通に差し込む。PC のナビは 72px の帯1本（点9つ 38×38・ロゴ・8項目 europa 16px・言語・アカウント）、いまのページは 700＋下線 2px。SP は全体の帯 56px＋フェスの帯 72px。
+- **最初の画面**：写真1枚（webp 2880×1920・599KB、動画なし）に中央揃えで h1 48px（SP 32px）・日付と会場の1行（14px/24px・700・字間 3px・大文字）・状態の文「…is officially sold out.」16px/24px。購入ボタンなし。
+- **テーマの世界（Consciencia）**：3フェス共通の2026年のテーマを別サイトで。Province 6つ（Sadness〜Desire）は Webflow Tabs の `a role="tab"`・`aria-selected`・roving tabindex、→ キーで選択も移る（URL は変わらない）。額縁の avif 501KB の中に 3:4 の mp4 557×742。地 #fff4df・文字 #3b311a（11.74:1）、見出し owners-xwide／owners-text（Adobe Fonts）。h1 はロゴ画像で alt 空、`lang` 空。
+- **動画**：Thailand の3ページは0本。Consciencia は8本とも `autoplay muted loop preload="metadata"`・poster なしで、読み込みの 1.2〜1.8s（SP 0.9〜1.3s）に全部取りに行く（見えないタブの5本 14,036KB、予告 18,524KB の応答）。reduce でも同じ。
+- **出演者**：`tml-live-lineup` が config・stages・本体の JSON（45,690B、performances 124件・120組・b2b 8）を取って組む。STAGES／ARTISTS の button 2つ（106〜110×49・12px・700・字間 2px・角 100px・枠 1px #eb8100、選んだ方は地が linear-gradient(90deg,#8a3900,#eb8100)）、日の button 3つ（74〜119ms で入れ替え、`?day=2026-12-12`、通信 0KB）。STAGES は白いカード 548px に日の帯と名前の button を「 . 」でつないだ流れ（16px/48px・字間 2px）、ARTISTS は頭文字のリンク 25 と4列の masonry。状態は class だけ（aria-pressed なし）。config は `withTimetable:false`、stages は日の名前の仮、124件とも 12:00〜12:01、見出しは「MORE ARTISTS TO BE ANNOUNCED」。
+- **1組**：名前を押すと 442ms（SP 1,494ms）で重ね（写真 300×300・名前 h2 40px 字間 4px・SNS のアイコン・日の札「FRIDAY／Week 1／Friday, Dec 11」）、URL に `&artist=1262705358`、直接開いても出る。role なし・Esc 不可・閉じる 14×14 で名前なし・フォーカスは body、外を押すと閉じる。写真に alt 属性なし（22件は写真なし）、1週末なのに「Week 1」。
+- **買う**：Festival Passes は券4種の説明 → 値段の表2つ（通し・1日）。行の右に SOLD OUT の札（グラデーション）と値段の札（14px・700・字間 1px・padding 6px 12px・角 100px）、値段は「฿ 12500.00」「฿ 20200.00」「฿ 5100.00」「฿ 8200.00」、表の下に「*Prices include VAT and service fees」。Treasure Case は「570 THB」「1,150 THB」と表記がぶれる。リセール・次回の案内は歩いたページに無い。
+- **ニュース**：Thailand のサイトに無く、全体のナビの Stories の News 4件（本の案内が中心、日付なし、登録フォームは Cookie を全部許すまで出ない）。
+- **表記**：言語は English・ไทย・「中國人」（言語名の誤り）。年齢の条件は歩いた5ページに無い。JSON-LD 0。
+- **安全**：reduced-motion は Thailand・Stories の CSS に0件。Cookie の帯で何も押す前に analytics.tiktok.com 288KB・connect.facebook.net 227KB を取る。メニューのリンクは `:focus-visible{outline:none;text-decoration:underline}`。
+- **重さ**（展開後）：top PC 5.32／SP 5.01MB、line-up 4.57／4.27、buy 5.05／4.75、news 5.46／3.27、Consciencia 24.29／17.83（mp4 19,102KB）。Thailand の3ページは JS が 3.8MB で、うち `tml-live-lineup` 1,353KB を一覧の無い top・buy でも取る。
+
 ### 笠間の陶炎祭（ひまつり）公式（https://www.himatsuri.net/ ・ 2026-10-26 解剖、第45回 2026-04-29〜05-05 の約5か月半後。歩いた5ページ：/・/about/・/syutten/・/blog/・/access/ と、会場図・ハウツー・バス路線図の PDF 3本）
 - **下位の型**：入場料 1日500円（18歳以下無料）の地方の陶器市。会場は笠間芸術の森公園、来場8万人（閉幕あいさつ）。
 - **最初の画面**：黒 #000 のヘッダー 70px（SP 56px 固定）→ 写真4枚のフェード 80vh（PC 720px・SP 591px）。日付・時刻・会場はその下にロゴ画像と横並びで、PC は日付 18px が y=892px（1440×900 の折り目の下）、SP は 34px（時刻・会場 24px）が y=734px。曜日は 6px（SP 12px）の黒い札。入場料は上下 3px double の囲み。
@@ -76,10 +89,10 @@
 - 1本は「番号・駐車場名（収容台数）・開く時刻・状況・ナビ」の表。16か所・計4,870台。状況は ○ 空きあり・△ 空き50％以下・× 満車。注記に「雨天時使用禁止」（白磁ヶ丘公園 100台）、「4月30日、5月1日は駐車できません」「初日は 3:00〜」。「携帯電話によっては過去の情報のまま表示する場合がございます」と書いている。
 
 ## 真似る型
-- 日付・会場は、PC・SP とも最初の画面に**文字で**入れる（Lollapalooza はヘッダーに常時。陶炎祭は PC で折り目の下、Primavera はポスター画像の中とメガメニューの中だけ。The Game Awards は文字だが年と時刻が無い）。年・曜日・開始時刻（地域の時刻）まで書く。
+- 日付・会場は、PC・SP とも最初の画面に**文字で**入れる（Lollapalooza はヘッダーに常時。陶炎祭は PC で折り目の下、Primavera はポスター画像の中とメガメニューの中だけ。The Game Awards は文字だが年と時刻が無い。Tomorrowland Thailand は h1 の真下に 14px・700・字間 3px・大文字の1行で PC y=327・SP y=282、ただし曜日・時刻なし）。年・曜日・開始時刻（地域の時刻）まで書く。
 - 本番までの「いま」を、固定ヘッダーの中の帯に全ページで出す（Lollapalooza：ヘッダーに会場・日付の3行、The Game Awards：54px の帯に「38 DAYS UNTIL LIVE SHOW」を CMS の日付から毎回計算）。文・色・リンクは CMS で替え、当日と後の文も決めておく（TGA は 0 のときの文の出し分けが JS に無い）。
-- （チケット制のフェス）出演者は「全員の名前の一覧」を1ページ持ち、1組1URL にする。一覧は文字で組む（Primavera の A-Z：150組・30px／50.7px の流れ・1組ずつ a）。ポスター・時間割を画像だけで出すと名前が読めず押せない（Lollapalooza：ラインナップ・時間割が alt 空の画像、Primavera：トップのポスターの alt が画像の URL）。
-- （チケット制のフェス）チケットのページは「券種・値段」の上に、販売前・販売中・終了後の段階を決めて出し分ける。終了後も次回のお知らせ登録を残し（Lollapalooza の /tickets）、販売中は券種1行に「名前｜状態の札｜値段＋手数料｜BUY」（Primavera：64px・On Sale／VIP の札・FROM €350.00 + fees）。
+- （チケット制のフェス）出演者は「全員の名前の一覧」を1ページ持ち、1組1URL にする。一覧は文字で組む（Primavera の A-Z：150組・30px／50.7px の流れ・1組ずつ a）。ポスター・時間割を画像だけで出すと名前が読めず押せない（Lollapalooza：ラインナップ・時間割が alt 空の画像、Primavera：トップのポスターの alt が画像の URL）。Tomorrowland Thailand は1つの JSON（124件に日・ステージ・開始・終了・写真・SNS）から日の流れと A-Z を作り、日・見え方・1組を query（`?day=`・`?page=artists`・`&artist=`）に残す。1組1URL は別ページでなく query でもよいが、そのときは重ねを dialog にする（Tomorrowland の重ねは Esc 不可・閉じる 14×14 で名前なし）。
+- （チケット制のフェス）チケットのページは「券種・値段」の上に、販売前・販売中・終了後の段階を決めて出し分ける。終了後も次回のお知らせ登録を残し（Lollapalooza の /tickets）、販売中は券種1行に「名前｜状態の札｜値段＋手数料｜BUY」（Primavera：64px・On Sale／VIP の札・FROM €350.00 + fees）。売り切れても値段の文字は残し、行に SOLD OUT の札を並べる（Tomorrowland Thailand：4種とも ฿ 12500.00 などを文字で、表の下に「*Prices include VAT and service fees」）。売り切れの後の次の一手（リセールの日時・次回の登録）も行の下に書く（Tomorrowland は歩いたページに無かった）。
 - （チケット制のフェス）購入の入口を全ページの同じ場所に置く（Lollapalooza：固定ヘッダー右の TICKETS 117×56、Primavera：ヘッダー右の TICKETS と、メガメニューの祭りの名前の下の黒い丸）。
 
 ## 真似る候補（見本1つ）
@@ -104,6 +117,9 @@
 - 駐車場は「台数・開く時刻・○△×」の表を、時刻つきで当日に何度も出し直す（有田：7日で63回）。
 - 雨は「持ち物」と「場所ごとの可否」として書く（陶炎祭の長靴・傘、有田の「雨天時使用禁止」）。判断の時刻と段階はどちらにも無いので、作るときは決めて書く（例：6:00 判断・6:15 掲出、開催／縮小／中止）。
 - 自分の回る順は、店番を紙の会場図に書き写せる形にする（陶炎祭のハウツー「ペンでブース位置を書き込もう」）。
+- テーマの世界の区画（感情・地域・章）は、本物のタブ（role=tab・aria-selected・roving tabindex・矢印キー）で切り替える（Tomorrowland の Consciencia の Province 6つ）。URL にも区画を残す。
+- 主の色をグラデーション1本（Tomorrowland：90deg #8a3900→#eb8100）に決め、ボタン・選んだタブ・日の帯・状態の札の4か所に同じものを使う。白い文字は濃い側に（#8a3900 で 7.23:1、#eb8100 では 2.51:1）。
+- いくつものフェス・回で同じ部品（ナビ・フッター・出演者の一覧）を web component にし、使うページでだけ読む（Tomorrowland の `tml-*`。一覧の無いページでも 1,353KB を取るのは反面教師）。
 
 ## 反面教師
 - 最初の画面の行動を「カレンダーに入れる」だけにし、配信先・券・値段をどこにも表で出さない（The Game Awards：配信先の名前0・値段0、時刻は FAQ の文の中）。
@@ -120,3 +136,6 @@
 - 同じページで値段を2通り書く（Primavera の Tickets Info：帯は FROM €350／€545、本文は €360／€560）。値段は1つの表から出す。
 - ホバー色をブランドの淡い色にして、地と 1.45:1（Primavera の A-Z の #7dd6ad on #efeae7）。SP では名前が span でリンクにならない。
 - 文字だけのページでも決済 SDK・全クラスの CSS を読み 16.7MB（Primavera：Stripe 3.7MB・CSS 2.9MB・JS 13MB を全ページ）。
+- 1組の重ねを div にして Esc で閉じず、閉じるを 14×14 の名前なしにする。別のフェスの部品の言葉（1週末なのに「Week 1」）を残す（Tomorrowland Thailand の Line-Up）。
+- 見えないタブの動画まで読み込み時に取り、reduce でも流す（Tomorrowland の Consciencia：5本 14,036KB）。
+- 本番の1か月前・売り切れ後に、ステージと時刻を仮の値（日の名前のステージ・全組 12:00〜12:01）のまま「MORE ARTISTS TO BE ANNOUNCED」と出す。いつ出すかの日付が無い（Tomorrowland Thailand）。

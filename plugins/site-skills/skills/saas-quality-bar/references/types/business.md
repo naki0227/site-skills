@@ -1,7 +1,7 @@
 # 業務SaaS（営業・人事・会計・社内ツール・製品開発）
 
 ## この下位タイプで特に見ること
-役割別の訴求、導入の相談、セキュリティ資料
+役割別の訴求、導入の相談、セキュリティ資料、乗り換え（移行）の手間
 
 ## 見本の実測
 
@@ -56,8 +56,20 @@
 - **見た目の値**：地 #fff・帯 #fafafb・面 #f3f4f6、文字 #1c1d1f（16.87:1）・#505967（7.08:1）・#6f7988（4.41:1）・#b5bdc9。線 #e4e7ec・#cad0d9。青は印だけ（#266df0 4.64:1）。書体は inter・interDisplay・JetBrains Mono・tiemposText（引用）をすべて自前の woff2（348KB）。ボタンは全ページ 高さ36・角10・14px／500、hover 50ms・戻り .3s cubic-bezier(.2,0,0,1)。色の既定 .2s cubic-bezier(.33,1,.68,1)。reduce で keyframes（レーダー・ロール）は止まるが、窓の文字打ちなど JS の書き換えは5秒で 345回残る（no-preference 1,775回）。
 - **データと重さ**：PC で top 13.97MB / features 21.58MB / pricing 15.41MB / customers 16.29MB / help 15.58MB（展開後。トップの転送は約 6.25MB・37ホスト）。全ページ共通の JS 2,675KB、reCAPTCHA の recaptcha__ja.js 836KB を3回、Intercom、RSC の先読み トップ 52本・料金 59本（機能ページは /apps を 1,235KB）。構造化データはトップだけ Organization・WebSite・SoftwareApplication・Offer。
 
+### Plain（B2B のサポート基盤、海外）https://www.plain.com/ — 2026-11-08
+- **最初の画面**：帯 40px（#0a2414、札「RSVP」#1ad379。SP は帯の文が PC と違う）→ ヘッダー 70px（白 .92・SIGN IN 枠 88×36・BOOK A DEMO 塗り 120×36）。h1 42/46px・Medium 500・字間 -1px（SP 38/42px）、説明 18/28px の3行、主「BOOK A DEMO」#1b6646 の塗りと副「TRY FOR FREE」枠線を 36px・角 100px・Geist Mono 13px 大文字で並べる。右半分は WebGL の canvas 664×600px の放射の図（中心にロゴ、点線と緑の実線、カーソルに線が寄る）。SP は canvas を出さない。Framer 製。
+- **製品画面**：「One place…」の下に DOM の窓（左に端末、右にアプリ）で、空の窓 → 0.3〜2秒でスレッドと顧客情報 → 5秒で返答の案。Sidekick の章は灰の面 #f7f5f3 の中の DOM（「Thinking…」→ Datadog・Linear・ヘルプを調べた3行 → 答え）と、下のタブ3つ（約15.7・12.0・15.3秒で送る、非選択 opacity .5）。features（/overview）の先頭は Mux の動画（1,593KB＋プレイヤー 1,113KB）。
+- **機能の並べ方**：トップは機能6を3列×2段（点のアイコン → 題 18px → 説明 15px → 「SEE CHANNELS →」）、その下にエージェント3つを「枠の札（SIDEKICK AGENT）＋ h3 32/36px（左）／説明2行＋リンク（右）→ 幅いっぱいの面 → 小見出し3」で。/overview は Platform（大2＋小6）・Automation 2・AI Suite（タブ4）・Integrations 4・暗い面の4区分16項目。ページの終わりに次の行き先の3色タイル（深緑・紺・葡萄色）。
+- **料金表**：3枚（Foundation $45 年払い／$55 月払い・Horizon $99・Frontier Custom、per user per month、USD・税の記載なし）。373×630px・#f3fbe9・角 9px。年払いのトグルは Foundation のカードの中だけで、Horizon は「Billed annually」の $99 だけ（月払いの値は画面にも構造化データにも無い）。札「SAVE 20%」は Geist Mono 13px・rgba(0,0,0,.45)（3.32:1）で、実際は 18.2%。切り替えると数字の列が縦に 32px・約 250ms 動く。トグルは div に tabindex="0" だけ（role・aria-checked なし）。8回開くと3回だけ Horizon に「MOST POPULAR」の札と 1.5px の枠（サーバーの HTML はこの版）、5回は札なしで Frontier のボタンが塗りになる。
+- **比較表**：13区分69行（Seats 2・Credits 5〔追加 +1,000〜+10,000 credits を $10〜$100 で表の中に〕・AI agents 2・Infrastructure 1・Automation 5・Channels 9・Support operations 7・Slack operations 3・Customer context 7・Integrations 10・Importers 4・Developer platform 5・Security 9）。区分名は Geist Mono 13px 大文字、行ごとに i の印。プラン名の行は PC で sticky top:69px、Horizon の列だけ #f3fbe9。開閉なし。SP は表の頭をプラン名3つのタブにして1列。FAQ 10問（FAQPage なし）。
+- **試すまで**：/get/trial は「Your work email *」「How did you hear about us? *」の2項目（ラベルなし・placeholder だけ）→ GET STARTED。/get/demo も同じ2項目。「7 day free trial・no credit card required」を料金の一文・カードの下の1行・FAQ の最初・trial のページの4か所に書く。
+- **事例と信頼**：トップの葡萄色の面 #28060e に Vercel の動画と、題が数字の3社（「20x volume with just 2x the team」「3x automated resolution」「First response in 3 min, down from an hour」）。その下に「Migrate in days.」3行（5 → 1 tools・2 days・99% of tickets、会社名つき）と、SOC2 Type II・GDPR の2列。/customers は濃い緑の大カード4（588×240）と 3列の格子34枚で、記事のある13枚にだけ丸い札「CASE STUDY」、21枚は「CUSTOMER」と会社の説明だけ。
+- **ドキュメント**：Mintlify（/docs）。ヘッダーに Search（Ctrl K）と Ask Assistant（Ctrl+I）、最初のページの画像の下にも質問の欄。/llms.txt 9,159B（競合との位置づけまで）と /docs/llms.txt 100,014B、robots.txt で GPTBot・ClaudeBot を名指しで Allow。
+- **見た目の値**：地 #fff、文字 #252d2a（14.12:1）、帯とカード #0a2414、ボタン #1b6646（白 6.92:1）、点と札だけ #1ad379（白地の文字にすると 1.97:1）、料金の面 #f3fbe9、窓の面 #f7f5f3、線 rgba(10,36,20,.1)（450回）、締めの #193227 に #9af6bb（912回）。書体は ABC Favorit（Medium の題・Regular の本文 15/20px -0.15px）と Geist Mono 13px +0.2px 大文字（札・ボタン・区分）と製品の窓の Inter。--ease cubic-bezier(0.22,1,0.36,1)、opacity 300〜400ms、窓の部品は blur から現れる keyframes 13種。reduce で WebGL と Sidekick は止まり、受付の窓は transition を切って中身だけ進む。
+- **データと重さ**：PC で top 8.31MB / features 10.60MB / pricing 7.89MB / customers 7.60MB / docs 4.15MB（解析を除く）。JS が7〜8割（Framer の部品 1,310KB＋依存 1,101KB）、自社のチャット 1,297KB を全ページ（docs も）。解析を含めると1ページ 31〜37ホスト、GTM 2,336KB。同意の帯を押す前に解析の cookie が入る。構造化データは WebApplication と、料金に Offer 3つ（「$45…or $55 billed monthly」）。
+
 ## 真似る型
-見本4つ（Backlog・コドモン・Linear・Attio）に共通するもの、または1つで測った値を出発点にするもの。値の出どころを添える。
+見本5つ（Backlog・コドモン・Linear・Attio・Plain）に共通するもの、または1つで測った値を出発点にするもの。値の出どころを添える。
 1. **行動の数は、試す入口の有無で決める**：試せる製品は「試す」を主に（Backlog は試す＋資料、Linear は Get started と Contact sales）、試せない製品は資料請求＋問い合わせ（コドモン）。主は塗り、副は白地か枠か半透明。Linear のように最初の画面から行動を消さない（ヘッダーの 73×32 だけでは小さい）。
 2. **実績の数字には時点と数え方**：Backlog「2026年6月末」、コドモン「2026年10月1日時点」＋※の数え方と調査元。Linear は「40,000」を3通りに言い、時点なし（真似ない）。
 3. **料金は規模で決める**：Backlog は「31人以上か」を診断の1問に、コドモンは定員3段、Linear と Attio は per user/month の4列（Attio は 4列とも同じ 271×398 のカード）。人数で決まるなら、入力させる前に段を見せ、大きく出す価格は1つ（コドモン 88px、ほか 30px）。
@@ -65,12 +77,19 @@
 5. **見た目の出発点**：明るい現場向けはコドモン（地は白と淡い水色2段、本文 #4d4c4b、本文 16px／行間 1.5、角 8px と 40px、影はぼかさない 0 4px 0）。開発・企画の職種向けは Linear（地 #08090a から4段、文字4段、主ボタンは白、Inter 510、字間 -0.022em、.16s ease-out-quad）。
 6. **製品画面**：Backlog は実画面キャプチャ、コドモンは写真と端末の合成、Linear は DOM の画面（3,369要素）で仕事の文まで本物らしく埋める。DOM にするなら止めるボタンを付け、reduce では止める（Linear は止まらない）。
 7. **機能の詳しい説明はページを移らずに開く**：Linear の「＋」20個 → 640px のシート（Esc で閉じ、フォーカスは押したボタンへ）。機能が多い製品は、章の最後に機能名の行を置き、押すと説明が出る形にする。
-8. **比較表**：Backlog は 5区分35行・SP は details、Linear は 9区分55行・見出しの行 sticky（PC top:72px）・SP は select で1プラン、Attio は 8区分76行で「払い方の切り替え＋価格＋ボタン」の帯と区分名を2段で sticky（top:116px・313px）・SP は1行ずつ開閉。✓×に読み上げの文字（Linear「Included／Not included」）。
+8. **比較表**：Backlog は 5区分35行・SP は details、Linear は 9区分55行・見出しの行 sticky（PC top:72px）・SP は select で1プラン、Attio は 8区分76行で「払い方の切り替え＋価格＋ボタン」の帯と区分名を2段で sticky（top:116px・313px）・SP は1行ずつ開閉、Plain は 13区分69行を全部開き、プラン名の行を top:69px で sticky・おすすめの列だけ淡い面・SP はプラン名のタブで1列。✓×に読み上げの文字（Linear「Included／Not included」）。
 9. **フォームは2段**：1段目は選ぶだけの質問、2段目に組織と個人の情報（コドモン 6＋11項目）。任意を「（任意）」と書き、説明文は欄の上。エラーは欄の下に、何をすればよいかまで書く。
 10. **事例の一覧の終わりを入口にする**：Linear は一覧16社の最後に灰色の「Your company ― Make the switch」。絞り込みは URL のあるリンク（/customers/ai）。
 11. **製品の窓は仕事ごとに入れ替える**：Attio はトップの5章（売上の仕事の順）それぞれに表・ワークフロー・SQL・グラフの DOM の模型を置き、左の目次（sticky、今だけ濃く・2px の印）で今の章を示す。章の見出しは「黒の一言＋灰の続き」の1文。目次の非選択は 3:1 以上にする（Attio は 1.37:1）。
 12. **月年の価格を入れ替える動き**：Attio は両方の数字を同じ升に置き、上下に 500ms ease-out で入れ替える。読み上げは見えている方だけにし、reduce では入れ替えずに書き換える。
 13. **SP では最初の画面の行動を替えてよい**：Attio は PC の「相談＋試す」を、SP では「メール欄＋1つのボタン＋文字のリンク」に。題と一文は変えない。
+
+14. **製品の窓は3段で進める**：Plain はトップの窓を 受信（0.3秒）→ 調べる（2秒）→ 返す（5秒）で進め、右に顧客の情報（会社・層・SLA）を置く。reduce では動きを切って最後の状態を出す（Plain は transition を切って中身は進める）。
+15. **機能の章は「札＋題／説明＋リンク」の頭、幅いっぱいの面、下のタブ3つ**：Plain の Sidekick はタブを進む線つきで約12〜16秒ごとに送り、reduce では送らない。非選択は opacity で薄くするなら 4.5:1 を守る（Plain は 2.99:1）。
+16. **乗り換えと安全を1つの帯に2列**：Plain は事例の直後に「Migrate in days.」（5 → 1 tools・2 days・99%、会社名つき）と SOC2・GDPR を並べる。業務SaaS の「乗り換えの手間」と「預けて大丈夫か」を1か所で片づける。
+17. **試すフォームは2項目、カード不要は4か所**：Plain の /get/trial はメールと「どこで知ったか」だけ。ラベルは欄の上に出す（Plain は placeholder だけ、真似ない）。
+18. **事例の題を数字にし、記事のある事例にだけ札**：Plain は「First response in 3 min, down from an hour」、一覧34枚のうち記事のある13枚にだけ丸い札。
+19. **ページの終わりに次の行き先**：Plain は料金・機能・事例のページの最後に3色のタイル（Product／Pricing・Customers・Changelog）。
 
 ## 反面教師
 - 商談予約ウィジェットを全ページで読み込み、どのページでも一番重いファイルにする。診断の途中で日時の枠を開いて結果と重ねる（Backlog）。
@@ -83,3 +102,6 @@
 - 左の目次の非選択を 1.37:1、割引の札を 2.89:1、一文を 4.41:1 にする。SP で製品の窓を縮めて中の文字を 4〜7px にする。reCAPTCHA を3回読む（Attio）。
 - 年払いの割引率を書かず、月払いにしてもラベルが「Billed yearly」のまま。2つのスイッチが連動することも、名前も無い（Linear）。
 - リンクが見えるたびに行き先を先読みし、ページの半分がまだ行っていないページ（Linear のトップ 44%）。検索の索引 1,107KB を検索を開く前に読む。
+- 年払いの切り替えを一番安いプランのカードの中にだけ置き、ほかのプランの月払いの値を出さない。札「SAVE 20%」は実際 18.2%。トグルは div に tabindex だけ（Plain）。
+- 料金のカードを読み込んだ後にブラウザで入れ替え、8回中3回だけ「MOST POPULAR」の札が出る（Plain）。
+- 試すフォームの欄にラベルが無く placeholder だけ。機能の説明の灰 2.99:1、明るい緑のリンク 1.97:1。同意の帯を押す前に解析の cookie を書く。自社のチャット 1,297KB を docs まで全ページで読む（Plain）。

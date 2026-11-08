@@ -140,4 +140,11 @@
 - [ ] 日本語のヘルプ検索は語で一致させ、0件のときに言い換えとよく見られる語を出す（Moneytree の Intercom は1文字ずつ一致で0件にならない）
 - [ ] 日本語のページの html に lang="ja" を付けた（Moneytree の製品サイトは lang="en"）
 
+- [ ] 年払いの切り替えは全プランの値に効く。月払いの値が無いプランは「年払いのみ」と書いた（Plain は Foundation のカードの中だけで、Horizon は年払いの $99 しか出ない）
+- [ ] 料金のカードを試験で出し分けるなら、同じ人には同じ版を出し、サーバーの HTML と最初の描画をそろえた（Plain は8回中3回だけ「MOST POPULAR」の札）
+- [ ] 自分で作ったトグルは button に role="switch"・aria-checked・名前がある（Plain は div に tabindex="0" だけ）
+- [ ] 試すフォームの欄に、欄の上のラベルがある。placeholder だけにしていない（Plain の /get/trial の2項目）
+- [ ] 同意の帯で選ぶ前に、解析の cookie を書いていない（Plain は sequel-consent=true・snitcher_device_id ほか）
+- [ ] 自社のチャットのスクリプトは、ボタンを押してから読む。docs にまで全部を載せない（Plain は全ページ 1,297KB）
+
 解剖で裏づけた項目が増えたら、ここに足す（どのサイトで確かめたかを添える）。
