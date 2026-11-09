@@ -101,7 +101,7 @@ ul,ol{padding:0;list-style:none}
 main>section,footer{position:relative;overflow:hidden;overflow:clip}
 .chap{padding:120px var(--gut) 120px}
 .big{display:block;font-size:clamp(84px,15vw,230px);color:var(--main);white-space:nowrap}
-.big .it{color:var(--pink);font-size:.62em;margin-left:.08em}
+.big .it{color:var(--pink);font-size:.62em;margin-left:.08em;-webkit-text-stroke:.06em #fff;paint-order:stroke fill}
 h2{font-size:clamp(28px,3vw,40px);line-height:1.35;font-weight:700;margin:.35em 0 .5em}
 .window{position:relative;margin:0}
 .window img{width:100%;height:var(--h,560px);object-fit:cover;clip-path:polygon(0 3%,3% 0,30% 2.5%,60% 0,97% 2%,100% 0,100% 97%,98% 100%,70% 97.5%,40% 100%,2% 98%,0 100%)}
@@ -148,7 +148,9 @@ figcaption span,.credit span{display:inline-block}
 .fee .window .strip{right:-24px;top:-6px;transform:rotate(14deg)}
 .fee .price{position:relative;z-index:3;margin-left:-200px;margin-top:-10px}
 .fee .price .en{font-size:clamp(90px,13vw,200px);color:var(--main);display:block}
+.fee .price .en{-webkit-text-stroke:.05em #fff;paint-order:stroke fill}
 .fee .price .en small{font-size:.4em;margin-right:.05em}
+/* 写真にかかる字（weekly・¥5,500）が写真の上で読めなかった（inspect text-on-photo、2026-11-09）。白の縁を付けた */
 .fee .price p{font-size:18px;font-weight:700;margin-top:14px;margin-left:200px}
 /* 月謝袋（教室が配る紙の袋。data-object） */
 .envelope{position:relative;margin-top:44px;background:#fff;padding:34px 36px 40px;box-shadow:0 0 0 2px var(--main);max-width:640px}
