@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OPEN BALE｜汐見港の古着屋とオンラインストア</title>
+<meta name="description" content="汐見港の第2倉庫にある、アメリカとヨーロッパの古着の店。毎週金曜の11時に、その週に開けたベールの1点ものを店頭とオンラインストアに同時に出します。今週の入荷12点の実寸と値段、金曜の流れ、店の場所と営業時間。（site-skills の作例。店は架空です）">
+<!--
+  site-skills の作例（架空の店。店名・港・駅・住所・品・値段・実寸はすべて作り物。実在の店名・ブランド名は使っていない）。
+  依頼主の希望（決まりの順のいちばん上）：「おしゃれに。最初の画面の型は任せる」→ 型①（題材の物の形の窓で写真を抜き、大きな字と重ねる）を選んだ。
+    理由：主役は人より「金曜に開ける荷」。窓の形は港と古着の両方にある荷札にした。窓の中には、古着の棚で服を掲げて見る人の写真を入れ、人も大きく見せる。
+  主の色：#b0269a（荷札の赤紫。この店は値札の荷札と、それを結ぶ糸をこの赤紫1色に決めている、という設定。色相 310°）
+  選んだスキル：主 ec-quality-bar（アパレル types/apparel.md：店の入口として12点を一覧にし、カートに入れる流れ）、副 lp-quality-bar（トップの見た目。町の店 town-diary の「営業時間を最初に」と、tool-collage の「今週のお知らせが入口」）。
+  題材の特色：港の倉庫で、毎週金曜の朝に45kgのベール（古着の圧縮梱包）を開け、1点ずつ実寸を測って荷札を付け、11時に店とオンラインに同時に出す。
+  考えの一文：このページでは、金曜に開けたベールの品に付ける赤紫の荷札が、写真を抜く窓と、今週の12点の入荷表の値札になる。
+  色（aesthetic.md の3色）：地 #f1f0ec（倉庫の床のコンクリート）／主 #b0269a（荷札の赤紫、面で大きく）／差し色 #1f2a5c（入荷の半分を占めるデニムの藍）。文字 #161616。
+    ほかの作例の主（青5つ 225〜230°・紺・辰砂 #8e1d3b 344°・金赤・翡翠 178°・琥珀・朱・焦げ茶・赤・紫 #5b2a86 272°・きみどり・藤 260°・深緑 145°・緑 152°・網の緑）から、紫と辰砂の両方に 30°以上離した。
+  書体：Big Shoulders Stencil Display（倉庫の扉とベールの刷り込みのステンシルの字。店名・番号・時刻）＋ Noto Sans JP（ファッションの実測で和文の Web フォントにいちばん多い。aesthetic.md）。
+  手本の測定（work/oneshot5/vintage-store/sample.jsonl、scripts/sample.js、PC 1440px、6件中6件が開けた。URL は ec-quality-bar・lp-quality-bar の解剖先から取った）：
+    - ボタンの角：ASKET・Ableton・Oatly・土屋鞄とも 0 → 角 0。
+    - 全幅の罫：Ableton・土屋鞄 0、Tracksmith 1 → 区切りは地の色の面だけ。罫は入荷表の行の中だけ。
+    - 本文：Allbirds 16px #1f1f1f、Ableton 16px #000、ASKET 13.5px #000 → 本文 16px・#161616。
+    - 一覧：Allbirds の新着 12枚・カード幅 390・間 10・名前 14px／値段 12〜14px。品の写真が無いので、ec の viewpoints「写真を使わない一覧」に従い、全部の行で同じ並び（番号・品・国と年代・実寸・税込）にした。
+    - 大きな字：Ableton の H1 60px・700、Tracksmith の見出し 48〜56px・300 → 日本語の見出しは 40〜52px。大きく遊ぶのはステンシルの英字と数字だけ。
+  写真：Wikimedia Commons（photos/credits.json）。どれも、この店・この店の人・この店の品ではない。何が写っているかと出典を写真の横に書いた。
+  inspect で残した WARN と理由：
+    photo-cover … 型①（荷札の形の窓で写真を抜き、大きな字と重ねる）を taste.md と SKILL.md 3-0 で選んだため。写真を全面に敷くと荷札の形が消える。
+    size-count（11段）… 和文は 14・16・20・40〜48px の4段。残りはステンシルの店名・荷札の番号・時刻・値段の大きさの違い（本物の値を大きく見せる側）。
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ground:#f1f0ec;      /* 地：倉庫の床 */
+  --tag:#b0269a;         /* 主：荷札の赤紫 */
+  --tag-deep:#8a1d79;    /* 主の濃い段（押したとき） */
+  --denim:#1f2a5c;       /* 差し色：デニムの藍 */
+  --ink:#161616;
+  --sub:#4a4a4a;         /* 補足（注記・出典）だけ */
+  --paper:#ffffff;
+  --stencil:'Big Shoulders Stencil Display',Impact,sans-serif;
+  --jp:'Noto Sans JP',sans-serif;
+  --gut:clamp(16px,3.4vw,48px);
+  --ease:cubic-bezier(.4,0,.2,1);
+  --t-short:.15s; --t-mid:.3s;
+}
+@media (prefers-reduced-motion:reduce){:root{--t-short:0s;--t-mid:0s}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ground);color:var(--ink);font:400 16px/1.8 var(--jp);word-break:auto-phrase;text-wrap:pretty;overflow-x:hidden}
+a{color:inherit}
+img{display:block;max-width:100%}
+h1,h2,h3,p{margin:0}
+.skip{position:absolute;left:-999px;top:0;background:var(--ink);color:#fff;padding:8px 12px;z-index:50}
+.skip:focus{left:8px}
+:focus-visible{outline:3px solid var(--denim);outline-offset:3px}
+
+/* ヘッダー */
+.top{position:relative;z-index:5;display:flex;align-items:center;justify-content:space-between;padding:18px var(--gut);gap:16px}
+.top .logo{font:700 26px/1 var(--stencil);letter-spacing:.02em;text-decoration:none;color:var(--ink)}
+.top nav{display:flex;gap:28px;font-size:16px;font-weight:500}
+.top nav a{text-decoration:none}
+.cartlink{display:inline-flex;align-items:center;gap:8px;font-weight:700;text-decoration:none}
+.cartlink b{display:inline-grid;place-items:center;min-width:28px;height:28px;padding:0 6px;background:var(--tag);color:#fff;font:700 18px/1 var(--stencil)}
+@media (hover:hover) and (pointer:fine){.top nav a:hover,.foot a:hover{text-decoration:underline;text-underline-offset:4px}}
+
+/* 荷札の形：上の2つの角を落とし、穴に補強の輪 */
+.tagshape{clip-path:polygon(17% 0,83% 0,100% 11%,100% 100%,0 100%,0 11%)}
+
+/* 最初の画面 */
+.hero{position:relative;min-height:min(100vh,920px);padding:0 var(--gut) 40px;overflow:hidden}
+.hero h1{position:relative;z-index:1;font:700 clamp(120px,24.6vw,372px)/.78 var(--stencil);color:var(--tag);letter-spacing:-.01em;margin:8px 0 0 -.04em;white-space:nowrap}
+.hero .sub{position:relative;z-index:1;font:500 20px/1.5 var(--jp);margin:22px 0 0 .1em}
+.hero .when{position:relative;z-index:1;margin-top:clamp(28px,4vw,52px);max-width:600px}
+.hero .when p.lbl{font-size:16px;font-weight:500}
+.hero .when .big{display:block;font:700 clamp(52px,6.2vw,92px)/1 var(--stencil);color:var(--denim);margin-top:4px}
+.hero .when .big span{font:700 .62em/1 var(--jp);margin:0 .08em}
+.hero .lead{font-size:20px;margin-top:18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:56px;padding:0 28px;background:var(--tag);color:#fff;font:700 17px/1 var(--jp);text-decoration:none;border:0;cursor:pointer;transition:background var(--t-short) var(--ease)}
+.btn:active{background:var(--tag-deep)}
+@media (hover:hover) and (pointer:fine){.btn:hover{background:var(--tag-deep)}}
+.hero .btn{margin-top:26px}
+.hero-tag{position:absolute;z-index:2;right:clamp(24px,5vw,90px);top:clamp(150px,16vw,240px);width:clamp(280px,26.5vw,390px);transform:rotate(-5deg);transform-origin:50% 0}
+.hero-tag{margin:0}
+.hero-tag .body{position:relative;background:var(--tag);padding:0 0 0;aspect-ratio:.66}
+.hero-tag .body img{position:absolute;inset:0 0 22% 0;width:100%;height:78%;object-fit:cover;object-position:62% 40%}
+.hole{position:absolute;left:50%;top:5.5%;width:34px;height:34px;margin-left:-17px;border-radius:50%;background:var(--ground);box-shadow:0 0 0 7px #f6d7ee;z-index:2}
+.hero-tag .print{position:absolute;left:0;right:0;bottom:0;height:22%;padding:12px 18px;color:#fff;display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.hero-tag .print .no{font:700 clamp(34px,3.6vw,54px)/.9 var(--stencil);white-space:nowrap}
+.hero-tag .print .nm{font:500 14px/1.45 var(--jp);text-align:right}
+.hero-tag .print .nm b{display:block;font:700 26px/1.1 var(--stencil);letter-spacing:.01em}
+.string{position:absolute;z-index:3;pointer-events:none}
+.hero .string{right:calc(clamp(24px,5vw,90px) + clamp(280px,26.5vw,390px)/2 - 8px);top:-10px;width:300px;height:clamp(190px,20vw,270px)}
+.cap{font-size:14px;line-height:1.6;color:var(--sub)}
+.cap a{color:inherit}
+.hero .cap{position:absolute;z-index:2;right:clamp(24px,5vw,90px);bottom:14px;width:clamp(300px,30vw,440px);text-align:right}
+
+/* 今週の入荷 */
+.arrivals{position:relative;background:var(--tag);color:#fff;padding:clamp(56px,7vw,110px) var(--gut) clamp(64px,8vw,120px);overflow:hidden}
+.arrivals .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.618fr);gap:clamp(28px,4vw,64px);align-items:start}
+.arr-head .num{font:700 clamp(200px,26vw,400px)/.74 var(--stencil);margin-left:-.06em;color:#fff}
+.arr-head h2{font:700 clamp(32px,3.4vw,48px)/1.3 var(--jp);margin-top:18px}
+.arr-head p{margin-top:14px;max-width:30em}
+.arr-photo{margin-top:clamp(36px,4vw,56px);margin-left:calc(var(--gut) * -1);position:relative}
+.arr-photo .win{width:min(560px,100%);aspect-ratio:.8;background:#7a1a6b}
+.arr-photo .win img{width:100%;height:100%;object-fit:cover;object-position:40% 50%}
+.arr-photo .cap{color:#fbe6f6;margin:10px 0 0 var(--gut);max-width:520px}
+
+.sheet{background:var(--paper);color:var(--ink);padding:clamp(20px,2.6vw,36px)}
+.sheet-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px 24px;padding-bottom:18px}
+.sheet-top h3{font:700 20px/1.4 var(--jp)}
+.sheet-top p{font-size:14px;color:var(--sub)}
+.measure{background:var(--ground);padding:18px 20px;margin-bottom:8px}
+.measure .row{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px}
+.measure label{font-weight:700}
+.measure .seg{display:inline-flex}
+.measure .seg button{font:500 16px/1 var(--jp);padding:11px 16px;border:2px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+.measure .seg button+button{border-left:0}
+.measure .seg button[aria-pressed=true]{background:var(--ink);color:#fff}
+.measure input[type=range]{flex:1 1 220px;accent-color:var(--tag);height:32px}
+.measure output{font:700 34px/1 var(--stencil);color:var(--tag);min-width:4.2em}
+.measure .hint{font-size:14px;color:var(--sub);margin-top:6px}
+.measure .hit{font-weight:700;margin-top:4px}
+table.manifest{width:100%;border-collapse:collapse;font-size:16px}
+.manifest th{font:500 14px/1.4 var(--jp);color:var(--sub);text-align:left;padding:12px 8px 8px;border-bottom:2px solid var(--ink)}
+.manifest td{padding:14px 8px;border-bottom:1px solid #d9d6cf;vertical-align:middle}
+.manifest td.no{font:700 30px/1 var(--stencil);color:var(--tag);white-space:nowrap}
+.manifest td.item b{display:block;font-weight:700;line-height:1.5}
+.manifest td.item span{font-size:14px;color:var(--sub)}
+.manifest td.size{white-space:nowrap}
+.manifest td.size b{font:700 24px/1 var(--stencil)}
+.manifest td.price{font:700 26px/1 var(--stencil);white-space:nowrap;text-align:right}
+.manifest td.price small{display:block;font:400 13px/1.5 var(--jp);color:var(--sub);margin-top:4px}
+.manifest td.act{text-align:right;width:1%}
+.addbtn{font:700 16px/1 var(--jp);min-height:44px;padding:0 16px;background:var(--tag);color:#fff;border:0;cursor:pointer;white-space:nowrap;transition:background var(--t-short) var(--ease)}
+.addbtn[aria-pressed=true]{background:var(--denim)}
+@media (hover:hover) and (pointer:fine){.addbtn:hover{background:var(--tag-deep)}.addbtn[aria-pressed=true]:hover{background:var(--denim)}}
+.sold td{color:#6b6b6b}
+.sold td.no{color:#6b6b6b}
+.sold td.price{text-decoration:line-through;text-decoration-thickness:2px}
+.soldnote{display:inline-block;font:500 14px/1.4 var(--jp);color:#5c5c5c;width:7.5em;text-align:left}
+.manifest tr.fit td{background:#fbe6f6}
+.manifest tr.fit td.item b::after{content:"　合う";color:var(--tag)}
+.terms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 28px;margin-top:22px;line-height:1.7}
+.terms b{display:block;font-size:16px}
+.status{visibility:hidden;position:fixed;left:50%;bottom:20px;transform:translate(-50%,140%);background:var(--ink);color:#fff;padding:14px 20px;font-weight:500;z-index:20;transition:transform var(--t-mid) var(--ease);max-width:calc(100% - 32px)}
+.status.on{visibility:visible;transform:translate(-50%,0)}
+
+/* 金曜の流れ */
+.friday{position:relative;background:var(--denim);color:#fff;padding:clamp(56px,7vw,110px) var(--gut) clamp(64px,8vw,120px);overflow:hidden}
+.friday .fri{position:absolute;left:-.04em;bottom:-.2em;font:700 clamp(220px,34vw,520px)/.8 var(--stencil);color:#2c3a78;z-index:0;pointer-events:none}
+.friday .in{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.618fr) minmax(0,1fr);gap:clamp(28px,5vw,80px);align-items:start}
+.friday h2{font:700 clamp(32px,3.4vw,48px)/1.3 var(--jp)}
+.friday .intro{margin-top:16px;max-width:32em}
+.steps{list-style:none;margin:clamp(30px,4vw,52px) 0 0;padding:0}
+.steps li{display:grid;grid-template-columns:clamp(150px,15vw,220px) minmax(0,1fr);gap:8px 24px;padding:18px 0;align-items:baseline}
+.steps .t{font:700 clamp(46px,5vw,76px)/.9 var(--stencil);color:#fff}
+.steps .t span{display:block;font:500 16px/1.4 var(--jp);color:#d3d8ee;margin-top:6px}
+.steps li.open .t{color:#f39ae0}
+.steps h3{font:700 20px/1.5 var(--jp)}
+.steps p{margin-top:4px;font-size:16px;color:#e9ecf7}
+.fri-photo{position:relative;margin-top:clamp(0px,6vw,90px);margin-right:calc(var(--gut) * -1)}
+.fri-photo .win{aspect-ratio:.72;background:#121a3d}
+.fri-photo .win img{width:100%;height:100%;object-fit:cover;object-position:58% 50%}
+.fri-photo .hole{background:var(--denim);box-shadow:0 0 0 7px #f39ae0}
+.fri-photo .cap{color:#d3d8ee;margin-top:10px;margin-right:var(--gut)}
+.bale{margin-top:28px;background:#efe9da;color:#2b2b2b;padding:18px 20px 16px;transform:rotate(1.5deg);max-width:380px}
+.bale .s{font:700 44px/.9 var(--stencil);color:#2b2b2b}
+.bale .s2{font:600 26px/1.1 var(--stencil);margin-top:8px}
+.bale p{font-size:14px;line-height:1.6;margin-top:10px;color:#3a3a3a}
+
+/* 店 */
+.store{position:relative;padding:clamp(56px,7vw,110px) var(--gut) clamp(64px,8vw,110px);overflow:hidden}
+.store .in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.618fr);gap:clamp(28px,5vw,80px);align-items:start}
+.store-photo{position:relative;margin-left:calc(var(--gut) * -1)}
+.store-photo .win{aspect-ratio:.74;background:#ccc;transform:rotate(-3deg);transform-origin:50% 0}
+.store-photo .win img{width:100%;height:100%;object-fit:cover;object-position:30% 50%}
+.store-photo .cap{margin:18px 0 0 var(--gut)}
+.store .name{font:700 clamp(96px,13vw,200px)/.8 var(--stencil);color:var(--tag);margin-left:-.04em}
+.store h2{font:700 clamp(32px,3.4vw,48px)/1.3 var(--jp);margin-top:22px}
+.store .addr{font-size:20px;margin-top:12px}
+.hours{display:grid;grid-template-columns:auto 1fr;gap:6px 28px;margin-top:30px;align-items:baseline}
+.hours dt{font-weight:700;font-size:16px}
+.hours dd{margin:0;font:700 clamp(34px,3.6vw,52px)/1.1 var(--stencil)}
+.hours dd span{font:500 16px/1.5 var(--jp)}
+.hours dd.closed{color:var(--denim)}
+.map{margin-top:34px;max-width:640px}
+.map svg{width:100%;height:auto;display:block}
+.store .note{margin-top:14px;font-size:16px;max-width:36em}
+
+/* フッター */
+.foot{background:var(--tag);color:#fff;padding:44px var(--gut) 36px}
+.foot .in{display:flex;flex-wrap:wrap;justify-content:space-between;gap:28px}
+.foot .logo{font:700 64px/.8 var(--stencil)}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,auto);gap:8px 40px;font-size:16px}
+.foot a{text-decoration:none}
+.foot .small{margin-top:28px;font-size:14px;line-height:1.7;color:#fbe6f6}
+.foot .small a{text-decoration:underline}
+
+/* 幅 */
+@media (max-width:1100px){
+  .terms{grid-template-columns:1fr 1fr}
+}
+@media (max-width:900px){
+  .top nav{display:none}
+  .hero{min-height:auto;padding-bottom:28px;display:flex;flex-direction:column}
+  .hero h1{order:1;font-size:clamp(140px,41vw,380px);line-height:.8;white-space:normal}
+  .hero .hero-tag{order:2}.hero .cap{order:6}.hero .sub{order:3}.hero .when{order:4}
+  .hero .string{display:none}
+  .hero h1 .w{display:block}
+  .hero-tag{position:relative;right:auto;top:auto;width:min(56%,320px);margin:-24vw 12px 0 auto;transform:rotate(-5deg)}
+  .hero-tag .print{padding:10px 12px}
+  .hero-tag .print .nm{font-size:13px}.hero-tag .print .nm b{font-size:22px}
+  .hero .cap{position:static;width:auto;text-align:left;margin-top:22px}
+  .hero .when{margin-top:20px}
+  .hero .sub{margin-top:8px}
+  .arrivals .grid,.friday .in,.store .in{grid-template-columns:1fr}
+  .arr-photo .win{width:86%}
+  .manifest thead{display:none}
+  .manifest tr{display:grid;grid-template-columns:auto 1fr auto;gap:4px 14px;padding:16px 0;border-bottom:1px solid #d9d6cf}
+  .manifest td{border:0;padding:0}
+  .manifest td.no{grid-row:1 / span 2;font-size:26px;padding-top:4px}
+  .manifest td.item{grid-column:2 / span 2}
+  .manifest td.size{grid-column:2}
+  .manifest td.price{grid-column:3;grid-row:2;text-align:right}
+  .manifest td.act{grid-column:2 / span 2;text-align:left;width:auto;margin-top:6px}
+  .addbtn{width:100%}
+  .terms{grid-template-columns:1fr}
+  .friday .fri{font-size:clamp(170px,52vw,320px)}
+  .fri-photo{margin:10px calc(var(--gut) * -1) 0 18%}
+  .store-photo{margin-right:16%}
+  .foot .logo{font-size:52px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#arrivals">今週の入荷へ</a>
+<header class="top">
+  <a class="logo" href="#">OPEN BALE</a>
+  <nav aria-label="ページの中">
+    <a href="#arrivals">今週の入荷</a>
+    <a href="#friday">金曜の入荷</a>
+    <a href="#store">店舗情報</a>
+    <a href="#shipping">送料と返品</a>
+  </nav>
+  <a class="cartlink" href="#cart" id="cartlink" aria-label="カート（0点）">カート <b id="cartcount">0</b></a>
+</header>
+
+<main>
+<section class="hero" aria-labelledby="h1">
+  <h1 id="h1"><span class="w">OPEN</span> <span class="w">BALE</span></h1>
+  <p class="sub">汐見港 第2倉庫の古着屋とオンラインストア</p>
+  <div class="when">
+    <p class="lbl">次の入荷</p>
+    <p class="big">11<span>月</span>13<span>日（金）</span>11:00</p>
+    <a class="btn" href="#arrivals">今週の12点を見る</a>
+  </div>
+  <svg class="string" viewBox="0 0 260 160" aria-hidden="true" preserveAspectRatio="none"><path d="M250 0 C 210 60, 120 40, 136 150" fill="none" stroke="#b0269a" stroke-width="4" stroke-linecap="round"/></svg>
+  <figure class="hero-tag" data-object>
+    <div class="body tagshape">
+      <span class="hole" aria-hidden="true"></span>
+      <img src="photos/Recycled-clothing-sold-at-a-farmers-market.jpg" width="1280" height="853" alt="古着のラックの前で、白いシャツを高く掲げて見ている人" fetchpriority="high">
+      <div class="print" aria-hidden="true">
+        <span class="no">45-01</span>
+        <span class="nm"><b>¥16,500</b>ワークジャケット 身幅58</span>
+      </div>
+    </div>
+  </figure>
+  <p class="cap">荷札の中は、アメリカの朝市の古着の売り場で、シャツを掲げて見る人。この店・この店の人ではありません。<br>写真：Nielsoncaetanosalmeron／<span style="white-space:nowrap">Wikimedia Commons／<a href="https://commons.wikimedia.org/w/index.php?curid=178270158">CC BY 4.0</a></span></p>
+</section>
+
+<section class="arrivals" id="arrivals" aria-labelledby="arr-h">
+  <div class="grid">
+    <div class="arr-head">
+      <p class="num" aria-hidden="true">12</p>
+      <h2 id="arr-h">今週の入荷 12点<br>11月6日（金）</h2>
+      <p>アメリカのベール2つと、ヨーロッパのベール1つから選びました。店とオンラインで同じ12点を売っています。どちらかで売れたら、もう片方からも消えます。</p>
+      <figure class="arr-photo" style="margin-top:clamp(36px,4vw,56px)">
+        <div class="win tagshape"><img src="photos/View-on-the-flea-market-Waterlooplein-with-second-hand-cloth.jpg" width="1280" height="960" alt="広場の蚤の市で、古着の掛かったラックを見て歩く人たち" loading="lazy"></div>
+        <figcaption class="cap">アムステルダムのワーテルロー広場の蚤の市。古着の店が並ぶ通りです（この店ではありません）。<br>写真：Fons Heijnsbroek／<span style="white-space:nowrap">Wikimedia Commons／<a href="https://commons.wikimedia.org/w/index.php?curid=117288906">CC0</a></span></figcaption>
+      </figure>
+    </div>
+
+    <div class="sheet" data-object>
+      <div class="sheet-top">
+        <h3>入荷表　ロット45</h3>
+        <p>実寸は平置きで測った値（cm）。値段は税込。</p>
+      </div>
+      <div class="measure" id="measure">
+        <div class="row">
+          <label for="fit">手持ちの服の実寸</label>
+          <span class="seg" role="group" aria-label="測る所">
+            <button type="button" data-mode="top" aria-pressed="true">身幅（上）</button>
+            <button type="button" data-mode="bottom" aria-pressed="false">ウエスト（下）</button>
+          </span>
+        </div>
+        <div class="row" style="margin-top:10px">
+          <input type="range" id="fit" min="44" max="64" step="1" value="55" aria-describedby="fit-hint">
+          <output for="fit" id="fit-out">55cm</output>
+        </div>
+        <p class="hint" id="fit-hint">ちょうどいい服を平らに置き、脇の下から脇の下までを測って入れると、前後2cmに入る品が残ります。</p>
+        <p class="hit" id="fit-hit" aria-live="polite"></p>
+      </div>
+      <table class="manifest">
+        <thead><tr><th scope="col">荷札</th><th scope="col">品</th><th scope="col">実寸</th><th scope="col" style="text-align:right">値段</th><th scope="col"><span style="position:absolute;left:-999px">カート</span></th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <noscript><p style="margin-top:12px">表の品は、店頭とオンラインストアの両方で売っています。</p></noscript>
+      <div class="terms" id="shipping">
+        <p><b>送料</b>全国 880円。15,000円以上は無料。金曜の注文は月曜に出荷します。</p>
+        <p><b>返品</b>届いて7日以内、書いた実寸と1.5cm以上違うときに受けます。それ以外は1点ものなので受けていません。</p>
+        <p><b>取り置き</b>店頭で3日まで。オンラインの注文は取り置きできません。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="friday" id="friday" aria-labelledby="fri-h">
+  <p class="fri" aria-hidden="true">FRI</p>
+  <div class="in">
+    <div>
+      <h2 id="fri-h">金曜の入荷の流れ</h2>
+      <p class="intro">古着は、45kgに圧縮したベールで港に届きます。金曜の朝に開けて、1点ずつ測ってから出します。</p>
+      <ol class="steps">
+        <li><p class="t">16:00<span>木曜</span></p><div><h3>ベールが第2倉庫に着く</h3><p>アメリカから2つ、ヨーロッパから1つ。中身は開けるまで分かりません。</p></div></li>
+        <li><p class="t">7:00<span>金曜</span></p><div><h3>ベールを開けて仕分ける</h3><p>1つから出せる品は、多い週で20点ほど。傷みのある物は直すか、出さずに戻します。</p></div></li>
+        <li><p class="t">9:00<span>金曜</span></p><div><h3>実寸を測って、荷札を付ける</h3><p>身幅・着丈・ウエスト・股下を測り、赤紫の荷札に番号と値段を書きます。</p></div></li>
+        <li class="open"><p class="t">11:00<span>金曜</span></p><div><h3>店の扉を開け、オンラインにも出す</h3><p>店頭とオンラインストアに同じ時刻に出します。並んだ順でも、注文の順でもありません。</p></div></li>
+      </ol>
+    </div>
+    <div>
+      <figure class="fri-photo" style="margin-bottom:0">
+        <div class="win tagshape"><span class="hole" aria-hidden="true"></span><img src="photos/Bags-of-sorted-secondhand-clothing.jpg" width="1280" height="667" alt="壁ぎわに積まれた、仕分けた古着の詰まった袋" loading="lazy"></div>
+        <figcaption class="cap">仕分けた古着を詰めた袋の山（チェコ）。この店のベールではありません。<br>写真：MAKY.OREL／<span style="white-space:nowrap">Wikimedia Commons／<a href="https://commons.wikimedia.org/w/index.php?curid=147961664">CC0</a></span></figcaption>
+      </figure>
+      <div class="bale" data-object>
+        <p class="s">USA MIXED</p>
+        <p class="s2">45 KG ／ LOT 45-A</p>
+        <p>ベールに刷られている札の写し。今週はこの1つから5点を出しました。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="store" id="store" aria-labelledby="st-h">
+  <div class="in">
+    <figure class="store-photo" style="margin-bottom:0">
+      <div class="win tagshape"><img src="photos/Nagaura-Port-Warehouse-District---01.jpg" width="960" height="640" alt="港の倉庫が並ぶ通り。木の外壁の大きな倉庫と、細い道" loading="lazy"></div>
+      <figcaption class="cap">横須賀・長浦の港の倉庫街。汐見港の倉庫も、これと同じ木の外壁の造りです（この写真は汐見港ではありません）。<br>写真：Quercus acuta／<span style="white-space:nowrap">Wikimedia Commons／<a href="https://commons.wikimedia.org/w/index.php?curid=192009013">CC BY-SA 4.0</a></span></figcaption>
+    </figure>
+    <div>
+      <p class="name" aria-hidden="true">SOKO 2</p>
+      <h2 id="st-h">店舗情報</h2>
+      <p class="addr">汐見市港町2-14　汐見港 第2倉庫（海側の大きな扉）<br>汐見駅の南口から歩いて9分</p>
+      <dl class="hours">
+        <dt>金・土・日・月</dt><dd>11:00–19:00</dd>
+        <dt>火・水・木</dt><dd class="closed">定休日 <span>（ベールの受け取りと仕分け）</span></dd>
+      </dl>
+      <div class="map">
+        <svg viewBox="0 0 640 250" role="img" aria-labelledby="map-t">
+          <title id="map-t">汐見駅の南口から港町通りを海へまっすぐ歩き、突き当たりの3つの倉庫のまん中が第2倉庫</title>
+          <rect x="0" y="196" width="640" height="54" fill="#1f2a5c"/>
+          <text x="20" y="232" fill="#fff" font-family="Noto Sans JP" font-size="16">汐見港</text>
+          <path d="M0 196 H640" stroke="#161616" stroke-width="2"/>
+          <path d="M30 40 H420 V150" fill="none" stroke="#161616" stroke-width="10" stroke-linejoin="round"/>
+          <path d="M30 40 H420 V150" fill="none" stroke="#f1f0ec" stroke-width="5" stroke-dasharray="2 10" stroke-linecap="round"/>
+          <rect x="6" y="18" width="88" height="44" fill="#161616"/>
+          <text x="50" y="47" fill="#fff" font-family="Noto Sans JP" font-size="16" text-anchor="middle">汐見駅</text>
+          <text x="200" y="28" fill="#161616" font-family="Noto Sans JP" font-size="15">港町通り　歩いて9分</text>
+          <rect x="280" y="150" width="96" height="46" fill="#d9d6cf"/>
+          <rect x="384" y="150" width="96" height="46" fill="#b0269a"/>
+          <rect x="488" y="150" width="96" height="46" fill="#d9d6cf"/>
+          <text x="328" y="179" font-family="Big Shoulders Stencil Display" font-weight="700" font-size="22" text-anchor="middle" fill="#161616">1</text>
+          <text x="432" y="179" font-family="Big Shoulders Stencil Display" font-weight="700" font-size="22" text-anchor="middle" fill="#fff">2</text>
+          <text x="536" y="179" font-family="Big Shoulders Stencil Display" font-weight="700" font-size="22" text-anchor="middle" fill="#161616">3</text>
+          <text x="500" y="128" fill="#161616" font-family="Noto Sans JP" font-size="15">ここ</text>
+          <path d="M496 124 L452 146" stroke="#b0269a" stroke-width="3"/>
+        </svg>
+      </div>
+      <p class="note">駐車場はありません。港の公共駐車場（30分 200円）を使ってください。金曜の11時前は、倉庫の前の岸壁に並べます。</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="in">
+    <p class="logo">OPEN BALE</p>
+    <ul>
+      <li><a href="#arrivals">今週の入荷</a></li>
+      <li><a href="#shipping">送料と返品</a></li>
+      <li><a href="#friday">金曜の入荷の流れ</a></li>
+      <li><a href="legal.html">特定商取引法に基づく表記</a></li>
+      <li><a href="#store">店舗情報</a></li>
+      <li><a href="mailto:shop@example.com">お問い合わせ</a></li>
+    </ul>
+  </div>
+  <p class="small">site-skills の作例です。店・港・住所・品・値段はすべて架空です。写真は Wikimedia Commons の自由に使える写真で、どれもこの店・この店の品ではありません（出典は各写真の横）。</p>
+</footer>
+
+<p class="status" id="status" role="status" aria-live="polite"></p>
+
+<script>
+(() => {
+  // 今週の入荷表（ロット45。11月6日（金）に開けた3つのベールから）。架空。
+  const items = [
+    {no:'45-01', nm:'ダック地のワークジャケット（茶）', from:'アメリカ 1980年代', top:58, len:68, price:16500},
+    {no:'45-02', nm:'モールスキンの作業着の上着（青）', from:'フランス 1960年代', top:54, len:72, price:24200, sold:'11月6日 店頭で'},
+    {no:'45-03', nm:'ネルシャツ（赤と黒の格子）', from:'アメリカ 1990年代', top:57, len:78, price:6600},
+    {no:'45-04', nm:'フィッシャーマンセーター（生成り）', from:'アイルランド 1980年代', top:56, len:66, price:12100},
+    {no:'45-05', nm:'デニムのカバーオール', from:'アメリカ 1970年代', top:60, len:74, price:19800},
+    {no:'45-06', nm:'前Vのスウェット（灰）', from:'アメリカ 1980年代', top:52, len:63, price:9900, sold:'11月6日 オンラインで'},
+    {no:'45-07', nm:'軍のウールセーター（オリーブ）', from:'イギリス 1990年代', top:50, len:64, price:7700},
+    {no:'45-08', nm:'レーヨンのボウリングシャツ（えんじ）', from:'アメリカ 1960年代', top:55, len:73, price:11000},
+    {no:'45-09', nm:'ヘリンボーンの作業パンツ（灰）', from:'ドイツ 1970年代', waist:80, inseam:76, price:8800},
+    {no:'45-10', nm:'色の落ちたデニムパンツ', from:'アメリカ 1990年代', waist:84, inseam:78, price:13200},
+    {no:'45-11', nm:'ウールのチェスターコート（濃紺）', from:'イタリア 1980年代', top:55, len:104, price:18700, sold:'11月7日 店頭で'},
+    {no:'45-12', nm:'ローデンのジャケット（緑）', from:'オーストリア 1970年代', top:53, len:70, price:15400}
+  ];
+  const yen = n => n.toLocaleString('ja-JP');
+  const tbody = document.getElementById('rows');
+  const cart = new Set();
+  tbody.innerHTML = items.map(it => {
+    const size = it.top ? `身幅 <b>${it.top}</b>　着丈 <b>${it.len}</b>` : `ウエスト <b>${it.waist}</b>　股下 <b>${it.inseam}</b>`;
+    const act = it.sold ? `<span class="soldnote">売れました（${it.sold}）</span>` : `<button type="button" class="addbtn" data-no="${it.no}" aria-pressed="false">カートに入れる</button>`;
+    return `<tr data-no="${it.no}"${it.sold ? ' class="sold"' : ''}><td class="no">${it.no}</td><td class="item"><b>${it.nm}</b><span>${it.from}</span></td><td class="size">${size}</td><td class="price">¥${yen(it.price)}<small>税込</small></td><td class="act">${act}</td></tr>`;
+  }).join('');
+
+  // 触れる1つ：手持ちの服の実寸で、合う品だけを残す
+  const fit = document.getElementById('fit'), out = document.getElementById('fit-out'), hit = document.getElementById('fit-hit'), hint = document.getElementById('fit-hint');
+  const segs = document.querySelectorAll('.seg button');
+  let mode = 'top';
+  const RANGE = {top:[44,64,55], bottom:[68,96,82]};
+  function apply(){
+    const v = +fit.value; out.textContent = v + 'cm';
+    let n = 0, names = [];
+    items.forEach(it => {
+      const tr = tbody.querySelector(`tr[data-no="${it.no}"]`);
+      const m = mode === 'top' ? it.top : it.waist;
+      const ok = !it.sold && m != null && Math.abs(m - v) <= 2;
+      tr.classList.toggle('fit', ok);
+      if (ok) { n++; names.push(it.no); }
+    });
+    hit.textContent = n ? `${v}cm の前後2cmで、まだ買える品は ${n}点（${names.join('・')}）。` : `${v}cm の前後2cmに入る品は、今週はありません。次の入荷は11月13日（金）です。`;
+  }
+  segs.forEach(b => b.addEventListener('click', () => {
+    mode = b.dataset.mode; segs.forEach(x => x.setAttribute('aria-pressed', x === b));
+    const [mn, mx, d] = RANGE[mode]; fit.min = mn; fit.max = mx; fit.value = d;
+    hint.textContent = mode === 'top' ? 'ちょうどいい服を平らに置き、脇の下から脇の下までを測って入れると、前後2cmに入る品が残ります。' : 'ちょうどいいパンツを平らに置き、ウエストの端から端までを測って2倍した値を入れると、前後2cmに入る品が残ります。';
+    apply();
+  }));
+  fit.addEventListener('input', apply);
+  apply();
+
+  // カートに入れる：ページを移さず、押した所とヘッダーの数で返す（ec-quality-bar rules 1）
+  const count = document.getElementById('cartcount'), link = document.getElementById('cartlink'), status = document.getElementById('status');
+  let timer;
+  tbody.addEventListener('click', e => {
+    const b = e.target.closest('.addbtn'); if (!b) return;
+    const no = b.dataset.no, it = items.find(x => x.no === no);
+    if (cart.has(no)) { cart.delete(no); b.textContent = 'カートに入れる'; b.setAttribute('aria-pressed', 'false'); status.textContent = `${no} ${it.nm} をカートから出しました。`; }
+    else { cart.add(no); b.textContent = 'カートに入りました'; b.setAttribute('aria-pressed', 'true');
+      const sum = [...cart].reduce((s, k) => s + items.find(x => x.no === k).price, 0);
+      status.textContent = `${no} ${it.nm} をカートに入れました。合計 ¥${yen(sum)}、${sum >= 15000 ? '送料は無料です' : `あと ¥${yen(15000 - sum)} で送料が無料です`}。`; }
+    count.textContent = cart.size; link.setAttribute('aria-label', `カート（${cart.size}点）`);
+    status.classList.add('on'); clearTimeout(timer); timer = setTimeout(() => status.classList.remove('on'), 4000);
+  });
+})();
+</script>
+</body>
+</html>
