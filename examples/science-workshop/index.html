@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>週末ラボ 12月の回｜鴨谷市立こども科学館</title>
+<meta name="description" content="鴨谷市立こども科学館の子ども向けワークショップ「週末ラボ」。12月は土日に8回（スライム・備長炭電池・星座早見盤・ミョウバンの結晶）。対象の学年、定員と残り、材料費、持ち物、取り消しの決まり、行き方。">
+<!--
+  site-skills の作例（架空の科学館。館の名前・鴨谷市・汐見町・回の日時・定員・残り・材料費・決まりはすべて作り物）。予約は確定させない。
+  依頼主の希望（決まりの順のいちばん上）：「ポップで楽しく。ヒーローは大きなタイポグラフィと人の写真をバーンと」→ SKILL.md の最初の画面の型②。
+  主の色：#0a78ab（硫酸銅の結晶の青。館の1階ロビーに、こぶし大の硫酸銅の結晶の標本を置いている、という設定〔架空〕。色相 約199°）
+  選んだスキル：主 booking-quality-bar（空きを探して予約してもらう。下位タイプ「レンタル・体験」types/rental-activity.md）。
+    見た目は site-skills の taste.md（型②）と aesthetic.md（3色・量は大胆に）で決め、副の lp-quality-bar は足さなかった（最大2つのうち1つで足りた）。
+  題材の特色：月に8回だけ開く、土日の実験教室。回ごとに学年の幅が違い、材料費は当日払い。12月は星座早見盤の回がある。
+  考えの一文：このページでは、星座早見盤の日付の目盛りが、12月の8回を選ぶ部品になる。
+  色（aesthetic.md の3色）：地 #ffffff／主 #0a78ab（硫酸銅の青）／差し色 #ffd23c（星座早見盤に刷られた星の黄）。文字 #10212b。
+    ほかの作例の主（青 225〜230°・翡翠 178°・藤 260° ほか）と20°以上離した。
+  手本の測定（work/oneshot5/science-workshop/sample.jsonl、scripts/sample.js、PC 1440px、6件中6件が開けた）：
+    - kahaku.go.jp：本文 UD ゴシック（TBUDゴシック）16〜18px 600・#222、章の題 40px → 本文は BIZ UDPGothic 17px（UD 書体の Google Fonts 版）、文字 #10212b。
+    - tokyo-skytree.jp：大きな英字は丸い Quicksand 80px 400、ボタンの角 17.5px → 題は丸ゴシック（Zen Maru Gothic 700）、ボタンは「まる」1種。
+    - lostshore.com・othership.us：罫 0〜1、ボタンの角 0〜5 → 全幅の罫は引かない。罫は回の表の行だけ。
+    - teamlabplanets.dmm.com：本文 14px #444（小さく灰色。真似ない）。miraikan.jst.go.jp：本文 14px・#333、主の青 #0068b7（色は真似ない）。
+  booking の型（rental-activity.md「真似る型」）：1 枠は時刻順に全部並べ、満員も残す／3 残りは数で、境目を凡例に／4 人数で枠を絞る／
+    5 選んだらその場で単価×人数と合計／6 取り消しの期限を日付に直して合計のすぐ下に／10 当日の条件（学年・付き添い）は申し込みのそば／11 受付の開き方を枠のそばに。
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Zen+Maru+Gothic:wght@700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="photos/Research-chemistry-children-cut.webp" fetchpriority="high">
+<style>
+:root{
+  --ground:#ffffff;      /* 地 */
+  --main:#0a78ab;        /* 主：硫酸銅の結晶の青 */
+  --main-deep:#075a80;
+  --accent:#ffd23c;      /* 差し色：星座早見盤の星の黄 */
+  --ink:#10212b;
+  --ink-soft:#33434d;
+  --line:#c9d6dd;
+  --round:"Zen Maru Gothic","BIZ UDPGothic",sans-serif;
+  --body:"BIZ UDPGothic","Hiragino Sans",sans-serif;
+  --gutter:clamp(16px,4.4vw,64px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.85;word-break:auto-phrase;text-wrap:pretty;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:var(--round);font-weight:700;line-height:1.1;margin:0;text-wrap:balance}
+p{margin:0 0 .8em}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.credit{font-size:13px;line-height:1.6;color:var(--ink-soft)}
+.on-main .credit{color:#fff}
+
+/* ───── 最初の画面 ───── */
+.hero{position:relative;background:var(--main);color:#fff;min-height:100svh;overflow:hidden;isolation:isolate}
+.top{position:relative;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:18px var(--gutter)}
+.top .house{font-weight:700;font-size:17px;text-decoration:none}
+.top nav{display:flex;gap:28px;font-size:15px}
+.top nav a{text-decoration:none;padding:6px 0}
+.top nav a:hover{text-decoration:underline;text-underline-offset:6px}
+.hero h1{position:absolute;z-index:1;left:calc(var(--gutter) - .05em);top:84px;font-size:min(22.5vw,340px);line-height:.92;letter-spacing:-.02em;white-space:nowrap;margin:0}
+.hero h1 .sub{display:block;font-size:max(18px,.075em);letter-spacing:.06em;line-height:1.4;margin:0 0 .15em .2em;font-family:var(--body)}
+.dial-ring{position:absolute;z-index:0;right:calc(5vw - 120px);top:calc(50% - 360px + 40px);width:780px;height:780px;pointer-events:none}
+.hero .kid{position:absolute;z-index:3;right:4vw;bottom:-40svh;height:100svh;width:auto;max-width:none}
+.hero .lead{position:absolute;z-index:4;left:var(--gutter);bottom:56px;max-width:600px}
+.hero .when{font-family:var(--round);font-size:clamp(28px,3.4vw,48px);line-height:1.2;margin:0 0 14px}
+.hero .what{font-size:17px;line-height:1.75;margin:0 0 22px}
+.btn{display:inline-flex;align-items:center;gap:.6em;min-height:52px;padding:12px 30px;border-radius:999px;border:0;font:700 17px/1.3 var(--body);text-decoration:none;cursor:pointer;background:var(--ink);color:#fff;transition:transform .15s ease}
+.btn:hover{transform:translateY(-2px)}
+.on-main .btn,.hero .btn{background:#fff;color:var(--ink)}
+.btn:active{transform:translateY(1px)}
+.btn[disabled]{background:#e4ecf0;color:#4a5a63;cursor:not-allowed;transform:none}
+.hero .open{font-size:15px;margin:14px 0 0}
+.hero .kid-credit{position:absolute;z-index:4;right:var(--gutter);bottom:12px;max-width:340px;text-align:right;background:var(--main-deep);padding:4px 10px;color:#fff}
+
+/* ───── 章の共通 ───── */
+section{position:relative}
+.big{font-size:clamp(56px,9vw,136px);letter-spacing:-.01em}
+.wrap{padding:0 var(--gutter)}
+
+/* ───── 12月の8回 ───── */
+.sessions{padding:120px 0 0;overflow:hidden}
+.sessions .head{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.sessions .head p{max-width:520px;margin:0 0 10px}
+.book{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:56px;align-items:start;margin-top:48px}
+.dial-box{position:sticky;top:24px;margin-left:calc(-1 * var(--gutter) - 40px)}
+.dial{width:100%;max-width:720px;height:auto;display:block;overflow:visible}
+.dial .mark{cursor:pointer}
+.dial .mark:focus-visible circle{stroke:var(--ink);stroke-width:4}
+.dial-box .credit{margin:6px 0 0 calc(var(--gutter) + 40px)}
+.filters{display:flex;flex-wrap:wrap;gap:16px 28px;margin:0 0 20px}
+.filters label{display:flex;flex-direction:column;font-weight:700;font-size:15px;gap:6px}
+.filters select{font:400 17px var(--body);color:var(--ink);background:#fff;border:2px solid var(--ink);border-radius:999px;padding:9px 40px 9px 18px;min-height:46px;appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 22px) 20px,calc(100% - 16px) 20px;background-size:6px 6px;background-repeat:no-repeat}
+.legend{font-size:15px;color:var(--ink-soft);margin:0 0 6px}
+.rows{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.rows li{border-bottom:1px solid var(--line)}
+.row{all:unset;box-sizing:border-box;display:grid;grid-template-columns:150px 1fr auto;gap:4px 20px;width:100%;padding:14px 12px;cursor:pointer;align-items:baseline}
+.row:hover{background:#eef7fb}
+.row:focus-visible{outline:3px solid var(--main);outline-offset:-3px}
+.row[aria-pressed="true"]{background:var(--main);color:#fff}
+.row[aria-pressed="true"] .meta{color:#fff}
+.row .d{font-family:var(--round);font-size:22px;line-height:1.3}
+.row .t{font-weight:700;font-size:17px}
+.row .meta{grid-column:2/3;font-size:15px;color:var(--ink-soft)}
+.row .left{grid-row:1/3;grid-column:3;text-align:right;font-size:15px;line-height:1.4;white-space:nowrap;align-self:center}
+.row .left b{font-family:var(--round);font-size:26px;margin:0 2px}
+.row.few .left b{color:#b3261e}
+.row[aria-pressed="true"].few .left b{color:var(--accent)}
+.row[aria-disabled="true"]{cursor:not-allowed}
+.row[aria-disabled="true"] .d,.row[aria-disabled="true"] .t{text-decoration:line-through;text-decoration-thickness:1px}
+.row .why{grid-column:2/4;font-size:15px;font-weight:700;color:#8a3b00}
+.picked{margin-top:56px;background:var(--accent);padding:44px var(--gutter) 52px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 56px;align-items:start}
+.picked h3{font-size:clamp(30px,3.6vw,52px);line-height:1.2}
+.picked .none{font-size:22px}
+.bill{width:100%;border-collapse:collapse;font-size:17px}
+.bill td{padding:8px 0;border-bottom:1px solid rgba(16,33,43,.25)}
+.bill td:last-child{text-align:right;white-space:nowrap}
+.bill tr.sum td{border-bottom:0;padding-top:14px;font-family:var(--round);font-size:34px}
+.cancel{font-weight:700;font-size:17px;margin:14px 0 18px}
+.notice{font-size:15px;margin:12px 0 0}
+.done{margin-top:12px;font-weight:700}
+
+/* ───── 4つの実験 ───── */
+.labs{padding:140px 0 0}
+.lab-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:40px}
+.lab{position:relative;padding:0 0 64px}
+.lab .ph{position:relative;overflow:hidden;margin:0}
+.lab .ph img{width:100%;height:100%;object-fit:cover}
+.lab h3{font-size:clamp(48px,6.4vw,96px);color:var(--main);margin:18px 0 12px}
+.lab dl{display:grid;grid-template-columns:7em 1fr;gap:2px 16px;margin:0 0 10px}
+.lab dt{font-weight:700}
+.lab dd{margin:0}
+.lab-slime{grid-row:1/3;padding-right:56px}
+.lab-slime .ph{height:1180px;margin-left:calc(-1 * var(--gutter))}
+.lab-slime .txt{padding-left:0}
+.lab-battery .ph{height:420px;margin-right:calc(-1 * var(--gutter))}
+.lab-star .ph{height:420px;margin-right:calc(-1 * var(--gutter))}
+.lab-crystal{grid-column:1/3;background:var(--main);color:#fff;margin:0 calc(-1 * var(--gutter));padding:56px var(--gutter) 64px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:40px;align-items:center}
+.lab-crystal h3{color:#fff;margin-top:0}
+.lab-crystal dt{color:#fff}
+.grow{display:flex;align-items:flex-end;gap:clamp(12px,3vw,44px)}
+.grow figure{margin:0;text-align:center;font-size:15px}
+.grow svg{display:block;margin:0 auto 8px}
+.grow b{display:block;font-family:var(--round);font-size:26px;color:var(--accent);line-height:1.2}
+
+/* ───── 当日のこと ───── */
+.day{padding:140px 0 0}
+.day-band{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.618fr);margin-top:40px;min-height:620px}
+.day-band .steps{background:var(--accent);padding:48px var(--gutter) 40px}
+.day-band ol{list-style:none;margin:0;padding:0}
+.day-band li{display:grid;grid-template-columns:5.6em 1fr;gap:4px 14px;padding:12px 0}
+.day-band li b{font-family:var(--round);font-size:26px;line-height:1.2;white-space:nowrap}
+.day-band figure{margin:0;position:relative}
+.day-band figure img{width:100%;height:100%;object-fit:cover}
+.day-band figcaption{position:absolute;left:0;bottom:0;background:var(--ink);color:#fff;padding:6px 12px;max-width:560px}
+.day-band figcaption .credit{color:#e6edf1}
+.bring{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:56px;margin-top:72px}
+.bring h3,.rules h3{font-size:clamp(34px,4vw,56px);margin:0 0 18px}
+.bring table{width:100%;border-collapse:collapse}
+.bring th,.bring td{text-align:left;vertical-align:top;padding:12px 0;border-bottom:1px solid var(--line)}
+.bring th{width:8.5em;font-family:var(--round);font-size:22px;color:var(--main);padding-right:16px}
+.rules{background:var(--main);color:#fff;margin-right:calc(-1 * var(--gutter));padding:40px var(--gutter) 44px 48px}
+.rules .limit{font-family:var(--round);font-size:clamp(44px,5.2vw,76px);line-height:1.1;margin:0 0 6px;color:var(--accent)}
+.rules ul{margin:18px 0 0;padding:0 0 0 1.1em}
+.rules li{margin:0 0 .6em}
+
+/* ───── 行き方 ───── */
+.access{padding:140px 0 0;overflow:hidden}
+.access-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:56px;align-items:start;margin-top:40px}
+.window{position:relative;margin-right:-20px}
+.window .oval{aspect-ratio:1.45/1;border-radius:50%;overflow:hidden;border:18px solid var(--main);outline:10px solid var(--accent);outline-offset:-2px}
+.window .oval img{width:100%;height:100%;object-fit:cover;object-position:30% 40%}
+.window .credit{margin-top:14px}
+.route{margin:0 0 24px}
+.route svg{width:100%;height:34px;display:block}
+.route .ends{display:flex;justify-content:space-between;margin:0 0 4px;font-size:17px}
+.route .mid{text-align:center;margin:6px 0 0}
+.addr{font-size:17px;font-weight:700}
+.access dl{display:grid;grid-template-columns:6.5em 1fr;gap:6px 16px;margin:16px 0 0}
+.access dt{font-weight:700}
+.access dd{margin:0}
+
+/* ───── おわり ───── */
+footer{margin-top:140px;background:var(--main);color:#fff;padding:64px var(--gutter) 120px}
+footer .name{font-family:var(--round);font-size:clamp(40px,6vw,88px);line-height:1.1;margin:0 0 28px}
+.foot-grid{display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:40px}
+footer ul{list-style:none;margin:0;padding:0}
+footer li{margin:0 0 8px}
+footer .credit{color:#fff}
+footer .credit li{margin:0 0 6px}
+
+/* ───── スマホの下の帯 ───── */
+.sp-bar{display:none}
+
+@media (max-width:900px){
+  .top nav{display:none}
+  .hero{min-height:auto;padding-bottom:28px}
+  .hero h1{position:relative;top:auto;left:auto;font-size:34vw;padding:10px 0 0 calc(var(--gutter) - .04em);white-space:normal;line-height:.9}
+  .hero h1 .sub{font-size:16px;margin-left:4px}
+  .dial-ring{width:520px;height:520px;right:-190px;top:150px}
+  .hero .kid{position:relative;right:auto;bottom:auto;height:auto;width:100vw;max-width:none;margin:-10vw -12vw 0 auto}
+  .hero .lead{position:relative;z-index:4;left:auto;bottom:auto;background:var(--main);margin-top:-46vw;padding:20px var(--gutter) 0;max-width:none}
+  .hero .kid-credit{position:relative;right:auto;bottom:auto;text-align:left;margin:16px var(--gutter) 0;max-width:none;display:block;width:fit-content}
+  .book{grid-template-columns:1fr;gap:20px}
+  .dial-box{position:relative;top:auto;margin:0 calc(-1 * var(--gutter));}
+  .dial{max-width:none;width:100%}
+  .dial-box .credit{margin:6px var(--gutter) 0}
+  .row{grid-template-columns:1fr auto;padding:14px 4px}
+  .row .meta{grid-column:1/2}
+  .row .t{grid-column:1/2}
+  .row .left{grid-column:2;grid-row:1/4}
+  .row .why{grid-column:1/3}
+  .picked{grid-template-columns:1fr}
+  .lab-grid{grid-template-columns:1fr}
+  .lab-slime{grid-row:auto;padding-right:0}
+  .lab-slime .ph{height:520px;margin:0 calc(-1 * var(--gutter))}
+  .lab-battery .ph,.lab-star .ph{height:280px;margin:0 calc(-1 * var(--gutter))}
+  .lab-crystal{grid-column:auto;grid-template-columns:1fr}
+  .lab dl{grid-template-columns:5.5em 1fr}
+  .day-band{grid-template-columns:1fr}
+  .day-band figure{order:-1}
+  .day-band figure img{height:300px}
+  .day-band figcaption{position:static;max-width:none}
+  .bring th{width:6em}
+  .bring,.access-grid,.foot-grid{grid-template-columns:1fr;gap:40px}
+  .window{margin:0 calc(-1 * var(--gutter))}
+  .rules{margin:0 calc(-1 * var(--gutter));padding:36px var(--gutter) 40px}
+  .window .oval{border-width:12px}
+  .window .credit{padding:0 var(--gutter)}
+  .sp-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--ink);color:#fff;padding:10px 16px calc(10px + env(safe-area-inset-bottom));gap:12px;align-items:center;justify-content:space-between}
+  .sp-bar span{font-size:15px;line-height:1.4}
+  .sp-bar .btn{min-height:48px;padding:10px 20px;font-size:15px;flex:none;background:#fff;color:var(--ink)}
+  footer{padding-bottom:140px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="hero on-main" id="top">
+  <div class="top">
+    <a class="house" href="#top">鴨谷市立こども科学館</a>
+    <nav aria-label="このページの中">
+      <a href="#sessions">12月の回</a>
+      <a href="#labs">4つの実験</a>
+      <a href="#day">当日のこと</a>
+      <a href="#access">行き方</a>
+    </nav>
+  </div>
+
+  <h1><span class="sub">子どものワークショップ</span>週末ラボ</h1>
+
+  <!-- 星座早見盤の目盛り（12月の31日。8回の日に星の黄の印） -->
+  <svg class="dial-ring" viewBox="-400 -400 800 800" aria-hidden="true" data-object>
+    <circle r="372" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="2"/>
+    <circle r="330" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="2"/>
+    <g id="ringTicks"></g>
+  </svg>
+
+  <img class="kid" src="photos/Research-chemistry-children-cut.webp" width="614" height="698" alt="保護めがねをかけ、赤い液の入ったビーカーを持ち上げて見る男の子" data-object fetchpriority="high">
+
+  <div class="lead">
+    <p class="when">12月5日（土）〜27日（日）<br>土日に8回</p>
+    <p class="what">スライム、備長炭電池、星座早見盤、ミョウバンの結晶。<br>年長から中学生まで、回ごとに対象の学年が違います。</p>
+    <a class="btn" href="#sessions">12月の回を選ぶ</a>
+    <p class="open">11月1日（日）10時から受付中・先着順・材料費は当日払い</p>
+  </div>
+
+  <p class="credit kid-credit">写真の男の子は科学館の参加者ではありません。背景を消して切り抜き、服の柄の字を消しました。写真：Viktoria Borodinova／Wikimedia Commons／CC BY-SA 4.0</p>
+</header>
+
+<main>
+
+<section class="sessions" id="sessions" aria-labelledby="sessions-h">
+  <div class="wrap head">
+    <h2 class="big" id="sessions-h">12月の8回</h2>
+    <p>学年と人数を選ぶと、参加できる回だけが選べます。早見盤の目盛りか、表の行から回を選んでください。</p>
+  </div>
+
+  <div class="wrap book">
+    <div class="dial-box">
+      <svg class="dial" id="dial" viewBox="-400 -400 800 800" role="group" aria-label="星座早見盤の形の12月の暦。8回の日が選べます" data-object>
+        <defs>
+          <clipPath id="win"><ellipse cx="0" cy="-10" rx="205" ry="150"/></clipPath>
+        </defs>
+        <circle r="392" fill="#0a78ab"/>
+        <circle r="300" fill="#10212b"/>
+        <image href="photos/20151024-GCC-Girl-Scout-Science-Day-22468311942.jpg" x="-210" y="-260" width="420" height="634" clip-path="url(#win)" preserveAspectRatio="xMidYMid slice"/>
+        <ellipse cx="0" cy="-10" rx="205" ry="150" fill="none" stroke="#ffd23c" stroke-width="6"/>
+        <text x="0" y="200" text-anchor="middle" fill="#ffffff" font-family="Zen Maru Gothic, sans-serif" font-size="44">12月</text>
+        <text x="0" y="244" text-anchor="middle" fill="#ffffff" font-family="BIZ UDPGothic, sans-serif" font-size="20">土日の8回</text>
+        <g id="dialTicks"></g>
+        <g id="dialMarks"></g>
+      </svg>
+      <p class="credit">早見盤の窓の中：試験管の色を見比べる女の子（米国バージニア州のガールスカウトの科学の日）。科学館の参加者ではありません。写真：Germanna CC／Wikimedia Commons／CC BY 2.0</p>
+    </div>
+
+    <div>
+      <div class="filters">
+        <label>お子さんの学年
+          <select id="grade">
+            <option value="">選ばない（全部の回）</option>
+            <option value="0">年長</option>
+            <option value="1">小学1年</option>
+            <option value="2">小学2年</option>
+            <option value="3">小学3年</option>
+            <option value="4">小学4年</option>
+            <option value="5">小学5年</option>
+            <option value="6">小学6年</option>
+            <option value="7">中学1年</option>
+            <option value="8">中学2年</option>
+            <option value="9">中学3年</option>
+          </select>
+        </label>
+        <label>参加する子ども
+          <select id="kids">
+            <option value="1">1人</option>
+            <option value="2">2人</option>
+            <option value="3">3人</option>
+          </select>
+        </label>
+        <label>付き添いの大人
+          <select id="adults">
+            <option value="0">0人</option>
+            <option value="1" selected>1人</option>
+            <option value="2">2人</option>
+          </select>
+        </label>
+      </div>
+      <p class="legend">残りは席の数です。残り3席以下は赤い字。満員の回は消さずに残し、キャンセル待ちを受け付けます。</p>
+      <ul class="rows" id="rows"></ul>
+    </div>
+  </div>
+
+  <div class="picked" id="picked" aria-live="polite"></div>
+</section>
+
+<section class="labs" id="labs" aria-labelledby="labs-h">
+  <div class="wrap">
+    <h2 class="big" id="labs-h">4つの実験</h2>
+    <div class="lab-grid">
+      <article class="lab lab-slime">
+        <figure class="ph">
+          <img src="photos/UFV-Science-Rocks-14720861332.jpg" width="960" height="1440" alt="のばしたスライムを顔の前に広げる男の子" loading="lazy" style="object-position:50% 30%">
+        </figure>
+        <div class="txt">
+          <h3>スライム</h3>
+          <p>洗濯のりとホウ砂の水を混ぜて、のびる・ちぎれる・はねるの違いを確かめます。色は8色から1つ。</p>
+          <dl>
+            <dt>回</dt><dd>12月5日（土）・13日（日） 10:30〜11:30</dd>
+            <dt>対象</dt><dd>年長〜小学2年（大人の付き添いが要ります）</dd>
+            <dt>定員</dt><dd>各回 20人</dd>
+            <dt>材料費</dt><dd>1人 200円</dd>
+            <dt>持ち帰る物</dt><dd>スライム（袋は館で用意します）</dd>
+          </dl>
+          <p class="credit">写真：大学の科学の催しでスライムをのばす男の子（カナダ）。科学館の参加者ではありません。University of the Fraser Valley／Wikimedia Commons／CC BY 2.0</p>
+        </div>
+      </article>
+
+      <article class="lab lab-battery">
+        <figure class="ph">
+          <img src="photos/Potato-batteries---real-green-energy-from-potatoes-by-Videok.jpg" width="960" height="720" alt="何十個ものじゃがいもを導線でつないだ電池" loading="lazy">
+        </figure>
+        <h3>備長炭電池</h3>
+        <p>備長炭にアルミホイルと食塩水のキッチンペーパーを巻き、電子オルゴールを鳴らします。じゃがいも・レモンでも試します。</p>
+        <dl>
+          <dt>回</dt><dd>12月6日（日） 10:30〜12:00／20日（日） 14:00〜15:30</dd>
+          <dt>対象</dt><dd>小学3年〜6年</dd>
+          <dt>定員</dt><dd>各回 16人</dd>
+          <dt>材料費</dt><dd>1人 350円</dd>
+        </dl>
+        <p class="credit">写真：じゃがいもをつないだ電池（フィンランド）。Hannu Makarainen／Wikimedia Commons／CC BY-SA 2.0</p>
+      </article>
+
+      <article class="lab lab-star">
+        <figure class="ph">
+          <img src="photos/GalileoMobile-completes-exciting-journey-galileomobile-potw.jpg" width="960" height="695" alt="民族衣装の子どもたちが、順番に望遠鏡をのぞく" loading="lazy" style="object-position:50% 35%">
+        </figure>
+        <h3>星座早見盤</h3>
+        <p>厚紙の盤に12月の夜空を写し、日付と時刻を合わせて回します。26日は屋上で冬の大三角を探します（曇りと雨はプラネタリウムで）。</p>
+        <dl>
+          <dt>回</dt><dd>12月12日（土） 14:00〜15:30／26日（土） 17:00〜19:00</dd>
+          <dt>対象</dt><dd>小学1年〜6年（小学3年までは付き添いが要ります）</dd>
+          <dt>定員</dt><dd>各回 24人</dd>
+          <dt>材料費</dt><dd>1人 300円</dd>
+        </dl>
+        <p class="credit">写真：望遠鏡をのぞくペルーの子どもたち。GalileoMobile/ESO／Wikimedia Commons／CC BY 4.0</p>
+      </article>
+
+      <article class="lab lab-crystal on-main">
+        <div>
+          <h3>ミョウバンの結晶</h3>
+          <p>熱いミョウバンの水にたこ糸の種を下げ、家に持ち帰って育てます。毎日同じ時刻に、びんを動かさずに見てください。</p>
+          <dl>
+            <dt>回</dt><dd>12月19日（土）・27日（日） 10:30〜12:00</dd>
+            <dt>対象</dt><dd>小学4年〜中学3年</dd>
+            <dt>定員</dt><dd>各回 12人</dd>
+            <dt>材料費</dt><dd>1人 400円</dd>
+            <dt>持ち物</dt><dd>口の広いびん（ジャムのびんくらい）1つ</dd>
+          </dl>
+        </div>
+        <div class="grow" aria-label="結晶の育ち方のめやす">
+          <figure><svg width="22" height="22" viewBox="-11 -11 22 22" aria-hidden="true"><polygon points="0,-6 5,-3 5,3 0,6 -5,3 -5,-3" fill="#ffd23c"/></svg><b>当日</b>種の粒</figure>
+          <figure><svg width="44" height="44" viewBox="-22 -22 44 44" aria-hidden="true"><polygon points="0,-14 12,-7 12,7 0,14 -12,7 -12,-7" fill="#ffd23c"/></svg><b>3日目</b>5mm</figure>
+          <figure><svg width="76" height="76" viewBox="-38 -38 76 76" aria-hidden="true"><polygon points="0,-30 26,-15 26,15 0,30 -26,15 -26,-15" fill="#ffd23c"/></svg><b>7日目</b>1cm</figure>
+          <figure><svg width="124" height="124" viewBox="-62 -62 124 124" aria-hidden="true"><polygon points="0,-56 48,-28 48,28 0,56 -48,28 -48,-28" fill="#ffd23c"/></svg><b>14日目</b>2cmほど</figure>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="day" id="day" aria-labelledby="day-h">
+  <div class="wrap">
+    <h2 class="big" id="day-h">当日のこと</h2>
+  </div>
+  <div class="day-band">
+    <div class="steps">
+      <ol>
+        <li><b>15分前</b><span>1階の総合受付で、名前と回を言ってください。材料費はここで払います（現金・交通系IC）。</span></li>
+        <li><b>10分前</b><span>2階の実験室へ。保護めがねと手袋を館で貸します。</span></li>
+        <li><b>はじまり</b><span>はじめの5分で、使う薬品と道具の約束を確かめます。</span></li>
+        <li><b>おわり</b><span>片づけまでが実験です。作った物は持ち帰れます。</span></li>
+      </ol>
+    </div>
+    <figure>
+      <img src="photos/Reality-Fairytale-of-the-Horse-and-the-Deer-children-craft-w.jpg" width="1280" height="720" alt="長い机で、子どもと大人が粘土や紙で工作をしている" loading="lazy">
+      <figcaption class="credit">写真：子どもの工作の会（ロシア）。科学館の実験室ではありません。Max Kuznetsov, Inna Ismailova／Wikimedia Commons／CC BY-SA 4.0</figcaption>
+    </figure>
+  </div>
+
+  <div class="wrap bring">
+    <div>
+      <h3>持ち物</h3>
+      <table>
+        <tr><th>どの回も</th><td>汚れてもいい服、ハンカチ。長い髪は結んで来てください。</td></tr>
+        <tr><th>スライム</th><td>手をふくタオル。袋は館で用意します。</td></tr>
+        <tr><th>備長炭電池</th><td>ありません。炭・アルミホイル・オルゴールは材料費に入っています。</td></tr>
+        <tr><th>星座早見盤</th><td>鉛筆。26日は暖かい上着と手袋（屋上は風が強い）。</td></tr>
+        <tr><th>結晶</th><td>口の広いびん1つ（ふたが無くてもよい）。</td></tr>
+      </table>
+    </div>
+    <div class="rules on-main">
+      <h3>取り消しの決まり</h3>
+      <p class="limit">前の日の17時まで</p>
+      <p>なら、申し込みの確認メールのリンクから取り消せます。取り消し料はかかりません。</p>
+      <ul>
+        <li>材料費は当日払いなので、前もって払うお金はありません。</li>
+        <li>前の日の17時を過ぎたら、電話（0120-000-000〔架空〕、9:30〜17:00）でお知らせください。材料を人数分そろえています。</li>
+        <li>連絡の無い欠席が2回続くと、次の月は受付開始の3日後からの申し込みになります。</li>
+        <li>満員の回はキャンセル待ちを受け付け、空いたら前の日の18時までにメールで知らせます。</li>
+        <li>大雪・警報の日は休みにし、朝7時までにこのページとメールで知らせます。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="access" id="access" aria-labelledby="access-h">
+  <div class="wrap">
+    <h2 class="big" id="access-h">行き方</h2>
+    <div class="access-grid">
+      <div class="window">
+        <div class="oval"><img src="photos/A-girl-with-microscope.jpg" width="1280" height="853" alt="浜辺で双眼鏡をのぞく女の子" loading="lazy"></div>
+        <p class="credit">写真：浜辺で双眼鏡をのぞく女の子。科学館の近くではありません。Esthee2010／Wikimedia Commons／CC BY-SA 4.0</p>
+      </div>
+      <div>
+        <div class="route" role="img" aria-label="鴨谷駅東口から市バス汐見線で7分、科学館前で降りてすぐ。駅から歩くと18分">
+          <p class="ends"><b>鴨谷駅 東口</b><b>科学館前</b></p>
+          <svg viewBox="0 0 640 40" preserveAspectRatio="none" aria-hidden="true"><line x1="20" y1="20" x2="620" y2="20" stroke="#0a78ab" stroke-width="10" stroke-linecap="round"/><circle cx="20" cy="20" r="14" fill="#10212b"/><circle cx="620" cy="20" r="16" fill="#ffd23c" stroke="#10212b" stroke-width="3"/></svg>
+          <p class="mid">市バス 汐見線 7分（4番のりば）・歩くと18分</p>
+        </div>
+        <p class="addr">鴨谷市立こども科学館<br>鴨谷市汐見町3-14（架空）</p>
+        <dl>
+          <dt>開館</dt><dd>9:30〜17:00（26日の星座早見盤の回は19:00まで）</dd>
+          <dt>休館日</dt><dd>月曜日、12月28日（月）〜1月4日（月）</dd>
+          <dt>入館料</dt><dd>中学生まで無料、大人300円（付き添いの方も）</dd>
+          <dt>駐車場</dt><dd>40台・無料。土日の午前は満車になりやすいので、バスが確実です。</dd>
+          <dt>実験室</dt><dd>2階。エレベーターがあります。ベビーカーは実験室の前に置けます。</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="on-main">
+  <p class="name">鴨谷市立こども科学館</p>
+  <div class="foot-grid">
+    <ul>
+      <li><a href="#sessions">12月の週末ラボ</a></li>
+      <li><a href="#labs">4つの実験</a></li>
+      <li><a href="#day">当日のこと・取り消し</a></li>
+      <li><a href="#access">行き方・開館時間</a></li>
+    </ul>
+    <p>このページは site-skills の作例です。館・鴨谷市・回・料金・電話番号はすべて架空で、申し込みは送られません。写真はどれも科学館のものではなく、Wikimedia Commons の自由に使える写真です。</p>
+    <ul class="credit">
+      <li>男の子（切り抜き）：Viktoria Borodinova, CC BY-SA 4.0</li>
+      <li>試験管の女の子：Germanna CC, CC BY 2.0</li>
+      <li>スライム：University of the Fraser Valley, CC BY 2.0</li>
+      <li>じゃがいもの電池：Hannu Makarainen, CC BY-SA 2.0</li>
+      <li>望遠鏡：GalileoMobile/ESO, CC BY 4.0</li>
+      <li>工作の会：Max Kuznetsov, Inna Ismailova, CC BY-SA 4.0</li>
+      <li>双眼鏡の女の子：Esthee2010, CC BY-SA 4.0</li>
+    </ul>
+  </div>
+</footer>
+
+<div class="sp-bar" id="spbar"><span id="spText">12月の8回から選ぶ</span><a class="btn" href="#sessions" id="spBtn">回を選ぶ</a></div>
+
+<script type="application/ld+json" id="ld"></script>
+<script>
+(function(){
+  // 回のデータ（架空）。lo・hi は学年（0=年長、1〜6=小学、7〜9=中学）
+  var S=[
+    {id:'1205',day:5,w:'土',from:'10:30',to:'11:30',name:'スライム',lo:0,hi:2,cap:20,left:0,fee:200,adult:true},
+    {id:'1206',day:6,w:'日',from:'10:30',to:'12:00',name:'備長炭電池',lo:3,hi:6,cap:16,left:5,fee:350},
+    {id:'1212',day:12,w:'土',from:'14:00',to:'15:30',name:'星座早見盤',lo:1,hi:6,cap:24,left:11,fee:300,adultTo:3},
+    {id:'1213',day:13,w:'日',from:'10:30',to:'11:30',name:'スライム',lo:0,hi:2,cap:20,left:3,fee:200,adult:true},
+    {id:'1219',day:19,w:'土',from:'10:30',to:'12:00',name:'ミョウバンの結晶',lo:4,hi:9,cap:12,left:7,fee:400},
+    {id:'1220',day:20,w:'日',from:'14:00',to:'15:30',name:'備長炭電池',lo:3,hi:6,cap:16,left:12,fee:350},
+    {id:'1226',day:26,w:'土',from:'17:00',to:'19:00',name:'星座早見盤（屋上で観望）',lo:1,hi:6,cap:24,left:2,fee:300,adultTo:3},
+    {id:'1227',day:27,w:'日',from:'10:30',to:'12:00',name:'ミョウバンの結晶',lo:4,hi:9,cap:12,left:9,fee:400}
+  ];
+  var G=['年長','小1','小2','小3','小4','小5','小6','中1','中2','中3'];
+  var WD=['日','月','火','水','木','金','土'];
+  var ADULT_FEE=300;
+  var $=function(id){return document.getElementById(id)};
+  var grade=$('grade'),kids=$('kids'),adults=$('adults');
+  var picked=null;
+
+  // URL の条件を読む（共有した URL で同じ回が開く）
+  var q=new URLSearchParams(location.search);
+  if(q.get('grade')!==null&&grade.querySelector('option[value="'+q.get('grade')+'"]'))grade.value=q.get('grade');
+  if(q.get('kids'))kids.value=q.get('kids');
+  if(q.get('adults'))adults.value=q.get('adults');
+  if(q.get('session'))picked=q.get('session');
+
+  function range(s){return G[s.lo]+'〜'+G[s.hi]}
+  function needAdult(s,g){return s.adult||(s.adultTo!==undefined&&(g===null||g<=s.adultTo))}
+  function why(s){
+    var g=grade.value===''?null:+grade.value,k=+kids.value,a=+adults.value;
+    if(g!==null&&(g<s.lo||g>s.hi))return '対象は'+range(s)+'です';
+    if(s.left===0)return '満員です（キャンセル待ちを受け付けます）';
+    if(s.left<k)return '残り'+s.left+'席で、'+k+'人は入れません';
+    if(needAdult(s,g)&&a===0)return 'この回は大人の付き添いが要ります';
+    return '';
+  }
+  // 取り消し無料の締め：回の前の日の17時
+  function deadline(s){var d=new Date(2026,11,s.day-1);return (d.getMonth()+1)+'月'+d.getDate()+'日（'+WD[d.getDay()]+'）17時'}
+
+  function rows(){
+    var ul=$('rows');ul.innerHTML='';
+    S.forEach(function(s){
+      var r=why(s),li=document.createElement('li'),b=document.createElement('button');
+      b.type='button';b.className='row'+(s.left>0&&s.left<=3?' few':'');
+      b.setAttribute('aria-pressed',picked===s.id?'true':'false');
+      if(r)b.setAttribute('aria-disabled','true');
+      b.innerHTML='<span class="d">12月'+s.day+'日（'+s.w+'）</span>'+
+        '<span class="t">'+s.name+'</span>'+
+        '<span class="left">'+(s.left===0?'<b>満員</b>':'残り<b>'+s.left+'</b>')+'／'+s.cap+'席</span>'+
+        '<span class="meta">'+s.from+'〜'+s.to+'・'+range(s)+'・材料費 '+s.fee+'円</span>'+
+        (r?'<span class="why">'+r+'</span>':'');
+      b.addEventListener('click',function(){choose(s.id)});
+      li.appendChild(b);ul.appendChild(li);
+    });
+  }
+
+  // 早見盤の目盛り（31日ぶん）。回の日だけ押せる印
+  function pos(day,r){var a=(day-1)/31*Math.PI*2+Math.PI+0.1;return [Math.cos(a)*r,Math.sin(a)*r]}
+  function ticks(gid,r1,r2,col){
+    var g=$(gid),h='';
+    for(var d=1;d<=31;d++){var p=pos(d,r1),p2=pos(d,d%5===0?r2-14:r2);h+='<line x1="'+p[0].toFixed(1)+'" y1="'+p[1].toFixed(1)+'" x2="'+p2[0].toFixed(1)+'" y2="'+p2[1].toFixed(1)+'" stroke="'+col+'" stroke-width="2"/>';
+      if(d%5===0||d===1){var t=pos(d,r2-34);h+='<text x="'+t[0].toFixed(1)+'" y="'+(t[1]+6).toFixed(1)+'" text-anchor="middle" font-size="17" fill="'+col+'" font-family="BIZ UDPGothic, sans-serif">'+d+'</text>'}}
+    g.innerHTML=h;
+  }
+  function marks(){
+    var g=$('dialMarks'),h='';
+    S.forEach(function(s){
+      var p=pos(s.day,346),r=why(s),on=picked===s.id;
+      var fill=on?'#10212b':(r?'#0a78ab':'#ffd23c'),txt=on?'#ffffff':(r?'#ffffff':'#10212b');
+      h+='<g class="mark" tabindex="0" role="button" aria-pressed="'+on+'" aria-label="12月'+s.day+'日 '+s.name+(r?'。'+r:'')+'" data-id="'+s.id+'">'+
+        '<circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="34" fill="'+fill+'" stroke="#ffd23c" stroke-width="'+(r?3:0)+'"/>'+
+        '<text x="'+p[0].toFixed(1)+'" y="'+(p[1]+10).toFixed(1)+'" text-anchor="middle" font-size="30" fill="'+txt+'" font-family="Zen Maru Gothic, sans-serif">'+s.day+'</text></g>';
+    });
+    g.innerHTML=h;
+    g.querySelectorAll('.mark').forEach(function(m){
+      m.addEventListener('click',function(){choose(m.dataset.id)});
+      m.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();choose(m.dataset.id)}});
+    });
+  }
+  function ring(){
+    var g=$('ringTicks'),h='';
+    for(var d=1;d<=31;d++){var p=pos(d,372),p2=pos(d,d%5===0?342:354);h+='<line x1="'+p[0].toFixed(1)+'" y1="'+p[1].toFixed(1)+'" x2="'+p2[0].toFixed(1)+'" y2="'+p2[1].toFixed(1)+'" stroke="#fff" stroke-opacity=".55" stroke-width="2"/>'}
+    S.forEach(function(s){var p=pos(s.day,351);h+='<circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="15" fill="#ffd23c"/>'});
+    g.innerHTML=h;
+  }
+
+  function panel(){
+    var el=$('picked'),s=S.filter(function(x){return x.id===picked})[0];
+    var sp=$('spText'),spb=$('spBtn');
+    if(!s){
+      el.innerHTML='<div><h3>まだ回を選んでいません</h3></div><div><p class="none">早見盤の黄色い日付か、表の行を押すと、ここに材料費の合計と、取り消しの締めが出ます。</p><p class="notice">受付は11月1日（日）10時から先着順。1回の申し込みで子ども3人まで、1人の子どもは月に2回まで。</p></div>';
+      sp.textContent='12月の8回から選ぶ';spb.textContent='回を選ぶ';spb.href='#sessions';return;
+    }
+    var k=+kids.value,a=+adults.value,r=why(s),total=s.fee*k+ADULT_FEE*a;
+    el.innerHTML='<div><h3>12月'+s.day+'日（'+s.w+'）<br>'+s.from+'〜 '+s.name+'</h3><p class="notice">'+range(s)+'・定員'+s.cap+'人・'+(s.left===0?'満員':'残り'+s.left+'席')+'。2階の実験室。</p></div>'+
+      '<div><table class="bill"><tr><td>材料費 '+s.fee+'円 × 子ども'+k+'人</td><td>'+(s.fee*k).toLocaleString()+'円</td></tr>'+
+      '<tr><td>入館料 '+ADULT_FEE+'円 × 付き添いの大人'+a+'人</td><td>'+(ADULT_FEE*a).toLocaleString()+'円</td></tr>'+
+      '<tr class="sum"><td>当日の合計</td><td>'+total.toLocaleString()+'円</td></tr></table>'+
+      '<p class="cancel">'+deadline(s)+'までなら、取り消し料はかかりません。</p>'+
+      (r?'<p class="done">'+r+'。</p><button class="btn" type="button" disabled>この回は申し込めません</button>':'<button class="btn" type="button" id="go">この回で申し込む</button>')+
+      '<p class="notice" id="goMsg">支払いは当日、1階の受付で（現金・交通系IC）。</p></div>';
+    sp.textContent='12月'+s.day+'日 '+s.name.replace(/（.*）/,'')+'・'+total.toLocaleString()+'円';spb.textContent='申し込みへ';spb.href='#picked';
+    var go=$('go');if(go)go.addEventListener('click',function(){$('goMsg').textContent='作例なので、ここで止めています。本物のページでは、このあと子どもの名前と連絡先を入れる画面に進みます。';});
+  }
+
+  function sync(){
+    var p=new URLSearchParams();if(grade.value!=='')p.set('grade',grade.value);p.set('kids',kids.value);p.set('adults',adults.value);if(picked)p.set('session',picked);
+    try{history.replaceState(null,'','?'+p.toString()+location.hash)}catch(e){}
+  }
+  function choose(id){picked=id;draw();sync()}
+  function draw(){rows();marks();panel()}
+  [grade,kids,adults].forEach(function(e){e.addEventListener('change',function(){draw();sync()})});
+
+  ticks('dialTicks',392,362,'#ffffff');ring();draw();
+
+  // 構造化データ：回ごとの Event と Offer
+  $('ld').textContent=JSON.stringify(S.map(function(s){return {'@context':'https://schema.org','@type':'Event',name:'週末ラボ '+s.name,startDate:'2026-12-'+String(s.day).padStart(2,'0')+'T'+s.from+':00+09:00',endDate:'2026-12-'+String(s.day).padStart(2,'0')+'T'+s.to+':00+09:00',eventAttendanceMode:'https://schema.org/OfflineEventAttendanceMode',eventStatus:'https://schema.org/EventScheduled',typicalAgeRange:s.lo===0?'5-8':(s.lo+6)+'-'+(s.hi+6),location:{'@type':'Place',name:'鴨谷市立こども科学館（架空）',address:'鴨谷市汐見町3-14'},offers:{'@type':'Offer',price:s.fee,priceCurrency:'JPY',availability:s.left===0?'https://schema.org/SoldOut':(s.left<=3?'https://schema.org/LimitedAvailability':'https://schema.org/InStock'),validFrom:'2026-11-01T10:00:00+09:00'}}}));
+})();
+</script>
+</body>
+</html>
