@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>小鞠屋｜志野原の城下町・大手前通りの和菓子屋</title>
+<meta name="description" content="志野原城下、大手前通りの和菓子屋。昭和十一年創業。月替わりの上生菓子四種、どら焼きと最中「小鞠」、折詰のご予約。営業時間 9時〜18時、水曜定休。">
+<!--
+  架空の店（作例）。依頼主の希望「かわいくて、でも老舗らしく。最初の画面は題材の物の形の窓で」を決まりのいちばん上に置いた（SKILL.md の最初の画面の型①）。
+  主の色：#3f7d36（草餅のよもぎの緑。この店はのれんも同じよもぎ色に染めている、という設定。色相 112°）
+  地：#ffffff（上用饅頭の白）／差し色：#d9466f（最中「小鞠」の鞠かがりの糸の桃色）／文字：#1d2a19（よもぎに寄せた墨）
+  題材の特色：屋号は、初代が売り出した鞠の形の最中「小鞠」から。最中の皮には鞠かがりの模様が入っている。
+  考えの一文：このページでは、最中「小鞠」の鞠の形（まわりの鞠かがりの糸）が、写真を抜く窓になり、どの章にも出てくる。
+  ほかの作例の主（青・紺・辰砂・金赤・翡翠 178°・琥珀・朱・紫・藤・きみどり 75°・深緑 145°・漁網の緑 149°・バミリの緑 152°）から色相を20°以上離した。
+  手本の実測（scripts/sample.js、2026-11-09、1440px。work/oneshot5/wagashi-shop/sample.jsonl）：
+    toraya-group.co.jp … 地 #fff・文字 #111・本文 游ゴシック 16px/1.6・見出し 明朝 32px/400・罫2本・ボタンの角 23
+    tsuruyayoshinobu.jp … 見出し 明朝（秀英明朝）36px/400・罫2本・ボタンの角 0・写真を画面いっぱい
+    suzukake.co.jp … 地 #fff・題「十一月のお菓子」を明朝 30px/500 の縦書き・罫0・写真を余白で囲む
+    kosugiyu.co.jp … 地 #fff・罫0・ボタンは 1px の縁で角0・縦書きの段落 16px
+    bikkuri-donkey.com … 地 #e7dacb・文字 #3b201b・罫0（温かい飲食の対照として）
+    （higashiya.com は最初の画面が動画だけで、文字を測れなかった）
+  真似る値：見出しは明朝の 400〜500（題だけ大きく）／本文 16px 以上・行間 1.6〜1.8／罫は0本、区切りは地の色の面／ボタンの角は 0／月の菓子の題を縦書きで。
+  書体：Shippori Mincho B1（店の名前・題・値段）＋ Noto Sans JP（本文）。
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho+B1:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ground:#ffffff;   /* 地：上用饅頭の白 */
+  --yomogi:#3f7d36;   /* 主：草餅のよもぎ・のれん */
+  --yomogi-d:#2f6229; /* よもぎの面の上の一段濃い面 */
+  --momo:#d9466f;     /* 差し色：鞠かがりの糸 */
+  --momo-pale:#fbe6ec;/* 桃の糸を薄く溶いた面（店の章の地） */
+  --ink:#1d2a19;      /* 文字 */
+  --mincho:"Shippori Mincho B1",serif;
+  --gothic:"Noto Sans JP",sans-serif;
+  --ease:cubic-bezier(.25,.46,.45,.94);
+  --t1:.2s;--t2:.4s;
+}
+@media (prefers-reduced-motion:reduce){:root{--t1:0s;--t2:0s}}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--ground)}
+body{background:var(--ground);color:var(--ink);font-family:var(--gothic);font-size:17px;line-height:1.8;font-weight:400;word-break:auto-phrase;text-wrap:pretty;overflow-x:hidden}
+a{color:inherit}
+img{display:block;max-width:100%}
+h1,h2,h3{font-family:var(--mincho);font-weight:500;line-height:1.3}
+.nw{white-space:nowrap}
+.yen{font-family:var(--mincho);font-weight:700;font-feature-settings:"palt"}
+.credit{display:block;font-size:15px;line-height:1.6}
+.credit a{text-decoration:underline;text-underline-offset:2px}
+:focus-visible{outline:3px solid var(--momo);outline-offset:3px}
+.btn{display:inline-block;font-family:var(--gothic);font-weight:700;font-size:17px;line-height:1;padding:19px 30px;text-decoration:none;background:var(--yomogi);color:#fff;border:0;border-radius:0;cursor:pointer;transition:background var(--t1) var(--ease)}
+@media (hover:hover) and (pointer:fine){.btn:hover{background:var(--yomogi-d)}}
+
+/* ---------- 鞠の窓（ヒーローの部品。どの章でも使う） ---------- */
+.mari{position:relative;aspect-ratio:1;border-radius:50%}
+.mari>img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.mari .kagari{position:absolute;inset:-3.2%;width:106.4%;height:106.4%;pointer-events:none}
+.mari .kagari g{transform-origin:50px 50px}
+@media (prefers-reduced-motion:no-preference){
+  .spin .kagari g{animation:kagari 90s linear infinite}
+  .saving .spin .kagari g{animation:none}
+}
+@keyframes kagari{to{transform:rotate(360deg)}}
+
+/* ---------- 上：ナビ ---------- */
+.nav{position:absolute;z-index:6;top:26px;right:48px;display:flex;gap:28px;list-style:none;font-size:15px;font-weight:500}
+.nav a{text-decoration:none}
+@media (hover:hover) and (pointer:fine){.nav a:hover{color:var(--momo)}}
+
+/* ---------- 最初の画面 ---------- */
+.hero{position:relative;height:max(760px,100vh);max-height:960px;overflow:hidden}
+.noren{position:absolute;left:56px;top:0;width:400px;height:78%;background:var(--yomogi);color:#fff;
+  clip-path:polygon(0 0,100% 0,100% 100%,67.5% 100%,67.5% 80%,66.5% 80%,66.5% 100%,33.5% 100%,33.5% 80%,32.5% 80%,32.5% 100%,0 100%)}
+.noren .mon{position:absolute;left:50%;top:44px;width:62px;margin-left:-31px}
+.noren h1{position:absolute;left:50%;top:128px;transform:translateX(-50%);writing-mode:vertical-rl;font-size:136px;font-weight:700;line-height:1;letter-spacing:.02em;white-space:nowrap}
+.noren .since{position:absolute;right:30px;top:140px;writing-mode:vertical-rl;font-family:var(--mincho);font-size:17px;font-weight:500;letter-spacing:.2em}
+.noren .kind{position:absolute;left:34px;top:140px;writing-mode:vertical-rl;font-family:var(--mincho);font-size:17px;font-weight:500;letter-spacing:.2em}
+.hero .mari{position:absolute;left:486px;top:76px;width:min(730px,calc(100vh - 80px))}
+.hero .mari>img{object-position:40% 50%}
+.hero .month{position:absolute;right:56px;top:96px;writing-mode:vertical-rl;font-family:var(--mincho);font-size:44px;font-weight:500;line-height:1.5;letter-spacing:.06em}
+.hero .month small{display:block;font-size:24px;letter-spacing:.1em;margin-right:14px}
+.hero .lead{position:absolute;left:56px;bottom:52px;width:400px}
+.hero .lead p{font-size:17px;line-height:1.75;margin-bottom:22px}
+.hero .credit{position:absolute;right:48px;bottom:30px;width:230px;text-align:left}
+
+/* ---------- 章の共通 ---------- */
+section{position:relative;overflow:hidden}
+.h2{font-size:72px;font-weight:500;letter-spacing:.02em}
+
+/* ---------- 霜月の上生菓子 ---------- */
+.jo{padding:140px 0 150px}
+.jo .mari{position:absolute;left:-210px;top:110px;width:820px}
+.jo .mari>img{object-position:55% 50%}
+.jo .body{margin-left:680px;margin-right:72px}
+.jo .h2{margin-bottom:12px}
+.jo .note{font-size:17px;margin-bottom:56px;max-width:36em}
+.kashi{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:56px 64px}
+.kashi li{display:grid;grid-template-columns:auto 1fr;gap:0 22px;align-items:start}
+.kashi h3{writing-mode:vertical-rl;font-size:44px;font-weight:700;line-height:1.1;grid-row:span 3;letter-spacing:.04em}
+.kashi .yomi{font-size:15px;font-weight:500;color:var(--yomogi)}
+.kashi .how{font-size:17px;line-height:1.75;margin:6px 0 10px}
+.kashi .yen{font-size:34px;color:var(--momo)}
+.kashi .yen small{font-size:15px;color:var(--ink);font-weight:500;margin-left:4px}
+.jo .credit{position:absolute;left:56px;top:950px;width:330px}
+.jo .next{margin-top:64px;font-family:var(--mincho);font-size:24px;font-weight:500}
+
+/* ---------- どら焼きと最中 ---------- */
+.teiban{background:var(--yomogi);color:#fff;padding:130px 72px 140px}
+.teiban .h2{font-size:72px;font-weight:700;line-height:1.15;position:relative;z-index:2}
+.teiban .dora{position:absolute;right:-90px;top:70px;width:820px;z-index:1;filter:drop-shadow(0 0 0 transparent)}
+.teiban .cols{position:relative;z-index:2;display:grid;grid-template-columns:400px 1fr;gap:72px;margin-top:300px;align-items:start}
+.teiban .mari{width:400px}
+.teiban .mari>img{object-position:62% 60%}
+.teiban .credit{margin-top:18px}
+.shina{list-style:none}
+.shina li{display:grid;grid-template-columns:1fr auto;gap:4px 24px;padding:0 0 30px}
+.shina h3{font-size:34px;font-weight:700}
+.shina .yen{font-size:34px;align-self:end;text-align:right;white-space:nowrap}
+.shina p{grid-column:1/-1;font-size:17px;max-width:34em}
+.teiban .mon-big{position:absolute;left:-60px;top:300px;width:0}
+
+/* ---------- 折詰の予約（触れる1つ） ---------- */
+.ori{padding:140px 72px 150px}
+.ori .h2{margin-bottom:12px}
+.ori .note{font-size:17px;max-width:34em;margin-bottom:56px}
+.ori .mari{width:600px;margin:40px 0 0 -200px}
+.ori .mari>img{object-position:35% 40%}
+.ori .credit-r{width:360px;margin-top:14px}
+.ori-ui{display:grid;grid-template-columns:520px 1fr;gap:64px;align-items:start;max-width:1180px}
+.ori-ui fieldset{border:0;margin-bottom:30px}
+.ori-ui legend{font-family:var(--mincho);font-size:24px;font-weight:700;margin-bottom:12px}
+.size{display:flex;gap:10px;flex-wrap:wrap}
+.size label{cursor:pointer}
+.size input{position:absolute;opacity:0;pointer-events:none}
+.size span{display:block;padding:12px 18px;font-size:17px;font-weight:500;background:#eef4ec;transition:background var(--t1) var(--ease),color var(--t1) var(--ease)}
+.size input:checked+span{background:var(--yomogi);color:#fff}
+.size input:focus-visible+span{outline:3px solid var(--momo);outline-offset:2px}
+.pick{display:flex;flex-wrap:wrap;gap:10px}
+.pick button{font:inherit;font-size:17px;font-weight:500;padding:10px 14px;background:#eef4ec;color:var(--ink);border:0;cursor:pointer;line-height:1.4;transition:background var(--t1) var(--ease)}
+.pick button span{font-family:var(--mincho);font-weight:700;margin-left:6px}
+@media (hover:hover) and (pointer:fine){.pick button:hover{background:#dcead8}}
+.pick button:disabled{opacity:.45;cursor:default}
+.ori-ui input[type=date]{font:inherit;font-size:17px;padding:10px 12px;border:2px solid var(--yomogi);border-radius:0;background:#fff;color:var(--ink)}
+.ori-ui .warn{color:#b0263f;font-size:17px;margin-top:8px;min-height:1.8em}
+/* 折（箱）：経木の折を上から見た形 */
+.box{background:var(--yomogi);padding:16px;display:grid;gap:8px}
+.box button{aspect-ratio:1;background:#fff;border:0;font:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:4px;color:var(--ink);position:relative}
+.box button .m{width:48%;aspect-ratio:1;border-radius:50%;background:var(--momo-pale)}
+.box button.on .m{background:var(--momo)}
+.box button.on.g .m{background:var(--yomogi)}
+.box button.on.y .m{background:#c98a3e}
+.box button b{font-family:var(--mincho);font-size:15px;font-weight:700;line-height:1.3}
+.box button:not(.on) b{color:#5c6a58;font-weight:500}
+.slip{background:#fff;margin-top:22px}
+.slip h3{font-size:24px;font-weight:700;margin-bottom:6px}
+.slip dl{display:grid;grid-template-columns:7em 1fr;gap:4px 12px;font-size:17px}
+.slip dt{font-weight:700}
+.slip .sum{font-size:44px;color:var(--momo);line-height:1.2}
+.slip .tel{margin-top:16px;font-size:17px}
+
+/* ---------- 店の場所と営業時間 ---------- */
+.mise{background:var(--momo-pale);padding:140px 72px 150px}
+.mise .wrap{display:grid;grid-template-columns:1.618fr 1fr;gap:72px;align-items:start;position:relative;z-index:2}
+.mise .map{width:100%;height:auto;background:#fff}
+.mise .hours{font-family:var(--mincho);font-size:72px;font-weight:700;line-height:1.2;margin:14px 0 6px}
+.mise .hours-sub{font-size:17px;margin-bottom:28px}
+.mise dl{display:grid;grid-template-columns:5.5em 1fr;gap:10px 14px;font-size:17px}
+.mise dt{font-weight:700}
+.mise .story{font-family:var(--mincho);font-size:24px;font-weight:500;line-height:1.75;max-width:22em}
+.mise .mari{width:640px;margin:0 0 0 -190px}
+.mise .mari>img{object-position:50% 88%}
+.mise .street{display:grid;grid-template-columns:450px 1fr;gap:72px;align-items:center;margin-top:60px}
+.mise .street .credit{margin-top:18px}
+
+/* ---------- 下 ---------- */
+footer{background:var(--ink);color:#fff;padding:90px 72px 70px}
+footer .row{display:grid;grid-template-columns:auto 1fr;gap:72px;align-items:start}
+footer .name{font-family:var(--mincho);font-size:44px;font-weight:700;line-height:1}
+footer .name small{display:block;font-size:17px;font-weight:500;margin-top:16px;font-family:var(--gothic)}
+footer ul.links{list-style:none;display:flex;flex-wrap:wrap;gap:12px 32px;font-size:17px;margin-bottom:36px}
+footer .fic{font-size:15px;margin-bottom:22px}
+footer .credits{list-style:none}
+footer .credits li{font-size:15px;line-height:1.7}
+
+/* ---------- 幅ごと ---------- */
+@media (max-width:1200px){
+  .jo .body{margin-left:600px}
+  .jo .mari{width:740px;left:-220px}
+  .kashi{grid-template-columns:1fr}
+  .teiban .dora{width:640px}
+}
+@media (max-width:960px){
+  .nav{display:none}
+  .hero{height:auto;max-height:none;padding-bottom:40px}
+  .noren{position:relative;left:16px;width:46%;max-width:300px;height:470px}
+  .noren h1{font-size:92px;top:118px}
+  .noren .mon{width:46px;margin-left:-23px;top:36px}
+  .noren .since{font-size:15px;top:124px}.noren .kind{display:none}
+  .noren .since{right:10px}.noren .kind{left:10px}
+  .hero .mari{left:auto;right:-70px;top:300px;width:min(330px,84vw)}
+  .hero .month{position:relative;right:auto;top:auto;writing-mode:horizontal-tb;font-size:34px;margin:180px 16px 0;line-height:1.4}
+  .hero .month small{display:block;font-size:17px;margin:0 0 0 8px}
+  .hero .lead{position:relative;left:auto;bottom:auto;width:auto;margin:14px 16px 0}
+  .hero .credit{position:relative;right:auto;bottom:auto;width:auto;margin:22px 16px 0}
+  .h2{font-size:44px}
+  .jo{padding:70px 0 80px}
+  .jo .mari{position:relative;left:-90px;top:auto;width:420px;margin-bottom:12px}
+  .jo .credit{position:relative;left:auto;top:auto;width:auto;margin:0 16px 36px}
+  .jo .body{margin:0 16px}
+  .kashi h3{font-size:34px}
+  .teiban{padding:70px 16px 80px}
+  .teiban .h2{font-size:44px}
+  .teiban .dora{position:relative;right:-60px;top:auto;width:120%;max-width:none;margin:10px 0 0}
+  .teiban .cols{grid-template-columns:1fr;margin-top:30px;gap:40px}
+  .teiban .mari{width:300px}
+  .shina h3{font-size:24px}.shina .yen{font-size:24px}
+  .ori{padding:70px 16px 80px}
+  .ori .mari{position:relative;right:auto;top:auto;width:340px;margin:0 -110px 10px auto}
+  .ori .credit-r{position:relative;right:auto;top:auto;width:auto;margin-bottom:30px}
+  .ori-ui{grid-template-columns:1fr;gap:36px}
+  .mise{padding:70px 16px 80px}
+  .mise .wrap{grid-template-columns:1fr;gap:36px}
+  .mapwrap{overflow-x:auto;margin:0 -16px;padding:0 16px}
+  .mise .map{width:640px;max-width:none}
+  .mise .hours{font-size:44px}
+  .mise .street{grid-template-columns:1fr;margin-top:30px;gap:12px}
+  .mise .mari{width:340px;margin:0 -100px 0 auto}
+  .mise .street .credit{text-align:left;padding:0}
+  footer{padding:60px 16px 50px}
+  footer .row{grid-template-columns:1fr;gap:36px}
+}
+</style>
+</head>
+<body>
+<!-- 鞠かがりの糸（窓のまわり）。100×100 の座標で、よもぎと桃の糸を半目ずつずらして交互にかがる -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="kagari">
+      <circle cx="50" cy="50" r="48.3" fill="none" stroke="#fff" stroke-width="3"/>
+      <polyline id="ito-a" fill="none" stroke="#d9466f" stroke-width=".6" stroke-linejoin="round" points=""/>
+      <polyline id="ito-b" fill="none" stroke="#3f7d36" stroke-width=".6" stroke-linejoin="round" points=""/>
+    </g>
+  </defs>
+</svg>
+
+<header>
+  <ul class="nav">
+    <li><a href="#jo">今月の上生菓子</a></li>
+    <li><a href="#teiban">どら焼き・最中</a></li>
+    <li><a href="#ori">折詰の予約</a></li>
+    <li><a href="#mise">店の場所</a></li>
+  </ul>
+</header>
+
+<main>
+<!-- 最初の画面：のれんと、最中「小鞠」の鞠の窓 -->
+<section class="hero" id="top">
+  <div class="noren" data-object>
+    <svg class="mon" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" fill="#fff"/><polyline id="mon-ito" fill="none" stroke="#3f7d36" stroke-width="3" stroke-linejoin="round" points=""/><circle cx="50" cy="50" r="10" fill="#3f7d36"/></svg>
+    <span class="kind">城下町の和菓子屋</span>
+    <h1>小鞠屋</h1>
+    <span class="since">昭和十一年から</span>
+  </div>
+
+  <div class="mari spin">
+    <img src="photos/Wagashi-closeup-14.jpg" alt="木の板に並んだ練り切りの上生菓子。桃色の花の形と、緑の葉の形" width="1280" height="960" fetchpriority="high">
+    <svg class="kagari" viewBox="0 0 100 100" aria-hidden="true"><use href="#kagari"/></svg>
+  </div>
+
+  <p class="month">霜月の上生菓子、四種<small>朝10時から店に並びます</small></p>
+
+  <div class="lead">
+    <p>城下町・大手前通りの和菓子屋です。</p>
+    <a class="btn" href="#ori">折詰を予約する</a>
+  </div>
+
+  <span class="credit">写真：別の店の練り切り（Douglas Perkins／<a href="https://commons.wikimedia.org/w/index.php?curid=41043227">Wikimedia Commons</a>／CC0 1.0）</span>
+</section>
+
+<!-- 霜月の上生菓子 -->
+<section class="jo" id="jo">
+  <div class="mari">
+    <img src="photos/Making-of-azalea-wagashi-by-Noriko-Jazayeri-2-2025-05-18.jpg" alt="箸で、きんとんのそぼろを一本ずつ餡玉に付けている手元" width="1280" height="964" loading="lazy">
+    <svg class="kagari" viewBox="0 0 100 100" aria-hidden="true"><use href="#kagari"/></svg>
+  </div>
+  <span class="credit">写真：きんとんのそぼろを箸で付ける手元。和菓子の教室で、小鞠屋の職人ではありません（Andy Li／<a href="https://commons.wikimedia.org/w/index.php?curid=165625767">Wikimedia Commons</a>／CC0 1.0）</span>
+
+  <div class="body">
+    <h2 class="h2">霜月の上生菓子</h2>
+    <p class="note">月替わりの上生菓子と、どら焼き・最中を作っています。上生菓子は毎月1日に四種を入れ替えます。各40個、朝10時から店に並べ、なくなりしだい終わりです。</p>
+    <ul class="kashi">
+      <li><h3>初霜</h3><span class="yomi">はつしも／こなし</span><p class="how">白いこなしに、砕いた氷餅をまぶしました。中はこしあん。</p><span class="yen">440円<small>税込</small></span></li>
+      <li><h3>吹き寄せ</h3><span class="yomi">ふきよせ／きんとん</span><p class="how">紅葉と銀杏の色のそぼろを、風に寄せたように。中は粒あん。</p><span class="yen">440円<small>税込</small></span></li>
+      <li><h3>亥の子餅</h3><span class="yomi">いのこもち／求肥</span><p class="how">黒ごまと肉桂を練りこんだ求肥に、亥の子の焼き印。十一月だけ作ります。</p><span class="yen">440円<small>税込</small></span></li>
+      <li><h3>山茶花</h3><span class="yomi">さざんか／練り切り</span><p class="how">桃色の花びらを三枚重ね、しべは黄身あん。中は白あん。</p><span class="yen">440円<small>税込</small></span></li>
+    </ul>
+    <p class="next">師走の四種は、12月1日（火）から。</p>
+  </div>
+</section>
+
+<!-- どら焼きと最中 -->
+<section class="teiban" id="teiban">
+  <h2 class="h2">どら焼きと、<br>最中「小鞠」</h2>
+  <img class="dora" src="photos/Dorayaki-004-cutout.webp" alt="どら焼き二つ。一つは半分に切って、粒あんが見えている" width="866" height="421" loading="lazy" data-object>
+  <div class="cols">
+    <div>
+      <div class="mari">
+        <img src="photos/2016-12-18-a-street-vendor-making-Imagawayaki-in-Taiwan.jpg" alt="鉄板の丸い型で今川焼きを返している手元" width="960" height="639" loading="lazy">
+        <svg class="kagari" viewBox="0 0 100 100" aria-hidden="true"><use href="#kagari"/></svg>
+      </div>
+      <span class="credit">写真：上は別の店のどら焼き（Ocdp／<a href="https://commons.wikimedia.org/w/index.php?curid=119280668">Wikimedia Commons</a>／CC0 1.0、切り抜いた）。丸は台湾の屋台で今川焼きを焼く人で、小鞠屋ではありません（測鏡者／<a href="https://commons.wikimedia.org/w/index.php?curid=115562802">Wikimedia Commons</a>／CC BY-SA 2.0）</span>
+    </div>
+    <ul class="shina">
+      <li><h3>どら焼き</h3><span class="yen">230円</span><p>銅板で一枚ずつ焼きます。あんは北海道の小豆の粒あん。</p></li>
+      <li><h3>栗どら焼き</h3><span class="yen">320円</span><p>渋皮煮の栗を一粒。9月から12月まで。</p></li>
+      <li><h3>最中「小鞠」</h3><span class="yen">各190円</span><p>鞠かがりの模様の皮に、粒あん・こしあん・柚子の白あんの三つ。皮とあんは別に包みます。食べる前にはさんでください。</p></li>
+      <li><h3>最中 十個箱</h3><span class="yen">2,100円</span><p>三つのあんを取りまぜて十個。掛け紙をかけてお渡しします。</p></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 折詰の予約（触れる1つ） -->
+<section class="ori" id="ori">
+  <h2 class="h2">折詰の予約</h2>
+  <p class="note">お祝い・法事・手土産の折詰は、受け取りの3日前の正午までに電話でご予約ください。箱に詰める菓子を選んで、下の予約票を電話で読み上げていただくと早く済みます。</p>
+
+  <div class="ori-ui">
+    <div>
+      <fieldset>
+        <legend>箱の大きさ</legend>
+        <div class="size" id="size">
+          <label><input type="radio" name="size" value="6" data-fee="110"><span>六つ入（箱 110円）</span></label>
+          <label><input type="radio" name="size" value="9" data-fee="160" checked><span>九つ入（箱 160円）</span></label>
+          <label><input type="radio" name="size" value="12" data-fee="220"><span>十二入（箱 220円）</span></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>詰める菓子（押すと、空いている升に入ります）</legend>
+        <div class="pick" id="pick">
+          <button type="button" data-n="初霜" data-p="440" data-c="m">初霜<span>440</span></button>
+          <button type="button" data-n="吹き寄せ" data-p="440" data-c="m">吹き寄せ<span>440</span></button>
+          <button type="button" data-n="亥の子餅" data-p="440" data-c="m">亥の子餅<span>440</span></button>
+          <button type="button" data-n="山茶花" data-p="440" data-c="m">山茶花<span>440</span></button>
+          <button type="button" data-n="どら焼き" data-p="230" data-c="y">どら焼き<span>230</span></button>
+          <button type="button" data-n="栗どら" data-p="320" data-c="y">栗どら焼き<span>320</span></button>
+          <button type="button" data-n="小鞠 粒" data-p="190" data-c="g">最中 粒あん<span>190</span></button>
+          <button type="button" data-n="小鞠 こし" data-p="190" data-c="g">最中 こしあん<span>190</span></button>
+          <button type="button" data-n="小鞠 柚子" data-p="190" data-c="g">最中 柚子<span>190</span></button>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend><label for="day">受け取りの日</label></legend>
+        <input type="date" id="day">
+        <p class="warn" id="warn" aria-live="polite"></p>
+      </fieldset>
+      <div class="mari">
+        <img src="photos/Mochi-making-8586436510.jpg" alt="長い机で、何人かが餅を丸めてバットに並べている" width="960" height="640" loading="lazy">
+        <svg class="kagari" viewBox="0 0 100 100" aria-hidden="true"><use href="#kagari"/></svg>
+      </div>
+      <span class="credit credit-r">写真：餅を丸める人たち（東京）。小鞠屋の人ではありません（Ignat Gorazd／<a href="https://commons.wikimedia.org/w/index.php?curid=75463546">Wikimedia Commons</a>／CC BY-SA 2.0）</span>
+    </div>
+
+    <div>
+      <div class="box" id="box" data-object aria-label="折詰の箱。升を押すと、その菓子を外します"></div>
+      <div class="slip" id="slip" data-object aria-live="polite">
+        <h3>予約票</h3>
+        <dl>
+          <dt>受け取り</dt><dd id="s-day">—</dd>
+          <dt>予約の締め</dt><dd id="s-dead">—</dd>
+          <dt>中身</dt><dd id="s-items">九つ入。まだ空です</dd>
+          <dt>合計（税込）</dt><dd><span class="yen sum" id="s-sum">160円</span></dd>
+        </dl>
+        <p class="tel">電話 000-000-1936（架空の番号）　9時〜18時、水曜は休みです。掛け紙（鞠の絵・無地）とのしは無料でおつけします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 店の場所と営業時間 -->
+<section class="mise" id="mise">
+  <div class="wrap">
+    <div class="mapwrap"><svg class="map" viewBox="0 0 640 440" role="img" aria-label="店のまわりの見取り図。北に城跡とお堀、お堀の東の大手門跡から大手前通りを南へ2分、通りの西側に小鞠屋" data-object>
+      <rect width="640" height="440" fill="#fff"/>
+      <!-- お堀 -->
+      <path d="M40 40 H330 V230 H40 Z" fill="none" stroke="#3f7d36" stroke-width="26" opacity=".85"/>
+      <rect x="80" y="80" width="210" height="110" fill="#eef4ec"/>
+      <text x="185" y="142" text-anchor="middle" font-family="Shippori Mincho B1,serif" font-size="22" font-weight="700" fill="#1d2a19">志野原城跡</text>
+      <text x="185" y="270" text-anchor="middle" font-family="Noto Sans JP,sans-serif" font-size="15" fill="#1d2a19">お堀</text>
+      <!-- 大手門跡と大手前通り -->
+      <rect x="352" y="118" width="24" height="24" fill="#1d2a19"/>
+      <text x="388" y="112" font-family="Noto Sans JP,sans-serif" font-size="15" fill="#1d2a19">大手門跡（バス停「大手門」）</text>
+      <path d="M364 150 V430" stroke="#1d2a19" stroke-width="10"/>
+      <text x="384" y="330" font-family="Shippori Mincho B1,serif" font-size="20" font-weight="700" fill="#1d2a19" writing-mode="tb">大手前通り</text>
+      <path d="M0 300 H640" stroke="#1d2a19" stroke-width="5"/>
+      <text x="470" y="292" font-family="Noto Sans JP,sans-serif" font-size="15" fill="#1d2a19">本町通り</text>
+      <!-- 小鞠屋 -->
+      <circle cx="318" cy="372" r="26" fill="#d9466f"/>
+      <path d="M318 346 V398 M292 372 H344 M300 354 L336 390 M336 354 L300 390" stroke="#fff" stroke-width="3"/>
+      <text x="282" y="378" text-anchor="end" font-family="Shippori Mincho B1,serif" font-size="24" font-weight="700" fill="#1d2a19">小鞠屋</text>
+      <text x="282" y="404" text-anchor="end" font-family="Noto Sans JP,sans-serif" font-size="15" fill="#1d2a19">大手門跡から徒歩2分</text>
+      <!-- 駐車場 -->
+      <rect x="208" y="314" width="34" height="22" fill="#eef4ec"/>
+      <text x="225" y="331" text-anchor="middle" font-family="Noto Sans JP,sans-serif" font-size="14" fill="#1d2a19">P</text>
+      <text x="620" y="30" text-anchor="end" font-family="Noto Sans JP,sans-serif" font-size="14" fill="#1d2a19">北 ↑</text>
+    </svg></div>
+
+    <div>
+      <h2 class="h2">店の場所と<br>営業時間</h2>
+      <p class="hours">9時〜18時</p>
+      <p class="hours-sub">水曜休み（祝日は開けます）。上生菓子は10時から。</p>
+      <dl>
+        <dt>住所</dt><dd>志野原市大手町2-14</dd>
+        <dt>行き方</dt><dd>志野原駅から城下めぐりバスで7分、「大手門」で降りて大手前通りを南へ徒歩2分</dd>
+        <dt>駐車場</dt><dd>店の裏に2台</dd>
+        <dt>電話</dt><dd>000-000-1936（架空の番号）</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="street">
+    <div class="mari">
+      <img src="photos/Bukeyashiki-Street-in-Kakunodate-20180428d.jpg" alt="しだれ桜の並木の下、武家屋敷の通りを歩く大勢の人" width="1280" height="960" loading="lazy">
+      <svg class="kagari" viewBox="0 0 100 100" aria-hidden="true"><use href="#kagari"/></svg>
+    </div>
+    <div>
+  <p class="story">昭和十一年、初代の小森とめが、鞠の形の最中を売り出したのが始まりです。屋号はその最中の名から。いまは三代目と四代目の二人で、<span class="nw">朝7時に</span>あんを炊いています。</p>
+  <span class="credit">写真：城下町の通りを歩く人たち（秋田・角館の武家屋敷通り、2018年4月）。小鞠屋のある町ではありません（掬茶／<a href="https://commons.wikimedia.org/w/index.php?curid=69055468">Wikimedia Commons</a>／CC BY-SA 4.0）</span>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="row">
+    <p class="name">小鞠屋<small>志野原市大手町2-14　9時〜18時　水曜休み</small></p>
+    <div>
+      <ul class="links">
+        <li><a href="#jo">今月の上生菓子</a></li>
+        <li><a href="#teiban">どら焼き・最中</a></li>
+        <li><a href="#ori">折詰の予約</a></li>
+        <li><a href="#mise">店の場所と営業時間</a></li>
+      </ul>
+      <p class="fic">小鞠屋・志野原の町・菓子の名前と値段・電話番号は、作例のための架空のものです。写真はどれも別の店や町のもので、出典を書いて使っています。</p>
+      <ul class="credits">
+        <li>練り切り：Douglas Perkins／Wikimedia Commons／CC0 1.0</li>
+        <li>きんとんの手元：Andy Li／Wikimedia Commons／CC0 1.0</li>
+        <li>どら焼き：Ocdp／Wikimedia Commons／CC0 1.0（切り抜いた）</li>
+        <li>今川焼きの屋台：測鏡者／Wikimedia Commons／CC BY-SA 2.0</li>
+        <li>餅を丸める人たち：Ignat Gorazd／Wikimedia Commons／CC BY-SA 2.0</li>
+        <li>角館の武家屋敷通り：掬茶／Wikimedia Commons／CC BY-SA 4.0</li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // 鞠かがりの糸：円のまわりをジグザグにかがる（桃とよもぎを半目ずらす）
+  function zig(off){var n=72,pts=[];for(var i=0;i<=n*2;i++){var a=(i/(n*2))*Math.PI*2+off,r=(i%2)?49.9:46.8;pts.push((50+r*Math.cos(a)).toFixed(2)+','+(50+r*Math.sin(a)).toFixed(2));}return pts.join(' ');}
+  document.getElementById('ito-a').setAttribute('points',zig(0));
+  document.getElementById('ito-b').setAttribute('points',zig(Math.PI/72));
+  (function(){var n=8,p=[];for(var i=0;i<=n*2;i++){var a=i/(n*2)*Math.PI*2-Math.PI/2,r=(i%2)?18:38;p.push((50+r*Math.cos(a)).toFixed(1)+','+(50+r*Math.sin(a)).toFixed(1));}document.getElementById('mon-ito').setAttribute('points',p.join(' '));})();
+  var c=navigator.connection;if(c&&c.saveData)document.documentElement.classList.add('saving');
+
+  // 折詰：箱の升を埋める
+  var box=document.getElementById('box'),pick=document.getElementById('pick'),day=document.getElementById('day'),warn=document.getElementById('warn');
+  var cells=[],size=9,fee=160;
+  var W=['日','月','火','水','木','金','土'];
+  var fmt=function(d){return (d.getMonth()+1)+'月'+d.getDate()+'日（'+W[d.getDay()]+'）';};
+  function draw(){
+    var cols=size===6?3:(size===9?3:4);
+    box.style.gridTemplateColumns='repeat('+cols+',1fr)';
+    box.innerHTML='';
+    for(var i=0;i<size;i++){
+      var it=cells[i],b=document.createElement('button');b.type='button';
+      if(it){b.className='on '+(it.c==='g'?'g':it.c==='y'?'y':'');b.innerHTML='<span class="m"></span><b>'+it.n+'</b>';b.setAttribute('aria-label',it.n+'を外す');}
+      else{b.innerHTML='<span class="m"></span><b>空き</b>';b.setAttribute('aria-label','空いている升');}
+      (function(k){b.addEventListener('click',function(){if(cells[k]){cells.splice(k,1);draw();}});})(i);
+      box.appendChild(b);
+    }
+    var full=cells.length>=size;
+    pick.querySelectorAll('button').forEach(function(x){x.disabled=full;});
+    var sum=fee,cnt={};cells.forEach(function(x){sum+=x.p;cnt[x.n]=(cnt[x.n]||0)+1;});
+    var list=Object.keys(cnt).map(function(k){return k+' '+cnt[k];}).join('、');
+    var label=size===6?'六つ入':size===9?'九つ入':'十二入';
+    document.getElementById('s-items').textContent=label+'。'+(list?list:'まだ空です')+(cells.length&&!full?'（あと'+(size-cells.length)+'つ）':'');
+    document.getElementById('s-sum').textContent=sum.toLocaleString('ja-JP')+'円';
+  }
+  pick.addEventListener('click',function(e){var b=e.target.closest('button');if(!b||cells.length>=size)return;cells.push({n:b.dataset.n,p:+b.dataset.p,c:b.dataset.c});draw();});
+  document.getElementById('size').addEventListener('change',function(e){size=+e.target.value;fee=+e.target.dataset.fee;cells=cells.slice(0,size);draw();});
+  function dead(){
+    if(!day.value){return;}
+    var p=day.value.split('-'),d=new Date(+p[0],+p[1]-1,+p[2]);
+    document.getElementById('s-day').textContent=fmt(d);
+    if(d.getDay()===3){warn.textContent='水曜は店が休みのため、受け取りができません。ほかの日を選んでください。';document.getElementById('s-dead').textContent='—';return;}
+    var x=new Date(d);x.setDate(x.getDate()-3);
+    if(x.getDay()===3)x.setDate(x.getDate()-1); // 締めの日が休みなら前の日に
+    var now=new Date();var lim=new Date(x);lim.setHours(12,0,0,0);
+    document.getElementById('s-dead').textContent=fmt(x)+' 正午';
+    warn.textContent=now>lim?'この日の受け取りは、締めを過ぎています。4日以上先の日を選んでください。':'';
+  }
+  // 初めの受け取り日：今日から5日後（水曜なら次の日）
+  var t=new Date();t.setDate(t.getDate()+5);if(t.getDay()===3)t.setDate(t.getDate()+1);
+  var iso=function(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');};
+  day.value=iso(t);var mn=new Date();mn.setDate(mn.getDate()+3);day.min=iso(mn);
+  day.addEventListener('change',dead);
+  // 見本として最初に3つ入れておく
+  cells=[{n:'山茶花',p:440,c:'m'},{n:'亥の子餅',p:440,c:'m'},{n:'小鞠 粒',p:190,c:'g'}];
+  draw();dead();
+})();
+</script>
+</body>
+</html>
