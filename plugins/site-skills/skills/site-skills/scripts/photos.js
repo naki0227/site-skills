@@ -1,6 +1,8 @@
 // 使い方:
 //   node scripts/photos.js search "<英語の検索語>" <出力フォルダ>   … Wikimedia Commons の自由に使える写真を探す（CC0・CC BY・CC BY-SA だけ）
 //   node scripts/photos.js get <番号> <出力フォルダ> [幅]            … 直前の検索の <番号> を幅 1280px（既定。500/960/1280/1920 のどれか）で取り、credits.json に出典を書く
+//   node scripts/photos.js sheet <出力フォルダ>                        … 直前の検索の候補を、番号つきの一覧の画像（<出力フォルダ>/_sheet.png）にする。1枚ずつ get せずに見比べる
+//   幅に orig を渡すと、縮小せずに元の画像を取る（切り抜きの元に使う）
 // 候補を見比べるときは、作業用のフォルダ（work/ の下）に search・get して見て、使う物だけ作例の photos/ に search・get し直す（候補が credits.json に入らないように）。
 // 直前の検索は <出力フォルダ>/.photos-last.json に置く（並行して動く作り手どうしで上書きしないため。2026-11-07 の一発テストで4人がぶつかった）。
 // 出力フォルダを付けずに search したときだけ、共有の一時ファイルを使う。
@@ -18,7 +20,8 @@ const isImage = f => { try { const b = fs.readFileSync(f).subarray(0, 4); return
 const [cmd, a, b, c] = process.argv.slice(2);
 
 // Node の fetch がプロキシを通らない環境があるので、curl に任せる
-const curlJSON = u => JSON.parse(execSync(`curl -s -m 30 -A ${JSON.stringify(UA)} ${JSON.stringify(u)}`).toString());
+// 検索の API が 504 などを返したら、2・4・8秒あけて取り直し、それでもだめなら日本語で止まる（JSON の解析で落ちていた。2026-11-09）
+const curlJSON = u => { for (let i = 0; ; i++) { const t = execSync(`curl -s -m 30 -A ${JSON.stringify(UA)} ${JSON.stringify(u)}`).toString(); try { return JSON.parse(t); } catch (e) { if (i < 3) { execSync(`sleep ${2 ** (i + 1)}`); continue; } console.error('写真の検索が混んでいて答えが返らない（' + t.slice(0, 40).trim() + '）。少し待って、もう一度 search する'); process.exit(1); } } };
 // Wikimedia は続けて取ると 429（取りすぎ）を返すので、2・4・8・16秒あけて4回まで取り直す
 const sleep = s => execSync(`sleep ${s}`);
 function curlFile(u, f) {
@@ -51,13 +54,26 @@ function thumb(url, w) {
     if (!rows.length) console.log('見つからなかった（前の検索の結果はそのまま残した）。英語の別の言い方（素材・道具・地名）で探す');
     return;
   }
+  if (cmd === 'sheet' && a) {
+    // 一覧の画像：Wikimedia の 330px の縮小を並べた HTML を Playwright で1回撮る（1枚ずつ取ると取りすぎで断られて遅かった。2026-11-09）
+    const L = lastFor(a); let saved; try { saved = JSON.parse(fs.readFileSync(L, 'utf8')); } catch (e) { console.error('直前の検索の結果が無い。先に search する'); process.exit(1); }
+    // 縮小は 500px を1枚ずつ、間をあけて手元に取る（330px は出せない幅で、まとめて頼むと取りすぎで断られた）
+    const tmp = path.join(a, '_sheet'); fs.mkdirSync(tmp, { recursive: true });
+    const cells = saved.rows.map(r => { const f = path.join(tmp, `${r.n}.jpg`); let ok = false; for (let i = 0; i < 3 && !ok; i++) { try { curlFile(thumb(r.url, 500), f); ok = isImage(f); } catch (e) { } if (!ok) sleep(3); } sleep(1); return `<figure><img src="${ok ? `_sheet/${r.n}.jpg` : ''}"><figcaption><b>${r.n}</b> ${r.title.slice(0, 40)}｜${r.license}｜${r.w}×${r.h}${ok ? '' : '（縮小を取れなかった）'}</figcaption></figure>`; }).join('');
+    const html = `<meta charset="utf-8"><style>body{margin:12px;font:13px sans-serif;display:grid;grid-template-columns:repeat(4,330px);gap:12px}img{width:330px;height:240px;object-fit:cover;background:#ddd}b{font-size:18px}</style><p style="grid-column:1/-1">検索語「${saved.q}」</p>${cells}`;
+    const hf = path.join(a, '_sheet.html'); fs.writeFileSync(hf, html);
+    const { chromium } = require('playwright'); const br = await chromium.launch(); const pg = await br.newPage({ viewport: { width: 1400, height: 900 } });
+    await pg.goto('file://' + path.resolve(hf)); await pg.waitForLoadState('networkidle').catch(() => { }); await pg.waitForTimeout(1500);
+    await pg.screenshot({ path: path.join(a, '_sheet.png'), fullPage: true }); await br.close(); fs.unlinkSync(hf); fs.rmSync(tmp, { recursive: true, force: true });
+    console.log(path.join(a, '_sheet.png') + '（番号を見て get する。作例の photos/ には置かない）'); return;
+  }
   if (cmd === 'get' && a && b) {
     const LAST = fs.existsSync(lastFor(b)) ? lastFor(b) : SHARED_LAST;
     let saved; try { saved = JSON.parse(fs.readFileSync(LAST, 'utf8')); } catch (e) { console.error('直前の検索の結果が無い（検索が失敗した）。もう一度 search する'); process.exit(1); }
     const rows = saved.rows || saved; if (saved.q) console.error(`検索語「${saved.q}」の ${a} 番を取る`); const r = rows.find(x => x.n === +a);
     if (!r) { console.error('その番号は直前の検索に無い'); process.exit(1); }
     // Wikimedia の縮小版は決まった幅（500・960・1280・1920）だけ出せる。元より大きい幅は頼まない
-    const STEPS = [500, 960, 1280, 1920]; const want = +c || 1280; const w = STEPS.filter(x => x <= (r.w || 1920)).reduce((p, x) => Math.abs(x - want) < Math.abs(p - want) ? x : p, 500); fs.mkdirSync(b, { recursive: true });
+    const STEPS = [500, 960, 1280, 1920]; const orig = c === 'orig'; const want = orig ? 99999 : (+c || 1280); const w = STEPS.filter(x => x <= (r.w || 1920)).reduce((p, x) => Math.abs(x - want) < Math.abs(p - want) ? x : p, 500); fs.mkdirSync(b, { recursive: true });
     // 日本語の題は記号だけになるので「photo」を頭に付ける（「-2023.jpg」は ls や rm がオプションと間違えた）。同じ名前があれば番号を足す
     let base = r.title.replace(/^File:/, '').replace(/\.[a-z]+$/i, '').replace(/[^\w-]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
     if (!/[A-Za-z0-9]{3}/.test(base)) base = 'photo-' + (r.page.match(/curid=(\d+)/) || [, Date.now()])[1] + (base ? '-' + base : '');
@@ -67,7 +83,7 @@ function thumb(url, w) {
     let name = prev ? prev.file : base + '.jpg'; if (!prev) for (let k = 2; fs.existsSync(path.join(b, name)); k++) name = `${base}-${k}.jpg`;
     const file = path.join(b, name);
     // 頼んだ幅で失敗したら、小さい幅、元の画像の順に取り直す。画像でない物は消して、出典も書かない
-    const tries = [...STEPS.filter(x => x <= w).reverse().map(x => thumb(r.url, x)), r.url];
+    const tries = orig ? [r.url] : [...STEPS.filter(x => x <= w).reverse().map(x => thumb(r.url, x)), r.url];
     let ok = false;
     for (const u of tries) { try { curlFile(u, file); if (isImage(file)) { ok = true; break; } } catch (e) { } try { fs.unlinkSync(file); } catch (e) { } sleep(2); }
     if (!ok) { console.error('取れなかった（取りすぎで断られた）。少し待つか、別の番号を取る'); process.exit(1); }
@@ -79,5 +95,5 @@ function thumb(url, w) {
     console.log(`${file}\n出典の書き方：写真：${r.creator}／Wikimedia Commons／${r.license}（${r.page}）`);
     return;
   }
-  console.error('usage: node scripts/photos.js search "<query>" <outdir> | get <n> <outdir> [width]'); process.exit(2);
+  console.error('usage: node scripts/photos.js search "<query>" <outdir> | sheet <outdir> | get <n> <outdir> [width|orig]'); process.exit(2);
 })();

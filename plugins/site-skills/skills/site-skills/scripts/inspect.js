@@ -77,7 +77,7 @@ function probe() {
     m.chars += k; m.sizes[fs] = (m.sizes[fs] || 0) + k; m.families[fam] = (m.families[fam] || 0) + k;
     // 本文＝ナビ・フッター以外の、30字以上の文（実サイトはフッターやナビに12px の小さな文字が多く、それを数えると本文を見誤る）
     const chrome = el.closest('nav,footer,header,[role=navigation],[role=contentinfo]');
-    if (!chrome && !exempt(el) && k >= 30 && !/^H[1-6]$/.test(el.tagName)) { m.runChars += k; m.runSizes[fs] = (m.runSizes[fs] || 0) + k; if (fs < 13) m.runTiny += k; if (s.textAlign === 'center') m.runCenter += k; }
+    if (!chrome && !exempt(el) && k >= 30 && !/^H[1-6]$/.test(el.tagName)) { m.runChars += k; /* 写真の出典・注記は本文の大きさの多数決に入れない（2026-11-09：どの章にも人の写真と出典を書くと、13px の出典が本文より多くなり FAIL になった）。13px 未満の割合には入れる */ if (!(el.closest('figcaption,small,[data-credit],.credit,.cap,.hcap,.photo-credit') || /^(写真|出典|Photo)[：:]/.test((el.textContent || '').trim()))) m.runSizes[fs] = (m.runSizes[fs] || 0) + k; if (fs < 13) m.runTiny += k; if (s.textAlign === 'center') m.runCenter += k; }
     const bg = bgOf(el);
     // 本文の灰色：地との差が 7:1 未満の本文（実測のファッション10件は本文を #000〜#1e1e1e で組み、灰色は注記だけ）
     if (!chrome && !exempt(el) && k >= 30 && !/^H[1-6]$/.test(el.tagName) && bg && ratio(rgb(s.color), bg) < 7) m.greyRun += k;

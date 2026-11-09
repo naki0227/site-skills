@@ -9,3 +9,9 @@ for (const n of fs.readdirSync(dir)) { const f = path.join(dir, n, 'index.html')
 rows.sort((a, b) => (a.h ?? 999) - (b.h ?? 999));
 for (const r of rows) console.log(r.c ? `${String(r.h).padStart(3)}°  ${r.c}  ${r.n}  ${r.why}` : `  ?   ------   ${r.n}  主の色の行が無い`);
 console.log('\n主の色は、ここに出た色相から20°以上離す。同時にいくつも作るときは、先に色相の範囲を割り振る。');
+// 空いている色相（どの作例からも20°以上離れる範囲）。割り振りはこの中からにする（第6回で、割り振った範囲に空きが無かった）
+const hs = [...new Set(rows.filter(r => r.h !== null).map(r => r.h))].sort((a, b) => a - b);
+const gaps = d => { const out = []; for (let i = 0; i < hs.length; i++) { const a = hs[i], b = i + 1 < hs.length ? hs[i + 1] : hs[0] + 360; if (b - a >= 2 * d) out.push([(a + d) % 360, (b - d) % 360]); } return out; };
+let d = 20, free = gaps(d); if (!free.length) { d = 15; free = gaps(d); }
+console.log(`空いている色相（どの作例からも${d}°以上離れる）：` + (free.length ? free.map(([a, b]) => `${a}°〜${b}°`).join('、') : '無い'));
+if (d < 20) console.log('色相の空きが少ない。色相が近くなるときは、明るさか鮮やかさで分ける（淡い地の色にする・くすませる・ほぼ黒にする）。');
