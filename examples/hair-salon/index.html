@@ -108,7 +108,8 @@ h2{font-size:clamp(28px,3vw,40px);line-height:1.35;font-weight:700;letter-spacin
 .cut .body{position:relative;z-index:3;width:min(560px,44vw);margin:24px 0 0 40px}
 .cut .note,.cut .menu-list .min,.cut .menu-list .what small{color:#dfeee4}
 .cut .menu-list li{border-color:rgba(255,255,255,.35)}
-.cut .cap{position:absolute;z-index:3;right:40px;bottom:26px;max-width:360px;color:#fff;text-align:right}
+.cut .cap{position:absolute;z-index:3;right:40px;bottom:26px;max-width:360px;color:#fff;text-align:right;background:rgba(23,32,26,.78);padding:10px 14px;border-radius:4px}
+/* 写真の明るい所に白い字が乗って読めなかった（inspect text-on-photo、2026-11-09）。写真の上の注記は墨の地に置く */
 
 /* Color：地、左に丸い手鏡の窓（はみ出す）、右に一覧 */
 .color{min-height:900px;padding:120px 40px 110px}
@@ -126,7 +127,8 @@ h2{font-size:clamp(28px,3vw,40px);line-height:1.35;font-weight:700;letter-spacin
 .perm .stage{position:relative;height:min(64vw,880px)}
 .perm .win{position:absolute;left:50%;top:0;bottom:0;width:min(40vw,560px);transform:translateX(-50%);border-radius:999px 999px 0 0;overflow:hidden;z-index:1}
 .perm .win img{width:100%;height:100%;object-fit:cover;object-position:50% 25%}
-.perm .huge{position:absolute;left:0;right:0;bottom:-.08em;z-index:2;text-align:center;color:var(--ink)}
+.perm .huge{position:absolute;left:0;right:0;bottom:-.08em;z-index:2;text-align:center;color:#f8f8f4;-webkit-text-stroke:.035em var(--ink);paint-order:stroke fill}
+/* 写真の暗い服の上でも字が消えないように、地の白で塗って墨の縁を付ける（ユーザーの指摘「後ろと見比べた時にすごい字が見にくい」2026-11-09） */
 .perm .cap{position:absolute;right:0;top:0;max-width:300px;color:var(--ink);text-align:right}
 .perm .cols{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:70px}
 .perm .menu-list li,.perm .menu-list li:first-child{border-color:rgba(23,32,26,.3)}
@@ -137,7 +139,8 @@ h2{font-size:clamp(28px,3vw,40px);line-height:1.35;font-weight:700;letter-spacin
 .chairs .scene{position:relative;height:min(46vw,640px)}
 .chairs .scene img{width:100%;height:100%;object-fit:cover;object-position:50% 35%}
 .chairs .scene .cap{position:absolute;right:40px;top:26px;max-width:380px;color:#fff;text-align:right}
-.chairs .huge{position:relative;z-index:2;color:var(--green);margin:-.42em 0 0 -1vw}
+.chairs .huge{position:relative;z-index:2;color:var(--green);margin:-.42em 0 0 -1vw;-webkit-text-stroke:.03em #f8f8f4;paint-order:stroke fill}
+/* 暗い写真にかかる上半分が消えていたので、地の白の縁を付けた（Perm と同じ。2026-11-09） */
 .chairs .intro{display:grid;grid-template-columns:1fr 1fr;gap:60px;padding:30px 40px 0}
 .chairs .intro p{max-width:34em}
 .pick{padding:44px 40px 0}

@@ -342,6 +342,39 @@ function judge(m, width) {
       if (vp.width >= 1000 && lum.plain > 45 && lum.vis <= 2 && !allow.includes('sparse-first')) all.push({ lv: 'WARN', id: 'sparse-first', width: vp.width, msg: `最初の画面が空いていて、写真や絵が少ない：何も無い面 ${lum.plain}%・写真や絵 ${lum.vis}個（実在のサイトは 31%・4個が中央値）`, fix: '写真・切り抜き・絵・製品の画面・色の面を3つ以上、大きさを変えて重ねる。左に文字・右に写真の行儀のよい2列にしない（references/aesthetic.md「本物か作例か 第2回」）' });
       if (lum.mean < 110 && lum.white < 15 && !allow.includes('dark-first')) all.push({ lv: 'WARN', id: 'dark-first', width: vp.width, msg: `最初の画面が暗い：明るさ ${lum.mean}・白っぽい部分 ${lum.white}%（同じ業種の実在のサイトは 151〜214・28〜74%）`, fix: '明るい地に、色のある写真を余白で囲んで置き、文字は写真の外に濃い色で（references/aesthetic.md「本物か作例か」）。暗い写真の全面に白い題を重ねるのは、ポスター・告知・夜の催しなど題材に理由があるときだけ' });
     } catch (e) { errors.push(`${name}: 明るさを測れない ${String(e).slice(0, 60)}`); }
+    // 写真や色の面の上の字が、人の目で読めるか（2026-11-09、ユーザー「後ろと見比べた時にすごい字が見にくい」「人間が見た時に見えそうな色とかも意識して」。
+    // hair-salon の大きな Perm が、写真の暗い服の上で消えていた。contrast は字の色と親の背景色しか比べないので、写真・絵・グラデーションの上の字を見落とす）
+    // 字を透明にして撮り、字の箱の下に描かれている物の明るさ（明るい側と暗い側の15%）と字の色を比べる。縁取り・影のある字は除く
+    try {
+      await p.evaluate(async () => { for (let y = 0; y < document.body.scrollHeight; y += 700) { scrollTo(0, y); await new Promise(r => setTimeout(r, 60)); } scrollTo(0, 0); });
+      await p.waitForTimeout(400);
+      const boxes = await p.evaluate(() => { const out = []; let id = 0; const lin = v => { v /= 255; return v <= .03928 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4; };
+        for (const e of document.body.querySelectorAll('*')) { const own = [...e.childNodes].filter(n => n.nodeType === 3 && n.textContent.trim()).map(n => n.textContent.trim()).join(''); if (own.length < 1 || e.closest('svg')) continue;
+          const s = getComputedStyle(e); if (s.visibility === 'hidden' || +s.opacity === 0 || s.display === 'none') continue; if (parseFloat(s.webkitTextStrokeWidth) > 0 || (s.textShadow && s.textShadow !== 'none')) continue;
+          const rg = document.createRange(); let r = null; for (const n of e.childNodes) if (n.nodeType === 3 && n.textContent.trim()) { rg.selectNodeContents(n); const q = rg.getBoundingClientRect(); if (q.width) r = r ? { left: Math.min(r.left, q.left), top: Math.min(r.top, q.top), right: Math.max(r.right, q.right), bottom: Math.max(r.bottom, q.bottom) } : { left: q.left, top: q.top, right: q.right, bottom: q.bottom }; } if (!r) continue; r.width = r.right - r.left; r.height = r.bottom - r.top; if (r.width < 8 || r.height < 8) continue; const m = s.color.match(/[\d.]+/g); if (!m || (m[3] !== undefined && +m[3] < .5)) continue;
+          const fs = parseFloat(s.fontSize), big = fs >= 24 || (fs >= 18.66 && +s.fontWeight >= 700);
+          const ix = 0, iy = 0; out.push({ x: r.left + scrollX + ix, y: r.top + scrollY + iy, w: Math.min(r.width - 2 * ix, 900), h: Math.min(r.height - 2 * iy, 600), L: .2126 * lin(+m[0]) + .7152 * lin(+m[1]) + .0722 * lin(+m[2]), big, t: own.slice(0, 14) }); if (++id > 4000) break; }
+        return out; });
+      const shotShow = (await p.screenshot({ fullPage: true, type: 'png' })).toString('base64');
+      await p.addStyleTag({ content: '*{color:transparent!important;-webkit-text-fill-color:transparent!important;text-shadow:none!important;caret-color:transparent!important}', }).then(h => h.evaluate(n => n.id = '__insp_hide'));
+      const shotFull = (await p.screenshot({ fullPage: true, type: 'png' })).toString('base64');
+      await p.evaluate(() => document.getElementById('__insp_hide')?.remove());
+      const bad = await p.evaluate(async ({ b64, show, boxes }) => { const im = new Image(); im.src = 'data:image/png;base64,' + b64; await im.decode(); const c = document.createElement('canvas'); c.width = im.width; c.height = im.height; const x = c.getContext('2d', { willReadFrequently: true }); x.drawImage(im, 0, 0);
+        const im2 = new Image(); im2.src = 'data:image/png;base64,' + show; await im2.decode(); const c2 = document.createElement('canvas'); c2.width = im2.width; c2.height = im2.height; const x2 = c2.getContext('2d', { willReadFrequently: true }); x2.drawImage(im2, 0, 0);
+        const k = im.width / document.documentElement.clientWidth; const lin = v => { v /= 255; return v <= .03928 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4; }; const cr = (a, b) => (Math.max(a, b) + .05) / (Math.min(a, b) + .05); const res = [];
+        for (const b of boxes) { const X = Math.max(0, Math.round(b.x * k)), Y = Math.max(0, Math.round(b.y * k)), W = Math.max(1, Math.round(b.w * k)), H = Math.max(1, Math.round(b.h * k)); if (Y + H > c.height || X + W > c.width) continue;
+          // 字の画素（字を出した画像と消した画像で色が違う所）だけを見て、その下の明るさと字の色を比べる
+          const d = x.getImageData(X, Y, W, H).data, d2 = x2.getImageData(X, Y, W, H).data; const Ls = []; const st = Math.max(1, Math.floor(Math.sqrt(W * H / 6000))); for (let yy = 0; yy < H; yy += st) for (let xx = 0; xx < W; xx += st) { const o = (yy * W + xx) * 4; if (Math.abs(d[o] - d2[o]) + Math.abs(d[o + 1] - d2[o + 1]) + Math.abs(d[o + 2] - d2[o + 2]) < 90) continue; Ls.push(.2126 * lin(d[o]) + .7152 * lin(d[o + 1]) + .0722 * lin(d[o + 2])); }
+          if (Ls.length < 20) continue;
+          // 字の箱の下で、字の色と字の画素のうち、下の物と見分けにくい所が15%を超えたら読みにくいとする（縁や端に少しかかるだけのものは数えない）
+          const need = b.big ? 3 : 4.5; const badPx = Ls.filter(l => cr(b.L, l) < need).length / Ls.length; Ls.sort((a, b) => a - b); const lo = Ls[Math.floor(Ls.length * .1)], hi = Ls[Math.floor(Ls.length * .9)];
+          if (badPx > .15 && hi - lo > .04) res.push(`「${b.t}」見分けにくい所 ${Math.round(badPx * 100)}%`); }
+        return res; }, { b64: shotFull, show: shotShow, boxes });
+      if (bad.length && !allow.includes('text-on-photo')) all.push({ lv: 'WARN', id: 'text-on-photo', width: vp.width, msg: `写真・絵・色の境目の上で読みにくい字が ${bad.length} か所：${bad.slice(0, 5).join('; ')}`, fix: '字の下が明るい所と暗い所にまたがっている。字を写真から外すか、字に地の色の縁（-webkit-text-stroke と paint-order）を付けるか、写真のその部分を字の色と反対の明るさにする。スクリーンショットで、その字を人の目で読めるか確かめる' });
+      // カードの横の縦線（2026-11-09、ユーザー「カードの横に縦線とかめっちゃAI」）
+      const bars = await p.evaluate(() => [...document.body.querySelectorAll('*')].filter(e => { const s = getComputedStyle(e); const r = e.getBoundingClientRect(); const L = parseFloat(s.borderLeftWidth), R = parseFloat(s.borderRightWidth), T = parseFloat(s.borderTopWidth), B = parseFloat(s.borderBottomWidth); return r.height >= 40 && r.width >= 120 && ((L >= 2 && !R && !T && !B) || (R >= 2 && !L && !T && !B)) && s.borderLeftStyle !== 'dashed'; }).length);
+      if (bars && !allow.includes('side-bar')) all.push({ lv: 'WARN', id: 'side-bar', width: vp.width, msg: `箱やカードの片側だけに縦の線が ${bars} 個`, fix: 'カードの横の縦線は「めっちゃAI」と言われた（2026-11-09）。線を外し、余白・地の色・大きな字で分ける' });
+    } catch (e) { errors.push(`${name}: 写真の上の字を測れない ${String(e).slice(0, 80)}`); }
     // 実際に描かれた書体（CSS の指定でなく、ブラウザが字を描いた書体）。標準の書体・どこでも使われる定番は使わない
     try {
       await p.evaluate(() => { let n = 0; for (const e of document.querySelectorAll('h1,h2,h3,p,a,button,li,dd,dt,figcaption,span')) { if (n > 80) break; const t = [...e.childNodes].some(x => x.nodeType === 3 && x.textContent.trim()); const r = e.getBoundingClientRect(); if (t && r.width && r.height) { e.setAttribute('data-insp-font', ''); n++; } } });

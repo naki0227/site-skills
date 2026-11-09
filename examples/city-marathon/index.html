@@ -70,11 +70,12 @@ h1 small{font-size:20px;letter-spacing:.04em;margin-bottom:.6em;display:inline-b
 .when .d{font-weight:800;font-size:30px;line-height:1.2;display:flex;align-items:baseline;gap:.15em;flex-wrap:wrap}
 .when .d .en{font-size:118px;line-height:.9;letter-spacing:-.01em}
 .when .p{font-size:20px;font-weight:700;margin-top:10px}
-.tag{position:absolute;z-index:4;right:52px;bottom:118px;width:330px;padding:34px 34px 34px;transform:rotate(3deg)}
+/* 申込締切：白いカード（ピンの穴つき）は「カレンダーみたいなカードがすごいAI」と言われた（2026-11-09）。カードにせず、日付と同じ大きな字で緑の地に直接置く */
+.tag{position:absolute;z-index:4;right:52px;bottom:150px;width:360px;color:#fff;text-align:right}
 .tag .k{font-size:17px;font-weight:800}
 .tag .v{font-weight:800;font-size:24px;line-height:1;margin:6px 0 16px}
-.tag .v .en{font-size:72px;color:var(--net-t);letter-spacing:-.01em}
-.tag .btn{width:100%;justify-content:center}
+.tag .v .en{font-size:84px;color:#fff;letter-spacing:-.01em}
+.tag .btn{justify-content:center}
 .hcap{position:absolute;z-index:4;right:44px;bottom:10px;width:420px;color:var(--ink);text-align:right;font-size:14px}
 
 /* ===== 章の共通 ===== */
@@ -315,8 +316,7 @@ footer .fict{margin-top:40px;font-size:14px}
     <p class="p">2027年　フル 9:00 スタート</p>
   </div>
 
-  <div class="tag bib" data-object>
-    <span class="pin" aria-hidden="true"></span>
+  <div class="tag">
     <p class="k">申込締切</p>
     <p class="v"><span class="en">12月18日</span>（金）17時</p>
     <a class="btn" href="#entry">エントリーする <span class="arrow" aria-hidden="true">→</span></a>
