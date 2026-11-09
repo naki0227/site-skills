@@ -1,0 +1,926 @@
+<!doctype html>
+<!-- 主の色：#392da9（タイムカードに打刻されるインクの藍紫。この製品は、店のバックヤードのタイムレコーダーが刷る打刻の色をそのまま画面の色にしている、という設定〔架空〕。色相 約246°） -->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ハリダシ｜飲食店・小売店のシフト表と勤怠管理（30日間無料）</title>
+<meta name="description" content="アルバイトの多い小さな店のためのシフトと勤怠のサービス「ハリダシ」。希望シフトをスマホで集め、希望の並んだ表でシフトを組み、店のタブレットで打刻し、締め日に給与ソフトの形で書き出す。月2,400円（税抜）から、30日間無料。">
+<!--
+  site-skills の作例（架空の製品。名前・会社・料金・機能・見本の店「みなと食堂」・スタッフの名前はすべて作り物）。申し込みは確定させない。
+  依頼主の希望（決まりの順のいちばん上）：「堅すぎず、店長が明日から使えそうと思える感じ」。最初の画面の型は任された → 型②（大きなタイポグラフィ＋人の写真をバーンと）。
+    理由：題材の中心が「店で働く人」（アルバイト・店長）で、人が主役の題材（SKILL.md 3.0）。
+  選んだスキル：主 saas-quality-bar（道具を理解して、試してもらう。下位タイプ「業務SaaS」types/business.md：Backlog・コドモン・Linear・Attio）。
+    副 lp-quality-bar（types/soft-app.md：アプリの画面の途中の状態を見せる／types/pop-service.md：ボタンの真下の濃い影）。
+  題材の特色：バックヤードの壁に紙のシフト表を貼り出し、タイムレコーダーでカードに打刻している小さな店が、その紙を1つずつスマホに移す。名前の「ハリダシ」は、シフト表の貼り出しから。
+  考えの一文：このページでは、バックヤードに貼り出す紙のシフト表（とタイムカード）が、升を押して組める触れる部品になる。
+  3色（aesthetic.md）：地 白 #ffffff ／ 主 藍紫 #392da9（打刻のインク）／ 差し色 タイムカードの紙の黄 #f3d64e。文字は主に寄せた墨 #181532。
+    分け方：最初の画面とシフト表の章は主の色の全面、打刻の章は差し色の全面、ほかは白。主・差し色・白をほぼ同じ量の大きな面で。
+  手本の測定（work/oneshot7/shift-saas/sample.jsonl、scripts/sample.js、PC 1440px、6件中6件が開けた）：
+    - backlog.com/ja：題 Noto Sans JP 44px 700、本文 Noto Sans JP 16px・行間1.7・#16161a、罫 6、ボタンの角 4px → 本文は Noto Sans JP、文字は灰にせず墨。
+    - codmon.com：h1 を行ごとに 30／48／56px に変え助詞だけ小さく、本文 16px／1.5・#4d4c4b、罫 3、ボタンの角 8〜40px、大きな価格は1つだけ 88px → 料金の大きな価格は1つ（88px）、ほかは 36px。
+    - linear.app：題 Inter 64px 510・字間 −.022em、罫 10、ボタン角 9999px → 英数字の大きな字は字間を詰める。
+    - attio.com：題 64px 600 行間 .95、ボタンの角 10px → 料金のカードは同じ大きさにし、強調は1つ。
+    - family.co：本文 17px・行間1.53、ボタンの角 32px・2種類 → 本文 17px、押せる物は角まるの2種類（主の色の塗り・白）。
+    - povo.jp：ボタンの角 27px、真下の濃い影、罫 4 → ボタンは真下 4px のぼかさない影、押すと沈む。
+  題の書体：堅すぎない、を Zen Maru Gothic（taste.md の実測：ugokko.jp の丸ゴシック 700）で。打刻の数字はタイムレコーダーの点の字に寄せて DotGothic16。
+  inspect の WARN で残したもの（FAIL 0 / WARN 5）：jp-head-size（型②の幅いっぱいの名前。taste.md が先）・dark-first と sparse-first（主の色の全面に切り抜きの人を置く型。taste.md の実測 ugokko.jp・bestie-sports.co.jp も主の色の全面）・
+    SP の size-count 10段（シフト表・料金・打刻の数字の段が要る）。
+  写真は Wikimedia Commons（出典は各写真の横と photos/credits.json）。写真の人は、この製品の利用者・社員ではない。
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Zen+Maru+Gothic:wght@700;900&family=DotGothic16&display=swap">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"ハリダシ","applicationCategory":"BusinessApplication","operatingSystem":"Web, iOS, Android","description":"アルバイトの多い店のシフト表と勤怠管理（架空の製品・作例）","offers":[
+{"@type":"Offer","name":"ライト（1店舗・スタッフ20人まで）","price":"2400","priceCurrency":"JPY","valueAddedTaxIncluded":false},
+{"@type":"Offer","name":"スタンダード（1店舗・スタッフ60人まで）","price":"4800","priceCurrency":"JPY","valueAddedTaxIncluded":false},
+{"@type":"Offer","name":"マルチ店舗（2〜10店舗、1店舗あたり）","price":"3900","priceCurrency":"JPY","valueAddedTaxIncluded":false}]}
+</script>
+<style>
+:root{
+  --ground:#ffffff;      /* 地 */
+  --ai:#392da9;          /* 主：打刻のインクの藍紫（白と 9.8:1） */
+  --ai-deep:#2a1f86;     /* 主の濃い側（押したとき・影） */
+  --ai-pale:#ecebf8;     /* 主の淡い側（料金の章の地） */
+  --card:#f3d64e;        /* 差し色：タイムカードの紙の黄（主と 6.8:1） */
+  --card-deep:#c9a91f;   /* 差し色の影 */
+  --ink:#181532;         /* 文字（白と 17:1、黄と 12:1） */
+  --ink-2:#433d66;       /* 補足の字（白と 9.9:1） */
+  --round:"Zen Maru Gothic",sans-serif;
+  --sans:"Noto Sans JP",sans-serif;
+  --dot:"DotGothic16",monospace;
+  --gutter:64px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--ground);color:var(--ink);font:400 17px/1.8 var(--sans);word-break:auto-phrase;text-wrap:pretty;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:var(--ai)}
+h1,h2,h3{font-family:var(--round);font-weight:700;margin:0;line-height:1.3;text-wrap:balance}
+p,ul,ol,dl,dd,figure{margin:0}
+ul{padding:0;list-style:none}
+.wrap{max-width:1312px;margin:0 auto;padding:0 var(--gutter)}
+.credit{font-size:13px;line-height:1.55;color:var(--ink-2)}
+.credit a{color:inherit;text-underline-offset:2px}
+.on-ai .credit,.on-ai .credit a{color:#e3e0fb}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.on-ai :focus-visible{outline-color:#fff}
+
+/* 押せる物は2種類：主の色の塗り（真下 4px の影、押すと沈む）と白 */
+.btn{display:inline-flex;flex-direction:column;align-items:flex-start;gap:2px;font:700 19px/1.3 var(--round);background:var(--ai);color:#fff;text-decoration:none;padding:18px 34px 18px 30px;border-radius:999px;border:0;cursor:pointer;box-shadow:0 4px 0 var(--ai-deep);transition:transform .12s,box-shadow .12s,background-color .12s}
+.btn small{font:400 13px/1.3 var(--sans)}
+.btn:active{transform:translateY(4px);box-shadow:0 0 0 var(--ai-deep)}
+.btn.white{background:#fff;color:var(--ai);box-shadow:0 4px 0 var(--ai-deep)}
+@media (hover:hover) and (pointer:fine){.btn:hover{background:var(--ai-deep)}.btn.white:hover{background:var(--card)}}
+
+/* ヘッダー */
+.site-head{position:sticky;top:0;z-index:20;background:var(--ai);color:#fff}
+.site-head .wrap{display:flex;align-items:center;gap:36px;height:72px;max-width:none}
+.logo{font:700 28px/1 var(--round);color:var(--card);text-decoration:none;letter-spacing:.02em}
+.site-head nav{display:flex;gap:28px;margin-left:auto}
+.site-head nav a{color:#fff;text-decoration:none;font-size:17px;font-weight:700}
+.site-head nav a:hover{text-decoration:underline;text-underline-offset:5px}
+.head-try{font:700 17px/1 var(--round);background:#fff;color:var(--ai);padding:13px 22px;border-radius:999px;text-decoration:none;box-shadow:0 3px 0 var(--ai-deep)}
+.head-try:active{transform:translateY(3px);box-shadow:none}
+
+/* 最初の画面：藍紫の全面に、幅いっぱいの名前と、切り抜いた人と、貼り出したシフト表 */
+.hero{position:relative;background:var(--ai);color:#fff;min-height:calc(100vh - 72px);height:828px;max-height:900px;overflow:hidden}
+.hero h1{position:static;color:var(--card)}
+.hero-kind{position:absolute;left:var(--gutter);top:56px;font:700 40px/1.35 var(--round);color:var(--card);z-index:4}
+.hero-name{position:absolute;left:28px;bottom:-14px;font:700 272px/1 var(--round);letter-spacing:-.04em;color:var(--card);z-index:3;white-space:nowrap;-webkit-text-stroke:10px var(--ai);paint-order:stroke fill}
+.hero-lead{position:absolute;left:var(--gutter);top:178px;z-index:4;display:flex;flex-direction:column;align-items:flex-start;gap:22px}
+.hero-lead p{font:700 22px/1.5 var(--round)}
+.hero-lead .sub{font-size:17px;font-weight:400;font-family:var(--sans);color:#e3e0fb}
+.hero-lead .sub a{color:#fff}
+.hero-person{position:absolute;right:-60px;bottom:-330px;height:1030px;width:auto;max-width:none;z-index:2}
+.hero-credit{position:absolute;right:var(--gutter);bottom:22px;z-index:5;max-width:24em;background:var(--ink);padding:8px 12px}
+/* 貼り出したシフト表（紙） */
+.sheet{background:#fff;color:var(--ink);font-family:var(--sans);position:relative;box-shadow:0 2px 0 rgba(24,21,50,.18)}
+.sheet .tape{position:absolute;width:92px;height:28px;background:rgba(243,214,78,.82);top:-12px}
+.sheet .tape.l{left:18px;transform:rotate(-6deg)}
+.sheet .tape.r{right:18px;transform:rotate(5deg)}
+.hero-sheet{position:absolute;left:var(--gutter);top:396px;width:400px;padding:18px 18px 16px;transform:rotate(-3deg);z-index:1}
+.sheet-title{font:700 19px/1.3 var(--round);margin-bottom:10px}
+.sheet table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.3}
+.sheet th,.sheet td{border:1px solid #b9b5d3;padding:6px 3px;white-space:nowrap;text-align:center;font-weight:400}
+.sheet thead th{background:var(--ai-pale);font-weight:700}
+.sheet tbody th{text-align:left;white-space:nowrap;font-weight:700}
+.sheet td.x{color:#6d6890}
+.sheet td.in{background:var(--ai);color:#fff;font-weight:700}
+.sheet-foot{font-size:13px;margin-top:10px;color:var(--ink-2)}
+
+/* 章の共通 */
+section{position:relative}
+.sec,.end{overflow:hidden}
+.sec{padding:120px 0}
+.h2{font-size:58px;line-height:1.25}
+.lead{font-size:19px;line-height:1.85;margin-top:26px;max-width:30em}
+.points{margin-top:30px;display:grid;gap:16px;max-width:31em}
+.points li{padding-left:1.5em;position:relative}
+.points li::before{content:"";position:absolute;left:0;top:.62em;width:.7em;height:.7em;border-radius:50%;background:var(--ai)}
+.on-ai .points li::before{background:var(--card)}
+.cap{margin-top:14px}
+.cap strong{font-weight:700;display:block;font-size:15px;color:var(--ink)}
+.on-ai .cap strong{color:#fff}
+
+/* 希望を集める：左に大きなスマホ、黄の面がはみ出し、右にタイムカード形の窓 */
+.kibou{overflow:hidden}
+.kibou .wrap{display:grid;grid-template-columns:430px 1fr;gap:96px;align-items:start}
+.kibou-board{position:relative;padding:40px 0 0 0}
+.kibou-board::before{content:"";position:absolute;left:-400px;right:90px;top:120px;height:560px;background:var(--card);z-index:0;border-radius:0 280px 280px 0}
+.phone{position:relative;z-index:1;width:360px;margin-left:20px;background:var(--ink);border-radius:46px;padding:14px;box-shadow:0 6px 0 rgba(24,21,50,.22)}
+.phone-in{background:#fff;border-radius:34px;overflow:hidden;font-size:15px;line-height:1.45}
+.phone-top{background:var(--ai);color:#fff;padding:22px 20px 18px}
+.phone-top b{display:block;font:700 22px/1.3 var(--round)}
+.phone-top span{font-size:13px;color:#e3e0fb}
+.days{padding:6px 16px 4px}
+.day{display:grid;grid-template-columns:76px 1fr;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid #dddbe9}
+.day:last-child{border-bottom:0}
+.day b{font-weight:700}
+.day .opts{display:flex;gap:6px;flex-wrap:wrap}
+.opt{border:1.5px solid #8f8ab0;border-radius:999px;padding:4px 11px;font-size:13px;color:var(--ink);background:#fff}
+.opt.on{background:var(--ai);border-color:var(--ai);color:#fff;font-weight:700}
+.memo{margin:4px 16px 14px;background:var(--ai-pale);border-radius:12px;padding:10px 12px;font-size:13px}
+.phone-send{display:block;margin:0 16px 18px;text-align:center;background:var(--ai);color:#fff;border-radius:999px;padding:12px;font-weight:700}
+.kibou-text{padding-top:30px}
+.kibou-photo{grid-column:1;grid-row:2;margin-top:-40px;position:relative;z-index:1}
+.kibou-text{grid-column:2;grid-row:1 / span 2}
+/* タイムカード形の窓：縦長、上に差し込みの切り欠き */
+.cardwin{position:relative;aspect-ratio:7/9;overflow:hidden;border-radius:16px 16px 16px 16px;clip-path:polygon(0 0,38% 0,40% 4%,60% 4%,62% 0,100% 0,100% 100%,0 100%)}
+.cardwin img{width:100%;height:100%;object-fit:cover}
+.kibou-photo .cardwin{width:100%}
+
+/* シフト表を組む（触れる1つ）：藍紫の全面に、貼り出した紙が大きく */
+.hyou{background:var(--ai);color:#fff;overflow:hidden}
+.hyou-head{display:grid;grid-template-columns:1fr 420px;gap:64px;align-items:end}
+.hyou-head .h2{color:#fff}
+.hyou-photo{position:relative;margin-right:calc(var(--gutter) * -1 - 80px)}
+.hyou-photo .arch{aspect-ratio:4/3;overflow:hidden;border-radius:999px 0 0 999px}
+.hyou-photo .arch img{width:100%;height:100%;object-fit:cover}
+.board{margin-top:56px;padding:44px 44px 40px;transform:rotate(-.6deg)}
+.board-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 28px;margin-bottom:22px}
+.board-top h3{font-size:28px}
+.board-top .shop{font-size:15px;color:var(--ink-2)}
+.grid-scroll{overflow-x:auto}
+.shift{display:grid;grid-template-columns:200px repeat(11,1fr) 150px;min-width:980px;font-size:15px}
+.shift .hr{font:700 13px/1 var(--sans);text-align:left;padding:0 0 8px 2px;color:var(--ink-2);border-left:1px solid #cfcbe4}
+.shift .nm{display:flex;flex-direction:column;justify-content:center;padding:6px 10px 6px 0;border-top:1px solid #e3e1ef;line-height:1.35}
+.shift .nm b{font-weight:700}
+.shift .nm span{font-size:13px;color:var(--ink-2)}
+.lane{grid-column:2 / span 11;position:relative;border-top:1px solid #e3e1ef;min-height:58px;background:repeating-linear-gradient(90deg,transparent 0 calc(100%/11 - 1px),#ecebf3 calc(100%/11 - 1px) calc(100%/11))}
+.wish{position:absolute;top:9px;bottom:9px;border-radius:999px;border:2px dashed #8f8ab0;background:#fff;color:var(--ink);font:700 13px/1 var(--sans);display:flex;align-items:center;justify-content:space-between;padding:0 6px 0 14px;cursor:pointer}
+.wish[aria-pressed="true"]{background:var(--ai);border:2px solid var(--ai);color:#fff}
+.wish .ts{display:none}
+.wish .tg{font:700 13px/1 var(--sans);border-radius:999px;padding:6px 10px;background:var(--ai-pale);color:var(--ai)}
+.wish[aria-pressed="true"] .tg{background:#fff;color:var(--ai)}
+.noway{position:absolute;top:50%;left:12px;transform:translateY(-50%);font-size:13px;color:var(--ink-2)}
+.side{border-top:1px solid #e3e1ef;display:flex;align-items:center;padding-left:14px;font-size:13px;line-height:1.4;color:var(--ink-2)}
+.side.warn{color:var(--ink);font-weight:700}
+.need-label{border-top:2px solid var(--ink);padding:12px 10px 0 0;font-weight:700;line-height:1.35}
+.need-label span{display:block;font-size:13px;font-weight:400;color:var(--ink-2)}
+.need{border-top:2px solid var(--ink);margin-top:0;padding:10px 2px 0;text-align:center;font-size:13px;line-height:1.3}
+.need b{display:block;font:700 22px/1.1 var(--round)}
+.need.short{background:var(--card)}
+.need.short b{color:var(--ink)}
+.need-side{border-top:2px solid var(--ink)}
+.board-sum{display:grid;grid-template-columns:1fr auto;gap:24px 40px;align-items:end;margin-top:28px}
+.board-sum p{font-size:17px}
+.sum-cost{text-align:right}
+.sum-cost b{display:block;font:700 40px/1.1 var(--round);color:var(--ai)}
+.sum-cost span{font-size:13px;color:var(--ink-2)}
+.hyou-after{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:64px}
+.hyou-after h3{font-size:28px;margin-bottom:10px}
+
+/* 打刻：タイムカードの紙の黄の全面に、大きなタイムカード */
+.dakoku{background:var(--card);overflow:hidden}
+.dakoku .wrap{display:grid;grid-template-columns:520px 1fr;gap:80px;align-items:start}
+.tcard{position:relative;background:#fbf0bd;width:470px;padding:34px 30px 30px;transform:rotate(-4deg);margin-top:-40px;margin-left:10px;box-shadow:0 3px 0 rgba(24,21,50,.2)}
+.tcard::before{content:"";position:absolute;left:50%;top:0;width:96px;height:18px;transform:translateX(-50%);background:var(--card);border-radius:0 0 48px 48px}
+.tcard-h{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:10px}
+.tcard-h b{font:700 22px/1.2 var(--round)}
+.tcard-h span{font-size:13px}
+.tcard table{width:100%;border-collapse:collapse;margin-top:8px}
+.tcard th{font-size:13px;font-weight:700;text-align:left;padding:6px 4px;border-bottom:1px solid #c9b86a}
+.tcard td{font:400 22px/1 var(--dot);color:var(--ai);padding:9px 4px;border-bottom:1px solid #e2d48b}
+.tcard td.d{font:700 15px/1 var(--sans);color:var(--ink)}
+.tcard td.late{position:relative}
+.tcard td.late small{font:700 12px/1 var(--sans);color:var(--ink);margin-left:6px;background:#fff;padding:3px 6px;border-radius:999px}
+.tcard-n{font-size:13px;margin-top:12px}
+.dakoku-right{padding-top:0}
+.tablet{margin-top:44px;background:var(--ink);border-radius:30px;padding:16px;max-width:640px}
+.tablet-in{background:#fff;border-radius:18px;padding:22px 24px 24px}
+.tablet-in .now{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+.tablet-in .now b{font:400 40px/1 var(--dot);color:var(--ai)}
+.tablet-in .now span{font-size:15px;font-weight:700}
+.names{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.names span{border-radius:14px;background:var(--ai-pale);padding:14px 8px;text-align:center;font-weight:700;font-size:17px;line-height:1.3}
+.names span small{display:block;font-weight:400;font-size:13px;color:var(--ink-2)}
+.names span.here{background:var(--ai);color:#fff}
+.names span.here small{color:#e3e0fb}
+.dakoku-photo{grid-column:1 / -1;display:grid;grid-template-columns:520px 1fr;gap:36px;align-items:end;margin-top:40px;margin-left:-120px}
+.dakoku-photo .credit{max-width:24em}
+.round{aspect-ratio:1;border-radius:50%;overflow:hidden;border:10px solid var(--ai)}
+.round img{width:100%;height:100%;object-fit:cover}
+
+/* 書き出し：白の地に、締め日の大きな数字と、書き出すファイル */
+.csv .wrap{position:relative}
+.csv-top{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end}
+.shime{font:700 200px/0.9 var(--round);color:var(--ai);letter-spacing:-.04em;white-space:nowrap}
+.shime small{font-size:58px;letter-spacing:0;margin-left:6px}
+.shime-n{font-size:15px;color:var(--ink-2);margin-top:12px}
+.file{margin-top:64px;border-radius:20px;background:var(--ai-pale);padding:30px 30px 34px;position:relative}
+.file-bar{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;margin-bottom:18px}
+.file-bar b{font:700 22px/1.3 var(--round)}
+.file-bar label{font-size:15px;display:flex;align-items:center;gap:10px}
+.file-bar select{font:inherit;font-size:15px;padding:8px 12px;border:2px solid var(--ai);border-radius:10px;background:#fff;color:var(--ink)}
+.csv-scroll{overflow-x:auto;background:#fff;border-radius:12px}
+.csv-scroll table{border-collapse:collapse;min-width:900px;width:100%;font:400 15px/1.4 ui-monospace,"DotGothic16",monospace}
+.csv-scroll th,.csv-scroll td{border:1px solid #d3d0e6;padding:10px 12px;text-align:right;white-space:nowrap}
+.csv-scroll th{background:var(--ai);color:#fff;font:700 13px/1.3 var(--sans);text-align:center;border-color:#5a4fc0}
+.csv-scroll td:nth-child(2){text-align:left;font-family:var(--sans)}
+.csv-photo{display:grid;grid-template-columns:1.618fr 1fr;gap:48px;align-items:center;margin-top:72px}
+.wide{aspect-ratio:16/9;overflow:hidden;margin-left:calc(var(--gutter) * -1 - 80px);border-radius:0 400px 400px 0}
+.wide img{width:100%;height:100%;object-fit:cover}
+
+/* 料金 */
+.ryoukin{background:var(--ai-pale);overflow:hidden}
+.ryoukin-top{display:grid;grid-template-columns:340px 1fr;gap:72px;align-items:end}
+.ryoukin-top .cardwin{width:340px}
+.ryoukin-top figure{order:-1}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px;align-items:stretch}
+.plan{background:#fff;border-radius:24px;padding:34px 30px 34px;display:flex;flex-direction:column}
+.plan.rec{background:var(--ai);color:#fff;transform:translateY(-18px);box-shadow:0 6px 0 var(--ai-deep)}
+.plan h3{font-size:28px}
+.plan .who{font-size:17px;margin-top:6px;font-weight:700}
+.plan .price{margin-top:22px;font:700 40px/1.1 var(--round);letter-spacing:-.02em}
+.plan.rec .price{font-size:88px;line-height:1;color:var(--card)}
+.plan .price small{font:700 17px/1 var(--sans);letter-spacing:0;margin-left:4px}
+.plan.rec .price small{color:#fff}
+.plan .tax{font-size:15px;margin-top:8px}
+.plan .year{font-size:15px;margin-top:14px;padding-top:14px;border-top:1px solid #d3d0e6}
+.plan.rec .year{border-top-color:#6a5fcc}
+.plan ul{margin-top:18px;display:grid;gap:8px;font-size:17px}
+.plan ul li{padding-left:1.3em;position:relative}
+.plan ul li::before{content:"";position:absolute;left:0;top:.6em;width:.6em;height:.6em;border-radius:50%;background:var(--ai)}
+.plan.rec ul li::before{background:var(--card)}
+.plan .btn{margin-top:auto;align-self:stretch;align-items:center;justify-content:center}
+.plan .spacer{height:26px}
+.plan.rec .btn{background:var(--card);color:var(--ink);box-shadow:0 4px 0 var(--card-deep)}
+.plans-note{margin-top:34px;font-size:17px;max-width:46em}
+.compare{margin-top:72px}
+.compare h3{font-size:28px;margin-bottom:18px}
+.compare table{width:100%;border-collapse:collapse;background:#fff;border-radius:16px;overflow:hidden;font-size:17px}
+.compare th,.compare td{padding:12px 16px;border-bottom:1px solid #dddbe9;text-align:left;vertical-align:top}
+.compare thead th{background:var(--ink);color:#fff;font:700 17px/1.3 var(--sans)}
+.compare thead th small{display:block;font-weight:400;font-size:13px;color:#d9d6f2}
+.compare tbody.grp th[colspan]{background:var(--ai);color:#fff;font:700 17px/1.3 var(--round);padding:10px 16px}
+.compare tbody th{font-weight:700;width:30%}
+.compare td.col-rec{background:#f6f5fc}
+.compare .no{color:var(--ink-2)}
+
+/* 導入の手順：休憩室に貼る招待の紙と、日ごとの手順 */
+.dounyuu .wrap{display:grid;grid-template-columns:1fr 470px;gap:80px;align-items:start}
+.steps{margin-top:44px;display:grid;gap:0}
+.step{display:grid;grid-template-columns:150px 1fr;gap:28px;padding:26px 0;border-top:2px solid var(--ink)}
+.step:last-child{border-bottom:2px solid var(--ink)}
+.step .when{font:700 28px/1.15 var(--round);color:var(--ai)}
+.step h3{font-size:22px;margin-bottom:6px}
+.step p{font-size:17px}
+.poster{padding:40px 36px 36px;transform:rotate(2.5deg);margin-top:20px;background:#fff;border:1px solid #d9d6ea}
+.poster-h{font:700 28px/1.3 var(--round);color:var(--ai)}
+.poster-s{font-size:17px;margin-top:10px}
+.poster-qr{display:flex;gap:22px;align-items:center;margin-top:22px}
+.poster-qr svg{width:170px;height:170px;flex:none}
+.poster-qr p{font-size:15px}
+.poster-mihon{font-size:13px;color:var(--ink-2);margin-top:16px}
+.dounyuu-photo{margin-top:56px;margin-right:calc(var(--gutter) * -1 - 80px)}
+.dounyuu-photo .tall{aspect-ratio:5/4;overflow:hidden;border-radius:280px 0 0 0}
+.dounyuu-photo .tall img{width:100%;height:100%;object-fit:cover}
+.soudan{margin-top:40px;background:var(--card);border-radius:24px;padding:26px 30px}
+.soudan b{font:700 22px/1.4 var(--round);display:block}
+
+/* よくある質問：藍紫の全面 */
+.faq{background:var(--ai);color:#fff;overflow:hidden}
+.faq .wrap{display:grid;grid-template-columns:380px 1fr;gap:80px;align-items:start}
+.faq-side .h2{color:#fff}
+.faq-side .cardwin{margin-top:44px;width:100%}
+.faq-list details{border-top:2px solid rgba(255,255,255,.55)}
+.faq-list details:last-child{border-bottom:2px solid rgba(255,255,255,.55)}
+.faq-list summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;padding:22px 0;font:700 22px/1.45 var(--round)}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary::after{content:"＋";font-family:var(--sans);font-weight:700;color:var(--card);flex:none}
+.faq-list details[open] summary::after{content:"－"}
+.faq-list .a{padding:0 0 24px;font-size:17px;max-width:40em}
+
+/* 最後：黄の全面に、もう一度名前 */
+.end{background:var(--card);overflow:hidden;padding:110px 0 0}
+.end .wrap{position:relative;display:grid;grid-template-columns:1fr 420px;gap:48px;align-items:end}
+.end-h{font:700 58px/1.3 var(--round)}
+.end p.l{font-size:19px;margin:22px 0 34px;max-width:28em}
+.end-name{font:700 200px/0.8 var(--round);color:var(--ai);letter-spacing:-.04em;white-space:nowrap;margin:70px 0 0 -8px;user-select:none}
+.end-photo .cardwin{width:100%;aspect-ratio:4/5}
+.end-photo{padding-bottom:30px}
+
+/* フッター */
+.site-foot{background:var(--ink);color:#fff;padding:64px 0 48px}
+.site-foot .wrap{display:grid;grid-template-columns:1fr 2fr;gap:48px}
+.site-foot .logo{font-size:28px}
+.site-foot nav{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 28px;font-size:17px}
+.site-foot a{color:#fff}
+.site-foot .note{grid-column:1 / -1;font-size:13px;color:#d9d6f2;border-top:1px solid #3b365e;padding-top:22px;line-height:1.7}
+
+/* スマホ */
+@media (max-width:1100px){
+  :root{--gutter:32px}
+  .site-head nav{display:none}
+  .head-try{margin-left:auto}
+  .hero-name{font-size:21vw}
+  .hero-sheet{display:none}
+  .dakoku-photo{grid-template-columns:1fr;margin:40px 0 0}
+  .kibou-photo{margin-top:0;grid-column:auto;grid-row:auto}
+  .kibou-text{grid-column:auto;grid-row:auto}
+  .kibou-photo .cardwin,.dakoku-photo .round{max-width:420px}
+  .kibou .wrap,.hyou-head,.dakoku .wrap,.csv-top,.csv-photo,.ryoukin-top,.dounyuu .wrap,.faq .wrap,.end .wrap,.hyou-after{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  :root{--gutter:20px}
+  body{font-size:16px}
+  .site-head .wrap{height:60px;gap:12px}
+  .logo{font-size:22px}
+  .head-try{font-size:14px;padding:11px 16px}
+  .hero{height:auto;min-height:0;padding:30px 0 0}
+  .hero-kind{position:static;display:block;font-size:28px;padding:0 var(--gutter)}
+  .hero-lead{position:static;padding:16px var(--gutter) 0;gap:18px}
+  .hero-lead p{font-size:17px}
+  .btn{font-size:17px;padding:16px 28px 16px 26px}
+  .hero-stage{position:relative;height:440px;margin-top:10px;overflow:hidden}
+  .hero-person{right:auto;left:50%;bottom:-40px;transform:translateX(-50%);height:480px}
+  .hero-name{font-size:96px;left:6px;bottom:108px;-webkit-text-stroke:6px var(--ai)}
+  .hero-credit{position:static;text-align:left;max-width:none;padding:14px var(--gutter) 20px;background:var(--ink)}
+  .sec{padding:80px 0}
+  .h2{font-size:34px}
+  .lead{font-size:17px}
+  .kibou .wrap{gap:40px}
+  .kibou-board{order:2;padding-top:10px}
+  .kibou-board::before{left:-200px;right:30px;top:80px;height:420px}
+  .phone{width:100%;max-width:350px;margin-left:0}
+  .day{grid-template-columns:62px 1fr;gap:4px}
+  .day .opts{flex-wrap:nowrap;gap:4px}
+  .opt{padding:4px 8px;font-size:13px;white-space:nowrap}
+  .kibou-photo{margin-top:0}
+  .ryoukin-top figure{order:0}
+  .kibou-photo .cardwin{max-width:300px}
+  .hyou-photo{margin-right:calc(var(--gutter) * -1)}
+  .board{padding:30px 18px 26px;margin-left:calc(var(--gutter) * -1 + 8px);margin-right:calc(var(--gutter) * -1 + 8px);transform:none}
+  .board-top h3{font-size:22px}
+  .board-sum{grid-template-columns:1fr}
+  .shift{grid-template-columns:84px repeat(11,1fr);min-width:0;font-size:15px}
+  .shift .nm{padding-right:6px}
+  .shift .nm b{font-size:15px}
+  .shift .nm span{display:none}
+  .side{display:none}
+  .shift>span:last-of-type{display:none}
+  .need-side{display:none}
+  .shift .hr{font-size:13px;padding-left:1px}
+  .wish{padding:0 4px;justify-content:center;font-size:13px}
+  .wish .t,.wish .tg{display:none}
+  .wish .ts{display:inline}
+  .need{padding:8px 0 0;font-size:13px;letter-spacing:-.06em}
+  .need b{font-size:19px}
+  .noway{font-size:13px;left:4px}
+  .need-label{font-size:13px;padding-right:4px}
+  .need-label span{display:none}
+  .sum-cost{text-align:left}
+  .tcard{width:auto;margin:-20px 0 0;transform:rotate(-2deg);padding:28px 18px 22px}
+  .tcard td{font-size:17px}
+  .names{grid-template-columns:repeat(2,1fr)}
+  .dakoku-photo{grid-template-columns:1fr;margin-left:0;gap:0}
+  .dakoku-photo .round{max-width:260px}
+  .shime{font-size:120px}
+  .shime small{font-size:40px}
+  .file{padding:22px 16px 24px;margin-left:calc(var(--gutter) * -1);margin-right:calc(var(--gutter) * -1);border-radius:0}
+  .wide{margin-left:calc(var(--gutter) * -1);border-radius:0 200px 200px 0}
+  .ryoukin-top .cardwin{width:100%;max-width:300px;margin:0}
+  .plans{grid-template-columns:1fr;gap:20px}
+  .plan.rec{transform:none}
+  .plan.rec .price{font-size:64px}
+  .compare table,.compare tbody,.compare tr,.compare th,.compare td{display:block;width:auto}
+  .compare thead{display:none}
+  .compare tbody.grp tr{display:grid;grid-template-columns:repeat(3,1fr)}
+  .compare tbody.grp tr th:first-child{grid-column:1 / -1;border-bottom:0;padding-bottom:2px}
+  .compare tbody.grp tr th[colspan]{grid-column:1 / -1}
+  .compare tbody th{width:auto}
+  .file-bar label{flex-wrap:wrap}
+  .file-bar select{max-width:100%}
+  .compare td{font-size:14px;padding:6px 8px 12px;border-bottom:1px solid #dddbe9}
+  .compare td::before{content:attr(data-p);display:block;font-weight:700;font-size:13px;color:var(--ink-2)}
+  .step{grid-template-columns:1fr;gap:6px}
+  .step .when{font-size:22px}
+  .poster{transform:rotate(1.5deg);padding:28px 22px}
+  .poster-qr{flex-direction:column;align-items:flex-start}
+  .dounyuu-photo{margin-right:calc(var(--gutter) * -1)}
+  .faq-list summary{font-size:17px}
+  .end{padding-top:80px}
+  .end-h{font-size:34px}
+  .end-name{font-size:96px;margin-top:40px}
+  .end-photo .cardwin{max-width:300px}
+  .site-foot .wrap{grid-template-columns:1fr}
+  .site-foot nav{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="#top">ハリダシ</a>
+    <nav aria-label="ページの中">
+      <a href="#kibou">できること</a>
+      <a href="#ryoukin">料金</a>
+      <a href="#dounyuu">導入の手順</a>
+      <a href="#faq">よくある質問</a>
+    </nav>
+    <a class="head-try" href="#try">無料で試す</a>
+  </div>
+</header>
+
+<main>
+<section class="hero on-ai" id="top" aria-labelledby="h1">
+  <h1 id="h1"><span class="hero-kind">アルバイトの多い店の<br>シフト表と勤怠</span><span class="hero-name" aria-label="ハリダシ">ハリダシ</span></h1>
+  <div class="hero-lead">
+        <a class="btn white" href="#try">30日間 無料で試す<small>カードの登録はいりません</small></a>
+    <p class="sub">月2,400円（税抜）から。<a href="#ryoukin">料金を見る</a></p>
+  </div>
+  <div class="sheet hero-sheet" data-object aria-label="貼り出したシフト表の見本（架空の店）">
+    <span class="tape l"></span><span class="tape r"></span>
+    <b class="sheet-title" style="display:block">12月1日〜7日 ホール　店長 山口</b>
+    <table>
+      <thead><tr><th></th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th><th>日</th></tr></thead>
+      <tbody>
+        <tr><th>佐藤</th><td class="in">11-15</td><td class="x">×</td><td class="in">11-15</td><td class="x">×</td><td class="x">×</td><td class="in">11-15</td><td class="x">×</td></tr>
+        <tr><th>高橋</th><td class="x">×</td><td class="in">17-22</td><td class="x">×</td><td class="in">17-22</td><td class="in">17-22</td><td class="x">×</td><td class="in">17-21</td></tr>
+        <tr><th>中村</th><td class="in">10-14</td><td class="in">10-14</td><td class="x">×</td><td class="in">10-14</td><td class="in">10-14</td><td class="x">×</td><td class="x">×</td></tr>
+        <tr><th>小林</th><td class="x">×</td><td class="in">13-22</td><td class="in">13-22</td><td class="x">×</td><td class="in">13-22</td><td class="in">13-22</td><td class="in">13-22</td></tr>
+        <tr><th>伊藤</th><td class="in">17-22</td><td class="x">×</td><td class="in">17-22</td><td class="in">17-22</td><td class="x">×</td><td class="in">17-22</td><td class="x">×</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="hero-stage">
+    <img class="hero-person" data-object src="photos/cafe-staff-cut.webp" alt="黒いシャツで笑う2人のカフェのスタッフ（切り抜き）" width="1088" height="1042" fetchpriority="high">
+  </div>
+  <p class="credit hero-credit">アメリカの大学のカフェで働く学生のスタッフ。この製品の利用者ではありません。<br>写真：IMCBerea College／<a href="https://commons.wikimedia.org/w/index.php?curid=58298151">Wikimedia Commons</a>／CC BY 2.0（切り抜いた）</p>
+</section>
+
+<section class="sec kibou" id="kibou" aria-labelledby="h-kibou">
+  <div class="wrap">
+    <div class="kibou-board">
+      <div class="phone" data-ui data-object role="img" aria-label="スタッフのスマホに出る、希望シフトを出す画面の見本">
+        <div class="phone-in">
+          <div class="phone-top"><b>12月前半の希望</b><span>締め切り 11月20日（金）・みなと食堂</span></div>
+          <div class="days">
+            <div class="day"><b>1日（月）</b><span class="opts"><span class="opt on">○ 入れる</span><span class="opt">17時から</span><span class="opt">×</span></span></div>
+            <div class="day"><b>2日（火）</b><span class="opts"><span class="opt">○ 入れる</span><span class="opt">17時から</span><span class="opt on">×</span></span></div>
+            <div class="day"><b>3日（水）</b><span class="opts"><span class="opt">○ 入れる</span><span class="opt on">17時から</span><span class="opt">×</span></span></div>
+            <div class="day"><b>4日（木）</b><span class="opts"><span class="opt on">○ 入れる</span><span class="opt">17時から</span><span class="opt">×</span></span></div>
+            <div class="day"><b>5日（金）</b><span class="opts"><span class="opt">○ 入れる</span><span class="opt">17時から</span><span class="opt on">×</span></span></div>
+          </div>
+          <p class="memo">ひと言：8日〜12日はテストなので、入れても週2日です</p>
+          <span class="phone-send">この内容で出す</span>
+        </div>
+      </div>
+    </div>
+    <div class="kibou-text">
+      <h2 class="h2" id="h-kibou">希望シフトを<br>スマホで集める</h2>
+      <p class="lead">店長が「12月1日〜15日の希望を、11月20日（金）まで」と決めて送ると、スタッフのスマホにリンクが届きます。アプリを入れなくても、そのリンクから日ごとに選んで出せます。</p>
+      <ul class="points">
+        <li>まだ出していない人にだけ、締め切りの前日の18時に、<span style="white-space:nowrap">もう一度</span>届きます。</li>
+        <li>「テスト期間」などのひと言は、シフト表の名前の横に残ります。</li>
+        <li>出てきた希望は、そのままシフト表の下書きに並びます。メッセージから書き写す手間はありません。</li>
+      </ul>
+    </div>
+    <div class="kibou-photo">
+      <div class="cardwin"><img src="photos/DSCF0807-A-busy-market-kitchen-worker-carefully-preparing-fr.jpg" alt="市場の厨房で、帽子をかぶって野菜を並べるスタッフ" loading="lazy" width="1280" height="853" style="object-position:58% 50%"></div>
+      <p class="credit cap"><strong>タイの市場の厨房で、野菜をそろえる人。</strong>この製品を使う店の人ではありません。<br>写真：PattayaPatrol／<a href="https://commons.wikimedia.org/w/index.php?curid=196040534">Wikimedia Commons</a>／CC BY-SA 4.0</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec hyou on-ai" id="hyou" aria-labelledby="h-hyou">
+  <div class="wrap">
+    <div class="hyou-head">
+      <div>
+        <h2 class="h2" id="h-hyou">希望の並んだ表で<br>シフトを組む</h2>
+        <p class="lead">名前の行の希望を押すと、その人がシフトに入ります。下の行で、時間ごとの人数と人件費の見込みが変わります。足りない時間は黄色のまま残ります。</p>
+      </div>
+      <figure class="hyou-photo">
+        <div class="arch"><img src="photos/Staff-in-a-kitchen-restaurant-Goa.jpg" alt="橙のシャツをそろえて着た厨房のスタッフが、それぞれの持ち場で働く" loading="lazy" width="960" height="539"></div>
+        <figcaption class="credit cap"><strong>インド・ゴアのレストランの厨房のスタッフ。</strong>見本の店「みなと食堂」の人ではありません。<br>写真：Fredericknoronha／<a href="https://commons.wikimedia.org/w/index.php?curid=104742765">Wikimedia Commons</a>／CC BY-SA 4.0</figcaption>
+      </figure>
+    </div>
+
+    <div class="sheet board" data-object>
+      <span class="tape l"></span><span class="tape r"></span>
+      <div class="board-top">
+        <h3>12月5日（土）のシフト</h3>
+        <span class="shop">見本の店：みなと食堂（架空）・営業 11時〜22時・ホールと洗い場</span>
+      </div>
+      <div class="grid-scroll" data-ui>
+        <div class="shift" id="shift" role="group" aria-label="12月5日のシフト表。希望を押すとシフトに入る">
+          <span></span>
+          <span class="hr">11</span><span class="hr">12</span><span class="hr">13</span><span class="hr">14</span><span class="hr">15</span><span class="hr">16</span><span class="hr">17</span><span class="hr">18</span><span class="hr">19</span><span class="hr">20</span><span class="hr">21</span>
+          <span></span>
+          <!-- 行は JS が無くても読めるよう、HTML に全部書く -->
+          <div class="nm"><b>佐藤 みく</b><span>大学生・時給1,150円</span></div>
+          <div class="lane"><button class="wish" data-s="11" data-e="15" data-rate="1150" data-who="佐藤 みく" aria-pressed="true" style="left:0%;width:36.36%"><span class="t">11時〜15時</span><span class="ts" aria-hidden="true">11-15</span><span class="tg">入る</span></button></div>
+          <div class="side">今週 12時間</div>
+
+          <div class="nm"><b>中村 あやね</b><span>パート・時給1,150円</span></div>
+          <div class="lane"><button class="wish" data-s="11" data-e="14" data-rate="1150" data-who="中村 あやね" aria-pressed="false" style="left:0%;width:27.27%"><span class="t">11時〜14時</span><span class="ts" aria-hidden="true">11-14</span><span class="tg">入れる</span></button></div>
+          <div class="side">今週 12時間</div>
+
+          <div class="nm"><b>渡辺 はる</b><span>留学生・時給1,150円</span></div>
+          <div class="lane"><button class="wish" data-s="12" data-e="17" data-rate="1150" data-who="渡辺 はる" data-week="23" aria-pressed="false" style="left:9.09%;width:45.45%"><span class="t">12時〜17時</span><span class="ts" aria-hidden="true">12-17</span><span class="tg">入れる</span></button></div>
+          <div class="side" id="week-hal">今週 23時間（週28時間まで）</div>
+
+          <div class="nm"><b>小林 れん</b><span>フリーター・時給1,200円</span></div>
+          <div class="lane"><button class="wish" data-s="13" data-e="22" data-rate="1200" data-who="小林 れん" aria-pressed="true" style="left:18.18%;width:81.82%"><span class="t">13時〜22時（休憩1時間）</span><span class="ts" aria-hidden="true">13-22</span><span class="tg">入る</span></button></div>
+          <div class="side">今週 32時間</div>
+
+          <div class="nm"><b>高橋 そうた</b><span>高校生・時給1,100円</span></div>
+          <div class="lane"><button class="wish" data-s="17" data-e="22" data-rate="1100" data-who="高橋 そうた" aria-pressed="false" style="left:54.55%;width:45.45%"><span class="t">17時〜22時</span><span class="ts" aria-hidden="true">17-22</span><span class="tg">入れる</span></button></div>
+          <div class="side">18歳未満は22時まで</div>
+
+          <div class="nm"><b>伊藤 ゆい</b><span>大学生・時給1,150円</span></div>
+          <div class="lane"><button class="wish" data-s="17" data-e="22" data-rate="1150" data-who="伊藤 ゆい" aria-pressed="true" style="left:54.55%;width:45.45%"><span class="t">17時〜22時</span><span class="ts" aria-hidden="true">17-22</span><span class="tg">入る</span></button></div>
+          <div class="side">今週 10時間</div>
+
+          <div class="nm"><b>加藤 まさき</b><span>大学生・時給1,150円</span></div>
+          <div class="lane"><span class="noway">× この日は入れない（ゼミの合宿）</span></div>
+          <div class="side"></div>
+
+          <div class="need-label">入っている人<span>必要な人数</span></div>
+          <div class="need" data-h="11"><b>1</b>3人</div><div class="need" data-h="12"><b>1</b>3人</div><div class="need" data-h="13"><b>2</b>3人</div><div class="need" data-h="14"><b>2</b>2人</div><div class="need" data-h="15"><b>1</b>2人</div><div class="need" data-h="16"><b>1</b>2人</div><div class="need" data-h="17"><b>2</b>4人</div><div class="need" data-h="18"><b>2</b>4人</div><div class="need" data-h="19"><b>2</b>4人</div><div class="need" data-h="20"><b>2</b>4人</div><div class="need" data-h="21"><b>2</b>3人</div>
+          <div class="need-side"></div>
+        </div>
+      </div>
+      <div class="board-sum">
+        <p id="short" aria-live="polite">足りない時間：11時〜14時・15時〜22時</p>
+        <p class="sum-cost"><b id="cost">19,950円</b><span id="hours">この日の人件費の見込み（17時間・交通費は別）</span></p>
+      </div>
+    </div>
+
+    <div class="hyou-after">
+      <div>
+        <h3>決まったら「貼り出す」</h3>
+        <p>確定した日から、スタッフのスマホに自分のシフトが届きます。バックヤードの壁に貼るA4の表も、そのまま印刷できます。名前の「ハリダシ」は、この貼り出しからつけました。</p>
+      </div>
+      <div>
+        <h3>入れてはいけない時間は、入れる前に止まる</h3>
+        <p>18歳未満のスタッフを22時より後に入れようとしたとき、留学生のスタッフが週28時間を超えそうなときは、升を押した時点でお知らせが出ます。生年月日と在留の区分は、スタッフを登録するときに店長が入れます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec dakoku" id="dakoku" aria-labelledby="h-dakoku">
+  <div class="wrap">
+    <div>
+      <div class="tcard" data-object role="img" aria-label="12月のタイムカードの見本。出勤と退勤の時刻が藍紫のインクで打刻されている">
+        <div class="tcard-h"><b>佐藤 みく</b><span>2026年12月・みなと食堂</span></div>
+        <table>
+          <thead><tr><th>日</th><th>出勤</th><th>休憩</th><th>退勤</th></tr></thead>
+          <tbody>
+            <tr><td class="d">1（月）</td><td>10:56</td><td>—</td><td>15:02</td></tr>
+            <tr><td class="d">3（水）</td><td class="late">11:04<small>4分遅れ</small></td><td>—</td><td>15:01</td></tr>
+            <tr><td class="d">5（土）</td><td>10:58</td><td>13:30</td><td>15:06</td></tr>
+            <tr><td class="d">8（火）</td><td>16:55</td><td>—</td><td>21:03</td></tr>
+            <tr><td class="d">10（木）</td><td>16:57</td><td>19:00</td><td>22:00</td></tr>
+            <tr><td class="d">12（土）</td><td>10:59</td><td>—</td><td>15:00</td></tr>
+          </tbody>
+        </table>
+        <p class="tcard-n">合計 25時間41分（休憩を除く）・深夜 0分</p>
+      </div>
+    </div>
+    <div class="dakoku-right">
+      <h2 class="h2" id="h-dakoku">店のタブレットで<br>打刻する</h2>
+      <p class="lead">レジの横やバックヤードに置いたタブレットに、今日のシフトの人の名前が並びます。押すと出勤、もう一度押すと休憩か退勤。時刻は1分単位で残り、紙のタイムカードと同じ形で見返せます。</p>
+      <div class="tablet" data-ui data-object role="img" aria-label="店のタブレットの打刻の画面の見本">
+        <div class="tablet-in">
+          <div class="now"><span>12月5日（土）みなと食堂</span><b>16:58</b></div>
+          <div class="names">
+            <span class="here">佐藤 みく<small>退勤 15:06</small></span>
+            <span class="here">小林 れん<small>出勤 12:55</small></span>
+            <span>伊藤 ゆい<small>17時から</small></span>
+            <span>高橋 そうた<small>17時から</small></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dakoku-photo">
+      <div class="round"><img src="photos/Cashier-counters.jpg" alt="スーパーマーケットのレジに立つ、黒い服のスタッフ" loading="lazy" width="1280" height="853" style="object-position:30% 88%;transform:scale(2.3);transform-origin:6% 96%"></div>
+      <div>
+        <ul class="points">
+          <li>スマホでも打刻できます。店から100m以内にいるときだけにするか、店で決められます。</li>
+          <li>押し忘れたら、本人がスマホで直しを出し、店長が認めると表に入ります。</li>
+        </ul>
+        <p class="credit cap" style="margin-top:28px"><strong>中国のスーパーマーケットのレジ。</strong>写っている人は、この製品の利用者ではありません。<br>写真：維基小霸王／<a href="https://commons.wikimedia.org/w/index.php?curid=88894822">Wikimedia Commons</a>／CC BY-SA 4.0</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec csv" id="csv" aria-labelledby="h-csv">
+  <div class="wrap">
+    <div class="csv-top">
+      <div>
+        <h2 class="h2" id="h-csv">給与ソフトの形で<br>書き出す</h2>
+        <p class="lead">締め日を店ごとに決めておくと、その日の朝に1か月分の勤務時間がまとまります。深夜（22時〜5時）・休日・交通費を分けて、使っている給与ソフトが読み込める並びのファイル（CSV）で書き出せます。</p>
+      </div>
+      <div>
+        <p class="shime">15日<small>締め</small></p>
+        <p class="shime-n">見本の店の締め日。末日・20日・25日も選べます。</p>
+      </div>
+    </div>
+
+    <div class="file" data-object>
+      <div class="file-bar">
+        <b>12月分（11月16日〜12月15日）</b>
+        <label>列の並び
+          <select id="fmt" aria-label="書き出す列の並び">
+            <option value="a">給与ソフトの形式 1（社員番号が先）</option>
+            <option value="b">給与ソフトの形式 2（氏名が先・時間は分）</option>
+          </select>
+        </label>
+      </div>
+      <div class="csv-scroll" data-ui>
+        <table id="csvt">
+          <thead><tr><th>社員番号</th><th>氏名</th><th>出勤日数</th><th>勤務時間</th><th>うち深夜</th><th>休日出勤</th><th>交通費（円）</th></tr></thead>
+          <tbody>
+            <tr><td>0012</td><td>佐藤 みく</td><td>14</td><td>58:21</td><td>0:00</td><td>4</td><td>5,600</td></tr>
+            <tr><td>0015</td><td>中村 あやね</td><td>16</td><td>51:40</td><td>0:00</td><td>0</td><td>0</td></tr>
+            <tr><td>0021</td><td>渡辺 はる</td><td>17</td><td>104:12</td><td>0:00</td><td>5</td><td>6,800</td></tr>
+            <tr><td>0008</td><td>小林 れん</td><td>20</td><td>142:35</td><td>3:10</td><td>6</td><td>12,000</td></tr>
+            <tr><td>0027</td><td>高橋 そうた</td><td>9</td><td>41:48</td><td>0:00</td><td>3</td><td>0</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="csv-photo">
+      <figure>
+        <div class="wide"><img src="photos/Amal-Women-s-Training-Center-and-Moroccan-Restaurant-trainee.jpg" alt="橙のエプロンの研修生たちが、厨房で料理の支度をする" loading="lazy" width="960" height="669"></div>
+      </figure>
+      <div>
+        <ul class="points">
+          <li>打刻は1分単位のまま残します。15分ごとに丸めるかどうかは、書き出すときに店で選びます。</li>
+          <li>よく使われる給与ソフト12種類の読み込み形式を用意しています。ほかのソフトは、列の並びを自分で決めて保存できます。</li>
+          <li>締めたあとに打刻を直すと、書き出したファイルとの違いが一覧に出ます。</li>
+        </ul>
+        <p class="credit cap"><strong>モロッコの女性の職業訓練所のレストランで、厨房に立つ研修生。</strong>この製品の利用者ではありません。<br>写真：Rystheguy／<a href="https://commons.wikimedia.org/w/index.php?curid=39207702">Wikimedia Commons</a>／CC BY-SA 4.0</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec ryoukin" id="ryoukin" aria-labelledby="h-ryoukin">
+  <div class="wrap">
+    <div class="ryoukin-top">
+      <div>
+        <h2 class="h2" id="h-ryoukin">料金は、店の数と<br>スタッフの人数で決まります</h2>
+        <p class="lead">機能はどのプランも同じです。スタッフの人数には、店長と社員も入ります。スタッフ本人の料金はかかりません。</p>
+      </div>
+      <figure>
+        <div class="cardwin"><img src="photos/TW-Taiwan-Taipei-Da-An-Xinyi-Road-Din-Tai-Fung-Restaurant-op.jpg" alt="白い作業着の何人ものスタッフが、台の上で小籠包を包む手もと" loading="lazy" width="960" height="720" style="object-position:62% 100%"></div>
+        <figcaption class="credit cap"><strong>台北の飲食店の厨房で、小籠包を包むスタッフ。</strong>この製品の利用者ではありません。<br>写真：MAm ROFOW 022／<a href="https://commons.wikimedia.org/w/index.php?curid=146840573">Wikimedia Commons</a>／CC0 1.0</figcaption>
+      </figure>
+    </div>
+
+    <div class="plans">
+      <article class="plan">
+        <h3>ライト</h3>
+        <p class="who">1店舗・スタッフ20人まで</p>
+        <p class="price">2,400円<small>／月</small></p>
+        <p class="tax">税抜（税込 2,640円）</p>
+        <p class="year">年払い 24,000円（税込 26,400円）<br>10か月分で12か月使えます</p>
+        <ul><li>店長のアカウント 2人</li><li>打刻のタブレット 1台</li></ul>
+        <div class="spacer"></div>
+        <a class="btn" href="#try">30日間 無料で試す</a>
+      </article>
+      <article class="plan rec">
+        <h3>スタンダード</h3>
+        <p class="who">1店舗・スタッフ60人まで</p>
+        <p class="price">4,800円<small>／月</small></p>
+        <p class="tax">税抜（税込 5,280円）</p>
+        <p class="year">年払い 48,000円（税込 52,800円）<br>10か月分で12か月使えます</p>
+        <ul><li>店長のアカウント 5人</li><li>打刻のタブレット 3台</li></ul>
+        <div class="spacer"></div>
+        <a class="btn" href="#try">30日間 無料で試す</a>
+      </article>
+      <article class="plan">
+        <h3>マルチ店舗</h3>
+        <p class="who">2〜10店舗・1店舗につき60人まで</p>
+        <p class="price">3,900円<small>／月・1店舗</small></p>
+        <p class="tax">税抜（税込 4,290円）</p>
+        <p class="year">年払い 1店舗 39,000円（税込 42,900円）<br>10か月分で12か月使えます</p>
+        <ul><li>店をまたぐ応援のシフト</li><li>全店の人件費をまとめて見る</li></ul>
+        <a class="btn" href="#try">30日間 無料で試す</a>
+      </article>
+    </div>
+    <p class="plans-note">価格は日本円です。無料で試す30日間は、スタンダードと同じ内容で使えます。終わっても自動でお支払いは始まりません。人数が増えてプランが変わるときは、翌月の分から変わります。11店舗以上は、導入の相談からお問い合わせください。</p>
+
+    <div class="compare">
+      <h3>プランの違い</h3>
+      <table>
+        <thead><tr><th>項目</th><th>ライト<small>月2,400円・税抜</small></th><th>スタンダード<small>月4,800円・税抜</small></th><th>マルチ店舗<small>1店舗 月3,900円・税抜</small></th></tr></thead>
+        <tbody class="grp">
+          <tr><th colspan="4">人数と店</th></tr>
+          <tr><th>店の数</th><td data-p="ライト">1店舗</td><td class="col-rec" data-p="スタンダード">1店舗</td><td data-p="マルチ店舗">2〜10店舗</td></tr>
+          <tr><th>スタッフ</th><td data-p="ライト">20人まで</td><td class="col-rec" data-p="スタンダード">60人まで</td><td data-p="マルチ店舗">1店舗60人まで</td></tr>
+          <tr><th>店長のアカウント</th><td data-p="ライト">2人</td><td class="col-rec" data-p="スタンダード">5人</td><td data-p="マルチ店舗">1店舗5人＋本部3人</td></tr>
+        </tbody>
+        <tbody class="grp">
+          <tr><th colspan="4">シフト</th></tr>
+          <tr><th>希望の募集と催促</th><td data-p="ライト">あり</td><td class="col-rec" data-p="スタンダード">あり</td><td data-p="マルチ店舗">あり</td></tr>
+          <tr><th>シフト表・人件費の見込み</th><td data-p="ライト">あり</td><td class="col-rec" data-p="スタンダード">あり</td><td data-p="マルチ店舗">あり</td></tr>
+          <tr><th>店をまたぐ応援のシフト</th><td data-p="ライト" class="no">なし</td><td class="col-rec no" data-p="スタンダード">なし</td><td data-p="マルチ店舗">あり</td></tr>
+        </tbody>
+        <tbody class="grp">
+          <tr><th colspan="4">打刻と書き出し</th></tr>
+          <tr><th>打刻のタブレット</th><td data-p="ライト">1台</td><td class="col-rec" data-p="スタンダード">3台</td><td data-p="マルチ店舗">1店舗3台</td></tr>
+          <tr><th>スマホの打刻（場所の制限つき）</th><td data-p="ライト">あり</td><td class="col-rec" data-p="スタンダード">あり</td><td data-p="マルチ店舗">あり</td></tr>
+          <tr><th>給与ソフトの形式で書き出す</th><td data-p="ライト">あり</td><td class="col-rec" data-p="スタンダード">あり</td><td data-p="マルチ店舗">あり・全店まとめて</td></tr>
+        </tbody>
+        <tbody class="grp">
+          <tr><th colspan="4">サポートとお支払い</th></tr>
+          <tr><th>メールの問い合わせ</th><td data-p="ライト">あり</td><td class="col-rec" data-p="スタンダード">あり</td><td data-p="マルチ店舗">あり</td></tr>
+          <tr><th>電話の問い合わせ</th><td data-p="ライト" class="no">なし</td><td class="col-rec" data-p="スタンダード">平日10時〜18時</td><td data-p="マルチ店舗">平日10時〜18時</td></tr>
+          <tr><th>お支払い</th><td data-p="ライト">カード</td><td class="col-rec" data-p="スタンダード">カード・年払いは請求書も</td><td data-p="マルチ店舗">カード・請求書</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="sec dounyuu" id="dounyuu" aria-labelledby="h-dounyuu">
+  <div class="wrap">
+    <div>
+      <h2 class="h2" id="h-dounyuu">導入は<br>1週間ほど</h2>
+      <p class="lead">申し込んだ週の、次のシフトから使えます。手順は4つです。紙のシフト表とタイムカードは、最初の締め日まで並べて使ってかまいません。</p>
+      <ol class="steps" style="padding:0;list-style:none">
+        <li class="step"><p class="when">今日</p><div><h3>申し込む</h3><p>メールアドレスと店の名前を入れるだけです。3分ほどで管理の画面が開きます。</p></div></li>
+        <li class="step"><p class="when">今日</p><div><h3>スタッフを入れる</h3><p>名前・時給・生年月日を入れます。名簿が表計算のファイルにあれば、そのまま読み込めます。休憩室に招待の紙を貼れば、スタッフが自分で登録します。</p></div></li>
+        <li class="step"><p class="when">2〜5日目</p><div><h3>最初の希望を集める</h3><p>期間と締め切りを決めて送ります。出していない人には、前の日に自動で<span style="white-space:nowrap">もう一度</span>届きます。</p></div></li>
+        <li class="step"><p class="when">6日目から</p><div><h3>貼り出して、打刻を始める</h3><p>シフトを組んで貼り出し、店のタブレットでこのページを開いて打刻の画面にします。</p></div></li>
+      </ol>
+      <div class="soudan">
+        <b>画面を見ながら、30分の導入の相談（無料）</b>
+        <p>平日10時〜18時。スタッフの読み込みや締め日の決め方を、いっしょに設定します。</p>
+      </div>
+    </div>
+    <div>
+      <div class="sheet poster" data-object role="img" aria-label="休憩室に貼る、スタッフ招待の紙の見本">
+        <span class="tape l"></span><span class="tape r"></span>
+        <p class="poster-h">スタッフのみなさんへ</p>
+        <p class="poster-s">12月のシフトから、希望はスマホで出してください。</p>
+        <div class="poster-qr">
+          <svg viewBox="0 0 21 21" aria-hidden="true" shape-rendering="crispEdges"><g fill="#181532" id="qr"></g></svg>
+          <p>カメラで読み取って、名前と電話番号で登録します。<br>わからないときは店長 山口まで。</p>
+        </div>
+        <p class="poster-mihon">見本です。この模様は読み取れません。</p>
+      </div>
+      <figure class="dounyuu-photo">
+        <div class="tall"><img src="photos/Cashier-counter-at-SM-Supermarket-2024-01-27.jpg" alt="にぎわうスーパーマーケットのレジで、制服のスタッフが客を案内する" loading="lazy" width="1280" height="975" style="object-position:40% 70%"></div>
+        <figcaption class="credit cap"><strong>フィリピンのスーパーマーケットのレジのスタッフ。</strong>この製品の利用者ではありません。<br>写真：Wide Awake!／<a href="https://commons.wikimedia.org/w/index.php?curid=144643755">Wikimedia Commons</a>／CC BY 4.0</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec faq on-ai" id="faq" aria-labelledby="h-faq">
+  <div class="wrap">
+    <div class="faq-side">
+      <h2 class="h2" id="h-faq">よくある質問</h2>
+      <figure>
+        <div class="cardwin"><img src="photos/GD-Guangdong-Shantou-Ri-Ri-Xiang-Goose-Food-Restaurant-kitch.jpg" alt="厨房で、手袋の手が鵞鳥の煮込みを大きなボウルから取り分ける" loading="lazy" width="1280" height="960" style="object-position:72% 60%"></div>
+        <figcaption class="credit cap"><strong>中国・汕頭の食堂の厨房。</strong>この製品の利用者ではありません。<br>写真：Tang HungTze Fat／<a href="https://commons.wikimedia.org/w/index.php?curid=142998085">Wikimedia Commons</a>／CC0 1.0</figcaption>
+      </figure>
+    </div>
+    <div class="faq-list">
+      <details open><summary>スタッフにアプリを入れてもらう必要はありますか</summary><p class="a">いりません。届いたリンクをスマホのブラウザで開けば、希望を出す・シフトを見る・打刻の直しを出す、の3つができます。アプリを入れると、通知が届くようになります。</p></details>
+      <details><summary>スタッフの人数が月の途中で増えたら、どうなりますか</summary><p class="a">その月は今のプランのまま使えます。上限を超えた人数は、翌月の分からプランが変わります。超えたことは、管理の画面とメールでお知らせします。</p></details>
+      <details><summary>打刻に使うタブレットは、何を用意すればいいですか</summary><p class="a">ブラウザが動くタブレットなら使えます。新しく買う必要はありません。店にあるスマホを打刻の専用にしてもかまいません。</p></details>
+      <details><summary>店のWi-Fiが止まったときも打刻できますか</summary><p class="a">打刻はタブレットの中に残り、つながったときに送られます。時刻は押したときのものが残ります。</p></details>
+      <details><summary>高校生のスタッフがいます。気をつけることはありますか</summary><p class="a">生年月日を登録しておくと、18歳未満のスタッフを22時より後のシフトに入れようとしたときに止まります。保護者の同意書の有無も、スタッフごとに記録できます。</p></details>
+      <details><summary>有給休暇は管理できますか</summary><p class="a">付与した日と残りの日数を記録し、シフト表で「有給」として入れられます。勤続年数からの自動の付与には、まだ対応していません。</p></details>
+      <details><summary>無料で試す期間が終わったら、自動でお金がかかりますか</summary><p class="a">かかりません。続けるときにプランとお支払いの方法を選びます。選ばなかったときも、入れたデータは60日のあいだ残ります。</p></details>
+      <details><summary>年払いと月払いは、途中で変えられますか</summary><p class="a">月払いから年払いへは、いつでも変えられます。年払いから月払いへは、次の更新の日から変わります。年払いの途中で解約したときの返金はありません。</p></details>
+      <details><summary>支払いの方法は何がありますか</summary><p class="a">クレジットカードと、年払いのときだけ請求書のお支払い（銀行振込）があります。請求書と領収書は、管理の画面からダウンロードできます。</p></details>
+      <details><summary>解約するとデータはどうなりますか</summary><p class="a">月の最後の日まで使えます。シフト表と勤務時間は、解約の前にファイルで書き出せます。解約から60日たつと消します。</p></details>
+      <details><summary>紙のシフト表の店でも、すぐに移れますか</summary><p class="a">移れます。最初の締め日までは、紙のタイムカードと並べて使い、勤務時間が合っているかを見比べるのがおすすめです。</p></details>
+      <details><summary>データはどこに置かれますか</summary><p class="a">国内のデータセンターに置き、通信は暗号化しています。スタッフの電話番号と生年月日は、店長とそのスタッフ本人にしか見えません。</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="end" id="try" aria-labelledby="h-try">
+  <div class="wrap">
+    <div>
+      <h2 class="end-h" id="h-try">次のシフトの希望を、<br>まず1回集めてみる</h2>
+      <p class="l">30日間、スタンダードと同じ内容で使えます。カードの登録はいりません。申し込みはメールアドレスと店の名前だけです。</p>
+      <a class="btn" href="#try" aria-describedby="try-note">30日間 無料で試す<small>カードの登録はいりません</small></a>
+      <p class="credit" id="try-note" style="margin-top:18px">作例のため、このボタンからは申し込めません。</p>
+    </div>
+    <figure class="end-photo">
+      <div class="cardwin"><img src="photos/Simplex-Time-Recorder-time-clock.jpg" alt="紙のタイムカードを差し込んで打刻する、水色の古いタイムレコーダー" loading="lazy" width="960" height="960" style="object-position:50% 30%"></div>
+      <figcaption class="credit cap"><strong>紙のタイムカードに打刻する、古いタイムレコーダー。</strong><br>写真：Jonathan Mauer／<a href="https://commons.wikimedia.org/w/index.php?curid=136022074">Wikimedia Commons</a>／CC BY-SA 4.0</figcaption>
+    </figure>
+  </div>
+  <p class="end-name" aria-hidden="true">ハリダシ</p>
+</section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div><p class="logo">ハリダシ</p><p style="margin-top:12px;font-size:15px">アルバイトの多い店の、シフト表と勤怠</p></div>
+    <nav aria-label="サイトの中">
+      <a href="#kibou">希望を集める</a><a href="#hyou">シフト表を組む</a><a href="#dakoku">打刻</a>
+      <a href="#csv">給与ソフトへの書き出し</a><a href="#ryoukin">料金</a><a href="#dounyuu">導入の手順</a>
+      <a href="#faq">よくある質問</a><a href="#try">無料で試す</a>
+    </nav>
+    <p class="note">ハリダシは、site-skills の作例の架空の製品です。名前・料金・機能・見本の店「みなと食堂」と、そのスタッフの名前はすべて作り物で、申し込みはできません。利用規約・プライバシーポリシー・運営会社のページも作っていません。写真は Wikimedia Commons の自由に使える写真で、写っている人はこの製品の利用者や社員ではありません（出典は各写真の横）。</p>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "スタッフにアプリを入れてもらう必要はありますか", "acceptedAnswer": {"@type": "Answer", "text": "いりません。届いたリンクをスマホのブラウザで開けば、希望を出す・シフトを見る・打刻の直しを出す、の3つができます。アプリを入れると、通知が届くようになります。"}}, {"@type": "Question", "name": "スタッフの人数が月の途中で増えたら、どうなりますか", "acceptedAnswer": {"@type": "Answer", "text": "その月は今のプランのまま使えます。上限を超えた人数は、翌月の分からプランが変わります。超えたことは、管理の画面とメールでお知らせします。"}}, {"@type": "Question", "name": "打刻に使うタブレットは、何を用意すればいいですか", "acceptedAnswer": {"@type": "Answer", "text": "ブラウザが動くタブレットなら使えます。新しく買う必要はありません。店にあるスマホを打刻の専用にしてもかまいません。"}}, {"@type": "Question", "name": "店のWi-Fiが止まったときも打刻できますか", "acceptedAnswer": {"@type": "Answer", "text": "打刻はタブレットの中に残り、つながったときに送られます。時刻は押したときのものが残ります。"}}, {"@type": "Question", "name": "高校生のスタッフがいます。気をつけることはありますか", "acceptedAnswer": {"@type": "Answer", "text": "生年月日を登録しておくと、18歳未満のスタッフを22時より後のシフトに入れようとしたときに止まります。保護者の同意書の有無も、スタッフごとに記録できます。"}}, {"@type": "Question", "name": "有給休暇は管理できますか", "acceptedAnswer": {"@type": "Answer", "text": "付与した日と残りの日数を記録し、シフト表で「有給」として入れられます。勤続年数からの自動の付与には、まだ対応していません。"}}, {"@type": "Question", "name": "無料で試す期間が終わったら、自動でお金がかかりますか", "acceptedAnswer": {"@type": "Answer", "text": "かかりません。続けるときにプランとお支払いの方法を選びます。選ばなかったときも、入れたデータは60日のあいだ残ります。"}}, {"@type": "Question", "name": "年払いと月払いは、途中で変えられますか", "acceptedAnswer": {"@type": "Answer", "text": "月払いから年払いへは、いつでも変えられます。年払いから月払いへは、次の更新の日から変わります。年払いの途中で解約したときの返金はありません。"}}, {"@type": "Question", "name": "支払いの方法は何がありますか", "acceptedAnswer": {"@type": "Answer", "text": "クレジットカードと、年払いのときだけ請求書のお支払い（銀行振込）があります。請求書と領収書は、管理の画面からダウンロードできます。"}}, {"@type": "Question", "name": "解約するとデータはどうなりますか", "acceptedAnswer": {"@type": "Answer", "text": "月の最後の日まで使えます。シフト表と勤務時間は、解約の前にファイルで書き出せます。解約から60日たつと消します。"}}, {"@type": "Question", "name": "紙のシフト表の店でも、すぐに移れますか", "acceptedAnswer": {"@type": "Answer", "text": "移れます。最初の締め日までは、紙のタイムカードと並べて使い、勤務時間が合っているかを見比べるのがおすすめです。"}}, {"@type": "Question", "name": "データはどこに置かれますか", "acceptedAnswer": {"@type": "Answer", "text": "国内のデータセンターに置き、通信は暗号化しています。スタッフの電話番号と生年月日は、店長とそのスタッフ本人にしか見えません。"}}]}
+</script>
+<script>
+(function(){
+  // シフト表：希望を押すと入る／外れる。時間ごとの人数・足りない時間・人件費の見込みが変わる
+  var need={11:3,12:3,13:3,14:2,15:2,16:2,17:4,18:4,19:4,20:4,21:3};
+  var wishes=[].slice.call(document.querySelectorAll('.wish'));
+  function hoursOf(w){var h=+w.dataset.e-+w.dataset.s;return h>=8?h-1:h;}
+  function upd(){
+    var short=[],cost=0,hrs=0;
+    for(var h=11;h<=21;h++){
+      var n=0;wishes.forEach(function(w){if(w.getAttribute('aria-pressed')==='true'&&+w.dataset.s<=h&&+w.dataset.e>h)n++;});
+      var c=document.querySelector('.need[data-h="'+h+'"]');
+      c.querySelector('b').textContent=n;
+      c.classList.toggle('short',n<need[h]);
+      if(n<need[h])short.push(h);
+    }
+    wishes.forEach(function(w){if(w.getAttribute('aria-pressed')==='true'){var x=hoursOf(w);hrs+=x;cost+=x*+w.dataset.rate;}});
+    // 足りない時間を「11時〜13時」の形にまとめる
+    var spans=[],st=null,pv=null;
+    short.forEach(function(h){if(st===null){st=h;}else if(h!==pv+1){spans.push([st,pv+1]);st=h;}pv=h;});
+    if(st!==null)spans.push([st,pv+1]);
+    document.getElementById('short').textContent=spans.length?'足りない時間：'+spans.map(function(s){return s[0]+'時〜'+s[1]+'時';}).join('・'):'足りない時間はありません。この日は貼り出せます。';
+    document.getElementById('cost').textContent=cost.toLocaleString('ja-JP')+'円';
+    document.getElementById('hours').textContent='この日の人件費の見込み（'+hrs+'時間・交通費は別）';
+    var hal=document.querySelector('.wish[data-week]');
+    var wk=document.getElementById('week-hal');
+    var on=hal.getAttribute('aria-pressed')==='true';
+    var t=+hal.dataset.week+(on?hoursOf(hal):0);
+    wk.textContent='今週 '+t+'時間（週28時間まで'+(on?'・あと'+(28-t)+'時間':'')+'）';
+    wk.classList.toggle('warn',on);
+  }
+  wishes.forEach(function(w){
+    w.addEventListener('click',function(){
+      var on=w.getAttribute('aria-pressed')==='true';
+      w.setAttribute('aria-pressed',on?'false':'true');
+      w.querySelector('.tg').textContent=on?'入れる':'入る';
+      upd();
+    });
+  });
+  upd();
+
+  // 書き出しの列の並び
+  var fmt=document.getElementById('fmt'),tb=document.getElementById('csvt');
+  var orig=tb.innerHTML;
+  fmt.addEventListener('change',function(){
+    tb.innerHTML=orig;
+    if(fmt.value==='b'){
+      [].forEach.call(tb.rows,function(r,i){
+        var c=r.cells;r.insertBefore(c[1],c[0]);
+        if(i>0){[3,4].forEach(function(k){var p=c[k].textContent.split(':');c[k].textContent=(+p[0]*60+ +p[1]).toLocaleString('ja-JP');});}
+      });
+      tb.rows[0].cells[3].textContent='勤務時間（分）';tb.rows[0].cells[4].textContent='うち深夜（分）';
+    }
+  });
+
+  // 招待の紙の模様（読み取れない見本。四隅の印だけ本物の形）
+  var g=document.getElementById('qr'),s='',seed=7;
+  function rnd(){seed=(seed*9301+49297)%233280;return seed/233280;}
+  function fin(x,y){s+='<rect x="'+x+'" y="'+y+'" width="7" height="7"/><rect x="'+(x+1)+'" y="'+(y+1)+'" width="5" height="5" fill="#fff"/><rect x="'+(x+2)+'" y="'+(y+2)+'" width="3" height="3"/>';}
+  for(var y=0;y<21;y++)for(var x=0;x<21;x++){
+    if((x<8&&y<8)||(x>12&&y<8)||(x<8&&y>12))continue;
+    if(rnd()>.52)s+='<rect x="'+x+'" y="'+y+'" width="1" height="1"/>';
+  }
+  fin(0,0);fin(14,0);fin(0,14);
+  g.innerHTML=s;
+})();
+</script>
+</body>
+</html>
