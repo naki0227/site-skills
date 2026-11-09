@@ -61,25 +61,41 @@ Astro＋Netlify。採用の募集は外の Ashby（2026-10-28 に 226件）。
 - **動き**：reduce で、最初の画面の sticky を外し（`motion-safe:sticky`）、動画を最後の絵（6.38秒）で止め、区画の動画も 0秒で止める。桁が回る部品は fade に替え、View Transitions も 0s。@keyframes 43。
 - **重さ（PC/SP、measure.js・タグ除く）**：top 22.26/16.16MB、about 36.33/23.29、business 22.92/13.73、jobs 33.21/9.84（Mux の動画 23,822KB、SP は 1,754KB）、blog 38.99/17.50（先読み 27,131KB）。先読み（`?_rsc=`）は blog で 92本 18,435KB、Topics▾ を開くだけで +1,829KB。タグは GTM 2.4〜2.9MB・segment・facebook・同意の窓（transcend）0.5MB ほか約30ホスト。inspect.js：トップは FAIL 5（横スクロール scrollWidth 3,431px・本文 12px／SP 10px・13px 未満 55%）・WARN 6。
 
-## 真似る型（LayerX・Mistral AI・Linear・Mercury の4つで確かめた）
-- 会社サイトは「志・事業の地図・ニュース・連絡先」に絞り、事業は1ページ（LayerX：アンカー、Mistral：/products/ のタイル5枚・2,344px、Linear：トップの柱4本＋柱ごとのページ）で並べ、プロダクトの本体と採用の応募は外へ渡す（LayerX：別ドメインと外部ATS、Mistral：Ashby、Linear：募集の詳細は自サイト・Apply だけ Ashby）。
-- ヘッダーの右端に、目立つ形の行動を置く（LayerX：Join Us の丸いボタン、Mistral：黒の Login と Get in touch、Linear：#e5e5e6 の Sign up）。ヘッダーは隠さない（Mistral 48px、Linear 73px・blur(20px)・下線 白8%）。下がり窓は、項目が8つ以下なら1列の小さな窓（LayerX 5項目、Mistral 1行 57px）、段階と1語の項目が混ざるなら1枚の板（Linear：860px に2行4つ＋1語4つ＋「New と最新の更新」の行、opacity と scale(.98→1) .16s、大きさの替わり .22s）。
-- トップは1文で始め、数字の帯を置かない（LayerX：h1 60px、Mistral：96px の1文＋最新の1件、Linear：h1 64px＋1文＋「New Loops →」）。1文は h1 にし、最初から見える状態で HTML に置く（Mistral は aria-hidden の p、Linear は JS を待って 6.4〜8.2 秒見えない）。
+### Runway（https://runway.com/ 、2026-11-09 解剖。選んだ理由：ニューヨークの動画生成 AI のスタートアップ。1つのモデルから Creative・Dev・Robotics の3製品に分け、文字の段を clamp の14段と固定 px の5段の2系統で持ち、板・ニュース・採用・問い合わせを同じ部品（16px の角・黒10%の縁・#0c0c0c）でそろえる。受賞歴・事例集は確かめられなかった）
+
+- **ナビ（PC）**：上に告知の帯 48px（SP は iPhone のアプリの帯 72px）、その下に fixed 68px（地は白95%＋blur(12px)の層）。送ると top 48 → 0 で、隠さない。Creative▾／Dev▾／Robotics▾／Research▾／Resources▾／Enterprise▾／Pricing ｜ Enterprise Sales（#eef1f5）・Login・Try Runway（#262626）。▾ は乗せると開く板（左右 20px 内側・角 16px・縁 黒10%・影 0 25px 50px −12px）で、上に題 24px＋1文、群の名前 12px #666e7a、項目は名前 16px＋説明 13px、Creative の板の下に「Used by 65M+ creators worldwide」の帯。開くとほかの項目を opacity .5、後ろを黒20%＋blur(4px)。項目は a href（Enter で /product へ移る）で、キーボードでは板に入れない。**会社（About Us・Careers）は Resources の板の3列目「Company」だけ**。SP は「Menu」の button 39×25px → 7項目を 36px で縦に。フッター 8群・69本。
+- **トップの順番**：1400×600 の角の丸い動画（Mux・autoplay）に h1 56px／61.6px／−0.84px＋1文 16px＋ボタン1つ → ロゴの帯 → h2 56px「同じモデルの上に3つ」＋3列（題 24px・写真 461×259・1文 24px・説明 14px・ボタン3つ）→ 縦の tablist 5項目（選んでいない項目 .3）と 16:9 の絵 → 研究の帯（1段落＋右に3行）→ 最新4件（日付なし）。見出しは 5,144px に5つ。数字の帯・採用・会社の区画は無い。
+- **信頼の材料**：/about は h1 80px の使命 → 1段落 → 研究の動画 → 拠点7都市を1文 → 写真の帯 → 募集5件＋View all openings → 研究3件（2023-12〜2025-07）。会社概要の表・設立年・社員数・代表の名前は画面に無く、foundingDate 2018・founders 3人・legalName はトップの JSON-LD だけ。/careers に受賞4つ（いちばん新しいのが 2024）と In the Press 10件（月まで）。利用者の数は3か所で 60m+ creatives・60M+ users・65M+ creators。
+- **採用**：/careers（PC 12,858px・SP 21,526px）。使命の h1（/about と同じ文）→ 拠点の1文 → 募集53件を13部門の div 30px の下に、職名・部門・勤務地・Apply の4列（14px）。件数・絞り込み・検索なし、Remote を含む46件。Apply は新しいタブで Ashby 49件・Google フォーム 4件（Runway Studios）。JobPosting 53件。手当10項目を数字で（15日・16週・100%・$600×2・$250／月・3%・$500）。
+- **問い合わせ**：/enterprise-contact に「two business days」の1文、14欄（使う人数 select 5段・使い道 select 6つ・製品の checkbox 5）、* 9つ、required 0、文字の欄の label の結びつき 0。入口は告知の帯・右上・Enterprise の板の3か所。
+- **ニュース**：分類7つを /news/research のようなパス（読み直し 1.57秒）、選んでいない分類 opacity .4（2.68:1）・aria-current なし。type=search（sr-only の label）はその分類の中をその場で絞る、0件で文なし。Grid／List は aria-pressed で URL に残らない。1ページ 大きな1件＋12件、ページ番号 1〜15 の button（URL は /news のまま）。日付「November 5, 2026 • Research」13px 黒50%（3.64:1）。写真は 1,600〜3,200px の PNG を 422×237px に。
+- **データ**：JSON-LD はトップ（Organization・Person×3・ContactPoint・SoftwareApplication・WebSite）と /careers（JobPosting×53）だけ。hreflang はトップ・会社・製品が en・ja・ko・fr・pt-BR、採用・ニュースは en だけ。/about と /careers の見出しは h1 だけ。h1 は 0.28〜1.21秒で見える。Cookiebot の窓は4つのトグルが全部オンで出る。
+- **見た目の値**：#0c0c0c（字・ボタン・フッターの地）、本文 #404040（10.37:1）、#666e7a（白地 5.15:1・黒地 3.80:1）、#7c7c7c（4.17:1）、#e4e5e6・#f7f7f7・#eef1f5、色相のある色は告知の帯の #2b22fa だけ。書体 ABC Normal（300・400・500/600、3本 185KB、swap、代わり Arial size-adjust 100.46%）と記事用の JHA Times Now。段は rw-display-xl〜micro（clamp。xl 48〜80px・字間 −.02em／l 36〜56px −.015em／xs 20〜24px）と rw-h1〜h5（固定 px）。速さ .15s×10・.2s、cubic-bezier(.4,0,.2,1)×10。fadeIn .3s（translateY(10px)）・ruleDraw .24s。
+- **動き**：reduce は2つの utility だけ（トップで使う要素 0）。CSS の動きは reduce で止まるが、トップの Mux の動画は reduce でも autoplay。
+- **重さ（PC/SP、measure.js・タグ除く・最後まで送る）**：top 55.67/40.04MB、about 56.11/58.28、product 114.07/34.57（動画の断片 49,068KB）、careers 40.01/26.69、news 89.32/92.15（PNG 61,723KB）。送らずに8秒で top 19.31MB・news 37.60MB。画面に無い PNG 2枚（5,357KB・3,505KB）を全ページで preload。/careers の写真 7,008×4,672 を 536×359px（11,425KB）。inspect.js：トップ FAIL 0・WARN 21（コントラスト・文字の段 10・SP の本文 14px）。
+
+## 真似る型（LayerX・Mistral AI・Linear・Mercury・Runway の5つで確かめた）
+- 会社サイトは「志・事業の地図・ニュース・連絡先」に絞り、事業は1ページ（LayerX：アンカー、Mistral：/products/ のタイル5枚・2,344px、Linear：トップの柱4本＋柱ごとのページ、Runway：トップの3製品の3列＋製品ごとのページ）で並べ、プロダクトの本体と採用の応募は外へ渡す（LayerX：別ドメインと外部ATS、Mistral：Ashby、Linear：募集の詳細は自サイト・Apply だけ Ashby、Runway：Ashby と Google フォーム）。
+- ヘッダーの右端に、目立つ形の行動を置く（LayerX：Join Us の丸いボタン、Mistral：黒の Login と Get in touch、Linear：#e5e5e6 の Sign up）。ヘッダーは隠さない（Mistral 48px、Linear 73px・blur(20px)・下線 白8%、Runway 68px・白95%＋blur(12px)、上の告知の帯 48px だけ送ると流れる）。下がり窓は、項目が8つ以下なら1列の小さな窓（LayerX 5項目、Mistral 1行 57px）、段階と1語の項目が混ざるなら1枚の板（Linear：860px に2行4つ＋1語4つ＋「New と最新の更新」の行、opacity と scale(.98→1) .16s、大きさの替わり .22s）。
+- トップは1文で始め、数字の帯を置かない（LayerX：h1 60px、Mistral：96px の1文＋最新の1件、Linear：h1 64px＋1文＋「New Loops →」、Runway：動画の上に h1 56px＋1文 16px＋ボタン1つ）。1文は h1 にし、最初から見える状態で HTML に置く（Mistral は aria-hidden の p、Linear は JS を待って 6.4〜8.2 秒見えない）。
 - トップの見本は架空の1件を全区画に通す（Linear：課題 DRV-8852 と同じ架空のアプリが、会話→課題→計画→エージェント→差分まで続く）。
 - 事業は対の文か2色の文で書く（Mistral：「We make the models. You keep them.」×4、Linear：h2 の主の1文を #f7f8f8・続きを #8a8f98）。左に貼りつく目次（226×52px・top 44px）で今どこかを見せる（Mistral）。
 - 更新の速さは日付つきの変更履歴で見せる（Linear：トップに4件、点と線、URL に日付 `/changelog/2026-10-22-…`）。題と日付は1か所から出す（Linear はトップと一覧で食い違った）。
-- ニュースの絞り込みは URL に組み合わせを残す（LayerX：?category=…&year=…&sort=…、Mistral：?categories=a,b&search=x、Linear：/now/team のパス）。件数が数百までなら全部持って手元で絞るか先読みする（Mistral 92件・57〜70ms・0KB、Linear 先読み済みで 62〜140ms・0KB。LayerX は読み直しで +1.3MB）。どれも分類の件数は出していないので、作るときは足す。
+- ニュースの絞り込みは URL に組み合わせを残す（LayerX：?category=…&year=…&sort=…、Mistral：?categories=a,b&search=x、Linear：/now/team のパス、Runway：/news/research のパス。ただしページ番号・格子／行は残らない）。件数が数百までなら全部持って手元で絞るか先読みする（Mistral 92件・57〜70ms・0KB、Linear 先読み済みで 62〜140ms・0KB。LayerX は読み直しで +1.3MB）。どれも分類の件数は出していないので、作るときは足す。
 - 相談のフォームの前で用件を振り分ける（LayerX：リンク5つ、Mistral：4つ、Linear：Sales・Support・メールの3つ＋資料4つ、営業は4欄）。3つとも採用の振り分けが無かったので、作るときは採用を足す。
 - 色・文字の段・速さを CSS 変数のトークンで持ち、会社・採用・ニュースを製品と同じ部品で組む（Mistral：光・闇・反転の3組、Linear：地4段・文字4段・見出し9段・速さ2つ）。文字の4段目は 4.5:1 まで上げる（Linear #62666d は 3.45:1）。
-- 採用の福利は組に分けて数字で書き、選考は職の系統ごとに段の数を書く（Mistral：福利3組、選考 4段と3段。Linear：有給5週・育休4か月・4年ごとに1か月）。募集は部署の見出しと 72px の行で並べる（Linear）が、件数と絞り込みを足す。
+- 採用の福利は組に分けて数字で書き、選考は職の系統ごとに段の数を書く（Mistral：福利3組、選考 4段と3段。Linear：有給5週・育休4か月・4年ごとに1か月。Mercury：育休 12週以上・$600。Runway：15日・16週・$600×2・$250／月・3%・$500）。募集は部署の見出しと 72px の行で並べる（Linear）が、件数と絞り込みを足す。
 - 人の多さは名前の量で見せる（Linear：写真8人＋名前173人＋出資者22人）。数字で書くなら会社概要の表の上に「いつの値か」を添える。
 
-- ▾ は押して開く全幅の板にし、列ごとに「大きな1項目＋1文＋小さな項目」、下の行に別の客の入口を置く（Mercury：列 415px×3・下に Personal Banking →、Linear：860px の板に段階4つ＋1語4つ＋「New」の行）。Esc で閉じてボタンへ戻す。
+- ▾ は押して開く全幅の板にし、列ごとに「大きな1項目＋1文＋小さな項目」、下の行に別の客の入口を置く（Mercury：列 415px×3・下に Personal Banking →、Linear：860px の板に段階4つ＋1語4つ＋「New」の行、Runway：板の上に題 24px＋1文、群の名前 12px、項目は名前 16px＋説明 13px、下に利用者の帯。開くとほかの項目 .5・後ろを黒20%＋blur(4px)）。Esc で閉じてボタンへ戻す（Runway はホバーだけで、Enter は行き先へ移ってしまう）。
 - ヘッダーは隠さず、下の区画の地の色に .5s で合わせる（Mercury：透明 → #171721 → #f6f5f2 → #fbfcfd、`cubic-bezier(0,0,.6,1)`）。
 - 最初の画面は1文＋メール欄つきのボタン1つ（Mercury：Open account。Launch demo は2つ目）。製品は左の開閉4項目と右の画面の組で見せる（Mercury：開いた項目に点、右の動画が替わる）。
 - 規模の数字はニュースの題にし、記事へつなぐ（Mercury：「$1B in annualized revenue and 4+ years profitable」「$5.2B valuation」）。題の数字と記事の日付をそろえる。
 - 決まりの断り（銀行でない・計量の検定でない など）は最初の画面の下に1行、条件は上付きの番号で最後の脚注へ（Mercury：sticky の帯・脚注18個）。字は 14px 以上（Mercury は 12px／SP 10px で inspect の FAIL）。
 - reduce では、スクロールで送る動画を最後の絵で止め、sticky の箱を外す（Mercury：`motion-safe:sticky`、6.38秒で停止）。
+
+- 1つのモデルから製品が分かれるときは、トップで3製品を同じ順の部品（題 24px → 写真 461×259 → 1文 24px → 説明 14px → ボタン3つ）で並べ、上に「同じモデルの上に」の h2 56px を1文（Runway）。研究は濃い帯に1段落と3行で、事業の区画と分ける（Runway）。
+- 問い合わせの前置きに返事までの日数を1文で書き、使う人数と使い道を select で聞く（Runway：「two business days」、人数 5段・使い道 6つ）。
 
 ## 反面教師
 - 会社概要に規模の数字（社員数・資本金）が無く、導入社数が本文に埋もれる（LayerX）。数字は会社概要かトップに置く。
@@ -99,3 +115,8 @@ Astro＋Netlify。採用の募集は外の Ashby（2026-10-28 に 226件）。
 - ブログの一覧の札に日付が無く、記事にも `<time>` が無い。脚注と断り書きが 12px／SP 10px（Mercury）。
 - 会社ページに会社概要の表・沿革・創業者が無く JSON-LD にだけ。「1,000+」と「1000+」、会社ページの賞が 2023年のまま（Mercury）。
 - 先読みとタグで重い：blog の先読み 92本 18,435KB、Topics▾ を開くだけで +1,829KB、タグ約30ホスト（Mercury）。書体が全部 `font-display: optional`＋`local(Arial)` で、Arial の無い端末では既定の書体になる（Mercury）。
+- メガメニューがホバーだけで、項目が行き先の a なので Enter で移ってしまい、キーボードでは板の20本に届かない。採用は Resources の板の3列目とフッターだけ（Runway）。
+- 53件の募集を部門名（div）の下に並べるだけで、件数・絞り込みが無い。4件は Google フォーム（Runway）。
+- 画面に無い PNG 2枚 8.9MB を全ページで preload、/careers の写真 7,008px・11,425KB を 536px に、ニュースの 422px の枠に 2MB 前後の PNG（Runway）。
+- 利用者の数が3通り（60m+／60M+／65M+）、社名が JSON-LD と画面で2通り、/about の研究が 2023〜2025 のまま（Runway）。
+- 選んでいない分類・タブを opacity .3〜.4 で 1.71〜2.68:1、ページ番号と並べ方が URL に残らず、0件の文が無い（Runway）。

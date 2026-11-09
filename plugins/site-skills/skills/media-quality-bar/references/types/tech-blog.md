@@ -64,8 +64,25 @@ PC 1440×900 / SP 390×844、lang="en"。見たページ：トップ、分類「
 - **右の列と広告**：書き手 → ニュースレター → 自社の宣伝3枚（336×797・412・849）。列ごと position:sticky・top −71px。SP は書き手の箱が本文の3画面ほど後に出て、宣伝は本文の途中 345×57 と終わり 381×93。配信タグの広告は無い。同意の窓は PC 右下 402×176、SP 下に全幅 390×168（20%）、「It’s okay.」は緑に白 2.75:1。gtag.js 166KB は同意の前に読む。
 - **データと重さ**：JSON-LD 0件（4ページとも）。article:published_time は `2026-11-03 10:00:00 +0000 UTC`（ISO でない）、modified_time は頭に空白で公開日と同じ。ダークモードは記事だけ（article-dark-mode-v3.css 11KB を media で読み、50の変数・地 #162c35・本文 #e5e5e5 11.53:1・h1 は虹のグラデーション）。展開後・解析除く：top 2.20MB、list 1.99MB、記事 PC 2.11MB／SP 1.80MB、long 1.89／1.80MB。JS 1,209KB（app.js 492KB・formik などの vendors 108KB・会員と決済の部品）。HTML 248KB（br 51KB）のうち `window.PRODUCTS` 128,756字を、同じ商品データ 129KB を API からもう一度。app.js は `<script delay>` で最初の操作か5秒後まで読まない。Web フォントはサブセット 15〜18KB×5 を FontFace で全部読み終えてから html に class を付けて切り替え、sessionStorage で2回目は最初から（saveData なら読まない）。それでも差し替えで article PC の CLS 0.1171。reduced-motion・(hover:hover)・:focus-visible はどれも 0件。メニューは aria-expanded と矢印キーに応じるが Esc で閉じない。
 
+### SmartHR Tech Blog（https://tech.smarthr.jp/ ・2026-11-09 計測）
+PC 1440×900 / SP 390×844。見たページ：トップ、分類の一覧（/archive/category/フロントエンド・30本）、ふつうの記事（/entry/2026/05/12/153901・17,428px）、図と表の記事（/entry/2025/07/22/175455・11,600px）。はてなブログの公式テーマ Block Memo の後ろに、自前の CSS 4,817 バイトを足しただけの技術ブログ。選んだ理由：小さな CSS でデザインシステムの色を持ち込み、地の色と枠の紙で会社の見え方にしている。事例集・受賞歴は確かめられなかった。
+- **地と紙**：body の地 rgb(0,196,204)（--smarthr-blue）、記事も一覧のカードも同じ紙：白・5px solid #4e4c49・角 15px・内 0 80px 80px・下 48px、日付は紙の上から 80px。#container 1,120px。ブログ名の画像は上 156px・下 48px。
+- **本文**：930px（18px で1行 約51字）。18px（calc(18 / 16 * 1rem)）／行間 1.8・字間 .01em・#23221f（15.91:1）、段落の後 2em（36px）。p + ul は上 -1.5em（段落とリストの間 9px）。リスト 18px／30.6px。リンク #0f7f85（4.78:1）・text-underline-position: under。hanging-punctuation: last allow-end。書体は端末の游ゴシック体・メイリオ・ヒラギノ（Web フォント 0）。
+- **見出し**：題 32px／38.4px・700・palt・字間 .02em・#4e4c49。h2 28.8px／36px・palt・.02em・上 64px 下 16px・下罫 1px #aaa69f。h3 23.148px・上 48px。見出しが続くとき（h2 + h3 など）は上を 1rem。id は はてなが見出しの文字から作る日本語（「実装1-Navigation-APIによるシンプルな実装」、重なりは「コードの解説-1」「-2」）。
+- **記事の頭**：公開日（14px 700・2px #ff9900 の下線）→ 回る矢印と更新日（#00aa8c）→ 題 → 分類（13.02px #8c8c8c・3.36:1）。書き手は頭に無く、本文1行目で名乗る。記事の下は共用アカウント「smarthr_dev 180日前」。
+- **目次**：無い（article h2 8・h3 7、long h2 6・h3 4）。
+- **コード**：地 --stone-04 #4e4c49・白字（8.56:1）・16.74px／28.458px・内 10px・角 2px。はてなの色づけの class（Vim の構文名）7つに、デザインシステムの -02／-03 の段：synIdentifier sky-02 5.89・synComment grass-02 5.66・synSpecial sakura-02 5.07・synConstant momiji-02 4.33・synType grass-03 4.08・synStatement orange 4.00・synPreProc galaxy-02 3.12（:1、計算値）。Ruby だけ synSpecial を momiji-02 に。本文中のコード #f5f5f5・1px #dcdcdc・角 3px。
+- **図と表**：図は Mermaid 10 の sequenceDiagram をブラウザで SVG に（pre.code.mermaid の地と枠を消す）。表はテーマのまま：セル 18px・内 5px 10px・1px #dcdcdc・見出しの行 #f5f5f5。
+- **記事の終わり**：「We Are Hiring!」の h2（本文の見出しと同じ段）→ 書き手と相対時刻 → 共有（X・Mastodon 40px）→ 関連記事5本（100×100・日付 11px 700・要約1行、5本とも同じブログの古い記事）→ 紙の外に前後の記事（« 新しい／古い »、題を約20字で切る）→ サイドバー6箱 2,752px（カテゴリーだけで 2,174px）。article では埋め込みの記法が崩れ「[https://hello-world.smarthr.co.jp/:embed:cite]」と文字のまま。
+- **一覧**：トップ 7枚・分類 30枚（14,027px）。カード 約432px：日付 → 題 32px → 分類 → 120×120 の写真（background-image・cover・alt 無し）と要約 14px。?page=2・`<link rel="next">`。h1 は一覧で 31。
+- **SP**：iPhone の UA には touch/theme/normal/normal.css（88,410B）だけを配り、自前の CSS を読まない。地は白・本文 16px／28px #3d4245・h2 26px・コードは白地 1px #ddd で色づけ無し。上に 56px の はてなの帯。読み進むと題の帯（.article-bar-inner：opacity 0・translateY(20%) → .25s）。article の高さ 21,333px。
+- **広告と同意**：広告 0・同意のバナー 0・本文の途中の差し込み 0。GTM 521KB・GA・moshimo を読む。CLS 0（4ページ×PC・SP）。
+- **色**：:root に 44 色（smarthr-blue・white・black・orange と、stone・aqua・sakura・momiji・sunlight・grass・sky・marine・galaxy・earth の4段）。var() は 14種・19か所で、地・枠・文字の3つと差し色 orange、残りはコードの色づけ。
+- **動き**：自前の CSS に transition・keyframes 0。はてなの部品だけ（.3s ease・background-color .2s・skeleton-flash）。prefers-reduced-motion・:focus-visible・(hover:hover)・prefers-color-scheme はどの CSS にも 0。
+- **データと重さ**：記事の JSON-LD は Article（datePublished・dateModified とも ISO・+09:00、author と publisher 無し）。画面の更新日と dateModified がそろう。一覧は BreadcrumbList。転送（解析込み・PC）：top 1,391KB／38件・list 1,396KB・article 1,449KB／47件・long 1,435KB。measure.js の展開後は PC 2.56〜2.71MB で JS が 2.37MB：Font Awesome 5.0.8 all.js 665KB（HTML に fa- の class 0）・Mermaid 327KB（図の無いページでも）・hatenablog.js 316KB・vendors.js 303KB（帯の iframe でもう一度）。
+
 ## 真似る型
-見本4つ（メルカリエンジニアリング・LINEヤフー Tech Blog・DeNA Engineering・Smashing Magazine）から。作るときの出発点。
+見本5つ（メルカリエンジニアリング・LINEヤフー Tech Blog・DeNA Engineering・Smashing Magazine・SmartHR Tech Blog）から。作るときの出発点。
 - 本文の箱は 780〜790px、16〜18px、行間 1.75〜2.0、段落の間は 20〜35px。1行は約43〜49字（メルカリエンジニアリング 780px・18px／36px、LINEヤフー Tech Blog 790px・16px／28px・字間 -0.4px）。DeNA Engineering の 870px・17px は約51字で長い。
 - 本文の色は題より1段薄い灰にし、比は 6:1 以上を保つ（LINEヤフー Tech Blog：本文 #616161 6.19:1・題 #1f1f1f 16.48:1）。
 - 節の切れ目は罫でなく上の余白で見せる（メルカリエンジニアリング：h2 の上 120px＋60px、DeNA Engineering：h2 の上 100px＋左 4px の線、LINEヤフー Tech Blog：h2 の上 40px）。h3 は h2 より一段小さく（DeNA Engineering は h2 と同じ 33px で崩れる）。SP でも h1 を一番大きく。
@@ -83,6 +100,12 @@ PC 1440×900 / SP 390×844、lang="en"。見たページ：トップ、分類「
 - コードの箱は読む人が広げられるようにし（Smashing Magazine：resize:both）、コピーはいつも見せる（Smashing Magazine はホバーでだけ出し、SP とキーボードで見えない）。
 - SP の表は1行を1つの箱に積み、td::before に列の名前を出す（Smashing Magazine：767px 以下で thead を消し data-label）。
 - リードに名前を付けて本文と分ける（Smashing Magazine：「QUICK SUMMARY ↬」赤 16px・字間 2px、斜体 23.47px、下に 3px の線）。読む時間は記事の頭の灰の箱に1行で（「15 min read」・分類・共有）。
+
+- 会社の色の地に、太い枠の紙を1枚置き、一覧のカードも記事も同じ紙にする（SmartHR Tech Blog：地 rgb(0,196,204)、白・5px #4e4c49・角 15px・内 0 80px 80px）。貸しブログのテーマでも、自前の CSS 約 5KB でここまで変えられる。
+- 段落の後を 2em にするなら、段落に続くリストは p + ul で -1.5em 引き上げる（SmartHR Tech Blog：36px → 9px）。見出しが続くときは上の余白を 1rem に詰める（h2 + h3）。
+- 公開日の横に更新日を並べ、JSON-LD の dateModified と同じ日にする（SmartHR Tech Blog：「2026-05-12 ↻ 2026-10-02」と "2026-10-02T15:35:20+09:00"）。
+- コードの色づけは、会社のデザインシステムの色の段から選ぶと、ブログの色と揃う（SmartHR Tech Blog：Vim の構文名7つに sky・grass・sakura・momiji・galaxy・orange の -02／-03）。ただし地で 4.5:1 を計算する（7色中4色が 3.12〜4.33:1）。
+- 差し色は日付の 2px の下線だけに使う（SmartHR Tech Blog：orange は日付とコードの1色だけ）。文字に使わないので比の問題が出ない。
 
 ## 反面教師
 - コードの言語を書かずに自動判定させ、全言語分の色づけ JS を全記事で読む（メルカリエンジニアリング：1.2MB、判定も外れる）。言語は書き手が指定し、使う言語だけ読む。
@@ -110,3 +133,9 @@ PC 1440×900 / SP 390×844、lang="en"。見たページ：トップ、分類「
 - 記事を読むだけで会員・決済・カートの JS（formik・yup・Checkout）と、商品データを HTML の中と API の2回（Smashing Magazine：128,756字＋129KB）。
 - Web フォントの差し替えで記事 PC の CLS 0.1171（Smashing Magazine）。size-adjust・ascent-override で端末の書体の寸法を合わせる。
 - 押す緑のボタンの白文字 2.75:1、署名 #c0c0c0 1.82:1（Smashing Magazine）。
+- 自前の CSS が SP に当たらず、貸しブログの標準の見た目に戻る（SmartHR Tech Blog：SP は normal.css だけ。地・紙・本文 18px・コードの色が消える）。
+- 17,428px の記事に目次が無い。見出しの id はあるのに使わない（SmartHR Tech Blog：h2 8・h3 7）。
+- 書き手が記事の頭に無く、記事の下も共用アカウント名、JSON-LD に author が無い（SmartHR Tech Blog：本文1行目で名乗るだけ）。
+- 使っていないアイコンの JS（Font Awesome all.js 665KB・fa- の class 0）と、図の無いページの Mermaid 327KB を全ページで読む（SmartHR Tech Blog）。
+- 採用の案内を本文と同じ h2 にし、埋め込みの記法が崩れて文字のまま出る（SmartHR Tech Blog：「We Are Hiring!」と「[…:embed:cite]」）。
+- 一覧のカードの題が h1 で、一覧に h1 が 31（SmartHR Tech Blog）。

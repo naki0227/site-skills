@@ -158,4 +158,10 @@
 - [ ] 同意の最初の面に、Accept と同じ大きさの Reject を button で置く（Ottolenghi：Reject all は Preferences の中の href の無い a）
 - [ ] og:image を 1200×630 前後の JPEG か PNG にする（Ottolenghi：http の .heic・2962×3950・1,695KB）
 
+- [ ] スマホの UA で開き、PC と同じ CSS（地の色・枠・本文の大きさ・コードの色）が当たっているかを見る（SmartHR Tech Blog：SP は はてなの標準テーマだけ）
+- [ ] 段落の後を広く取るなら、p + ul・p + ol で上を詰め、段落とリストを離しすぎない（SmartHR Tech Blog：2em に対して -1.5em）
+- [ ] 書き手の名前を記事の頭に出し、JSON-LD の author にも入れる。共用のアカウント名だけにしない（SmartHR Tech Blog：smarthr_dev・author 無し）
+- [ ] 読み込んでいるアイコンや図の JS が、そのページで1つでも使われているかを数える（SmartHR Tech Blog：Font Awesome 665KB で fa- 0、図の無いページで Mermaid 327KB）
+- [ ] 埋め込みの記法（:embed など）が、公開後のページで文字のまま残っていないかを見る（SmartHR Tech Blog：article で「[…:embed:cite]」）
+
 解剖で裏づけた項目が増えたら、ここに足す（どのサイトで確かめたかを添える）。

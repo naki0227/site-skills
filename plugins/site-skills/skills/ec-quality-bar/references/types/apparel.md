@@ -60,18 +60,35 @@
 - **データ**：詳細に ProductGroup（variesBy size・color、hasVariant は色の5つだけ）・Offer 1つ・BreadcrumbList。AggregateRating なし。WebSite の SearchAction の target が「/en-usnull?search=」。トップに h1 が3つ。
 - **重さ**：PC top 5.97MB / list 5.64MB / item 5.63MB / guide 6.04MB（SP 5.98 / 5.74 / 5.99 / 6.44）。JS 毎ページ約3.5〜3.8MB（自社のドメインから出す GTM 570KB・gtag 551KB を含む）、HTML 1.2〜1.7MB（うち __INITIAL_STATE__ 993KB に関連の品の全在庫）。写真は avif で item 199KB。書体は約85KB、和文の Web フォントなし。動きは cubic-bezier(.35,0,.15,1) と 0.2s・0.5s・0.8s の変数、prefers-reduced-motion は外部の相談の部品だけ。
 
+### VEJA（https://www.veja-store.com/en_us/ ・2026-11-09 計測・スニーカー・フランス（米国版）・Salesforce Commerce Cloud＋Bootstrap 4）
+- **位置づけ**：ブラジルで作るスニーカーの店。ecomm.design に掲載。地 #fff・文字 #000／#212529・灰 #888・帯 #4d4d4d に白、誤りだけ #d80000。Web フォント0本（Helvetica,-apple-system,Arial）、700 と 400、大文字を多く使う。サイズは男女共通の1列（W4〜W7.5・「W8 / M6」〜「W11.5 / M9.5」・M10〜M14）。
+- **一覧**（/en_us/men）：PC 4列（346px・列の間 5px）・SP 2列（170px・10px）。写真 346×410 → 名前 11px 大文字 → 値段 14px。札・色数・星なし。36枚ずつ「LOAD MORE (36/297)」（0.485秒で 72/297・+2,072KB・URL ?page=2）、件数は一覧の頭に無い。img 159 のうち 144 lazy。右上で 4列 ⇄ 3列（463px）。**指を乗せると写真が上へ縮み（下端 約55px）、サイズ14の列（11px、品切れは灰）が出て、押すとその場でカートへ（1.10秒でドロワー）**。一覧の HTML 1,263KB（カードごとにサイズのボタンを埋め込む）。
+- **絞り込み**：FILTERS 152×28 で右から 535px（SP 全画面）、transform .3s cubic-bezier(.66,.61,.35,1)。7群（SIZE 33〔靴下 36/40・ベルト 45 IN・O.S も混ざる〕・MATERIAL 6・COLOR 14〔文字だけ・件数なし〕・FAMILY 19・ACTIVITY 2・FASTENER 2・SORT BY 4〔初期の checked なし〕）。選ぶたびに Search-ShowAjax?…prefn1= を取りに行き「SEE RESULTS (297)」を言い直す（この URL は robots.txt の /*pref*1=* で、計測では止めた）。閉じた後のチップは無い。色の SEO 用 URL /men/f/black は 36/61。
+- **詳細のファーストビュー**（ATLAS SUEDE EAGLE BLACK）：PC は左 770×765 の写真6枚、右に名前（30px／700／大文字）y=154・値段 25px y=195・色の見本 y=244・サイズ（101×30 の6列）y=381・ADD TO CART 629×40 y=531・送料無料の1行 y=589 まで 900px に入る。SP は写真 390×400、名前 y=555、ボタンは下の帯。パンくず・星なし。
+- **色**：色ごとに別の商品。見本は品の写真 65×65（SP 105×105）、選ぶと下に 2px の黒、押すと 0.48秒でページを移る（選んだサイズは引き継がない）。色の名前は 13px #b3b3b3（2.10:1）。
+- **サイズと在庫**：HTML の class で low-stock・sold-out。**PC の格子は「Low stock」を出さない**（7つが「あり」と同じ）。品切れは #888 の文字と枠（3.54:1）・斜線なしで押せ、押すと灰に塗られて黒の「NOTIFY ME」。選ばずに押すと「*Please select a size」11px #d80000、role なし。URL は変わらない。
+- **SP**：最初から sticky; bottom:0 の 390×81 の帯に「SELECT A SIZE」350×40。押すと全画面のサイズの一覧（14行・約57px、右に「Low stock」と下線の「Notify me」）、選ぶと帯が「W4」と「ADD TO BAG」の2段。待ちの窓は Email＊・未チェックのニュースレター・JOIN THE WAITLIST、入荷の時期なし。
+- **カートに入れる**：0.059秒で .frozen（見た目は変わらない）→ 0.746秒でドロワーが出始め → 1.019秒に右 535px で止まる（SP 0.778秒・全画面）。/cart は /?cartLayer=true のドロワー。中身：品・Size・数量・「Complete with」（紐 $10・靴下 $30）・Subtotal・Shipping・Tax（Calculated at checkout）・TOTAL（#f4f4f6 の地）・CHECKOUT。数量の＋は 0.58〜0.64秒、印なし。**送料は金額で出す**：靴下 $30 で $15・$90 でも $15（TOTAL $105）・$120 で Free。無料までの残りは言わない。
+- **買う前の不安**：帯とボタンの下に「FREE SHIPPING AND RETURNS ON ALL ORDERS OVER $95」（#888 14px）。開閉 SHIPPING AND RETURN は「FEDEX Standard : 2 to 7 days」で金額なし（案内は $15・2〜5／4〜7営業日、Express $20）。返品28日・$95 以上で無料、交換はアカウントで store credit を選び注文し直す、店での返品不可、取り消しは4時間。
+- **素材**：PRODUCT DETAILS に部位ごとの％（Atlas の Insole：Amazonian rubber 13%・bio-based E.V.A. 67%〔sugarcane 53%〕・organic cotton 11%・others 9%、Outsole：Amazonian rubber 50%・mineral silica 26%・synthetic rubber 5%・others 19%）と産地・なめしの段落。文の中の数で、表や図は無い。
+- **データ**：詳細は Product と Offer 1つ（USD 260.00・InStock）。size・color・AggregateRating・BreadcrumbList なし。一覧は ItemList（297）。Campo のパンくずは MEN から入っても「HOME WOMEN」。alt は品番と向き（Lateral view）。
+- **重さ**：PC top 6.61MB / list 5.94MB / item 6.44MB / cart 6.72MB / guide 3.51MB（SP 5.56 / 7.88 / 6.11 / 5.68 / 3.51）。毎ページ accessiBe 891KB・OneTrust 862KB・Klaviyo 約200KB。**詳細は店の在庫の開閉のため Google Maps 1,482KB を開く前から読む**。動きはパネル3つが同じ transform .3s cubic-bezier(.66,.61,.35,1)、prefers-reduced-motion は Bootstrap の10行だけでパネルは止まらない。
+
 ## 真似る型
-見本は Allbirds・Tracksmith・土屋鞄製造所・ASKET の4つ。2つ以上で同じだったことを型にする（値はどれのものかを添える）。
-1. **品切れのサイズ・色は消さずに斜線で残し、押せるようにする。押したら購入のボタンを入荷通知に替える**（Allbirds：14個の四角に斜線＋薄く、押すと「NOTIFY ME」。Tracksmith：50×32 の枠に 1px の斜線、押すとメールか電話の欄。土屋鞄：34px の丸に斜線、押すと「在庫なし」と白の「売り切れ」＋藍の「入荷お知らせ登録」413×48）。ASKET：丈の格子で打ち消し線（灰）＋黒の「Notify Me」、押すと「Available: Spring 2027」）。入荷の時期を書いたのは ASKET だけ（季節で）。作るときは時期を書き、メールマガジンの登録を最初からチェックしない（ASKET は未チェック、土屋鞄は入っている）。
-2. **サイズを選ぶまで、購入のボタンに何を選ぶかを書いて押せなくする**（Allbirds・Tracksmith とも「SELECT A SIZE」）。選ぶと URL にバリエーションを残す（Allbirds ?size=…&variant=…、Tracksmith ?sku=…、土屋鞄 ?variant=）。押せない状態の文字は読めるように（Tracksmith は opacity .2 で 1.28:1、ASKET は「Add to cart」のまま #b2b2b2 に白で 2.12:1 で、何を選ぶかも言わない＝反面教師）。
+見本は Allbirds・Tracksmith・土屋鞄製造所・ASKET・VEJA の5つ。2つ以上で同じだったことを型にする（値はどれのものかを添える）。
+1. **品切れのサイズ・色は消さずに斜線で残し、押せるようにする。押したら購入のボタンを入荷通知に替える**（Allbirds：14個の四角に斜線＋薄く、押すと「NOTIFY ME」。Tracksmith：50×32 の枠に 1px の斜線、押すとメールか電話の欄。土屋鞄：34px の丸に斜線、押すと「在庫なし」と白の「売り切れ」＋藍の「入荷お知らせ登録」413×48）。ASKET：丈の格子で打ち消し線（灰）＋黒の「Notify Me」、押すと「Available: Spring 2027」）。VEJA：#888 の枠で残して押せ、押すと黒の「NOTIFY ME」（斜線なし・3.54:1＝斜線は足す）。入荷の時期を書いたのは ASKET だけ（季節で）。作るときは時期を書き、メールマガジンの登録を最初からチェックしない（ASKET は未チェック、土屋鞄は入っている）。
+2. **サイズを選ぶまで、購入のボタンに何を選ぶかを書いて押せなくする**（Allbirds・Tracksmith とも「SELECT A SIZE」）。選ぶと URL にバリエーションを残す（Allbirds ?size=…&variant=…、Tracksmith ?sku=…、土屋鞄 ?variant=）。VEJA は押せるまま、押すとサイズの下に「*Please select a size」11px #d80000（13px 以上にする）。押せない状態の文字は読めるように（Tracksmith は opacity .2 で 1.28:1、ASKET は「Add to cart」のまま #b2b2b2 に白で 2.12:1 で、何を選ぶかも言わない＝反面教師）。
 3. **色は丸い見本、選んだ色の名前を上の行で言い直す**（Allbirds 36px の丸を2色に斜めに塗り分け、Tracksmith 36px（SP 40px）に「COLOR: NAVY/IVORY」、土屋鞄 34px に「Color: 【数量限定色】シェードウォームグレー」）。色ごとに写真が替わる。見本には枠を付ける（土屋鞄のアクアグリーン #88bfbf は白に 2.05 で溶ける）。
-4. **一覧は1ページに出し切り、画像は lazy**（Allbirds 39件・69/83、Tracksmith 79枚・164/173、土屋鞄 42品・89/105）。件数をカードの数と合わせて一覧の上に出す（Allbirds の JSON-LD 148、Tracksmith の「145 RESULTS」はずれる、土屋鞄・ASKET は件数そのものが無い＝反面教師。ASKET は20枚・107/123 lazy）。
+4. **一覧は1ページに出し切り、画像は lazy**（Allbirds 39件・69/83、Tracksmith 79枚・164/173、土屋鞄 42品・89/105）。VEJA は 36枚ずつ「LOAD MORE (36/297)」で足し 144/159 lazy、件数はボタンの中だけ。件数をカードの数と合わせて一覧の上に出す（Allbirds の JSON-LD 148、Tracksmith の「145 RESULTS」はずれる、土屋鞄・ASKET は件数そのものが無い＝反面教師。ASKET は20枚・107/123 lazy）。
 5. **絞り込みで選んだ条件を結果の上に × つきで並べ、まとめて外すボタンを置く**（Allbirds：SP の APPLY FILTERS の後のチップ、Tracksmith：TEES × と CLEAR、土屋鞄：「× 鞄カテゴリー: 防水バッグ」と「全てをクリアする」）。Tracksmith・土屋鞄は選ぶたびに一覧だけ差し替え、ページを読み直さない。ASKET は URL に ?filterColor=Blue が付くだけで一覧が絞られず、チップも出ない（反面教師）。
-6. **カートは右からのドロワーで、送料無料までの残りを金額とバーで頭に置く**（Allbirds 約530px・「あと$86で送料無料」、Tracksmith 840px・「ADD $200 TO YOUR CART…」を空のときから）。土屋鞄は /cart へ移り、送料の言葉も無い（反面教師）。ASKET は 720px のパネルだが送料を「Calculated in checkout」と言うだけ（反面教師、$15 と決まっている）。
-7. **固定の購入のボタンは、購入の列を過ぎてから出す。未選択なら押すと列へ戻す**（Allbirds：スクロールすると現れる、Tracksmith：IntersectionObserver で列を過ぎてから・未選択なら列へ smooth、土屋鞄：IntersectionObserver でフォームが上へ抜けた後、「購入する」は名前へのアンカー）。ただし SP の最初の画面にボタンが無いなら最初から出す（土屋鞄は SP のボタン y=941 で、最初の画面ではどちらも見えない）。ASKET は購入の列の中で sticky（SP y=779）にして、列を過ぎると一緒に消える。
+6. **カートは右からのドロワーで、送料無料までの残りを金額とバーで頭に置く**（Allbirds 約530px・「あと$86で送料無料」、Tracksmith 840px・「ADD $200 TO YOUR CART…」を空のときから）。土屋鞄は /cart へ移り、送料の言葉も無い（反面教師）。ASKET は 720px のパネルだが送料を「Calculated in checkout」と言うだけ（反面教師、$15 と決まっている）。VEJA は 535px のドロワーに Subtotal・Shipping（$15／Free）・Tax・TOTAL の4行で送料を金額で言うが、$90 で残り $5 を言わない（残りの額とバーを足す）。
+7. **固定の購入のボタンは、購入の列を過ぎてから出す。未選択なら押すと列へ戻す**（Allbirds：スクロールすると現れる、Tracksmith：IntersectionObserver で列を過ぎてから・未選択なら列へ smooth、土屋鞄：IntersectionObserver でフォームが上へ抜けた後、「購入する」は名前へのアンカー）。ただし SP の最初の画面にボタンが無いなら最初から出す（土屋鞄は SP のボタン y=941 で、最初の画面ではどちらも見えない）。ASKET は購入の列の中で sticky（SP y=779）にして、列を過ぎると一緒に消える。VEJA は SP で最初から sticky; bottom:0 の 390×81 の帯（「SELECT A SIZE」→ 選ぶと選んだサイズの行と「ADD TO BAG」の2段）で、最初の画面にボタンが無い店はこの形にする。
 8. **着用の目安・入る物を書く**：Tracksmith は人ごとに身長と着たサイズ（5人）、Allbirds はサイズ群の上に「ハーフサイズの人は近い整数も選んで」。鞄は土屋鞄の収納サイズ（A4ファイル・600mlペットボトル・長財布）と PC対応サイズ（13〜15inch・iPad）を絞り込みの群に。
 9. **詳細の購入の列の近くに返品の条件を1行で**（土屋鞄：カートのボタンの 110px 下に「到着後7日以内・未使用であれば返品可能」）。Tracksmith は列に無くドロワーに「30-DAY RETURNS & EXCHANGES」。ASKET は購入のボタンの真上の開く行「Shipping & Returns」1手で返品30日・8 USD・交換無料・支払い7種。送料も同じ場所に（4つとも詳細に送料の金額の行が無い、Allbirds は「+ FREE SHIPPING」だけ、ASKET は案内のページの部品だけ）。
 10. **実店舗があるなら、オンラインの在庫の下に店ごとの在庫**（土屋鞄：14店を開閉、通信なし）。ASKET：購入の列の4行目「Store Availability」で3店に In stock／Out of stock。オンラインが品切れの色・寸法でも出し、入荷通知の横にも書く（土屋鞄は品切れの色で帯が消える、ASKET は Notify Me の横に出ない）。
+11. **一覧のカードに指を乗せたら、写真を縮めてサイズの列を出し、その場でカートに入れる**（VEJA：346×410 の写真が上へ縮み、サイズ14を 11px で、品切れは灰、押して 1.10秒でドロワー）。Allbirds は SP の「ADD」で下からの窓に色とサイズ、Tracksmith は QUICK BUY の窓 1060×690（どれもカードから選ばせる）。指を乗せられない SP では窓かボタンにする。
+12. **値段や素材の中身を数で書く**（ASKET：原価 33.9 EUR の内訳と工程17行、VEJA：部位ごとの素材を％で Insole 13%・67%・11%・9%）。表か横棒にし、文の中に埋めない（VEJA は段落の文）。
+13. **男女でサイズの表記が違う靴は、1列にまとめて重なる所に2つの表記を並べる**（VEJA：W4〜W7.5・「W8 / M6」〜「W11.5 / M9.5」・M10〜M14 の19）。Allbirds は PC と SP で男女の表記の出し方が違う（反面教師）。
 
 ## 反面教師
 - 有料の返品保証（$4.98）を込みにした金額を、いちばん目立つ購入ボタンに出し、保証なしを文字リンクにする（Allbirds）。
@@ -92,3 +109,9 @@
 - 色で絞ると URL に ?filterColor=Blue が付くだけで一覧の20枚が変わらず、チェックも付かない（ASKET、2026-11-05 の Chromium）。
 - カートで送料を「Calculated in checkout」と言い、150 USD までの残りも言わない（送料は FedEx $15 と決まっている）（ASKET）。
 - 色見本が 14×14 で alt=""、リンクに色の名前が無い。本文・値段・ボタンが 13.5px（ASKET）。
+- カードに指を乗せてその場で入れられるが、件数は一覧の頭に無く「LOAD MORE (36/297)」の中だけ（VEJA）。
+- 「Low stock」を SP のサイズの一覧にだけ出し、PC の格子では残りわずかの7つが「あり」と同じ見た目（VEJA）。
+- 品切れのサイズが #888 の文字と枠だけ（3.54:1・斜線なし）、色の名前が 13px の #b3b3b3（2.10:1）、選び忘れの1行が 11px で role なし（VEJA）。
+- ドロワーで $90 のとき「Shipping $15・TOTAL $105」とだけ言い、あと $5 で無料になることを言わない。詳細の開閉の送料は日数だけで、日数も案内と違う（VEJA）。
+- 店の在庫の開閉のため Google Maps 1,482KB を詳細ごとに開く前から読む。右・下から出すパネルが prefers-reduced-motion で止まらない（VEJA）。
+- 絞り込みの SIZE に靴下（36/40）・ベルト（45 IN）・O.S が混ざり、値の横に件数が無く、閉じると選んだ条件が見えない（VEJA）。
