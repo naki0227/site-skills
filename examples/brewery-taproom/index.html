@@ -1,0 +1,706 @@
+<!doctype html>
+<!-- 主の色：#e2d41c（刈り入れ前の二条大麦の穂の色。この醸造所は外壁とタップの塔の前板をこの麦わら色に塗っている、という設定〔架空〕。色相 約56°） -->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>麦ノ平ブルーイング タップルーム｜いま注げる10種・営業時間・行き方</title>
+<meta name="description" content="日影沢村 麦ノ平の小さなクラフトビール醸造所に併設のタップルーム。10本のタップ、醸造の日の見学、営業日と時間、車で来る人へ（ハンドルキーパー・運転代行・ノンアル）、行き方。">
+<!--
+  site-skills の作例（架空の醸造所。麦ノ平ブルーイング・日影沢村・麦ノ平・ビールの名前と値段・日付・バスの時刻・代行の料金はすべて作り物）。
+  依頼主の希望（決まりの順のいちばん上）：「かっこよく。最初の画面の型は任せる」→ SKILL.md の型①（題材の物の形の窓で写真を抜き、大きな字・飾りと重ねる）。
+    人が主役の題材ではない（主役は10本のタップとビール）ので、型②の切り抜きは使わなかった。
+  選んだスキル：主 lp-quality-bar（1ページで知ってもらい、来てもらう。飲食店のトップ）。雰囲気は「町の店・縦書きの写真日記」types/town-diary.md
+    （小杉湯：通う店は最初の画面を営業時間に、罫0・ボタンは墨の四角1つ）を構成に、「食品ブランド・レトロな手描き」types/retro-pack.md
+    （Graza：パッケージの色を章の地に、極端に詰めた表示書体）を配色の考えに。混ぜたのは配色だけ。
+  題材の特色：山あい（標高860m）の村の小さな醸造所の、10本のタップ。左から軽い順に並び、10番だけノンアル。
+  考えの一文：このページでは、カウンターの10本のタップハンドルが、いま注げる1杯を選ぶ部品になり、選ぶとパイントグラスがその色で満ちる。
+  色（aesthetic.md の3色）：地 #fdfdf8（白）／主 #e2d41c（二条大麦の穂の麦わら色）／差し色 #d23a1c（定休日と「きょう」に使う朱。樽の栓の色、という設定）。文字・暗い章 #1b1a15（墨）。
+    依頼の色相 50〜65° の中で、colors.js の roastery 38° と stationery-popup 75° の両方から 20° 離せる値は無かったので、75° から20°離れる 56° にした（roastery とは18°）。
+  手本の測定（work/oneshot6/brewery-taproom/sample.jsonl、scripts/sample.js、PC 1440px、7件中7件が開けた）：
+    - afuribrewing.com（醸造所）：大きな英字の名前 AFURI BREWING をグロテスク体で、和名は下に小さく。罫0・ボタン0。本文 游ゴシック 15px 700 #1d1d1d
+      → 英字の名前 MUGINOHIRA を詰めた表示書体（Big Shoulders Display 800）で幅いっぱいに、和名は h1 で。全幅の罫は引かない。本文は Noto Sans JP 17px。
+    - kosugiyu.co.jp（町の店）：最初の画面に営業時間、ボタン1つ・角0、罫0 → 最初の画面に「きょう開いているか」を字で、ボタンは墨の四角1つ。
+    - graza.co（飲料）：章の地をパッケージの色に、見出しは詰めた表示書体 102px → 章の地を麦わら色と墨で交互に、番号と時刻は Big Shoulders。
+    - bestie-sports.co.jp：主の色の全面の地に極太の題 98px と Roboto Condensed 800 の数字 → 最初の画面の地を主の色の全面に。
+    - ugokko.jp・kanayama-g.co.jp/recruit-lp・oatly.com：地を主の色1色で塗る・英字の大きな字（kanayama は Dela Gothic One だが、ai-font なので使わない）。
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --shiro:#fdfdf8;   /* 地 */
+  --mugi:#e2d41c;    /* 主：二条大麦の穂の色 */
+  --shu:#d23a1c;     /* 差し色：定休日・きょう */
+  --sumi:#1b1a15;    /* 文字・暗い章 */
+  --num:"Big Shoulders Display",sans-serif;
+  --t-short:.25s; --t-fill:.7s;
+}
+@media (prefers-reduced-motion:reduce){:root{--t-short:0s;--t-fill:0s}}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--shiro);color:var(--sumi);font-family:"Noto Sans JP",sans-serif;font-size:18px;line-height:1.75;word-break:auto-phrase;text-wrap:pretty;overflow-x:hidden}
+a{color:inherit}
+img{display:block;max-width:100%}
+.num{font-family:var(--num);font-weight:700;letter-spacing:0}
+.cap{font-size:14px;line-height:1.6}
+.btn{display:inline-block;background:var(--sumi);color:var(--mugi);text-decoration:none;font-weight:700;font-size:18px;padding:17px 30px 18px;transition:transform var(--t-short) ease}
+.btn:focus-visible,.tap:focus-visible,a:focus-visible{outline:3px solid var(--shu);outline-offset:3px}
+@media (hover:hover) and (pointer:fine){.btn:hover{transform:translateY(-2px)}}
+.glass-clip{clip-path:url(#nonic)}
+
+/* ───── 最初の画面 ───── */
+.hero{position:relative;background:var(--mugi);height:max(100svh,780px);min-height:780px;overflow:hidden}
+.nav{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:22px 48px;z-index:5;font-size:16px;font-weight:700}
+.nav ul{display:flex;gap:28px;list-style:none}
+.nav a{text-decoration:none}
+.nav .logo{font-size:18px}
+.hero-copy{position:absolute;left:48px;top:104px;width:760px;z-index:3}
+.hero h1{font-size:54px;line-height:1.22;font-weight:700;letter-spacing:.01em}
+.today{margin:22px 0 28px;font-size:24px;line-height:1.5;font-weight:700}
+.today .shu{color:var(--sumi);background:var(--shiro);padding:0 .25em}
+.tower{position:absolute;left:48px;top:448px;width:820px;z-index:2}
+.tower .row{display:flex;justify-content:space-between;align-items:flex-end;padding:0 18px}
+.tower a{display:block;width:54px;text-decoration:none;text-align:center}
+.tower .hd{display:flex;align-items:flex-start;justify-content:center;height:112px;background:var(--sumi);color:var(--mugi);border-radius:8px 8px 0 0;clip-path:polygon(0 0,100% 0,78% 100%,22% 100%);padding-top:12px;font-family:var(--num);font-weight:700;font-size:30px;line-height:1}
+.tower .sh{display:block;width:12px;height:16px;margin:0 auto;background:var(--sumi)}
+.tower .bar{height:18px;background:var(--sumi)}
+.word{position:absolute;left:26px;bottom:34px;font-family:var(--num);font-weight:800;font-size:22.8vw;line-height:.74;letter-spacing:-.005em;white-space:nowrap;z-index:1;color:var(--sumi)}
+.hero-glass{position:absolute;right:84px;top:64px;width:390px;height:680px;z-index:4;background:#7a5a2a}
+.hero-glass img{width:100%;height:100%;object-fit:cover;object-position:80% 70%}
+.hero-glass .foam{position:absolute;left:0;right:0;top:0;height:13%;background:var(--shiro)}
+.hero-glass .foam span{position:absolute;left:0;right:0;bottom:12px;text-align:center;font-family:var(--num);font-weight:700;font-size:30px;letter-spacing:.04em}
+.hero .credit{position:absolute;right:48px;bottom:8px;z-index:4;text-align:right}
+
+/* ───── タップ ───── */
+.taps{background:var(--sumi);color:var(--shiro);position:relative;overflow:hidden;padding:110px 0 120px}
+.wrap{padding:0 48px;position:relative}
+.taps h2,.sec h2{font-size:48px;line-height:1.25;font-weight:700}
+.taps h2{color:var(--mugi)}
+.taps .lead{margin-top:14px;font-size:20px;max-width:40em}
+.handles{display:flex;justify-content:space-between;align-items:flex-end;margin-top:56px;padding:0 10px}
+.tap{appearance:none;border:0;background:none;cursor:pointer;width:9%;max-width:116px;color:inherit;font:inherit;text-align:center}
+.tap .hd{display:flex;flex-direction:column;align-items:center;height:290px;background:var(--mugi);color:var(--sumi);border-radius:8px 8px 0 0;clip-path:polygon(0 0,100% 0,80% 100%,20% 100%);padding-top:20px;transition:transform var(--t-short) ease,height var(--t-short) ease}
+.tap .n{font-family:var(--num);font-weight:800;font-size:48px;line-height:1}
+.tap .nm{writing-mode:vertical-rl;font-weight:700;font-size:18px;line-height:1.1;margin-top:12px;letter-spacing:.06em}
+.tap .sh{display:block;width:18px;height:26px;margin:0 auto;background:var(--mugi)}
+.tap[aria-pressed="true"] .hd{transform:translateY(26px);background:var(--shiro)}
+.tap[aria-pressed="true"] .sh{background:var(--shiro);height:0}
+@media (hover:hover) and (pointer:fine){.tap:hover .hd{transform:translateY(10px)}.tap[aria-pressed="true"]:hover .hd{transform:translateY(26px)}}
+.taps .bar{height:24px;background:var(--mugi)}
+.pour{display:grid;grid-template-columns:380px 1fr;gap:56px;align-items:end;margin-top:60px}
+.pint{width:380px;height:660px}
+.pint .liq{transition:y var(--t-fill) cubic-bezier(.3,.7,.2,1),fill var(--t-fill) ease}
+.read{display:grid;grid-template-columns:360px 1fr;column-gap:48px;align-items:end}
+.read > *{grid-column:2}
+.read .big{grid-column:1;grid-row:1 / span 5;font-family:var(--num);font-weight:800;font-size:420px;line-height:.74;color:var(--mugi);text-align:left;margin-bottom:-6px;white-space:nowrap}
+.read h3{font-size:48px;line-height:1.25;margin-top:0;font-weight:700}
+.read .style{font-size:24px;font-weight:500;margin-top:6px}
+.read .price{display:flex;gap:36px;margin-top:28px;font-size:20px;font-weight:700}
+.read .price b{display:block;font-family:var(--num);font-size:64px;line-height:1;color:var(--mugi);font-weight:700}
+.read .note{margin-top:22px;font-size:18px;max-width:34em}
+.list{display:grid;grid-template-columns:1fr 470px;gap:64px;margin-top:120px;align-items:start}
+.list table{width:100%;border-collapse:collapse;font-size:18px}
+.list caption{text-align:left;font-size:30px;font-weight:700;color:var(--mugi);padding-bottom:14px}
+.list th,.list td{text-align:left;padding:12px 10px 13px;border-top:1px solid rgba(253,253,248,.22);vertical-align:baseline}
+.list thead th{font-size:14px;font-weight:500;border-top:0;padding-bottom:6px}
+.list td.no{font-family:var(--num);font-weight:700;font-size:30px;color:var(--mugi);width:52px;line-height:1}
+.list td.r{text-align:right;white-space:nowrap}
+.list th.r{text-align:right}
+.list .sm{display:block;font-size:14px}
+.list .fine{margin-top:16px;font-size:18px}
+.taps .photo{position:relative;margin-right:-48px}
+.taps .photo .g{width:470px;height:760px;background:#3a2a1a}
+.taps .photo img{width:100%;height:100%;object-fit:cover;object-position:62% 0%}
+.taps .photo .cap{margin-top:12px;max-width:430px}
+
+/* ───── 共通の章 ───── */
+.sec{position:relative;overflow:hidden;padding:120px 0}
+.y{background:var(--mugi)}
+.k{background:var(--sumi);color:var(--shiro)}
+.k h2{color:var(--mugi)}
+
+/* 見学 */
+.tour{min-height:1240px}
+.tour .circle{position:absolute;left:-190px;top:150px;width:900px;height:900px;border-radius:50%;overflow:hidden;background:#8a7a50}
+.tour .circle img{width:100%;height:100%;object-fit:cover;object-position:62% 40%}
+.tour .credit{position:absolute;left:48px;top:1070px;width:560px}
+.tour .bigw{-webkit-text-stroke:10px var(--mugi);paint-order:stroke fill;position:absolute;right:-20px;top:40px;font-family:var(--num);font-weight:800;font-size:300px;line-height:.8;letter-spacing:-.01em;white-space:nowrap}
+.tour .body{margin-left:720px;margin-right:48px;position:relative;padding-top:230px}
+.tour .lead{font-size:20px;margin-top:14px;max-width:32em}
+.dates{list-style:none;margin-top:40px}
+.dates li{display:grid;grid-template-columns:330px 1fr;gap:20px;align-items:baseline;padding:14px 0}
+.dates .d{font-size:48px;font-weight:700;line-height:1.1}
+.dates .d .num{font-size:64px}
+.dates .b{font-size:18px;font-weight:700}
+.dates .off{color:var(--sumi)}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:6px 26px;margin-top:34px;font-size:18px}
+.facts dt{font-weight:700}
+.steps{list-style:none;display:flex;gap:0;margin-top:46px}
+.steps li{flex:1;padding-right:18px}
+.steps .t{display:block;font-family:var(--num);font-weight:700;font-size:48px;line-height:1}
+.steps .s{display:block;font-size:18px;font-weight:700;margin-top:6px;line-height:1.5}
+.tour .btn{margin-top:46px}
+
+/* 営業日 */
+.hours{min-height:980px}
+.hours .g{position:absolute;right:-40px;top:70px;width:560px;height:900px;background:#555}
+.hours .g img{width:100%;height:100%;object-fit:cover;object-position:52% 40%}
+.hours .credit{position:absolute;right:48px;top:984px;width:470px;text-align:right}
+.hours .body{width:780px}
+.week{list-style:none;margin-top:38px}
+.week li{display:grid;grid-template-columns:96px 1fr auto;align-items:baseline;gap:18px;padding:8px 0 10px}
+.week .w{font-size:30px;font-weight:700}
+.week .h{font-family:var(--num);font-weight:700;font-size:64px;line-height:1}
+.week .h small{font-size:30px}
+.week .lo{font-size:16px;font-weight:500;text-align:right}
+.week .closed .h{font-family:"Noto Sans JP",sans-serif;font-size:48px;color:var(--shu);line-height:1.3}
+.week .now{background:var(--mugi);margin:0 -16px;padding:12px 16px 14px}
+.week .now .lo::before{content:"きょう　";font-weight:700}
+.week .now.closed .h{color:var(--sumi)}
+.hours .more{margin-top:34px;display:grid;grid-template-columns:1fr 1fr;gap:18px 40px;font-size:18px;max-width:760px}
+.hours .more b{display:block;font-size:20px}
+
+/* 車で来る人へ */
+.car .bigw{font-family:var(--num);font-weight:800;font-size:330px;line-height:.76;color:var(--mugi);position:absolute;right:-30px;top:60px;letter-spacing:-.01em}
+.car .body{width:820px}
+.car .lead{font-size:20px;margin-top:18px;font-weight:500}
+.car .rule{margin-top:54px}
+.keytag{position:absolute;right:200px;top:350px;z-index:2;width:270px;height:400px;background:var(--mugi);color:var(--sumi);border-radius:22px 22px 135px 135px;padding:84px 22px 0;text-align:center;transform:rotate(-4deg);margin:40px 0 0 14px}
+.keytag::before{content:"";position:absolute;left:50%;top:30px;width:34px;height:34px;margin-left:-17px;border-radius:50%;background:var(--sumi)}
+.keytag::after{content:"";position:absolute;left:50%;top:-58px;width:3px;height:92px;background:var(--shiro);transform-origin:bottom}
+.car .keytag .k1{font-size:30px;font-weight:700;line-height:1.25}
+.car .keytag .k2{font-family:var(--num);font-weight:800;font-size:110px;line-height:1;margin-top:10px}
+.car .keytag .k3{font-size:16px;font-weight:700;margin-top:14px;line-height:1.5}
+.car h3{font-size:30px;line-height:1.35;color:var(--mugi);font-weight:700}
+.car .rule p,.daiko p{margin-top:10px;font-size:18px}
+.na{margin-top:18px;list-style:none}
+.na li{display:flex;justify-content:space-between;gap:20px;padding:9px 0;border-top:1px solid rgba(253,253,248,.22);font-size:18px}
+.na li b{font-family:var(--num);font-size:30px;line-height:1;font-weight:700;white-space:nowrap}
+.daiko{margin-top:150px;position:relative}
+.daiko svg{display:block;width:calc(100% + 96px);margin-left:-48px;height:auto}
+.daiko .txt{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:30px}
+.fare{list-style:none;margin-top:12px}
+.fare li{display:flex;justify-content:space-between;padding:8px 0;border-top:1px solid rgba(253,253,248,.22);font-size:18px}
+.fare b{font-family:var(--num);font-size:30px;line-height:1;font-weight:700;color:var(--mugi)}
+
+/* 行き方 */
+.access{padding-top:0}
+.ridge{position:relative;height:620px;clip-path:polygon(0 30%,8% 18%,15% 26%,24% 6%,33% 22%,41% 14%,50% 30%,58% 10%,66% 0,74% 16%,83% 8%,92% 24%,100% 12%,100% 100%,0 100%);background:#6b7a5a}
+.ridge img{width:100%;height:100%;object-fit:cover;object-position:50% 55%}
+.access .credit{padding:12px 48px 0;text-align:right}
+.access .body{display:grid;grid-template-columns:1fr 1fr;gap:72px;margin-top:70px}
+.route{list-style:none;margin-top:30px}
+.route li{display:grid;grid-template-columns:150px 1fr;gap:22px;align-items:baseline;padding:16px 0}
+.route .t{font-family:var(--num);font-weight:800;font-size:64px;line-height:.9}
+.route .t small{font-size:24px}
+.route .s{font-size:20px;font-weight:700;line-height:1.5}
+.route .s span{display:block;font-size:18px;font-weight:400}
+.lastbus{margin-top:26px;background:var(--mugi);padding:24px 24px 26px}
+.lastbus b{display:block;font-size:20px}
+.lastbus .num{font-size:64px;line-height:1}
+.drive p{margin-top:12px;font-size:18px}
+.drive .addr{font-size:24px;font-weight:700;margin-top:22px;line-height:1.5}
+.map{margin-top:30px}
+
+/* フッター */
+footer{background:var(--mugi);padding:80px 48px 40px;position:relative;overflow:hidden}
+footer .fw{font-family:var(--num);font-weight:800;font-size:19.6vw;line-height:.74;white-space:nowrap;margin-left:-18px}
+footer .cols{display:grid;grid-template-columns:1.1fr 1fr 1.4fr;gap:48px;margin-top:56px;font-size:18px}
+footer h2{font-size:18px;font-weight:700;margin-bottom:8px}
+footer ul{list-style:none}
+footer li{padding:2px 0}
+footer .legal{margin-top:40px;font-size:18px;font-weight:700}
+footer .fic{margin-top:10px;font-size:14px}
+
+/* ───── スマホ ───── */
+@media (max-width:760px){
+  body{font-size:16px}
+  .nav{padding:16px 16px}
+  .nav ul{display:none}
+  .hero{height:auto;min-height:0;padding-bottom:20px;display:flex;flex-direction:column}
+  .hero-copy{order:1}.hero-glass{order:2}.tower{order:3}.word{order:4}.hero .credit{order:5}
+  .hero-copy{position:relative;left:auto;top:auto;width:auto;padding:70px 16px 0}
+  .hero h1{font-size:33px}
+  .today{font-size:19px;margin:14px 0 20px}
+  .btn{font-size:16px;padding:15px 22px 16px}
+  .hero-glass{position:relative;right:auto;top:auto;width:62vw;height:104vw;margin:22px 16px 0 auto}
+  .hero-glass .foam span{font-size:18px;bottom:6px}
+  .tower{position:relative;left:auto;top:auto;width:auto;margin:16px 16px 0}
+  .tower .row{padding:0 2px}
+  .tower a{width:8.4%}
+  .tower .hd{height:56px;font-size:18px;padding-top:6px}
+  .tower .sh{width:5px;height:8px}
+  .tower .bar{height:9px}
+  .word{position:relative;left:auto;bottom:auto;margin:14px 0 0 8px;font-size:22.6vw}
+  .hero .credit{position:relative;right:auto;bottom:auto;width:auto;padding:10px 16px 0;text-align:left}
+  .wrap{padding:0 16px}
+  .taps{padding:70px 0 80px}
+  .taps h2,.sec h2{font-size:32px}
+  .taps .lead{font-size:16px}
+  .handles{margin-top:34px;padding:0;gap:4px}
+  .tap{width:auto;flex:1}
+  .tap .hd{height:150px;border-radius:30px 30px 3px 3px;padding-top:10px}
+  .tap .n{font-size:24px}
+  .tap .nm{display:none}
+  .tap .sh{width:8px;height:14px}
+  .tap[aria-pressed="true"] .hd{transform:translateY(14px)}
+  .taps .bar{height:14px}
+  .pour{grid-template-columns:1fr 1.1fr;gap:16px;margin-top:30px;align-items:start}
+  .pint{width:100%;height:auto}
+  .read{display:block}
+  .read .big{font-size:130px;min-width:0;text-align:left;margin:0}
+  .read h3{font-size:24px;margin-top:12px}
+  .read .style{font-size:16px}
+  .read .price{gap:16px;font-size:15px;margin-top:14px}
+  .read .price b{font-size:38px}
+  .read .note{grid-column:1/-1;font-size:16px}
+  .list{grid-template-columns:1fr;gap:40px;margin-top:70px}
+  .list table{font-size:15px}
+  .list caption{font-size:22px}
+  .list th,.list td{padding:10px 4px 11px}
+  .list td.no{font-size:24px;width:34px}
+  .list .hide-sp{display:none}
+  .taps .photo{margin-right:-16px;margin-left:12vw}
+  .taps .photo .g{width:100%;height:120vw}
+  .sec{padding:70px 0}
+  .tour{min-height:0}
+  .tour .circle{position:relative;left:-30vw;top:auto;width:120vw;height:120vw}
+  .tour .credit{position:relative;left:auto;top:auto;width:auto;padding:10px 16px 0}
+  .tour .bigw{font-size:30vw;top:104vw;right:-8px;-webkit-text-stroke:6px var(--mugi)}
+  .tour .body{margin:0;padding:40px 16px 0}
+  .tour .lead{font-size:16px}
+  .dates li{grid-template-columns:1fr;gap:0}
+  .dates .d{font-size:30px}
+  .dates .d .num{font-size:46px}
+  .facts{font-size:16px;gap:4px 16px}
+  .steps{flex-wrap:wrap;gap:18px 0}
+  .steps li{flex:0 0 50%}
+  .steps .t{font-size:34px}
+  .hours .body{width:auto;padding-top:36px}
+  .map text{font-size:28px}
+  .hours .g{position:relative;right:auto;top:auto;width:78vw;height:118vw;margin:0 -16px 0 auto}
+  .hours .credit{position:relative;right:auto;top:auto;width:auto;text-align:left;padding:10px 16px 0}
+  .week li{grid-template-columns:52px 1fr;gap:10px}
+  .week .lo{grid-column:2;text-align:left;margin-top:-4px;font-size:14px}
+  .week .w{font-size:24px}
+  .week .h{font-size:46px}
+  .week .h small{font-size:20px}
+  .week .closed .h{font-size:28px}
+  .week .now{margin:0 -16px;padding:12px 16px 14px}
+  .hours .more{grid-template-columns:1fr;font-size:16px}
+  .car .bigw{font-size:42vw;position:relative;right:auto;top:auto;margin:0 0 20px -6px}
+  .car .body{width:auto}
+  .car .lead{font-size:17px}
+  .car .rule{margin-top:30px}
+  .car{display:flex;flex-direction:column}.car .wrap{order:1}.car .keytag{order:2;margin-bottom:10px}
+  .keytag{position:relative;right:auto;top:auto;width:210px;height:320px;padding-top:80px;margin:60px auto 0}
+  .car .keytag .k2{font-size:72px}
+  .car h3{font-size:22px}
+  .car .rule p,.na li,.fare li{font-size:16px}
+  .daiko{margin-top:60px}
+  .daiko svg{width:calc(100% + 32px);margin-left:-16px;height:230px}
+  .daiko .txt{grid-template-columns:1fr;gap:30px}
+  .ridge{height:300px}
+  .access .credit{padding:10px 16px 0;text-align:left}
+  .access .body{grid-template-columns:1fr;gap:50px;margin-top:40px}
+  .route li{grid-template-columns:92px 1fr;gap:12px}
+  .route .t{font-size:46px}
+  .route .t small{font-size:18px}
+  .route .s{font-size:17px}
+  .route .s span{font-size:15px}
+  .lastbus .num{font-size:46px}
+  .drive .addr{font-size:19px}
+  footer{padding:60px 16px 30px}
+  footer .fw{margin-left:-6px}
+  footer .cols{grid-template-columns:1fr;gap:30px;font-size:16px}
+  footer .legal{font-size:16px}
+  .daiko p,.drive p,.list .fine,.read .note,.dates .b,.steps .s,.tour .lead,.taps .lead,.car .lead,.lastbus b{font-size:16px}
+  .route .s span{font-size:16px}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- ノニックのパイントグラス（口の少し下がふくらむ形） -->
+    <clipPath id="nonic" clipPathUnits="objectBoundingBox">
+      <path d="M.05,0 H.95 L.97,.10 Q1,.16 .975,.22 L.86,1 H.14 L.025,.22 Q0,.16 .03,.10 Z"/>
+    </clipPath>
+  </defs>
+</svg>
+
+<header class="hero" id="top">
+  <nav class="nav" aria-label="ページの中">
+    <a class="logo" href="#top">麦ノ平ブルーイング</a>
+    <ul>
+      <li><a href="#taps">タップ</a></li>
+      <li><a href="#tour">醸造の日の見学</a></li>
+      <li><a href="#hours">営業日と時間</a></li>
+      <li><a href="#car">車で来る人へ</a></li>
+      <li><a href="#access">行き方</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero-copy">
+    <h1>麦ノ平ブルーイング<br>タップルーム</h1>
+    <p class="today" id="today">水〜金 16:00–22:00<br>土日祝 12:00–21:00（月・火は定休日）</p>
+    <a class="btn" href="#taps">いま注げる10種を見る</a>
+  </div>
+
+  <div class="tower" aria-label="タップ 1番から10番" data-object>
+    <div class="row">
+      <a href="#taps" data-go="1"><span class="hd">1</span><span class="sh"></span></a>
+      <a href="#taps" data-go="2"><span class="hd">2</span><span class="sh"></span></a>
+      <a href="#taps" data-go="3"><span class="hd">3</span><span class="sh"></span></a>
+      <a href="#taps" data-go="4"><span class="hd">4</span><span class="sh"></span></a>
+      <a href="#taps" data-go="5"><span class="hd">5</span><span class="sh"></span></a>
+      <a href="#taps" data-go="6"><span class="hd">6</span><span class="sh"></span></a>
+      <a href="#taps" data-go="7"><span class="hd">7</span><span class="sh"></span></a>
+      <a href="#taps" data-go="8"><span class="hd">8</span><span class="sh"></span></a>
+      <a href="#taps" data-go="9"><span class="hd">9</span><span class="sh"></span></a>
+      <a href="#taps" data-go="10"><span class="hd">10</span><span class="sh"></span></a>
+    </div>
+    <div class="bar"></div>
+  </div>
+
+  <p class="word" aria-hidden="true">MUGINOHIRA</p>
+
+  <figure class="hero-glass glass-clip">
+    <img src="photos/London-Fields-Brewery-taproom-cropped.jpg" alt="アーチ形の天井のタップルームで、テーブルにグラスを置いて話す2人" fetchpriority="high" width="1920" height="1256">
+    <div class="foam" aria-hidden="true"><span>PINT 470ml</span></div>
+  </figure>
+  <p class="credit cap">写真はロンドンの醸造所のタップルーム（Gilda／CC BY-SA 2.0）。麦ノ平の店と人ではありません。</p>
+</header>
+
+<main>
+<!-- ───── タップ ───── -->
+<section class="taps" id="taps" aria-labelledby="taps-h">
+  <div class="wrap">
+    <h2 id="taps-h">いま注げる10種</h2>
+    <p class="lead">11月9日の時点の10本です。左から軽い順に並べています。<br>10番はノンアルコール。樽が空いたら、次の樽に替えます。</p>
+
+    <div class="handles" role="group" aria-label="タップを選ぶ">
+      <button class="tap" type="button" data-i="1" aria-pressed="true"><span class="hd"><span class="n">1</span><span class="nm">ピルスナー</span></span><span class="sh"></span></button>
+      <button class="tap" type="button" data-i="2" aria-pressed="false"><span class="hd"><span class="n">2</span><span class="nm">ケルシュ</span></span><span class="sh"></span></button>
+      <button class="tap" type="button" data-i="3" aria-pressed="false"><span class="hd"><span class="n">3</span><span class="nm">ヴァイツェン</span></span><span class="sh"></span></button>
+      <button class="tap" type="button" data-i="4" aria-pressed="false"><span class="hd"><span class="n">4</span><span class="nm">セゾン</span></span><span class="sh"></span></button>
+      <button class="tap" type="button" data-i="5" aria-pressed="false"><span class="hd"><span class="n">5</span><span class="nm">ペールエール</span></span><span class="sh"></span></button>
+      <button class="tap" type="button" data-i="6" aria-pressed="false"><span class="hd"><span class="n">6</span><span class="nm">IPA</span></span><span class="sh"></span></button>
+      <button class="tap" type="button" data-i="7" aria-pressed="false"><span class="hd"><span class="n">7</span><span class="nm">アンバー</span></span><span class="sh"></span></button>
+      <button class="tap" type="button" data-i="8" aria-pressed="false"><span class="hd"><span class="n">8</span><span class="nm">ポーター</span></span><span class="sh"></span></button>
+      <button class="tap" type="button" data-i="9" aria-pressed="false"><span class="hd"><span class="n">9</span><span class="nm">スタウト</span></span><span class="sh"></span></button>
+      <button class="tap" type="button" data-i="10" aria-pressed="false"><span class="hd"><span class="n">10</span><span class="nm">ノンアル</span></span><span class="sh"></span></button>
+    </div>
+    <div class="bar" aria-hidden="true"></div>
+
+    <div class="pour">
+      <svg class="pint" viewBox="0 0 300 520" role="img" aria-labelledby="pint-t" data-object>
+        <title id="pint-t">選んだビールを注いだパイントグラス</title>
+        <defs>
+          <clipPath id="pint-in"><path d="M15,0 H285 L291,52 Q300,83 292.5,114 L258,520 H42 L7.5,114 Q0,83 9,52 Z"/></clipPath>
+        </defs>
+        <g clip-path="url(#pint-in)">
+          <rect x="0" y="0" width="300" height="520" fill="#2a2820"/>
+          <rect class="liq" id="liq" x="0" y="64" width="300" height="520" fill="#f2d45c"/>
+          <rect class="liq" id="foam" x="0" y="2" width="300" height="68" fill="#fdfdf8"/>
+        </g>
+        <path d="M15,0 H285 L291,52 Q300,83 292.5,114 L258,520 H42 L7.5,114 Q0,83 9,52 Z" fill="none" stroke="#fdfdf8" stroke-width="4"/>
+      </svg>
+      <div class="read" aria-live="polite">
+        <p class="big" id="r-no">1</p>
+        <h3 id="r-name">麦ノ平ピルスナー</h3>
+        <p class="style" id="r-style">ピルスナー・4.8%</p>
+        <div class="price">
+          <p><span id="r-s1">ハーフ 240ml</span><b id="r-p1">550円</b></p>
+          <p><span id="r-s2">パイント 470ml</span><b id="r-p2">900円</b></p>
+        </div>
+        <p class="note" id="r-note">11月2日開栓。麦芽は村の畑の二条大麦を3割。</p>
+      </div>
+    </div>
+
+    <div class="list">
+      <div>
+        <table>
+          <caption>10本の一覧（税込）</caption>
+          <thead><tr><th scope="col"><span class="hide-sp">番</span></th><th scope="col">名前・スタイル</th><th scope="col" class="r">度数</th><th scope="col" class="r">ハーフ</th><th scope="col" class="r">パイント</th><th scope="col" class="r hide-sp">開栓</th></tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+        <p class="fine">ハーフは 240ml、パイントは 470ml です。4種を 120ml ずつの飲み比べは 1,400円。<br>9番は度数が高いので、小さいグラス（200ml）だけです。</p>
+      </div>
+      <figure class="photo">
+        <div class="g glass-clip"><img src="photos/Beer-tasting-at-Good-Beer-6090217072.jpg" alt="4つのグラスに注いだビールを前に、飲み比べを待つ男性" loading="lazy" width="1280" height="960"></div>
+        <figcaption class="cap">写真はニューヨークのビアバーで、飲み比べを前にした人（Will from New York, USA／CC BY-SA 2.0）。<br>麦ノ平の店と人ではありません。</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ───── 醸造の日の見学 ───── -->
+<section class="sec y tour" id="tour" aria-labelledby="tour-h">
+  <div class="circle"><img src="photos/Black-Sheep-Brewery-Tour.jpg" alt="仕込みの釜が並ぶ部屋を、通路の手すりから見下ろす見学の人たち" loading="lazy" width="960" height="640"></div>
+  <p class="credit cap">写真はイギリスの醸造所の見学（TJ Blackwell／CC BY-SA 3.0）。<br>麦ノ平の仕込み場は、この写真よりずっと小さな部屋です。</p>
+  <p class="bigw" aria-hidden="true">BREW DAY</p>
+  <div class="body">
+    <h2 id="tour-h">醸造の日の見学</h2>
+    <p class="lead">月に2回、土曜の朝に仕込みをします。<br>その日だけ、仕込み場に入って見られます。</p>
+    <ul class="dates">
+      <li><p class="d"><span class="num">11</span>月<span class="num">21</span>日（土）</p><p class="b">仕込むのは 6番 二条大麦IPA</p></li>
+      <li><p class="d"><span class="num">12</span>月<span class="num">5</span>日（土）</p><p class="b">仕込むのは 1番 麦ノ平ピルスナー</p></li>
+      <li><p class="d"><span class="num">12</span>月<span class="num">19</span>日（土）</p><p class="b">仕込むのは 8番 炭焼きポーター</p></li>
+    </ul>
+    <dl class="facts">
+      <dt>時間</dt><dd>10:00〜11:30（タップルームは12:00から）</dd>
+      <dt>定員</dt><dd>1回8名</dd>
+      <dt>料金</dt><dd>1,500円（税込。ハーフ1杯かノンアル1杯つき）</dd>
+      <dt>申し込み</dt><dd>前日18時までに電話か店頭で。中学生から（20歳未満はノンアル）</dd>
+      <dt>服装</dt><dd>床がぬれているので、すべりにくい靴で</dd>
+    </dl>
+    <ol class="steps" aria-label="見学で見るところ">
+      <li><span class="t">10:00</span><span class="s">ろ過<br>麦汁を取る</span></li>
+      <li><span class="t">10:30</span><span class="s">煮沸<br>ホップを入れる</span></li>
+      <li><span class="t">11:00</span><span class="s">発酵タンクの<br>部屋</span></li>
+      <li><span class="t">11:15</span><span class="s">タップルームで<br>1杯</span></li>
+    </ol>
+    <a class="btn" href="#contact">申し込みの電話番号</a>
+  </div>
+</section>
+
+<!-- ───── 営業日と時間 ───── -->
+<section class="sec hours" id="hours" aria-labelledby="hours-h">
+  <div class="g glass-clip"><img src="photos/Bartender---Malm--1992.jpg" alt="酒瓶の棚の前、カウンターに手をついて立つ蝶ネクタイのバーテンダー（白黒）" loading="lazy" width="960" height="657"></div>
+  <p class="credit cap">写真は1992年、スウェーデン・マルメのバー（Jonn Leffmann／CC BY 3.0）。<br>麦ノ平の人ではありません。</p>
+  <div class="wrap body">
+    <h2 id="hours-h">営業日と時間</h2>
+    <ol class="week" id="week">
+      <li data-d="1" class="closed"><span class="w">月</span><span class="h">定休日</span><span class="lo">祝日は営業</span></li>
+      <li data-d="2" class="closed"><span class="w">火</span><span class="h">定休日</span><span class="lo">祝日は営業</span></li>
+      <li data-d="3"><span class="w">水</span><span class="h">16:00<small>–</small>22:00</span><span class="lo">L.O. 21:30</span></li>
+      <li data-d="4"><span class="w">木</span><span class="h">16:00<small>–</small>22:00</span><span class="lo">L.O. 21:30</span></li>
+      <li data-d="5"><span class="w">金</span><span class="h">16:00<small>–</small>22:00</span><span class="lo">L.O. 21:30</span></li>
+      <li data-d="6"><span class="w">土</span><span class="h">12:00<small>–</small>21:00</span><span class="lo">L.O. 20:30</span></li>
+      <li data-d="0"><span class="w">日</span><span class="h">12:00<small>–</small>21:00</span><span class="lo">L.O. 20:30</span></li>
+    </ol>
+    <div class="more">
+      <p><b>席</b>カウンター8席、テーブル20席。予約は6名からだけ受けています。</p>
+      <p><b>年末年始</b>12月30日（水）〜1月3日（日）は休みます。</p>
+      <p><b>持ち帰り</b>1番・6番・10番は、1Lの瓶に詰めて持ち帰れます（瓶代 300円）。</p>
+      <p><b>食べもの</b>ソーセージ・村の豆腐の燻製・ポテトなど。持ち込みはご遠慮ください。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ───── 車で来る人へ ───── -->
+<section class="sec k car" id="car" aria-labelledby="car-h">
+  <p class="bigw" aria-hidden="true">0.0%</p>
+  <div class="keytag" data-object aria-hidden="true">
+          <p class="k1">ハンドル<br>キーパー</p>
+          <p class="k2">07</p>
+          <p class="k3">この札の人には<br>お酒を注ぎません</p>
+        </div>
+  <div class="wrap">
+    <div class="body">
+      <h2 id="car-h">車で来る人へ</h2>
+      <p class="lead">駅から遠い村なので、車で来る人が多い店です。<br>運転する人には、お酒を出しません。</p>
+      <div class="rule">
+
+        <div>
+          <h3>運転する人は、入口で札を受け取ってください</h3>
+          <p>札を首にかけた人には、ノンアルコールの1杯目を無料で出します。帰りに札を返してください。</p>
+          <ul class="na" aria-label="ノンアルコールの飲みもの（税込）">
+            <li><span>10番 麦のソーダ（0.0%）小 / 大</span><b>350円 / 500円</b></li>
+            <li><span>自家製ジンジャーエール</span><b>450円</b></li>
+            <li><span>沢の湧き水の炭酸水</span><b>300円</b></li>
+            <li><span>麦茶（ポットで）</span><b>無料</b></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="daiko">
+      <svg viewBox="0 0 1440 300" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="daiko-t">
+        <title id="daiko-t">運転代行は車2台で来る。1台はお客さんの車を運転し、もう1台がうしろを走る</title>
+        <path d="M0 210 C 220 180, 420 240, 700 214 S 1160 170, 1440 200 L1440 300 L0 300 Z" fill="#2c2a22"/>
+        <path d="M0 236 C 220 206, 420 266, 700 240 S 1160 196, 1440 226" fill="none" stroke="#e2d41c" stroke-width="4" stroke-dasharray="26 22"/>
+        <path d="M0 120 L120 60 L210 110 L330 30 L450 100 L560 50 L680 104 L800 20 L930 92 L1040 44 L1160 100 L1290 38 L1440 96" fill="none" stroke="#fdfdf8" stroke-width="3"/>
+        <!-- 前の車：お客さんの車を代行の運転手が運転する -->
+        <g transform="translate(820 170)">
+          <rect x="0" y="12" width="170" height="40" fill="#fdfdf8"/>
+          <path d="M30 12 L52 -14 H120 L144 12 Z" fill="#fdfdf8"/>
+          <path d="M58 -8 H86 V10 H44 Z M92 -8 H116 L134 10 H92 Z" fill="#2c2a22"/>
+          <circle cx="40" cy="54" r="15" fill="#1b1a15" stroke="#fdfdf8" stroke-width="4"/><circle cx="132" cy="54" r="15" fill="#1b1a15" stroke="#fdfdf8" stroke-width="4"/>
+        </g>
+        <!-- うしろの車：代行の会社の車 -->
+        <g transform="translate(470 176)">
+          <rect x="0" y="12" width="160" height="38" fill="#e2d41c"/>
+          <path d="M26 12 L48 -12 H112 L134 12 Z" fill="#e2d41c"/>
+          <path d="M54 -6 H80 V10 H42 Z M86 -6 H108 L124 10 H86 Z" fill="#2c2a22"/>
+          <rect x="60" y="-26" width="44" height="14" fill="#fdfdf8"/>
+          <circle cx="36" cy="52" r="14" fill="#1b1a15" stroke="#e2d41c" stroke-width="4"/><circle cx="124" cy="52" r="14" fill="#1b1a15" stroke="#e2d41c" stroke-width="4"/>
+        </g>
+        <text x="905" y="132" fill="#fdfdf8" font-size="22" font-weight="700" text-anchor="middle" font-family="Noto Sans JP, sans-serif">あなたの車</text>
+        <text x="550" y="132" fill="#e2d41c" font-size="22" font-weight="700" text-anchor="middle" font-family="Noto Sans JP, sans-serif">代行の車</text>
+      </svg>
+      <div class="txt">
+        <div>
+          <h3>運転代行は、店から呼びます</h3>
+          <p>飲んだあとは、運転代行で車ごと帰れます。村には代行の会社が2社あり、店から電話します。21時半までに声をかけてください（土日は20時半まで）。代行は車2台で来て、1台があなたの車を運転します。</p>
+        </div>
+        <div>
+          <h3>料金のめやす（代行の会社に払います）</h3>
+          <ul class="fare">
+            <li><span>村の中</span><b>2,500円</b></li>
+            <li><span>日影沢駅まで（9km）</span><b>3,500円</b></li>
+            <li><span>日影沢IC まで（16km）</span><b>4,800円</b></li>
+          </ul>
+          <p style="margin-top:14px;font-size:18px">駐車場は店の前に7台。満車のときは、村の駐車場（徒歩3分、無料）へ。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───── 行き方 ───── -->
+<section class="sec access" id="access" aria-labelledby="access-h">
+  <div class="ridge"><img src="photos/View-of-Nakagara-mura-Kamiina-gun-2012.jpg" alt="雪の残る山並みと、川沿いに田畑と家が並ぶ谷の村" loading="lazy" width="1280" height="853"></div>
+  <p class="credit cap">写真は長野県中川村の眺め（Tomio344456／CC BY-SA 3.0）。麦ノ平は架空の村で、この写真の場所ではありません。</p>
+  <div class="wrap body">
+    <div>
+      <h2 id="access-h">行き方</h2>
+      <ol class="route">
+        <li><span class="t">駅</span><span class="s">日影沢駅で降りる<span>駅前のバス停 2番のりば</span></span></li>
+        <li><span class="t">18<small>分</small></span><span class="s">村営バス 麦ノ平線<span>1時間に1本。運賃 300円</span></span></li>
+        <li><span class="t">2<small>分</small></span><span class="s">「麦ノ平」で降りて歩く<span>バス停の向かい、麦わら色の壁の建物です</span></span></li>
+      </ol>
+      <div class="lastbus">
+        <b>帰りの最終バス（麦ノ平 発）</b>
+        <p>平日 <span class="num">19:42</span>　土日祝 <span class="num">18:50</span></p>
+      </div>
+    </div>
+    <div class="drive">
+      <h2>車で</h2>
+      <p>日影沢IC から県道で25分。店は標高860mにあり、12月から3月は道が凍ります。冬用タイヤで来てください。</p>
+      <p class="addr">日影沢村 麦ノ平 412-3</p>
+      <svg class="map" viewBox="0 0 640 300" role="img" aria-labelledby="map-t">
+        <title id="map-t">日影沢駅と日影沢ICから麦ノ平までの道の図</title>
+        <path d="M30 250 C 160 240, 220 170, 330 150 S 520 70, 600 50" fill="none" stroke="#1b1a15" stroke-width="10"/>
+        <path d="M120 290 C 160 250, 200 200, 250 180" fill="none" stroke="#1b1a15" stroke-width="5" stroke-dasharray="12 9"/>
+        <circle cx="30" cy="250" r="14" fill="#1b1a15"/>
+        <circle cx="250" cy="180" r="14" fill="#1b1a15"/>
+        <rect x="578" y="28" width="44" height="44" fill="#e2d41c" stroke="#1b1a15" stroke-width="5"/>
+        <text x="40" y="216" font-size="22" font-weight="700" font-family="Noto Sans JP, sans-serif" fill="#1b1a15" text-anchor="start" dx="-22">日影沢IC</text>
+        <text x="250" y="146" font-size="22" font-weight="700" font-family="Noto Sans JP, sans-serif" fill="#1b1a15" text-anchor="middle">日影沢駅</text>
+        <text x="600" y="104" font-size="22" font-weight="700" font-family="Noto Sans JP, sans-serif" fill="#1b1a15" text-anchor="middle">麦ノ平</text>
+        <text x="430" y="152" font-size="17" font-family="Noto Sans JP, sans-serif" fill="#1b1a15">県道・バス 18分</text>
+        <text x="72" y="292" font-size="17" font-family="Noto Sans JP, sans-serif" fill="#1b1a15">線路</text>
+      </svg>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer id="contact">
+  <p class="fw" aria-hidden="true">MUGINOHIRA</p>
+  <div class="cols">
+    <div>
+      <h2>麦ノ平ブルーイング タップルーム</h2>
+      <p>日影沢村 麦ノ平 412-3<br>電話 000-000-0000（架空）<br>水〜金 16:00–22:00／土日祝 12:00–21:00<br>月・火 定休日</p>
+    </div>
+    <div>
+      <h2>このページ</h2>
+      <ul>
+        <li><a href="#taps">いま注げる10種</a></li>
+        <li><a href="#tour">醸造の日の見学</a></li>
+        <li><a href="#hours">営業日と時間</a></li>
+        <li><a href="#car">車で来る人へ</a></li>
+        <li><a href="#access">行き方</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>写真の出典（Wikimedia Commons）</h2>
+      <ul style="font-size:15px;line-height:1.6">
+        <li><a href="https://commons.wikimedia.org/w/index.php?curid=87627581">London Fields Brewery taproom (cropped)</a>／Gilda／CC BY-SA 2.0</li>
+        <li><a href="https://commons.wikimedia.org/w/index.php?curid=110251786">Beer tasting at Good Beer</a>／Will from New York, USA／CC BY-SA 2.0</li>
+        <li><a href="https://commons.wikimedia.org/w/index.php?curid=19339330">Black Sheep Brewery Tour</a>／TJ Blackwell／CC BY-SA 3.0</li>
+        <li><a href="https://commons.wikimedia.org/w/index.php?curid=23883425">Bartender - Malmö-1992</a>／Jonn Leffmann／CC BY 3.0</li>
+        <li><a href="https://commons.wikimedia.org/w/index.php?curid=19331687">View of Nakagara-mura, Kamiina-gun 2012</a>／Tomio344456／CC BY-SA 3.0</li>
+      </ul>
+    </div>
+  </div>
+  <p class="legal">20歳未満の方と、車を運転する方には、お酒を出しません。飲酒運転は法律で禁じられています。</p>
+  <p class="fic">このページは site-skills の作例です。麦ノ平ブルーイング・日影沢村・ビールの名前と値段・日付・時刻はすべて架空です。</p>
+</footer>
+
+<script>
+(() => {
+  // 10本のタップ（架空。左から軽い順）
+  const B = [
+    null,
+    {n:'麦ノ平ピルスナー', s:'ピルスナー', a:'4.8%', p1:'550円', p2:'900円', o:'11月2日', c:'#f2d45c', f:64, note:'麦芽は村の畑の二条大麦を3割。'},
+    {n:'沢水ケルシュ', s:'ケルシュ', a:'4.6%', p1:'550円', p2:'900円', o:'10月28日', c:'#f3db7a', f:64, note:'仕込みの水は、店の裏の沢の湧き水。'},
+    {n:'朝霧ヴァイツェン', s:'ヴァイツェン', a:'5.2%', p1:'600円', p2:'950円', o:'11月6日', c:'#eac25a', f:58, note:'酵母を濾さずに入れているので、にごっています。'},
+    {n:'山椒セゾン', s:'セゾン', a:'5.8%', p1:'650円', p2:'1,050円', o:'10月31日', c:'#e3ad3e', f:64, note:'村の山椒の実を、煮沸の最後に入れます。'},
+    {n:'峠ペールエール', s:'ペールエール', a:'5.5%', p1:'600円', p2:'1,000円', o:'11月4日', c:'#d9922e', f:64, note:'いちばん長く置いている定番です。'},
+    {n:'二条大麦IPA', s:'IPA', a:'6.5%', p1:'650円', p2:'1,100円', o:'11月7日', c:'#d38624', f:64, note:'村の二条大麦を半分。11月21日にまた仕込みます。'},
+    {n:'栗のアンバー', s:'アンバーエール', a:'5.6%', p1:'650円', p2:'1,050円', o:'10月24日', c:'#a4521e', f:64, note:'秋だけ。樽の残りは2割ほどです。'},
+    {n:'炭焼きポーター', s:'ポーター', a:'5.9%', p1:'650円', p2:'1,050円', o:'11月1日', c:'#4c2614', f:62, note:'炭焼き小屋で焙った麦芽を少し使います。'},
+    {n:'冬至スタウト', s:'インペリアルスタウト', a:'8.4%', p1:'700円', p2:'—', s1:'小 200ml', o:'11月8日', c:'#24130b', f:60, note:'度数が高いので、200ml のグラスだけです。12月まで。'},
+    {n:'麦のソーダ', s:'ノンアルコール・0.0%', a:'0.0%', p1:'350円', p2:'500円', s1:'小 250ml', s2:'大 470ml', o:'毎日', c:'#c79a52', f:70, note:'麦芽を煮出して炭酸を入れた飲みもの。ハンドルキーパーは1杯目無料。'}
+  ];
+  // 一覧の表（スクリプトが動かないときは、上の読み出しの1番だけが見える）
+  const tb = document.getElementById('tbody');
+  tb.innerHTML = B.slice(1).map((b, k) => `<tr><td class="no">${k + 1}</td><td><b>${b.n}</b><span class="sm">${b.s}</span></td><td class="r">${b.a}</td><td class="r">${b.s1 ? b.p1 + '<span class="sm">' + b.s1 + '</span>' : b.p1}</td><td class="r">${b.s2 ? b.p2 + '<span class="sm">' + b.s2 + '</span>' : b.p2}</td><td class="r hide-sp">${b.o}</td></tr>`).join('');
+
+  const $ = id => document.getElementById(id);
+  const liq = $('liq'), foam = $('foam');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const taps = [...document.querySelectorAll('.tap')];
+  function pick(i, pour) {
+    const b = B[i];
+    taps.forEach(t => t.setAttribute('aria-pressed', String(+t.dataset.i === i)));
+    $('r-no').textContent = i;
+    $('r-name').textContent = b.n;
+    $('r-style').textContent = i === 10 ? b.s : `${b.s}・${b.a}`;
+    $('r-s1').textContent = b.s1 || 'ハーフ 240ml';
+    $('r-p1').textContent = b.p1;
+    $('r-s2').textContent = b.s2 || 'パイント 470ml';
+    $('r-p2').textContent = b.p2 === '—' ? 'なし' : b.p2;
+    $('r-note').textContent = (i === 10 ? '' : `${b.o}開栓。`) + b.note;
+    const top = b.f;
+    if (pour && !reduce) {
+      liq.style.transition = 'none'; foam.style.transition = 'none';
+      liq.setAttribute('y', 520); foam.setAttribute('y', 520);
+      liq.getBoundingClientRect();
+      liq.style.transition = ''; foam.style.transition = '';
+      requestAnimationFrame(() => { liq.setAttribute('fill', b.c); liq.setAttribute('y', top); foam.setAttribute('y', top - 62); });
+    } else { liq.setAttribute('fill', b.c); liq.setAttribute('y', top); foam.setAttribute('y', top - 62); }
+  }
+  taps.forEach(t => t.addEventListener('click', () => pick(+t.dataset.i, true)));
+  document.querySelectorAll('[data-go]').forEach(a => a.addEventListener('click', () => pick(+a.dataset.go, false)));
+  pick(1, false);
+
+  // きょう開いているか（日本時間）
+  const holidays = ['2026-11-23', '2027-01-11', '2027-02-11', '2027-02-23', '2027-03-22'];
+  const off = d => { const m = d.getMonth() + 1, dd = d.getDate(); return (m === 12 && dd >= 30) || (m === 1 && dd <= 3); };
+  const ymd = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const hoursOf = d => { if (off(d)) return null; const w = d.getDay(); const hol = holidays.includes(ymd(d)); if (hol || w === 0 || w === 6) return [12, 21]; if (w === 1 || w === 2) return null; return [16, 22]; };
+  const W = '日月火水木金土';
+  const jst = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Tokyo' }));
+  const label = d => `${d.getMonth() + 1}月${d.getDate()}日（${W[d.getDay()]}）`;
+  const h = hoursOf(jst), now = jst.getHours() + jst.getMinutes() / 60;
+  let html;
+  if (h && now < h[1]) html = now < h[0] ? `きょう${label(jst)}は<br>${h[0]}:00から${h[1]}:00まで` : `いま開いています<br>きょう${label(jst)}は${h[1]}:00まで`;
+  else {
+    const n = new Date(jst); let k = 0; do { n.setDate(n.getDate() + 1); k++; } while (!hoursOf(n) && k < 14);
+    const nh = hoursOf(n);
+    html = h ? `きょうの営業は終わりました<br>次は${label(n)} ${nh[0]}:00から` : `きょう${label(jst)}は定休日<br>次は${label(n)} ${nh[0]}:00から`;
+  }
+  $('today').innerHTML = html;
+  const li = document.querySelector(`#week li[data-d="${jst.getDay()}"]`);
+  if (li) li.classList.add('now');
+})();
+</script>
+</body>
+</html>
