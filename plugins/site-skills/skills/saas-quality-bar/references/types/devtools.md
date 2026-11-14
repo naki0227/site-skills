@@ -54,8 +54,20 @@
 - **見た目の値**：文字 #030303（20.28:1）・#696969・注 #a0a0a0（2.57:1）、枠は黒 8%（トップで91要素）、緑はボタン #0e7e4e と印 #3ecf8e、コードの予約語 #6b35dc。書体 Manrope（見出し 46・34・16）・Inter 450（本文 14〜15px が最多）・Source Code Pro（価格・コード 13px）、字間 normal。ボタン .2s cubic-bezier(.22,1,.36,1)・押すと scale .97（motion-safe の中だけ）、既定 .15s cubic-bezier(.4,0,.2,1)。reduce の規則は4種だけで、トップの animation 15個は reduce でも動く。
 - **データと重さ**：PC で top 8.07MB / features 7.42MB / pricing 5.40MB / customers 14.63MB / docs 34.76MB（SP 7.87 / 7.16 / 5.38 / 9.60 / 34.68MB）。docs は RSC の先読み 26,157KB（reference/javascript/introduction 8,309KB ほか言語別9本）、customers は Pages Router の _next/data の JSON 2,672KB。解析は自分のサブドメイン ss.supabase.com（GTM と gtag、853KB）を全ページで。構造化データはトップに Organization・WebSite・SoftwareApplication・Service＋OfferCatalog（価格なし）、料金・事例は BreadcrumbList だけ。inspect：PC FAIL 1（投稿の中の絵文字）・WARN 10。
 
+### Vercel（Vercel Inc.、配信と AI の基盤・海外）https://vercel.com/ — 2026-11-14
+- **最初の画面**：h1「Agentic Infrastructure」Geist 64px/64px・字間 -3.84px（-.06em）・400・#171717（地 #fafafa で 17.18:1）。主「Deploy now」（地 #171717・16px/500・高さ 40・角 9999px → /signup）、副「Talk to sales」（白に 1px #ebebeb の輪）。中央に WebGL の三角（canvas 1080×720、約2秒後に opacity 1.2s linear）。何をするかは右の3行（16px）の頭「For coding agents／To ship apps and agents／Automated by agents」に分け、ホバーした行だけ height 24→84px（.2s cubic-bezier(0,0,.2,1)）で続きが出る。SP は同じ3行が Geist Mono 16px の1行になり 3.3秒ごとに文字化け（250ms×3）して入れ替わる。下にロゴ6（SP は marquee 40s）。reduce では canvas を作らず、文字化けと marquee も止まる。
+- **製品の見せ方**：トップは自社の画面でなく顧客のサイトの画面で3章（Notion・Zapier・Mintlify）。どの章も「h2 56px の約束 → 顧客の画面（webp、表示 921px）→ 顧客名＋数字の一文 → Features 4つのリンク」で、左右を章ごとに入れ替える。一文は頭（Notion powers millions）が #171717、続きが #4d4d4d（8.10:1）。/products/previews は題の右に黒い道具の帯（Toolbar）と札7つ、下に DOM の模型 3×3（各 448px・1px #ebebeb の枠・影なし）＋「**Develop.** GitHub, Bitbucket…」の 18/28 の説明。
+- **料金表**：Hobby $0／Pro $20（Popular）／Enterprise Custom の3列を 1px の線で区切った1枚の板（各 463×549）。おすすめは Pro の地だけ #fff（ほかは #fafafa）と 11px/500 の「Popular」の札、塗ったボタンも Pro の「Start a free trial」（→ /signup?plan=pro）だけ。価格 56px/56px・-3.36px・450、「/mo.」は Geist Mono 13px。年払いの切り替えは無い（年払いの語 0）。カードの直下に1段落「USD・VAT と GST を含まない・請求先の住所で計算して請求書に足す」。下に「No idle, no waste」「Control your spending」の2枚。
+- **比較表**：9区分・55小区分・156行（/pricing.md で数えた）。table 要素は0の div の格子。頭は検索欄（type=search・317×36・角 9999・label あり・placeholder「Search feature...」）とプラン名 24px で `sticky; top:64px`。行の名前か小区分の名前で即時に絞り（「bot」で Bot Management の5行）、0件は「No features match “xyzzy”.」の1行（ページは 15,693→4,422px）。aria-live の領域はあるが中身は空のまま。SP は頭を隠し「Select plan」の select（fixed top:64px）で1プランずつ。FAQ 14問（details、01〜14の番号）。
+- **試すまで**：人は /signup・/new・/signup?plan=pro の1手（以後は見ていない）。トップの最後の「Onboard your agent」（白いピル 262×40、Claude・Cursor・Codex のアイコン 16px）を押すと「Set up Vercel for me. Fetch https://vercel.com/get-started.md and follow it.」をコピー。clipboard が使えないと右下に赤いトースト「Failed to copy the onboarding prompt. Try again.」。登録なしの配信（`vercel deploy --temporary`・Vercel Drop）は /pricing.md にだけ書き、画面の料金ページには無い。カードの要否は書いていない。
+- **事例と信頼**：/customers は h1 72px → 白黒の写真のカルーセル6枚（974×548、「// customer_stories _Rogo」を画像に焼き込む、自動で送らない、前後のボタンに aria-label、進み具合は 4px の線を transform: scaleX）→ 表の形の一覧13件（会社名 → 成果の一文 → ロゴ → 業種（Mono 大文字）→ READ STORY）→ 大きな引用1つ → 業種の絞り込み13＋Show More。成果の一文は13件中12件が「How 〇〇…」、7件に数字。事例の詳細は h1 成果の一文 → 書いた人 → 日付・1 min read →「Ramp on Vercel」の3行の枠 → 本文2段落。フッターに「ALL SYSTEMS NORMAL.」（vercel-status.com）。料金の Compliance に SOC 2 Type 2・ISO 27001・HIPAA BAA（$350/month）など、Enterprise に 99.99% SLA。
+- **ドキュメント**：/docs は同じドメインで CSS の束だけ別。ヘッダーは「▲ / Docs」・Ask AI・Log In・Sign Up、左に Search Docs ⌘K と目次 11区分。h1 の横に「Deploy an app／Set up your agent／Call a model」の3タブのターミナル（npm i -g vercel／vercel login／vercel）、下に Agent Prompt の枠（トップのボタンと同じ一文）と Plugin・Skills・MCP・Connect など6枚。構造化データは WebSite・Organization・TechArticle。
+- **AI 向け**：robots.txt は全体を許可、/llms.txt（5,540字）・/pricing.md（28,271字、最後に「間違いは /feedback.md の手順で知らせて」）。ただし 2026-11-14 の /pricing.md は画面と食い違う：Pro の CDN Requests が md「10M / month included; then starting at $2 per 1M」・画面「Included in Flat Rate CDN」、Fast Data Transfer も同じ、FAQ は md 13問・画面 14問（「What is Flat Rate CDN?」が md に無い）。
+- **見た目の値**：色はトークン（--ds-gray-100〜1000 を hsla(var(--…-value),1) で引く、明暗2組）。描かれた字は #4d4d4d と #171717 で9割以上（pricing で 302・388要素）、注 #8f8f8f（3.10:1）、リンク #0072f5（4.26:1）。線は 1px #ebebeb か rgba(0,0,0,.08)（box-shadow の輪で描く）。書体は自社の Geist・Geist Mono（woff2 219KB）だけ。文字の段は heading-64・56・48・40 が字間 -.06em、32・24 が -.04em、20 が -.02em、copy-18/16/14 は 0。見出しの太さは 400〜450。既定の動きは .15s cubic-bezier(.4,0,.2,1)（--default-transition-duration、95か所）。keyframes 79、reduce の規則 30。
+- **データと重さ**：PC で top 6.07MB / features 5.01MB / pricing 7.20MB / customers 15.07MB / docs 11.95MB（SP 6.07 / 4.97 / 7.20 / 15.11 / 10.74MB）。マーケティングの CSS 1本 905KB を全ページで、JS 2.4〜6.8MB、RSC の先読み 766KB〜3,772KB（docs は 69本）。customers は Customer-stories_Rogo.png（3840×2160・4,533KB）を 974×548 で表示。外部の解析・チャットは無く、ホストは vercel.com・vercel-status.com・sentry.io ほか2〜6。構造化データはトップ（Organization・Service・SoftwareApplication＋Offer 0 USD）と docs だけ。inspect：PC FAIL 0・WARN 3。measure.js は最初の画面の WebGL で swiftshader のままだと止まるので MEASURE_NO_SWIFTSHADER=1 で測った。
+
 ## 真似る型
-見本4つ（Resend・microCMS・Studio・Supabase）に共通するもの、または1つで測った値を出発点にするもの。値の出どころを添える。
+見本5つ（Resend・microCMS・Studio・Supabase・Vercel）に共通するもの、または1つで測った値を出発点にするもの。値の出どころを添える。
 1. **行動は「試す」が主、副は読み手で決める**：Resend は「Documentation」（開発者がそのまま読む）、microCMS は「ビジネス職向けページ」（決める人を分ける）。Studio は「製品資料をダウンロード」（決める人へ渡す資料）。主は塗り、副は枠か文字（Studio は副を青い絵のボタンにして、主より目立つ）。登録の欄はメールとパスワードほどに少なく、カード欄なし（microCMS は「＼ クレジットカードの登録不要 ／」をボタンの直前に）。
 2. **コードをどこに置くかを先に決める**：使う人が開発者だけなら2画面目に言語の切り替えのあるコード欄（Resend 13言語）。編集者や決める人も読むなら、トップは「管理画面 → API」の1枚にして、コードはドキュメントへ（microCMS は4ページでコード0、機能のカードの最後にドキュメントの「設定方法」）。
 3. **料金は4枚、最後は「お問い合わせ」**：Resend（Free・Pro・Scale・Custom）、microCMS（Hobby・Team・Business・Enterprise）。個人と法人の両方が使うなら、Studio のように最初の切り替えを「ビジネス利用／個人利用」にして3枚ずつ（Enterprise は法人側の最後）。入口の文言は3枚で同じ。従量の単価と、上限を超えたらどうなるか（Resend の超過 $0.90/1,000通、microCMS の「超過時はAPI停止」「+20円/GB」）を表の中に書く。
@@ -70,6 +82,12 @@
 10. **価格とプラン名を等幅の書体で組む**：Supabase は Source Code Pro で FREE・PRO と $0・$25・$599 を 46px。開発者向けなら、コードと同じ書体で桁をそろえる。
 11. **機能ページの題の下に、本物と同じ型の DOM の表かコード**：Supabase /database は列の型（int8・timestamptz・bool）と NULL まで再現した20行。Resend は2画面目に13言語のコード欄。画像にせず文字にすると、選べて軽い。
 12. **AI に読ませる道を料金・事例・ドキュメントに**：Supabase は「Copy as Markdown・Ask ChatGPT・Ask Claude」と /pricing.md、ドキュメントの最初に Agent Prompt。Resend のドキュメントにも AI への質問欄とページのコピー。
+
+13. **一文の頭を濃く、続きを灰にして、見出しを足さずに話題を先に読ませる**：Vercel は顧客の章「Notion powers millions｜of agent conversations…」と機能の9枚「Develop.｜GitHub, Bitbucket…」で、頭 #171717（17.18:1）・続き #4d4d4d（8.10:1）。続きの灰も本文の基準（4.5:1）を超える色にする。
+14. **製品の画面の代わりに、顧客のサイトの画面で章を作る**：Vercel のトップは「約束の h2 → 顧客の画面 → 顧客名＋数字の一文 → その章の機能4つのリンク」×3、左右を交互に。配信の基盤のように画面の無い製品は、作られた物を見せる（Studio は作られたサイトの動画）。
+15. **長い比較表は、頭に検索欄を貼りつける**：Vercel は 156行の頭に検索欄（sticky top:64px）、小区分の名前でも当たり、0件の一文あり。件数を aria-live で伝えるところまで作る（Vercel は空のまま）。
+16. **エージェントに渡す一文をボタンでコピーさせ、同じ一文をドキュメントにも見せる**：Vercel の「Onboard your agent」は get-started.md を読みに行かせる一文をコピーし、失敗したら何が失敗して次に何をするかのトーストを出す。Supabase はドキュメントの最初に Agent Prompt。Markdown の料金表（Vercel・Supabase の /pricing.md）は画面と同じデータから作る。
+17. **重い演出は reduce で「作らない」**：Vercel は WebGL の canvas を作らず、SP の文字化けと marquee 40s も止める。Resend・Studio は reduce でも 3D と動画を読み込む。
 
 ## 反面教師
 - 実績「17,000社以上・継続率99%」に時点・数え方なし。10月28日のトップに3月・2月のセミナーを「終了」の印なく出す（microCMS）。
@@ -87,3 +105,7 @@
 - reduce でもトップの帯・点（animation 15個）と機能ページのタブの 8秒の自動送りが動き、止めるボタンが無い。自動で送るタブに role="tab"・aria-selected が無い（Supabase）。
 - ドキュメントのトップが先読みで 34.76MB（RSC 26,157KB）、事例一覧がほかのページの JSON を 2,672KB 先読み（Supabase）。
 - 見積もりのプロジェクトを消せず、合計の欄だけ桁区切りが無い（$3745）。注の灰 #a0a0a0 が 2.57:1（Supabase）。
+- /pricing.md と画面の料金ページが食い違う（Pro の CDN Requests・Fast Data Transfer、FAQ 13問と14問）。エージェントに読ませる版ほど古さに気づかれにくい（Vercel）。
+- 事例の写真を 3840×2160 の PNG（4,533KB）のまま 974×548 に表示し、customers の PC 15.07MB の 30% にする（Vercel）。
+- 比較表の検索で行が減っても、件数を読み上げない（aria-live が空。Vercel）。
+- 最初の画面の3行を height で開き、h1 は2語だけで何をする道具かを言わない（Vercel）。reduce でも機能ページのカーソルの float 3s が回る（Vercel）。

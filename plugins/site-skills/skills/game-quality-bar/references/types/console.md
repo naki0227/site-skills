@@ -48,20 +48,36 @@
 - **安全と重さ**：CSS（412KB）に `prefers-reduced-motion` 0件、reduce でも最初の画面の mp4 は再生。top PC 47.26MB（measure.js、mp4 は別に 18.3MB）／SP 57.86MB、/about 94.92MB、/news 19.89MB、/merch 5.24MB。ニュースの絵が PNG で 2,565〜3,591KB、SP は PC 用と SP 用の両方を取る（cmsapi.larian.com PC 10件 14,516KB → SP 19件 25,441KB）。SP は top・news・article が幅 481px で横にはみ出し、/about は PC でも 1,489px。h1 は About・News・ニュース1件で0。/merch に CMS の空欄「[Missing Label]」が5か所。
 - **文字と色**：題は QuadraatOffcPro Demibold の大文字、本文は Gothic A1。大きさは 970〜1920px で伸びる clamp の7段（14–16〜48–60）。色は #fff 83・#000 63・#b1906a 39・#fbcea0 36・#c19976 17（#fbcea0／#000 14.44、#c19976／#000 8.09）。Cookie の帯のボタンは白／#c19976 で 2.60。
 
-## 真似る型（Z-A・P3R・Expedition 33・Baldur's Gate 3 の4つで確かめた）
+### 『Sea of Stars』公式（https://seaofstarsgame.co/ ・2026-11-13 解剖、2023 年発売・海外〔Sabotage Studio、カナダ〕・最後の無料更新 Sunset Edition 配信後。歩いた4ページ：/・/throes-of-the-watchmaker-dlc/・compendium.seaofstarsgame.co/valere・/faq/。ニュースの一覧と購入の専用ページは無い）
+- **枠**：WordPress＋jQuery＋Barba.js（PJAX）。地は砂の紙 #fffaf4 と夜空 #082136 の2枚を破れた紙の縁で交互に。見出し orpheuspro・本文 neusa-next-std-condensed（Adobe Fonts）。h1 は top・DLC・図鑑で 0（FAQ だけ）。
+- **最初の画面**：キービジュアル 1920×1000 を x=−240・y=−100 にはみ出させ、ロゴ 520×170 を y=660、リボン「SUNSET EDITION」は #ffb561→#ff5bd3。ナビ 1306×90（y=16）は下へ送ると −90px に隠れる。発売日・値段 0。音は鳴らない。
+- **下端の固定の帯**：全4ページで同じ。PC 1090×70（y=830・z 997）に、左は 18 曲の音楽プレーヤー（再生 50×50、押して mp3 3,480KB）、右は Steam・eShop・PS Store・Xbox ＋ App Store・Google Play の 54×54 を6つ（`aria-label` 付き・新しいタブ）。SP 390×58 はストアだけ。PJAX なのでページを移っても曲が止まらず、DLC のページでは曲目が DLC の曲に替わる。
+- **動画**：区画の mp4 7本（`autoplay muted loop preload="auto"`）を読み込み後 5.9〜7.8s で全部取る（PC 16,095KB、SP は7本とも再生して mp4 23,033KB＋webm 1,396KB）。トレーラーは `a.magnific-video`（href は YouTube の watch）で、押す前の YouTube 0件 → 押して 100ms（SP 131ms）で embed、PC 1,406KB。重ねの × は 44×44・Esc で閉じ、閉じると押した a へ戻る（role・aria-modal なし）。
+- **世界観のしくみ**：Dynamic Lighting は直径 566px の輪に 250×250 の PNG 99 コマ（3,399KB）を重ね、50×50 のつまみの角度から `Math.floor(角度/360×99)` 番目を出す（jQuery UI rotatable、絵は 500×500 に `crisp-edges`）。つまみは div で Tab・矢印キー不可。
+- **キャラクター**：top は6人のタブ（button 150×146、中はドット絵の img で alt 空＝名前なし）、押して PC 73ms・SP 166ms、通信 0、URL は `/` のまま。詳細は名前 52px 700 字間 1px #524e47、肩書き 18px 字間 7px 大文字 #b8af9d（2.10:1）、本文 16px／31.04px。図鑑 Compendium（Vue）は 33件（人物 18・敵 15）を JSON 1つ（9KB）から1件1URL（`/garl`、題「Compendium - Garl」）、押して 21〜23ms・1,085KB。ただし replaceState なので戻るでサイトの外へ、知らない名前は `/valere` へ、顔の列は `li`／`div`（tabindex −1）。SNS の登録者 1,000〜80,000 人ごとに1件ずつ解けた。BGM（ogg 68KB）は押して鳴り、YouTube を再生すると止める。
+- **DLC**：悪役の札はトランプの形（4:5、角 14px）で、hover で rotateY(180deg) .5s ease・translateZ 50px、裏は webm（7本 5,478KB を読み込み時に）。
+- **買う**：値段 0件。ストアは下端の帯、グッズは top の6タブ（180×50、Plush・Mobile・Art Books・Physical・Soundtrack・Wallpapers、role なし）で「Buy on Fangamer」「Buy on iam8bit」「Buy on 3dtotal」の店名入りボタン。機種9つは FAQ の1問目の文だけ（GOG・Switch 2 は帯に無い）。図鑑の下は発売後も「Wishlist on Steam／PS Store／eShop」。
+- **表記**：ESRB E10+ の画像を top に5か所（What's New の動画3つと受賞のリールの隅に 134×68、フッター 158×80）、alt「ESRB Rating: Everyone 10+ with Fantasy Violence, Mild Blood and Mild Language」。英語だけ。
+- **お知らせ**：一覧なし。top の What's New 3枚（日付なし、題は SVG で `<title>` がファイル名）と、FAQ の最後の問いに更新3つを年つきで（2024・2025年5月・2026、「これ以上の更新は予定なし」）。
+- **安全と重さ**：reduce は Bootstrap の既定 17件だけ（雲 110s・55s・動画・札は止まらない）。Tab の14手とも outline none。scroll のたびに全 `.scroll-appear` を計算。measure.js：top PC 32.22／SP 39.23MB（mp4 16,095KB、受賞の PNG 18枚 6,223KB、遊び方の PNG 20枚 4,891KB）、DLC 15.66／17.90MB、図鑑 2.82／2.76MB、FAQ 3.28／3.60MB。
+
+## 真似る型（Z-A・P3R・Expedition 33・Baldur's Gate 3・Sea of Stars の5つで確かめた）
 - **機種×版の値段・発売日・年齢区分を、1か所に文字で並べる。**Z-A は商品詳細の仕様表（14項目の定義リスト）、P3R は全ページ末尾の SPEC（7項目、価格は全版を1つの欄に）。どちらも値段と CERO が文字で読めるのはそこだけだった。作るときは、その表を購入の区画にも置き、年齢区分を値段の横に出す。
 - **パッケージの買う先は、ストアのボタン1つでなく店の一覧にする。**Z-A はダウンロードカード16チェーン＋ダウンロード番号6ショップの店名リスト、P3R は26店のカード（店舗オリジナル特典つき）を PS5／PS4 で切り替え。店ごとの特典があるなら、店のカードに特典名と版のボタンを入れる。ボタンの名前には店・版・機種を書く（P3R は117個とも名前が無い）。
 - **版は「パッケージ／ダウンロード」の2つのタブか区画で分ける。**Z-A は商品5枚を1つの詳細ページの `#anc01〜04` に分け、価格をパッケージ・DL・Switch 2 Edition の別に書く、P3R は 640×60 のタブ2つ。限定版の同梱物は版×品の ○×表にする（P3R：4版×6品）。
 - **トップの最初の数画面に「購入」への入口を置く。**Z-A は左の縦帯に「購入はこちら！」「予約はこちら！」、P3R は2画面目（y=1,139）に「BUY NOW!」。特設ページは「購入はこちら」を固定する（P3R：/expansion/ 300×97、/switch2/ 257×51）。
 - **最初の画面の真下に機種のリンクを並べ、ヘッダーの右端に買う入口を1つだけ別扱いで置く。**Expedition 33 は AVAILABLE NOW の帯の直下 y=828 に機種4つ（234×91）、ヘッダーは他 15px に対して Out Now だけ 20px の札（132×56）で、▾ の button（aria-expanded）から店4つ（100×41、新しいタブ）。Baldur's Gate 3 も AVAILABLE NOW の下 y 745〜751 に機種5つ、ヘッダー右に Buy now 144×58。Z-A の縦帯・P3R の2画面目の BUY NOW! と同じく、入口は最初の数画面に。
 - **版×品の比較は、PC は表、SP は版ごとに開く。**P3R は 4版×6品の ○×（ul と背景の絵）、Expedition 33 は 4版×6品（PC は画像1枚、SP は 362×46 の button 4つで1つだけ開く）。どちらも表が文字の table でないので、作るときは table と `button[aria-expanded]` を同じデータから作る。
-- **トレーラーは押してから埋め込む。**Z-A はサムネの `<button>` を押して `iframe_api`、Expedition 33 は菱形の再生を押して `iframe_api` → `autoplay=1&mute=1`。どちらも押す前の YouTube の通信は 0（P3R は読み込み時に iframe で 1.5MB）。Baldur's Gate 3 も再生の輪を押して embed の iframe（押す前 0件、押して 1,155KB）。
+- **トレーラーは押してから埋め込む。**Z-A はサムネの `<button>` を押して `iframe_api`、Expedition 33 は菱形の再生を押して `iframe_api` → `autoplay=1&mute=1`。どちらも押す前の YouTube の通信は 0（P3R は読み込み時に iframe で 1.5MB）。Baldur's Gate 3 も再生の輪を押して embed の iframe（押す前 0件、押して 1,155KB）。 Sea of Stars も `a.magnific-video` を押して 100ms で embed（押す前 0件、押して 1,406KB）。
+- **人物は一覧の列と1人の詳細を同じ画面に置く。**Baldur's Gate 3 は右の縦の列 7人と能力の札（押して 35ms）、Sea of Stars は上にドット絵のタブ 6つ（150×146）と下に名前 52px の詳細（押して 73ms）。どちらも URL が `/` のまま・列に名前が無いので、作るときは名前のある button と `?chara=`（pushState）を足す。
 
 
 ## 真似る候補（見本1つ。2つ目で確かめたら「真似る型」へ上げる）
+- 全ページの下端に、音楽プレーヤーとストア6つを1本の固定の帯で（Sea of Stars：PC 1090×70、SP 390×58 はストアだけ。ストアは aria-label 付き）。作るときは音は押してから取り、動画を開いたら止める。
+- 世界のしくみ（昼夜）を、回せるつまみで見せる（Sea of Stars：99 コマ、直径 566px）。作るときはつまみを `role="slider"` と矢印キーに。
+- 終わった作品のお知らせは、FAQ の1問に更新の歴史を年つきでまとめ「これ以上の予定なし」と書く（Sea of Stars）。
 - 版を選ぶと、箱の絵・同梱物・店のリンクの行き先が一緒に替わる。売っていない機種のボタンは消す（Baldur's Gate 3：Standard 1行・Digital Deluxe 6行・Physical Deluxe 9行、Physical は Steam・GOG が消えて3つ。92ms）。作るときは版を button（aria-pressed）にし、消すだけでなく理由と代わりの版を書き、値段を出す。
 - 版を選んだ状態をハッシュで指せる（Baldur's Gate 3：`#buy-standard`・`#buy-dde`・`#buy-de`）。
-- 人物は一覧の列と1人の詳細を同じ画面に置き、PC は右の縦の列・SP は上の横の列にする。詳細は能力の札（職・生まれ・得意）で（Baldur's Gate 3：7人、opacity .4s、押して 35ms）。作るときは列を名前のある button、1人を hash で。
 - 年齢区分を地域ごとに並べる（Baldur's Gate 3：ESRB・PEGI・USK・ACB の4つに地域名。ただしフッターだけで画像に alt なし）。
 - 人物のタブは `role="tab"` の roving tabindex（選んだ札だけ 0、← → でフォーカス）にし、選んだ札は面を抜いて文字だけにする（Expedition 33：8人、高さ 30px、他の札は #ECCFA3 の面）。ただし URL は変えていないので、作るときは #名前 を足す。
 - 写真・動画を作品の画風の縁（Expedition 33 は絵の具のかすれの PNG）で切り抜き、見出しを1つの記号（« »）で挟んで、全ページの部品をそろえる。
@@ -72,6 +88,8 @@
 - 作品のモチーフ（P3R は水）をローディングとモーダルの縁の部品にする。SVG の path 1本を速さ違いで4回使う（3・5.5・13・20秒）。
 
 ## 反面教師
+- 図鑑を1件1URLにしても replaceState で替え、戻るでサイトの外へ出る。知らない名前を 404 にせず最初の人へ送る（Sea of Stars の Compendium）。発売後も図鑑の下が「Wishlist」のまま（同）。
+- 見えない区画の動画7本を読み込み後に全部取り、SP では全部再生する（Sea of Stars：SP 24.4MB）。
 - トップで、最初の画面に要らない連番画像・動画をスクロール前に全部読む（Z-A：33MB）。
 - 仮想スクロールとループ動画に reduced-motion の逃げ道が無い（Z-A）。
 - CERO が購入の入口（トップの購入ボタン付近・フッター）に無く、商品詳細の奥だけにある（Z-A）。

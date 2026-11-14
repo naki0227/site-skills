@@ -64,8 +64,22 @@
 - **動き**：升のホバーは transition all（0秒）で地が線の色・白字に。公式サイトは opacity 300ms・all .2s ease が主。prefers-reduced-motion は公式サイト・券売り場とも0。トップは 4.6MB の動画が自動で流れる（停止の丸 56px）。
 - **重さ（PC / SP）**：券売り場 1.36 / 1.36MB（Vue 593KB・同意 234KB・datadog 150KB）、What's on 2.43 / 2.41MB、案内 2.03 / 2.03MB、トップ 8.91 / 9.01MB（動画 4,619KB）、公演 9.05 / 8.95MB（Google Maps の util.js 312KB を5回など JS 6.7MB）。Drupal の結合 CSS 約 960KB を全ページで読む。
 
+### Concertgebouw（https://www.concertgebouw.nl/en ・2026-11-14・アムステルダムのコンサートホールの自社サイト。券の画面は tix.concertgebouw.nl＝Tix Ticketing）
+条件：トップ・Concert schedule（/en/concerts-and-tickets）・公演 Grand Classical Music Fest with Jamai（残り6）・公演 Handel's Messiah（空きあり）・FAQ。PC 1440 と SP 390。券の画面（`/buyingflow/`）と絞り込み後の URL（`?date=` `?genres=` ほか）は robots.txt で禁止なので開いていない（日付を1回押した反応だけ）。
+
+- **入口（トップ）**：写真の頭の下に白い札 560 幅×2（角 24px）。左は言葉の欄 239×42 と「Choose date」185×40、右は質問で選ぶ「Concert matchmaker」464×42（#a6192e）。人数の欄は無い（枚数は券の画面）。
+- **一覧**：「468 concerts found」、15件ずつ32ページ。日の見出し 30px 600（右寄せ・左に線）の下にカード 955×289（写真 477 幅・角 24px）。題 24px、「時刻｜ホール｜from €値段」18px 600 を赤の縦線で区切って1行、ボタン「Information and tickets」449×42、その下に状態「Last tickets」「Sold out」18px 600＋丸の印（売り切れはボタンが「More information」に）。SP はカード 358×375〜413、絞り込みは Choose date と Filters の2つ（358×39・12px）。
+- **日付**：v-calendar の1か月（公演の印なし・過ぎた日も同じ見た目）。1日を押すと閉じて `?date=2026-11-20`、「Events from Fri, Nov 20 ×」と Remove filters、468 → 449件（その日から先）。範囲の終わりは選べない。データは `POST cms.concertgebouw.nl/api`。
+- **券の枠（公演）**：PC は右に 440×336、`position:sticky; top:160px`。日付 30px 600・時刻｜ホール｜「€ from 29,00」16px 600・Find tickets 400×42（別ドメインの券の画面へ）・Save this concert・状態・Other dates（同じ演目の他の日と状態）。枠の地は公演の色（Jamai #e4002b に白字、Messiah #c3d7ee に #3e2b2e）。SP は貼り付かず、下はナビのタブ 390×58 だけ。
+- **値段**：席種の表「Category 1+・1・2・3・4」の列の下に 4px の色の線（#a64d79・#3d85c6・#a8e2f1・#8fce00・#38761d、白地に 1.42〜5.56）、行は「Standard」だけ（€69〜€29）。データには 30歳以下・会員など7区分（Messiah）。表の字は PC 12px・SP 8px（指定 10px）。手数料「€ 5 per order」は表の下の注記（値段は手数料抜き）。
+- **残り（データで確認）**：公演のデータ（HTML の `__NUXT_DATA__`）に `capacity` と `remaining`。20回を並べると、残り÷定員が 12.2% 以下で `FewTickets`＝「Last tickets」、15.3% 以上で `NoStatus`＝何も出ない、0 で `SoldOut`。数は画面に出さない（残り2も168も同じ）。JSON-LD の Offer は最安1つで、残り6でも `InStock`。
+- **予約前の不安**：公演ページ・一覧に refund・exchange は0語。FAQ の開閉に「交換・払い戻しはしない。前日16時までに連絡すればクレジットにできることがある」「売り切れは当日開演の約75分前に券売り場で先着」。販売の締め（`saleEndDate`＝開演）と発売日（`saleDates`）はデータだけ。
+- **見た目**：地 #f4f4f2・字 #3e2b2e（11.99:1）・ボタン #e4002b（白字 4.85）・題 #a6192e・小見出し #004f59。公演ごとの色が約30。書体は FuturaTL 1本（自社配信 woff2、83〜163KB）。券の枠の Other dates は赤地に #3e2b2e（2.73:1）、その行の「Last tickets」は赤地に赤（1.00:1）。
+- **動き**：ボタンは色と影を 0.2s cubic-bezier(.4,0,.2,1)、開閉は高さ .35s。prefers-reduced-motion は CSS 64ファイルに0。
+- **重さ（PC / SP）**：FAQ 2.49 / 2.25MB、トップ 3.87 / 3.20MB、Messiah 5.32 / 5.09MB、一覧 5.65 / 5.87MB（写真は 947×573 の PNG で1枚 570〜760KB）、Jamai 9.05 / 8.79MB（YouTube の iframe を押す前から 4,223KB）。Cookiebot 553KB を全ページで読む。
+
 ## 真似る型
-見本は DICE（販売サービス）・Shakespeare's Globe（劇場の自社サイト）・Philharmonie de Paris（コンサートホールの自社サイト＋SecuTix）・Barbican（芸術センターの自社サイト＋Spektrix）の4つ。
+見本は DICE（販売サービス）・Shakespeare's Globe（劇場の自社サイト）・Philharmonie de Paris（コンサートホールの自社サイト＋SecuTix）・Barbican（芸術センターの自社サイト＋Spektrix）・Concertgebouw（コンサートホールの自社サイト＋Tix）の5つ。
 
 1. **値段は手数料込みで出し、含んだことを1文で添える**。DICE は「From £36.05」の下に「The price you'll pay. No surprises later.」、Globe は「£89–£29*」の * で「£3 per order・£1 per ticket を含む、立ち見は除く」を DETAILS と公演日の表の上の面（656×152）の2か所で言う。作るときは、合計の下に内訳の1行を置く。
 2. **公演日がいくつもある演目は、1行1回の表**（Globe：行 656×110、日付・時刻のボタン 120×43・値段の幅 13px 700、同じ日の2回は2行）。DICE は1公演1ページなので表が無い。作るときは、行に「日付・時刻のボタン・席種ごとの値段（と残り）」を並べ、配慮の回の印も行に入れる。
@@ -84,6 +98,11 @@
 13. **「残りわずか」は残り÷定員の比1つで決め、境目を凡例に書く**（Barbican：<10%＝1,152席の115席以下。本家は凡例を出さない）。時間指定の催しは「残りのある回の数÷回の数 ≤25%」で日を、時刻の帯は回の状態の平均で full／half／none。
 14. **絞り込みの選択肢に件数を付け、0件の選択肢と、値が1つしか無い欄は出さない。値段で絞ったら、升にその値段の残りを数で出す**（Barbican：「2.30pm［25］」、選ぶと「25 performances　Clear filters」。£35 で絞ると升に「£35｜8」）。
 15. **回のデータは1回の JSON で持ち、月送り・絞り込みは通信0で返す**（Barbican：instances-info 72KB、月送り 52ms・絞り込み 71〜138ms）。Globe のガイドツアーの暦も同じく HTML に持って月送りで通信しない。
+
+16. **PC の公演ページは、右の券の枠を sticky にし、日付・時刻・場所・最安値・主ボタン・状態・同じ演目の他の日を1枚に入れる**（Concertgebouw：440×336・top 160px・日付 30px、Other dates に日付・時刻・状態・View concert）。SP は同じ中身を画面下の帯に（本家は無い）。枠の中の字は全部、枠の地に 4.5:1 以上（本家の Other dates は 2.73:1 と 1.00:1）。
+17. **一覧のカードは「時刻｜ホール｜〜から値段」を1行にし、状態の札をボタンのすぐ下に置く。売り切れはボタンの言葉を替える**（Concertgebouw：18px 600、区切りは赤の縦線 2px、「Last tickets」「Sold out」18px 600、売り切れは「More information」）。札には残りの数を入れる（本家は入れない）。
+18. **日を1つ押したら「その日から先」で絞り、条件をチップと × で一覧の上に、件数を替えて出す**（Concertgebouw：「Events from Fri, Nov 20 ×」・Remove filters・468→449）。終わりの日も選べるなら DICE の from／until（型4）にそろえる。
+19. **公演ごとに頭と券の枠の地の色を替え、主ボタンの色は替えない**（Concertgebouw：Jamai #e4002b の枠に白い線のボタン、Messiah #c3d7ee の枠に #e4002b の塗りのボタン）。
 
 ## 反面教師
 - 残りが「LIMITED TICKETS」の一言だけで、SP は 8.32px。席種ごとの残りは席の画面まで出ない（Globe）。
@@ -111,3 +130,9 @@
 - What's on が演目を日ごとにくり返し（30件中23件が同じ演目）、値段・空き・件数が無い。日付の範囲が URL に残らず、暦に上演の印が無い（Barbican）。
 - 公演ページで Google Maps の util.js（312KB）を5回読む（Barbican、地図関係で約 5MB）。押すまで読まない。
 - SP の公演ページに予約の固定の帯が無い（Barbican：ボタンは y=384 と 1,837 だけ）。
+- 公演のデータに定員と残り（`capacity`・`remaining`）を持つのに、画面は「Last tickets」の一言だけで、境目（12.2〜15.3% の間）も凡例も無い（Concertgebouw）。残り2も168も同じ見た目。
+- 券の枠の Other dates が赤地に #3e2b2e（2.73:1）、その行の「Last tickets」は赤地に赤（1.00:1）で見えない（Concertgebouw）。
+- SP の席種の表が 8px、SP に券の固定の帯が無い（Concertgebouw：Find tickets は y=586 に1つ、下はナビのタブだけ）。
+- 値段の表に出る料金区分は Standard だけで、データにある 30歳以下・会員の区分（7区分）は注記の言葉だけ（Concertgebouw）。
+- 公演ページに払い戻しの語が0。交換・払い戻し不可と「前日16時までならクレジット」は FAQ の開閉だけ（Concertgebouw）。
+- YouTube の iframe を押す前から 4,223KB 読み、写真を 947×573 の PNG（570〜760KB）で配る（Concertgebouw）。

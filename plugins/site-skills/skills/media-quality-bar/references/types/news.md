@@ -71,8 +71,27 @@ PC 1440×900 / SP 390×844。見たページ：トップ、連載の一覧（/in
 - **動き**：連載のページは opacity と transform だけ（扉の文字 1.1〜1.3s・遅れ .35〜1.3s、セクション translateY(24px) .65s を IntersectionObserver）で reduced-motion で止める。記事のテーマは reduced-motion 0、:focus-visible 0。
 - **データと重さ**：記事の JSON-LD は WebPage（ISO・+09:00）、description は写真のキャプションから始まり2つ。連載の一覧は JSON-LD 0・datetime の無い time 131個。CLS 0.0001〜0.0118。転送（解析込み・PC）：article 2,970KB／85件（SP 2,326KB）・long 2,835KB・list 20,068KB／284件（Stripe 1,978KB・hCaptcha 1,581KB・YouTube のサムネイル 1,526KB・Donorbox 1,141KB）・top 20,867KB（カードの PNG 2160×1440 を 341×227 で、最大 5,555KB）。jQuery 2本・Swiper 2組・GA 3つ。
 
+### The 19th（https://19thnews.org/ ・2026-11-14 計測）
+PC 1440×900 / SP 390×844。見たページ：トップ、分類の一覧（/topics/election-2026/）、ふつうの記事（/2026/11/caregivers-disability-midterms-hope/・PC 8,065px・SP 10,957px）、Q&A の長い記事（/2026/10/voluntary-intoxication-laws-assault-cornell-seven/・PC 8,079px・SP 11,051px）、世論調査の記事（/2026/09/polling-2026/）。選んだ理由：紺の額縁と右の固定の柱、Georgia の本文を7段で大きくする階段、引用符のぶら下げ、水色の下線、転載の窓。事例集・受賞歴は確かめられなかった（広告タグのコメントに「The 19th Upstatement Test」）。
+- **額縁と柱**：地 #1c1542 が上と左に 10px の額縁。PC 1020px 以上は右に `clamp(290px, 290px + (100vw - 1020px) * .555556, 390px)` の固定の柱（ロゴ・1px の縦線・使命の一文 16px／24px・購読）、紙は `calc(100% - 柱 - 10px)`。トップだけ柱の地が #f8f8fc でロゴが黒。メニューは柱の中に Topics（Berlingske Condensed）を開き、紙を暗くする。SP は柱が上の帯 144px（300px 送ると 64px、height .2s）。
+- **本文**：Georgia（端末の書体）PC 19.86px／29.79px（1.5）・680px（英語で1行 83〜85字）、1024px で 19.57px・618px、SP 19px／28.5px・350px（約42字）。段落の上 18px・字下げ無し。h2 は Berlingske Serif Condensed 600 34.86px／41.83px・上 60px（SP 28px・上 36px）。
+- **大きさの階段**：clamp でなく 400／600／768／1020／1070／1200／1500px の区切りで段を書く。body 17 → 20px を 3/7px ずつ、題 28 → 60px を 16/3px ずつ、引用 28 → 65.71px を 44/7px ずつ。
+- **記事の頭**：#f8f8fc の面に 分類（Messina 700 17px・#0093c1）→ 題 Berlingske Serif 600 54.67px／60.13px（SP 28px／30.8px）→ 要約 Berlingske 24px／33px（SP 20px）→ 写真 792px＋説明 14px／19.25px #555・撮影者は大文字 13.36px。本文の右に 295px の箱（書き手 16px 700・肩書・顔 60×80｜Published「November 12, 2026, 9:11 a.m. CT」｜Republish）、行ごとに 1px #e9e9e9。SP は箱を本文の前に全幅。更新日は画面に無い。日付は HTML で空、moment-timezone の JS が書く。datetime="2026-11-12 9:11-06:00" は ISO でない。
+- **引用符のぶら下げ**：“ で始まる段落に text-indent -.35em、‘ -.175em、« -.45em（.js-hang-punc があるページだけ JS を読む）。Grist と同じ値。
+- **リンク**：文字 #000 のまま下線 1px #00c6f3（白地 2.02:1 だが線）・text-underline-position:under、ホバーとフォーカスで下線 #f9135c（.2s ease-in-out、254回）。
+- **部品**：引用は Berlingske Condensed 700 65.71px（SP 28px）・桃の引用符の絵・cite の「— 」を桃。3つとも直後の段落が同じ文で始まる。本文の途中に Read Next 1本（680×164・写真 170×113、SP は #f8f8fc で端まで）を article 2・long 1。表・コード・iframe の図は5ページとも無い。
+- **目次**：無い。Q&A の long は問いの h2 5つで SP 11,051px。id は自動で付くが「h-which-states-have-these-laws-nbsp」と &nbsp; が残る。
+- **記事の終わり**：Republish・Share → Recommended for you 4本（Parse.ly・2列・100×80）→ 連載 From the Collection（題 60px 級＋絵 320 角＋3本）→ Explore more coverage（#f8f8fc の帯）→ 寄付（Give $19／$50／$100 #4729ae・角 8.75px、Any amount）。書き手の紹介・次の記事は無い。
+- **共有と転載**：PC は 1,200px 送ると左下に共有の柱（fixed・46×188、opacity と translateY 18px → 0 を .4s ease-out、scroll を 200ms 間引き）。転載の窓は role=dialog に CC BY-NC-ND 4.0 の条件・題・日付・書き手・読み取り専用の HTML・Copy HTML（#73e0f8 に黒 13.75:1）。窓の題が空の h1 で、記事の h1 が2つ。
+- **一覧**：#f8f8fc の面に「Topic」＋桃の線・h1・説明。On This Topic 10本（題 Berlingske 400 26.86px・要約 17px・書き手 #555｜写真 200×133、SP 20px と 94×63）。ページ送りは無効の Previous（aria-disabled の button）｜1 2 3 … 19（いまは #f9135c）｜Next（#73e0f8・/page/2/ の a）、`<link rel="next">`・canonical は自分。
+- **広告と同意**：記事の頭の上と3段落目の後に広告（「The 19th thanks our sponsors. Become one.」）、枠は padding-top 25.773% で比率を取る（記事 CLS PC 0.04）。同意バナーは出ない（日本から）。SP は購読の札が top 90vh・高さ 7vh・左右 16%（#00c6f3）に浮く。
+- **色**：#000 241・#fff 212・#f9135c 147・#00c6f3 122・#e9e9e9 122・#1c1542 63・#555 51・#f8f8fc 46（app.css の回数）。変数1つ・ダーク無し。分類 #0093c1 は #f8f8fc で 3.34:1、桃の「1」と Subscribe は 3.98:1。
+- **文字**：Berlingske Serif・Condensed・ExtraCondensed と Messina Sans の自社 woff2（@font-face 13、記事で 138KB、font-display:auto）、本文だけ Georgia。
+- **動き**：.2s 708・.4s 40。:hover 425 に (hover:hover) 0、:focus-visible 23、reduced-motion 0、keyframes 5。
+- **データと重さ**：JSON-LD は Yoast の Article（datePublished・dateModified ISO・wordCount）・BreadcrumbList ほか、一覧は CollectionPage。重さ（展開・解析と広告を除く）PC top 5.48 / list 5.04 / article 5.56 / long 5.47 / data 5.63MB（SP 5.03〜5.17MB）。全部込み・下まで送った転送は article PC 2,410KB・68件・13ホスト、うち FundraiseUp 891KB（37%）を全ページで。app.css は全テンプレートの 3,632 規則で展開 516KB。部品の JS は `querySelector(".js-…") && import()` でページごとに。画像の width・height は 0枚（article 8／8・list 10／10）、SP 記事 CLS 0.10。
+
 ## 真似る型
-ProPublica・The Markup・Grist（米国の非営利の報道）と Tansa（日本の非営利の探査報道）から。
+ProPublica・The Markup・Grist・The 19th（米国の非営利の報道）と Tansa（日本の非営利の探査報道）から。
 1. **本文は 600〜754px・18〜22px・行間 1.6〜1.7・段落の間を取り、SP で縮めすぎない**。字下げ無し。SP は The Markup が 18px、Grist が 22px のまま、ProPublica は 16px。段落の間は 18〜32px（Grist は上 18px＝行間の半分）。
 2. **色は役割の少ない組で持つ**：本文・題の濃い色、リード・日時の灰1段、罫の灰1段、アクセント1色。ProPublica は灰6段＋青＋赤、The Markup は紺・灰・桃の3つ、Grist は文字と罫を #3c3830 の1色にして面（ライム・ラベンダー・桃）だけを替える。アクセントを文字の地に使うなら 4.5:1 まで濃くする（3サイトとも Donate が 3.3〜3.6:1）。
 3. **記事の頭は 分類 → 題 → リード → 書き手 → 日時（タイムゾーンか時刻まで）**。Tansa は「2026年10月23日 17時26分」と日本語で時分まで。日時は「October 5, 2026, 5:00 am」（ProPublica）「8:00 a.m. UTC」（The Markup）のように時刻まで書く。Grist は日付・分類・共有を本文の左 300px の `dl` にまとめる。更新日は3サイトとも画面に無いので、足す。
@@ -80,12 +99,16 @@ ProPublica・The Markup・Grist（米国の非営利の報道）と Tansa（日�
 5. **広告を置かないなら、外のホストを1つ2つに抑える**：The Markup は記事 2.38MB・3ホスト。ProPublica は記事 12.66MB・148ホスト、Grist は全部込み 8.88MB・37ホスト（同意・上掛け・ポップアップ・広告で 1.5MB 超）。
 6. **動きは transform と opacity だけ・keyword か linear のイージング・reduced-motion で止める**：ProPublica は reduced-motion で animation:none、The Markup は no-preference の中にだけ書く（21か所）。Grist は reduced-motion 0 で、回り続ける線や付いてくる丸が止まらない。
 7. **記事の終わりで、本文と同じ幅の「次の1本」に渡す**：Grist の Next Article（写真 706×397・題 50px、SP 32px）。その前にニュースレター、その後に同じ分類と最新。書き手と編集者を見せるなら The Markup の Credits。
-8. **転載の条件を記事から1押しで出す**：ProPublica は無料転載のボタン、The Markup は CC BY-NC-ND の条件と HTML をその場でコピー、Grist は dl の Share/Republish に。
-9. **引用の多い本文は引用符をぶら下げる**：Grist は “ を -0.35em、‘ を -0.175em（段落の最初の字を見て JS がクラスを付ける）。
+8. **転載の条件を記事から1押しで出す**：ProPublica は無料転載のボタン、The Markup は CC BY-NC-ND の条件と HTML をその場でコピー、Grist は dl の Share/Republish に。The 19th は記事の頭（1070px 以上）と終わりの2か所に置き、窓に条件・題・日付・書き手・HTML・Copy HTML。
+9. **引用の多い本文は引用符をぶら下げる**：Grist と The 19th はどちらも “ を -0.35em、‘ を -0.175em、« を -0.45em（段落の最初の字を見て JS がクラスを付ける）。
 10. **ページ送りに URL と rel="next"**：Grist は /energy/page/2/・`<link rel="next">`、SP は「1 of 196」と前後だけ。
 11. **連載は扉と部の帯と部の束で見せる**：Tansa は写真だけで1画面の扉（題だけ明朝 400・76px）→「この連載の部」の帯（部の名前と記事数、押すと #id）→ 部ごとに記事数・最終更新・説明の全文・先頭1本・行、「初回から／最新から」は記事の日付で並べ替え。
 12. **寄付の欄は種類で金額の組を替え、手数料の負担を選ばせ、広告を取らない理由を前に置く**（Tansa：毎月 500〜10,000円・1回 3,000〜50,000円・年間 10,000〜300,000円、手数料 3.6%）。決済の JS はこの欄に触れてから読む。
 13. **長い名簿・一覧は開閉の箱1行に畳む**（Tansa：44団体 2,286px を 58px に）。
+14. **メディアの看板を右の固定の柱にする**（The 19th：地の色の 10px の額縁＋幅 clamp(290px,…,390px) の柱に名前・使命の一文・購読。ヘッダーの帯が要らない。SP は上の帯 144 → 64px）。
+15. **文字の大きさを幅の区切りごとの段で書く**（The 19th：7つの区切りで本文 17 → 20px を 3/7px ずつ、題 28 → 60px）。
+16. **アクセントの色は文字でなく線に使う**（The 19th：リンクは文字 #000 のまま下線だけ #00c6f3、ホバーで #f9135c）。
+17. **日付と書き手は本文の右の箱に行ごとの罫で**（The 19th：295px に 書き手・肩書・顔 60×80｜Published｜転載）。本文の途中には Read Next を1〜2本だけ（680×164）。
 
 ## 反面教師
 - 編集用 JS（block-editor・editor・components で 2.8MB）を訪問者に配り、1ページ 10〜13MB になる（ProPublica）。
@@ -115,4 +138,8 @@ ProPublica・The Markup・Grist（米国の非営利の報道）と Tansa（日�
 - 決済の JS を全記事で、連載の一覧で Donorbox・Stripe・hCaptcha を読む（Tansa：一覧の転送 20,068KB）。
 - トップのカードの写真を PNG 2160×1440（最大 5,555KB）で 341×227 に（Tansa）。
 - 並べ替えのボタンに aria-pressed が無く、選んだ方が読み上げられない（Tansa：class="on" だけ）。
+- 寄付の決済（FundraiseUp）を押す前に全ページで読む（The 19th：転送 891KB・記事の 37%）。
+- 画面の日付を JS で書き、HTML の time が空・datetime が ISO でない（The 19th：「2026-11-12 9:11-06:00」）。
+- 大きな引用の直後の段落が同じ文で始まり、同じ文を2回読ませる（The 19th：3／3）。
+- 全テンプレートの CSS を1本で全ページに（The 19th：3,632 規則・展開 516KB）。
 

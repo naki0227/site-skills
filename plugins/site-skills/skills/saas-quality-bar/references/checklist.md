@@ -154,3 +154,8 @@
 - [ ] FAQ・長い説明の和文は文節で折れる（keep-all＋`<wbr>`、または word-break:auto-phrase）。ページごとに差が無い（Notta は料金 `<wbr>` 756個、トップ5個で語の途中の折り返し PC 12・SP 33）
 
 解剖で裏づけた項目が増えたら、ここに足す（どのサイトで確かめたかを添える）。
+- [ ] Markdown の料金表（/pricing.md）を、画面と同じデータから作った。行の値と FAQ の数が画面と一致する（Vercel は CDN Requests の値と FAQ 13／14 が食い違う）
+- [ ] 比較表の検索・絞り込みは、0件の一文と、件数の読み上げ（aria-live）の両方がある（Vercel は0件の文だけで、aria-live が空）
+- [ ] エージェントに貼る一文のコピーは、失敗したときに何が失敗して次に何をするかを出す（Vercel「Failed to copy the onboarding prompt. Try again.」）。同じ一文をドキュメントでも選んでコピーできる
+- [ ] WebGL・3D の演出は reduce のときに作らない（Vercel は canvas を作らない。Resend は reduce でも 3D 2.7MB を読む）
+
