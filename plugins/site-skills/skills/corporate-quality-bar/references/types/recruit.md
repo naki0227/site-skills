@@ -64,7 +64,23 @@ Astro＋Swup（ページ差し替え）＋microCMS。募集の詳細と応募は
 - **見た目**：色は --cl-* の7つ（var() の回数 white 77・dark 46・green 38・orange 28・blue 27・red 21・yellow 19）、属性 [bg-color=cl-red] で地とホバーの組を替える。地は #FFFFF9 に紙のノイズの webp。白字の地は 黄 1.89・青 2.58・橙 2.93・緑 3.27・赤 4.25:1。書体は Noto Sans JP（可変 100〜900）＋Lexend、本文 16px/500・行間 1.8、題 900。速さの変数 .3/.6/1.6s、イージングの変数 24、keyframes 22。reduce は CSS・JS とも 0（reduce でも4秒で送る）。`transition:opacity 1s none` の無効な宣言が2つ。
 - **重さ**：トップ PC 13.18MB（webp 11,865KB）／SP 11.67MB、強み 5.91MB、職種 5.76MB、募集要項 4.87MB。紙のノイズ 3200×1800（1,714KB）と 2048×2048（1,095KB）を全ページで読み、1024px／167px の繰り返しで使う。main.js 457KB（GSAP 3.11 と 3.13 の文字が両方）、フォント 802〜969KB。
 
-## 真似る型（4サイトから。どのサイトの値かを添える）
+### Duolingo Careers（https://careers.duolingo.com/ 、2026-11-15 解剖。選んだ理由：大きな会社〔語学アプリ、米国 Pittsburgh〕の採用だけのサイトで、面接の流れ8段・URL に残る求人の絞り込み・求人ごとの給与の幅と詐欺の注意・チームのページから絞った一覧へのリンクまで作り込まれ、製品と同じ動物の名前の色21個とボタンを使う。事例集への掲載・受賞歴は確かめられなかった）
+React の1枚の JS（495KB）。求人は Greenhouse の公開 API（boards-api.greenhouse.io の duolingo・duolingoperm）を読み込みのときに取り、詳細と応募フォームまで自分のドメインで出す。会社概要・沿革・ニュースは無く、フッターで duolingo.com・ブログへ渡す。
+- **ナビ**：fixed 72px（SP 82px）・下に 2px #e5e5e5。7項目はトップの区画へのアンカー（ONLY AT DUOLINGO・TEAMS・BENEFITS・LOCATIONS・INTERVIEWING・JOBS・FAQS）、15px/700・字間 1px・大文字・#afafaf（2.19:1）、押せる高さ 70px。いまの区画は字が #1cb0f6 になり、::after の 4px の帯が opacity .2s で出る。メガメニューなし。SP のメニューは全画面で、**同じ7項目を「ABOUT US」4つと「APPLY」3つの2群に見出しで分ける**（各項目に色の絵 26px、21px/700）。下層3ページはナビが「← BACK TO HOME」と中央のロゴだけになり、下層どうしは直接つながらない。
+- **トップの順番**（10,885px）：OUR MISSION（19px #58cc02）＋使命の1文 40px/44px（p）＋添え文 19px #777 57字＋VIEW OPEN JOBS 254×48px＋動画 680×382px 角 28px（804px）→ Only at Duolingo（ブログ3枚・LinkedIn 3件）→ Teams 2,048（Product・Design・Engineering は動画つきで EXPLORE、ほか5つは開いた見出し）→ Benefits 1,356（数字つき5行）→ Locations 1,046（本社の大きな写真＋6都市の行）→ Interviewing 888 → Job Openings 1,148 → FAQ 968 → Follow Us。何の会社かは使命の文の「education」と動画だけで、文としては言わない。
+- **選考の流れ（#interviewing）**：8段（Application review・Recruiter chat・Hiring team chat・Technical assessments・Virtual onsite interview・Offer・Celebrate!・Day 1）を、段ごとに説明1文＋準備の✓2つで。カード 400×470px・2px #e5e5e5・角 16px・内側 40/30px・すき間 42px、2枚ずつ4ページ（1ページ 884px）、丸い矢印 64px と点4つ。JS で約600ms 減速して止まり、reduce でも動く。内定のあと（Celebrate・Day 1 は Pittsburgh 本社で研修）まで書く。
+- **求人（#careers）**：窓3つ（ALL JOB TYPES 4・ALL DEPARTMENTS 21・ALL LOCATIONS 10、238×50px・角 12px・下に 2px の縁）。窓は div に名前の無い透明な button（aria-haspopup="listbox"）を重ね、role="listbox" の ul を矢印キーで動ける。選ぶと 48〜79ms・通信0KB で一覧が替わり、URL は ?department=Design&location=Tokyo%2C+Japan（読み直しても残る、ただし末尾が #interviewing に替わる）。最初は Featured jobs 5件、VIEW ALL JOBS で65件を部署の h3 ごとに（Engineering 21・Marketing and Communications 8・Product Management 7…）。件数は選択肢にも一覧にも無く、部署8つと場所2つ（Berlin・Detroit）は0件のまま並ぶ。0件の組み合わせは「No jobs currently match this selection. Check back soon or follow us on LinkedIn for updates!」。求人名 20px/700 #1cb0f6（2.44:1）、場所 19px #afafaf（2.19:1）。
+- **チーム → 求人**：/engineering（CTO と Chief Eng. Officer の2人の前文・担当5分野・ブログ6・LinkedIn 3・講演の YouTube 6・外部の記事3）の最後の VIEW OPEN JOBS が /?department=Engineering#careers。求人の詳細の最初には、その部署の動画（Design の求人なら Design の動画）。
+- **求人の詳細（/jobs/8489189002）**：h1 職種名 40px・場所・「REQ ID: 1224」・APPLY（同じページの #apply へ）→ You will 6／You have 7／Exceptional 6 → 給与「$150,000—$200,000 USD」と幅の決め方 → Fraud Warning（社会保障番号・口座を聞かない、@duolingo.com からだけ）→ AI in Hiring（Greenhouse Talent Matching、最後は人が決める、Opt-out）→ 応募フォーム 21欄・必須16（label あり・autocomplete 0、「卒業3年未満なら GPA」が全員に必須、米国の就労資格・ビザ・OPT の4問）＋任意の属性調査6。JobPosting 0、title は全求人「Duolingo Careers」。
+- **福利厚生**：トップに数字つき5行（PTO 20日・冬休み2週・休日7日・病欠無制限／Pittsburgh で初めて家を買う人に $10k／在籍2年で DuoTrips／月 $100）→ /benefits に5群（育休16週 100%・在籍条件なし、紹介 $10,000、401k 5%、学び年 $600、語学の挑戦 5,000XP と50日で $500 など）。札は幅 780px・行の上下 34px・絵 100px＋36px・題 20px・説明 19px #777。多くは米国の制度で、どの国の社員向けかは書かない。
+- **FAQ**：9問（出社の方針 月〜木・再応募・複数応募・面接での AI・Duolingo を名のる連絡の見分け方など）。いくつでも同時に開ける（86→180px、開閉の動きなし、aria-expanded は開いたときだけ付く）。
+- **ニュース**：採用サイトに無い。トップの ON THE BLOG 3枚（日付なし）と LinkedIn 3件（「9d」の相対表示、SociableKIT で 1.6MB）。ブログの日付は「OCT 1」と年なし。
+- **データ**：lang="en" のみ、JSON-LD 0（全ページ）、トップの h1 は区画名8つ。
+- **見た目の値**：色の変数は動物の名前21個（swan #e5e5e5 57回・eel #4b4b4b 36・hare #afafaf 32・wolf #777 22・snow・macaw #1cb0f6 22・polar #f7f7f7・whale #1899d6・owl #58cc02 ほか）。本文 #777 は 4.48:1、OUR MISSION の緑 2.09:1。書体は自前の可変 duolingo-sans 1本（100〜900・75KB、FontFace で JS から足す）。段：40/44px・24/32・20/24・19/26.6（本文）・16px 字間 .64px 大文字（ボタン）・15px 字間 1px 大文字（ナビ）。SP は h1 27px・本文 16〜17px（15px もある）。
+- **ボタン**：::before に地と box-shadow 0 4px 0（縁の色。青なら #1899d6）、角 12px、高さ 48〜50px、:active で translateY(4px) と縁を消す、ホバーは filter:brightness(1.1) .2s。白いボタンは地 #fff・枠 2px #e5e5e5・縁 #e5e5e5。
+- **重さ（PC/SP）**：top 21.87/21.45MB（YouTube の iframe 4本・loading なし、ホスト別で youtube-nocookie 16,772KB〔展開後〕、ポスター PNG 1800px 1,934KB を 680px に）、/benefits 0.91/0.90、/engineering 32.26/32.13（iframe 6本）、/jobs 6.53/6.50（動画1本＋Google Maps 1.4MB）、ブログ 7.31/7.28。絞り込みは通信0KB。LCP 1.1〜1.6秒。
+
+## 真似る型（5サイトから。どのサイトの値かを添える）
 - 応募の入口だけを別の形・別の地でナビの右に離す（HILLTOP：ENTRY 100×80px のグラデーション、Spotify：All Jobs 93×42px の明るい地）。件数を添える（Spotify は SP のメニューの緑の帯にだけ「79」。PC にも出す）。
 - 最初の画面で「どんな募集があるか」に答える（Spotify：写真が 470px の札に縮んで募集の束＋検索の帯 1424×98px）。HILLTOP は最初の画面が文字0の動画で、何の会社かも募集も出なかった。h1 は消さずに残す。
 - 全ページの最後に同じ誘いの帯を置き、行動は3つまで（HILLTOP：Join Us! 480px にボタン2つ＋文字のリンク1つ、Spotify：Wanna join us? の紫の帯に All jobs 1つ＋Sound Good? に Start Your Journey・Read our FAQ）。
@@ -84,6 +100,12 @@ Astro＋Swup（ページ差し替え）＋microCMS。募集の詳細と応募は
 - 会社の考えを短い語5つにして、最初の画面の5枚・強みのページの5区画の小見出しに同じ字で使う（廣野：「〜を楽しむ」5つ）。トップの1枚が下層の1区画の入口になる。
 - 職種ごとに「業務内容の箇条」＋「1人の社員の3段（1年目・中ほど・10年前後）」＋その人のインタビューへ（廣野：5課×3段）。専門の語に（ ）で言い換え、設備の数を書く（「約330台」「毎月800種類以上」）。中小の製造業ではここから募集要項へ直接つなぐ（廣野はつないでいない）。
 - 区画ごとに色トークンを1つ割り当て、地・ホバー・矢印の組を属性で切り替える（廣野：7色、[bg-color=cl-red]）。ただし白字を置く地は 4.5:1 を超える濃さにする（廣野は5色すべて届かない）。
+
+- 採用トップのナビは「知る」→「応募する」の順に並べ、SP のメニューでは2群に見出しを付ける（Duolingo：ABOUT US 4・APPLY 3）。1ページのトップなら、いまの区画に 4px の帯（opacity .2s）。
+- 選考の流れは段ごとに「何をするか1文＋準備2つ」で、内定のあと（初日の場所まで）書く（Duolingo：8段）。SmartHR の手前の段の1ページ、能作の選考日程と組み合わせる。
+- チームの紹介ページの最後を、そのチームで絞った求人一覧へのリンクにする（Duolingo：/engineering → ?department=Engineering）。SmartHR の ISSUE→関連する求人と同じく、話から求人へ1手。
+- 求人の詳細に給与の幅・募集番号・なりすましの注意・選考で AI を使うかを書く（Duolingo：$150,000—$200,000・REQ ID・Fraud Warning・AI in Hiring と Opt-out）。FAQ にも「本物の連絡の見分け方」を1問。
+- 押す物には下に 4px の縁を付け、押すと沈める（Duolingo：::before に box-shadow 0 4px 0、:active で translateY(4px)）。窓（select の代わり）にも 2px の縁で同じ形を通す。
 
 ## 反面教師
 - 選考フローが募集要項に無く、FAQ が無い場所を案内する（HILLTOP）。流れは `<ol>` で募集要項に書き、見学をその1段目にする。
@@ -107,3 +129,7 @@ Astro＋Swup（ページ差し替え）＋microCMS。募集の詳細と応募は
 - 同じ仕事の呼び名がページで5通り、フォームにだけ「営業職」（廣野）。職種は1つのデータから、紹介・要項・フォームの select を作る。
 - 何の会社か（業種・場所）が最初の画面にも1つ目の区画にも無い（廣野：3,174px で初めて「金属を形づくる」）。HILLTOP も最初の画面に文が無かった。
 - 紙のノイズのような繰り返しの地を、繰り返し1枚の何十倍もの大きな画像で持つ（廣野：3200×1800 1,714KB と 2048×2048 1,095KB を全ページ）。
+- 求人の窓に件数が無く、0件の選択肢（部署8つ・場所2つ）が同じ見た目で並び、合計65件もどこにも出ない（Duolingo）。窓の button に名前が無い。
+- 絞ると URL の末尾が別の区画（#interviewing）に替わる（Duolingo）。共有した URL で別の場所へ飛ぶ。
+- 応募フォームの条件つきの問い（卒業3年未満なら GPA）が全員に必須、autocomplete 0（Duolingo：21欄・必須16）。
+- 福利厚生の多くが米国の制度なのに、7都市のどこに当てはまるか書かない（Duolingo /benefits）。

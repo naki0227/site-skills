@@ -72,8 +72,25 @@ PC 1440×900 / SP 390×844。見たページ：トップ、分類「Mains」（/
 - **動き**：矢印リンクの下線 ::after scaleX .3s、カード color .2s＋scale(1.025) .2s、ボタン background-color .3s、スクロールで fadeIn .5s cubic-bezier(.37,0,.63,1)。:hover 149 に (hover:hover) 3、自前の部品に reduced-motion 0。
 - **重さ**：measure.js PC top 21.49MB／list 11.59MB／article 16.73MB／long 13.42MB（SP 18.90／11.22／11.24／9.17MB）。全ページで checkout-web の JS 1,637KB。全部込み article PC 20,741KB・339件・23ホスト（自社 11,572KB・Klaviyo の写真 4,256KB・GTM 2,132KB）。
 
+### dancyu（https://dancyu.jp/ ・2026-11-15 計測）
+PC 1440×900 / SP 390×844。見たページ：トップ、「プロが教えるレシピ」の一覧（/recipe/・5,068件・19本×ページ）、ふつうのレシピ（/recipe/2026_00011091.html・材料5行・手順2・高さ 8,035px）、長いレシピ（/recipe/2026_00011025.html・材料16行・手順4・写真5・高さ 10,378px）。プレジデント社の食の雑誌の Web（Movable Type・lazysizes・Swiper）。同意の窓は出なかった（日本からの表示）。選んだ理由：写真に食い込む白い紙の記事の頭・マスキングテープを貼った生成りの材料の面・2px の枠の番号の手順・縦書きの日付と赤い下線のカード。受賞・事例集は確かめられなかった。
+- **記事の頭**：全幅の写真 1440×570（SP 390×366）の下端に、幅 1000px の白い紙（上 −80px・内 45px 50px・下の罫 2px #e5e5e5、SP 366px・−30px）を重ね、中に 題 h1 34px／46px 700 中央（SP 23px／30px）→ 日付 14px Lato 700 #cc0700（SP 13px）→ 「連載：」とリンク 14px → リード 15px／26px（SP 14px／25px）。書き手と更新日は頭に無い（書き手は最後の箱、更新日は JSON-LD の dateModified だけ）。再配信の回は本文の頭に「2022年10月10日に配信した連載…からの再配信です」の small。
+- **本文**：箱 PC 1000px・15px／24px（1行 約66字）、段落の下 25px。SP 343px（左右 23.4px）・14px／22.4px（約24字）。書体は游ゴシック Medium →ヒラギノ角ゴ Pro W3 →メイリオの端末の書体、数字と日付だけ Lato 700（Google Fonts・14KB）。Morisawa の TypeSquare を読み、リュウミン M-KL と丸アンチック M を class で使える。
+- **見出し**：「”料理名”のつくり方」h2 28px／54px 700、下 14.6% だけ #e06a66 の帯（linear-gradient で下線、SP 21px／38px）。
+- **材料**：地 #f5efda の面（PC 1000px・上下 20px、SP 内 20px）の上中央に、灰 rgba(0,0,0,.12) のマスキングテープの SVG（74×35・上 −20px）。左 184px に鍋のアイコンと「材料（2人分）」#cc0700 700、2px dotted #ccc の縦罫、右に table（th 名前・td 量）13px／24px（SP は見出しが上・12px／20px）。組は「★ 寿司飯」「・ 米」「A」「├ 米酢」「└ 塩」を文字で描く。注の「＊1」「＊2」は面の外の右寄せ 12px。人数の切り替え・単位の切り替え・材料のチェックは無い。
+- **手順**：h2 の中に i（40×40・2px #000 の枠・Lato 22px 700）と span（22px 700・上の罫が枠からのびる）、本文は p 15px／24px（SP は i 32px・18px）。ol 0。工程の量は文の中だけ（地の色なし）。写真は工程の直後に 900×600（元 1440px 前後）。長いレシピでも目次・いまの手順の印は無い。
+- **追従ヘッダー**：700px を過ぎて下へ送ると、1秒後に白い帯（PC 60px・SP 50px）が上から出て「連載名 15px｜題 22px 700」を1行で出す（transform translateY .5s cubic-bezier(.23,1,.32,1)・影 10px 10px 60px rgba(4,0,0,.08)）。上へ送ると帯は消え、200px を過ぎた所ではふつうのヘッダーが出る。window.onscroll で毎回 setTimeout。
+- **記事の終わり**：黒い「この連載のほかのレシピを見る」480×54 → 教える人（地 #f5f2eb・赤 50px の罫を左に食い出させる・写真 120px）→ 掲載誌の注と本の帯（表紙・ISBN・770円・購入）→ 文と写真のクレジット 12px → 書き手の箱（2px #000 の枠、写真の角に −45° の黒い線2本、本文 13px／22px）→ #タグ 17px 700 → シェア（赤い丸 54px ×3）→ 「この連載の他の記事」（料理写真の全幅の帯に、−5° に傾けた白い札と 48px 白の連載名、カード3枚が帯から下へはみ出す）→ 赤 #950500 の全幅「編集部のおすすめ」6本（うち AD の札4本）→ 関連する記事 6本。
+- **一覧**：頭は地 #f5efda に h1 36px と件数「5,068件」Lato 30px（SP 28px・16px）。1本目は全幅の写真 1320×704 に白い 446px の札（題 26px／34px）、以下 3列 380px（SP 2列 165px）。カードの写真 380×253、右の外に縦書きの日付（rotate(90deg)・Lato 13px #cc0700、SP 9px）、札の下に 2px #cc0700 の罫。連載名 14px → 題 20px／26px 700 → 要約 13px／19px #4c4c4c。題と要約は HTML の時点で「...」で切る（alt も切れる）。1枚に a が2つ（写真と札）。ページ送りは ?page=2〜11 の番号（SP 15×21px）で、2ページ目の canonical は /recipe/。rel=next 無し。
+- **トップ**：全幅スライド（Swiper・自動 8秒・速さ 800ms、白い札 516px「今週のおすすめ」・矢印をかざすと円の線を stroke-dasharray 154 で描く）→ 予約購読の帯 → ピックアップ（地 #f5efda の面を斜めに敷き、写真と白い札を左右に組み替え）→ 食いしん坊倶楽部 → イベント（#950500 に日本地図の線、縦書きの見出し）→ 入部の帯 → 連載（写真の全幅の帯）→ キーワード → 編集部のおすすめ（#950500）→ 人気のキーワード。
+- **広告と同意**：PC は記事の下に 300×250 が1つ。SP は記事の頭の下 390×100・タグの下 390×174・記事の下 390×250・300×250 の4つ。Teads・Yahoo!・AdSense・GPT・GeoEdge、Google の Funding Choices を読む（窓は出なかった）。CLS PC 0.047・SP 0.261（ナビと .contents が広告の高さで押される）。画像 38枚中 31枚に width/height 無し、loading=lazy 0（lazysizes の data-src）。
+- **データ**：JSON-LD に Article（author Person・datePublished／dateModified に時差あり）・BreadcrumbList・Recipe。Recipe は name・image（URL の末尾に空白）・recipeYield・recipeIngredient だけで、article は recipeInstructions も無い。long は HowToStep 4つ。時間・author・nutrition 無し、材料に「&emsp;├ 米酢：大さじ3（＊1）」「★ 寿司飯：」がそのまま入る。og:type は記事でも website。ダーク 0・reduced-motion 0。
+- **色と文字**：#fff 148・#000 133・#cc0700 108・#f5efda 13・#ccc 12・#262626 10・#e5e5e5 10・#e06a66 8・#4c4c4c 6・#f5f2eb 4・#950500 2。#cc0700 は白地 5.84:1・#f5efda 5.07:1、白／#950500 9.13:1、#e06a66 は線だけ（白地 3.27:1）。font-size は px と rem の2回書き、15段（9〜36px）。
+- **動き**：transition は全部 cubic-bezier(.23,1,.32,1)（opacity .5s .1s ×14・color .5s ×12・background-color .5s ×10・transform .5s ×5・all .8s ×6）。カードは写真 scale3d(1.1) .8s と札の地が #cc0700・字が白に .5s。lazysizes の写真は opacity 2s。メニューの3本線は keyframes で ×に。:focus は検索欄だけ・(hover:hover) 0。
+- **重さ**：measure.js PC top 21.29MB／list 5.36MB／article 8.09MB／long 8.96MB（SP 21.25／5.25／8.22／9.25MB）。トップは JPEG 20,054KB：写真を PC 用 m〜.jpg と SP 用 mm〜.jpg の両方読む（同じ写真で 541KB＋584KB、SP 用のほうが重い）。全部込み article PC 11,669KB（展開）・145件・51ホスト（自社 4,050KB・GTM 1,536KB・AdSense 1,176KB・GPT 1,067KB・Facebook 804KB・Yahoo! 647KB・Piano 491KB・Teads 451KB）。
+
 ## 真似る型
-見本4つ（King Arthur Baking・白ごはん.com・Great British Chefs・Ottolenghi）から。作るときの出発点。
+見本5つ（King Arthur Baking・白ごはん.com・Great British Chefs・Ottolenghi・dancyu）から。作るときの出発点。
 - 記事の頭に「時間」を大きく置き、その横に要約を開くボタン（King Arthur Baking：HANDS-ON／BAKE／TOTAL TIME の欄、白ごはん.com：「調理時間：40分」19px 700＋「大まかな流れをチェック」）。要約は工程を2組（下ごしらえ／調理と仕上げ）・8行前後に縮める（白ごはん.com）。
 - 工程を読みながら材料を見られるようにする。PC は材料の列を手順の横に（King Arthur Baking：材料 325px・手順の面 785px。固定はしない）、SP は右下の丸いボタン（60px）から下のシート（max 60vh）で呼び戻す（白ごはん.com）。作るときは PC の材料の列を sticky にする（2サイトとも固定していない）。
 - 工程の中で、その工程で使う量をもう一度書く。文の中に書いて地の色で目立たせる（白ごはん.com：.bg 地 #fffadf）か、手順の下に枠で書き直す（Great British Chefs：550px の枠・11手順のうち8）。合計の量は使う手順ごとに割る（同：14本 → 7本と7本）。
@@ -91,6 +108,13 @@ PC 1440×900 / SP 390×844。見たページ：トップ、分類「Mains」（/
 - 手順の番号は数字だけを細く色で（counter・22px 300）、手順の間は罫と 45px（Ottolenghi）。罫は白地で 1.3:1 以上（同 #f9f2ec は 1.11:1）。
 - 一覧は大きな札（2列×2段）・縦長・正方形を混ぜ、間 30px（Ottolenghi：14枚に 2・4・8）。絞り込みと「もっと見る」は URL（?filter.〜・?page=2）に残す（同）。件数と aria-pressed は足す。
 - 分類の入口を、ブランドの一色の面に白い切り絵の食材の札にする（Ottolenghi の Foodipedia：282×440）。
+
+- 記事の頭は全幅の料理写真の下端に白い紙を食い込ませ（−80px・SP −30px）、紙の中に題・日付（数字の書体と色）・連載・リードを中央に積む。紙の幅は本文の箱と同じにする（dancyu：1000px・内 45px 50px）。
+- 材料の面は生成りの地に、上の中央へ半透明のテープ（rgba(0,0,0,.12)・74×35・上 −20px）を貼って「台所に貼った紙」にする。左の見出しの列（184px・アイコン・人数）と右の表を点線で分ける（dancyu：#f5efda・2px dotted #ccc）。組と注は文字の「├」「＊1」で描かず、組の見出し行と注の番号の対応で組む。
+- 手順の番号は四角の枠（40×40・2px・数字の書体）と見出しの語を並べ、見出しの上の罫を枠からのばす（dancyu）。数字は ol の counter で出す。
+- 読み進めたら、上に「連載名｜題」の細い帯（50〜60px）を出し、上へ送ると隠す。出すのは IntersectionObserver で記事の頭が見えなくなったときにし、待ち時間は置かない（dancyu は 700px と 1秒の setTimeout を毎回の scroll で）。
+- 一覧のカードの日付は写真の右の外に縦書きで、色は分類の色（dancyu：rotate(90deg)・Lato 13px #cc0700）。札の下に 2px の色の罫を引き、かざすと札の地をその色に・写真を 1.1 倍（.5s／.8s・cubic-bezier(.23,1,.32,1)）。SP の日付は 12px 以上に（dancyu は 9px）。
+- 記事の終わりは「同じ連載の他の回」を料理写真の全幅の帯に載せ、傾けた札（−5°）と連載名を大きく、カード3枚を帯から下へはみ出させる（dancyu）。教える人（料理家）と書いた人（編集者）を別の箱で並べる（同）。
 
 ## 反面教師
 - 単位のつまみが div role="button"・tabIndex -1、手順の文の中の量と温度は替わらない、換算が「7 1/16 oz」（Great British Chefs）。
@@ -113,3 +137,9 @@ PC 1440×900 / SP 390×844。見たページ：トップ、分類「Mains」（/
 - Recipe の JSON-LD が6本中3本で JSON として読めない（末尾のカンマ・生の改行）、時間と量が無い（Ottolenghi）。
 - 同意の最初の面に Reject が無く、記事を開いて6秒で全面の窓を2枚重ねる（写真 4.2MB）（Ottolenghi）。
 - SP の手順 15px／19.5px（1.3）・300、手順の罫 1.11:1（Ottolenghi）。
+- 本文 PC 15px／24px を 1000px の箱で 1行 約66字、SP 14px。材料 SP 12px・一覧の縦書きの日付 SP 9px・ページ送りの数字 SP 15×21px（dancyu）。
+- 手順の番号を h2 の中の i で描き ol 0、長いレシピでも目次・いまの手順の印が無い（dancyu）。
+- Recipe の JSON-LD に手順が無い回がある（article）。時間・author 無し、材料に「&emsp;├」「★」の記号がそのまま入る、image の URL の末尾に空白（dancyu）。
+- 写真を PC 用と SP 用の2枚とも読む（is-pc／is-sp を display で隠すだけ）。トップ 21.29MB の 94% が JPEG（dancyu）。
+- SP に広告を4枠、高さが決まらず CLS 0.261。画像 38枚中 31枚に寸法無し（dancyu）。
+- 一覧の題と要約を HTML の時点で「...」で切る。カード1枚に a が2つで Tab が倍、2ページ目の canonical が1ページ目（dancyu）。
