@@ -15,9 +15,7 @@
 ## 写真
 | 使用例 | ファイル | 題 | 作者 | ライセンス | 元のページ |
 |---|---|---|---|---|---|
-| `gakudo-app` | `photos/okaeri-hats.webp` | Schoolkids wearing hats and randoseru in Kugayama, Japan; January 2010（明るさを整えた） | Mr. Brian | CC BY 2.0 | https://commons.wikimedia.org/w/index.php?curid=45335693 |
-| `gakudo-app` | `photos/okaeri-park.webp` | Shimizuhigashi children's playground, Meguro, Tokyo, 2014（一部を切り取り、明るさを整えた） | Kentin | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=34086240 |
-| `gakudo-app` | `photos/okaeri-walk.webp` | Randoseru-red-walkinggirls-feb14-2019（一部を正方形に切り取り、明るさを整えた） | Nesnad | CC BY 4.0 | https://commons.wikimedia.org/w/index.php?curid=76556868 |
+| `gakudo-app` | `photos/okaeri-kids-cutout.webp` | Randoseru-red-walkinggirls-feb14-2019（2人を切り抜き、少し明るくした） | Nesnad | CC BY 4.0 | https://commons.wikimedia.org/w/index.php?curid=76556868 |
 | `machikoba-recruit` | `photos/five-axis.jpg` | SMTCL VMC0656e 5-axis machining center 20260331123404 | TurnOnTheNight | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=190307528 |
 | `machikoba-recruit` | `photos/flywheel-lathe.jpg` | Metal lathe used to produce flywheels | Work With Sounds | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=38217955 |
 | `machikoba-recruit` | `photos/lathe-chuck.jpg` | Lathe Chuck | Andrew Magill from Boulder, USA | CC BY 2.0 | https://commons.wikimedia.org/w/index.php?curid=2977616 |
@@ -25,7 +23,9 @@
 | `machikoba-recruit` | `photos/shaft-cutout.webp` | Raemnadelschaft（旋盤で削った軸を手で囲って切り抜き、水平に回して青焼きの2色に変え、左端を破断線で切った） | Dirk Gräfe | CC BY-SA 3.0 | https://commons.wikimedia.org/w/index.php?curid=4201886 |
 | `machikoba-recruit` | `photos/vernier.jpg` | Vernier calipers (2) | Al Riaz Uddin Ripon | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=130406704 |
 | `sento` | `photos/Shoes-boxes-at-a-Sento---Tokyo-area---Dec-22-2021.jpg` | Shoes boxes at a Sento - Tokyo area - Dec 22 2021 | Nesnad | CC BY 4.0 | https://commons.wikimedia.org/w/index.php?curid=113582446 |
-| `sento` | `photos/bath-tall.webp` | Kodakara Badehaus (Innenansicht)（同じ写真の右を縦長に切った。色は変えていない） | Zluhcs | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=88900691 |
-| `sento` | `photos/bath-wide.webp` | Kodakara Badehaus (Innenansicht)（江戸東京たてもの園の子宝湯。上を横長に切った。色は変えていない） | Zluhcs | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=88900691 |
+| `sento` | `photos/noren-yu-duotone.webp` | Noren at a sento by udono in Yoyogi, Tokyo（切り抜いて藍と生成りの2色に変えた） | udono from Public bath h | CC BY 2.0 | https://commons.wikimedia.org/w/index.php?curid=2798594 |
 | `toukiichi` | `photos/Noborigama-Tokoname-01.jpg` | Noborigama Tokoname 01 | Gryffindor | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=63887246 |
 | `toukiichi` | `photos/cut-chawan.webp` | Tea Bowl known as 'Furisode', Mino ware, Shino type, Azuchi-Momoyama to Edo period, 16th-17th century - Tokyo National Museum - DSC05893（切り抜いた。色は元のまま） | Daderot | CC0 1.0 | https://commons.wikimedia.org/w/index.php?curid=31408730 |
+| `toukiichi` | `photos/cut-mukouzuke.webp` | Footed dish from Japan, early 17th century, Mino ware, Shino type, Dayton Art Institute（切り抜いた。色は元のまま） | Wmpearl | CC0 1.0 | https://commons.wikimedia.org/w/index.php?curid=46311317 |
+| `toukiichi` | `photos/cut-oribe.webp` | Square dish with bird design, Japan, Mino region, Gifu, approx. 1573-1615 AD, Ao-Oribe ware, stoneware with iron-oxide decoration under copper-oxide glaze - Asian Art Museum of San Francisco - DSC01499 retouch（切り抜いた。色は元のまま） | Daderot | CC0 1.0 | https://commons.wikimedia.org/w/index.php?curid=52285112 |
+| `toukiichi` | `photos/cut-ozara.webp` | File:Large dish with plant design, Japan, Mino region, Gifu, approx. 1573-1615 AD, E-Shino ware, stoneware with iron-oxide decoraton under feldspathic glaze - Asian Art Museum of San Francisco - DSC01502.JPG（切り抜いた。色は元のまま） | Daderot | CC0 1.0 | https://commons.wikimedia.org/w/index.php?curid=37194974 |
