@@ -177,4 +177,10 @@
 - [ ] 読み進めると出る帯は、出すまでに待ち時間を置かず、IntersectionObserver で出し入れする（dancyu：scroll ごとに setTimeout 1秒）
 - [ ] 再配信・再掲の記事は、もとの日付を記事の頭に書き、JSON-LD の datePublished と食い違わないようにする（dancyu：本文の頭の small に「2022年10月10日に配信」、datePublished は 2026-11-12）
 
+- [ ] 目次や注の柱を取ったら、中身が入っているかを長い記事で見る。空の柱を残さない（Works in Progress：330px・中身 0）
+- [ ] preload の imagesrcset／imagesizes と img の srcset／sizes をそろえ、hero が2回通信していないかを Network で数える（Works in Progress：475KB ×2）
+- [ ] 古い記事の画像も変換（webp・幅の段）を通っているか、元のドメインから直に読んでいないかを見る（Works in Progress：wip.gatspress.com から PNG 2,489KB）
+- [ ] 同意の窓の大きさを SP でも測る（Works in Progress：PC 9.8%・SP 43%）
+- [ ] 文字としての日付・ラベルに、CSS で隠した重複の span が入っていないか（Works in Progress：「November 2026November 2026」）
+
 解剖で裏づけた項目が増えたら、ここに足す（どのサイトで確かめたかを添える）。

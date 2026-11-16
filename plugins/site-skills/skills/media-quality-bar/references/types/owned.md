@@ -62,8 +62,24 @@ PC 1440×900 / SP 390×844。見たページ：トップ（/home.html）、読�
 - **広告と同意**：Cookiebot uc.js 118KB を全ページで読むが、同意の画面は出なかった。トップ・一覧で検索候補の popfind.min.js（展開 835KB）。
 - **データと重さ**：記事は Article＋BreadcrumbList（author は Organization、datePublished＝dateModified、long の description は空）、トップ・一覧は 0。ダーク 0、記事のテーマの reduced-motion 0。書体は webfont-2.0.js（69KB・2,213書体の名前）がページの字だけを API に送り、base64 の CSS を JSON で受ける：article 473字 119KB・long 585字 702KB・photo 547字 71KB。重さ（measure.js）PC top 8.02MB／list 5.93MB／article 4.52MB／long 2.39MB／photo 3.19MB（SP 6.63／5.65／4.52／2.19／2.53MB）。全部込みの転送 article 7,006KB・107件、top 7,263KB・339件。重い理由は srcset の無い写真、告知の GIF 599KB、書体の API、トップの検索候補の JS。
 
+### Works in Progress（https://worksinprogress.co/ ・2026-11-16 計測）
+PC 1440×900 / SP 390×844。見たページ：トップ（/・号の区画 72・高さ 42,870px）、分類 Cities（/topic/cities/・59本を1ページ）、記事（How Amsterdam invented the fire department・2,050語・9,876px）、長い記事（The housing theory of everything・27 Mins・17,664px）。2020年創刊、いまは Stripe の一部（About の文）。Astro＋WordPress（headless）を Netlify で。選んだ理由：罫 1px と等幅の小さな英字で雑誌の号と欄を組み、分類ごとに地と字の色の対を持つ。受賞歴は確かめられなかった。
+- **本文**：3列 330｜728｜252（間 25px）。本文 728px（1行 約65字）・Editor-Regular 18px／27px（1.5）・段落の間 20px・#000（地 #fff7f4 で 19.86:1）。SP 358px でも 18px／27px。h2 24px／36px Editor-Bold・上 50px。リンクは #000 の下線・offset 3px、ホバーで下線を消す。
+- **記事の頭**：全幅の絵（PC 1440×960・SP 390×260、fetchpriority="high"）→「Words by ＋名前」（Mono 18px／23px、ラベル側に 1px の下線）と右に日付「1st July 2026」→ 題 48px／62.4px（SP 30／36）と右に共有4つ → 1360px の罫 →「11 Mins」→ リード 32px／40px（h2）。本文の始まりは PC y=1,437・SP y=949。
+- **目次**：左 330px の柱（.single-article__toc）を取ってあるのに中身 0（long で 16,630px の空）。long の h2 には読める id があるのに使っていない。
+- **トップの帯**：罫で挟んだ 30px の段が、スクロールした先の号の区画（.issue-section 72個）に合わせて「Issue 24 ｜ June 2026」に替わる（React の島）。押すと号の一覧、選ぶと scrollIntoView、Esc で閉じ Tab は一覧の中を回る。日付の span を3つ入れて2つを CSS で隠すので、文字としては月が2回並ぶ。
+- **部品**：図は本文幅 728px・上下 30px・width/height と lazy。キャプションは「説明｜239px の Image＋クレジット」の2列で Mono 10px／15px（PC・SP とも）。欄外の注の部品（ReferenceSidebar：注の行の offsetTop から grid-template-rows を作り、ResizeObserver で並べ直す。並べ終わるまで opacity 0 → .15s）は CSS と JS があるが4本で使用 0。引用を選んで共有する部品は JS を読むのに CSS が display:none!important。
+- **本文の中の購読**：2段落目の後ろに 728×188（#fff0ea・1px・Editor-Bold 20px の題・入力 399×40・#f4d06f の Sign up 91×40）。入力に label が無い。
+- **記事の終わり**：区切り → 書き手の紹介（Mono 14px／18px）→ 印刷版の誘い（728×259・$100 で6冊・枠全体が a）→ Related Articles（左 330px に題 24px、右に罫のカード3枚 318×288、server island）→ フッター。次の1本・同じ号の他の記事の線は無い。
+- **一覧**：h1 36px／46px → 分類の色の大きなカード2枚（670×694）→ 罫のカード 59枚を3列（440×288・間 20px・grid-template-rows 120px 140px auto、題 20px 2行・抜粋 Editor 12px／18px 4行で line-clamp）。ページ送り無し・rel=next 無し（PC 7,667px・SP 20,172px）。
+- **色**：#121212 121回・#fff7f4 73・#f4d06f 64・#363b8f 37・#e20a39 37。分類の色の対を変数に：科学 #363b8f／#d8d9f1、経済 #e20a39／#f8e6ea、文化 #cee0dc／#073429、政治 #f4d06f／#4c3906。トップの特集カード 31枚をこの4色で塗る（白／#e20a39 は 4.84:1）。ダーク 0。
+- **文字**：Editor（Regular・Bold・Italic の別ファイル）と GT America Mono（Light・Bold）。太さは別ファイルで持ち font-weight 400 のまま。字間は全部 normal。題 48・リード 32・h2 24・カード 20・本文 18・ラベル 14〜18・カードの抜粋 12・キャプション 10。
+- **動き**：ボタンとナビは background／color／border-color .15s、黄のボタンのホバーは color-mix(in oklab,#f4d06f,10% #121212)、Read more の矢印は transform .5s ease で 5px。reduced-motion は3か所で、どれも別のページの scroll-behavior だけ。
+- **広告と同意**：他社の広告 0。Cookiebot の窓は PC 下の帯 1440×89（9.8%）、SP 374×379（43%）。文は「Cookie banners are ugly, annoying…」。Accept all・Manage・Deny を同じ幅で最初の面に。cc.js 415KB＋uc.js 118KB、同意の前から GTM 916KB（展開後）。
+- **データと重さ**：Yoast の @graph で ["Article","WebPage"]（datePublished・dateModified・wordCount・articleSection・Person）。画面は公開日だけで time 0、リードを h2 に、トップは h1（1×1px に隠す）の次が h3。重さ（解析を除く）PC top 3.58MB / list 1.54MB / article 2.72MB / long 3.01MB（SP 2.62 / 1.51 / 1.78 / 2.83MB）。下まで読むと article 3.61MB・long 6.54MB（2022年の記事の図を WordPress の元から直に：fig_3.png 2,489KB・alt 空）。article の hero 475KB を2回読む。CLS 0〜0.004。
+
 ## 真似る型
-見本4つ（北欧、暮らしの道具店・Quanta Magazine・YAMAP MAGAZINE・ほぼ日）から。
+見本5つ（北欧、暮らしの道具店・Quanta Magazine・YAMAP MAGAZINE・ほぼ日・Works in Progress）から。
 1. **本文は細い列に、行間 1.75〜2.0**：518px・16/28（北欧）、560px・16/30（Quanta）、728px・18/36・字間 1px（YAMAP）、490〜700px・16/32・字間 .05em（ほぼ日、PC は手で 20〜26字に改行）。段落の間は行の高さ以上（北欧 PC 32px、Quanta 30px、YAMAP 60px、ほぼ日 32px）。補足は列の外に出し、本文の幅を変えない（Quanta：右 64px あけて 300px、YAMAP：書き手は左 100px・共有は右 45px）。
 2. **色は墨と灰に、ブランドの色を1つだけ**：北欧は灰の変数 #444 が 242回で橙 #f39800 はカートだけ、Quanta は #1a1a1a・#fff と橙 #ff8600 を線と点にだけ、YAMAP は #222・#545454・#fafafa で、赤はロゴの印とストアへのリンクだけ。ブランドの色を白地の小さな文字に使わない（Quanta の橙は 2.42:1）。
 3. **運営の関わりを札と本文の外で言う**：北欧は「SPONSORED」の札、Quanta は記事の終わりの編集注記、YAMAP は記事の頭と一覧のカードの右端に「Sponsored」とタグ「PR」。札はすべてのカードに（YAMAP は関連のカードで抜けた）。
@@ -73,6 +89,10 @@ PC 1440×900 / SP 390×844。見たページ：トップ（/home.html）、読�
 7. **連載ごとの意匠は、骨組み1つと属性で**：ほぼ日は地・リンク・罫・話し手の色を #wrap の data 属性に、書体と幅を連載ごとの 0.5〜3.5KB の CSS に置き、dl の組みと終わりの型は全連載で同じ。北欧も連載名を記事の頭に置き、題材アイコン15種で記事ごとの印を替える（骨組みは同じ）。
 8. **聞き書き・対談の組み**：話し手を dl の dt にして名前で色を替え、聞き手は「──」（ほぼ日）。北欧は「**岩佐さん**：」＋改行で、話し手を組みで区別しない。SP では名前を上の行に回す（ほぼ日）。
 9. **記事の終わりを毎回同じ順に**：結びの1行（「（つづきます）」）→ 写真の担当 → 日付 → 前へ・目次・次へ（ほぼ日）。北欧は連載のもくじ → 取材相手 → 感想を送る。どちらも、ほかの連載の1本は Quanta の NEXT ARTICLE を足す。
+
+10. **分類ごとに「地の色と字の色」の対を変数で持つ**：Works in Progress は --color--science #363b8f／#d8d9f1 など4組を、トップの特集カード 31枚と一覧の大きなカードの地に大きく使う。Quanta は記事ごとに --theme-accent など3つ、ほぼ日は連載ごとに #wrap の data 属性。どれも骨組みは1つで、色だけを差し替える。
+11. **号・連載の区画を、上の帯で「いまどこ」と示す**：Works in Progress はトップの 72 の号の区画をスクロールで拾い、罫で挟んだ帯を「Issue 24 ｜ June 2026」に替え、押すと号の一覧から区画へ飛べる。記事なら同じ帯を「いまの節」に使える。
+12. **欄外の注を本文の行の横にそろえる**：Works in Progress の ReferenceSidebar（注の行の offsetTop − それまでの注の高さ、最小 20px を grid-template-rows に。ResizeObserver で並べ直し、並べ終わるまで opacity 0）。SP は本文の下に積む。
 
 ## 反面教師
 - 日付を記事の最後に置く。頭では「いつの話か」が分からない（北欧、暮らしの道具店：編集部のおすすめの下に 12px）。
@@ -101,3 +121,8 @@ PC 1440×900 / SP 390×844。見たページ：トップ（/home.html）、読�
 - 書体を毎回 API で作り、body の字を丸ごと送る（ほぼ日：long 585字で 702KB）。
 - 話し手の色・カードの説明・ヒーローの白字を地で計算しない（ほぼ日：#0a8a93 3.70:1・#939393 3.07:1・白／#c1ab53 2.28:1）。
 - SP の本文を 14.4px にする（ほぼ日：PC 16px を SP で 0.9倍）。
+- 目次の柱を 330px 取ったまま空にする。見出しの id はあるのにつながない（Works in Progress：long 16,630px）。
+- キャプションを 10px、カードの抜粋を 12px にする（Works in Progress：inspect の FAIL 7 の元）。
+- 古い記事の図を元のサイズの PNG のまま読む・alt を空にする（Works in Progress：fig_3.png 2,489KB）。hero を preload と img で2回読む（475KB ×2）。
+- SP の同意の窓を画面の 43% にする（Works in Progress：374×379。PC は 89px の帯なのに）。
+- 部品の JS を読んでおいて CSS で消す（Works in Progress：引用の共有 10KB・固定の印刷版の札）。押せる枠全体を a にして中に閉じる button を入れる。

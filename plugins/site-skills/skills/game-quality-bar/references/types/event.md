@@ -5,7 +5,7 @@
 
 ## 下位の型
 同じ「イベント」でも、見本で別れた。作るものがどちらに近いかを先に決める。
-- **チケット制のフェス・ライブ**（Lollapalooza、Primavera Sound、Tomorrowland Thailand Barcelona）：最初の画面は出演者のポスターかチケット、出演者の一覧と時間割が中心、購入ボタンが全ページに。
+- **チケット制のフェス・ライブ**（Lollapalooza、Primavera Sound、Tomorrowland Thailand、Flow Festival）：最初の画面は出演者のポスターかチケット、出演者の一覧と時間割が中心、購入ボタンが全ページに。
 - **配信が主の授賞式・ショーケース**（見本は The Game Awards）：会場の券は少なく、主な行動は「カレンダーに入れる・どこで見るか」。中心は本番までの日数・候補と受賞者・過去の回。トップは本番の前・最中・後で形を替える。
 - **入場無料か少額の、日本の地方の催し**（陶器市・祭り・マルシェ。見本は笠間の陶炎祭）：買うボタンは無い。中心は会場図・出店者一覧・行き方と駐車場・雨の扱い。出店者は数十〜数百件、会場図は印刷物（PDF）が正本になりやすい。
 
@@ -70,6 +70,21 @@
 - **安全**：reduced-motion は Thailand・Stories の CSS に0件。Cookie の帯で何も押す前に analytics.tiktok.com 288KB・connect.facebook.net 227KB を取る。メニューのリンクは `:focus-visible{outline:none;text-decoration:underline}`。
 - **重さ**（展開後）：top PC 5.32／SP 5.01MB、line-up 4.57／4.27、buy 5.05／4.75、news 5.46／3.27、Consciencia 24.29／17.83（mp4 19,102KB）。Thailand の3ページは JS が 3.8MB で、うち `tml-live-lineup` 1,353KB を一覧の無い top・buy でも取る。
 
+### Flow Festival 公式（https://www.flowfestival.com/en/ ・ 2026-11-15 解剖、会期 2027-08-13〜15 の約9か月前・3日券の Super Early Bird 発売中。歩いたページ：/en/・/en/flow-festival/about-us/・/en/program/music/・/en/news/read-the-latest/・shop.flowfestival.com/en/flow-festival-2027/entrance-tickets と、/en/info/map-festival-area/・/en/info/info-faq/）
+- **枠**：Astro。自社書体7本（Flow Foundation・Text・Poster Bold・Headline・Compressed・Text Bold・Text Italic、描画名「Flow2025-beta04」）を Font API で woff2 にし、Arial の size-adjust つきの代わり（Foundation 76.34%）を持つ。色は変数3つ（`--brand-primary:#fff203`・`--surface-default:rgb(230,230,230)`・`--border-color:#000`）と `--button-radius:10rem`。描画の 81% が Flow Foundation（inspect.js）。
+- **最初の画面**：h1 なし。sticky のヘッダー 92px（地 #e6e6e6・下 2px 黒、SP 120px）→ 動画 85svh（PC 1440×765・SP 68svh 390×574）に、ロゴの SVG（alt 空）を 70vw（SP 95vw）で重ねるだけ。動画は黄と生成りの放射がゆっくり回る抽象の mp4 1本 1,319KB（1920×1080、PC・SP 同じ、poster なし、muted loop）。下に高さ 50px（SP 20px）の帯で「FLOW FESTIVAL／SUVILAHTI／HELSINKI／13.-15.8.2027」の SVG 20枚を 35s（SP 10s）linear で流す。キャッチコピーなし。
+- **止める**：右下（SP は右上）に 72×72 の button、aria-label「Pause video」・aria-pressed。押して 161ms（PC）・50ms（SP）で動画が paused、帯も `animation-play-state:paused`、名前が「Play video」に。reduce では止まらない（3秒で 3.83s 再生）。
+- **ナビ**：PC はヘッダー中央に白いピル3つ TICKETS・INFO・PROGRAM（144×51・30px・padding 12px 24px 7.5px・角 60px）。SP ではヘッダーから消し、最初の画面の下端（下 3.5rem）に 119×46・28px で出す。3本線はブラウザの `popover`、地 #fff203・左と下 2px 黒・min-width 360px・`.3s` の opacity と translateY(-10px)、開閉の項目は `div tabindex="0"`（aria-expanded なし）。フォーカスは outline の代わりに `box-shadow:0 0 0 5px #4091db`。
+- **下層の型**：About・News・Map・FAQ とも「左に縦長 768×960 の写真を sticky（top 80px）／右に兄弟ページのピル（18px・角 24px・縁 1px #fff203、いまのページは地 #fff203＋`aria-current="page"`）→ h1 80px／80px（SP 42px／46px）→ 本文 16px／28px」。SP は sticky をやめ、横長 960×540 に替えて上に。
+- **出演者**：2027 は0件で「The program for 2027 will be announced later.」の1段だけ。画像あり／なしの button 2つ（44×34・aria-pressed・選択中の地 #fff203）は0件でも出る。h1 なし、2026 の一覧へのリンクなし。
+- **会場**：Map & festival area は会場11か所を h2＋写真 624×416（alt 空）＋2〜4文。地図は「2027 は会期が近づいたら」で、前年の地図も無い。収容は Silver Arena の 15,000人・60×75m だけ。年齢制限 18歳（日曜午後の Family Sunday だけ例外）は FAQ だけ。
+- **買う**：TICKETS のピルは別ドメインの店（Superstruct 共通・React・Open Sans）へ target=_blank。券は2枚、3 DAYS €249.00・3 DAYS PLATINUM €369.00 を文字（22px・700）で、「In stock」「max 6」。Add to cart を押すと 51ms でその場で「− 1 ＋」の段と「1 product added to your cart」。ヘッダーに「Time remaining」20:00 からの持ち時間。年齢制限は店に0か所。EN のトップの横送りの TICKETS は /fi/ の店へ。
+- **ニュース**：33件を1ページに日付（「19. AUGUST 2026」）と題 h3（21px／28px）の行で。最後の更新 2026-08-19（解剖の日まで88日）。トップのカードの日付は「8/17/2026」で2通り。
+- **重ね**：ニュースレターの重ねはスクロールで出る（PC scrollY 1,400／下端まで 1,889 の 74%、SP 1,200／2,009 の 60%）。13秒待つだけでは出ない。× と Esc で閉じ、次に開いても出ない。
+- **協賛**：ロゴの画像でなく自社の Poster 書体の文字で並べ、ホバーで白字＋四方 1px の黒い text-shadow（.3s）。
+- **表記**：FI／EN の文字の切り替え（FI が `/`）。JSON-LD 0件。権利表記は「All rights reserved」だけ。
+- **重さ**（展開後・解析タグ除く）：top PC 5.16／SP 4.07MB、about 2.40、music 1.78、news 2.02、店 6.43MB（JS 3,722KB・背景の PNG 1,224KB）。全ページで会員 SDK（members-sdk.superstruct.services 849KB＋設定 JSON 167KB）と Cookiebot 538KB を取り、文字だけの music では全体の 87%。
+
 ### 笠間の陶炎祭（ひまつり）公式（https://www.himatsuri.net/ ・ 2026-10-26 解剖、第45回 2026-04-29〜05-05 の約5か月半後。歩いた5ページ：/・/about/・/syutten/・/blog/・/access/ と、会場図・ハウツー・バス路線図の PDF 3本）
 - **下位の型**：入場料 1日500円（18歳以下無料）の地方の陶器市。会場は笠間芸術の森公園、来場8万人（閉幕あいさつ）。
 - **最初の画面**：黒 #000 のヘッダー 70px（SP 56px 固定）→ 写真4枚のフェード 80vh（PC 720px・SP 591px）。日付・時刻・会場はその下にロゴ画像と横並びで、PC は日付 18px が y=892px（1440×900 の折り目の下）、SP は 34px（時刻・会場 24px）が y=734px。曜日は 6px（SP 12px）の黒い札。入場料は上下 3px double の囲み。
@@ -95,9 +110,11 @@
 - （チケット制のフェス）チケットのページは「券種・値段」の上に、販売前・販売中・終了後の段階を決めて出し分ける。終了後も次回のお知らせ登録を残し（Lollapalooza の /tickets）、販売中は券種1行に「名前｜状態の札｜値段＋手数料｜BUY」（Primavera：64px・On Sale／VIP の札・FROM €350.00 + fees）。売り切れても値段の文字は残し、行に SOLD OUT の札を並べる（Tomorrowland Thailand：4種とも ฿ 12500.00 などを文字で、表の下に「*Prices include VAT and service fees」）。売り切れの後の次の一手（リセールの日時・次回の登録）も行の下に書く（Tomorrowland は歩いたページに無かった）。
 - （チケット制のフェス）購入の入口を全ページの同じ場所に置く（Lollapalooza：固定ヘッダー右の TICKETS 117×56、Primavera：ヘッダー右の TICKETS と、メガメニューの祭りの名前の下の黒い丸）。
 
+- 最初の画面の動画・帯には、止める button を1つ置き、押したら画面の動き全部（動画と流れる帯）を止め、名前と aria-pressed を替える（The Game Awards：右下 44×44・押して 103ms、Flow Festival：右下 72×72・動画と帯の両方・SP は右上へ）。どちらも reduce では最初から止めていないので、作るときは reduce なら止めて開く。
+- （チケット制のフェス）最初の画面は「動く絵かポスター＋ロゴ＋会期」で、キャッチコピーの文を置かない（Flow Festival：抽象の mp4 1,319KB に 70vw のロゴと会期の帯だけ、Lollapalooza：ヘッダーに会場・日付の3行、Tomorrowland：写真1枚に h1 と日付の1行）。
+
 ## 真似る候補（見本1つ）
 - トップの最初の画面を「告知・本番中・終了後」の3状態で持ち、同じ部品の class だけを替える（The Game Awards：`home-hero--announcement／--live／--post-show`）。
-- 背景の動画には最初の画面の右下に 44×44 の停止 button、ラベルを止める／再開で入れ替える（The Game Awards）。reduce なら最初から止める。
 - 過去の回は1年1URL で、年の一覧（放送日・視聴数）から入り、ページ内は sticky の章ナビ3つに `aria-current="location"`（The Game Awards の Rewind）。受賞はカードをリンクにし、候補も並べる。
 - 「どこで見る・行けるか」を FAQ の最初の段に置く（The Game Awards の THE EVENT 5問）。ただし値段・配信先は表で。
 - 会場・日付を、固定ヘッダーのロゴの横に常時置き、右に購入ボタンを1つ置く（Lollapalooza）。
@@ -121,6 +138,11 @@
 - 主の色をグラデーション1本（Tomorrowland：90deg #8a3900→#eb8100）に決め、ボタン・選んだタブ・日の帯・状態の札の4か所に同じものを使う。白い文字は濃い側に（#8a3900 で 7.23:1、#eb8100 では 2.51:1）。
 - いくつものフェス・回で同じ部品（ナビ・フッター・出演者の一覧）を web component にし、使うページでだけ読む（Tomorrowland の `tml-*`。一覧の無いページでも 1,353KB を取るのは反面教師）。
 
+- SP では、ヘッダーの主なナビ（買う・知る・出演）を最初の画面の下端へ移し、親指の届く高さに並べる（Flow Festival：PC はヘッダー中央のピル 144×51、SP は動画の下端に 119×46 で3つ）。
+- 下層を「左に写真 sticky・右に兄弟ページのピルと本文」の1つの型にそろえ、いまのページはピルの地の色＋aria-current="page"（Flow Festival の About・News・Map・FAQ）。
+- 色を変数3つ（強調・面・線）だけで持ち、強調色は面（フッター・メニュー・いまの場所）にだけ使い、文字は全部黒（Flow Festival：#fff203 の上の黒 17.95:1）。
+- 協賛はロゴの画像でなく、サイトの書体の文字で並べる（Flow Festival。Lollapalooza の 1,328KB の PNG のロゴと逆）。
+- 券は値段を文字で、カートに入れたらページを移らずその場で数の段に替え、1回の上限（max 6）を券ごとに書く（Flow Festival の店）。
 ## 反面教師
 - 最初の画面の行動を「カレンダーに入れる」だけにし、配信先・券・値段をどこにも表で出さない（The Game Awards：配信先の名前0・値段0、時刻は FAQ の文の中）。
 - 背景を PNG のまま置き、poster の PNG と動画の両方を取る（The Game Awards：top PC 8,333KB＋mp4 6,296KB）。本番に不具合報告の道具（BugHerd）を残す。
@@ -139,3 +161,6 @@
 - 1組の重ねを div にして Esc で閉じず、閉じるを 14×14 の名前なしにする。別のフェスの部品の言葉（1週末なのに「Week 1」）を残す（Tomorrowland Thailand の Line-Up）。
 - 見えないタブの動画まで読み込み時に取り、reduce でも流す（Tomorrowland の Consciencia：5本 14,036KB）。
 - 本番の1か月前・売り切れ後に、ステージと時刻を仮の値（日の名前のステージ・全組 12:00〜12:01）のまま「MORE ARTISTS TO BE ANNOUNCED」と出す。いつ出すかの日付が無い（Tomorrowland Thailand）。
+- 出演者0件の時期に、一覧の場所を空白にして切り替えのボタンだけ残す。次の発表日も前年の一覧へのリンクも無い（Flow Festival の Program）。
+- 会場図の無い時期に前年の図も消し、会場11か所のうち収容を書くのは1か所だけ（Flow Festival の Map）。
+- 英語のトップから、フィンランド語の店へ送る（Flow Festival の横送りの TICKETS が /fi/）。

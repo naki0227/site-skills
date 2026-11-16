@@ -1,7 +1,7 @@
 # 飲食（レストラン、カフェの席予約）
 
 ## この下位タイプで特に見ること
-時間帯の選び方、コースと席のみ、人数の上限
+時間帯の選び方、コースと席のみ、人数の上限、席を開ける時刻（毎朝◯時に◯日先）と人数で変わる空きの見せ方
 
 ## 見本の実測
 
@@ -62,6 +62,23 @@
 - **動き**：色 .15s cubic-bezier(.4,0,.2,1)、ヘッダーの地 .5s、段落 opacity 1s ease-in-out 1s、升 .25s。FAQ は1つだけ開く。reduce の指定は1か所で動画・線画は止まらない。
 - **重さ（PC / SP）**：トップ 54.66 / 23.32MB（Mux の動画 43.4MB）、予約 17.55 / 16.75MB、店 23.01 / 13.75MB、SevenRooms の店の面 11.31 / 11.21MB（JS 9.3MB、Stripe 1,148KB・Maps 約1.1MB・FullStory 308KB を空きを見るだけで読む）、FAQ 20.78 / 13.53MB。
 
+### Septime（https://www.septime-charonne.fr/en/ ＋ 予約 Zenchef https://bookings.zenchef.com/results?rid=356354 ・2026-11-16・パリの1店、昼5皿 85€・夜7皿 135€）
+条件：2名と4名、2026/11/17〜12/4。値は 2026-11-16 01:04 UTC の API と、Playwright（timezoneId Europe/Paris・Asia/Tokyo・America/New_York）。PC 1440 と SP 390。Reserve の手前で止めた。
+
+- **入口**：トップの右上 BOOKING 79×36 → 右上から #f6f6f6 の板（PC 400×346・SP 320×844、`transform .4s`）。文「Reservations open every day at 10am for the next three weeks.」とボタン BOOK ONLINE 123×34（新しいタブで Zenchef）。一覧・詳細のページは無く、トップが品書き・時間・住所を兼ねる。
+- **開ける時刻**：API の `bookable_from` は日ごとに「21日前の 10:00」、締め `bookable_to` は昼 12:00・夜 19:15（最初の回の15分前）。トップ FR／EN は「10h／10am・3週間」、Zenchef の文は「every day, for the next 3 weeks (D+21)」で時刻が無い。開ける前の日（12/7〜）は `closed: true` で、暦では休みと同じ線なし。
+- **人数**：1〜8 のボタン 56×56 を横1列（上限は `capacity.max: 8`）。選ぶと日の行が開き、直近の空きの日が選ばれた状態になる（SP 152ms・PC 460ms、+14KB・2本）。空きは食事ごとの `possible_guests`（11/17 昼 [4]・11/18 昼 [3]・12/1 昼 [3〜8]・12/2 昼 [4〜6]・11/30 夜 [5,6]）。2名は2か月に0日、3名・4名・5名・6名は3日、7・8名は1日。
+- **暦の輪**：升 40×40・角 240px。この人数で空き＝1px solid 白 .32、別の人数なら空き＝1px dashed .32、満席＝solid .32＋斜線、今日＝2px、休み・開ける前＝線なし（字 .48）、選んだ日＝地 #fff。凡例は無く、2名（0日）のときだけ暦の下に「— Full —」（DM Mono 12px）。輪の線 .32 は #1c1c1b に 2.92:1。
+- **次の空き**：暦の上に札「Next availability」（DM Mono 12px・地 白 .24・7.81:1）と 187×68 のチップ3つ（4名：「Tue 17 Tomorrow」「Tue 1 Dec Next month」「Other」）。2名では押せない Today・Tomorrow が残る。
+- **時刻**：空いた回だけ、食事の見出し（Déjeuner／Dîner、英語の画面でも仏語）の下に 568×40 の行（線 .64・角 8px・左に緑 #24a83a の点 8×8）。12/1 昼は15分ごと8回のうち上限0の4回を出さず 12:15・12:30・13:00・13:30。空きの無い食事は「Not available for 4」の1行。回の上限 `total_per_slot` 8〜14 は出さない。日を押す 35〜59ms・+14KB、時刻 86〜103ms・0KB。URL は最後まで変わらない。
+- **空きなし**：「No online openings for 2 guests over the next 2 months.／Explore other dates or try again later.」。人数を変えれば入れることは破線の輪だけ。
+- **予約前の不安**：API に `charge_per_guests` 85（昼）／135（夜）、`enduser_cancelable_before: 86400`（基準 shift）、`confirmation.is_auto: false`、`prepayment_param: null`。Reserve の手前まで画面に0語、店のサイトにも無い。
+- **時間帯**：同じ 01:04 UTC・2名で、端末が Paris・New York なら最初のチップ「Mon 16 Today」、Tokyo なら「Sun 15 Yesterday」（過ぎた休みの日）。時刻にパリ時間と書かない。
+- **データ**：JSON-LD はトップ・Zenchef とも0。Zenchef は見出し要素も0。地図は Google Maps へのリンクだけ。空きは月の要約 10〜19KB を3か月分先に読み、日の回は選んだ日だけ `getAvailabilities` 14KB。
+- **見た目**：店は Prestige Elite（自社配信 woff2 2本 31KB）1本、本文 14px（SP の造り手の列 13px）、白・黒・#f6f6f6 の3色。Zenchef は面 #1c1c1b・地 #2c3037、白の不透明度 .8／.64／.48／.32／.16、DM Sans 14〜16px と DM Mono 12px。押せない Reserve は 白 .48 on 白 .24＝3.17:1。
+- **動き**：トップは映像129本を順につなぐ（残り10秒で次を読み、入れ替え。最初は fadeIn 200ms）。fullPage.js 2.9.4 で章に吸い付く。Zenchef は `all .2s ease-in-out`。reduced-motion の指定はどちらも0。
+- **重さ（PC / SP）**：トップは読み込み直後 0.65 / 6.26MB、映像を流して 60秒で 28.83 / 18.84MB（映像1本 2000k で 155〜387MB）。Zenchef 4.91 / 4.91MB（JS 2,844KB・CSS 787KB・AWS WAF 873KB・訳の JSON 96KB×2）。
+
 ## 真似る型
 見本：TableCheck・Resy・ポケットコンシェルジュ・Dishoom。
 
@@ -78,6 +95,13 @@
 11. **同じ時刻に条件の違う枠（カード預かり・コース）が並ぶなら、升の2行目に条件を書き、形か色を変える。**（Dishoom：4名から「15:00」と「15:00 Christmas Feasting」が同じ黒の 221×55。Resy の席の名前 11px の2行目と同じ置き方で、預かり・料金も書く）
 12. **複数店の一覧は店ごとに横へ送る行にし、選んだ時刻の升から始める。**（Dishoom：13店・升 150×55・矢印 40×40。どの行も 08:00 から始まり558枠を送らせる）
 13. **予約の部品は店の2色で塗り、店ページの中の引き出しで開き、iframe は押してから読む。**（Dishoom：SevenRooms を #353839／#f0ece0 に。引き出し PC 649px・SP 全面）
+
+14. **席を毎朝決まった時刻に◯日先まで開けるなら、入口と暦の両方に同じ文で書き、開ける前の日の升に「◯日 10:00 に開く」を出す。**（Septime：API は「21日前の 10:00」。トップは時刻つき、Zenchef の文は時刻なし、12/7 は休みと同じ線なし）
+15. **人数を先に聞き、暦の升の線の形で「この人数で空き（実線）」「別の人数なら空き（破線）」「満席（斜線）」を分け、凡例を暦の面に常に置く。**（Zenchef 40×40。凡例が無く、線は 2.92:1——作るときは 3:1 以上。破線の日を押すと「3名なら空き」と出す）
+16. **人数を選んだら、直近の空きの日を選んだ状態で開き、暦の上に空きの日を2つ言葉つきのチップで出す。**（Zenchef：「Next availability」の札と 187×68 の「Tue 17 Tomorrow」「Tue 1 Dec Next month」。空きの無い人数では押せないチップを残さない）
+17. **時刻は空いた回だけを食事の見出しで分けて縦の行にし、空きの無い食事は見出しの下に「4名では空きなし」の1行。**（Zenchef：568×40・緑の点 8×8、12/1 昼は8回中4回だけ）。空きが全く無いときは人数と範囲を言い、人数を変えれば入れる日の数まで書く（Zenchef は「2 guests over the next 2 months」まで）。
+18. **カードの預かり・取り消しの締め・店の確認待ちがあるなら、時刻を選んだ時点で「340€ を預かる／11/30 12:15 まで無料／店が確かめて返事」を予約ボタンの上に。**（Zenchef：API に 85€／名・86400秒・is_auto false、画面は Reserve の手前まで0語）
+19. **「今日」は店の時間帯の暦の日で決め、時刻に店の時間帯を書く。**（Zenchef：端末が東京だと「Sun 15 Yesterday」。Dishoom の 06:00 区切りと同じ食い違い）
 
 ## 反面教師
 - 数量を選んでも合計を出さない（TableCheck の予約フォーム）。人数×単価の合計（税サ込）を時刻の下に常に出す。
@@ -103,3 +127,8 @@
 - 複数店の行がどれも開店の時刻から始まり、夜の枠まで行ごとに送らせる（Dishoom：13店・558枠）。
 - 店の1日の始まり（06:00）で既定の日を決め、下の行は暦の「Today」と言う（Dishoom：深夜 01時に「7 Nov」と「Today 8 Nov」）。
 - 空きを見るだけの段で Stripe・地図・操作記録を読む（Dishoom の SevenRooms：1,148KB・約1.1MB・308KB）。
+- 暦の輪の破線（別の人数なら空き）に凡例も説明も無く、押しても何も出ない（Zenchef・Septime）。
+- 預かり 85€／名・24時間前・店の確認待ちを Reserve の先まで出さない（Zenchef・Septime）。
+- 席を開ける時刻（10:00）を予約の画面の文から落とし、開ける前の日を休みと同じ見た目にする（Zenchef・Septime）。
+- 人数・日・時刻を選んでも URL が変わらず、戻る・共有ができない（Zenchef）。
+- 店のトップの全画面の映像を止める手段がなく、60秒で 28.83MB を読む（Septime）。

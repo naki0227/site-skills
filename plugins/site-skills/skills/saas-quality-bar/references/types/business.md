@@ -68,8 +68,20 @@
 - **見た目の値**：地 #fff、文字 #252d2a（14.12:1）、帯とカード #0a2414、ボタン #1b6646（白 6.92:1）、点と札だけ #1ad379（白地の文字にすると 1.97:1）、料金の面 #f3fbe9、窓の面 #f7f5f3、線 rgba(10,36,20,.1)（450回）、締めの #193227 に #9af6bb（912回）。書体は ABC Favorit（Medium の題・Regular の本文 15/20px -0.15px）と Geist Mono 13px +0.2px 大文字（札・ボタン・区分）と製品の窓の Inter。--ease cubic-bezier(0.22,1,0.36,1)、opacity 300〜400ms、窓の部品は blur から現れる keyframes 13種。reduce で WebGL と Sidekick は止まり、受付の窓は transition を切って中身だけ進む。
 - **データと重さ**：PC で top 8.31MB / features 10.60MB / pricing 7.89MB / customers 7.60MB / docs 4.15MB（解析を除く）。JS が7〜8割（Framer の部品 1,310KB＋依存 1,101KB）、自社のチャット 1,297KB を全ページ（docs も）。解析を含めると1ページ 31〜37ホスト、GTM 2,336KB。同意の帯を押す前に解析の cookie が入る。構造化データは WebApplication と、料金に Offer 3つ（「$45…or $55 billed monthly」）。
 
+### Ramp（法人カード・経費・支払いの財務 SaaS、海外）https://ramp.com/ — 2026-11-16
+- **最初の画面**：黒い帯 40px → 白いヘッダー 62px（fixed、「See a demo」黄緑 107×34・「Get started」黒 103×34・角 6px）。h1「Time is money. Save both.」64/64px・太さ 400・字間 -0.01px（SP 40/42px）、一文 18px・黒の 60%。h1 の上に 10px 大文字の札「US corporate payments processed by Ramp:」＋ number-flow の割合 0.9886820%（約2〜3秒ごとに末尾が増え、aria-label に今の値、reduce でも増える）。行動はメール欄と「Get started for free」（176×52・角 8px・黄緑 #e4f222）を枠 450px・角 12px の中に一体で（SP は 43px の欄と 358×42 のボタンを縦に）。下に position:fixed・高さ 40px の白い帯「AGENTS AT WORK TODAY」と数字7つ（3秒で 3,012,791→3,022,806）。地は白に 1px の点の格子。
+- **製品画面**：最初の画面は動画 webm（PC 1,844KB・1310×584、SP 用 1,265KB は PC でも読んで 0×0 で止める）、Stack の章は mp4 1,972KB。ベントのカード 2＋3枚（角 12px・地 #f4f2f0・題 24px を「黒の名詞＋60% の続き」、右上の矢印はホバーで右上へ抜けて戻る）に DOM の吹き出しと Lottie。dotLottie の wasm 1,771KB を同じ URL で2回。動画は reduce でも再生。
+- **機能の並べ方**：1製品1ページ（/expense-management）。h2 48px の章5つ（動詞の命令形）の中に h2 28px の対・18px の3つ組。「The old way. / The Ramp way.」（h3 28px、Lottie）。FAQ 6問（FAQPage）。どのページも最後は h1 と同じ一文＋メール欄。
+- **料金表**：3枚（Free $0・Plus $15・Enterprise Custom、/mo/user、値段は 28px・黒の 60%）。カードの上辺に跨ぐ札 175×32・角 8px（AI-assisted #f4f2f0／AI-powered 黄緑／AI-tailored #1a1919）。強調は Plus の黄緑の枠（約3px）と塗りのボタンだけ。月払い／年払いの切り替えは無く、Plus の下に 13px で「+ Platform fee based on team size」「Save 20% with annual billing」だけ（年払いの値・基本料の額は出さない）。カードの中に各1つのメール欄、箇条は「All the features of Free, and:」で区分つき。カードの箇条の順が開くたびに違った（3通りを観察）。FAQ 4問（FAQPage）。税の語なし。
+- **比較表**：14区分95行（6・4・12・18・6・8・5・9・3・8・4・4・3・5）を全部開いて始め、区分は button aria-expanded で grid-template-rows 0.2s で閉じる。PC はプラン名とボタンの行（133px）を top:62px で sticky、行の名前は破線の下線で Radix の吹き出し、行のホバーで地 #f4f2f0。SP は別の table（幅 540px・109行）を横スクロール、行の名前の列を left:0 で sticky。
+- **試すまで**：メール欄がトップ5・機能4・料金6・事例4。label は visually-hidden、aria-label「Enter your work email」、action は JS 必須。「credit card」の語は4ページで0回。
+- **事例と信頼**：/customers は幅いっぱいの「Customer Stories」、ロゴ2段、大1＋小4のカード（GIF 4枚 計 268,465KB、最大は表示 310×413 に 1080×1440 の 148,168KB）、数字の壁（274×274・75.79px・71.43s linear・reduce で止まる。SP は 148px に縮めて説明 7.71px）、検索＋Company size 3・Industry 20・Ramp product used 19（選ぶとボタンに「1 ×」、URL に ?industry=Education&company-size=Enterprise#all-stories）、26件＋Load more で +3。「85,000+」に時点・数え方なし。
+- **ドキュメント**：docs.ramp.com（開発者向け、左 215px の目次、h1 56px）。右上に Copy Markdown、各ページの .md、/llms.txt 14,613B、Ctrl K の検索、sierra.chat のチャット 2,481KB。ヘルプ support.ramp.com は Chromium でリダイレクトが回って白い画面。
+- **見た目の値**：字は #0c0a08 と、その `/ 0.6`（白の上 #6d6c6b 5.24:1、#f4f2f0 の上 5.04:1）、黒い面の上は白と白の 60%（6.95:1）。面は白・#f4f2f0・#1a1919、差し色は黄緑 #e4f222 だけ（地の面積で白の 1%、字には使わない：白の上 1.23:1）。書体は TWK Lausanne 400 だけ（見出しも 400）。大きさ 64・48・40・28・24・18・14（本文、最多）・13・10px。transition は色 0.3s cubic-bezier(0.4,0,0.2,1)、カード transform 0.4s ease、表の行 all 0.2s。
+- **データと重さ**：PC で top 19.86MB / features 13.51MB / pricing 11.14MB / customers 273.45MB / docs 11.75MB。トップは78ホスト（Chili Piper 2,191KB を全ページ、GTM 2,105KB、Facebook 1,954KB、AdSense 871KB）。構造化データは Organization と、機能・料金の FAQPage だけ。フォントは woff2 19KB。
+
 ## 真似る型
-見本5つ（Backlog・コドモン・Linear・Attio・Plain）に共通するもの、または1つで測った値を出発点にするもの。値の出どころを添える。
+見本6つ（Backlog・コドモン・Linear・Attio・Plain・Ramp）に共通するもの、または1つで測った値を出発点にするもの。値の出どころを添える。
 1. **行動の数は、試す入口の有無で決める**：試せる製品は「試す」を主に（Backlog は試す＋資料、Linear は Get started と Contact sales）、試せない製品は資料請求＋問い合わせ（コドモン）。主は塗り、副は白地か枠か半透明。Linear のように最初の画面から行動を消さない（ヘッダーの 73×32 だけでは小さい）。
 2. **実績の数字には時点と数え方**：Backlog「2026年6月末」、コドモン「2026年10月1日時点」＋※の数え方と調査元。Linear は「40,000」を3通りに言い、時点なし（真似ない）。
 3. **料金は規模で決める**：Backlog は「31人以上か」を診断の1問に、コドモンは定員3段、Linear と Attio は per user/month の4列（Attio は 4列とも同じ 271×398 のカード）。人数で決まるなら、入力させる前に段を見せ、大きく出す価格は1つ（コドモン 88px、ほか 30px）。
@@ -91,6 +103,12 @@
 18. **事例の題を数字にし、記事のある事例にだけ札**：Plain は「First response in 3 min, down from an hour」、一覧34枚のうち記事のある13枚にだけ丸い札。
 19. **ページの終わりに次の行き先**：Plain は料金・機能・事例のページの最後に3色のタイル（Product／Pricing・Customers・Changelog）。
 
+20. **灰の字は「黒の 60%」で作る**：Ramp は字を #0c0a08 とその `/ 0.6` の2つにし、白の上 5.24:1・#f4f2f0 の上 5.04:1。地ごとに灰の値を作り直さない。
+21. **差し色1色は押す物と選ばせたい1枚だけ**：Ramp の黄緑は主なボタン・Plus の枠と札・「See a demo」だけ（地の面積で白の 1%）。太さは見出しも 400 のまま、大きさと「黒＋60%」で段を作る。
+22. **メール欄とボタンを1つの枠にして、どのページも最初と最後に**：Ramp は枠 450px・角 12px の中に欄と 176×52 のボタン（SP は 43px と 42px の2段）。4ページとも最後の章は h1 と同じ一文＋同じ欄。
+23. **料金の3枚の上辺に性格の札を跨がせる**：Ramp は 175×32・角 8px・地を灰／黄緑／黒の3段にし、選ばせたい1枚の札だけ差し色。箇条は「All the features of Free, and:」で増える分だけ。
+24. **題材の数字を「今」として動かす**：Ramp は h1 の上に処理した割合（小数7桁）、下に固定 40px の帯で今日の処理数7つ（number-flow・aria-label に今の値）。作るときは数え方の注と止めるボタンを付け、reduce では送らない（Ramp は増え続ける）。
+
 ## 反面教師
 - 商談予約ウィジェットを全ページで読み込み、どのページでも一番重いファイルにする。診断の途中で日時の枠を開いて結果と重ねる（Backlog）。
 - カルーセルの複製で同じ事例見出しの h2 を3回ずつ出す（Backlog トップ）。
@@ -105,3 +123,6 @@
 - 年払いの切り替えを一番安いプランのカードの中にだけ置き、ほかのプランの月払いの値を出さない。札「SAVE 20%」は実際 18.2%。トグルは div に tabindex だけ（Plain）。
 - 料金のカードを読み込んだ後にブラウザで入れ替え、8回中3回だけ「MOST POPULAR」の札が出る（Plain）。
 - 試すフォームの欄にラベルが無く placeholder だけ。機能の説明の灰 2.99:1、明るい緑のリンク 1.97:1。同意の帯を押す前に解析の cookie を書く。自社のチャット 1,297KB を docs まで全ページで読む（Plain）。
+- 事例の一覧のカードを GIF にし、表示 310×413 に 1080×1440 の 148,168KB ほか、4枚で 268,465KB（ページ 273.45MB）。lazy でも最初の2画面にあるので効かない（Ramp）。
+- 年払いを「Save 20% with annual billing」の一文だけにし、年払いの値も基本料の額も出さない。料金のカードの箇条の順が開くたびに変わる（Ramp）。
+- SP の比較表を幅 540px の横スクロールに、事例の数字の壁を縮めて説明 7.71px に。動画3本と数字の帯が reduce でも動く。同じ wasm 1,771KB を2回、SP 用の動画も PC で読む（Ramp）。
