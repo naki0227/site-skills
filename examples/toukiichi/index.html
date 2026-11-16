@@ -22,8 +22,8 @@
   - 小さな手がかりは1つ：のぼり（最初の画面の「第三十八回」の縦の旗と、章の題の左の竿）。
 */
 :root{
-  --paper:#fff; --kinari:#f1e8d8; --kaiyu:#f1dccb; --sumi:#2a1a12; --rule:#d9cbb8; --mute:#4b4a5c; --pale:#f1e6d6;
-  --ai:#4a2a1c; --tsuchi:#2f5d45; --oribe:#2f5d45; --shu:#9a3b1e; --shino:#f1e8d8;
+  --paper:#fff; --kinari:#ebe4d6; --kaiyu:#f1dccb; --sumi:#2a1a12; --rule:#d9cbb8; --mute:#4b4a5c; --pale:#f1e6d6;
+  --ai:#4a3426; --tsuchi:#465c40; --oribe:#465c40; --shu:#9a3b1e; --shino:#ebe4d6;
   --fude:"Yuji Boku","Shippori Mincho B1",serif;
   --ease:cubic-bezier(.25,.46,.45,.94); --t1:.1s; --t2:.2s; --t3:.4s;
   --mincho:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif;
@@ -257,14 +257,13 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
   *,*::before,*::after{transition-duration:0s!important;animation:none!important}
 }
 
-/* 最初の画面（2026-11-07 二度目）：雰囲気は窯の町の陶器市の世界から。織部の緑を1色に塗った地に、のぼりの筆の字で縦に大きく「瀬戸ノ口 陶器市」。
-   その前に、鉄釉の茶→志野の白の2色に置き換えて切り抜いた美濃焼4つ。飾りは窯の印（陶印）の丸1つで「三十八」。日本語は名前・日付・行き方だけ。
-   3色：織部の緑 #2f5d45（地）・志野の白 #f1e8d8（名前・器の光）・鉄釉の茶 #4a2a1c（器の影・印の字・ボタン）。 */
+/* 最初の画面（2026-11-16）：器は切り抜いただけで写真の元の色のまま（志野の白・織部の緑・鉄絵の色）。地・名前・印の色は器から取った：
+   地 #465c40（織部角鉢の緑 #344230 より少し明るくして器と分ける）・名前 #ebe4d6（志野の白）・印とボタンの字 #4a3426（鉄絵の茶）。 */
 .hero{position:relative;background:var(--tsuchi);color:var(--kinari);overflow:hidden;height:clamp(600px,calc(100svh - 100px),860px)}
 .hero .name{position:absolute;right:9%;top:5%;margin:0;writing-mode:vertical-rl;font:400 clamp(80px,9.6vw,140px)/1.12 var(--fude);letter-spacing:.04em;color:var(--kinari)}
 .hero .name span{display:block}
 .hero .name .l2{margin-top:1.1em}
-.ware{position:absolute;height:auto;filter:drop-shadow(0 16px 20px rgba(20,30,22,.35))}
+.ware{position:absolute;height:auto;filter:drop-shadow(0 16px 20px rgba(20,26,18,.4))}
 .w-ozara{width:38%;left:6%;bottom:-14%;transform:rotate(-7deg)}
 .w-chawan{width:30%;left:41%;bottom:-17%}
 .w-oribe{width:15%;left:44%;top:14%;transform:rotate(10deg)}
@@ -318,9 +317,9 @@ dialog.skills::backdrop{background:rgba(26,23,20,.5)}
       <img class="ware w-muko" src="photos/cut-mukouzuke.webp" width="900" height="445" alt="">
       <img class="ware w-ozara" src="photos/cut-ozara.webp" width="900" height="740" alt="">
       <img class="ware w-chawan" src="photos/cut-chawan.webp" width="900" height="781" alt="">
-      <svg class="inn" viewBox="0 0 120 120" role="img" aria-label="第三十八回"><circle cx="60" cy="60" r="56" fill="#f1e8d8"/><circle cx="60" cy="60" r="47" fill="none" stroke="#4a2a1c" stroke-width="3"/><text x="60" y="56" text-anchor="middle" font-family="Yuji Boku, serif" font-size="25" fill="#4a2a1c">三十八</text><text x="60" y="84" text-anchor="middle" font-family="Yuji Boku, serif" font-size="22" fill="#4a2a1c">回</text></svg>
+      <svg class="inn" viewBox="0 0 120 120" role="img" aria-label="第三十八回"><circle cx="60" cy="60" r="56" fill="#ebe4d6"/><circle cx="60" cy="60" r="47" fill="none" stroke="#4a3426" stroke-width="3"/><text x="60" y="56" text-anchor="middle" font-family="Yuji Boku, serif" font-size="25" fill="#4a3426">三十八</text><text x="60" y="84" text-anchor="middle" font-family="Yuji Boku, serif" font-size="22" fill="#4a3426">回</text></svg>
     </div>
-    <p class="credit">器：美濃焼4点の写真（Daderot・Wmpearl, CC0 1.0／<a href="https://commons.wikimedia.org/w/index.php?curid=31408730">Wikimedia Commons</a>）を切り抜いて鉄釉の茶と志野の白に色を変えた</p>
+    <p class="credit">器：美濃焼4点の写真（Daderot・Wmpearl, CC0 1.0／<a href="https://commons.wikimedia.org/w/index.php?curid=31408730">Wikimedia Commons</a>）を切り抜いた（色は元の写真のまま）</p>
   </section>
 
   <div class="wrap">
@@ -604,7 +603,7 @@ var FROM={
 };
 
 var SKILLS=[
- ['最初の画面','site-skills／aesthetic.md「最初の画面の作り方の方向」（2026-11-07）','aesthetic.md「雰囲気は題材の世界から取る」：織部の緑の1色の地に、のぼりの筆の字（Yuji Boku）で縦に大きく「瀬戸ノ口 陶器市」、その前に美濃焼4つ（手で輪郭を打って grabCut で切り抜き、鉄釉の茶→志野の白の2色に）を大きさを変えて重ねる。飾りは窯の印の丸「三十八回」1つ'],
+ ['最初の画面','site-skills／aesthetic.md「最初の画面の作り方の方向」（2026-11-07）','aesthetic.md「雰囲気は題材の世界から取る」：織部の緑の1色の地に、のぼりの筆の字（Yuji Boku）で縦に大きく「瀬戸ノ口 陶器市」、その前に美濃焼4つ（手で輪郭を打って grabCut で切り抜いた。色は元の写真のまま）を大きさを変えて重ねる。飾りは窯の印の丸「三十八回」1つ'],
  ['題の書体と太さ','site-skills／aesthetic.md「業種の手本を先に測る」','手本23件のいちばん大きい字は中央値 39.5px・太さ 400（80px 以上が5件）。題は 80px・太さ 500（Shippori Mincho B1）を墨色で。明朝はリュウミン・筑紫明朝・つくしA を使う手本がある'],
  ['本文','site-skills／手本23件の中央値','Noto Sans JP（Web フォントでいちばん多い）400・16px・行間 1.75。本文の色は #000 が10件なので黒に近い <code>#1a1714</code>'],
  ['文字の左端と余白','site-skills／手本23件の中央値','文字の左端 261px → 本文の幅 1000px。何も無い帯 72px（上位1割 199px）→ 章の間 120px'],
