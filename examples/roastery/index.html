@@ -73,16 +73,18 @@ body:not(.detail) .crumb{display:none}
 /* 最初の画面：焙煎機から豆を出す写真を暗くして全面に敷き、題を重ねる（ai-tells 見比べ第3回・aesthetic 4） */
 /* 最初の画面：幾何学の平らな絵のポスター（aesthetic「最初の画面の作り方の方向」、2026-11-07）。
    題材の特色：月・水・金に5kgの釜で焼く焙煎所。→ 色は3つだけ：月明かりと焙煎途中の豆の琥珀（地）・深煎りの焦げ茶（字と釜）・火の朱（月と星と手書き）。
-   主役は焙煎機1台を、丸・台形・半円だけの平らな絵で。画面幅いっぱいの英字の名前の下半分に重ね、下の端からはみ出させる。
+   主役は焙煎機1台を、丸・台形・半円だけの平らな絵で、画面の右に大きく、下の端からはみ出させる。名前は左上に手で描いた字で中くらいに（第10回）。
    日本語は名前と場所だけを右端に縦書きで小さく。次の焙煎は英字の1行。 */
 .poster{position:relative;height:calc(100vh - 72px);height:calc(100svh - 72px);min-height:640px;max-height:980px;background:var(--amber);color:var(--ink);overflow:hidden}
 .poster .rule{position:absolute;left:15px;right:15px;top:20px;height:2px;background:var(--ink)}
-.poster h1{position:absolute;left:0;right:0;top:34px;margin:0;text-align:center;font:700 clamp(78px,17.4vw,268px)/.86 "Fraunces",serif;font-variation-settings:"opsz" 144;letter-spacing:-.025em;color:var(--ink)}
-.roaster{position:absolute;right:2%;bottom:-86px;width:min(50vw,700px);height:auto}
-.moon{position:absolute;left:5%;top:38%;width:clamp(150px,20vw,300px);transform:rotate(-18deg)}
+/* 名前は手で描いた字を、画面の中ほどの大きさで左上に（第10回：名前をいちばん大きくしない。いちばん大きいのは焙煎機の絵） */
+.poster h1{position:absolute;left:4%;top:44px;margin:0;width:min(38vw,540px);font-size:96px;line-height:1.4}
+.poster h1 .mark{display:block;width:100%;height:auto}
+.roaster{position:absolute;right:1%;bottom:-70px;width:min(60vw,860px);height:auto}
+.moon{position:absolute;left:4%;top:36%;width:clamp(150px,20vw,300px);transform:rotate(-18deg)}
 .poster h1 .vh{font-size:16px}
 .next{z-index:2}
-.script{position:absolute;left:12%;top:52%;margin:0;font:700 clamp(40px,4.5vw,68px)/1 "Caveat",cursive;color:var(--stamp);transform:rotate(-5deg)}
+.script{position:absolute;left:6%;top:56%;margin:0;font:700 clamp(40px,4.5vw,68px)/1 "Caveat",cursive;color:var(--stamp);transform:rotate(-5deg)}
 .star{position:absolute;left:33%;top:64%;width:clamp(110px,12vw,176px);transform:rotate(12deg)}
 .star text{font:700 34px "Fraunces",serif;fill:var(--amber)}
 .next{position:absolute;left:4%;bottom:44px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
@@ -316,7 +318,7 @@ dialog[open]{animation:pop .2s var(--ease)}
   .buy{position:static}
 }
 @media (min-width:861px) and (max-height:800px){
-  .roaster{width:min(46vw,640px);bottom:-150px}
+  .roaster{width:min(56vw,780px);bottom:-150px}
 }
 @media (max-width:860px){
   .roaster{width:62vw;right:2%}
@@ -324,14 +326,14 @@ dialog[open]{animation:pop .2s var(--ease)}
 }
 @media (max-width:600px){
   .poster{min-height:600px}
-  .poster h1{top:30px}
-  .roaster{width:86vw;right:-8vw;bottom:118px}
+  .poster h1{top:30px;left:15px;width:72vw}
+  .roaster{width:100vw;right:-12vw;bottom:112px}
   .moon{left:2%;top:30%;width:120px}
   .script{top:22%;left:5%;font-size:38px}
-  .star{left:40%;right:auto;top:39%;width:76px}
+  .star{left:38%;right:auto;top:30%;width:72px}
   .tate{top:140px;font-size:14px}
   .next{left:15px;right:15px;bottom:20px;gap:12px}
-  .next p{font-size:22px}
+  .next p{font-size:24px}
   .next a{width:100%;justify-content:center}
   .hd .wrap{height:54px;gap:10px}
   .hd nav{display:none}
@@ -612,6 +614,8 @@ var ROASTER = '<svg class="roaster" viewBox="0 0 700 760" aria-hidden="true">'+
   '<g fill="#d2402a"><rect x="236" y="560" width="8" height="80"/><rect x="120" y="636" width="240" height="8" transform="rotate(12 240 640)"/><circle cx="240" cy="640" r="14"/></g>'+
   '<rect x="40" y="700" width="400" height="22" fill="#2b1a14"/>'+
   '</svg>';
+// 店の名前の字：小文字の mikazuki を、芯の線を手で引いて描いた（太い線と少しずらした細い線を重ねて、線の太さを揺らす）。i の点は豆と三日月。書体は使わない
+var MARK = '<svg class="mark" viewBox="0 0 662 230" role="img" aria-label="三日月珈琲（mikazuki）"><path d="M 19.7 88.4 L 22.5 185.8" fill="none" stroke="#2b1a14" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M 22.3 91.0 L 25.1 188.4" fill="none" stroke="#2b1a14" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M 20.0 116.5 C 22.1 90.1 56.8 85.8 58.6 110.8 L 58.5 187.9" fill="none" stroke="#2b1a14" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M 22.6 119.1 C 24.7 92.7 59.4 88.4 61.2 113.4 L 61.1 190.5" fill="none" stroke="#2b1a14" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M 62.2 113.3 C 68.9 92.8 98.9 84.7 100.9 109.1 L 103.2 183.4" fill="none" stroke="#2b1a14" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M 64.8 115.9 C 71.5 95.4 101.5 87.3 103.5 111.7 L 105.8 186.0" fill="none" stroke="#2b1a14" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M 136.1 88.5 L 133.2 185.8" fill="none" stroke="#2b1a14" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M 138.7 91.1 L 135.8 188.4" fill="none" stroke="#2b1a14" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><g transform="rotate(-28 138 50)"><ellipse cx="138" cy="50" rx="16" ry="22" fill="#2b1a14"/><path d="M137 35 C144 46 132 54 139 65" fill="none" stroke="#e8a93a" stroke-width="3" stroke-linecap="round"/></g><path d="M 179.6 22.1 L 182.1 186.8" fill="none" stroke="#2b1a14" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M 182.2 24.7 L 184.7 189.4" fill="none" stroke="#2b1a14" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M 230.0 87.0 C 209.7 108.7 197.0 129.0 185.0 145.2" fill="none" stroke="#2b1a14" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M 232.6 89.6 C 212.3 111.3 199.6 131.6 187.6 147.8" fill="none" stroke="#2b1a14" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M 196.9 130.4 C 208.7 149.4 223.6 169.4 238.1 185.3" fill="none" stroke="#2b1a14" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M 199.5 133.0 C 211.3 152.0 226.2 172.0 240.7 187.9" fill="none" stroke="#2b1a14" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M 316.7 120.1 C 307.0 88.3 272.5 87.8 270.9 139.4 C 263.4 182.8 309.7 188.6 313.5 149.0" fill="none" stroke="#2b1a14" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M 319.3 122.7 C 309.6 90.9 275.1 90.4 273.5 142.0 C 266.0 185.4 312.3 191.2 316.1 151.6" fill="none" stroke="#2b1a14" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M 320.8 91.5 C 313.7 124.5 313.6 153.4 325.8 184.1" fill="none" stroke="#2b1a14" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M 323.4 94.1 C 316.3 127.1 316.2 156.0 328.4 186.7" fill="none" stroke="#2b1a14" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M 354.4 89.7 C 370.1 87.4 387.8 88.9 403.7 87.5" fill="none" stroke="#2b1a14" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M 357.0 92.3 C 372.7 90.0 390.4 91.5 406.3 90.1" fill="none" stroke="#2b1a14" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M 404.3 86.6 C 390.8 121.8 368.8 154.3 352.3 183.4" fill="none" stroke="#2b1a14" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M 406.9 89.2 C 393.4 124.4 371.4 156.9 354.9 186.0" fill="none" stroke="#2b1a14" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M 356.1 184.9 C 369.6 184.9 390.3 182.5 411.6 181.0" fill="none" stroke="#2b1a14" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M 358.7 187.5 C 372.2 187.5 392.9 185.1 414.2 183.6" fill="none" stroke="#2b1a14" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M 434.8 85.4 C 431.5 136.5 436.5 182.6 461.2 183.7 C 484.8 185.9 488.4 158.2 486.1 113.9" fill="none" stroke="#2b1a14" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M 437.4 88.0 C 434.1 139.1 439.1 185.2 463.8 186.3 C 487.4 188.5 491.0 160.8 488.7 116.5" fill="none" stroke="#2b1a14" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M 490.5 89.9 C 486.5 124.1 491.4 160.6 494.2 188.7" fill="none" stroke="#2b1a14" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M 493.1 92.5 C 489.1 126.7 494.0 163.2 496.8 191.3" fill="none" stroke="#2b1a14" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M 526.3 20.6 L 525.5 183.6" fill="none" stroke="#2b1a14" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M 528.9 23.2 L 528.1 186.2" fill="none" stroke="#2b1a14" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M 571.2 88.8 C 552.4 111.2 536.5 127.9 527.6 142.8" fill="none" stroke="#2b1a14" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M 573.8 91.4 C 555.0 113.8 539.1 130.5 530.2 145.4" fill="none" stroke="#2b1a14" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M 540.1 133.3 C 551.4 150.4 566.4 172.1 580.7 184.7" fill="none" stroke="#2b1a14" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M 542.7 135.9 C 554.0 153.0 569.0 174.7 583.3 187.3" fill="none" stroke="#2b1a14" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M 612.5 88.2 L 605.1 184.6" fill="none" stroke="#2b1a14" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M 615.1 90.8 L 607.7 187.2" fill="none" stroke="#2b1a14" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M618 18 C576 26 578 78 624 76 C598 62 598 32 618 18Z" fill="#d2402a"/></svg>';
 // 左の大きな三日月（店の名前から。焙煎機と左右でつり合う重さに）
 var MOON = '<svg class="moon" viewBox="0 0 300 300" aria-hidden="true"><mask id="moonm"><rect width="300" height="300" fill="#fff"/><circle cx="196" cy="118" r="128" fill="#000"/></mask><circle cx="150" cy="150" r="140" fill="#d2402a" mask="url(#moonm)"/></svg>';
 var STAR = '<svg class="star" viewBox="0 0 200 200" aria-hidden="true"><polygon points="100,6 121,62 180,40 150,94 196,130 136,140 132,198 100,150 68,198 64,140 4,130 50,94 20,40 79,62" fill="#d2402a"/><text x="100" y="114" text-anchor="middle">5kg</text></svg>';
@@ -631,12 +635,12 @@ function renderList(){
   var chip = function(group,v,l){return '<button type="button" class="chip" data-'+group+'="'+v+'" aria-pressed="'+(state[group]===v)+'">'+l+'</button>'};
   $("#main").innerHTML =
    '<section class="poster" aria-labelledby="h-shop"><span class="rule" aria-hidden="true"></span>'+
-     '<h1 id="h-shop"><span lang="en">MIKAZUKI</span><span class="vh">三日月珈琲</span></h1>'+
+     '<h1 id="h-shop">'+MARK+'<span class="vh">三日月珈琲</span></h1>'+
      MOON+ROASTER+
      '<p class="script" lang="en">roasted Mon · Wed · Fri</p>'+
      STAR+
      '<p class="tate">三日月珈琲　福岡・薬院</p>'+
-     '<div class="next"><p lang="en">NEXT ROAST — '+["SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY"][days[0].d.getDay()]+'</p><a href="#next">豆を選ぶ</a></div>'+
+     '<div class="next"><p lang="en">NEXT ROAST — '+["SUN","MON","TUE","WED","THU","FRI","SAT"][days[0].d.getDay()]+'</p><a href="#next">豆を選ぶ</a></div>'+
    '</section>'+
    '<div class="wrap">'+
    '<div class="lead" id="next"><h2>次の焙煎</h2><p>福岡・薬院の焙煎所です。豆は焼く曜日が決まっていて、焼いた翌日に発送します。<br>この回の釜に入れる豆を選べます。ほかの豆は、下の一覧からどうぞ。</p></div>'+
@@ -967,7 +971,7 @@ $("#shipTable tbody").innerHTML = REGIONS.map(function(x){return '<tr><th>'+x.nm
 /* 使ったスキル */
 var SK = [
  ["選び方","site-skills の表で「商品を探して買ってもらう」→ 主 ec-quality-bar。雰囲気のために副 lp-quality-bar。仕上げに site-skills の references/ai-tells.md を全部当てはめて作り直した。"],
- ["英字の名前と主役","画面幅いっぱいの英字の名前「MIKAZUKI」（Fraunces 700）を後ろに、焙煎機の絵をその下半分に重ねて下の端からはみ出させる。飾りは手書きの英字（Caveat）と星形の「5kg」（釜の大きさ）の2つ。日本語は右端の縦書きの名前と場所だけ、次の焙煎は英字の1行。"],
+ ["名前と主役","名前「mikazuki」は書体で組まず、自分で引いた線（SVG のパス）で手描きの字にした。線の太さを揺らし、i の点の1つを豆、もう1つを朱の三日月に。大きさは画面の中くらいで左上に置き、いちばん大きいのは右の焙煎機の絵（aesthetic「本物か作例か 第10回」：名前をいちばん大きくしなくてよい）。飾りは手書きの英字（Caveat）と星形の「5kg」（釜の大きさ）の2つ。日本語は右端の縦書きの名前と場所だけ。"],
  ["次の焙煎（黒板）","題材でしか成り立たない部品（ai-tells「最後の問い」）。最初の画面の主役は、いちばん近い焙煎日・5kg 釜の空き・地域への着日と「この回の釜に入れる」だけ（ai-tells「情報の密度：1画面に主役を1つ」）。ほかの焙煎日は「ほかの焙煎日 2回分を見る」で開く。型はスキルに無く自分で決めた。"],
  ["この回の釜に入れる","最初の画面の本物のボタン（site-skills critique.md：最初の画面に主な行動のボタン）。黒板のいちばん近い焙煎日の行で豆を選び、200g・中挽きでそのままかごへ（容量と挽き方は、かごに入った後でなく詳細で変えられる）。型はスキルに無く自分で決めた。"],
  ["スマホ","絞り込みは「絞り込み・並べ替え」の1つのボタンにたたむ（Allbirds の SP：全画面のフォームで適用）。黒板の下に商品が見える。"],
