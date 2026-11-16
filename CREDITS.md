@@ -25,6 +25,7 @@
 | `machikoba-recruit` | `photos/shaft-cutout.webp` | Raemnadelschaft（旋盤で削った軸を手で囲って切り抜き、水平に回して青焼きの2色に変え、左端を破断線で切った） | Dirk Gräfe | CC BY-SA 3.0 | https://commons.wikimedia.org/w/index.php?curid=4201886 |
 | `machikoba-recruit` | `photos/vernier.jpg` | Vernier calipers (2) | Al Riaz Uddin Ripon | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=130406704 |
 | `sento` | `photos/Shoes-boxes-at-a-Sento---Tokyo-area---Dec-22-2021.jpg` | Shoes boxes at a Sento - Tokyo area - Dec 22 2021 | Nesnad | CC BY 4.0 | https://commons.wikimedia.org/w/index.php?curid=113582446 |
-| `sento` | `photos/noren-yu-duotone.webp` | Noren at a sento by udono in Yoyogi, Tokyo（切り抜いて藍と生成りの2色に変えた） | udono from Public bath h | CC BY 2.0 | https://commons.wikimedia.org/w/index.php?curid=2798594 |
+| `sento` | `photos/bath-tall.webp` | Kodakara Badehaus (Innenansicht)（同じ写真の右を縦長に切った。色は変えていない） | Zluhcs | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=88900691 |
+| `sento` | `photos/bath-wide.webp` | Kodakara Badehaus (Innenansicht)（江戸東京たてもの園の子宝湯。上を横長に切った。色は変えていない） | Zluhcs | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=88900691 |
 | `toukiichi` | `photos/Noborigama-Tokoname-01.jpg` | Noborigama Tokoname 01 | Gryffindor | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=63887246 |
 | `toukiichi` | `photos/cut-chawan.webp` | Tea Bowl known as 'Furisode', Mino ware, Shino type, Azuchi-Momoyama to Edo period, 16th-17th century - Tokyo National Museum - DSC05893（切り抜いた。色は元のまま） | Daderot | CC0 1.0 | https://commons.wikimedia.org/w/index.php?curid=31408730 |
