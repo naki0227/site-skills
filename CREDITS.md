@@ -15,7 +15,9 @@
 ## 写真
 | 使用例 | ファイル | 題 | 作者 | ライセンス | 元のページ |
 |---|---|---|---|---|---|
-| `gakudo-app` | `photos/okaeri-kids-cutout.webp` | Randoseru-red-walkinggirls-feb14-2019（2人を切り抜き、少し明るくした） | Nesnad | CC BY 4.0 | https://commons.wikimedia.org/w/index.php?curid=76556868 |
+| `gakudo-app` | `photos/okaeri-hats.webp` | Schoolkids wearing hats and randoseru in Kugayama, Japan; January 2010（明るさを整えた） | Mr. Brian | CC BY 2.0 | https://commons.wikimedia.org/w/index.php?curid=45335693 |
+| `gakudo-app` | `photos/okaeri-park.webp` | Shimizuhigashi children's playground, Meguro, Tokyo, 2014（一部を切り取り、明るさを整えた） | Kentin | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=34086240 |
+| `gakudo-app` | `photos/okaeri-walk.webp` | Randoseru-red-walkinggirls-feb14-2019（一部を正方形に切り取り、明るさを整えた） | Nesnad | CC BY 4.0 | https://commons.wikimedia.org/w/index.php?curid=76556868 |
 | `machikoba-recruit` | `photos/five-axis.jpg` | SMTCL VMC0656e 5-axis machining center 20260331123404 | TurnOnTheNight | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=190307528 |
 | `machikoba-recruit` | `photos/flywheel-lathe.jpg` | Metal lathe used to produce flywheels | Work With Sounds | CC BY-SA 4.0 | https://commons.wikimedia.org/w/index.php?curid=38217955 |
 | `machikoba-recruit` | `photos/lathe-chuck.jpg` | Lathe Chuck | Andrew Magill from Boulder, USA | CC BY 2.0 | https://commons.wikimedia.org/w/index.php?curid=2977616 |
