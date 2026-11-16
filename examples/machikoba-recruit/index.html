@@ -82,10 +82,9 @@ button,input,select,textarea{font:inherit;color:inherit}
 .spmenu li a{display:block;padding:16px 0;border-bottom:1px solid var(--rule-l);text-decoration:none;font-size:var(--t3);font-weight:700}
 @media (max-width:959px){ .gnav,.hd .go{display:none} .burger{display:block} }
 
-/* ── 最初の画面（2026-11-07「雰囲気は題材の世界から取る」）：町工場がもともと持っている図面の世界で組む。
-   青焼きの青の方眼に白い線、輪郭線の枠。社名「河内精機」を製図の字（M PLUS 1 Code）で大きく、寸法線で押さえる。
-   主役は旋盤で削った軸1本（よその部品の写真を手で囲って切り抜き、青焼きの2色に）。寸法・中心線・公差は図面の書き方のまま。
-   赤ペンの朱は検図の丸と OK だけ。日本語は表題欄と注記に小さく */
+/* ── 最初の画面（2026-11-16「本物か作例か 第10回」）：青焼きの図面はそのまま、削った軸1本を画面の主役に大きく。
+   社名は大きな字にせず、図面の表題欄に入る字として小さく。定規で引いた寸法線・中心線（白）に、
+   検図の赤ペン（揺れのある SVG の線と手書きの字）を書き足す。募集の一言は赤ペンの書き込みと表題欄で短く */
 .hero{position:relative;height:max(660px,100svh);padding:0;color:#fff;overflow:hidden;
   background-color:var(--bp);
   background-image:linear-gradient(rgba(255,255,255,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.16) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);
@@ -93,34 +92,37 @@ button,input,select,textarea{font:inherit;color:inherit}
 .hero .frame{position:absolute;inset:96px 16px 16px;border:2px solid rgba(255,255,255,.9);pointer-events:none}
 .hero .frame::before{content:"";position:absolute;inset:6px;border:1px solid rgba(255,255,255,.5)}
 .hero .zone{position:absolute;font-family:var(--code);font-size:13px;line-height:1;color:rgba(255,255,255,.85)}
-.hero .name{position:absolute;left:clamp(40px,5vw,80px);top:128px;width:min(60vw,calc((100svh - 80px) * 1.25),900px);margin:0}
-.hero .name svg{display:block;width:100%;height:auto;overflow:visible}
-.hero .part{--w:min(54vw,calc(100svh * .9),820px);position:absolute;right:calc(var(--w) * .16 + 24px);top:calc(108px + min(60vw,calc((100svh - 80px) * 1.25),900px) * .27);width:var(--w);margin:0}
+.hero .part{--w:min(78vw,calc((100svh - 80px) * 1.12),1160px);position:absolute;left:clamp(24px,3vw,48px);top:calc(80px + (100svh - 80px) * .3);width:var(--w);margin:0}
 .hero .part img{display:block;width:100%;height:auto}
 .hero .part svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-.hero .part text{font-size:24px}
-.hero .part .ok{font-size:36px}
-.hero .endview{position:absolute;right:max(200px,14vw);bottom:64px;width:clamp(120px,11vw,170px);height:auto}
-.hero .tb{position:absolute;left:40px;bottom:40px;width:min(440px,32vw);border-collapse:collapse;font-size:13px;line-height:1.4;background:var(--bp)}
-.hero .tb th,.hero .tb td{border:1px solid rgba(255,255,255,.9);padding:6px 10px;text-align:left;vertical-align:middle}
-.hero .tb th{width:5.6em;font-weight:500;color:rgba(255,255,255,.85);font-size:13px;letter-spacing:.06em;white-space:nowrap}
+.hero .part text{font-size:22px}
+.hero .part .pen{font-family:var(--hand);font-weight:600;fill:var(--shu);font-size:34px}
+.hero .part .pen-s{font-size:40px}
+.hero .part .pen-sp{display:none}
+.hero .tb{position:absolute;right:40px;bottom:40px;width:min(400px,30vw);border-collapse:collapse;font-size:13px;line-height:1.4;background:var(--bp)}
+.hero .endview{display:none}
+.hero .tb th,.hero .tb td{border:1px solid rgba(255,255,255,.9);padding:5px 10px;text-align:left;vertical-align:middle}
+.hero .tb th{width:5.4em;font-weight:500;color:rgba(255,255,255,.85);font-size:13px;letter-spacing:.06em;white-space:nowrap}
 .hero .tb td{font-family:var(--code);font-weight:500}
-.hero .tb h1{margin:0;font-family:var(--code);font-size:17px;font-weight:700;line-height:1.4;letter-spacing:.04em}
+.hero .tb h1{margin:0;font-family:var(--code);font-size:16px;font-weight:700;line-height:1.4;letter-spacing:.04em}
 .hero .tb a{color:#fff;text-decoration-color:var(--shu);text-decoration-thickness:2px;text-underline-offset:3px;font-weight:700}
 .hero .tb .sm{display:block;font-family:var(--sans);font-size:13px;color:rgba(255,255,255,.85)}
 .hero .tb .note{font-family:var(--sans);font-weight:400;font-size:13px;line-height:1.55}
 .hero .tb .note a{font-weight:400;text-decoration-color:currentColor;text-decoration-thickness:1px}
 @media (max-width:959px){
   .hero{height:auto;min-height:100svh;padding:0 0 36px;display:flex;flex-direction:column}
-  .hero .tb{margin-top:auto!important}
-  .hero .endview{position:relative;right:auto;bottom:auto;width:132px;margin:40px auto 0}
   .hero .frame{inset:92px 8px 8px}
   .hero .zone{display:none}
-  .hero .name{position:relative;left:auto;top:auto;width:auto;margin:124px 24px 0}
-  .hero .part{--w:calc(100vw - 92px);position:relative;right:auto;top:auto;margin:56px 0 0 20px}
-  .hero .part text{font-size:46px}
-  .hero .part .ok{font-size:64px}
-  .hero .tb{position:relative;left:auto;bottom:auto;width:calc(100% - 40px);margin:92px 20px 0}
+  .hero .part{--w:calc(100vw - 64px);position:relative;left:auto;top:auto;margin:auto 0 0 16px}
+  .hero .part{margin-top:auto;top:0}
+  .hero .part{margin-top:240px}
+  .hero .endview{display:block;width:120px;margin:96px auto auto}
+  .hero .part text{font-size:44px}
+  .hero .part .pen{font-size:60px}
+  .hero .part .pen-s{font-size:72px}
+  .hero .part .pen-sp{display:inline}
+  .hero .part .pen-pc{display:none}
+  .hero .tb{position:relative;right:auto;bottom:auto;width:calc(100% - 40px);margin:0 20px}
 }
 
 /* ── 章の頭：題はそのまま書く。太いゴシック＋リード */
@@ -386,18 +388,12 @@ dialog.skills::backdrop{background:rgba(31,45,74,.6)}
 <main id="main">
 <section class="hero" id="top" aria-labelledby="h1">
   <div class="frame" aria-hidden="true"><span class="zone" style="left:24%;top:-20px">1</span><span class="zone" style="left:49%;top:-20px">2</span><span class="zone" style="left:74%;top:-20px">3</span><span class="zone" style="left:-14px;top:30%">A</span><span class="zone" style="left:-14px;top:70%">B</span></div>
-  <p class="name" aria-hidden="true"><svg viewBox="0 0 980 270" font-family="'M PLUS 1 Code',monospace">
-    <g stroke="#fff" stroke-width="1.6" fill="none"><path d="M6 18V56M974 18V56"/><path d="M6 34H974"/></g>
-    <path d="M6 34l16-5v10zM974 34l-16-5v10z" fill="#fff"/>
-    <text x="490" y="26" text-anchor="middle" font-size="22" font-weight="500" fill="#fff" style="paint-order:stroke" stroke="var(--bp)" stroke-width="12">創業 1965</text>
-    <text x="0" y="262" font-size="243" font-weight="500" fill="#fff" textLength="980" lengthAdjust="spacingAndGlyphs">河内精機</text>
-  </svg></p>
   <figure class="part">
-    <img src="photos/shaft-cutout.webp" width="1040" height="376" alt="旋盤で削った鋼の軸。段の付いた丸い部品で、真ん中にローレット（すべり止めの刻み）がある（よその部品の写真を切り抜いて、青焼きの色にしたもの）" fetchpriority="high">
+    <img src="photos/shaft-cutout.webp" width="1560" height="564" alt="旋盤で削った鋼の軸。段の付いた丸い部品で、真ん中にローレット（すべり止めの刻み）がある（よその部品の写真を切り抜いて、青焼きの色にしたもの）" fetchpriority="high">
     <svg viewBox="0 0 1040 376" aria-hidden="true" font-family="'M PLUS 1 Code',monospace" font-weight="500" fill="#fff">
-      <g stroke="#fff" stroke-width="1.6" fill="none">
+      <g stroke="#fff" stroke-width="1.4" fill="none">
         <polyline points="77.2,76 77.6,82 77.9,88 78.0,94 77.9,100 77.6,106 77.2,112 76.6,118 75.8,124 74.8,130 73.7,136 72.5,142 71.2,148 69.7,154 68.1,160 66.5,166 64.8,172 63.0,178 61.2,184 59.4,190 57.6,196 55.8,202 54.1,208 52.4,214 50.8,220 49.3,226 47.9,232 46.7,238 45.5,244 44.5,250 43.7,256 43.0,262 42.5,268 42.2,274 42.0,280 42.0,286 42.3,292 42.6,298 43.2,304 43.9,310 44.8,316 45.9,322 47.1,328 48.4,334 49.8,340 51.3,346 53.0,352"/>
-        <path d="M40 178H1100" stroke-dasharray="36 8 4 8" stroke-width="1.2"/>
+        <path d="M40 178H1100" stroke-dasharray="36 8 4 8" stroke-width="1.1"/>
         <path d="M520 30V-56M1040 150V-56M520 -38H1040"/>
         <path d="M790 1H1132M790 312H1132M1110 1V312"/>
         <path d="M262 340V446M520 330V446M262 428H520"/>
@@ -410,15 +406,21 @@ dialog.skills::backdrop{background:rgba(31,45,74,.6)}
       <text x="391" y="470" text-anchor="middle">18 ±0.05</text>
       <text x="1066" y="34">C1</text>
       <text x="72" y="394">ローレット 平目</text>
-      <ellipse cx="392" cy="461" rx="92" ry="30" fill="none" stroke="var(--shu)" stroke-width="3" transform="rotate(-4 392 461)"/>
-      <text x="500" y="488" font-family="'Klee One',cursive" font-weight="600" fill="var(--shu)" class="ok">OK</text>
+      <g stroke="var(--shu)" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M476.4 470.4 Q468.2 474.9 460.5 479.6 Q447.9 482.9 436.6 486.8 Q422.9 489.4 408.5 491.1 Q394.2 493.1 379.8 493.1 Q365.1 493.6 352.0 492.2 Q339.3 490.7 326.8 488.9 Q315.3 486.4 309.4 482.1 Q302.7 478.2 296.6 474.0 Q293.0 469.3 294.8 464.1 Q297.9 459.1 300.1 453.9 Q310.4 449.4 316.2 444.3 Q328.4 440.5 340.5 437.0 Q353.6 433.9 367.2 431.1 Q381.6 428.5 396.6 428.4 Q411.7 427.4 426.3 427.8 Q439.5 429.4 452.5 431.1 Q462.2 434.4 471.5 437.6 Q479.6 441.3 487.2 445.3 Q489.5 450.1 490.1 455.1 Q490.1 460.2 486.1 465.3 Q479.9 470.3 473.9 475.4 Q463.8 479.9 451.2 483.6 Q439.3 487.5 425.3 490.4"/>
+        <path d="M 516 452 Q 524 462 530 474 Q 548 440 572 418"/>
+        <path class="pen-pc" d="M701.1 -121.4 L687.4 -115.5 L674.9 -111.8 L664.7 -107.4 L652.0 -102.5 L640.5 -95.3 L624.2 -83.7 L607.5 -73.1 L592.3 -62.2 L575.9 -50.2 L561.2 -40.1 L544.5 -25.2 L528.6 -7.6 L513.4 8.9 L495.4 23.7 L480.0 40.0"/>
+        <path d="M 466 22 L 480 42 L 498 30"/>
+      </g>
+      <g class="pen-pc"><text x="704" y="-118" class="pen pen-s" transform="rotate(-3 704 -118)">これを削る人、2名募集</text></g>
+      <g class="pen-sp"><text x="20" y="-250" class="pen pen-s" transform="rotate(-3 20 -250)">これを削る人、</text><text x="80" y="-170" class="pen pen-s" transform="rotate(-3 80 -170)">2名募集</text><path d="M329.8 -149.7 L346.0 -138.2 L358.0 -125.6 L370.5 -113.9 L386.6 -100.6 L398.1 -90.9 L408.0 -76.5 L420.9 -68.2 L432.3 -51.8 L440.7 -41.4 L448.4 -32.3 L456.1 -18.9 L460.5 -4.8 L465.7 9.4 L473.7 24.4 L480.0 36.0" stroke="var(--shu)" stroke-width="3.4" fill="none" stroke-linecap="round"/></g>
     </svg>
   </figure>
   <svg class="endview" viewBox="-110 -110 220 220" aria-hidden="true"><g fill="none" stroke="#fff"><circle r="76" stroke-width="2"/><circle r="66" stroke-width="1.2"/><circle r="8" stroke-width="1.2"/><path d="M-104 0H104M0 -104V104" stroke-width="1" stroke-dasharray="24 6 3 6"/></g></svg>
   <table class="tb">
     <tr><th scope="row">図名</th><td colspan="3"><h1 id="h1">機械オペレーター　2名募集</h1></td></tr>
     <tr><th scope="row">工場見学</th><td colspan="3">毎週 水 16:00／土 10:00　<a href="#form">申し込む →</a><span class="sm">私服で大丈夫です</span></td></tr>
-    <tr><th scope="row">社名</th><td>河内精機</td><th scope="row">所在</th><td>東大阪</td></tr>
+    <tr><th scope="row">社名</th><td>株式会社 河内精機</td><th scope="row">尺度</th><td>1:1</td></tr>
     <tr><th scope="row">注記</th><td colspan="3" class="note">部品の写真：<a href="https://commons.wikimedia.org/w/index.php?curid=4201886" target="_blank" rel="noopener">Dirk Gräfe</a>／Wikimedia Commons／CC BY-SA 3.0。よその部品を切り抜いて、青焼きの色に変えた</td></tr>
   </table>
 </section>
@@ -786,10 +788,10 @@ dialog.skills::backdrop{background:rgba(31,45,74,.6)}
     ['作る前に決めること','site-skills','行動＝工場見学の申し込み（同じフォームで応募も可）。相手＝東大阪・八尾の10代後半〜20代（求人票・学校・Instagram から）。動かない理由＝暑い・きついの印象／未経験の不安／給料と休みが見えない。証拠＝給料・残業・休日・定着の実数、先輩の声、記録票と日報。'],
     ['手本の実測','site-skills SKILL.md 手順1・aesthetic.md','Web Design Clip の「採用」「コーポレート」から製造・建設・中小の44件を選び、開けた日本語の35件を sample.js で測った中央値：本文 16px・行間1.8・400、和文の題 37px・700、章の題 27px・700、文字の左端 208px、ヘッダー 87px、全幅の罫 0本、ボタンの角はまる。これに合わせた（README）。'],
     ['作り込み','site-skills・ai-tells（作り込みは1つ）','章の題の下の寸法線（両端に止めの線がある2pxの線）。図面の寸法の線から取った。'],
-    ['最初の画面','site-skills・aesthetic.md「雰囲気は題材の世界から取る」','町工場がもともと持っている図面で組む：青焼きの青の方眼に輪郭線の枠、社名「河内精機」を製図の字（M PLUS 1 Code）で大きく、寸法線（創業 1965）で押さえる。主役は旋盤で削った軸1本（よその部品の写真を手で囲って grabCut で切り抜き、水平に回して青焼きの2色に。左端は図面の破断線で切った）。寸法・中心線・C1・φ22 h7・ローレット、右に側面図の丸。赤ペンの朱は検図の丸と OK だけ。日本語は表題欄（図名＝機械オペレーター 2名募集・工場見学・社名・注記）に小さく。'],
+    ['最初の画面','site-skills・aesthetic.md「本物か作例か 第10回」・「雰囲気は題材の世界から取る」','青焼きの図面の上で、削った軸1本を画面の主役に大きく（よその部品の写真を手で囲って grabCut で切り抜き、水平に回して青焼きの2色に。左端は図面の破断線）。社名は大きな字にせず、表題欄に入る字として小さく。定規で引いた寸法線・中心線（白）に、検図の赤ペンを書き足す：揺れのある線の丸・チェック・矢印と、手書きの「これを削る人、2名募集」。'],
     ['最初の画面の行動','site-skills・ai-tells.md','ヘッダーの「工場見学を申し込む」と、表題欄の「申し込む →」（申し込み欄へ）。ボタンを2つ並べない。'],
         ['色','site-skills・aesthetic.md「雰囲気は題材の世界から取る」（2〜3色）','青焼きの青 #1d4f9c・図面の白・赤ペンの朱 #e0442a。下の章は地を白に近い紙のまま、字は紺 #12305f、工程の棒と検査印は朱。写真は白黒。'],
-    ['文字','site-skills・aesthetic.md「雰囲気は題材の世界から取る」／手本35件','社名・寸法・表題欄は製図の字に近い等幅のゴシック M PLUS 1 Code、赤ペンの OK は Klee One。本文は Noto Sans JP 16px・行間1.8・太さ400、章の題 28px・700（手本 27px・700）。'],
+    ['文字','site-skills・aesthetic.md「雰囲気は題材の世界から取る」／手本35件','寸法と表題欄は製図の字に近い等幅のゴシック M PLUS 1 Code、赤ペンの書き込みは Klee One。大きく置く字は無い（第10回：書体を大きく置くと作例に見えた）。本文は Noto Sans JP 16px・行間1.8・太さ400、章の題 28px・700（手本 27px・700）。'],
     ['検査記録票・作業日報','site-skills・ai-tells.md','「写真に頼らず見せられるもの（図面・表）を主役にする」。部品の図面は記録票の中に入れた。'],
     ['写真','site-skills・aesthetic.md「雰囲気は題材の世界から取る」','最初の画面の軸は Wikimedia Commons の写真（Dirk Gräfe、CC BY-SA 3.0）を切り抜いて色を変えたもの。仕事の章ははずみ車を削る旋盤、人の章は顔の写らない道具と機械を白黒で。どれも「よその工場」「よその部品」と出典を書いた。'],
     ['ヘッダー','corporate・startup.md／enterprise.md／手本35件','LayerX：ナビ5つ＋右端に採用の入口。Valmont：下へは隠し、上へ高さの半分戻すと出す。高さは手本の中央値 87px に寄せて 80px（戻すのは 40px）。'],
