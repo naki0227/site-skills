@@ -74,7 +74,20 @@ Astro＋Netlify。採用の募集は外の Ashby（2026-10-28 に 226件）。
 - **動き**：reduce は2つの utility だけ（トップで使う要素 0）。CSS の動きは reduce で止まるが、トップの Mux の動画は reduce でも autoplay。
 - **重さ（PC/SP、measure.js・タグ除く・最後まで送る）**：top 55.67/40.04MB、about 56.11/58.28、product 114.07/34.57（動画の断片 49,068KB）、careers 40.01/26.69、news 89.32/92.15（PNG 61,723KB）。送らずに8秒で top 19.31MB・news 37.60MB。画面に無い PNG 2枚（5,357KB・3,505KB）を全ページで preload。/careers の写真 7,008×4,672 を 536×359px（11,425KB）。inspect.js：トップ FAIL 0・WARN 21（コントラスト・文字の段 10・SP の本文 14px）。
 
-## 真似る型（LayerX・Mistral AI・Linear・Mercury・Runway の5つで確かめた）
+### Clay（https://www.clay.com/ 、2026-11-17 解剖。選んだ理由：ニューヨーク〔ブルックリン生まれ〕の営業データの会社。最初の画面を粘土の模型の写真〔Hudson Christie〕で組み、色を果物の名前の 11系統 102段のトークンで持つ。4つの柱に別々の3色の組、列の数で幅の替わるメガメニューと動く尾、月ごとの棒の年表、3都市の時計の拠点のタブ。事例集・受賞歴は確かめられなかった）
+見たページ：トップ・/about・/workflows（事業の代表）・/careers・/press（＋ /jobs・/blog・/contact・/demo）。
+- **ナビ（PC）**：白の帯 1,368×57px・下の角 24px・貼りつく。Product▾・Solutions▾・Resources▾・Company▾・Pricing、右に ⌘K・Log in 12.8px・Get a demo（#f3f2ed、角 12px）・Start free trial（黒）。板は列の数で幅が替わる（Product 4列 1,219px、Company 3列 約990px）、右に記事の札1枚。上辺の尾 25×9px が開いた項目の真下へ動く。ホバーでも押しても開き `aria-expanded`、Esc で閉じて押した項目へ戻る。押して 168ms・切り替え 110ms・+0KB。SP は ≡ で5行 → 中へ入る板と「Go back」。会社は Company▾ に About・Careers・Open roles・Blog・Contact・Press。
+- **トップの順番**：h1「Build systems to grow revenue」88px（SP 41.6px）・575・字間 -0.04em＋1文 24px＋ボタン2つ → 顧客のモザイク（ロゴ・数字・発言、「500,000」）→ 用途のタブ7つ → 入力欄 → 柱4つ → 営業担当 → 顧客の動画2本 → 学ぶ（催し・配信・地域の話・採用の札）→ 最後の行動。会社の紹介の文は無い。
+- **柱の色の組**：Data #001433/#395afa/#f0f8ff、Agents #381005/#b53d0a/#fff3ed、Orchestration #102b03/#808000/#fcfee2、Activation #46022f/#cc089e/#fff0fa。どれも札 12px 600 字間 3px → h3 48px（2行目だけ差し色）→ 本文 16px → 顧客の結果3つ → 差し色のボタンと白のボタン → 1,000px の webm。白字は #808000 だけ 4.20:1。
+- **信頼の材料**：Press に数字の札6枚（2列、数 52px＋1文：2017＋創業者2人とブルックリン・500+＋部署・500K +＋顧客7社・NYC, SF, LDN・GTM engineering・100+ Clay clubs）。About に月ごとの棒の年表（2017〜2027、1年12本、括弧 EXPLORING・BUILDING・OFFICIAL LAUNCH・$100M、Roobert mono 12px 字間 1.44px）、出資者6社と「$115M at a $7.1B valuation」。会社概要の表・代表の言葉は無い。
+- **採用への導線**：About の h1 の下の最初のボタンが「Explore open roles」（ライム #cbd810）、途中にも2回。トップの「Come and join us」の札、Company▾ の Careers・Open roles。Careers は原則2つ・6人の前職→いま・約100人の名前・拠点のタブ（時計 72px、押すと都市・その地の時刻・住所・1文）・福利9つ・選考4段（Intro call → 課題か追加の面談 → オンサイト 3〜5回 → リファレンス、増減ありと断る）。募集は /jobs の Ashby の埋め込み：62件・絞り込み4つ・部署の見出し、米国 50件に給与の幅、London 12件は無し。
+- **問い合わせ**：/contact はフォームなし（ログインして ? か support@ への1文）。営業は /demo の3段（名・姓・メール・電話の4欄が全部必須）。取材は Press の press@ とロゴの zip、ロゴを右クリックで「Copy logo to clipboard (png)」。
+- **ニュース**：Press は外の記事 19件（大きな札6＋行13）で日付 0、Podcast・Article の札だけ。自社の記事は Blog（1ページ100件・分類5つ、押すと分類のページへ移り PC 2,688ms・+2,086KB）。
+- **データ**：JSON-LD はトップ SoftwareApplication・AggregateRating・Organization など、About AboutPage・Organization、Careers WebPage・PostalAddress、Workflows と Press は WebSite だけ。BreadcrumbList 0・hreflang 0。トップの画像 262枚のうち alt なし 69。
+- **見た目の値**：Roobert VF の1書体（年表だけ Roobert mono）。h1 147px（Press、300）・120px（About・Careers、600）・88px、h2 72px 500 字間 -0.03em 行間 1.0、柱の h3 48px、本文 16/20px。地 #fff・オーツ #f4f3f0・#fefdfb、字 #000・#1b1a18、面の角 24px・ボタン 12px。イージングは `cubic-bezier(.165,.84,.44,1)` 29回・`(.075,.82,.165,1)` 21回・`(.19,1,.22,1)` 11回、開閉は `grid-template-rows ease-out 250ms`。GSAP（3.14.1 と 3.15.0 を2回）。
+- **重さ（PC/SP）**：top 23.60/21.77MB（webm 5本 9.1MB）、about 34.12/32.10（動画1本 12,225KB）、workflows 14.26/14.48、careers 74.25/69.80（avif 40,683KB・jpeg 13,282KB・697本）、press 11.16/10.71。どのページもチャットの JS 1,616KB・sequel.js 953KB・reCAPTCHA 846KB・共有 CSS 813KB。本家のトップの inspect は FAIL 5 / WARN 19。
+
+## 真似る型（LayerX・Mistral AI・Linear・Mercury・Runway・Clay の6つで確かめた）
 - 会社サイトは「志・事業の地図・ニュース・連絡先」に絞り、事業は1ページ（LayerX：アンカー、Mistral：/products/ のタイル5枚・2,344px、Linear：トップの柱4本＋柱ごとのページ、Runway：トップの3製品の3列＋製品ごとのページ）で並べ、プロダクトの本体と採用の応募は外へ渡す（LayerX：別ドメインと外部ATS、Mistral：Ashby、Linear：募集の詳細は自サイト・Apply だけ Ashby、Runway：Ashby と Google フォーム）。
 - ヘッダーの右端に、目立つ形の行動を置く（LayerX：Join Us の丸いボタン、Mistral：黒の Login と Get in touch、Linear：#e5e5e6 の Sign up）。ヘッダーは隠さない（Mistral 48px、Linear 73px・blur(20px)・下線 白8%、Runway 68px・白95%＋blur(12px)、上の告知の帯 48px だけ送ると流れる）。下がり窓は、項目が8つ以下なら1列の小さな窓（LayerX 5項目、Mistral 1行 57px）、段階と1語の項目が混ざるなら1枚の板（Linear：860px に2行4つ＋1語4つ＋「New と最新の更新」の行、opacity と scale(.98→1) .16s、大きさの替わり .22s）。
 - トップは1文で始め、数字の帯を置かない（LayerX：h1 60px、Mistral：96px の1文＋最新の1件、Linear：h1 64px＋1文＋「New Loops →」、Runway：動画の上に h1 56px＋1文 16px＋ボタン1つ）。1文は h1 にし、最初から見える状態で HTML に置く（Mistral は aria-hidden の p、Linear は JS を待って 6.4〜8.2 秒見えない）。
@@ -96,6 +109,12 @@ Astro＋Netlify。採用の募集は外の Ashby（2026-10-28 に 226件）。
 
 - 1つのモデルから製品が分かれるときは、トップで3製品を同じ順の部品（題 24px → 写真 461×259 → 1文 24px → 説明 14px → ボタン3つ）で並べ、上に「同じモデルの上に」の h2 56px を1文（Runway）。研究は濃い帯に1段落と3行で、事業の区画と分ける（Runway）。
 - 問い合わせの前置きに返事までの日数を1文で書き、使う人数と使い道を select で聞く（Runway：「two business days」、人数 5段・使い道 6つ）。
+
+- メガメニューの板の幅は列の数で決め、上辺の尾を開いた項目の真下に動かす（Clay：Product 4列 1,219px・Company 3列 約990px、尾 25×9px）。ホバーと押すの両方で開き、Esc で閉じて押した項目へ戻す（Clay。Runway の「ホバーだけ」の直し）。
+- 事業の柱が4つまでなら、柱ごとに「濃い字・差し色・淡い地」の3色の組を当て、部品の順はそろえる（Clay：Data #395afa・Agents #b53d0a・Orchestration #808000・Activation #cc089e）。差し色のボタンの白字を組ごとに 4.5:1 まで測る（Clay の #808000 は 4.20:1）。
+- 会社の数字は Press か About に「大きな数＋何の数かの1文」の札で（Clay：2017＋創業者と場所、500+＋部署）。時点を添え、ほかのページの数とそろえる（Clay：500K + と 17k が食い違う）。
+- 沿革は月ごとの棒と時期の括弧で（Clay：1年12本・括弧4つ・等幅 12px）。今月で止める。
+- 会社のページの最初の行動を採用にする（Clay：About の h1 の下が「Explore open roles」）。拠点はタブにして、住所・時刻帯を拠点ごとに（Clay は3つとも NY の住所）。
 
 ## 反面教師
 - 会社概要に規模の数字（社員数・資本金）が無く、導入社数が本文に埋もれる（LayerX）。数字は会社概要かトップに置く。
@@ -120,3 +139,6 @@ Astro＋Netlify。採用の募集は外の Ashby（2026-10-28 に 226件）。
 - 画面に無い PNG 2枚 8.9MB を全ページで preload、/careers の写真 7,008px・11,425KB を 536px に、ニュースの 422px の枠に 2MB 前後の PNG（Runway）。
 - 利用者の数が3通り（60m+／60M+／65M+）、社名が JSON-LD と画面で2通り、/about の研究が 2023〜2025 のまま（Runway）。
 - 選んでいない分類・タブを opacity .3〜.4 で 1.71〜2.68:1、ページ番号と並べ方が URL に残らず、0件の文が無い（Runway）。
+- ナビの HTML に下書きの文が 40か所（「Link long form description will go in this slot here.」）、説明文の使い回し4項目、トップのボタン27個の名前が「text」、テストの人名が19回（Clay）。
+- Careers の拠点の札が3つとも NY の住所、ロンドンの時刻帯が EST。Press の外の記事 19件に日付が無い。年表が 2027 年まで（Clay）。
+- Careers 74.25MB（写真 731枚、avif 40.7MB）、チャットの JS 1.6MB を全ページで最初に読む。顧客の数字の下の語 9.6px、SP の Careers 本文 13.05px、札 2.59〜3.57:1。reduce は CSS 1行で、最初の画面の動画は止まらない（Clay）。

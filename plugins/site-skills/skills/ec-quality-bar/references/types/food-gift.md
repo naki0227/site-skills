@@ -78,8 +78,23 @@
 - **データ**：詳細に Product と本数ごとの Offer 2つ（OutOfStock ¥1,080／InStock ¥1,404、priceValidUntil）。AggregateRating・BreadcrumbList・画面のパンくずは無い。トップは h1 なし・img 44 中 alt なし 34。WebSite の url が前のドメイン online.ogata.com のまま。
 - **重さ**：タグ除く PC top 16.39MB / list 10.84MB / item 10.21MB / cart（空）8.99MB / guide 9.31MB（SP 15.65 / 10.65 / 9.66 / 9.32 / 9.77MB）。JS が毎ページ 8.3〜9.3MB：購入手続きの先読み checkout-web 180本（最大 1,637KB）、AnyGift 約1.9MB（order-status.js 870KB を全ページ）、計測の _ddg.js 682KB、Customizery 227KB、Boost、Back in Stock 218KB、jQuery 2.2.4。写真は詳細で 0.6MB、トップだけ 6.3MB（窓の写真 1,465KB）。
 
+### Le Chocolat Alain Ducasse（https://www.lechocolat-alainducasse.com/fr/ ・2026-11-17 計測・ショコラとマカロンとコーヒー豆・フランス パリ・PrestaShop、テーマと制作 Symediane）
+- **入口**：上の帯 40px（#4b2307、告知を回す）→ ロゴ → 7つの棚のナビ（最初の「CALENDRIER DE L'AVENT」だけ #dbbd48・白に 1.84:1）→ 左右2枚の写真（各 709×619、値段なし）→ 2画面目の「EN CE MOMENT」4枚の横送りで初めて値段。
+- **一覧**（/fr/coffret-chocolat）：見出し Le Corbusier LL 40px・字間 2px → 種類のタブ5（別カテゴリへのリンク）と右の「Filtrer」→ PC 4列（314px・列間 37px）／SP 2列で27点を1ページに。件数の表示なし。カード 314×508：写真 924:1158、名前 16.56px 700 大文字、中身2行 14px #7e4b30（「Coffret Pralinés - 27 pièces」「Chocolat Noir & Lait - 240g」）、値段 16.56px 700、「AJOUTER」。指を乗せると2枚目の動画（opacity .3s）。SP はカードの字が 11〜12px。
+- **量のボタン**（/fr/cafe-en-grains）：量が2つの豆は「AJOUTER」の代わりに 140×50 の「250g」「1 Kg」を並べ、押すとその量が入る。品切れの 1 Kg は line-through・opacity .7・disabled。値段は「à partir de 15,00 €」。量が1つの品は 281×50 の AJOUTER。品切れの品は写真に #f2ebe7 の .3 の膜と「Bientôt Disponible」。
+- **絞り込み**：右から 506px（SP 全面）・transform .3s ease-in-out・膜 rgba(0,0,0,.4)。TRIER 2（価格の昇順・降順）・NOIR / LAIT 4・VEGAN 2 の8項目に件数「Noir (3)」。押すと PC 1.47秒・SP 1.78秒で 27→3（XHR 63KB、URL ?q=Noir+%5C/+Lait-Noir）、パネルは開いたまま、待ちの印なし。SP の「Résultats」は押す前に一覧が替わっている。
+- **詳細**（/fr/praline-ancienne）：左に写真1枚 603×755、右の列 x=799・幅526 に 種類 → 名前 30px 700 大文字（y=237）→「Coffret Pralinés - 27 pièces - 240g」→ 説明3行 → Petit 71×40／Grand 81×40（選んだ方は地 #e6d9d1・枠 #4b2307、もう一方は枠 #d4bfb1＝1.60:1）→ 数量（input number と上下）と「AJOUTER - 50,00 €」421×52（y=491）。1kg あたり「208,33 € / Kg」は下の INFORMATIONS の開閉（y=2306）の中だけ。SP に固定の帯なし、約束の帯がはみ出して横幅 581px。
+- **大きさと品切れ**：Petit（27個 240g 50,00 €）と Grand（39個 345g 71,00 €）は別の商品。押すと 5.21秒の読み直しで数量は 1 に戻る。L'Espresso の詳細では 250g（15,00 €）と 1 Kg（58,00 €）が同じ見た目のラジオ 115×40。1 Kg を選ぶと URL が #/39-taille-1_kg、ボタン「BIENTÔT DISPONIBLE - 58,00 €」disabled、選択肢の上に入荷通知の欄（メールと同意のチェック、地 #c9ae9d）が出て選択肢を約 200px 押し下げる。入荷の日は無い。製造所ごとに --accent-color（コーヒー #006399・ビスケット #f3be3c・グラス #ff6239）で名前の色が替わる。
+- **受け取り方**：ボタンの下（526×251、地 #f2ebe7）に3行「Expédition à domicile／Disponible - Livré sous 24h à 48h* du lundi au samedi hors jours fériés.」「Retrait boutique／Disponible（4日以内・郵便番号で探す）」「Livraison par coursier／Disponible - Paris & petite couronne」、頭に緑の点 #7ebd00。運べないときは --unavailable。その上に keen-slider 5,000ms で約束3枚（75 € から無料・11時までで当日発送・店受け取り無料）。
+- **カートに入れる**（type="submit"）：押すとボタンの中が点3つ、0.16秒でパネルが動き 0.59秒で x=820・幅620px（max-width、1200px 以上 45vw）。中身は前の空のまま、POST /fr/panier の返事 2.94秒、カートの ajax 4.82秒で、4.84秒に「Panier 1」とゲージ。左に推薦6品の列 280px。SP（767px 以下）は .blockCart__layer が display:none で、JS が開く .js-cart-modal はページに0件。私の再生では7秒まで何も出なかった。
+- **カートのパネル**（/fr/panier は robots.txt が禁止）：頭に溝2つ（各 268×5・角 5px・#e2d5cc・間 11px、棒 #4b2307・width .3s）。1段目 75 € で送料無料、2段目 120 € でおまけ（surprise chocolatée）。50 € で「Plus que 25,00 € pour la livraison offerte」「Plus que 70,00 € et une surprise chocolatée OFFERTE」、＋で 4.70秒後に 100 € で「La livraison est OFFERTE」「Plus que 20,00 €」。送料 12 € の額は出ない。行は写真 110×138・Supprimer・− 1 ＋（150×50）。下に「VOIR MON PANIER」360×54 と「Total : 50,00 €」。
+- **買う前の不安**：75 € から無料は詳細の帯に0手。送料（本土 12 €、コルシカ 22 €、ヨーロッパ 30 €・150 € から無料、米国 70 € HT）・日数・夏の冷蔵便は フッター「Livraison」→案内で2手。返品は CGV 第7条で生ものは14日の撤回権なし。
+- **見た目**：#4b2307(76)・#fff(68)・#c9af9e(44)・#7e4b30(41)・#7ebd00(17)・#e2d5cc(8)・#f2ebe7(8)。地は一覧 #f2ebe7・詳細 #f7f3f1。書体は Gotham（サブセット）と見出しの Le Corbusier LL（ステンシル）、woff2 126〜160KB。段は 55.2／40／35／30／16.56／16／14／12px、字間 .02em（61回）。動きは opacity .3〜.4s とパネル transform .3s ease-in-out、MANIFESTO の帯 30s linear。reduced motion はトーストの1か所だけ。
+- **データ**：詳細に Product＋Offer（sku・gtin13 "0"・price "50"・EUR・InStock、brand・送料・返品なし）、BreadcrumbList は2段で2段目が商品。alt は全部入っている。
+- **重さ**：タグ除く PC top 8.54MB / list 21.86MB / item 7.47MB / guide 4.95MB（SP 5.53 / 10.56 / 6.18 / 3.57MB）。一覧の 10.8MB は動画（指を乗せたときの 6.6MB と広告の枠 4.2MB）。毎ページ Klaviyo の窓の画像 PNG 930KB・同意の窓 Axeptio 1.4MB・同意前の Facebook 934KB、詳細だけ reCAPTCHA 845KB。
+
 ## 真似る型
-見本：とらや（和菓子・写真のカード）、Sey（コーヒー豆・文字のラベル）、Dammann Frères（紅茶・形の違う同じ茶）、Minimal（板チョコと生菓子・お届け期間で選ぶ）、HIGASHIYA（和菓子・販売期間と eギフト）。
+見本：とらや（和菓子・写真のカード）、Sey（コーヒー豆・文字のラベル）、Dammann Frères（紅茶・形の違う同じ茶）、Minimal（板チョコと生菓子・お届け期間で選ぶ）、HIGASHIYA（和菓子・販売期間と eギフト）、Le Chocolat Alain Ducasse（ショコラ・2段のゲージと受け取り方の行）。
 1. **「いつ作り、いつ送るか」を、購入の列のすぐ近くに日付で書く。** とらや：最短お届け日をボタンの下に16px太字（2026年10月29日 (木) 予定）。Sey：「火曜に焙煎、水曜に発送」12px（小さすぎるので16pxに上げる）。Dammann：ボタンの23px上に「En stock, expédition sous 48h」14px（日付でなく時間。作るときは日付に）。
 2. **期限・中身・産地・淹れ方など選ぶ理由の細部は、見出し＋値の2列の表か数字の印にする。** とらや：中身の表（特定原材料等・賞味期限）。Sey：仕様の表（見出し12px・.15em・幅120px、値16px／22px）。Dammann：淹れ方を時間「4/5 mn」・温度「90°C」・アイスティー可の3つの印に。
 3. **形・容量の違う同じ品は、同じ単位の値段で比べさせる。** Dammann：値段の下に「(Soit 66,00 € le Kg) Soit 0,13 € la tasse」、量り売り 0,13 € → 缶 0,28 € → ティーバッグ 0,47 € → 個包装 0,63 €。一覧のカードでは値段の上に単位（Les 100g・25 sachets）。とらやの箱の入り数違いは別ページで、名前と価格しか違わない（1本あたりは書かない＝足す）。
@@ -97,6 +112,9 @@
 14. **贈り方（自宅へ／贈り先へ／住所を知らない相手に eギフト）は、購入の列でボタンの前に選ばせ、選んだ贈り方の手数料をその場で言う。** HIGASHIYA：AnyGift の3択と「eギフト配送手数料 ¥880」。ただし開く欄が 972px でボタンが y=1,420 へ下がる。作るときは詳細では選ぶだけにし、カードのデザイン・メッセージはカートの先へ。input type="radio" で組む。
 15. **日持ちは「発送の日に何日残るか」で言い、「日持ち」「温度」の札をつける。** HIGASHIYA：「発送日時点で賞味期限まで残り30日以上」「常温配送」を見出しなしの行で（札が無い＝反面教師）。とらやの中身の表（見出し＋値）と合わせる。
 16. **贈る場面の入口（桐箱・引菓子・出産内祝・弔事）を一覧の上に置く。** HIGASHIYA：贈り物の一覧の上に4つ（199px 角・縦書き）。とらやの「用途にあわせて」7つ（トップ）と同じ型。
+17. **カートの目標は2段のゲージにし、段ごとに残りの額を言う。** Le Chocolat Alain Ducasse：268×5 の溝2つで 75 € 送料無料・120 € おまけ、「Plus que 25,00 €…」「Plus que 70,00 €…」、届くと「La livraison est OFFERTE」。贈りものの菓子は合計が目標をまたぎやすいので、おまけの段が効く。1段目には送料の金額（Ducasse は 12 € を出さない＝足す）を添える。
+18. **量の違う品は一覧のカードに量のボタンを並べ、その場で入れる。** Ducasse のコーヒー豆：140×50 の「250g」「1 Kg」、品切れは打ち消し線・.7。Dammann のカードの形の印（型4）と同じく、詳細へ行かずに量を決めさせる。1kg あたりの値段（Ducasse は詳細の下の開閉に「208,33 € / Kg」）は値段の横へ上げる（型3）。
+19. **購入のボタンの直下に、受け取り方ごとの可否と日数を行で出す。** Ducasse：自宅（24〜48時間）・店（4日以内）・パリの配達の3行と点。冷蔵便の時期がある菓子では、季節で止める受け取り方（Ducasse は夏に coursier・海外を止める）をこの行で言う。
 
 ## 写真を使わない一覧（作るときの出発点）
 - 行：Sey の4行（生産者・農園・品種と精製・国）に、比べる軸の3行（味の3語・焙煎度・値段と在庫）を足す。比べる軸は全部の札で同じ行に置く。
@@ -115,6 +133,8 @@
 | 数量の上限 | 数量 select 1〜99 | 詳細は上限なし。定期便の箱は8で黙って止まる | 量り売り 1kg（10袋）、缶・袋は select | select を在庫の数まで並べる（86・148） | −・＋の入力。上限は見ていない |
 | 読み込み中 | 0.1秒でボタンが #ccc＋回転の印、約1.46秒で帯 | 詳細は無い（ページ送信）、定期便は「processing...」 | 1.28秒、印なし・ボタンも押せるまま | カートに入れて2.1秒は印なし、そのまま /cart へ。カートの数量は読み直し1.77秒 | カートに入れる後は見ていない（type=submit で止めた） |
 
+
+Le Chocolat Alain Ducasse の状態：0件は件数のある項目だけ出すので出せない／容量の売り切れは一覧で打ち消し・.7、詳細は同じ見た目で選ぶと「BIENTÔT DISPONIBLE」と上に入荷通知の欄（日付なし）／全部売り切れは写真に .3 の膜と押せない「Bientôt Disponible」／カートが空は「Panier 0」「Plus que 75,00 €」と推薦6品／読み込み中はボタンの点3つ（0秒）、パネルは 0.59秒で開くが中身は 4.84秒まで古い／SP はパネルが出ない。
 ## 反面教師
 - かごを開くまで送料が分からず、送料無料までの残りも出ない。「手続き時に計算」で止まる（とらや）。
 - お届け日を調べるのに郵便番号を入れさせる（とらや）。
@@ -146,3 +166,8 @@
 - 日持ち・温度・アレルゲンを見出しなしの行で並べ、送料を開閉の中に入れる（HIGASHIYA）。
 - 開いて 1.72秒で窓、閉じるが 12px の span（HIGASHIYA）。
 - 購入手続きの先読み 180本と、注文の状況のページ用の eギフトの JS 870KB を全ページで読む（HIGASHIYA）。
+- カートのパネルは 0.59秒で開くが、中身とゲージは 4.84秒まで前の空のまま。SP（767px 以下）はパネルが display:none で、何も出ない（Ducasse）。
+- 品切れの量を選ぶと、入荷通知の欄が選択肢の上に出て選択肢を約 200px 押し下げる。カードでは打ち消すのに詳細では同じ見た目（Ducasse）。
+- 大きさ違い（Petit／Grand）を押すと 5.21秒の読み直しで数量が 1 に戻る（Ducasse）。
+- SP の一覧のカードの字が 11〜12px、SP の詳細は約束の帯がはみ出して横幅 581px（Ducasse）。
+- 指を乗せたときの動画を先に読んで一覧 21.86MB、同意の前に Facebook 934KB（Ducasse）。

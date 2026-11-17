@@ -1,0 +1,15 @@
+# 遊べる道具の製品サイト・章の色をナビが受け継ぐ、いちばんの部品に1章を渡す
+Playdate（play.date、Panic、Django のテンプレート＋素の CSS・JS、3D は three.js r90 の自前のビューア、2026-11-17 実測）の型。黄色い小さなゲーム機のトップを「灰→黄→白→黄→青緑→紫→濃い灰→紫」と章の地で区切り、上のナビがいまの章の色になる。ボタン・札・ハンドルが、どれも本体と同じ手触りで作られている。
+- **章の地は4つの変数で持ち、ナビが名前を受け継ぐ**：章に `data-color="yellow"` と `.section--yellow`、CSS で `--page-bg`（地）・`--text`（字）・`--button-bg`・`--button-text` を章ごとに（黄なら `#ffc833`／`#312f28`／紫に白、紫なら `#6c00ff`／白／黄に黒）。ナビは「上端 − ナビの高さ ≦ 0」の最後の章の名前を写し、`background-color 250ms ease-in-out`。ボタンの色も章が決めるので、どの章でもボタンが地から浮く。真似るときは scroll ごとに全章を測らず IntersectionObserver で（部品 `LPA.toneNav`）。
+- **物の形のボタン**：Shop Now!! は `padding:.1em .5em .3em; border-radius:3em`、`box-shadow: inset 0 .05em .05em rgba(255,255,255,.6), inset 0 -.05em .08em rgba(0,0,0,.5), inset 0 -.01em .5em rgba(255,255,255,.3), 0 .05em .1em rgba(0,0,0,.4)`。`:active` で影を反転し padding を .15/.25em に（.05em 沈む）。全部 em なので大きさを変えても形が同じ（部品 `.lpa-key`）。
+- **中身の一覧は、傾いて裏返る札と「まだ見ない」の覆い**：24本のゲームを 35rem×15.5rem の札・3列・間 1rem。乗ると `rotateX(−dy×.1°) rotateY(dx×.05°) translateY(−2px) scale(1.03)`（最初の 150ms だけ transition、そのあと付いてくる）と光の筋 `linear-gradient(120°+dx/10, 白.05, 黒.05)`、押すと 300ms で裏返って作者。吹き出しの「Wait! No spoilers, please!」で、札の絵の上の「?」の絵を `background-position 0 −20rem → 0 0` 250ms で下ろす（部品 `LPA.tiltFlip`。本家は li の click でキーボードで押せないので button にする）。
+- **いちばんの部品に1章を渡す**：The Crank. は文1段落のあとに 1100×1000px の 3D。本体が 75% 見えたら `openCrank(2000)`（Quartic.InOut）でハンドルが開き、画面でゲームの動画が流れる。reduced-motion なら「Watch the game!」を押すまで待ち、開くのは 1000ms。音は muted で始め、「Play game audio」で出す。
+- **章の題は「The 〇〇.」の名詞1語と句点**：68.4px・800・行間 1（The System. ／ Design. ／ Crank. ／ Season. ／ Specs. ／ Idea.）。物の中は分解図（533×640px）を文の間に右へはみ出させる。
+- **ページ全体を画面幅で縮める**：240〜1099px で `html{font-size:calc(100vw/110)}`、1100px 以上で 10px。寸法は rem／em。本文は 670px 未満で 3.85rem・以上で 2.85rem（PC 28.5px、SP 390px で 13.65px）。真似るなら本文だけ `max(16px, …)` の下限を。
+- 色：トークンは `colors.css` に名前と「どこで使うか」のコメント付きで（UNUSED も残す）。`@supports (color: color(display-p3 1 1 1 / 1))` の中で同じ名前を P3 で上書き。画面の黒 `#312f28`・画面の白 `#b1afa8` は本体の液晶の色から。
+- 文字：Roobert 1書体（300〜800 の6つを @font-face、preload 3本）、字間は normal、本文 400・強調 700・題 800。
+- 動き：時間は 150（傾き）／250（ナビ・覆い）／300ms（裏返し）、ease-in-out。Catalog の帯2本は背景画像を 40s で −100rem、alternate と alternate-reverse、見えたら running、reduce で paused。WebGL は読み込み・描画それぞれ 30秒で静止画に逃げる。reduced-motion は init.js の `fullMotion` 1つで、3D の登場・動画の自動再生・傾き・帯を止める（見本）。
+- 重さ：12.09MB・120件（PC・SP 同じ）。PNG 5.57MB・3D の .bin 2.67MB・動画 1.58MB・JS 750KB（three.js 入り 624KB は WebGL があるときだけ後から）。画像14枚は IntersectionObserver の自前の遅延読み込み。
+- **反面教師**：SP の本文 13.65px（下限なしの拡大縮小）／札が li の click でキーボードで押せない／雲の blobble（5s）とナビの星（10s）が reduced-motion でも動く／3D と動画を SP にも同じだけ、画面外でも描く／scroll ごとに全章を測り、しきいを越えたあとも毎回 `playVideo` を呼ぶ／SemiBold と Bold がどちらも weight 700 で2本届く／写真も PNG で srcset なし。
+- 部品：`patterns/` の `LPA.toneNav()`・`.lpa-key`・`LPA.tiltFlip()`＋`.lpa-tf`。
+- **作例で確かめた翻訳**（下諏訪の手回しオルゴール工房「弁屋」の紙の譜面 十二週・架空、2026-11-17）：章の地は朱 `#c73a22`・墨 `#221d18`・紙の白の3色に絞ってナビが受け継ぐ。いちばんの部品はハンドルで、1章を渡して「回すと紙の譜面が送られ、穴が櫛の歯を通ると鳴る」触れる1つに（Web Audio、音は「音を出す」を押してから、逆には回らない）。札は12週の封筒で、裏に2曲と作曲者・年、覆いのボタンは「待って、届くまで曲は見たくない」。題は「仕組み・回す・十二週・値段・仕様・工房」の名詞1語。最初の画面は朱の1色の地に、画面を斜めに横切る紙の譜面（穴は「さくらさくら」の本当の位置）と、帯が入っていく箱の絵。

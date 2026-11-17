@@ -90,8 +90,24 @@ PC 1440×900 / SP 390×844。見たページ：トップ、分類の一覧（/to
 - **動き**：.2s 708・.4s 40。:hover 425 に (hover:hover) 0、:focus-visible 23、reduced-motion 0、keyframes 5。
 - **データと重さ**：JSON-LD は Yoast の Article（datePublished・dateModified ISO・wordCount）・BreadcrumbList ほか、一覧は CollectionPage。重さ（展開・解析と広告を除く）PC top 5.48 / list 5.04 / article 5.56 / long 5.47 / data 5.63MB（SP 5.03〜5.17MB）。全部込み・下まで送った転送は article PC 2,410KB・68件・13ホスト、うち FundraiseUp 891KB（37%）を全ページで。app.css は全テンプレートの 3,632 規則で展開 516KB。部品の JS は `querySelector(".js-…") && import()` でページごとに。画像の width・height は 0枚（article 8／8・list 10／10）、SP 記事 CLS 0.10。
 
+### 東洋経済オンライン（https://toyokeizai.net/ ・2026-11-17 計測）
+PC 1440×900 / SP 390×844。見たページ：トップ、分類（/list/genre/business）、ティーザー（/articles/-/963826）、ふつうの記事（同 ?display=b・7ページ・下まで 16,694px）、長い記事（/articles/-/964970?display=b・11ページのランキング）。選んだ理由：記事を ?page=N に割ったまま、続きを先読みして1本の面に見せる作り（pages.prod.js 12KB）。事例集・受賞歴は確かめられなかった。日本の新聞・出版の多くが robots.txt で anthropic-ai・ClaudeBot を断っていて（東京新聞・朝日・時事・47NEWS ほか、2026-11-17）、断っていない出版社から選んだ。
+- **本文**：箱 PC 870px（1行 約48字）・SP 362px（左右 14px・約22字）。PC 18px／28.8px（1.6）・SP 16px／24px、どちらも html から受け継ぐ font-weight 300、字間は 62.5% の上の .01em なので 0.1px。段落の上 24px。#222 を地 #f5f5f5 に直接（14.59:1）。h2 24px／1.3・600・#0f9cc4・下に 2px #0f9cc4（SP 19px）。書体は Hiragino Sans〜Meiryo の端末書体、@font-face 0。
+- **記事の頭**：分類の丸札（135×30・1px #222・角 30px）＋連載のタグ（13px #0f9cc4）＋前後の記事 → 題 h1（510px・26px／36.4px・600・左に 5px #c1c1c1、SP 18px／23.4px）｜写真 330×185（loading="lazy"、SP では LCP の要素 1,584ms）→「11分で読める　公開日時：2026/11/14 06:15」12px #707070 → 顔 30px・名前 14px 600 #0f9cc4・肩書・フォロー・ブックマークと印刷の丸 42px。題の ｢ ｣ ､ ･ は半角。更新日は画面に無く、JSON-LD は公開＝更新。
+- **ティーザー**：記事の URL（/articles/-/963826）は題・写真・要約（PC 16px／SP 14px）と「続きを読む」（PC 270×50・SP 362×50・#6c7883 に白 4.51:1）だけ。本文は ?display=b。両方とも canonical が自分を指す。
+- **ページ送り**：HTML には1ページ目だけ。2〜7ページは `div.pagemark[data-page][data-pjaxurl]` と区切り「2/7 PAGES」（13px #6c7883・数字 16px 600・後ろに 1px の線を flex:1・高さ 54px）。IntersectionObserver の rootMargin "800px 0px 400px 0px" で印が近づくと JSON（{html, video}、文章のページで 8.6KB）を fetch して差し込み、2つ目の監視（rootMargin 0）で画面の中のページを決めて history.replaceState で ?page=N に、canonical の href も書き換える。?page=5 を直に開くと前のページを上に足す間 ResizeObserver で scrollTop を足し戻し、5秒か送るまで（scrollRestoration manual）。各ページの終わりに「次ページが続きます：【次の見出し】」（中央 16px #0f9cc4、href はあるが cursor:default）。flow.js SP で 2,500px 送ると ?page=3 になり 382KB・70件増えた（差し込んだページの広告の分）。
+- **目次**：本文の頭に「INDEX」の箱（870×58・1px #d7d7d7・角 4px・閉じている）。開くと他のページの h2 へ `?page=2#toc1-963826`（ページと id の両方）。固定しない・いまの見出しを示さない・開閉は div（aria-expanded 無し）で display の切り替え。ランキングの記事は INDEX 無し。
+- **部品**：囲み 青 #d7f0fa・灰 #eaeaea（内 20px・16px／25.6px・角 4px）、引用は上下 1px #d7d7d7・中は 14px／1.7、ol は decimal-leading-zero の「01.」、表の CSS（th #6c7883・1列目 #eaeaea・（出所）（注）を ::before）がある。写真 570px 幅・キャプション 12px #707070、「【写真を見る】題（8枚）」の枠 870×81。ランキング 50位×10ページは表の画像（550×1469・alt=""）。
+- **記事の終わり**：関連キーワード5・業界4（文字＋フォロー）→ 連載の箱（フォロー・前の記事）→ 関連記事6本「本文の内容に基づいた記事をピックアップしています」（2列 423px、間に広告2）→ 著者（顔 50px・紹介は開閉・「この著者の記事一覧」）→「この記事はいかがでしたか？」button 125×90 ×3「仕事に役立つ／新たな気づき／もっと知りたい」（aria-pressed・数つき）→ ブックマーク・印刷・共有4 → コメント（ログイン後）。最新回の「次の記事」は span。
+- **一覧**：縦のカード3本（384×372・題 18px／23.4px）→ 横長カード 870×120（題左・写真 200px 右・すき間 8px 16px）を 1px #c1c1c1 で20本、間に「AD 東洋経済ブランドスタジオ」のカード。写真のホバーは scale(1.05) .5s を `:hover:not(:has(.c-btn-bookmark:hover))` で（:has 75か所）。ページ送り 36×36 の 1・2・3・999（最後が ?page=999・rel=next 無し）。SP の題 17px／22.1px・写真 134×75。
+- **帯とトップ**：白 72px の段（ロゴ・9項目・橙の有料会員登録 2.93:1）＋灰の帯 #6c7883・43px・白 13px・字間 .16em（いまは #354556・9.83:1）。トップは h1 0・h2 12本の棚、おすすめは大 467×263（題 20px／26px）＋右 130×73 の3枠（1枠は AD）、右 300px に人気記事（総合／有料会員限定のタブ・番号 18px 青）。「タブを編集」はログインの小窓。
+- **広告と同意**：枠は高さを書いた div（PC 300×250・522×76、SP min-height 73px）、右の柱の sticky 枠は `:has(.is-sticky){min-height:1000px}`。8秒の CLS 記事 PC 0.0041・SP 0.0001。同意のバナーは日本から出ない。広告を止めると「コンテンツブロックが有効であることを検知しました。」の h3 が全ページの最初の見出しに。
+- **色**：#fff 202・#0f9cc4 155・#6c7883 94・#707070 91・#c1c1c1 77・#eaeaea 46・#222 42・#d7d7d7 41・#f5f5f5 27・#f56f15 17、順位の金銀銅 #dbab27・#a8a9a8・#af7a47（PC の CSS 4本）。青の文字は白地 3.19:1・#f5f5f5 で 2.93:1・#d7f0fa で 2.70:1。ダーク無し。
+- **文字と動き**：rem で 14px 108回・13px 107回・12px 89回・16px 73回、600 が 173回。動きは写真の transform .5s（30）・色 .2〜.3s、cubic-bezier 0・reduced-motion 0・:focus-visible 0。
+- **データと重さ**：JSON-LD は WebSite＋BreadcrumbList＋NewsArticle（author に jobTitle・image・identifier、日付 +09:00）。重さ（measure.js、下まで送った後）PC top 7.49MB / list 7.43 / teaser 8.30 / article 11.53 / long 13.15MB（SP 6.58 / 7.97 / 7.76 / 7.78 / 8.88MB）。記事 PC は 200ホスト・720件で、自社（tk.ismcdn.jp 733KB＋toyokeizai.net 197KB）は 12,097KB の 7.7%。googletagmanager 7件 3,550KB、ufs_web_display.js 242KB を広告枠ごと。PC と SP の CSS を media 属性の link で分けているが両方通信する。
+
 ## 真似る型
-ProPublica・The Markup・Grist・The 19th（米国の非営利の報道）と Tansa（日本の非営利の探査報道）から。
+ProPublica・The Markup・Grist・The 19th（米国の非営利の報道）と Tansa（日本の非営利の探査報道）、東洋経済オンライン（日本の出版社の経済ニュース・広告あり）から。
 1. **本文は 600〜754px・18〜22px・行間 1.6〜1.7・段落の間を取り、SP で縮めすぎない**。字下げ無し。SP は The Markup が 18px、Grist が 22px のまま、ProPublica は 16px。段落の間は 18〜32px（Grist は上 18px＝行間の半分）。
 2. **色は役割の少ない組で持つ**：本文・題の濃い色、リード・日時の灰1段、罫の灰1段、アクセント1色。ProPublica は灰6段＋青＋赤、The Markup は紺・灰・桃の3つ、Grist は文字と罫を #3c3830 の1色にして面（ライム・ラベンダー・桃）だけを替える。アクセントを文字の地に使うなら 4.5:1 まで濃くする（3サイトとも Donate が 3.3〜3.6:1）。
 3. **記事の頭は 分類 → 題 → リード → 書き手 → 日時（タイムゾーンか時刻まで）**。Tansa は「2026年10月23日 17時26分」と日本語で時分まで。日時は「October 5, 2026, 5:00 am」（ProPublica）「8:00 a.m. UTC」（The Markup）のように時刻まで書く。Grist は日付・分類・共有を本文の左 300px の `dl` にまとめる。更新日は3サイトとも画面に無いので、足す。
@@ -109,6 +125,10 @@ ProPublica・The Markup・Grist・The 19th（米国の非営利の報道）と T
 15. **文字の大きさを幅の区切りごとの段で書く**（The 19th：7つの区切りで本文 17 → 20px を 3/7px ずつ、題 28 → 60px）。
 16. **アクセントの色は文字でなく線に使う**（The 19th：リンクは文字 #000 のまま下線だけ #00c6f3、ホバーで #f9135c）。
 17. **日付と書き手は本文の右の箱に行ごとの罫で**（The 19th：295px に 書き手・肩書・顔 60×80｜Published｜転載）。本文の途中には Read Next を1〜2本だけ（680×164）。
+18. **長い記事をページに割るなら、読む側には1本の面に見せる**（東洋経済：HTML は1ページ目だけ、続きは data-page と取得先を持つ印。rootMargin 下 800px で先読み、画面の中のページを replaceState で ?page=N に、canonical も。ページの境目に「2/7 PAGES」と「次ページが続きます：【次の見出し】」）。目次のリンクはページと id の両方を持たせ、まだ読み込んでいないページにも飛べるようにする。
+19. **広告枠は高さを書いた箱で先に取る**（東洋経済：PC 300×250・522×76、SP min-height 73px を style に、CLS 記事 PC 0.0041。The 19th は padding-top 25.773% の比率で 0.04、ProPublica は min-height 0 で 0.0885）。
+20. **カードの中に別の押せるものがあるとき、ホバーの動きをそこで止める**（東洋経済：`.m-article:hover:not(:has(.c-btn-bookmark:hover)) img{transform:scale(1.05)}`）。
+21. **読み終えたところで、何が良かったかを3つの言葉で聞く**（東洋経済：button 125×90 ×3「仕事に役立つ／新たな気づき／もっと知りたい」・aria-pressed・数つき）。
 
 ## 反面教師
 - 編集用 JS（block-editor・editor・components で 2.8MB）を訪問者に配り、1ページ 10〜13MB になる（ProPublica）。
@@ -142,4 +162,11 @@ ProPublica・The Markup・Grist・The 19th（米国の非営利の報道）と T
 - 画面の日付を JS で書き、HTML の time が空・datetime が ISO でない（The 19th：「2026-11-12 9:11-06:00」）。
 - 大きな引用の直後の段落が同じ文で始まり、同じ文を2回読ませる（The 19th：3／3）。
 - 全テンプレートの CSS を1本で全ページに（The 19th：3,632 規則・展開 516KB）。
-
+- 記事の URL が「要約と続きを読む」だけのティーザーで、本文まで1押し増え、本文の ?display=b も canonical が自分（東洋経済）。
+- ランキング 50位×10ページを表の画像（550×1469・alt=""）にする。CSS に表の組みがあるのに使わない（東洋経済）。
+- 本文の箱を記事の列と同じ 870px にして、18px で1行 約48字（東洋経済）。
+- 最初の画面の写真に loading="lazy"（東洋経済：SP の LCP の要素）。
+- 記事1本で 200ホスト・720件、自社の分は 7.7%（東洋経済：googletagmanager 3,550KB、広告枠ごとに ufs_web_display.js 242KB）。続きのページを差し込むたびに広告の入札が走る（382KB・70件）。
+- PC と SP の CSS を media 属性の link で分け、合わない方も通信する（東洋経済：記事 PC で smartphone の 88KB＋48KB）。
+- 一覧のページ送りの最後を ?page=999 にする（東洋経済）。
+- JS が無いときの「次ページへ」のリンクを cursor:default・下線無しで押せない見た目にする（東洋経済）。
