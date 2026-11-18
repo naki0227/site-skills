@@ -81,8 +81,22 @@ PC 1440×900 / SP 390×844。見たページ：トップ、分類の一覧（/ar
 - **動き**：自前の CSS に transition・keyframes 0。はてなの部品だけ（.3s ease・background-color .2s・skeleton-flash）。prefers-reduced-motion・:focus-visible・(hover:hover)・prefers-color-scheme はどの CSS にも 0。
 - **データと重さ**：記事の JSON-LD は Article（datePublished・dateModified とも ISO・+09:00、author と publisher 無し）。画面の更新日と dateModified がそろう。一覧は BreadcrumbList。転送（解析込み・PC）：top 1,391KB／38件・list 1,396KB・article 1,449KB／47件・long 1,435KB。measure.js の展開後は PC 2.56〜2.71MB で JS が 2.37MB：Font Awesome 5.0.8 all.js 665KB（HTML に fa- の class 0）・Mermaid 327KB（図の無いページでも）・hatenablog.js 316KB・vendors.js 303KB（帯の iframe でもう一度）。
 
+### The Fly Blog（https://fly.io/blog/ ・2026-11-18 計測）
+PC 1440×900 / SP 390×844、en-US。見たページ：トップ（/blog/・213本）、分類（/phoenix-files/・97本）、ふつうの記事（/blog/youre-all-nuts/・3,040語・h3 13）、長い記事（/blog/sqlite-internals-btree/・コード10・h2 3・h3 9）。静的 HTML＋Tailwind、自社の JS は application.js 11.9KB だけ。選んだ理由：全記事の頭に手描きの絵（クレジット「Annie Ruygt」）、題 Mackinac・本文 Fricolage Grotesque・等幅 Fragment Mono を自前で配る。事例集・受賞は確かめられなかった。
+- **本文**：704px（英文で約80字）に 19px／30.4px・325・#4c4e67（白地 8.10:1）、段落の後 24px。SP 358px・16px／26px。リード .lead 20.5px／32.8px・500・#22183c。
+- **見出し**：Mackinac 500。h1 PC 44px／55px・-1.1px、SP 30px。h2 30px／39.75px、h3 24px／31.8px・-0.6px（SP 20.5px）。上 64px（SP 56px）・下 28px。article は h2 0・h3 13（h1 の次が h3）。id は全部読める英語、# のリンク 24×24 を左の余白に opacity 0 → 見出しにかざすと .5。
+- **本文より広い物**：コードと囲みは左右 32px（768px）、カバーの絵は 64px（832px・角 16px）。
+- **注**：.right-sidenote。1280px 以上は left:100%・幅 240px・14.5px／23.2px・#676b89（5.20:1）、1024〜1279px は 160px、1024px 未満は「Sidenote: 」を頭に付けた角 16px・1px の線・内 24px の枠。article に5つ。
+- **囲み**：#f5f3ff → #eef2ff の地、0 0 0 1px #8b5cf633 の線と淡い影、内 32px、16px／24px・rgba(40,25,80,.7)（5.70:1）、上下 48px。.note・.warning・.important も同じ型で色だけ替える。
+- **記事の頭**：「READING TIME • 16 MIN」12px 600 と共有3つ（X・HN・Reddit）を 1px の罫でつなぐ → 題 → 絵（fetchpriority=high・width/height 無し）と右下のクレジット 12px #73739c → リード。PC は左の列に著者（40px の顔・名前・@）、右の列に「Next post ↑」「Previous post ↓」（17px・#8b5cf6 4.23:1）。日付は頭に無い。
+- **コード**：地 #121226・角 16px・内 32px、Fragment Mono 16px／25.6px・白（18.42:1）。はじめから pre-wrap。右上 6px に 28×28 の「Wrap/Unwrap text」と「Copy to clipboard」、色は transparent でホバーで #9698b6。コピーの後 2秒「Copied!」。色づけは無し（long は SQL と16進）。
+- **記事の終わり**：「PUBLISHED • JUN 2, 2025」12px 700・#9698b6（2.81:1）と共有 → 著者 64px（SP）→ 前後の2本。関連・購読の誘い・コメントは無い。
+- **一覧**：地 #f5f3ff に白い紙 3列 432px・角 16px・内 32px・影 0 1px 4px rgba(52,20,169,.15)。絵 416×256 を -24px で紙の縁 8px まで出す・lazy・alt 空。BY の行 11px 600・大文字 → 題 22.4px／30.8px → 要約 17px line-clamp 3 → Read more（aria-hidden）。透明の a を inset:0 で全体リンク、名前は sr-only の「Read more」。ホバーで影 0 2px 8px #3414a959、focus-within で ring。カードに日付無し。トップ 213本・分類 97本を1ページ、トップの SP は 444px にはみ出す。主役はかざすと blur(64px) の紫の丸が scale .75 → 1・opacity 0 → .5（.15s）。
+- **広告と同意**：広告0。/api/consent-scope に聞き、EEA・英国の入口なら帯と Consent Mode v2 denied、ログイン中は計測0、届かなければ何も読まない（posthog-consent.js のコメント「Fail CLOSED」）。CLS：article SP 0.1132、ほかは 0〜0.0456。
+- **データと重さ**：記事は @graph の BlogPosting（wordCount・dateModified あり、日付は日だけ）・Person・BreadcrumbList。トップと分類は JSON-LD 0。ダークモード無し。重さ article 1.88MB（PC・SP 同じ・18件、うち計測 analytics.fly.io の gtag 585KB・gtm 327KB と posthog 246KB）、long 2.47MB、list PC 5.79MB・SP 3.14MB、top PC 9.80MB・SP 5.68MB。動きは .15s cubic-bezier(.4,0,.2,1) が 29回、reduced-motion は1規則。
+
 ## 真似る型
-見本5つ（メルカリエンジニアリング・LINEヤフー Tech Blog・DeNA Engineering・Smashing Magazine・SmartHR Tech Blog）から。作るときの出発点。
+見本6つ（メルカリエンジニアリング・LINEヤフー Tech Blog・DeNA Engineering・Smashing Magazine・SmartHR Tech Blog・The Fly Blog）から。作るときの出発点。
 - 本文の箱は 780〜790px、16〜18px、行間 1.75〜2.0、段落の間は 20〜35px。1行は約43〜49字（メルカリエンジニアリング 780px・18px／36px、LINEヤフー Tech Blog 790px・16px／28px・字間 -0.4px）。DeNA Engineering の 870px・17px は約51字で長い。
 - 本文の色は題より1段薄い灰にし、比は 6:1 以上を保つ（LINEヤフー Tech Blog：本文 #616161 6.19:1・題 #1f1f1f 16.48:1）。
 - 節の切れ目は罫でなく上の余白で見せる（メルカリエンジニアリング：h2 の上 120px＋60px、DeNA Engineering：h2 の上 100px＋左 4px の線、LINEヤフー Tech Blog：h2 の上 40px）。h3 は h2 より一段小さく（DeNA Engineering は h2 と同じ 33px で崩れる）。SP でも h1 を一番大きく。
@@ -106,6 +120,14 @@ PC 1440×900 / SP 390×844。見たページ：トップ、分類の一覧（/ar
 - 公開日の横に更新日を並べ、JSON-LD の dateModified と同じ日にする（SmartHR Tech Blog：「2026-05-12 ↻ 2026-10-02」と "2026-10-02T15:35:20+09:00"）。
 - コードの色づけは、会社のデザインシステムの色の段から選ぶと、ブログの色と揃う（SmartHR Tech Blog：Vim の構文名7つに sky・grass・sakura・momiji・galaxy・orange の -02／-03）。ただし地で 4.5:1 を計算する（7色中4色が 3.12〜4.33:1）。
 - 差し色は日付の 2px の下線だけに使う（SmartHR Tech Blog：orange は日付とコードの1色だけ）。文字に使わないので比の問題が出ない。
+
+- 本文の外の余白を列として使う：左に著者（顔 40px）、右に前後の記事と注（240px）。注は 1024px 未満で「注：」を頭に付けた面に変える（The Fly Blog）。目次を足すなら注と重ならない左の列に。
+- 本文より広く出す物を2段で決める：コード・囲みは左右 32px、絵は 64px（The Fly Blog：704 → 768 → 832px。Smashing Magazine の break-out 798px と同じ考え）。
+- 囲みは地の色の差で：淡い2色の地・本文より小さい 16px／24px・上下 48px（The Fly Blog）。
+- コードの箱の折り返しとコピーは小さな JS で足りる（The Fly Blog：Copy・WrapToggle・メニューで 11.9KB）。ただしボタンはいつも見せる（横断ルール34）。
+- 記事の頭の1行に、読む時間・共有を罫でつなぐ（The Fly Blog）。日付も同じ行に入れる（本家は入れていない）。
+- カードは紙の内に写真を 8px の縁で置き、カード全体を1つのリンクに。リンクの名前は題に（The Fly Blog は「Read more」で全部同じ）。
+- 絵や写真のクレジットを、絵の右下に 12〜13px で（The Fly Blog：カメラの印と描き手の名前、読み上げは「Image by」）。
 
 ## 反面教師
 - コードの言語を書かずに自動判定させ、全言語分の色づけ JS を全記事で読む（メルカリエンジニアリング：1.2MB、判定も外れる）。言語は書き手が指定し、使う言語だけ読む。
@@ -139,3 +161,9 @@ PC 1440×900 / SP 390×844。見たページ：トップ、分類の一覧（/ar
 - 使っていないアイコンの JS（Font Awesome all.js 665KB・fa- の class 0）と、図の無いページの Mermaid 327KB を全ページで読む（SmartHR Tech Blog）。
 - 採用の案内を本文と同じ h2 にし、埋め込みの記法が崩れて文字のまま出る（SmartHR Tech Blog：「We Are Hiring!」と「[…:embed:cite]」）。
 - 一覧のカードの題が h1 で、一覧に h1 が 31（SmartHR Tech Blog）。
+- 公開日が記事の最後の 2.81:1 の灰の行だけで、一覧のカード 213本にも日付が無い（The Fly Blog）。2025年の記事が今日の記事と並んで見える。
+- コードのボタンを color:transparent にしてホバーでだけ見せ、SP では見えない（The Fly Blog）。
+- 全記事 213本を1ページのカードに並べ、SP で 124,005px。ページ送り・年の区切り・分類の札が無い（The Fly Blog）。
+- 記事の見出しが全部 h3 で h2 が無い（The Fly Blog の article）。
+- 計測の JS（gtag 585KB を long で2回・gtm 327KB・posthog 246KB）が記事の通信の半分以上（The Fly Blog）。
+- CSS に font-size:[object Object] が書き出されたまま（The Fly Blog の tailwind.css）。

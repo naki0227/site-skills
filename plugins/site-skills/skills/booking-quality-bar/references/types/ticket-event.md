@@ -78,8 +78,26 @@
 - **動き**：ボタンは色と影を 0.2s cubic-bezier(.4,0,.2,1)、開閉は高さ .35s。prefers-reduced-motion は CSS 64ファイルに0。
 - **重さ（PC / SP）**：FAQ 2.49 / 2.25MB、トップ 3.87 / 3.20MB、Messiah 5.32 / 5.09MB、一覧 5.65 / 5.87MB（写真は 947×573 の PNG で1枚 570〜760KB）、Jamai 9.05 / 8.79MB（YouTube の iframe を押す前から 4,223KB）。Cookiebot 553KB を全ページで読む。
 
+### Oper Leipzig（https://www.oper-leipzig.de/en ・2026-11-18・歌劇場・バレエ・オペレッタの3部門と2つの劇場の自社サイト。券の画面は tickets.oper-leipzig.de＝Eventim の webshop）
+条件：トップ・番組（/en/programm）・演目 Der Nussknacker（13回すべて売り切れ）・演目 Die Fledermaus（空きあり）・約款（/en/oper-leipzig-agb）。PC 1440 と SP 390。券の画面は robots.txt が全面禁止なので開いていない。iF Design の受賞作の一覧と Red Dot に載るサイト（MIR MEDIA）。
+
+- **入口**：検索の欄も人数も無い。番組へはナビの「PROGRAMME / TICKETS」と頭の下の「EVENTS」。頭は左 720px の写真と右 720px の黄 #fff264 の面（題 Knockout 64px/60px 700・一言 PP Eiko 40px/48px 500）。
+- **一覧の行**：左に曜・月 20px／日 64px/60px 700（幅 52px）、題 64px/60px 700 大文字、部門｜日時｜会場 PP Eiko 20px/28px、右端に状態。行の高さ 260px（SP 386px）。SP は日の列を消して日時の行の中の「Wed 18.11.2026」だけ、題 40px/44px。
+- **状態（`ticket_status`）**：sale＝黄のボタン BUY TICKETS 140×61／remaining＝同じ黄で REMAINING TICKETS 182×61（数なし）／soldout＝ボタンを消して SOLD OUT 20px の字＋TICKET EXCHANGE ⓘ、`has_wishlist` が true の回だけ WARTELISTE ⓘ／free＝ENTRANCE FREE の字／null＝何も出さない（CAST も無し）／event_already_started＝日程に出さない。見た43回で sale 8・remaining 6・soldout 21・free 1・null 1・started 3。
+- **日付**：v-calendar（升 60×48・丸 48×48・今日は黄の丸）。上演の印なし、過ぎた日も押せる見た目。1日を押すと 564ms で `?date=2026-11-25`、API `/en/api/events/?page=1&date=…` を1回、その日から先（11/25・26 は回が無いので 11/27 から）。件数は API に `count: 394` があるが画面に出ない。
+- **10件ずつ**：`page_size: 10`。末尾に行の形の骨組み（地 #fff7b2）を2つ置き、見えたら page=2。「次へ」のボタンも件数も無い。骨組みの明滅 `loadingBackground` 4s は途中の値（`lighter()`・`rgba(var(--hex),.2)`）が無効で動かない。
+- **絞り込み**：GENRES 4（部門）と VENUES 2（劇場）だけ。Leipziger Ballett で `?branch=2`、854ms。SP は FILTER 1つで淡い黄 #fffce6 の面に全部を縦に並べる。値段・時間帯・空きでは絞れない。
+- **演目**：頭の「TERMINE & TICKETS」213×61（SP 181×45）は `#tickets` の錨で、PC 4,092px・SP 4,203px 下の日程へ。日程は3回＋SHOW MORE DATES で全部（3→13）。SP に貼り付く券の帯は無い（ヘッダーは下へ読むと translateY(-100%) で隠れる）。
+- **売り切れの先**：TICKET EXCHANGE（117×20 の字）は回で絞らない譲り場 /en/selfcare/market（ログインなしで月・演目14・枚数1〜6で絞れ、出品10件）。WARTELISTE はショップの会員のページ。ⓘ の説明は 312×130・地 #fffce6・枠 1px 黒・16px、`translateY(2.3rem)` で下に出て WARTELISTE を覆う。2つの ⓘ で同じドイツ語の1文。
+- **値段**：5ページに値段の数字が0。データに `presale_date`（2026-06-02、無料の回は 3000-01-01）と `max_abo_rebate`（Figaro の初日 40）があるが行には出ない。約款「刷られた値段は窓口だけ。ほかの売り手は手数料を足すことがある」。
+- **予約前の不安**：約款の1節だけ。払い戻し・交換なし／中止は前売りの手数料を引いて返す／休憩の前に打ち切りは全額／配役の交代は理由にならない／14日の撤回は日の決まった催しの券には無い。券は開演の3時間前から終演の3時間後まで MDV の110区の乗り物の券（トップの News のカード）。
+- **データ**：JSON-LD は5ページとも0。番組は HTML に埋めた window.__NUXT__（477〜503KB）と10件ずつの API。
+- **見た目**：黒と黄の4段（#fff264・#fff7b2・#fffce6・#fff481）だけ。黒 on #fff264 は 18.14:1。押せないボタンは #bfbfbf（白地 1.84:1）。書体は Knockout 3太さと PP Eiko 2太さ（自社配信 woff2 326〜346KB）。いまのタブを手描きの SVG の楕円（幅 227.8px）で囲む。
+- **動き**：`0.41s cubic-bezier(.58,.09,.11,.93)` が32か所。ボタンのホバーは地と字の反転（黄地・黒字 → 黒地・黄字）。prefers-reduced-motion は CSS 54枚・420,819字に0。
+- **重さ（PC / SP）**：約款 3.24 / 3.10MB、番組 3.47 / 3.36MB、トップ 4.49 / 3.80MB、Der Nussknacker 7.09 / 5.65MB、Die Fledermaus 7.52 / 5.94MB（頭の元の JPEG 2,189KB を SP でも読む）。どのページも HTML 1.1〜1.35MB・JS 約 2MB。上位10は全部自社のホスト。
+
 ## 真似る型
-見本は DICE（販売サービス）・Shakespeare's Globe（劇場の自社サイト）・Philharmonie de Paris（コンサートホールの自社サイト＋SecuTix）・Barbican（芸術センターの自社サイト＋Spektrix）・Concertgebouw（コンサートホールの自社サイト＋Tix）の5つ。
+見本は DICE（販売サービス）・Shakespeare's Globe（劇場の自社サイト）・Philharmonie de Paris（コンサートホールの自社サイト＋SecuTix）・Barbican（芸術センターの自社サイト＋Spektrix）・Concertgebouw（コンサートホールの自社サイト＋Tix）・Oper Leipzig（歌劇場の自社サイト＋Eventim）の6つ。
 
 1. **値段は手数料込みで出し、含んだことを1文で添える**。DICE は「From £36.05」の下に「The price you'll pay. No surprises later.」、Globe は「£89–£29*」の * で「£3 per order・£1 per ticket を含む、立ち見は除く」を DETAILS と公演日の表の上の面（656×152）の2か所で言う。作るときは、合計の下に内訳の1行を置く。
 2. **公演日がいくつもある演目は、1行1回の表**（Globe：行 656×110、日付・時刻のボタン 120×43・値段の幅 13px 700、同じ日の2回は2行）。DICE は1公演1ページなので表が無い。作るときは、行に「日付・時刻のボタン・席種ごとの値段（と残り）」を並べ、配慮の回の印も行に入れる。
@@ -103,6 +121,12 @@
 17. **一覧のカードは「時刻｜ホール｜〜から値段」を1行にし、状態の札をボタンのすぐ下に置く。売り切れはボタンの言葉を替える**（Concertgebouw：18px 600、区切りは赤の縦線 2px、「Last tickets」「Sold out」18px 600、売り切れは「More information」）。札には残りの数を入れる（本家は入れない）。
 18. **日を1つ押したら「その日から先」で絞り、条件をチップと × で一覧の上に、件数を替えて出す**（Concertgebouw：「Events from Fri, Nov 20 ×」・Remove filters・468→449）。終わりの日も選べるなら DICE の from／until（型4）にそろえる。
 19. **公演ごとに頭と券の枠の地の色を替え、主ボタンの色は替えない**（Concertgebouw：Jamai #e4002b の枠に白い線のボタン、Messiah #c3d7ee の枠に #e4002b の塗りのボタン）。
+
+20. **回の状態は行の右端の同じ場所で、ボタンの言葉と有無で言い分ける。売り切れはボタンを消して次の手を並べる**（Oper Leipzig：BUY TICKETS 140×61／REMAINING TICKETS 182×61 は同じ黄 #fff264 と黒枠 1.5px、SOLD OUT は 20px の字で TICKET EXCHANGE と WARTELISTE、無料は ENTRANCE FREE、売らない回は空。Concertgebouw は売り切れでボタンを「More information」に替える）。作るときは REMAINING に数と色を足し（本家は数なし）、譲り場はその回で絞って開く。
+21. **一覧の日付は題と同じ大きさで左の列に立てる**（Oper Leipzig：日 64px/60px 700・曜と月 20px、列 52px。SP は列を消して日時の行の中だけ）。数十回の演目が並ぶ全体の番組で、日の切れ目が目で追える。
+22. **番組の一覧は10件ずつ、末尾に行と同じ形の骨組みを置き、見えたら次を読む**（Oper Leipzig：`page_size: 10`、骨組みの地 #fff7b2）。作るときは骨組みの下に「続きの10件」のボタンと残りの数を置く（本家は無い）。
+23. **絞り込みは部門と劇場の2つに絞り、URL に残す。SP は1つのボタンで全部の選択肢を1枚の面に縦に出す**（Oper Leipzig：GENRES 4・VENUES 2、`?branch=2`、854ms、FILTER の面は #fffce6）。
+24. **演目の頭に日程への錨のボタン、日程は3回＋全部を出すボタン**（Oper Leipzig：TERMINE & TICKETS 213×61 → #tickets、SHOW MORE DATES で 3→13）。作るときは SP に回と合計の帯を貼り付ける（本家は無い）。
 
 ## 反面教師
 - 残りが「LIMITED TICKETS」の一言だけで、SP は 8.32px。席種ごとの残りは席の画面まで出ない（Globe）。
@@ -136,3 +160,11 @@
 - 値段の表に出る料金区分は Standard だけで、データにある 30歳以下・会員の区分（7区分）は注記の言葉だけ（Concertgebouw）。
 - 公演ページに払い戻しの語が0。交換・払い戻し不可と「前日16時までならクレジット」は FAQ の開閉だけ（Concertgebouw）。
 - YouTube の iframe を押す前から 4,223KB 読み、写真を 947×573 の PNG（570〜760KB）で配る（Concertgebouw）。
+- 一覧・演目の5ページに値段の数字が0。2名でいくらかは別ドメインのショップに移るまで分からない（Oper Leipzig）。
+- REMAINING TICKETS と BUY TICKETS が同じ黄・同じ高さで、違いは言葉と幅（182／140px）だけ。数も境目も無い（Oper Leipzig）。
+- データに発売日（`presale_date`）と会員の割引（`max_abo_rebate` 40）を持つのに、行に出さない（Oper Leipzig）。
+- ⓘ の説明（312×130）が開くと下の WARTELISTE を覆い、2つの ⓘ で同じドイツ語の文（英語版。Oper Leipzig）。
+- 売り切れの行の TICKET EXCHANGE が、その回で絞っていない譲り場の入口に飛ぶ（Oper Leipzig）。
+- 次の10件を骨組みが見えたときだけ読み、ボタンが無い。キーボードでは届かない（Oper Leipzig）。
+- 骨組みの明滅の keyframes に無効な値（`lighter()`・`rgba(var(--hex),.2)`）で動かない（Oper Leipzig）。
+- HTML の約 500KB が埋め込んだ番組のデータ、実行時の CSS で同じ色の宣言が94回、頭の写真は元の JPEG 2,189KB（Oper Leipzig）。

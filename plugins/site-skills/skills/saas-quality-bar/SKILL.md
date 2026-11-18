@@ -20,7 +20,7 @@ description: SaaS・ソフトウェア・アプリの製品サイトを作る・
 |---|---|---|---|
 | 開発者向け | API、開発ツール、インフラ、ヘッドレスCMS、ノーコードのWeb制作、データベースの基盤、配信と AI の基盤、サーバー監視 | Resend、microCMS、Studio、Supabase、Vercel、Mackerel | `types/devtools.md` |
 | 業務SaaS | 営業・人事・会計・社内ツール・保育や学童などの現場・製品開発の課題管理・CRM・問い合わせ（サポート）の受付・法人カードと経費の精算 | Backlog、コドモン、Linear、Attio、Plain、Ramp | `types/business.md` |
-| AIプロダクト | 生成AI・AIを中心にした製品、会議や記録の AI（議事録）、コーディングのエージェント | Nani翻訳、Granola、Cursor、Rimo、Notta | `types/ai.md` |
+| AIプロダクト | 生成AI・AIを中心にした製品、会議や記録の AI（議事録）、コーディングのエージェント、動画・画像の生成（クレジット課金） | Nani翻訳、Granola、Cursor、Rimo、Notta、Runway | `types/ai.md` |
 | 個人向けアプリ | スマホ・PC のアプリ、個人で使う道具、共有カレンダー、家計簿・資産管理 | Todoist、TimeTree、マネーフォワード ME、Moneytree、くふう Zaim | `types/app.md` |
 
 ## このスキルの範囲

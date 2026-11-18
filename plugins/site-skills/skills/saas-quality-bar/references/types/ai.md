@@ -63,8 +63,20 @@
 - **見た目**：地 #fff・#f5f7ff、文字 #0b1639（17.68:1）・説明 #48526c（7.78:1）、Notta Blue #2571ff・リンク #3164ff（4.78:1）・割引と「導入後」だけ桃 #f94d86。書体は自前の PAotoGothicStdN を文字の組41×太さ7＝@font-face 287 に分け `unicode-range`＋swap で配る（CSS 479KB）、ワードマーク周りに Olivine。段は 54／48／36／24／18／14／12px、CSS の font-size は 14px が最多。既定 `all .2s ease-in-out`、主ボタン transform .18s・影 .22s cubic-bezier(.22,1,.36,1)、ロゴの帯 40s linear は reduce でも running。料金の FAQ は文節ごとに `<wbr>`（756個）＋keep-all、トップは5個で語の途中の折り返しが PC 12・SP 33。
 - **重さ**：PC で top 13.62MB / web 31.56MB / pricing 5.44MB / cases 73.93MB / ヘルプ 1.70MB（SP 12.30／31.80／5.68／74.20／1.71MB）。解析を含めるとトップは 33ホスト（GTM 3,473KB・Meta 953KB・Convert の A/B 331KB・One Tap 276KB）。Gatsby＋Storyblok。ヘルプは Zendesk（h1 に絵文字、curl は 403、SP で横スクロール、画像13枚中12枚 alt なし）。
 
+### Runway（Runway AI, Inc.、動画・画像・音声の生成）https://runway.com/ — 2026-11-18
+- **最初の画面**：1400×600px・角 12px の枠に Mux の動画（loop・muted）＋黒 20% の幕。h1「Intelligent tools for scaling content and teams.」56px/400・字間 -0.84px の2行（SP 36px）、一文 16px、ボタン1つ「Try Runway for free →」185×40px・角 8px・地 #f7f7f7。題と一文に「video・image」の語が無い（/product の h1 は「A new frontier for video generation.」80px）。reduce では mux-video を作らず poster だけ。ヘッダーは「Enterprise Sales」「Login」（#eef1f5）・「Try Runway」（#262626）の 32px・角 6px。
+- **試すまで**：主ボタン → app.runwayml.com のゲストの作業画面（入力欄「What will you create today?」・モデルの札・例のタイル）へ1手、フォーム0。有料のボタンは /checkout/plan/starter-yearly など（中の名前が画面のプラン名と違う）。カード不要の記載は API の Pay as you go にだけ。
+- **製品の見せ方**：DOM の模型は無く、作ったもの（動画）で見せる。/product「Dozens of tools」はタブ10個（role=tab）を約 4.0秒で送り、左に題 30px・2行・入力の見本（「Stage the room with…」＋チップ a couch／a coffee table／plants）、右に 568×320 の結果。チップで画像を差し替える。reduce では送らない。トップの3製品（Creative／Dev／Robotics）は非選択 opacity .5、下の線が width で約 20秒（reduce でも伸びる）。
+- **機能の並べ方**：/product はモデル16個の名前の格子（他社の Kling・Nano Banana・Claude Opus 5.5 なども同じ大きさ）→ 新しいもの8枚（「Try now」はアプリの該当ツールへ直接）→ 使い道のタブ → 事例3枚 → 他のアプリ9枚 → ノードの図（1枚の画像）。
+- **料金表**：区分タブ（Individual／Team & Enterprise／API）と月年の切り替え（role="switch" 40×24・.15s・「-20% off」12px の青い札）を1本の帯にして sticky（top:64px・82px）。初めは年払い。Free $0・Standard $15/$12・Pro $35/$28（黒の頭「Popular」32px・枠 2px）・Max $95/$76（青 #2c22fa の頭「Best value」・薄紫のグラデーション・札「Credits roll over 1 mo.」）。カードの頭に「Billed annually. Save $36/year.」14px/600、月払いの値は取り消し線 24px・opacity .5（1.86:1）。クレジットは「625 credits monthly = 52s of Gen-4.5…」と秒・枚に換算（ⓘ）。率はどれも 20.0%、金額は (月−年)×12 と一致。Team $69/$55/席、席のステッパー 2〜9（端で disabled・opacity .3）で Save $336→$1,512、165,600→745,200 credits/year。API は使った分。税の表記なし。
+- **比較表**：「Compare models across plans」＝モデル46個（動画25・画像13・音声8）×Standard・Pro・Max で、値は「年のクレジット÷1本のクレジット」の切り捨て（Gen-4.5 60 credits/5s → 125・450・1,900 videos）。月払いでは「Generations per month」（10・37・158）。区分は aria-expanded で開閉、最初は4行ずつ＋「View more」。頭のセル sticky top:64px、行 63px、値 13px。期間限定の割引は単価の取り消し線＋札「25% off ⓘ」＋吹き出し（期限つき）。SP は動画4行だけ。FAQ 4問（FAQPage）。構造化データ Offer の price は月払いの値。
+- **事例と信頼**：/news/customers はニュースの1区分（区分7・検索・Grid／List、13件×5ページ）。検索0件で何も出さない。詳細（/chime）は h1 56px＋右に表紙 → 数字3つ 44px＋注 14px → 左に目次・中に問答（幅 620px、h3 の問い 24px、本文 16px/28px）・右に Overview の札（Customer・Industry・Location・Products・Use case）と黒い相談の箱。数字「85% cost savings」は本文「around 5x」（約 80%）と合わず、「5x less」の注に対象が無い。ロゴ 39個の帯（reduce でも 29.8px/秒）、「60M+」に時点なし。
+- **ヘルプ**：Zendesk。動画の帯 6,727KB、6分類19項目。font-family が「abcnormal」だけで読み込み前は Times、@font-face の url が「$assets-roobert-regular-woff」のまま。SP で横スクロール。
+- **見た目**：字は #0c0c0c（題）と #404040（本文 10.37:1）、注 #666e7a（5.15:1）、非選択 #7c7c7c（4.17:1）、料金にだけ青 #2c22fa。書体は自前の ABC Normal（300・400・500）で、題は全部 400、clamp のトークン rw-display-xl 48〜80px・l 36〜56px・m 28〜40px・s 24〜30px、字間 -0.02〜-0.0075em。価格 45px・行間 .9。動きは .15s cubic-bezier(.4,0,.2,1)、料金のボタン .2s。
+- **データと重さ**：PC で top 81.84MB / product 90.84MB / pricing 45.97MB / customers 102.68MB / ヘルプ 7.70MB（SP 38.68／25.01／49.49／105.66／7.61MB）。/pricing は head に他ページの画像の preload 42本（上位10のうち9本が画面に出ない画像、DSC02026.webp 11,425KB）。事例一覧は 1600×1072 の PNG を 422×237 に lazy なし。Cookiebot の同意で Advertising などが最初からオン。チャットなし。
+
 ## 真似る型
-（Nani翻訳・Granola・Cursor・Rimo・Notta の5件から。AI が働く様子を、最初の画面で本物か本物に近い形で見せる。Rimo は静止画で、ここは真似しない。）
+（Nani翻訳・Granola・Cursor・Rimo・Notta・Runway の6件から。AI が働く様子を、最初の画面で本物か本物に近い形で見せる。Rimo は静止画で、ここは真似しない。）
 - **最初の画面の主役は、AI が働く製品そのもの。題はそれより小さくてよい。**登録なしで動く入力欄（Nani翻訳：textarea 741×158px）か、DOM で組んだ画面の1巡（Granola：約8.6秒、Cursor：1300×720px・15秒で13通り）。Cursor は h1 を 26px に抑え、窓に面積を譲る。画像や動画1本で済ませない。止めるボタンと reduce での停止は3件とも無い（足す）。
 - **窓の中は、本物らしい仕事の細部で埋める。**ファイル名・差分の行数・考えた秒数・結果の数字（Cursor「about-acme.md を読む」「思考時間 6秒」「+52 -0」「初回描画は 280ms」、Granola「Enhancing notes」）。訳した文と、訳さないコードを混ぜてよい。
 - **行動は1つか、端末で変える。**Nani翻訳はボタン型の「試す」無し、Granola は「Download for free」1つ、Cursor は PC が OS 名入りのダウンロード＋副「デモを依頼する」、SP は「始める →」で /login だけ（Granola は SP でも「Download for Mac」で、真似しない）。
@@ -78,6 +90,10 @@
 - **最初の画面の製品画面を、できることのチップで手で差し替える**（Notta：6つ・選択は実線＋✓・他は点線、画像は webp 640×500 を等倍）。自動で回さないので reduce の心配が無く、DOM の1巡（Granola・Cursor）より軽い。下の帯で、本物の画面の写しを吹き出しで1手ずつ進む案内（Storylane 1204×654）を置いて触らせる。ただし iframe は押してから読む（Notta は見えたら約 5.5MB）。
 - **約束の数字は h1 の上の札に、h1 は何をする道具かだけ**（Notta「会議後の資料づくりを、3時間から3分へ。」16px の札＋h1 54px の2行）。
 - **年払いの割引はどのプランとアドオンでも同じ率にし、計算と合わせ、月払いでは札を消す**（Notta は 40.0〜40.2% で札「40% OFF」、Brain 39.8% には付けない）。試用の後に年払いで自動更新するなら、それを試すボタンの直前に書く（Notta は FAQ の中だけ。真似しない）。
+- **クレジット（利用量）の料金は、比較表で「1年で何本作れるか」に直す**（Runway：モデル46行×3プラン、値＝年のクレジット÷1本のクレジットの切り捨て、月払いでは「1か月で何本」、区分ごとに4行＋View more）。カードにも「625 credits = 52s of Gen-4.5」と1つの単位で換算を添える。Nani翻訳「450字の英和翻訳なら約2,500回」と同じ考えを、表全体に広げた形。
+- **年払いの得は率と金額の両方**（Runway：切り替えに「-20% off」、カードの頭に「Save $36/year」、Team はステッパーの人数で金額が変わる）。取り消し線の旧価格は 4.5:1 を保つ（Runway は 1.86:1。真似しない）。
+- **使い道のタブは「入力の見本（チップ3つ）→ 結果」を1組にして約4秒で送り、reduce で止める**（Runway /product の10個）。進み具合と止めるボタンを足す（Runway に無い）。
+- **「無料で試す」はゲストで開ける本物の作業画面へ1手**（Runway：app.runwayml.com、フォーム0。Nani翻訳の未ログインの入力欄と同じ考え）。
 ## 反面教師
 - 主ボタンの白文字が地 #099bff で 2.94:1、PRO の名前 #24afff が 2.43:1、注記 #7f8b91 が 3.50:1（Nani翻訳）。
 - reduce で何も止まらない：声の帯 48s も FAQ の開閉 .27s もそのまま（Nani翻訳）。
@@ -98,3 +114,6 @@
 - 有料の試用（3日）が終わるとプレミアム年間 ¥14,220 で自動更新するのを、料金の FAQ の中にだけ書く。構造化データの Offer「Pro Plan (monthly)」1317 が画面のどの値とも合わない（Notta）。
 - 事例の一覧で写真を元の大きさ（最大 7008×4672）のまま lazy なしで読み 73.93MB、/web は PNG の写真3枚で 23.6MB（Notta）。
 - 役割のタブを reduce でも 17.6秒で送り、止める手段も進み具合も無い。ロゴの帯 40s も reduce で running。SP の最初の画面に Google One Tap が重なる。「40% OFF」#f94d86 は白地で 3.26:1、「導入前」#b1b4c2 は 2.06:1（Notta）。
+- 料金ページ 45.97MB のうち、他ページの画像の preload 42本が上位10の9本（DSC02026.webp 11,425KB ほか）。事例一覧は 1600×1072 の PNG で 102.68MB（Runway）。
+- 事例の数字「85% cost savings」が本文の「around 5x」と合わず、検索の0件は空の一覧だけ。SP の比較表は動画の4行だけ（Runway）。
+- reduce でもロゴの帯（29.8px/秒）と3製品の線（width で約20秒）が動く。取り消し線 1.86:1・プランの説明 #818a9d 3.47:1。最初の画面の題と一文に「video・image」の語が無い（Runway）。

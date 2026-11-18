@@ -61,22 +61,38 @@
 - **お知らせ**：一覧なし。top の What's New 3枚（日付なし、題は SVG で `<title>` がファイル名）と、FAQ の最後の問いに更新3つを年つきで（2024・2025年5月・2026、「これ以上の更新は予定なし」）。
 - **安全と重さ**：reduce は Bootstrap の既定 17件だけ（雲 110s・55s・動画・札は止まらない）。Tab の14手とも outline none。scroll のたびに全 `.scroll-appear` を計算。measure.js：top PC 32.22／SP 39.23MB（mp4 16,095KB、受賞の PNG 18枚 6,223KB、遊び方の PNG 20枚 4,891KB）、DLC 15.66／17.90MB、図鑑 2.82／2.76MB、FAQ 3.28／3.60MB。
 
-## 真似る型（Z-A・P3R・Expedition 33・Baldur's Gate 3・Sea of Stars の5つで確かめた）
+### 『Cyberpunk 2077』公式（https://www.cyberpunk.net/us/en/ ・2026-11-18 解剖、2020 年発売・海外〔CD PROJEKT RED、ポーランド〕・拡張 Phantom Liberty 2023 年・無料更新 2.5 配信後。歩いた5ページ：/us/en/・/us/en/cyberpunk-2077・/us/en/phantom-liberty・/en/news/・/us/en/buy）
+- **枠**：自前の webpack＋Swiper。地 #000、主の黄 #fcee0a（CSS で 186回）、水色 #00f0ff（109回）、拡張の調書だけ赤 #fc012a。書体は自前の Refinery-25（h1・h2）と Blender Pro Book／Bold（本文・ボタン）。全部の部品が「角を落とした形」：ボタン cp-btn（高さ 48px・最小幅 232px、左右 20px の SVG border-image で左に切り欠き・右下を落とす）、ナビ（`clip-path:polygon(16px 0,100% 0,100% 30px,calc(100% - 18px) 48px,…)`）、タブ枠、購入の札。title は4ページ同じ文、chara・buy は h1 なし、JSON-LD 0件。
+- **最初の画面**：右半分に人物のキービジュアルを少し動かした webm（1920×1080、903KB、`autoplay muted loop`、poster あり）、左の列に上からプレスの評3つ（月桂樹の枠 254×64、y=119）→ h1 88px／0.9 の大文字3行（x=191）→ BUY NOW・WATCH TRAILER（232×48）→ 機種のロゴ8つ（高さ 32px、2段）。発売日・値段は無い。ナビは右上 760×40、右端の BUY NOW 140×38 は top・chara で #fcee0a、world で #00f0ff。下へ行ってもナビは上から 36px に残る。SP は h1 32px の白を動画の上に、ボタン縦2つ。
+- **動画**：予告は YouTube の watch へのリンク（target=_blank）で、ページに埋め込みなし＝押す前の YouTube 0件。拡張の KV は webm 2,915KB。world のタロットの区画の webm 392KB は止まったまま読み込み時に取る。MEDIA の区画は「inappropriate for minors」の幕と OK（押すと大人と認めた扱い。押していない）。
+- **キャラクター**：world は黄の面に6人の立ち絵（各 240×540）を横一列、名前の札（180〜230×48）を押すとその場で `.expanded` が付き、350ms で名前 44px・文 22px 700 が開く。拡張は赤の面に5人の「調書」：文の中の固有名に白い帯（`::after` #e6e9e9、`skewY(-15deg) rotate(15deg)`、幅 104%・高さ 1.2em）、下に AUTHORIZED BY／DATE の空欄（14px・字間 .1em・白 40%）、閉じる札は CLOSE THE DOSSIER。札はどちらも `div`（tabIndex −1）で Tab が届かず、Esc で閉じず、URL は変わらない。声・声優なし。
+- **世界観**：world の5つのタブ（What’s New・Story・Night City・Gameplay・Phantom Liberty、高さ 46px）で横に 0.3s ease、選んだタブの地を #fcee0a に（押して 134ms）。先頭は最新の無料更新の告知。タブは `li`（PC は JS のあと tabIndex −1、aria-current は付け替わらない）。
+- **ニュース**：最初に17件（最新1を大きく・黄の面に1＋6・暗い面に9）、全カードに「29.10.2026」の日付。LOAD MORE NEWS は `span` で、押して9件足す（URL は変わらない）。絵は PNG（1440 幅を 373px で 1,385KB）。カードのホバーで glitch（clip-path の帯を 2s linear infinite alternate、±5px）。
+- **買う**：赤い札「DISCOUNTS UP TO -50%」→ SELECT GAME（Ultimate・Phantom Liberty・本編の3つ、467×262、`div` で Tab 不可。拡張の下に「本編が要る」1行）→ SELECT PLATFORM（Ultimate は5機種、本編は6機種。200×52 の button だが機種のロゴが背景の絵で名前なし、PS5 は角の札「-50%」が名前になる）→ Digital／Retail → 店（200×52 の a、alt は店名、新しいタブ）。押して 58ms。店のデータは `storeData` をページに直書きで、4版×機種×形の70行（売り切れ16行は URL なし）。値段の項目は無く、5ページで値段0件。何を選んでも URL は `/us/en/buy`。国の切り替え53か国。
+- **表記**：ESRB M はフッターの `div` の背景の絵だけ（文字・alt なし）。16言語、URL は `/us/ja/` のように国／言語。
+- **安全と重さ**：`prefers-reduced-motion` 0件、reduce でも KV の動画は再生。news 以外の4ページにニュースレターの欄と reCAPTCHA があり、`recaptcha__ja.js` 846KB を4回＝3,384KB（buy 5.53MB の 61%）。measure.js：top PC 8.56／SP 7.65MB、world 10.29／10.70MB、chara 10.59／10.37MB、news 4.85／4.63MB、buy 5.53／5.53MB。
+
+## 真似る型（Z-A・P3R・Expedition 33・Baldur's Gate 3・Sea of Stars・Cyberpunk 2077 の6つで確かめた）
 - **機種×版の値段・発売日・年齢区分を、1か所に文字で並べる。**Z-A は商品詳細の仕様表（14項目の定義リスト）、P3R は全ページ末尾の SPEC（7項目、価格は全版を1つの欄に）。どちらも値段と CERO が文字で読めるのはそこだけだった。作るときは、その表を購入の区画にも置き、年齢区分を値段の横に出す。
 - **パッケージの買う先は、ストアのボタン1つでなく店の一覧にする。**Z-A はダウンロードカード16チェーン＋ダウンロード番号6ショップの店名リスト、P3R は26店のカード（店舗オリジナル特典つき）を PS5／PS4 で切り替え。店ごとの特典があるなら、店のカードに特典名と版のボタンを入れる。ボタンの名前には店・版・機種を書く（P3R は117個とも名前が無い）。
 - **版は「パッケージ／ダウンロード」の2つのタブか区画で分ける。**Z-A は商品5枚を1つの詳細ページの `#anc01〜04` に分け、価格をパッケージ・DL・Switch 2 Edition の別に書く、P3R は 640×60 のタブ2つ。限定版の同梱物は版×品の ○×表にする（P3R：4版×6品）。
 - **トップの最初の数画面に「購入」への入口を置く。**Z-A は左の縦帯に「購入はこちら！」「予約はこちら！」、P3R は2画面目（y=1,139）に「BUY NOW!」。特設ページは「購入はこちら」を固定する（P3R：/expansion/ 300×97、/switch2/ 257×51）。
-- **最初の画面の真下に機種のリンクを並べ、ヘッダーの右端に買う入口を1つだけ別扱いで置く。**Expedition 33 は AVAILABLE NOW の帯の直下 y=828 に機種4つ（234×91）、ヘッダーは他 15px に対して Out Now だけ 20px の札（132×56）で、▾ の button（aria-expanded）から店4つ（100×41、新しいタブ）。Baldur's Gate 3 も AVAILABLE NOW の下 y 745〜751 に機種5つ、ヘッダー右に Buy now 144×58。Z-A の縦帯・P3R の2画面目の BUY NOW! と同じく、入口は最初の数画面に。
+- **最初の画面の真下に機種のリンクを並べ、ヘッダーの右端に買う入口を1つだけ別扱いで置く。**Expedition 33 は AVAILABLE NOW の帯の直下 y=828 に機種4つ（234×91）、ヘッダーは他 15px に対して Out Now だけ 20px の札（132×56）で、▾ の button（aria-expanded）から店4つ（100×41、新しいタブ）。Baldur's Gate 3 も AVAILABLE NOW の下 y 745〜751 に機種5つ、ヘッダー右に Buy now 144×58。Cyberpunk 2077 も題の下 y=584 に機種のロゴ8つ（高さ 32px・2段）、ナビ右端に BUY NOW 140×38 だけ地を塗る。Z-A の縦帯・P3R の2画面目の BUY NOW! と同じく、入口は最初の数画面に。
 - **版×品の比較は、PC は表、SP は版ごとに開く。**P3R は 4版×6品の ○×（ul と背景の絵）、Expedition 33 は 4版×6品（PC は画像1枚、SP は 362×46 の button 4つで1つだけ開く）。どちらも表が文字の table でないので、作るときは table と `button[aria-expanded]` を同じデータから作る。
-- **トレーラーは押してから埋め込む。**Z-A はサムネの `<button>` を押して `iframe_api`、Expedition 33 は菱形の再生を押して `iframe_api` → `autoplay=1&mute=1`。どちらも押す前の YouTube の通信は 0（P3R は読み込み時に iframe で 1.5MB）。Baldur's Gate 3 も再生の輪を押して embed の iframe（押す前 0件、押して 1,155KB）。 Sea of Stars も `a.magnific-video` を押して 100ms で embed（押す前 0件、押して 1,406KB）。
-- **人物は一覧の列と1人の詳細を同じ画面に置く。**Baldur's Gate 3 は右の縦の列 7人と能力の札（押して 35ms）、Sea of Stars は上にドット絵のタブ 6つ（150×146）と下に名前 52px の詳細（押して 73ms）。どちらも URL が `/` のまま・列に名前が無いので、作るときは名前のある button と `?chara=`（pushState）を足す。
+- **トレーラーは押してから埋め込む。**Z-A はサムネの `<button>` を押して `iframe_api`、Expedition 33 は菱形の再生を押して `iframe_api` → `autoplay=1&mute=1`。どちらも押す前の YouTube の通信は 0（P3R は読み込み時に iframe で 1.5MB）。Baldur's Gate 3 も再生の輪を押して embed の iframe（押す前 0件、押して 1,155KB）。 Sea of Stars も `a.magnific-video` を押して 100ms で embed（押す前 0件、押して 1,406KB）。Cyberpunk 2077 は埋め込まず YouTube の watch へ新しいタブで（押す前 0件）。
+- **人物は一覧の列と1人の詳細を同じ画面に置く。**Baldur's Gate 3 は右の縦の列 7人と能力の札（押して 35ms）、Sea of Stars は上にドット絵のタブ 6つ（150×146）と下に名前 52px の詳細（押して 73ms）。Cyberpunk 2077 は横一列の立ち絵 6人（240×540）の名前の札を押すと、その場で 350ms で名前 44px・文 22px が開く。3つとも URL がそのまま・札が button でないので、作るときは名前のある button と `?chara=`（pushState）を足す。
+- **買うは「版 → 機種 → 形 → 店」の段で選ばせ、版に無い機種・形は出さない。**Baldur's Gate 3 は版3つで同梱物と店が替わり Physical では Steam・GOG が消える、Cyberpunk 2077 は版3つ→機種（Ultimate 5・本編 6）→ Digital／Retail → 店（押して 58ms）。どちらも値段0件・選んだ値が URL に残らない・版の部品に Tab が届かないので、作るときは版と機種を button（aria-pressed）にし、値段を出し、`?edition=&platform=` に残す。
 
 
 ## 真似る候補（見本1つ。2つ目で確かめたら「真似る型」へ上げる）
+- 全ページの部品（ボタン・ナビ・タブ・札）を、作品の世界から取った1つの形にそろえる（Cyberpunk 2077：左に切り欠き・右下を落とす cp-btn 232×48、ナビは左上 16px・右下 18px を落とす clip-path）。
+- 人物を作品の書類の形で見せる：固有名を帯で隠し、開くと読める。下に署名と日付の空欄（Cyberpunk 2077 の Phantom Liberty の DOSSIERS）。
+- 割引はページ上の札と、機種・店のボタンの角の札の2か所に（Cyberpunk 2077：DISCOUNTS UP TO -50% と PS5 の角の -50%）。
+- 発売から時間のたった作品は、最初の画面に発売日の代わりにプレスの評3つ、紹介のタブの先頭に最新の無料更新（Cyberpunk 2077）。
 - 全ページの下端に、音楽プレーヤーとストア6つを1本の固定の帯で（Sea of Stars：PC 1090×70、SP 390×58 はストアだけ。ストアは aria-label 付き）。作るときは音は押してから取り、動画を開いたら止める。
 - 世界のしくみ（昼夜）を、回せるつまみで見せる（Sea of Stars：99 コマ、直径 566px）。作るときはつまみを `role="slider"` と矢印キーに。
 - 終わった作品のお知らせは、FAQ の1問に更新の歴史を年つきでまとめ「これ以上の予定なし」と書く（Sea of Stars）。
-- 版を選ぶと、箱の絵・同梱物・店のリンクの行き先が一緒に替わる。売っていない機種のボタンは消す（Baldur's Gate 3：Standard 1行・Digital Deluxe 6行・Physical Deluxe 9行、Physical は Steam・GOG が消えて3つ。92ms）。作るときは版を button（aria-pressed）にし、消すだけでなく理由と代わりの版を書き、値段を出す。
+- 版を選ぶと、箱の絵・同梱物・店のリンクの行き先が一緒に替わる（Baldur's Gate 3：Standard 1行・Digital Deluxe 6行・Physical Deluxe 9行、Physical は Steam・GOG が消えて3つ。92ms。段の選び方は Cyberpunk 2077 でも確かめて真似る型へ）。作るときは版を button（aria-pressed）にし、消すだけでなく理由と代わりの版を書き、値段を出す。
 - 版を選んだ状態をハッシュで指せる（Baldur's Gate 3：`#buy-standard`・`#buy-dde`・`#buy-de`）。
 - 年齢区分を地域ごとに並べる（Baldur's Gate 3：ESRB・PEGI・USK・ACB の4つに地域名。ただしフッターだけで画像に alt なし）。
 - 人物のタブは `role="tab"` の roving tabindex（選んだ札だけ 0、← → でフォーカス）にし、選んだ札は面を抜いて文字だけにする（Expedition 33：8人、高さ 30px、他の札は #ECCFA3 の面）。ただし URL は変えていないので、作るときは #名前 を足す。
@@ -88,6 +104,9 @@
 - 作品のモチーフ（P3R は水）をローディングとモーダルの縁の部品にする。SVG の path 1本を速さ違いで4回使う（3・5.5・13・20秒）。
 
 ## 反面教師
+- 買う導線に値段を1つも出さない。店のデータ70行にも値段の項目が無い（Cyberpunk 2077 の /buy）。版を選ぶ3つの箱が `div` で Tab が届かず、機種のボタン5つはロゴが背景の絵で名前が無い（同）。
+- ニュースレターの欄のために、全ページで reCAPTCHA 3,384KB を読み込み時に取る（Cyberpunk 2077、buy の 61%）。
+- 4ページの title が同じ文、拡張と購入のページに h1 が無い（Cyberpunk 2077）。年齢区分がフッターの背景の絵だけ（同：ESRB M）。
 - 図鑑を1件1URLにしても replaceState で替え、戻るでサイトの外へ出る。知らない名前を 404 にせず最初の人へ送る（Sea of Stars の Compendium）。発売後も図鑑の下が「Wishlist」のまま（同）。
 - 見えない区画の動画7本を読み込み後に全部取り、SP では全部再生する（Sea of Stars：SP 24.4MB）。
 - トップで、最初の画面に要らない連番画像・動画をスクロール前に全部読む（Z-A：33MB）。

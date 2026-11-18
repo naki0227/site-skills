@@ -191,3 +191,8 @@
 - [ ] ページ送りの最後のリンクが本当のページ数を指す（東洋経済オンライン：?page=999）
 
 解剖で裏づけた項目が増えたら、ここに足す（どのサイトで確かめたかを添える）。
+- [ ] カード全体を透明の a で覆うなら、a の名前を題にする。sr-only の「Read more」だけにしない（The Fly Blog：213本のリンク名が全部同じ）
+- [ ] 見出しの # のリンクに、見出しごとの名前と :focus-visible の見た目がある（The Fly Blog：aria-label が全部「Anchor」、opacity 0 でフォーカスでも見えない）
+- [ ] 本文の外に注を出すなら、狭い幅で「注：」を頭に付けた面に変わるかを SP で見る（The Fly Blog：1280px 以上 left:100%・240px、1024px 未満は角 16px の枠と「Sidenote: 」）
+- [ ] Tailwind などの設定から書き出した CSS に「[object Object]」が混じっていないか検索する（The Fly Blog：囲みの h2 の font-size）
+- [ ] 計測のタグを自社のサブドメインから配っているなら、重さの計測でそのホストも数える（The Fly Blog：analytics.fly.io で記事の 49%）
