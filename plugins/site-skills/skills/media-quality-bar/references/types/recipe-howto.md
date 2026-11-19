@@ -89,8 +89,23 @@ PC 1440×900 / SP 390×844。見たページ：トップ、「プロが教える
 - **動き**：transition は全部 cubic-bezier(.23,1,.32,1)（opacity .5s .1s ×14・color .5s ×12・background-color .5s ×10・transform .5s ×5・all .8s ×6）。カードは写真 scale3d(1.1) .8s と札の地が #cc0700・字が白に .5s。lazysizes の写真は opacity 2s。メニューの3本線は keyframes で ×に。:focus は検索欄だけ・(hover:hover) 0。
 - **重さ**：measure.js PC top 21.29MB／list 5.36MB／article 8.09MB／long 8.96MB（SP 21.25／5.25／8.22／9.25MB）。トップは JPEG 20,054KB：写真を PC 用 m〜.jpg と SP 用 mm〜.jpg の両方読む（同じ写真で 541KB＋584KB、SP 用のほうが重い）。全部込み article PC 11,669KB（展開）・145件・51ホスト（自社 4,050KB・GTM 1,536KB・AdSense 1,176KB・GPT 1,067KB・Facebook 804KB・Yahoo! 647KB・Piano 491KB・Teads 451KB）。
 
+### Nadia（https://oceans-nadia.com/ ・2026-11-19 計測）
+PC 1440×900 / SP 390×844（全部込みは iPhone 13 の 390×664）。見たページ：トップ、食材の一覧（/recipe/tag/大根・区画11）、ふつうのレシピ（/user/500550/recipe/537439・材料9・手順4・高さ 3,973px）、読みもの（/user/10022/article/7254・編集部のコラム・レシピ3品・11,848px）。料理家（Nadia Artist）が載せるレシピのサイト（Next.js・CSS Modules）。同意の窓は出なかった（日本から）。選んだ理由：地に白い紙を積む型・作り手の吹き出しのリード・材料と手順の線と番号・用語集へのリンク・PC→スマホの QR・一覧の区画へ飛ぶ札。受賞・事例集は確かめられなかった。
+- **画面の型**：地 #f8f3ea に白 #fefefe の紙（角 12px・内 40px、PC は本文 744px＋間 20px＋右の柱 336px の 1100px）。紙と紙の間 16px、記事は材料・作り方・ポイント・作ってみた！・質問をそれぞれ別の紙に。ヘッダー白 80px・影 0 0 6px rgba(160,131,91,.3)。
+- **記事の頭**：分類の札（60×20・12px 700・白／rgba(255,172,91,.8)）→ 題 h1 28px／44.8px 700 #462416（SP 20px）→ 写真 500×500・角 6px（SP 390 全幅、LCP 804ms／964ms）→ お気に入り 500×52（数入り）→ 行動5つ（スマホで見る・シェア・印刷・埋め込む・メール、13px 700）→ 時間の札「20分」13px 700・地 #eee7dd＋「目安。コンロでの加熱時間を含みます。」15px／24px → 説明の吹き出し（1px #eeddc5・角 4px・内 10px・15px／24px、下に 10px の三角のしっぽ。SP ではしっぽの下に料理家の箱）。日付は紙の下の右に「更新日」「投稿日」13px。
+- **材料**：h2「材料」20px／32px＋「（3〜4人分）」15px 400。ul＞li flex・内 14px 0・16px／25.6px・下 1px #eeddc5（白地 1.33:1）。組の列 40px（印 12px 700）・名前 calc(50% − 16px)・量 40% 右寄せ。SP は内 12px・15px。材料の後に「! 安全に料理をするための注意事項」13px（橙の丸 18px）。人数・単位の切り替え・チェック無し。SP の材料の見出しは y＝2,084px（844px の 2.5画面目）。
+- **手順**：ul（ol でない）＞li・内 14px 0・下の線（最後は無し）。番号 span 26×27・地 #462416・白 12px 700・角 4px、列 40px。写真 100×100・角 4px を文の右（SP は 326×326 を文の下）。文の中の料理用語を /wordlist/細切り へ（1px dashed rgba(70,36,22,.5)・下 2px）。材料と作り方の紙の間に 300×250 の広告2つ。
+- **読みもの**：題の上に「公開日」「更新日」の札（13px 700・白／#462416）と日付。リードは地 rgba(70,36,22,.1)・内 20px・右上に 15px の折り返しの角（border の三角）。本文 632px・16px／28.8px・段落の下 16px。h2 24px／38.4px・下 4px #ffedb6 に ::after で左 20% の #ffc500、h3 20px／30px・左 5px #ffc500。保存のボタン 400×62＋桃 #ffcdcd の吹き出しを頭と終わりに2回。目次無し（h2 に scroll-margin-top 80px はある、id 無し）。
+- **記事の終わり**：レシピはポイント → 料理の基礎のスライド → レシピID・更新日・投稿日 → 作ってみた！の投稿（500×50・角 50px）→ 質問（編集部への問い合わせ）→ パンくず2段。右の柱は料理家（写真・Artist の札 #ff828d・プロフィール／レシピ一覧）と「いま見ているレシピで夕飯が決まる！」の献立の誘い。次の1本の大きな導線は無い。
+- **一覧**：h1 24px／40.8px、説明の面。区画へ飛ぶ札6（a・高さ 44px・角 50px・#f5a000・白 14px・#section-0〜5、SP は2列）。人気4本は地 #fff9e2・1px #eeddc5・角 6px で、小見出しに蛍光ペン（linear-gradient(transparent 65%, #ffef87 65%)・15px 700 #744b3b）。区画の h2 20px・下 4px #462416、カードは3列・写真 203×203、写真の下端に「作ってみた！ 38件」の帯（12px 700・rgba(65,33,10,.6)）、題 15px／21px 700 を 3行（63px）で止める。最後に切り方の札15（料理の基礎へ）。区画ごと6本で、全件の一覧もページ送りも無い。SP で区画の札を押すと全画面広告（#google_vignette）が先に出た。
+- **広告と同意**：PC は下に固定 1440×90。SP は上のアプリの誘い 54px＋下のアプリ 40px＋下の広告 116px＝390×664 の 32%。CLS PC 0.0026・SP 0.0017（枠を先に取る）。Funding Choices を読むが窓は出ない。PR の札 白／#9bce00 1.87:1。
+- **データ**：Recipe（recipeIngredient・HowToStep 4・画像4種・cookTime／totalTime PT20M・author Person・LikeAction）と BreadcrumbList（2段）。recipeYield "0人分"、datePublished "2026-11-19 07:11:04"（T・時差無し）、手順の text に a タグ。コラムは Article（ISO・+09:00）に加えて中身の無い Recipe、一覧も ItemList と Recipe。og:type は website。ダーク 0・reduced-motion 0・:focus-visible 0。「スマホで見る」の QR の窓（360×371・閉じる #966233）は Esc で閉じない。
+- **色と文字**：変数 67個、上位は --baseBrown #462416 135・--yellowL #ffc500 84・--orange #f5a000 62・--borderColor #eeddc5 48・--baseBrown-opa1 43・--lightBrown #966233 36。#462416 は白 13.78:1・地 12.46:1、白／#f5a000 2.12:1（主なボタン全部）、ナビの #a0968f 2.89:1。書体はヒラギノ角ゴ Pro → メイリオ（Web フォント 0）、html 62.5% の rem で 1.6rem ×220・1.4rem ×212。
+- **動き**：all .2s ×190（かざすと opacity .7〜.8）、all .6s ease-in-out ×15、ラジオとチェックの印 transform .4s cubic-bezier(.45,1.8,.5,.75)。:hover 419 の多くを @media (hover:hover)（148）の中に。keyframes 25（窓の fade・アプリの slide-up .5s）。
+- **重さ**：measure.js PC top 2.80MB／list 7.93MB／article 12.79MB／long 15.94MB（SP 2.31／8.36／9.90／8.31MB）。article PC の全部込み 11,378KB・766応答・160ホスト・自社 1,809KB（16%）。JS 11,207KB（prebid を2版・apstag 2回・yads 5回）、画像は AVIF で 156KB。トップは広告を読まず 86リクエスト。
+
 ## 真似る型
-見本5つ（King Arthur Baking・白ごはん.com・Great British Chefs・Ottolenghi・dancyu）から。作るときの出発点。
+見本6つ（King Arthur Baking・白ごはん.com・Great British Chefs・Ottolenghi・dancyu・Nadia）から。作るときの出発点。
 - 記事の頭に「時間」を大きく置き、その横に要約を開くボタン（King Arthur Baking：HANDS-ON／BAKE／TOTAL TIME の欄、白ごはん.com：「調理時間：40分」19px 700＋「大まかな流れをチェック」）。要約は工程を2組（下ごしらえ／調理と仕上げ）・8行前後に縮める（白ごはん.com）。
 - 工程を読みながら材料を見られるようにする。PC は材料の列を手順の横に（King Arthur Baking：材料 325px・手順の面 785px。固定はしない）、SP は右下の丸いボタン（60px）から下のシート（max 60vh）で呼び戻す（白ごはん.com）。作るときは PC の材料の列を sticky にする（2サイトとも固定していない）。
 - 工程の中で、その工程で使う量をもう一度書く。文の中に書いて地の色で目立たせる（白ごはん.com：.bg 地 #fffadf）か、手順の下に枠で書き直す（Great British Chefs：550px の枠・11手順のうち8）。合計の量は使う手順ごとに割る（同：14本 → 7本と7本）。
@@ -115,6 +130,13 @@ PC 1440×900 / SP 390×844。見たページ：トップ、「プロが教える
 - 読み進めたら、上に「連載名｜題」の細い帯（50〜60px）を出し、上へ送ると隠す。出すのは IntersectionObserver で記事の頭が見えなくなったときにし、待ち時間は置かない（dancyu は 700px と 1秒の setTimeout を毎回の scroll で）。
 - 一覧のカードの日付は写真の右の外に縦書きで、色は分類の色（dancyu：rotate(90deg)・Lato 13px #cc0700）。札の下に 2px の色の罫を引き、かざすと札の地をその色に・写真を 1.1 倍（.5s／.8s・cubic-bezier(.23,1,.32,1)）。SP の日付は 12px 以上に（dancyu は 9px）。
 - 記事の終わりは「同じ連載の他の回」を料理写真の全幅の帯に載せ、傾けた札（−5°）と連載名を大きく、カード3枚を帯から下へはみ出させる（dancyu）。教える人（料理家）と書いた人（編集者）を別の箱で並べる（同）。
+
+- 時間の札の横に「何を含む時間か」を1文で（Nadia：「20分」13px 700・地 #eee7dd＋「目安。コンロでの加熱時間を含みます。」）。白ごはん.com の「調理時間」・King Arthur Baking の HANDS-ON／TOTAL と並べ、合計の時間を1つ出すなら中身を書く。
+- リード（料理の説明）は作り手の言葉にし、吹き出しのしっぽを作り手の名前へ向ける（Nadia：1px #eeddc5・角 4px・10px の三角を ::before と ::after で重ねる）。
+- 材料は「組の列 40px・名前 50%・量 40% 右寄せ」の3列、行は内 14px と 1px の線だけ（Nadia）。量の列を広く取ると「大さじ3（なくてもOK）」まで1行に入る。SP で材料の見出しが2画面を超えないよう、材料の前には時間と説明だけを置く（Nadia は 2.5画面目）。
+- 手順の文の中の料理用語（細切り・面取り）を、点線の下線で用語の説明へつなぐ（Nadia：1px dashed・字の色の 50%・/wordlist/）。
+- PC で開いたレシピを台所のスマホへ渡す QR のボタンを、写真の下の行動の列に（Nadia の「スマホで見る」・360px の窓）。dialog・Esc・戻り先を付ける。
+- 食材の一覧は、頭に「区画へ飛ぶ札」（高さ 44px・SP は2列）を並べ、区画を 6本ずつで止める。カードの題は 3行の高さで止めて下の行をそろえる（Nadia：15px／21px・63px）。写真の下端に作った人の数の帯（12px 700・rgba(65,33,10,.6)）。
 
 ## 反面教師
 - 単位のつまみが div role="button"・tabIndex -1、手順の文の中の量と温度は替わらない、換算が「7 1/16 oz」（Great British Chefs）。
@@ -143,3 +165,8 @@ PC 1440×900 / SP 390×844。見たページ：トップ、「プロが教える
 - 写真を PC 用と SP 用の2枚とも読む（is-pc／is-sp を display で隠すだけ）。トップ 21.29MB の 94% が JPEG（dancyu）。
 - SP に広告を4枠、高さが決まらず CLS 0.261。画像 38枚中 31枚に寸法無し（dancyu）。
 - 一覧の題と要約を HTML の時点で「...」で切る。カード1枚に a が2つで Tab が倍、2ページ目の canonical が1ページ目（dancyu）。
+- 主なボタン（会員登録・レシピ一覧・作ってみた！・区画の札）が白／#f5a000 で 2.12:1、分類の札 1.64:1（Nadia）。
+- SP の固定の帯が 390×664 の 32%（上のアプリ 54px・下のアプリ 40px・下の広告 116px）。区画の札を押すと全画面広告が先に出る（Nadia）。
+- Recipe の recipeYield "0人分"・日付に T と時差が無い・手順の text に a タグ。一覧とコラムも Recipe と名乗る（Nadia）。
+- 手順が ul と span の番号で ol 0。QR の窓が Esc で閉じない・:focus-visible 0・reduced-motion 0（Nadia）。
+- レシピ1本で 160ホスト・転送 11.4MB、自社は 16%（Nadia）。

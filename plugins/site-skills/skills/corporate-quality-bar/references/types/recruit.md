@@ -80,7 +80,17 @@ React の1枚の JS（495KB）。求人は Greenhouse の公開 API（boards-api
 - **ボタン**：::before に地と box-shadow 0 4px 0（縁の色。青なら #1899d6）、角 12px、高さ 48〜50px、:active で translateY(4px) と縁を消す、ホバーは filter:brightness(1.1) .2s。白いボタンは地 #fff・枠 2px #e5e5e5・縁 #e5e5e5。
 - **重さ（PC/SP）**：top 21.87/21.45MB（YouTube の iframe 4本・loading なし、ホスト別で youtube-nocookie 16,772KB〔展開後〕、ポスター PNG 1800px 1,934KB を 680px に）、/benefits 0.91/0.90、/engineering 32.26/32.13（iframe 6本）、/jobs 6.53/6.50（動画1本＋Google Maps 1.4MB）、ブログ 7.31/7.28。絞り込みは通信0KB。LCP 1.1〜1.6秒。
 
-## 真似る型（5サイトから。どのサイトの値かを添える）
+### Airbnb Careers（https://careers.airbnb.com/ 、2026-11-19 解剖。選んだ理由：大きな会社〔宿泊の仲介、米国 San Francisco〕の採用だけのサイトで、求人の窓3つに件数が付き、選ぶと URL に残り、トップの数字の札と部署22本から絞った一覧へ直接つなぐ。Greenhouse のブログ「10 examples of awesome career pages」に例として載っている〔検索結果の題で確認〕。Web の賞は確かめられなかった）
+WordPress（Yoast・FacetWP・Tailwind）。応募は Greenhouse の iframe。会社概要・沿革・代表メッセージは無く、数字とニュースは news.airbnb.com（別サイト、h1 なし）。
+- **ナビ**：ヘッダー 68px・relative（スクロールで消える）。左に pink #ff385c の「Careers」、真ん中に検索欄 320×48・角 24px（送り先 /positions/ の _search_input）、右に Life at Airbnb・Job Search ▾ の2つ（14px/500）。Job Search の板 308×163・白・角 16px・影 0 6px 20px rgba(0,0,0,.2) に4本（Apprenticeship・Internship・Contractor・Customer-Supporting）。板はホバーだけで、押す・Enter は /positions へ移り、a の aria-expanded は false のまま。SP は全画面の白に検索欄と 22px の2項目、3本線の button は名前なし 28×18、Esc で閉じない。
+- **トップの順番**（4,908px）：h1「Discover your place at Airbnb」72px/74px・字間 −2.88px・500 ＋ボタン1つ（187×48・#222・角 8px）→ 写真4枚の送り（1360×907・角 16px・間 30px、自動送りなし）→ 黒地 h2 48px と1文「2007年・1.5 billion arrivals・5 million Hosts」＋3列 → 灰地「Open the door to your next role」：札 **200 Open Positions**（322×263・#222・角 16px）と **22 Departments**＋部署22本のリンク（?_departments=engineering など）→ ニュース10枚の送り（591×390、日付は文字だけ）。
+- **文化（/life-at-airbnb/）**：What defines us 3 → 創業者3人の手紙へ → Core Values 4 → 社員の会 17 → Live and Work Anywhere の原則5つ → Benefits 6群の開閉（button・aria-expanded・aria-controls、height .6s）。
+- **求人（/positions/）**：黒地「All Jobs／200 open roles」＋検索＋窓3つ（220×54・角 9999px・縁 1px #b0b0b0）。窓の箱は 218px・白・四角・中に検索・高さ 200px で送る。選択肢は「Engineering (54)」の形で件数の多い順（Team 22・Where you work 66・Work Flexibility 3＝135＋49＋16）。選ぶと ?_departments=design、POST 1本（flow.js で 37〜60KB・反応 12〜77ms、PC・SP 同じ）で一覧・見出しの件数（6 open roles）・ほかの窓の件数を描き直し、0件は消える。ただし自分の窓も数え直すので、Team で Design を選ぶと Team は Design (6) だけになり2つ目を選べない。行は全幅 78px（上に「部署 • 働き方」14px/500 #484848、題 16px/500、右に場所、罫 1px #717171）、10件ずつ20ページ、並べ替え3つ（Most Recent は &_jobs_sort=updated_at）。A→Z のページ送りでは境目で同じ求人が2回出て11件が出ない（同じ題の並びが毎回変わる）。場所は手書きで、米国のリモートが7通り（Remote - USA・Remote, USA・Remote-USA・Remote - United States・Remote- USA・United States - Remote・US - Remote＝17件）、「CA (10)」が国か州か読めない。
+- **求人の詳細**：灰地に題 48px と場所 → タブ「Role overview／Application」22px → Apply Now（#008489・白字 4.50:1・角 4px・19px）→ Greenhouse の iframe（1168×2970）。シンガポールの求人で19欄・必須16、Gender が必須、autocomplete は名前とメールだけ。米国の求人には「$212,000—$265,000 USD」。JobPosting 0。
+- **見た目の値**：Tailwind の色名 Hof #222・Foggy #717171・Faint #f7f7f7・Deco #ddd・pink #ff385c と #484848。書体は自前の Cereal（6太さを宣言、読むのは 400・500・700 の woff2 各 24KB）。段 72/48/22/18/16/14/12px、SP でも h1 72px（3行）・h2 48px（4行）。字間 −.02625rem が13回。prefers-reduced-motion 0。
+- **重さ（PC/SP）**：top 5.32/5.32MB（ニュースの w=1024 の写真10枚 2,032KB、見えない送りの写真3枚 1,416KB、srcset・lazy なし）、文化 2.32/2.32、一覧 1.09/1.09、詳細 2.06/2.06（Greenhouse の JS 921KB）、news 3.93/3.51。LCP 0.5〜1.2秒。
+
+## 真似る型（6サイトから。どのサイトの値かを添える）
 - 応募の入口だけを別の形・別の地でナビの右に離す（HILLTOP：ENTRY 100×80px のグラデーション、Spotify：All Jobs 93×42px の明るい地）。件数を添える（Spotify は SP のメニューの緑の帯にだけ「79」。PC にも出す）。
 - 最初の画面で「どんな募集があるか」に答える（Spotify：写真が 470px の札に縮んで募集の束＋検索の帯 1424×98px）。HILLTOP は最初の画面が文字0の動画で、何の会社かも募集も出なかった。h1 は消さずに残す。
 - 全ページの最後に同じ誘いの帯を置き、行動は3つまで（HILLTOP：Join Us! 480px にボタン2つ＋文字のリンク1つ、Spotify：Wanna join us? の紫の帯に All jobs 1つ＋Sound Good? に Start Your Journey・Read our FAQ）。
@@ -106,6 +116,11 @@ React の1枚の JS（495KB）。求人は Greenhouse の公開 API（boards-api
 - チームの紹介ページの最後を、そのチームで絞った求人一覧へのリンクにする（Duolingo：/engineering → ?department=Engineering）。SmartHR の ISSUE→関連する求人と同じく、話から求人へ1手。
 - 求人の詳細に給与の幅・募集番号・なりすましの注意・選考で AI を使うかを書く（Duolingo：$150,000—$200,000・REQ ID・Fraud Warning・AI in Hiring と Opt-out）。FAQ にも「本物の連絡の見分け方」を1問。
 - 押す物には下に 4px の縁を付け、押すと沈める（Duolingo：::before に box-shadow 0 4px 0、:active で translateY(4px)）。窓（select の代わり）にも 2px の縁で同じ形を通す。
+
+- 求人の窓の選択肢に件数を付けて多い順に並べ、選ぶとほかの窓を数え直し、0件の選択肢は消す。見出しの合計も同じデータで替える（Airbnb：Team 22・Work Flexibility 135＋49＋16＝200、Design で「6 open roles」）。自分の窓は自分の選択を外して数え、2つ目も選べるようにする（Airbnb はできない）。
+- トップの数字は「求人の件数」と「部署（職種）の数」の札にし、部署の名前のリンクから絞った一覧へ直接（Airbnb：200 Open Positions・22 Departments、?_departments=engineering）。Duolingo のチーム→求人と同じく1手。
+- 求人の検索欄をヘッダーの真ん中に全ページで置く（Airbnb：320×48、/positions/?_search_input=）。SP はメニューの先頭に。
+- 働き方の言葉を1つ決め、文化のページの原則・求人の窓・求人の行の札の3か所で同じ字にする（Airbnb：Live and Work Anywhere＝原則5つ・135件・行の札）。
 
 ## 反面教師
 - 選考フローが募集要項に無く、FAQ が無い場所を案内する（HILLTOP）。流れは `<ol>` で募集要項に書き、見学をその1段目にする。
@@ -133,3 +148,8 @@ React の1枚の JS（495KB）。求人は Greenhouse の公開 API（boards-api
 - 絞ると URL の末尾が別の区画（#interviewing）に替わる（Duolingo）。共有した URL で別の場所へ飛ぶ。
 - 応募フォームの条件つきの問い（卒業3年未満なら GPA）が全員に必須、autocomplete 0（Duolingo：21欄・必須16）。
 - 福利厚生の多くが米国の制度なのに、7都市のどこに当てはまるか書かない（Duolingo /benefits）。
+- 求人の場所を手で書き、同じ意味の書き方が並ぶ（Airbnb：米国のリモートが7通り・17件、CA と Canada と California）。国・都市・リモートを別の項目に持ち、窓はそこから作る。
+- 並べ替えの順が1つに決まらず、ページ送りで同じ求人が2回出て、ほかの求人が出ない（Airbnb：A→Z の20ページで11件）。並べ替えの最後に id を足す。
+- 窓の選んだ側の選択肢が消え、multiple なのに2つ目を選べない（Airbnb Team）。
+- 採用サイトのヘッダーが relative で、4,908px のトップを戻らないと検索にも求人にも行けない（Airbnb）。
+- SP でも h1 72px・h2 48px のまま（Airbnb：h1 3行 222px）。
