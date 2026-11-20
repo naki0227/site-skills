@@ -78,8 +78,22 @@ PC 1440×900 / SP 390×844。見たページ：トップ（/・号の区画 72�
 - **広告と同意**：他社の広告 0。Cookiebot の窓は PC 下の帯 1440×89（9.8%）、SP 374×379（43%）。文は「Cookie banners are ugly, annoying…」。Accept all・Manage・Deny を同じ幅で最初の面に。cc.js 415KB＋uc.js 118KB、同意の前から GTM 916KB（展開後）。
 - **データと重さ**：Yoast の @graph で ["Article","WebPage"]（datePublished・dateModified・wordCount・articleSection・Person）。画面は公開日だけで time 0、リードを h2 に、トップは h1（1×1px に隠す）の次が h3。重さ（解析を除く）PC top 3.58MB / list 1.54MB / article 2.72MB / long 3.01MB（SP 2.62 / 1.51 / 1.78 / 2.83MB）。下まで読むと article 3.61MB・long 6.54MB（2022年の記事の図を WordPress の元から直に：fig_3.png 2,489KB・alt 空）。article の hero 475KB を2回読む。CLS 0〜0.004。
 
+### Linear Now（https://linear.app/now ・2026-11-20 計測）
+PC 1440×900 / SP 390×844。見たページ：トップ（/now・6,812px）、分類 From the team（/now/team・6本）、記事（/now/output-isn-t-design・7段落・2,818px）、図の多い記事（/now/behind-the-latest-design-refresh・図4・動画1・9,135px）。開発の道具の会社の読みもの。製品の更新（Changelog）・新機能・社員の文章・顧客の話・報道を1つの入口に。Next.js。選んだ理由：製品と同じ色と文字の変数（定義 1,184）を読みものに使い、図を PC と SP で別に切る。事例集・受賞歴は確かめられなかった。
+- **本文**：列 624px（--prose-max-width）。Inter Variable 17px／27.2px（1.6）・字間 0・#d0d6e0（地 #08090a で 13.64:1）、SP 15px／24px・-.011em。段落の間 20px（行の高さより狭い）。h3 24px／31.92px・590・上 56px（SP 20px）、h4 17px／23.8px・上 28px。h2 は 0（h1 → h3）、見出しの id 0。リンクは字 #f7f8f8・下線 #62666d・位置 clamp(2px,.175em,4px)。font-feature-settings "cv01","ss03"。
+- **記事の頭**：中央に「Now / From the team」13px → 題 48px／48px・590・-.022em（SP 32／36）→ 線画の絵 → 書き手（/now/author/ へのリンク）· 日付 15px #8a8f98。本文だけ左寄せ。time の datetime は ISO、更新日とリードは無い。
+- **目次**：無い。固定のヘッダー 73px（SP 65px）・backdrop-filter blur(20px)・下に 1px rgba(255,255,255,.08) だけが残る。
+- **部品**：図は figure[data-wide] 976px（列の 1.56倍）・上下 48px・角 8px、動画は 1,328px。キャプション 12px／16.8px #8a8f98 を 624px の列に戻して上 13px。PNG 3904×2720（q=95・dpr=2）を 976px に表示、srcset 無し。SP 用に縦に切り直した別の図（2352×2720 ほか）を .show-mobile に。図全体が button（aria-label="Zoom image"）→ role=dialog・aria-modal の窓（暗幕 #08090a .75・図 1223×852、フォーカスを窓へ、Esc で押したボタンへ）。動画は自前のプレーヤー・preload=metadata・自動再生無し・k／m／p／f。
+- **記事の終わり**：1px #23252a の線 → 書き手・日付と右に Copy link（button 56×40）。押すと「Share link copied to your clipboard.」を aria-live の札で右下に。写す URL は /blog/<slug>（canonical は /now/<slug>）、SP では button が幅 0。関連・次の記事・購読は無い。
+- **一覧**：h1「Now」48px・510 の下に絞り込み6（16px #8a8f98、いまの分類だけ #f7f8f8・aria-current 無し、どれも URL、押して 83ms）・検索（280×40・角 100px の button → コマンドメニュー 720×452）・RSS。カードは 384｜64｜384｜64｜384 の格子で 64px の真ん中に 1px #18191a の縦線、絵 aspect-ratio 400/225・角 5px、題 20px／26.6px・510、説明 15px／24px #8a8f98 を line-clamp 3、メタ 13px #62666d（3.45:1）。ホバーでメタの末尾の「→」を opacity と translate 2px で .1s。トップは カード6 → Changelog（横の線に点・最新だけ赤 #eb5757・題 15px・説明2行・日付 Berkeley Mono 12px 大文字）→ Press → カード → Archive（1行 56px・題 14px 510＋書き手・日付、Load more）→ 72px の帯。
+- **色**：変数を [data-theme=dark／light] の対で。文字は4段：primary #f7f8f8（18.73）・secondary #d0d6e0（13.64）・tertiary #8a8f98（6.13）・quaternary #62666d（3.45）、ライトは #282a30・#3c4149・#6f6e77・#86848d。色はリンク #828fff・フォーカス #5e6ad2（1px・offset 2px）・Changelog の赤だけ。テーマはフッターの Dark／Light（aria-pressed・localStorage）、ライトでも本文の図は暗いまま。
+- **文字**：Inter Variable（345KB）・Italic（380KB）・Berkeley Mono（159KB）を自社から。段は title-1〜9（17〜72px、行間 1.4〜1、字間 -.012〜-.022em）と text-tiny〜large（10〜17px）、太さ 300・400・510・590・680。
+- **動き**：--speed-quick .1s・regular .25s、--ease-out-quad cubic-bezier(.25,.46,.45,.94)。引き出しは transform .5s cubic-bezier(.32,.72,0,1)。拡大の窓は width・height .4s ease-out。reduced-motion 22 か所、:hover 157 に (hover:hover) 2、:focus-visible 33。
+- **広告と同意**：広告 0、同意の窓はこの環境では出ない。計測は e.・constellation.・api.linear.app に 4件 5KB。CLS は4ページ×PC・SP で 0（width/height と aspect-ratio）。
+- **データと重さ**：JSON-LD 0、記事に meta description 無し、og:title・og:image は記事ごと。記事の転送 3,376KB・402件（static.linear.app の JS・CSS・フォント 386件 2,671KB）、下まで送ると先読みの ?_rsc= 39本が増えて 5,953KB・590件。トップは展開後 PC 22.63MB（text/x-component 13,484KB）。検索の索引 223KB（展開後 1,146KB）を全ページで。
+
 ## 真似る型
-見本5つ（北欧、暮らしの道具店・Quanta Magazine・YAMAP MAGAZINE・ほぼ日・Works in Progress）から。
+見本6つ（北欧、暮らしの道具店・Quanta Magazine・YAMAP MAGAZINE・ほぼ日・Works in Progress・Linear Now）から。
 1. **本文は細い列に、行間 1.75〜2.0**：518px・16/28（北欧）、560px・16/30（Quanta）、728px・18/36・字間 1px（YAMAP）、490〜700px・16/32・字間 .05em（ほぼ日、PC は手で 20〜26字に改行）。段落の間は行の高さ以上（北欧 PC 32px、Quanta 30px、YAMAP 60px、ほぼ日 32px）。補足は列の外に出し、本文の幅を変えない（Quanta：右 64px あけて 300px、YAMAP：書き手は左 100px・共有は右 45px）。
 2. **色は墨と灰に、ブランドの色を1つだけ**：北欧は灰の変数 #444 が 242回で橙 #f39800 はカートだけ、Quanta は #1a1a1a・#fff と橙 #ff8600 を線と点にだけ、YAMAP は #222・#545454・#fafafa で、赤はロゴの印とストアへのリンクだけ。ブランドの色を白地の小さな文字に使わない（Quanta の橙は 2.42:1）。
 3. **運営の関わりを札と本文の外で言う**：北欧は「SPONSORED」の札、Quanta は記事の終わりの編集注記、YAMAP は記事の頭と一覧のカードの右端に「Sponsored」とタグ「PR」。札はすべてのカードに（YAMAP は関連のカードで抜けた）。
@@ -93,6 +107,11 @@ PC 1440×900 / SP 390×844。見たページ：トップ（/・号の区画 72�
 10. **分類ごとに「地の色と字の色」の対を変数で持つ**：Works in Progress は --color--science #363b8f／#d8d9f1 など4組を、トップの特集カード 31枚と一覧の大きなカードの地に大きく使う。Quanta は記事ごとに --theme-accent など3つ、ほぼ日は連載ごとに #wrap の data 属性。どれも骨組みは1つで、色だけを差し替える。
 11. **号・連載の区画を、上の帯で「いまどこ」と示す**：Works in Progress はトップの 72 の号の区画をスクロールで拾い、罫で挟んだ帯を「Issue 24 ｜ June 2026」に替え、押すと号の一覧から区画へ飛べる。記事なら同じ帯を「いまの節」に使える。
 12. **欄外の注を本文の行の横にそろえる**：Works in Progress の ReferenceSidebar（注の行の offsetTop − それまでの注の高さ、最小 20px を grid-template-rows に。ResizeObserver で並べ直し、並べ終わるまで opacity 0）。SP は本文の下に積む。
+
+13. **図だけ本文より広く出し、キャプションは本文の列へ戻す**：Linear Now は本文 624px に図 976px（1.56倍）・動画 1,328px、キャプション 12px を 624px に戻す。Quanta は補足を列の外に置いて本文の幅を変えない。本文の列は細いまま、画面の写しや図だけを大きく見せられる。
+14. **図を押すと拡大の窓、SP には縦に切り直した図**：Linear Now は図全体を button（aria-label）にし、role=dialog・aria-modal の窓でフォーカスを移し、Esc で押した図へ戻す。SP には 2352×2720 などの縦の版を別に用意する（出し分けは rules.md 36 のとおり picture か lazy で）。
+15. **文字の灰を段の変数にし、ダークとライトを対で持つ**：Linear Now は primary・secondary・tertiary・quaternary の4段を [data-theme] で対に（本文 secondary 13.64:1）。ほかの見本も墨と灰の段（北欧 #444、YAMAP #222・#545454）。一番薄い段（Linear の 3.45:1）は線・点だけにし、メタの文字は tertiary（6.13:1）までにする。
+16. **製品の更新の記録は、横の線に点、新しい1件だけ色**：Linear Now の Changelog（4件・題 15px・説明2行・最新の点だけ赤）。古い記事は1行 56px の Archive に切り替える（題と書き手・日付だけ）。
 
 ## 反面教師
 - 日付を記事の最後に置く。頭では「いつの話か」が分からない（北欧、暮らしの道具店：編集部のおすすめの下に 12px）。
@@ -126,3 +145,9 @@ PC 1440×900 / SP 390×844。見たページ：トップ（/・号の区画 72�
 - 古い記事の図を元のサイズの PNG のまま読む・alt を空にする（Works in Progress：fig_3.png 2,489KB）。hero を preload と img で2回読む（475KB ×2）。
 - SP の同意の窓を画面の 43% にする（Works in Progress：374×379。PC は 89px の帯なのに）。
 - 部品の JS を読んでおいて CSS で消す（Works in Progress：引用の共有 10KB・固定の印刷版の札）。押せる枠全体を a にして中に閉じる button を入れる。
+- 画面に入ったリンクを全部先読みする（Linear Now：記事を下まで送ると ?_rsc= が 39本・1,155KB、フッターのリンクまで。トップは展開後 13,484KB）。先読みは絞り込みの札と本文のカードに絞る。
+- 図の PNG を表示の4倍の幅で、srcset 無しで配る（Linear Now：3904px を 976px に、q=95）。
+- 見出しを h1 → h3 にし、id も目次も付けない（Linear Now：long 9,135px）。JSON-LD 0・記事の meta description 無し。
+- 共有で写す URL が canonical と違う（Linear Now：/blog/<slug>、canonical は /now/<slug>）。SP では共有のボタンが消える。
+- 斜体を本の題1か所のために 380KB 読む（Linear Now：InterVariable-Italic）。
+- ライトに切り替えても本文の図が暗いまま（Linear Now）。カードのメタを 3.45:1 の灰に、SP の本文を 15px に（Linear Now）。

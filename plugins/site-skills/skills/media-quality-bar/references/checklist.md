@@ -201,3 +201,10 @@
 - [ ] SP で材料の見出しが何画面目に来るかを測る。2画面を超えたら、材料の前の部品（料理家・誘い・広告）を後ろへ（Nadia：y＝2,084px・844px の 2.5画面目）
 - [ ] 同じページの区画へ飛ぶ札・目次を押したとき、全画面の広告が先に出ないか SP で押して確かめる（Nadia の一覧：#google_vignette）
 - [ ] PC から台所のスマホへ渡す QR の窓は dialog にし、Esc で閉じ、押したボタンへフォーカスを戻す（Nadia の「スマホで見る」は Esc で閉じない）
+- [ ] Next.js などのリンクの先読みが、フッターのリンクまで読んでいないか、記事を下まで送って ?_rsc=（か prefetch）の本数と KB を数える（Linear Now：39本・1,155KB）
+- [ ] 図を本文より広く出すなら、キャプションを本文の列に戻し、図には表示の幅に合った srcset を付ける（Linear Now：976px の図に 3904px の PNG 1枚）
+- [ ] 図を押して拡大できるなら、窓は role=dialog・aria-modal で、Esc で閉じて押した図へフォーカスを戻し、大きさは transform で動かす（Linear Now は width・height を .4s）
+- [ ] 共有のボタンが写す URL を canonical と比べる。SP でも共有の手段が残っているか見る（Linear Now：/blog/ を写す・SP で幅 0）
+- [ ] いまの分類の札に aria-current="page" を付ける（Linear Now は色だけ）
+- [ ] 斜体・太字の別ファイルのフォントを、本文に1か所しか無い em や strong のために読んでいないか（Linear Now：Italic 380KB）
+

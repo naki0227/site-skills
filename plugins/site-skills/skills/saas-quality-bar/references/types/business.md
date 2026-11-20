@@ -80,8 +80,19 @@
 - **見た目の値**：字は #0c0a08 と、その `/ 0.6`（白の上 #6d6c6b 5.24:1、#f4f2f0 の上 5.04:1）、黒い面の上は白と白の 60%（6.95:1）。面は白・#f4f2f0・#1a1919、差し色は黄緑 #e4f222 だけ（地の面積で白の 1%、字には使わない：白の上 1.23:1）。書体は TWK Lausanne 400 だけ（見出しも 400）。大きさ 64・48・40・28・24・18・14（本文、最多）・13・10px。transition は色 0.3s cubic-bezier(0.4,0,0.2,1)、カード transform 0.4s ease、表の行 all 0.2s。
 - **データと重さ**：PC で top 19.86MB / features 13.51MB / pricing 11.14MB / customers 273.45MB / docs 11.75MB。トップは78ホスト（Chili Piper 2,191KB を全ページ、GTM 2,105KB、Facebook 1,954KB、AdSense 871KB）。構造化データは Organization と、機能・料金の FAQPage だけ。フォントは woff2 19KB。
 
+### Clay（GTM のデータと自動化、海外）https://www.clay.com/ — 2026-11-20
+- **最初の画面**：上 6割はクレイアニメの動画（1440×1072・17.1秒ループ・9,097KB・poster なし。漏斗・虫めがね・郵便受け・棒グラフの粘土が丘に並ぶ）、その下の緑 #035d44 に h1「Build systems to grow revenue」Roobert VF 575・88px・字間 -0.04em（SP 41.6px）を左寄せ。右の列に一文 24px（3行）と「Start free trial →」白 175×47・「Get a demo →」#cbd810 157×47（角 12px）、下に「or install directly with」＋アイコン3つ。ヘッダーは白の帯 58px（左右 36px あけて角を丸める）に ⌘K・Log in・Get a demo・Start free trial（黒）。
+- **機能の並べ方**：トップは用途別のタブ7つ（TAM Sourcing〜Rep Productivity、押すと一文と画面の動画が替わる。role なし）→「What do you want to build?」の textarea 624×144 とチップ3つ（例文の placeholder が替わる、ラベル0）→ 機能別の4章（DATA・AGENTS・ORCHESTRATION・ACTIVATION）を sticky top:72px で重ねる（高さ 771px、角 48px は最初の上と最後の下だけ）。章ごとに「淡い地＋同じ色相のごく暗い字＋強い差し色」（#f0f8ff／#001433／#395afa、#fff3ed／#381005／#b53d0a、#fcfee2／#102b03／#808000、#fff0fa／#46022f／#cc089e。字／地 14.58〜17.05:1）、差し色は h3 48px の後半と塗りボタン。機能ページ（/waterfall-enrichment）は h1 64px → 620×620 の動画 → 仕組み → 用途3つ（左右交互、静止画 JPEG 798〜1,080KB）→ データの種類ごとの提供元の札。
+- **料金表**：4枚（Free／Launch／Growth「Recommended」／Enterprise Custom）、頭は色の面 136px（#3859f9・#02693e・#cc089e・#6d4cd6、白字 5.13〜6.79:1）で角 18/18/18/9.95px、アイコンを上辺に跨がせる。値段 28px・500・-0.03em。Launch と Growth は「Actions」と「Data credits」の2つの select の和が値段（Launch 5段×5段：Actions $54〜$486・Credits $113〜$1,913／月あたり年払い、既定 $167／月払い $185。Growth 4段×4段、既定 $446／$495）。option の文に量と値段を両方（「480K/yr ($135/mo)」）。月年の切り替えは button 2つ＋白いピル（地 #f4f3f0・角 8px・内 2px、ピル 176px・縁 #eee9df・角 6px、transform .3s cubic-bezier(.175,.885,.094,1.131)）、「Annual ∙ Save 10%」の率だけ緑 #078a52。切り替えても選んだ段は残る（Monthly 60K $325 → Annual 720K/yr $293）。SP は切り替えが fixed top:48px。カードの下に「Usage-based pricing」の2行と docs・Pricing calculator への2リンク。
+- **比較表**：「See full plan comparison」で開いて始まる（閉じた高さ 0）。7区分44行（7・5・4・10・8・6・4）、頭の行 sticky top:58px（SP 56px でプラン名をプラン色の字で）。✓ と「-」に「Included／Not included」の読み上げ。PC の字 13px、SP は行の名前を全幅にして下に4つの値（10px）。
+- **試すまで**：どのボタンも app.clay.com/signup へ1手（source=nav／website／marketing-buy-now）。カードは「Start 14-day trial」の下に文字リンク「or buy now」（選んだ段の priceId つき）。フッター「Start for free today. No credit card required.」。Free のカードにも「Start 14-day trial」。
+- **事例と信頼**：事例一覧は全面の動画に h1 201.6px（13個の span で1字ずつ）、題が数字のスライダー5件、36社のカード（会社名・業種・Read Story、USE CASE のチップ9つ・Grid／List）、数字の章 100.8px（5B・13.7M・58M、時点なし）。料金ページに事例7枚（数字の題＋粘土の 3D ロゴ）と安全の5つ（SOC 2 Type II・GDPR・CCPA・ISO 27001・ISO 42001 を花びらの記章で）、FAQ 7問（FAQPage なし）。
+- **ドキュメント**：Clay University（university.clay.com、別の Webflow）。#005870 の面に h1 104px「Hello, how can we help?」、「Shape your question here」の AI に聞く欄 914×58＋トピックのチップ4つ、左の目次はトピック10個を色の字で（sticky top:72px）、トピック9枚に粘土の積み木の絵。構造化データは TechArticle・FAQPage まで厚い。
+- **見た目の値**：地 #fefdfb と #f4f3f0、字は #000・#1b1a18（17.39:1）・#55534e（白 7.68:1）・#7b7974（4.35:1）、線 #e0dedc。色は CSS 変数 190個。書体は Roobert VF（Webflow の CDN）だけで、太さ 575（h1）・600・500・400。大きな字は字間 -0.03〜-0.04em・行間 1.0、本文 16px／1.5。動きはリンクの色 .1s ease-out、ボタンの地 .3s cubic-bezier(.075,.82,.165,1)、比較表の行 max-height .3s cubic-bezier(.785,.135,.15,.86)、GSAP（3.15.0 と 3.14.1 の2版）。
+- **データと重さ**：PC で top 37.18MB（動画 23.9MB）/ features 27.68MB / pricing 14.00MB / customers 20.59MB / docs 9.76MB。どのページも 42〜44ホスト、Inkeep の AI 検索 1,616KB・Sequel 953KB・reCAPTCHA 846KB を読む（フォームの無い料金ページでも）。章の動画は preload none。トップの構造化データは SoftwareApplication と AggregateRating 4.9／ratingCount "1000"（出典なし）、Offer「14-day Pro trial」（Pro は無い）。
+
 ## 真似る型
-見本6つ（Backlog・コドモン・Linear・Attio・Plain・Ramp）に共通するもの、または1つで測った値を出発点にするもの。値の出どころを添える。
+見本7つ（Backlog・コドモン・Linear・Attio・Plain・Ramp・Clay）に共通するもの、または1つで測った値を出発点にするもの。値の出どころを添える。
 1. **行動の数は、試す入口の有無で決める**：試せる製品は「試す」を主に（Backlog は試す＋資料、Linear は Get started と Contact sales）、試せない製品は資料請求＋問い合わせ（コドモン）。主は塗り、副は白地か枠か半透明。Linear のように最初の画面から行動を消さない（ヘッダーの 73×32 だけでは小さい）。
 2. **実績の数字には時点と数え方**：Backlog「2026年6月末」、コドモン「2026年10月1日時点」＋※の数え方と調査元。Linear は「40,000」を3通りに言い、時点なし（真似ない）。
 3. **料金は規模で決める**：Backlog は「31人以上か」を診断の1問に、コドモンは定員3段、Linear と Attio は per user/month の4列（Attio は 4列とも同じ 271×398 のカード）。人数で決まるなら、入力させる前に段を見せ、大きく出す価格は1つ（コドモン 88px、ほか 30px）。
@@ -109,6 +120,13 @@
 23. **料金の3枚の上辺に性格の札を跨がせる**：Ramp は 175×32・角 8px・地を灰／黄緑／黒の3段にし、選ばせたい1枚の札だけ差し色。箇条は「All the features of Free, and:」で増える分だけ。
 24. **題材の数字を「今」として動かす**：Ramp は h1 の上に処理した割合（小数7桁）、下に固定 40px の帯で今日の処理数7つ（number-flow・aria-label に今の値）。作るときは数え方の注と止めるボタンを付け、reduce では送らない（Ramp は増え続ける）。
 
+25. **使用量が2種類なら、2つの select の和を値段にする**：Clay の Launch は Actions 5段＋Data credits 5段、option の文に量と値段を両方（「480K/yr ($135/mo)」）、値段の下に「Starts at …」の最小の量と額。月払い／年払いを替えても選んだ段を保ち、「or buy now」の行き先も段に合わせる。
+26. **月年は2つの button と滑るピル**：Clay は地 #f4f3f0・角 8px・内 2px、白いピル・縁 1px #eee9df・角 6px、transform .3s cubic-bezier(.175,.885,.094,1.131)（終わりで少し行き過ぎる）。割引の語だけ色を変える。aria-pressed を付ける（Clay は無い）。SP では fixed で付いてこさせる（Clay top:48px）。
+27. **プランの頭を色の面にし、角を1つだけ崩す**：Clay は 136px の4色、角 18/18/18/9.95px、アイコンを上辺に跨がせる。おすすめは面の中の白い札 12px と、ボタンを1枚だけ黒く塗ること。
+28. **機能の章を sticky で重ね、章ごとに3色の組**：Clay は top:72px・高さ 771px、角 48px は最初の上と最後の下だけ。「淡い地＋同じ色相のごく暗い字（14.6〜17.1:1）＋強い差し色（見出しの後半と塗りボタン）」。差し色の上の白字は 4.5:1 を確かめる（Clay の #808000 は 4.20:1）。
+29. **最初の画面は「上に世界、下に題」**：Clay は上 6割を作り込んだ絵の動画、h1 88px（-0.04em）を左下、右の列に一文 24px とボタン2つ。絵が題材そのもの（漏斗・虫めがね＝データを集めて絞る）であること。
+30. **何を作りたいかを聞く欄**：Clay の textarea 624×144 とチップ3つで例文を替える。作るときは label・空のときの文・送ってからの骨組みを足す。
+
 ## 反面教師
 - 商談予約ウィジェットを全ページで読み込み、どのページでも一番重いファイルにする。診断の途中で日時の枠を開いて結果と重ねる（Backlog）。
 - カルーセルの複製で同じ事例見出しの h2 を3回ずつ出す（Backlog トップ）。
@@ -126,3 +144,7 @@
 - 事例の一覧のカードを GIF にし、表示 310×413 に 1080×1440 の 148,168KB ほか、4枚で 268,465KB（ページ 273.45MB）。lazy でも最初の2画面にあるので効かない（Ramp）。
 - 年払いを「Save 20% with annual billing」の一文だけにし、年払いの値も基本料の額も出さない。料金のカードの箇条の順が開くたびに変わる（Ramp）。
 - SP の比較表を幅 540px の横スクロールに、事例の数字の壁を縮めて説明 7.71px に。動画3本と数字の帯が reduce でも動く。同じ wasm 1,771KB を2回、SP 用の動画も PC で読む（Ramp）。
+- 「Save 10%」が実際は 9.73%（Launch $185→$167）・9.90%（Growth）、同じ 120K credits/yr が Launch $414・Growth $413、Growth だけ年払いで「Starts at $…/mo」が消える（Clay）。
+- 料金の select を color:transparent にしてラベル0、月年の button に aria-pressed なし、比較表の button に aria-expanded なし、FAQ はラベルの無い checkbox を被せて outline:none（Clay）。
+- 導入数を 500,000／16,000+／500,000+ とページで違え、構造化データに出典の無い星 4.9・1000件と、無いプラン名「Pro」の試用を書く（Clay）。
+- ヒーローの動画 9.1MB に poster も止めるボタンも無く reduce でも再生、事例の h1 を1字ずつの span にして読み上げを崩す、動画を個人の GitHub（jsDelivr gh）から・開発用の vercel.app の JS を本番で読む（Clay）。

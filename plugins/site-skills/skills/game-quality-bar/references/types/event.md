@@ -5,7 +5,7 @@
 
 ## 下位の型
 同じ「イベント」でも、見本で別れた。作るものがどちらに近いかを先に決める。
-- **チケット制のフェス・ライブ**（Lollapalooza、Primavera Sound、Tomorrowland Thailand、Flow Festival）：最初の画面は出演者のポスターかチケット、出演者の一覧と時間割が中心、購入ボタンが全ページに。
+- **チケット制のフェス・ライブ**（Lollapalooza、Primavera Sound、Tomorrowland Thailand、Flow Festival、Le Guess Who?）：最初の画面は出演者のポスターかチケット、出演者の一覧と時間割が中心、購入ボタンが全ページに。
 - **配信が主の授賞式・ショーケース**（見本は The Game Awards）：会場の券は少なく、主な行動は「カレンダーに入れる・どこで見るか」。中心は本番までの日数・候補と受賞者・過去の回。トップは本番の前・最中・後で形を替える。
 - **入場無料か少額の、日本の地方の催し**（陶器市・祭り・マルシェ。見本は笠間の陶炎祭）：買うボタンは無い。中心は会場図・出店者一覧・行き方と駐車場・雨の扱い。出店者は数十〜数百件、会場図は印刷物（PDF）が正本になりやすい。
 
@@ -85,6 +85,19 @@
 - **表記**：FI／EN の文字の切り替え（FI が `/`）。JSON-LD 0件。権利表記は「All rights reserved」だけ。
 - **重さ**（展開後・解析タグ除く）：top PC 5.16／SP 4.07MB、about 2.40、music 1.78、news 2.02、店 6.43MB（JS 3,722KB・背景の PNG 1,224KB）。全ページで会員 SDK（members-sdk.superstruct.services 849KB＋設定 JSON 167KB）と Cookiebot 538KB を取り、文字だけの music では全体の 87%。
 
+### Le Guess Who? 公式（https://leguesswho.com/ ・ 2026-11-20 解剖、会期 2026-11-12〜15 の5日後・2027 年版〔11-14 November 2027〕に切り替わった直後。歩いたページ：/・/about・/lineup・/news・/tickets と、/lineup/ar-kane・/timetable・/lineup-explore・/about/venues）
+- **枠**：Laravel＋Livewire＋Alpine。`HTML{font-size:1px}`（1450px 以下 .9px）で、本文 `18rem`（1440px で 16.2px）、見出しは `clamp(80rem,12.8vw,128rem)`（115.2px）・頭の h1 `clamp(96rem,14.4vw,144rem)`（129.6px）。書体は OT Neue Montreal の Squeezed（500・600・700・800・Italic）と Inter。アイコンは Font Awesome 6.2.0（cdnjs、CSS 99KB＋woff2 147〜252KB）。
+- **ヘッダー**：60px 固定。左に3本線 80×51 と Tickets 150×40（1px 黒縁・白地・14.4px／600）、中央に「?」51×50（トップと /tickets はその下に 11.7px の2行「11-14 November 2027／Utrecht, The Netherlands」）、右に人の形のアクセシビリティ 53×48・ハート 40×40 の丸・検索。SP は Tickets の字が消える。メニューは全画面の暗いぼかし、1段目 36px・2段目 28.8px、いまの章とホバーは #ff7fd9（黒の上 9.29:1）。
+- **最初の画面**：フェス・COSMOS（世界の音楽）・U?（地元の無料の日）の入口3枚だけ（PC 472×776・写真 446×635、SP 366×390）。写真の上に backdrop blur 50px の膜、ホバー（SP は全部見えたとき）で .5s で外れて矢印が scale 0→1。ロゴは blur 50px → 0 を 1s、.3／.6／.9s 遅れ。押すと写真を固定配置で全画面へ広げ（500ms 待ち＋1s）、1,500ms で XHR で差し替えて pushState。h1 0。
+- **読みやすさの3つ**：High contrast（app.css に規則 25）・Low-incentive（11）・Enlarge text（6、`HTML{font-size:1.25px}` で本文 16.2→22.5px・h1 115.2→160px）。押すと <html> のクラスと aria-checked、cookie `body_classes`（2063 年まで）。次のページはサーバーが `<html class="low-incentive">` で返す。低刺激は地の色の面を消し、スライダーの動画を写真に、見出しの登場を止め、時間割の写真を #ccc に。ただしフッターの mp4 3,131KB は取る。reduce 0件。
+- **出演者**：/lineup は 227 行の1列（幅 750px、写真 90 幅、行の間 20px）。企画（キュレーター・特集）13 色を CMS に持ち、行の地をその色の 20%、右下に企画名を色の字（13.77px）。色なしは #ccc（96組）。行にホバーすると固定の地の面（opacity .4・transition background 1s）がその色になり、上の膜 blur(150px) でにじむ。絞り込みは Days（曜日4）・Projects（14）・All・Explore で、Friday → 78組・`#friday`、`/lineup#saturday` を開くと絞られる。1組のページの札「Friday」も `/lineup#friday`。1つの企画の色が `9E77B1`（# 無し）で 18 組の色が出ない。
+- **1組**：`/lineup/<slug>?referrer=lineup`。100vh の頭（写真を blur 50px で溶かし、h1 129.6px 白、「Friday 20:30 - 21:20 EKKO」16.2px とハート）。白い字のまわりの画素は #717171〜#c0c0c0（4.88〜1.82:1）。下に紹介文 16.2px／29.16px、札、会場の Google Static Maps 400×200、同じ日の組。ハートを押すと「メールで4けたのログインの番号」のダイアログ（Email・Send・Not now）。
+- **時間割**：/timetable は会場を列（木曜 7 列・29 組）。各組の `<a target="_blank">` を `top:(開始−11:00)×2px`・`min-height:(長さ×2−1)px` に置き、30 分ごとの線（60px）、1列 1,800px＝15 時間。上の縁は企画の色・地は 20%、空いた所は写真。いまの線 2px rgba(252,44,38,.7)＋51px の札 #fc2c26。日は Livewire の `setDay('2026-11-05')`（160ms、URL は変わらない）、List で `?list=1`（ハートを付けた組の一覧もここ）、U? の時間割へは切り替えの丸（オフ #b13945・オン #8e14f1）。ハートの button は a の中。
+- **ニュース**：分類の札8つ（縁の色が違う）と、分類ごとの横送りの行（Festival news 371・Recordings 196・COSMOS 105・U? 95・Articles 59・News snacks 816・Photo 56）。カード 300 幅・写真 300×450・日付「Nov 6th 2026」・題 21.6px、右上に 40px の丸い矢印。1,698 件を1枚の HTML 2,533KB に入れ、写真と動画は data-src を lazyload（threshold 300px）。
+- **買う**：/tickets は 100vh の頭のあと、h2「Le Guess Who? 2027」57.6px・会期1行・割引（CJP・U-pas、最初の発表のあと）・正規は CM.com だけ・転売は TicketSwap・TivoliVredenburg でリストバンドに交換、の4段。その下に CM.com の iframe 750×1100（SP 340×1100）で、中は CM.com 自身の同意の窓から。値段はページに 0 件。News で「2027 年の4日券は3つの値段から選べる」と告知したが数字は無い。
+- **表記**：`lang="en"` だけ・hreflang なし・JSON-LD 0・年齢の表記なし。alt の無い画像 0。解析タグは `navigator.webdriver` でないときだけ差し込む。
+- **重さ**（PC／SP、展開後・解析タグ除く）：top 6.12／6.12MB（mp4 3,131KB・入口1枚目の PNG 1,598KB）、/about 16.45／16.45MB（原寸 JPEG 12,587KB、1枚 2,820KB）、/lineup 9.43／9.34MB、/news 8.38／7.60MB（HTML 2,533KB）、/tickets 10.61／10.61MB（CM.com の JS 2,040KB・Usercentrics 972KB）。inspect.js（トップ）：FAIL 0／WARN 5。
+
 ### 笠間の陶炎祭（ひまつり）公式（https://www.himatsuri.net/ ・ 2026-10-26 解剖、第45回 2026-04-29〜05-05 の約5か月半後。歩いた5ページ：/・/about/・/syutten/・/blog/・/access/ と、会場図・ハウツー・バス路線図の PDF 3本）
 - **下位の型**：入場料 1日500円（18歳以下無料）の地方の陶器市。会場は笠間芸術の森公園、来場8万人（閉幕あいさつ）。
 - **最初の画面**：黒 #000 のヘッダー 70px（SP 56px 固定）→ 写真4枚のフェード 80vh（PC 720px・SP 591px）。日付・時刻・会場はその下にロゴ画像と横並びで、PC は日付 18px が y=892px（1440×900 の折り目の下）、SP は 34px（時刻・会場 24px）が y=734px。曜日は 6px（SP 12px）の黒い札。入場料は上下 3px double の囲み。
@@ -112,6 +125,9 @@
 
 - 最初の画面の動画・帯には、止める button を1つ置き、押したら画面の動き全部（動画と流れる帯）を止め、名前と aria-pressed を替える（The Game Awards：右下 44×44・押して 103ms、Flow Festival：右下 72×72・動画と帯の両方・SP は右上へ）。どちらも reduce では最初から止めていないので、作るときは reduce なら止めて開く。
 - （チケット制のフェス）最初の画面は「動く絵かポスター＋ロゴ＋会期」で、キャッチコピーの文を置かない（Flow Festival：抽象の mp4 1,319KB に 70vw のロゴと会期の帯だけ、Lollapalooza：ヘッダーに会場・日付の3行、Tomorrowland：写真1枚に h1 と日付の1行）。
+
+- （チケット制のフェス）出演者の絞り込み（曜日・企画・ステージ）は URL に残し、開いたときに読む。1組のページの札からも同じ絞り込みへ戻す（Le Guess Who?：`/lineup#friday`、Tomorrowland Thailand：日・1組を query に）。
+- 企画・ブランドの色は面（行の地・縁・地の面）に使い、字は黒にする（Flow Festival：黄は面だけ。Le Guess Who? は企画名を色の字にして 1.53〜2.94:1 になった反面教師）。
 
 ## 真似る候補（見本1つ）
 - トップの最初の画面を「告知・本番中・終了後」の3状態で持ち、同じ部品の class だけを替える（The Game Awards：`home-hero--announcement／--live／--post-show`）。
@@ -143,6 +159,13 @@
 - 色を変数3つ（強調・面・線）だけで持ち、強調色は面（フッター・メニュー・いまの場所）にだけ使い、文字は全部黒（Flow Festival：#fff203 の上の黒 17.95:1）。
 - 協賛はロゴの画像でなく、サイトの書体の文字で並べる（Flow Festival。Lollapalooza の 1,328KB の PNG のロゴと逆）。
 - 券は値段を文字で、カートに入れたらページを移らずその場で数の段に替え、1回の上限（max 6）を券ごとに書く（Flow Festival の店）。
+- 読みやすさの3つ（高コントラスト・低刺激・文字拡大）をヘッダーに置き、<html> のクラスと cookie に残してサーバーが最初の HTML に入れる。文字拡大は全部を rem で書き、`HTML{font-size:1px}` を 1.25px にする1行で済ませる（Le Guess Who?）。作るときは reduce を低刺激の初期値にする。
+- 企画（キュレーター）の色を1つ CMS に持ち、一覧の行・時間割の枠の縁・絞り込みの選択肢で共通に使い、行をなぞるとページの地もその色に（opacity .4・1s）（Le Guess Who?）。
+- 時間割は会場の列に 2px／分で絶対配置し（開始−起点）×2px・長さ×2−1px、30 分ごとの線といまの赤い線、ハートで自分の回る順（Le Guess Who? の /timetable）。日は URL に残す（本家は残さない）。ハートはログインなしで端末に残し、リンクの外に置く。
+- 1組のページの最初の画面に「曜日 時刻 会場 ♡」を1行で置く（Le Guess Who?：h1 129.6px の下に 16.2px）。
+- 本体・別の企画・地元の無料の日など、同じ団体の催しを、トップで同じ大きさの入口に並べる（Le Guess Who?：472×776 の3枚）。
+- ニュースは分類ごとの横送りの行にし、行の右上に矢印（Le Guess Who?：8行・40px の丸）。ただし全件を1枚に入れない（1,698 件で 2,533KB）。
+
 ## 反面教師
 - 最初の画面の行動を「カレンダーに入れる」だけにし、配信先・券・値段をどこにも表で出さない（The Game Awards：配信先の名前0・値段0、時刻は FAQ の文の中）。
 - 背景を PNG のまま置き、poster の PNG と動画の両方を取る（The Game Awards：top PC 8,333KB＋mp4 6,296KB）。本番に不具合報告の道具（BugHerd）を残す。
@@ -164,3 +187,9 @@
 - 出演者0件の時期に、一覧の場所を空白にして切り替えのボタンだけ残す。次の発表日も前年の一覧へのリンクも無い（Flow Festival の Program）。
 - 会場図の無い時期に前年の図も消し、会場11か所のうち収容を書くのは1か所だけ（Flow Festival の Map）。
 - 英語のトップから、フィンランド語の店へ送る（Flow Festival の横送りの TICKETS が /fi/）。
+- 見えないフッターの背景に autoplay の mp4（poster なし）を置き、全ページ・低刺激モードでも取る（Le Guess Who?：3,131KB）。
+- 動きを止めるモードを持ちながら、OS の reduce を初期値にしない（Le Guess Who? の Low-incentive）。
+- CMS の色の欄を文字で受け、# の抜けた値で 18 組の色が出ない（Le Guess Who? の `9E77B1`）。
+- お気に入りのハートにメールのログインを求める。時間割ではハートの button を a の中に入れる（Le Guess Who?）。
+- 値段の段を告知しながら、自分のページに値段を書かず、売り場の iframe の中だけにする（Le Guess Who? の /tickets：0件）。
+- 写真をぼかすだけで暗くせず、白い h1 を明るい写真に載せる（Le Guess Who? の1組：まわりの画素で 1.82:1 まで）。
