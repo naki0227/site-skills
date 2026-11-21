@@ -95,8 +95,21 @@ PC 1440×900 / SP 390×844、en-US。見たページ：トップ（/blog/・213�
 - **広告と同意**：広告0。/api/consent-scope に聞き、EEA・英国の入口なら帯と Consent Mode v2 denied、ログイン中は計測0、届かなければ何も読まない（posthog-consent.js のコメント「Fail CLOSED」）。CLS：article SP 0.1132、ほかは 0〜0.0456。
 - **データと重さ**：記事は @graph の BlogPosting（wordCount・dateModified あり、日付は日だけ）・Person・BreadcrumbList。トップと分類は JSON-LD 0。ダークモード無し。重さ article 1.88MB（PC・SP 同じ・18件、うち計測 analytics.fly.io の gtag 585KB・gtm 327KB と posthog 246KB）、long 2.47MB、list PC 5.79MB・SP 3.14MB、top PC 9.80MB・SP 5.68MB。動きは .15s cubic-bezier(.4,0,.2,1) が 29回、reduced-motion は1規則。
 
+### CyberAgent Developers Blog（https://developers.cyberagent.co.jp/blog/ ・2026-11-21 計測）
+PC 1440×900 / SP 390×844、ja。見たページ：トップ（/blog/・14本×107ページ）、分類（/archives/category/engineer/）、ふつうの記事（/archives/67518/・h2 5・コード 0）、長い記事（/archives/67216/・Swift のコード5・図10・14,281px）。WordPress の OnePress に子テーマ onepress-child-20220324（child.css 2,480行）。選んだ理由：地の模様の帯に白い紙を重ねる記事と、大きいカード＋3列のリズム。事例集・受賞歴は確かめられなかった。
+- **本文**：白い紙 960px の中に 800px（約47字）。16px／28.8px・字間 .05em・#333（白地 12.63:1）・段落の後 13.125px。根は html 14px で、本文だけ 1.1428rem。SP は紙の外と内で左右 40px ずつ取り 310px（約18字）。
+- **見出し**：題 h1 PC 38px／57px・600・字間 .1em（SP 25px）。h2 24px・h3 20px・h4 18px・600（SP は h2 16px＝本文と同じ・h3 17.5px）。見出しの id 0、目次無し。
+- **記事の頭**：題 → 「NOV 19,2026 WRITER: INTERNSHIP」12px・字間 1.5px・大文字（time に +09:00 付きの datetime）→ 分類 12px #2d8c3c 下線 → はてなブックマーク・X。SP は .byline を display:none で書き手が消える。アイキャッチは記事に出さず、更新日は無い。
+- **コード**：pre は地 #e9e9e9・上下 20px、code.hljs は地 #000・#eaeaea（17.46:1）・12.25px／20.8px・内 12.25px・margin -20px。PC は左の 7.75px が切れて1字目が欠ける。white-space: pre-wrap で SP は折り返す。色づけは highlight.js 11.6.0 の Tomorrow Night Bright（6色とも黒地で 5.04〜11.61:1）、言語は class="language-swift" を書き手が付ける。コピー・言語名の帯は無い。行内のコードは 14px・#d81354 on #f2f2f2（4.53:1）・1px #ddd。
+- **図**：figure 800px、figcaption 13px／17.55px。原寸 1746〜2560px の PNG（1枚 918〜1,519KB）、16枚中 7枚 lazy、width/height あり。
+- **記事の終わり**：タグ（16px #2d8c3c）→ 書き手の箱（上 1px #a0a0a0・上下 40px・顔 100px・名前 22px）→ 前後の札（最大 730px に2つ・96px・記事の絵に rgba(0,0,0,.75)・角 10px）。片方が空で、「次の記事」の文字を display:none。関連・購読は無い。
+- **一覧**：大きいカード 961×322（写真 633：文 328・題 24px／31.2px 700・3行）＋カード 305px 3列×2段（すき間 23／20px・写真 305×160・題 18px／23.4px）を2回で14本。サムネは 1024px の PNG を div の background-image（lazy・srcset 無し）。transform .6s を書いて :hover が無く、ホバーで何も変わらない。SP は2列 168px で題 12px・日付と分類と名前 10px。分類の白い札 186×48・角 10px、ページ送りは 40px の丸（いまは #2d8c3c）・/blog/all/page/2/。分類の一覧の h1 は文字を描いた PNG。
+- **ヘッダーと動き**：白 96px（SP 52px）で固定しない。タグ・月別・カテゴリは Bootstrap 4 の button・aria-expanded、タグは「エンジニア / 142件」の3列 30件・Esc で閉じる・矢印 rotate 45→225deg・all .3s。窓の字は font-family: auto で明朝に落ちる。右下に固定の TOP（70×35・角 25px）。reduced-motion 0、:focus-visible 0。
+- **広告と同意**：広告0・同意の窓なし。計測は gtag 2本（295KB）、記事だけ X・Facebook・はてなの部品（254KB）。CLS article PC 0.0196、long 0.0235。
+- **データと重さ**：JSON-LD 0（4ページ）。og:image が 404（古い子テーマの道）、twitter:image は記事の絵。重さ PC top 5.89MB / list 5.69MB / article 2.02MB（全部込み 1,623KB・64件・14ホスト）/ long 8.91MB（SP 6.43MB）。全記事で MathJax 2.7.9・highlight.js 193KB、アイコンフォントは FontAwesome 4.4.0 と 4.7.0・ionicons の3つ。
+
 ## 真似る型
-見本6つ（メルカリエンジニアリング・LINEヤフー Tech Blog・DeNA Engineering・Smashing Magazine・SmartHR Tech Blog・The Fly Blog）から。作るときの出発点。
+見本7つ（メルカリエンジニアリング・LINEヤフー Tech Blog・DeNA Engineering・Smashing Magazine・SmartHR Tech Blog・The Fly Blog・CyberAgent Developers Blog）から。作るときの出発点。
 - 本文の箱は 780〜790px、16〜18px、行間 1.75〜2.0、段落の間は 20〜35px。1行は約43〜49字（メルカリエンジニアリング 780px・18px／36px、LINEヤフー Tech Blog 790px・16px／28px・字間 -0.4px）。DeNA Engineering の 870px・17px は約51字で長い。
 - 本文の色は題より1段薄い灰にし、比は 6:1 以上を保つ（LINEヤフー Tech Blog：本文 #616161 6.19:1・題 #1f1f1f 16.48:1）。
 - 節の切れ目は罫でなく上の余白で見せる（メルカリエンジニアリング：h2 の上 120px＋60px、DeNA Engineering：h2 の上 100px＋左 4px の線、LINEヤフー Tech Blog：h2 の上 40px）。h3 は h2 より一段小さく（DeNA Engineering は h2 と同じ 33px で崩れる）。SP でも h1 を一番大きく。
@@ -128,6 +141,11 @@ PC 1440×900 / SP 390×844、en-US。見たページ：トップ（/blog/・213�
 - 記事の頭の1行に、読む時間・共有を罫でつなぐ（The Fly Blog）。日付も同じ行に入れる（本家は入れていない）。
 - カードは紙の内に写真を 8px の縁で置き、カード全体を1つのリンクに。リンクの名前は題に（The Fly Blog は「Read more」で全部同じ）。
 - 絵や写真のクレジットを、絵の右下に 12〜13px で（The Fly Blog：カメラの印と描き手の名前、読み上げは「Image by」）。
+
+- 地に白い紙を重ね、模様や写真の帯はページの頭の 362px だけに敷く。本文は紙の中の 800px に 16px／28.8px・字間 .05em（CyberAgent Developers Blog）。字間 .05em は LINEヤフー Tech Blog の -0.4px と逆向きで、和文を少し開いて読む。
+- 一覧を「大きいカード1枚（写真 633：文 328）＋3列×2段」の繰り返しにすると、14本でも単調にならない（CyberAgent Developers Blog）。ただし写真は img と srcset・lazy で、SP は1列にして題 16px 以上。
+- コードの色づけの既定のテーマを選ぶなら、地での比を先に計算する。Tomorrow Night Bright は黒地で6色とも 5.04:1 以上（CyberAgent Developers Blog）。LINEヤフー Tech Blog の Prism・DeNA Engineering の Chroma の既定は届かなかった。
+- タグの一覧は開閉の button に入れ、各タグに件数を付ける（CyberAgent Developers Blog：「エンジニア / 142件」の3列・aria-expanded・Esc）。
 
 ## 反面教師
 - コードの言語を書かずに自動判定させ、全言語分の色づけ JS を全記事で読む（メルカリエンジニアリング：1.2MB、判定も外れる）。言語は書き手が指定し、使う言語だけ読む。
@@ -167,3 +185,8 @@ PC 1440×900 / SP 390×844、en-US。見たページ：トップ（/blog/・213�
 - 記事の見出しが全部 h3 で h2 が無い（The Fly Blog の article）。
 - 計測の JS（gtag 585KB を long で2回・gtm 327KB・posthog 246KB）が記事の通信の半分以上（The Fly Blog）。
 - CSS に font-size:[object Object] が書き出されたまま（The Fly Blog の tailwind.css）。
+- PC でコードの1字目が切れる。code を margin -20px で外へ出し、内側は 12.25px（CyberAgent Developers Blog：「public」が「ublic」）。
+- SP で本文 310px（約18字）・h2 が本文と同じ 16px・書き手を display:none（CyberAgent Developers Blog）。
+- og:image が 404、JSON-LD 0、更新日なし、分類の一覧の h1 が文字の画像（CyberAgent Developers Blog）。
+- サムネを 1024px の PNG にして CSS の背景で出し、トップで14枚 4.4MB（CyberAgent Developers Blog）。
+- タグの窓の書体を font-family: auto にして明朝に落ちる。カードの transform .6s に :hover が無い（CyberAgent Developers Blog）。

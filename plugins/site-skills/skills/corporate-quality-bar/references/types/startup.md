@@ -87,7 +87,18 @@ Astro＋Netlify。採用の募集は外の Ashby（2026-10-28 に 226件）。
 - **見た目の値**：Roobert VF の1書体（年表だけ Roobert mono）。h1 147px（Press、300）・120px（About・Careers、600）・88px、h2 72px 500 字間 -0.03em 行間 1.0、柱の h3 48px、本文 16/20px。地 #fff・オーツ #f4f3f0・#fefdfb、字 #000・#1b1a18、面の角 24px・ボタン 12px。イージングは `cubic-bezier(.165,.84,.44,1)` 29回・`(.075,.82,.165,1)` 21回・`(.19,1,.22,1)` 11回、開閉は `grid-template-rows ease-out 250ms`。GSAP（3.14.1 と 3.15.0 を2回）。
 - **重さ（PC/SP）**：top 23.60/21.77MB（webm 5本 9.1MB）、about 34.12/32.10（動画1本 12,225KB）、workflows 14.26/14.48、careers 74.25/69.80（avif 40,683KB・jpeg 13,282KB・697本）、press 11.16/10.71。どのページもチャットの JS 1,616KB・sequel.js 953KB・reCAPTCHA 846KB・共有 CSS 813KB。本家のトップの inspect は FAIL 5 / WARN 19。
 
-## 真似る型（LayerX・Mistral AI・Linear・Mercury・Runway・Clay の6つで確かめた）
+### Resend（https://resend.com/ 、2026-11-21 解剖。選んだ理由：サンフランシスコの開発者向けのメール配信のスタートアップ。黒の地に Domaine・ABC Favorit・Inter・Commit Mono の4書体、Spline の立方体、端末の時刻で替わる見出しと動画、書いた人と日付つきの手紙の形の価値観、CLI と API でも出せる応募を作り込んでいる。事例集・受賞歴は確かめられなかった）
+見たページ：トップ・/about・/features/email-api（事業の代表）・/careers・/blog（＋募集の詳細 /careers/<uuid>）。Next.js＋Tailwind＋Base UI。
+- **ナビ（PC）**：sticky 58px、地は透明のまま（送っても背景・ぼかし無し）。Features▾・Company▾・Enterprise▾・Help▾・Docs▾・AI▾・Pricing、右に Log in と Get started（#111・角 12px）。板は Base UI、地 黒60%・枠 1px rgba(176,199,217,.145)・角 24px、項目ごとに幅が替わる（Features 559px・Company 482px・AI 540px、高さ 216px）、開閉と大きさは `.35s cubic-bezier(.22,1,.36,1)`。Company▾ は文字の項目5（About・Blog・Careers・Customers・Humans）＋絵つきの札2（Handbook「How we work」・Philosophy「What we value」256×83px）。Enter で開き Tab で中へ、Esc で閉じてボタンへ戻る。SP は ≡ で全画面、Get started・Log in の下に7行（57px・→）。
+- **トップの順番**：h1「Email for developers」Domaine 96px（SP 64px）＋1文2行＋Get started・Documentation、右に立方体（PC は Spline の canvas＋splinecode 504KB、SP は mp4 338KB）、上に催しの札 → 顧客ロゴ12 → 「Integrate ___」＋13言語のタブとコード → 開発の体験（Test mode・Webhooks）→ 書く画面 → 連絡先と分析 → React → 届く率の h3 9つ → 顧客の声 → 最後の行動。数字の帯は無い。「Integrate ___」は JS の前は「in minutes」、読み込むと端末の時刻で替わる：土日 this weekend（#E131F3→#59B2EA→#A7FC8F）・平日 12時前 this morning（#FFFF92→#EE8912）・18時前 this afternoon（#FFC446→orange）・それ以降 tonight（#9281F7→#9A54DC）、動画も4本から選ぶ（`3d-integrate-night.mp4` ほか）。
+- **信頼の材料**：About に成り立ち3段落（2022年に OSS、2023年に配信の基盤と YC 冬の組）・創業者3人の写真1枚・価値観4通（題＋書いた人＋`<zeno@resend.com>` の形のアドレス＋「Dec 6th, 2022」の日付の窓）・集合写真・出資 3社のロゴと個人 32人。会社概要の表は無く、所在地はフッターだけ。人数「team of 50 spans 15 countries」と「Over 4M developers」は募集の詳細の本文にだけ。
+- **採用への導線**：Company▾ の3番目・About の「We're hiring」・フッター。トップの本文に無い。/careers は About・Philosophy の札2 → 福利9つ（札に Global 6・US-only 3）→ タブ All・Engineering・Sales（件数なし、`?department=` を URL に残す）→ 部署の見出し＋13行（6職×Europe・Americas＋1）→ 顧客の声6つ（社員の声は0）。募集の詳細は自サイト：本文に「Comp: $160,000 - $220,000 USD OTE」、フォーム12欄（Ashby の欄名 `_systemfield_*`、画面の * 9）、「Apply via UI／CLI／API」で `resend careers apply <id>` と `curl -X POST https://api.resend.com/careers/<id>` も出せる。JobPosting 0。
+- **ニュース**：/blog に検索（Ctrl K で dialog）・Subscribe・分類7つ（a で `?category=company`、`aria-current`、件数なし）、Featured 11件（日付順でない：10-27・10-23・11-12…）、「Humans behind Resend」に入った人の記事6件（Welcoming 名前, our new 職種）。About の From our blog は 2024年12月が最新。
+- **データ**：Organization・WebSite・SoftwareApplication・BreadcrumbList などを全ページ、事業は FAQPage を足す。/careers と募集の詳細は JSON-LD 0。About に h1 と同じ文の h2（0×0）。lang="en" のみ。alt なし 0。
+- **見た目の値**：地 #000、本文 rgb(161,164,165) 8.37:1、見出し #f0f0f0 に白→白50% の斜めのグラデーションを切り抜く、日付 #6c6c6c 4.00:1・行番号 rgb(70,74,77) 2.35:1。h2 Favorit 56px 字間 -0.05em（About・Careers 36px）、h3 20px、本文 Inter 14/22.4、リード 18/27（SP 16/24）、コード Commit Mono 12〜16px。速さ .15s／.2s cubic-bezier(.4,0,.2,1)、板 .35s、SP のメニュー .5s cubic-bezier(.36,.66,.6,1)。reduce の CSS は2つで、動画は読まないが rotate・disco が残る（走るアニメ 8 → 4）。
+- **重さ（PC/SP）**：top 13.67/9.91MB（Spline 1,968KB の JS は PC だけ）、about 7.12/7.30、email-api 8.62/8.21、careers 9.50/9.34、blog 9.33/11.77（札の先読み RSC 1,803／2,237KB）。どのページも JS 4.4〜7.6MB（89〜96本）・CSS 1,032〜1,045KB（Tailwind のビルド2つ 511＋508KB、規則 3,782 が重なる）・fp.resend.com の指紋 246KB・PostHog の録画 210KB。外のホストは3つだけ。本家のトップの inspect は FAIL 3 / WARN 18。
+
+## 真似る型（LayerX・Mistral AI・Linear・Mercury・Runway・Clay・Resend の7つで確かめた）
 - 会社サイトは「志・事業の地図・ニュース・連絡先」に絞り、事業は1ページ（LayerX：アンカー、Mistral：/products/ のタイル5枚・2,344px、Linear：トップの柱4本＋柱ごとのページ、Runway：トップの3製品の3列＋製品ごとのページ）で並べ、プロダクトの本体と採用の応募は外へ渡す（LayerX：別ドメインと外部ATS、Mistral：Ashby、Linear：募集の詳細は自サイト・Apply だけ Ashby、Runway：Ashby と Google フォーム）。
 - ヘッダーの右端に、目立つ形の行動を置く（LayerX：Join Us の丸いボタン、Mistral：黒の Login と Get in touch、Linear：#e5e5e6 の Sign up）。ヘッダーは隠さない（Mistral 48px、Linear 73px・blur(20px)・下線 白8%、Runway 68px・白95%＋blur(12px)、上の告知の帯 48px だけ送ると流れる）。下がり窓は、項目が8つ以下なら1列の小さな窓（LayerX 5項目、Mistral 1行 57px）、段階と1語の項目が混ざるなら1枚の板（Linear：860px に2行4つ＋1語4つ＋「New と最新の更新」の行、opacity と scale(.98→1) .16s、大きさの替わり .22s）。
 - トップは1文で始め、数字の帯を置かない（LayerX：h1 60px、Mistral：96px の1文＋最新の1件、Linear：h1 64px＋1文＋「New Loops →」、Runway：動画の上に h1 56px＋1文 16px＋ボタン1つ）。1文は h1 にし、最初から見える状態で HTML に置く（Mistral は aria-hidden の p、Linear は JS を待って 6.4〜8.2 秒見えない）。
@@ -116,6 +127,11 @@ Astro＋Netlify。採用の募集は外の Ashby（2026-10-28 に 226件）。
 - 沿革は月ごとの棒と時期の括弧で（Clay：1年12本・括弧4つ・等幅 12px）。今月で止める。
 - 会社のページの最初の行動を採用にする（Clay：About の h1 の下が「Explore open roles」）。拠点はタブにして、住所・時刻帯を拠点ごとに（Clay は3つとも NY の住所）。
 
+- 最初の画面の近くの一言を、見る人の端末の時刻で替え、色と絵を組で替える。JS の前は時刻の入らない文を HTML に置く（Resend：土日・平日 12時前・18時前・それ以降の4つ、グラデーション4組と動画4本、JS の前は「in minutes」）。
+- 会社の▾の板は「文字の項目＋考え方のページへの絵つきの札」に分ける（Resend：Company▾ に5項目＋Handbook・Philosophy の札 256×83px）。板の幅は項目ごとに替え、大きさの替わりを .35s で動かす（Resend 559／482／540px）。
+- 価値観は、書いた人・アドレス・日付つきの手紙として並べる（Resend の About：4通・3人＋1人・2022年12月〜2023年5月）。
+- 製品が API や CLI なら、応募も同じ使い方で受ける（Resend：Apply via UI／CLI／API）。福利の札に適用範囲を付ける（Global 6・US-only 3）。新しく入った人をニュースの列にする（Blog「Humans behind Resend」）。
+
 ## 反面教師
 - 会社概要に規模の数字（社員数・資本金）が無く、導入社数が本文に埋もれる（LayerX）。数字は会社概要かトップに置く。
 - 見出しを1文字ずつ span に分けて動かし、読み上げで切れて見える。PC 用と SP 用の見出しを二重に置く（LayerX）。
@@ -142,3 +158,6 @@ Astro＋Netlify。採用の募集は外の Ashby（2026-10-28 に 226件）。
 - ナビの HTML に下書きの文が 40か所（「Link long form description will go in this slot here.」）、説明文の使い回し4項目、トップのボタン27個の名前が「text」、テストの人名が19回（Clay）。
 - Careers の拠点の札が3つとも NY の住所、ロンドンの時刻帯が EST。Press の外の記事 19件に日付が無い。年表が 2027 年まで（Clay）。
 - Careers 74.25MB（写真 731枚、avif 40.7MB）、チャットの JS 1.6MB を全ページで最初に読む。顧客の数字の下の語 9.6px、SP の Careers 本文 13.05px、札 2.59〜3.57:1。reduce は CSS 1行で、最初の画面の動画は止まらない（Clay）。
+- 採用がトップの本文に無く、/careers のタブに件数が無い。1つの職を地域ごとに2行にして 13行のうち12行が6職の重なり。給与は詳細の本文にだけ、JobPosting 0（Resend）。
+- Careers の「声」が6つとも顧客の会社で、社員の声が無い。規模の数（50人・15か国）が募集の詳細の本文にだけで、About に無い（Resend）。
+- 同じ Tailwind の CSS を2つのビルドで全ページに読み（511KB＋508KB、規則 3,782 が重なる）、会社・採用のページでも端末の指紋 246KB と録画 210KB を読む（Resend）。

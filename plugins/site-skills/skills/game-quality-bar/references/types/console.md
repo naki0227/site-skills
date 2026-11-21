@@ -72,19 +72,38 @@
 - **表記**：ESRB M はフッターの `div` の背景の絵だけ（文字・alt なし）。16言語、URL は `/us/ja/` のように国／言語。
 - **安全と重さ**：`prefers-reduced-motion` 0件、reduce でも KV の動画は再生。news 以外の4ページにニュースレターの欄と reCAPTCHA があり、`recaptcha__ja.js` 846KB を4回＝3,384KB（buy 5.53MB の 61%）。measure.js：top PC 8.56／SP 7.65MB、world 10.29／10.70MB、chara 10.59／10.37MB、news 4.85／4.63MB、buy 5.53／5.53MB。
 
-## 真似る型（Z-A・P3R・Expedition 33・Baldur's Gate 3・Sea of Stars・Cyberpunk 2077 の6つで確かめた）
+### 『FINAL FANTASY VII REBIRTH』公式（https://www.jp.square-enix.com/ffvii_rebirth/ ・2026-11-21 解剖、PS5 2024-02-29・Steam／Epic 2025-01-23・Switch 2／Xbox／Windows 2026-06-03 発売・国内〔スクウェア・エニックス〕。歩いた5ページ：/・/about/・/character/・/character/tifa.html・/news/。購入は top の #products で独立したページなし）
+- **枠**：自前の HTML＋Swiper・swup（ページ移り）・Magnific Popup・PhotoSwipe（vendor.js 371KB）。地 #000、紺 #002343・#10305e の箱、水色 #268dac・#439bb5 の枠、赤 #850303・#a40000。書体は Google Fonts の M PLUS 1p（6太さ）・Noto Sans JP（4）・Oswald（3）を1本の CSS（1,119KB・@font-face 1,267）で全ページ。大きさは全部 vw（PC は 1920 幅基準で 1440 では 13.5px、SP は 375 基準で 390 では 11.44px）。
+- **最初の画面**：最上段に会社のヘッダー 35px と3部作の帯 73px（EPISODE 1 緑・2 赤・3 青、1作 480×34）。静止画のキービジュアル 1440×951 の中央上にロゴ 452×252、右下に機種の行＋AVAILABLE NOW（画像 347×128）→ #a40000 の丸「ご購入はこちら」368×30 → 体験版の箱 413×139（Switch 2・Xbox の2ボタン）を縦に積む。ローディング PC 8.0秒・SP 5.2秒。
+- **動画**：背景の video 9本（muted loop playsinline preload="metadata"、poster なし、見えたら再生）。9本とも読み込みから約10秒で取りに行き、SP は 38,546KB。予告は YouTube の watch へのリンクを押すと 150ms で embed の iframe（押す前 0件）、閉じるは 45×45 の名前の無い div（Esc は効く）。
+- **物語**：トップに背景動画＋物語の一文の画像＋言葉の札4つ（#神羅カンパニー など、li）。押すと説明の画像が opacity 0→1（.23s）。ABOUT は3部作の中の位置（1作目→2作目→3作目）と各作の説明で、本文の文字 41字に対し alt 1,295字。
+- **キャラクター**：16人を「神羅に対抗する仲間たち（9）」「世界を支配する神羅カンパニー（神羅を統べる者1・タークス4・ソルジャー2）」の陣営→小見出しで、1人1URL（/character/tifa.html）。顔の札は 31.5×31.5、swup で押して 650ms。名前 M PLUS 1p 300 28.5px（-.05em）、英名 Oswald 12px、「Voice Cast」の赤い札、台詞と武器の説明は画像。人物相関図は「ネタバレ要素を含みます。閲覧をされますか？」→「開く／閉じる」を挟む。
+- **ナビ**：PC は下端に固定 1440×60 の二重枠のボタン6つ（150×45、外の左右 .26vw #268dac・内 1px・四隅の十字、ホバー scale(1.06) 下を軸に .1s）。SP は右上 42×42 の三本線。今のページは li.--current。
+- **買う**：機種4つ（Switch 2・Xbox/Windows・PS5・PC）→ その機種で出ている版だけ（Switch 2 3・Xbox 2・PS5 6・PC 3、出ない版は width 0）→ 値段と店。値段は会社共通の `/pricelist/api/public/product/36`（23件の {id,skuName,price}）から文字で入れる：通常 6,578円、Digital Deluxe 8,201円（Nintendo・Xbox）／8,140円（PS・Steam・Epic）、PS5 Deluxe 15,800円・Collector's 49,800円・アップグレード 1,624円。パッケージは e-STORE・Amazon・ファミリーマートの店ごと特典、PC は Steam と Epic の値段を2つ並べる。PS5 の Deluxe・Collector's は値段だけで店のボタンが無い。札は li で Tab 0、URL は変わらない、店のボタンは outline none。機種ごとの3項目（携帯モード・PS5 Pro・Steam Deck Verified）は別の区画。
+- **ニュース**：entrylist.json の50件（お知らせ36・キャンペーン8・ムービー6）を12件ずつ PREV／NEXT。記事ごとに対象機種のフラグ4つを持ち、カードの下に機種の札。絞り込みは種類4×機種5で、0件になる機種の札は opacity .5 で押せない（空の画面を出さない）。ただし種類を押すと機種が「すべて」に戻り、URL も変わらない。最新は 2026/06/03。
+- **表記**：仕様の表に文字で CERO C・ボイス4言語・字幕は機種で2行（8言語／11言語）・発売日を機種ごと。フッターに CERO と IARC 12 の印と機種のロゴ。JSON-LD 0、h1・h2 は img。
+- **安全と重さ**：`prefers-reduced-motion` 0件、reduce でも背景動画は再生。measure.js：top PC 34.69／SP 54.57MB（SP は mp4 38,546KB、PC は webp 13,127KB・mp4 9,886KB、1920×1080 の PNG 4,949KB を 434×244 のカードに）、about 6.00／4.46MB、人物 4.69〜4.80／4.41〜4.49MB、news 9.57／9.55MB。inspect（top）FAIL 5／WARN 10。
+
+## 真似る型（Z-A・P3R・Expedition 33・Baldur's Gate 3・Sea of Stars・Cyberpunk 2077・FINAL FANTASY VII REBIRTH の7つで確かめた）
 - **機種×版の値段・発売日・年齢区分を、1か所に文字で並べる。**Z-A は商品詳細の仕様表（14項目の定義リスト）、P3R は全ページ末尾の SPEC（7項目、価格は全版を1つの欄に）。どちらも値段と CERO が文字で読めるのはそこだけだった。作るときは、その表を購入の区画にも置き、年齢区分を値段の横に出す。
 - **パッケージの買う先は、ストアのボタン1つでなく店の一覧にする。**Z-A はダウンロードカード16チェーン＋ダウンロード番号6ショップの店名リスト、P3R は26店のカード（店舗オリジナル特典つき）を PS5／PS4 で切り替え。店ごとの特典があるなら、店のカードに特典名と版のボタンを入れる。ボタンの名前には店・版・機種を書く（P3R は117個とも名前が無い）。
 - **版は「パッケージ／ダウンロード」の2つのタブか区画で分ける。**Z-A は商品5枚を1つの詳細ページの `#anc01〜04` に分け、価格をパッケージ・DL・Switch 2 Edition の別に書く、P3R は 640×60 のタブ2つ。限定版の同梱物は版×品の ○×表にする（P3R：4版×6品）。
 - **トップの最初の数画面に「購入」への入口を置く。**Z-A は左の縦帯に「購入はこちら！」「予約はこちら！」、P3R は2画面目（y=1,139）に「BUY NOW!」。特設ページは「購入はこちら」を固定する（P3R：/expansion/ 300×97、/switch2/ 257×51）。
 - **最初の画面の真下に機種のリンクを並べ、ヘッダーの右端に買う入口を1つだけ別扱いで置く。**Expedition 33 は AVAILABLE NOW の帯の直下 y=828 に機種4つ（234×91）、ヘッダーは他 15px に対して Out Now だけ 20px の札（132×56）で、▾ の button（aria-expanded）から店4つ（100×41、新しいタブ）。Baldur's Gate 3 も AVAILABLE NOW の下 y 745〜751 に機種5つ、ヘッダー右に Buy now 144×58。Cyberpunk 2077 も題の下 y=584 に機種のロゴ8つ（高さ 32px・2段）、ナビ右端に BUY NOW 140×38 だけ地を塗る。Z-A の縦帯・P3R の2画面目の BUY NOW! と同じく、入口は最初の数画面に。
 - **版×品の比較は、PC は表、SP は版ごとに開く。**P3R は 4版×6品の ○×（ul と背景の絵）、Expedition 33 は 4版×6品（PC は画像1枚、SP は 362×46 の button 4つで1つだけ開く）。どちらも表が文字の table でないので、作るときは table と `button[aria-expanded]` を同じデータから作る。
-- **トレーラーは押してから埋め込む。**Z-A はサムネの `<button>` を押して `iframe_api`、Expedition 33 は菱形の再生を押して `iframe_api` → `autoplay=1&mute=1`。どちらも押す前の YouTube の通信は 0（P3R は読み込み時に iframe で 1.5MB）。Baldur's Gate 3 も再生の輪を押して embed の iframe（押す前 0件、押して 1,155KB）。 Sea of Stars も `a.magnific-video` を押して 100ms で embed（押す前 0件、押して 1,406KB）。Cyberpunk 2077 は埋め込まず YouTube の watch へ新しいタブで（押す前 0件）。
+- **トレーラーは押してから埋め込む。**Z-A はサムネの `<button>` を押して `iframe_api`、Expedition 33 は菱形の再生を押して `iframe_api` → `autoplay=1&mute=1`。どちらも押す前の YouTube の通信は 0（P3R は読み込み時に iframe で 1.5MB）。Baldur's Gate 3 も再生の輪を押して embed の iframe（押す前 0件、押して 1,155KB）。 Sea of Stars も `a.magnific-video` を押して 100ms で embed（押す前 0件、押して 1,406KB）。Cyberpunk 2077 は埋め込まず YouTube の watch へ新しいタブで（押す前 0件）。 FINAL FANTASY VII REBIRTH（2026-11-21）も押す前 0件、押して 150ms で embed（Magnific Popup）。
 - **人物は一覧の列と1人の詳細を同じ画面に置く。**Baldur's Gate 3 は右の縦の列 7人と能力の札（押して 35ms）、Sea of Stars は上にドット絵のタブ 6つ（150×146）と下に名前 52px の詳細（押して 73ms）。Cyberpunk 2077 は横一列の立ち絵 6人（240×540）の名前の札を押すと、その場で 350ms で名前 44px・文 22px が開く。3つとも URL がそのまま・札が button でないので、作るときは名前のある button と `?chara=`（pushState）を足す。
-- **買うは「版 → 機種 → 形 → 店」の段で選ばせ、版に無い機種・形は出さない。**Baldur's Gate 3 は版3つで同梱物と店が替わり Physical では Steam・GOG が消える、Cyberpunk 2077 は版3つ→機種（Ultimate 5・本編 6）→ Digital／Retail → 店（押して 58ms）。どちらも値段0件・選んだ値が URL に残らない・版の部品に Tab が届かないので、作るときは版と機種を button（aria-pressed）にし、値段を出し、`?edition=&platform=` に残す。
+- **買うは「版 → 機種 → 形 → 店」の段で選ばせ、版に無い機種・形は出さない。**Baldur's Gate 3 は版3つで同梱物と店が替わり Physical では Steam・GOG が消える、Cyberpunk 2077 は版3つ→機種（Ultimate 5・本編 6）→ Digital／Retail → 店（押して 58ms）。どちらも値段0件・選んだ値が URL に残らない・版の部品に Tab が届かないので、作るときは版と機種を button（aria-pressed）にし、値段を出し、`?edition=&platform=` に残す。 FINAL FANTASY VII REBIRTH（2026-11-21）は逆の「機種 → 版 → 店」で、機種4つごとに出ている版だけを残す（Switch 2 3・Xbox 2・PS5 6・PC 3）。機種が4つ以上で版の揃い方が機種ごとに違うときは機種を先に、版が主役（Ultimate・拡張）のときは版を先に。FF7 は値段を会社共通の API の23件から文字で入れており、値段0件の2つより一歩進んでいる。
 
+- **人物は1人1URL にし、顔の札を陣営→小見出しで分けて詳細の下に常に置く。**Z-A は3グループ（5・2・14人）で1人1ページ、FINAL FANTASY VII REBIRTH は「仲間たち 9」「神羅カンパニー（統べる者1・タークス4・ソルジャー2）」の見出しの下に 31.5px の顔の札16個を、どの人物のページにも出す（swup で 650ms）。札は名前のある a にし、今の人に aria-current を付ける（FF7 は class だけ）。
 
 ## 真似る候補（見本1つ。2つ目で確かめたら「真似る型」へ上げる）
+- 3部作・シリーズの帯を全ページの最上段に置き、本作の色を替える（FINAL FANTASY VII REBIRTH：73px、1作 480×34、作の色 #107c0f・#850303・#013f99）。まだ出ていない作はリンクにしない。
+- 値段は会社共通の値段の表（API）から文字で入れ、版の札とは別に持つ（FINAL FANTASY VII REBIRTH：/pricelist/api/public/product/36 の23件、data-priceid で結ぶ）。値段の改定が全ページに一度で効く。
+- ニュースの記事ごとに対象機種のフラグを持たせ、カードに機種の札を出し、機種で絞る。0件になる機種の札は押せなくする（FINAL FANTASY VII REBIRTH：50件、opacity .5）。種類と機種はどちらを押しても互いに残す（FF7 は種類で機種が戻るので直す）。
+- 物語の章に、押すと意味が出る言葉の札を4つ置く（FINAL FANTASY VII REBIRTH：#神羅カンパニー・#セフィロス・#クラウド・#鋼鉄の都市ミッドガル、.23s）。札は button と aria-pressed に。
+- 人物相関図など先の話を含む物は、開く前に「ネタバレを含みます。開きますか」を挟む（FINAL FANTASY VII REBIRTH）。dialog にして Esc とフォーカスを戻す。
+- 機種ごとの違い（携帯モード・PS5 Pro・Steam Deck）を、買う欄の手前に機種ごと3項目で並べる（FINAL FANTASY VII REBIRTH の byPlatformSec）。
 - 全ページの部品（ボタン・ナビ・タブ・札）を、作品の世界から取った1つの形にそろえる（Cyberpunk 2077：左に切り欠き・右下を落とす cp-btn 232×48、ナビは左上 16px・右下 18px を落とす clip-path）。
 - 人物を作品の書類の形で見せる：固有名を帯で隠し、開くと読める。下に署名と日付の空欄（Cyberpunk 2077 の Phantom Liberty の DOSSIERS）。
 - 割引はページ上の札と、機種・店のボタンの角の札の2か所に（Cyberpunk 2077：DISCOUNTS UP TO -50% と PS5 の角の -50%）。
@@ -97,7 +116,6 @@
 - 年齢区分を地域ごとに並べる（Baldur's Gate 3：ESRB・PEGI・USK・ACB の4つに地域名。ただしフッターだけで画像に alt なし）。
 - 人物のタブは `role="tab"` の roving tabindex（選んだ札だけ 0、← → でフォーカス）にし、選んだ札は面を抜いて文字だけにする（Expedition 33：8人、高さ 30px、他の札は #ECCFA3 の面）。ただし URL は変えていないので、作るときは #名前 を足す。
 - 写真・動画を作品の画風の縁（Expedition 33 は絵の具のかすれの PNG）で切り抜き、見出しを1つの記号（« »）で挟んで、全ページの部品をそろえる。
-- キャラクターは1人1URL、一覧はグループ見出しで分ける（Z-A。P3R はモーダルで URL なし、組の見出し S.E.E.S.／STREGA は同じ）。
 - ニュースは種類のタブに件数を出し、12件ずつ増やす（Z-A）。
 - 人物ごとに色を1つ決め、一覧の地と詳細の面を同じ色で塗る。選ばれていない人は単色にする（P3R：11色、`_off` 画像）。文字は濃紺（#1d384a なら全色で 4.46 以上）。
 - 人物の詳細は「名前（一番大きく）→ CV → PROFILE → 紹介5〜7行 → 動画と画像」（P3R：39px 700 字間 3px、紹介 17px／1.9）。
@@ -124,3 +142,5 @@
 - 版と機種を選ばせて、値段を1つも出さない（Baldur's Gate 3：top 0件、/merch の Deluxe €79.99 だけ）。店のボタンを SVG のロゴだけにする（同：最初の画面5つ・購入5〜3つ）。版のボタンを href の無い `a` にして Tab が届かない（同）。
 - 固定のナビに地を敷かず、下がると本文に重なる（Baldur's Gate 3）。CMS の空欄（「[Missing Label]」「Subpage 1〜4」）を出したまま公開する（同）。
 - 区画ごとの動画を全部 autoplay にして読み込み時に取る（Baldur's Gate 3 の /about：7本 88,269KB、1本は2回）。
+- 値段は出るのに店のボタンが無い版を、販売終了とも書かずに残す（FINAL FANTASY VII REBIRTH：PS5 の Deluxe 15,800円・Collector's 49,800円は体験版のボタンだけ）。終わったなら「受付を終えました（日付）」の押せないボタンを置く。
+- 見えない区画の mp4 まで SP で全部取り、SP が PC より重い（FINAL FANTASY VII REBIRTH：top SP 54.57MB／PC 34.69MB、mp4 9本 38,546KB。SP 用の属性があるのに main story は _pc の mp4）。

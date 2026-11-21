@@ -188,4 +188,8 @@
 - [ ] CMS の色の値を保存時に `/^#[0-9a-f]{6}$/i` で確かめた（Le Guess Who? は `9E77B1` で 18 組の色が出ない）
 - [ ] 時間割の日・一覧の絞り込みを URL に残し、ハートは a の外の button で、ログインなしでも端末に残る（Le Guess Who?：日は URL に無く、ハートは a の中・メールのログイン必須）
 - [ ] 券の値段を、売り場の iframe の外の自分のページに文字で書いた（Le Guess Who? の /tickets は0件）
-
+- [ ] 機種ごとに出ている版が違うなら、機種を先に選ばせ、その機種の版だけを並べた。値段のある版には店のボタンか「受付を終えました（日付）」を必ず置いた（FINAL FANTASY VII REBIRTH は PS5 の Deluxe・Collector's に値段だけ）
+- [ ] 値段は1つの表（API・JSON）から版の札に入れ、ページに同じ値段を手で二重に書いていない（FINAL FANTASY VII REBIRTH は /pricelist/api の23件を data-priceid で）
+- [ ] ニュースの2つの絞り込み（種類×機種）は互いに残し、0件になる札は disabled にした（FINAL FANTASY VII REBIRTH は 0件の札を opacity .5 にするが、種類を押すと機種が戻る）
+- [ ] 先の話を含む相関図・人物は、開く前に確かめる dialog を挟み、Esc で閉じてフォーカスを戻した（FINAL FANTASY VII REBIRTH の「閉じる」は div）
+- [ ] SP では見えた区画の背景動画だけを取り、SP 用のファイルを指した（FINAL FANTASY VII REBIRTH は SP で9本 38,546KB、main story は SP も _pc）

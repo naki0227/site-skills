@@ -98,8 +98,24 @@
 - **データ**：一覧・カートに BreadcrumbList。詳細は Product＋AggregateOffer（lowPrice だけ、availability InStock 1つ、XXL が品切れでも）＋BreadcrumbList。色・サイズごとの Offer・brand・gtin は無い。トップと案内は JSON-LD 0。
 - **重さ**：PC top 28.97MB / list 6.25MB / item 10.80MB / cart 6.35MB / guide 7.91MB（SP 26.33 / 6.27 / 10.76 / 6.35 / 7.92MB）、解析タグを除く。トップは画像 22.8MB（バナー1枚 3.3MB の JPEG・2.3MB の PNG）。どのページも JS 4.3〜5.6MB：チャット（zopim 1.2MB）・gdxtag の main.js 1.06MB と widget.js 644KB・Yotpo 約1.1MB（レビュー0件の品でも）・promolayer 340KB を開く前から。トップはスタッフコーディネートの staff-start 1.97MB も。
 
+### East Fork（https://eastfork.com/ ・2026-11-21 計測・器と台所の道具・米国ノースカロライナ州アッシュビル・Shopify の自前のテーマ（Tailwind）・USD）
+- **位置づけ**：同じ形の器（The Mug・Everyday Bowl など）を15の釉薬の色で売り、4・8個の組（Pack Size）を値引きする。一覧（/collections/pottery）は80品。釉薬に「Core／Seasonal／Limited」の系統がある。
+- **一覧**：PC 4列（1マス 360px・写真 323×323・余白 18px）、SP 2列。マスの境は 1px の黒の線、角丸・影なし。カードは 札（Best Seller #c7cbac・New #c8d6e8・Save 10% #ddd3c6、12px）→ 白地の品だけの写真 → **釉薬の丸を7つ（SP 5つ）と「+5」** → 名前 Quincy CF 18px・800 → 値段 18px（組は打ち消し線と「More pack sizes available」11px #666）。丸を押すとカードの写真だけその色に（PC 0.31秒・SP 0.23秒、移らない）。PC は指を乗せると2枚目の写真が opacity .15s と、右下に＋ 36×36（visibility）、SP は＋ 25×25 を常に。7・8枚目の場所に2列ぶんの読みもの「Made in Asheville」。40件ずつ、下まで送ると残り40件を足す。並べ替えの初期値は Featured。件数は同じ URL で「80 Products」と「83 Products」の2通りを見た（products.json は80）。
+- **絞り込み**：PC は Filter で左に 358px の列（一覧は3列に）、SP は全画面の窓と下に「CLEAR ALL」「SHOW 80 PRODUCTS」。7群＝Color 22（22px の丸だけ・名前は読み上げのみ）・Collections 6・Price（$0〜$828）・Type 10・Finish 2・Pattern 3・Material 1。**選んだ瞬間に反映**（PC 0.81秒・SP 0.57秒）し、URL に ?filter.v.m.custom.colorway=…、残りの品に無い値は消える（Nocturne で Collections 6→2・Type 10→8）。80 → 40（Nocturne）→ 5（＋Mugs）。上に「Applied Filters」「Clear All」と札。**色の札は丸と × だけ**。色で絞るとカードの写真もその色。在庫ありで絞る項目は無い。
+- **一覧の＋**：「+ Quick add The Mug」を押すと、PC はカードの中で写真の下から選ぶ面（色12・Single／4 Pack・数量・ADD TO CART 211×44）、SP は全画面の面。ボタンは選んだ色で塗る。
+- **詳細のファーストビュー**（/products/everyday-bowl-pack）：PC はパンくず3段 y=163 → 左に 583×583 の写真2枚の横送り、右 x=888 幅532 に 名前 Quincy CF 36px／40px・700（y=221）→ $158 と打ち消し $176（#767676）と Shop Pay 4回払い → Pack Size（Single 86×32・4-Pack・8-Pack の丸い札、下に「Save 10%」「Save 15%」10px #ab614a）→「Color: Amaro」と系統の札 10px → 見本 34px（円 28px）を 46px 間隔 → − ＋ 53×53 とボタン 342×53（y=594〜647）→「Ships within 3-5 business days. • Return Policy • Shipping Policy」12px 太字 #767676。PC は最初の画面にボタンまで入る。SP はボタンが外で、購入の列を過ぎると下に固定の帯（名前・値段・色・組・ボタン 150×40、translate と opacity .4s cubic-bezier(.3,0,0,1)）。
+- **ボタンの地＝選んだ釉薬の色**：style="--btn-bg:#ab614a;--btn-fg:#fff" を色ごとに持ち、background-color .2s で塗り替える。字の白・黒も色ごと：Amaro 白 4.63・Blue Ridge 黒 6.04・Black Mountain 白 16.10・Heron 黒 6.84・Longleaf 白 6.73・Nocturne 白 15.70（どれも 4.5 以上）。固定の帯・一覧の＋の面のボタンも同じ色。ホバーは color-mix で 80%。
+- **見本と在庫**：品切れ（.oos）と「この組に無い」（.unavailable-in-pack）は **白 50% の丸と白 1.25px の斜線を重ね、CSS の order 9998 で列の最後へ**。title「Morel (Out of Stock)」。選ぶと 0.47秒でボタンの場所が「This pottery is out of stock, but we plan to make more soon.」・メールの欄・NOTIFY ME 532×41 に（入荷の時期なし）。「この組に無い」色を押すと単品の別ページへ移る（+2,951KB）。色ごと・組ごとの在庫数を HTML の variant-inventory に持つ（Nocturne 8-Pack は 3）が、残りわずかの印は出さない。色を押して 0.06〜0.27秒でボタンの色・値段・URL（?variant=、robots.txt は ?variant= を禁止）を替え、読み直さない。
+- **最初に選ばれる色**：届いた HTML は在庫のある Amaro に checked を付けるのに、フォームの hidden の id は先頭の Eggshell / 4-Pack（品切れ）。JS が 1.84秒までに Eggshell に戻し、開くとボタンの代わりに入荷通知の欄が出ている。
+- **組の値段**：4-Pack $158（打ち消し $176 ＝ 単品 $44 × 4、10.2%・Save 10%）、8-Pack $299（$352 ＝ $44 × 8、15.1%・Save 15%）。Single は別の商品で、札を押すとページを移り、パンくずは「Everyday Bowl Pack」のまま残る。
+- **カートに入れる**：固定の帯のボタンを押すと 0.11秒で POST /cart/add.js、**0.64秒で右から 576px のドロワーが滑り出すが、0.92秒までは中身が空のカートの絵と「Nothing added yet.」**（SP は 1.14秒から）。ヘッダーは先に「Cart (1)」。帯のボタンは文字も disabled も変わらない（購入の列のボタンには「Adding...」・opacity .3 の状態がある）。ドロワーは role="dialog"・aria-modal="true"、焦点は色の radio に残る。行は写真 128×128・名前 20px・「Amaro / 4-Pack」・$158 と打ち消し $176・− ＋ 28×28・「QTY: 1」・REMOVE、「Add a Gift Message」、下に Subtotal と CONTINUE SHOPPING／CHECKOUT 251×41、「Shipping, taxes and discounts will be displayed in the checkout」。**送料の行も送料無料の残りも無い**。＋は 0.63秒で数、1.07秒で小計。CHECKOUT は寄付（$5／$10／$15）を開くボタン。/cart はトップの上にドロワーを開いた形で返る。
+- **買う前の不安**：送料の金額は詳細・ドロワー・FAQ のどこにも無く、FAQ は「calculated based on shipping address and weight」。FAQ の1つ目は「Free Shipping on Orders $150+」で期間が 2026年5月14〜18日（終わった催し）。**発送は詳細で「3-5 business days」、FAQ で「10-14 business days」**。返品は到着から30日・返送料は客の負担・新品同様のみ、割れは1週間以内に写真でメール。店での受け取りは無い。ニュースレターの窓に「free shipping on your first order」。
+- **データ**：詳細は ProductGroup に Product 30（InStock 14・OutOfStock 16、画面と一致）・variesBy color と size。AggregateRating は ratingValue・reviewCount が空の文字。shippingDetails・返品の値は無い。一覧に CollectionPage・BreadcrumbList・ItemList。画像の alt は色・形・縁まで（「a cool white color featuring iron speckles and an unglazed rim」）。
+- **見た目**：地は白、線と字は黒、テーマの色は clay #f8f4ed／#f6eae3 と頭の帯 #635c38（Longleaf の釉薬の色）だけで、色は品と釉薬に任せる。書体は Galano Classic（文・題 58px 600）・Quincy CF（品の名前と値段）・Toma（手書きの大文字のボタン）。ロゴは scroll のたびに scrollY を見て 400〜2200px で1字ずつ器の絵に替わる（reduced motion を見ない）。
+- **重さ**：PC で top 14.30MB・list 17.04MB・item 12.14MB・cart 13.97MB・guide 10.98MB（解析タグを除く）。どのページも JS 9.3〜9.7MB、うち購入手続きの先読み checkout-web 1,661KB（85本・2,637KB）、Swym（欲しいもの）の JS 375KB を3回（2つの置き場から）、Shopify Forms 745KB、Contentsquare 583KB。写真は webp と JPEG XL、一覧の img は全部 lazy。タグ込みで詳細 18.39MB（Google タグ 4,016KB）。
+
 ## 真似る型
-（見本6つ：中川政七商店・Iittala・Ferm Living は色ごとに別の商品（Ferm Living は大きさまで別）、KINTO は色を1つの商品の選択肢にしている。ほぼ日手帳はカバーと本体を組で売る。Snow Peak は器は色ごとに別の商品、服は色×サイズを1つの商品にして窓の行で選ばせる）
+（見本7つ：中川政七商店・Iittala・Ferm Living は色ごとに別の商品（Ferm Living は大きさまで別）、KINTO は色を1つの商品の選択肢にしている。ほぼ日手帳はカバーと本体を組で売る。Snow Peak は器は色ごとに別の商品、服は色×サイズを1つの商品にして窓の行で選ばせる。East Fork は釉薬の色×組（4・8個）を1つの商品にし、単品は別の商品）
 1. **色や柄の違いは、一覧では色ごとに1枚のカードにする**。名前に色の名前まで入れる（中川：ふきん94点、Iittala：「Vase 160mm clear」と「Vase 160 mm Finnish sand」を別のカード）。カードからそのまま入れられるようにする（中川：222×40 の「カートに入れる」、Iittala：ホバーで出る袋の印 20×40、SP は常に）。
 2. **詳細では、同じ形のほかの色に、写真か色の行で1手で届かせる**。色が10未満なら 40×40 の写真の見本を並べ、選んだ色に下線（Iittala）。色ごとに在庫とボタンを持たせたいなら、色ごとの行 356×118 にボタンを置く（中川）。どちらも、押してもページを読み直さずに写真・在庫・URL を替える（両店とも読み直す＝直す）。
 3. **品切れの色も消さない**。見本は薄く（Iittala：opacity .4）、行なら「在庫がありません」と書き（中川）、ボタンの場所を同じ幅の次の行動に替える（Iittala：灰 #ececec の「Notify me」344×51、中川：「店舗在庫を確認」356×48 から店ごとの在庫）。入荷の時期は両店とも書かないので、作るときは書く（Ferm Living は品切れの詳細で届く日の行を「Expected stock date: 27/11/2026」に替える。ただし見本は在庫ありと同じ見た目＝直す）。
@@ -122,6 +138,12 @@
 17. **色×サイズの組を1行ずつにし、行に残りの数・届く日数・ボタンを置いて、選ぶ手と入れる手を1つにする**（Snow Peak：行 438×55 に「残り3点」「1-7日お届け予定」12px と 176×38 の「カートに入れる」、4色×7サイズで28行。中川政七商店の色の行 356×118 と同じ型をサイズまで広げた形）。行は窓に隠さず購入の列に出す（Snow Peak は「カートに入れる」を押すまで見えず、SP のボタンは y=970＝直す）。品切れの行は残して、ボタンの場所を入荷の手にし、入荷の時期を書く（Snow Peak は時期なし・ログインへ＝直す）。
 18. **一覧に「品ごと／色ごと」の切り替えを URL で持ち、件数を数え直す**（Snow Peak：select「商品別 ?un=item／カラー別 ?un=fku」、初期値カラー別）。色を1つの商品にしている品で効き、色ごとに別の商品にしている品では差が出ない（テーブルウェア 163 → 162）。切り替えは読み直さずにその場で（Snow Peak は 2.03秒の読み直し）。
 19. **店の在庫は、選んだ色・サイズで地域のタブに分け、在庫のある店だけを「残りわずか」などで並べ、取り置きの注意と「出ていない店は在庫なし」を1文ずつ添える**（Snow Peak：8地域・BLACK/L で12店・53KB。中川政七商店の地方ごとの開閉、土屋鞄製造所の14店の ○／× と同じ型）。
+
+20. **カートのボタンの地を、選んだ色（釉薬・塗り）にし、字の白・黒を色ごとに決めて全色で 4.5:1 以上にする**（East Fork：詳細 342×53・固定の帯・一覧の＋の面のボタンとも。Amaro 白 4.63・Heron 黒 6.84・Nocturne 白 15.70、background-color .2s）。品の色そのものが選ぶ理由の店で、選んだ色をボタンでもう一度見せる。
+21. **品切れの色の見本は、白 50% の幕と斜線を重ねて残し、列の最後へ回す**（East Fork：CSS の order 1／9998、title「(Out of Stock)」）。在庫のある色が先に並ぶ。押したらボタンの場所を入荷通知に替え、入荷の時期を書く（East Fork は書かない＝直す）。最初に選ぶ色は在庫のある色にし、HTML と JS で同じにする（East Fork は HTML の Amaro を JS が品切れの Eggshell に戻す＝直す）。
+22. **組（4・8個）の打ち消し線は「単品 × 数」、札の率は実際の率**（East Fork：$158／$176・10.2%「Save 10%」、$299／$352・15.1%「Save 15%」。ドロワーの行にも元値）。単品を別の商品にするなら、組の札から移ったときにパンくずと見出しを単品にする（East Fork はパンくずが古い）。
+23. **一覧のカードに色の丸を7つ（SP 5つ）と「+残りの数」、押すとカードの写真だけ替える**（East Fork：0.31秒・移らない）。色で絞ったらカードの写真もその色に。カードの＋は、PC はカードの中・SP は全画面で色と組を選ばせる。
+24. **絞り込みは選んだ瞬間に反映し、URL に残し、残りの品に無い値は消すか押せなくする**（East Fork：0.81秒・Collections 6→2）。色の札には色の名前も出す（East Fork は丸だけ＝直す）。
 
 ## 反面教師
 - 色の見本を押すとページごと読み直す（Iittala：3.51秒・2,868KB）。見本の上の名前を系統名にして品の色とずらす（calluna を「Red」）。
@@ -159,3 +181,9 @@
 - 12色のタンブラーを色ごとに別の商品にし、詳細から他の色へは y=2,455 のおすすめの段だけ（Snow Peak）。
 - ナビ #a8a8a8（2.38）・品番 #afafaf（2.19）・札 白／#858585（3.69）。和文の書体を指定しない。prefers-reduced-motion が0か所（Snow Peak）。
 - チャット・gdxtag・Yotpo・promolayer を開く前から毎ページ約4MB、トップのバナー1枚 3.3MB（Snow Peak）。
+- 開くと品切れの色が選ばれ、ボタンの代わりに入荷通知の欄が出る。HTML は在庫のある色に checked を付けているのに、hidden の id が先頭の品切れの組で、JS がそちらへ戻す（East Fork：1.84秒）。
+- カートのドロワーが空のカートの絵と「Nothing added yet.」で滑り出し、0.28秒後に中身へ替わる。押した帯のボタンは変わらない（East Fork）。
+- 送料の金額が詳細・ドロワー・FAQ のどこにも無く、FAQ の1つ目が終わった催し（2026年5月の「$150 以上で送料無料」）の条件。発送の日数が詳細で 3-5、FAQ で 10-14 business days（East Fork）。
+- 「この組に無い」色の見本を押すと、断りなく単品の別ページへ移り、パンくずが組の名前のまま残る（East Fork）。
+- 在庫数を HTML に持つのに、残り3でも何も言わない。絞り込みの色の札が丸と × だけ。一覧の件数が 80 と 83 の2通り（East Fork）。
+- 同じ「欲しいもの」の JS（Swym 375KB）を2つの置き場から3回、購入手続きの先読み 85本・2.64MB を全ページで読む。ロゴの切り替えを scroll のたびに計算し、reduced motion でも替える（East Fork）。

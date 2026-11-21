@@ -208,3 +208,9 @@
 - [ ] いまの分類の札に aria-current="page" を付ける（Linear Now は色だけ）
 - [ ] 斜体・太字の別ファイルのフォントを、本文に1か所しか無い em や strong のために読んでいないか（Linear Now：Italic 380KB）
 
+- [ ] コードの箱で、code の左端が pre の左端より内側にあるか、1字目が見えているかを PC と SP で見る。code をはみ出させるなら内側の余白をはみ出した分より広くする（CyberAgent Developers Blog：margin -20px に内 12.25px で、左 7.75px が切れて「public」が「ublic」）
+- [ ] SP で書き手・日付・分類が記事の頭に残っているか（CyberAgent Developers Blog：991px 以下で .byline を display:none）
+- [ ] SP の h2 を本文より大きくする（CyberAgent Developers Blog：SP の h2 16px＝本文と同じ、PC は 24px）
+- [ ] font-family に無い書体名（auto など）を書いていないか、開閉の窓や部品の字が明朝に落ちていないかを画面で見る（CyberAgent Developers Blog：タグの窓が font-family: auto で明朝）
+- [ ] 一覧の h1 を文字にする。画像の文字（img の alt）にしない（CyberAgent Developers Blog：分類の帯の h1 が engineer_text.png）
+- [ ] 一覧のサムネを CSS の background-image で出さず、img に srcset・loading="lazy" を付ける（CyberAgent Developers Blog：1024px の PNG 14枚 4.4MB を最初に読む）
