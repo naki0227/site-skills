@@ -19,7 +19,7 @@ description: SaaS・ソフトウェア・アプリの製品サイトを作る・
 ## 下位タイプを選ぶ
 | 下位タイプ | 向く題材 | 見本（解剖したサイト） | ファイル |
 |---|---|---|---|
-| 開発者向け | API、開発ツール、インフラ、ヘッドレスCMS、ノーコードのWeb制作、データベースの基盤、配信と AI の基盤、サーバー監視 | Resend、microCMS、Studio、Supabase、Vercel、Mackerel | `types/devtools.md` |
+| 開発者向け | API、開発ツール、インフラ、ヘッドレスCMS、ノーコードのWeb制作、データベースの基盤、配信と AI の基盤、サーバー監視、使った秒で払うデプロイ基盤 | Resend、microCMS、Studio、Supabase、Vercel、Mackerel、Railway | `types/devtools.md` |
 | 業務SaaS | 営業・人事・会計・社内ツール・保育や学童などの現場・製品開発の課題管理・CRM・問い合わせ（サポート）の受付・法人カードと経費の精算・営業のデータ集めと自動化（使用量の2つの量で払う） | Backlog、コドモン、Linear、Attio、Plain、Ramp、Clay | `types/business.md` |
 | AIプロダクト | 生成AI・AIを中心にした製品、会議や記録の AI（議事録）、コーディングのエージェント、動画・画像の生成（クレジット課金） | Nani翻訳、Granola、Cursor、Rimo、Notta、Runway | `types/ai.md` |
 | 個人向けアプリ | スマホ・PC のアプリ、個人で使う道具、共有カレンダー、家計簿・資産管理、プリペイドカードと家計簿（ふたり・子どもと使う）、家族で写真を共有するアルバム（ストアと Web で値段が違う） | Todoist、TimeTree、マネーフォワード ME、Moneytree、くふう Zaim、ワンバンク、みてね | `types/app.md` |

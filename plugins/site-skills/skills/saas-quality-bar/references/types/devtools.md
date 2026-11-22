@@ -77,8 +77,21 @@
 - **見た目の値**：トークン16個（--color-text #111・--color-link #049bf0・--accent-color-light #64d7fa・--color-beige #f8f1eb）。CSS 14本で色 961個・88種、上位 #fff 160・#049bf0 120・#e1e3e6 78・#777 65・#000 58。Webフォント0（ヒラギノ指定、価格だけ "Hiragino weightFixed" で local の W4/W6 を名指し）。文字の段 PC 64.8/48/27/24/21.5/16/14/12、SP 35/28/21/17.5/14/12.25/10.5（SP の 10.5px が 614字）。白い字の青いボタン 3.02:1、✓ #64cc18 2.06:1。動きは keyframes 1（r1 20s）、transition 8か所（all .1s linear）、ボタンのホバーは opacity .5〜.7 を時間なしで、reduce の規則0。旧ボタンの :focus は outline:none の後の box-shadow に LESS の fade() が残り無効。
 - **データと重さ**：PC で top 16.25MB / features 2.45MB / pricing 1.95MB / customers 7.79MB / docs 2.24MB（SP 18.26 / 2.33 / 1.95 / 7.79 / 2.24MB）。トップは Calendly（booking JS 6,681KB・CSS 2,305KB ほか約 9.4MB）・Stripe 1,175KB・reCAPTCHA 846KB×3。事例一覧は 5707×3804 の JPEG 3,898KB を 348×233（lazy なし）。構造化データは製品サイトの4ページで0、先読み0、解析・広告を含め 38〜58 ホスト。inspect（トップ）：FAIL 1（SP の 13px 未満 39%）・WARN 19。
 
+### Railway（Railway Corp.、アプリ・DB・cron のデプロイ基盤・海外）https://railway.com/ — 2026-11-22
+- **最初の画面**：空と汽車を手描き風の絵（bg-train-dusk.webp 1440×1440、fetchpriority=high）にし、h1「Let agents ship products as fast as they write code」IBM Plex Serif 500・54px/60.48px・字間 -1.96px（SP 40px/44.8px）。一文 20px/28px・白80%（83字）。主「Deploy →」→ /new（138×58・角8・#553f83・縁 白15%）、副「Agents」→ /agents（黒35%・縁 白25%）。ヘッダーは Sign in と Book a demo の文字だけ。
+- **製品の見せ方**：y=559 から 1064×799 の DOM の窓（695要素・画像0）。タブ5つ（Deploy 5.41・Network 6.04・Scale 5.64・Monitor 8.02・Evolve 5.18秒）を自動で送り、タブの中の塗りを translateX で伸ばす（aria-valuemax=100、cursor-grab の層）。止めるボタンなし、reduce でも送る。窓の中は `$ astro build` のログ（JetBrains Mono 12/19.5・157行）と「glorious-hippo / production」のサービスの図。SP は窓を出さず JS 998KB も読まない。
+- **機能の並べ方**：/features は6章×カード（6・6・3・6・6・6枚、379px・白1.6%の地・縁 白8%・角8）。章ごとに「Alternative to」＋置き換える道具のロゴ（docker・heroku・datadog・terraform など）。章へ飛ぶ目次は sticky top:72px（69px）だが今いる章を示さない。章の題が全部 h1（ページに7つ）。
+- **料金表**：h1「Pay only for what your app uses, by the second」（56/70）の右に使用率 0〜100% の階段の線と注「Only pay for active CPU and memory」。Free は 1160px の横長3列（$0 per month・Trial $5／30日・No credit card required・放射グラデーションのボタン）、下に Hobby「$5 minimum usage」（Includes $5 of monthly usage credits、#0b1428）・Pro「$20 minimum usage」（#1e132a・縁 #3d2259・16px 上に出る）・Enterprise Custom。札なし・年払いなし・税と通貨の語0。単価は秒あたり（Memory $0.00000386 per GB / sec・CPU $0.00000772・Volumes $0.00000006）で、月の目安はサンドボックスの2行（about $50 per GB-month）だけ、見積もりの部品なし。その下に月の約束額の4段（$1,000 HIPAA → $2,000 SSO・SCIM・RBAC → $5,000 サポート → $10,000 専用 VM、「Everything above, plus」）。
+- **比較表**：12区分82行（12・3・2・7・4・13・5・4・14・8・8・2）を開いたまま、開閉・検索なし。div の格子 232px×5、頭（プラン名＋ボタン4つ、117px）を sticky top:64px。SP は頭 59px でボタンを外しプラン名を色で残す、行は名前を上・値4つを 87.5px ずつ。✓ は #26543f の丸。
+- **試すまで**：文言は「Deploy」で始まる5通り、行き先は /new の1つ（plan の引数なし、robots で禁止のため未訪問）。カード不要を Free のカード・比較表の行「Credit card required」・FAQ の3か所に。試用は30日・$5 1回で、終わるとデプロイを止める（請求しない）と FAQ に。
+- **事例と信頼**：/customers は h1「Loved by developers at 31% of the F500」（時点・数え方なし）→ 約6秒で送るカルーセル（引用 30/36・INDUSTRY／TEAM SIZE は ui-monospace 12px 大文字 白40%＝3.79:1、前後のボタンに名前なし）→ ロゴの帯2段（90s、reduce でも running）→ 業種の札5つ（All 14・B2B 2・B2C 5・AI 4・Ecommerce 1、2件は札なし、aria-pressed なし）。詳細14本はすべて blog.railway.com。Bilt の記事は章の題「Millions of Requests per Second」と中の「1,500+ requests per second」がずれる。トップの「246.6M+ deploys per month」はサーバーの HTML で「0+」。
+- **ドキュメント**：docs.railway.com（Next.js、地 #f1f0ef・字 #201f27）。目次17区分・言語13、⌘K の検索は0件で「No results found／Try a different search term／Need help? Railway Central Station」。トップだけで _next/data を32本 795KB 先読み。
+- **AI 向け**：robots.txt に `Content-Signal: search=yes, ai-input=yes, ai-train=yes` と「.md を足せば Markdown」の案内、/llms.txt 7,029B、docs/llms.txt 79,840B、/pricing.md 9,699B。ただし md・画面・構造化データで5つの値が食い違う（Hobby のレプリカ カード5／表6／md 6、Pro のサンドボックス最大 表 32 vCPU／md 24、Enterprise の RAM「2,4 TB」と「2.4 TB」、/features の「100,000+ IOPS」と表の 3,000、JSON-LD の Enterprise price "0"）。
+- **見た目の値**：地 #13111c、字 #f7f7f8（17.44:1）・表 #dcdce0（13.65:1）・副 #8888a0（5.40:1）。プランの色 Hobby #2057c5・Pro #853bce・Enterprise #545260。書体は IBM Plex Serif（題）・Inter（本文・表）・JetBrains Mono（窓）を Google Fonts から。transition は .15s cubic-bezier(.4,0,.2,1)（30回）。汽車は `animation-timeline` の scroll で動き reduce でも動く、CSS の帯・点は reduce で止まる。
+- **データと重さ**：PC で top 12.40MB / features 8.34MB / pricing 7.80MB / customers 7.15MB / docs 3.20MB（SP 10.50 / 8.34 / 7.73 / 7.00 / 2.53MB）。全ページで modal-*.js 2,037KB、トップは駅の床 SVG を明暗2枚（500KB×2）、料金は支払いの入力が無いのに Stripe 1,187KB。構造化データは料金に Product（AggregateOffer 4・PropertyValue 8）と FAQPage 13問。トップは React のエラー #421。
+
 ## 真似る型
-見本6つ（Resend・microCMS・Studio・Supabase・Vercel・Mackerel）に共通するもの、または1つで測った値を出発点にするもの。値の出どころを添える。
+見本7つ（Resend・microCMS・Studio・Supabase・Vercel・Mackerel・Railway）に共通するもの、または1つで測った値を出発点にするもの。値の出どころを添える。
 1. **行動は「試す」が主、副は読み手で決める**：Resend は「Documentation」（開発者がそのまま読む）、microCMS は「ビジネス職向けページ」（決める人を分ける）。Studio は「製品資料をダウンロード」（決める人へ渡す資料）。主は塗り、副は枠か文字（Studio は副を青い絵のボタンにして、主より目立つ）。登録の欄はメールとパスワードほどに少なく、カード欄なし（microCMS は「＼ クレジットカードの登録不要 ／」をボタンの直前に）。
 2. **コードをどこに置くかを先に決める**：使う人が開発者だけなら2画面目に言語の切り替えのあるコード欄（Resend 13言語）。編集者や決める人も読むなら、トップは「管理画面 → API」の1枚にして、コードはドキュメントへ（microCMS は4ページでコード0、機能のカードの最後にドキュメントの「設定方法」）。
 3. **料金は4枚、最後は「お問い合わせ」**：Resend（Free・Pro・Scale・Custom）、microCMS（Hobby・Team・Business・Enterprise）。個人と法人の両方が使うなら、Studio のように最初の切り替えを「ビジネス利用／個人利用」にして3枚ずつ（Enterprise は法人側の最後）。入口の文言は3枚で同じ。従量の単価と、上限を超えたらどうなるか（Resend の超過 $0.90/1,000通、microCMS の「超過時はAPI停止」「+20円/GB」）を表の中に書く。
@@ -105,6 +118,12 @@
 20. **SP の比較表は、同じ DOM を display:contents で崩して 85% のカードを横に送る**：Mackerel は PC の格子（頭 sticky top:100px）を SP で `repeat(2,85%)`・scroll-snap のカード2枚にし、行の名前をカードの中に残す。プランが2〜3つなら select（Linear・Vercel）より一度に比べやすい。
 21. **事例の問答の前に「用語解説」の囲み**：Mackerel は APM・MCP サーバーを2〜3文で説明してから問答に入り、写真のキャプションに撮影の月を書く。読み手に決める人（開発者でない人）が混ざる道具で使う。
 
+22. **使った分の料金は、題の横に「使用の階段」の絵**：Railway /pricing は h1 の右に使用率 0〜100% の階段の線と等幅の注「Only pay for active CPU and memory」。箱の大きさを選ぶ料金でないことを数字より先に絵で言う。
+23. **カードの値段は「最低利用額＝含まれる使用分」**：Railway は Hobby「$5 minimum usage」＋「Includes $5 of monthly usage credits」、Pro $20／$20。定額のように読めて、超えた分だけ従量と分かる。秒の単価には月の目安（$10 per GB-month など）を必ず添える（Railway は主な3行で書かない）。
+24. **無料は横長の1枚、有料は3枚**：Railway は Free を 1160px の3列にし、下に有料3枚、Pro だけ 16px 上＋縁 #3d2259（札なし）。
+25. **Enterprise の手前に月の約束額の段**：Railway は $1,000／$2,000／$5,000／$10,000 で HIPAA → SSO・SCIM → サポート → 専用 VM が開き、上の段は「Everything above, plus」。問い合わせ1つで終わらせない。
+26. **機能の章ごとに「Alternative to」と乗り換え元の道具**：Railway /features は6章すべてに（Build → docker・heroku・cloudrun、Monitor → datadog・sentry・grafana）。開発者は置き換える道具の名前で範囲をつかむ。
+
 ## 反面教師
 - 実績「17,000社以上・継続率99%」に時点・数え方なし。10月28日のトップに3月・2月のセミナーを「終了」の印なく出す（microCMS）。
 - 比較表の × #adb5bd が 2.07:1、? の説明32個がホバーだけ、SP は 1024px の横スクロールで行の名前が消える。SP の本文 14.2px・注 12.4px（microCMS）。
@@ -130,3 +149,8 @@
 - 使った分の料金なのに、台数・GB を入れて合計を出す部品が無い（Mackerel は「見積もりを依頼」だけ）。
 - ヘルプの区分の帯の白い字が 8色中7色で 1.58〜3.58:1、検索欄に label なし（Mackerel）。
 - 実績の数字がトップ「1,500社以上」と事例一覧「1,000社を超える」で食い違う（Mackerel）。
+- カード・比較表・/pricing.md・構造化データ・/features で同じ値が5つ食い違う（Hobby のレプリカ 5／6、サンドボックスの最大 32／24 vCPU、「2,4 TB」、IOPS 100,000+／3,000、Enterprise の price "0"）。値は1つのデータから作る（Railway）。
+- 単価が小数8桁の秒あたりだけで、月の目安も見積もりも無い（Railway の Memory・CPU・Volumes）。
+- 製品の窓のタブ（5.18〜8.02秒）と事例のカルーセル（約6秒）を reduce でも送り、止めるボタンが無い。事例の前後のボタンに名前が無い（Railway）。
+- 実績の数字をサーバーの HTML で「0+」にし、見えてから「246.6M+」に書き換える。時点・数え方なし（Railway）。
+- 料金ページで支払いの入力が無いのに Stripe 1,187KB、トップで明暗2枚の SVG（500KB×2）を両方読む（Railway）。

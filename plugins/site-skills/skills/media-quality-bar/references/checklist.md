@@ -214,3 +214,10 @@
 - [ ] font-family に無い書体名（auto など）を書いていないか、開閉の窓や部品の字が明朝に落ちていないかを画面で見る（CyberAgent Developers Blog：タグの窓が font-family: auto で明朝）
 - [ ] 一覧の h1 を文字にする。画像の文字（img の alt）にしない（CyberAgent Developers Blog：分類の帯の h1 が engineer_text.png）
 - [ ] 一覧のサムネを CSS の background-image で出さず、img に srcset・loading="lazy" を付ける（CyberAgent Developers Blog：1024px の PNG 14枚 4.4MB を最初に読む）
+- [ ] 図の埋め込み（Flourish・Datawrapper の iframe）の入れ物に aspect-ratio か高さを書き、図が届く前後で本文が動かないかを SP の CLS で見る（Canary Media：記事 SP 0.3556）
+- [ ] 下に固定の帯・窓が同時に何枚出るかを、PC と SP で記事を半分まで送って数え、ヘッダーと合わせた割合を測る（Canary Media：PC 46%・SP 40%）
+- [ ] 進み具合の線が本文の終わりで 100% になるか、送って確かめる（Canary Media：文書全体で割り、本文の終わりで約半分）
+- [ ] HTML に入れた組版の印（span.caps・引用符のクラス）に、CSS の規則があるかを検索する（Canary Media：.caps・.pull-double に規則が無い）
+- [ ] 同じ絵の通常とかざした形を別の SVG で HTML に持っていないか。fill を CSS で替える（Canary Media：地域の地図 8枚・280KB）
+- [ ] CDN から読む JS の URL に版が固定されているか（Canary Media：unpkg の alpinejs@3.x.x）
+

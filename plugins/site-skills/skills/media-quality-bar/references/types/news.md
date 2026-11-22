@@ -106,8 +106,26 @@ PC 1440×900 / SP 390×844。見たページ：トップ、分類（/list/genre/
 - **文字と動き**：rem で 14px 108回・13px 107回・12px 89回・16px 73回、600 が 173回。動きは写真の transform .5s（30）・色 .2〜.3s、cubic-bezier 0・reduced-motion 0・:focus-visible 0。
 - **データと重さ**：JSON-LD は WebSite＋BreadcrumbList＋NewsArticle（author に jobTitle・image・identifier、日付 +09:00）。重さ（measure.js、下まで送った後）PC top 7.49MB / list 7.43 / teaser 8.30 / article 11.53 / long 13.15MB（SP 6.58 / 7.97 / 7.76 / 7.78 / 8.88MB）。記事 PC は 200ホスト・720件で、自社（tk.ismcdn.jp 733KB＋toyokeizai.net 197KB）は 12,097KB の 7.7%。googletagmanager 7件 3,550KB、ufs_web_display.js 242KB を広告枠ごと。PC と SP の CSS を media 属性の link で分けているが両方通信する。
 
+### Canary Media（https://www.canarymedia.com/ ・2026-11-22 計測）
+PC 1440×900 / SP 390×844。見たページ：トップ、分類の一覧（/articles/batteries）、図の記事（/articles/batteries/us-grid-batteries-fire-risk・PC 5,462px・SP 6,542px）、長い記事（/articles/food-and-farms/wheres-the-beef-solar-panels・PC 12,248px・SP 14,093px）、連載の一覧（/articles/columns/chart-of-the-week）。米国の非営利のクリーンエネルギー報道（Craft CMS＋Tailwind＋Alpine）。選んだ理由：型の段をギリシャ文字の名前で持つ組み、点で描いた地域の地図のナビ、SP で縮むヘッダーと黄の線、図だけ本文の外に広げる記事の頭。事例集・受賞歴は確かめられなかった。
+- **本文**：列 PC 584px（.prose の 65ch）・SP 362px（左右 14px）。PublicoText 20px／30.4px（1.52）・SP 17px／25.84px、#484848（白地 9.15:1）、段落の前後 30px（SP 28px）。段落ごとに div で包む。h2 は ABCFavorit 700 28px／36.12px・字間 -.03em・#212121・上 40px。本文のリンクは字の色のまま 500・下線 1px。
+- **型の段**：type-alpha（Publico 700・1.08）32 → 640px で 44 → 1280px で 55px、beta 28 → 38 → 44px（-.02em）、gamma 16 → 18 → 22px（1.15）、delta 16 → 18px、zeta（Favorit 700 大文字 .02em）14 → 18px、theta 13px／1.29。本文 .prose 17px・xl:prose-lg 20px、.prose-sans-xl 22px／1.35。
+- **記事の頭**：題 h1 type-beta 44px／47.52px（SP 28px）→ リード Publico 20px／30.4px #484848（long は ABCFavorit 22px／29.7px）→ 顔 50px（SP 32px）＋「By」13px #a1a1a1（2.58:1）・名前 700・日付 13px #7a7a7a（4.29:1）｜共有の丸 24px ×5。分類の札は記事の頭に出さない。更新日は画面にも JSON-LD にも無い。連載の記事は題の上に丸い絵 96px＋「This article is part of the series “…” Read more.」18px／24.3px。
+- **図**：Chart of the week の記事は Flourish の図を記事の頭に。2xl で本文の列の外へ -mx-60（左右 240px）＝1064×645、狭いと列の中 362×446。入れ物に高さが無く、iframe の高さが届くと本文を押し下げて CLS PC 0.1799・SP 0.3556。long の写真は Flickity の入れ物（498px）に1枚だけ。本文を2つの section に割り、間に全幅 #ededed・394px の広告の帯（970×250）。
+- **ヘッダー**：PC 167px → 15px 送ると 90px（height .15s cubic-bezier(.4,0,.2,1)）、トップは黒で 248 → 89px。SP 108 → 41px で、ロゴの丸 16px と題を1行（省略）にし、下に 2px #f9d448 の線。線は SP だけで、割る数が文書全体の高さ（本文の終わりで半分ほど）、Alpine の @scroll.window が width を書く。目次は無い（long・h2 3・id 無し）。
+- **ナビ**：PublicoText 15px #555 の8項目。U.S. regions はかざすと全幅 125px の帯に、点の地図 65×43（123×81 の SVG に rect 326個、他の地域は fill-opacity .12）＋地名 Publico 700 24px を4つ、かざすと黄 #FFDC01 の別の SVG に替える（8枚・280KB を全ページの HTML に、HTML 490KB の57%）。3本線の button に名前も aria-expanded も無い・スキップリンク無し。
+- **一覧**：h1 type-alpha 55px 中央 → 先頭1本（左に中央寄せの分類 18px 700 大文字・題 44px・リード ABCFavorit 22px #484848・By と日付｜右に画面の端まで伸ばした図の絵 約712×428）→ 行のカード（写真 285×165｜分類 15px 700 #7a7a7a・題 Publico 22px／25.3px 700・リード ABCFavorit 16px／21.6px #7a7a7a・「By 名前 . 日付」13px、行の間 1px #ededed）。SP は写真 362×210 が上・題 16px。ページ送り「1 2 3 … 41 / Next」に /articles/batteries/p2 の href、rel="next" 無し。
+- **カードのホバー**：題に下線を常に引き、色だけ transparent → currentColor（transition-colors .15s cubic-bezier(.4,0,.2,1)・text-underline-position from-font）。:hover 155 に (hover:hover) 4。
+- **トップ**：黒い面 898px（左 269px に主役の題 Publico 35px／40.25px 白・中央に写真・右に脇4本＝分類 #ffd301・題 15px）→ 白地に行のカード（日付無し）＋右に広告と購読の欄（#fffae9）→ Chart of the week（ABCFavorit 22px の見出し＋MORE IN THIS COLUMN →、図の絵 592px＋題 44px、下に題 16px と図の小さな絵 80×46 の4本）。h1 0。
+- **記事の終わり**：タグ（角 9999px・2px #ededed・13px #7a7a7a）→ 書き手の紹介（上に 1px・ABCFavorit 16px／20.64px の2行・顔無し）→ READ NEXT（18px 700 大文字・4本、写真 284×165・題 22px）→ 黒いフッター（Publico 20px の項目）。共有・寄付は本文の後に無い。次の1本の大きな導線と、同じ連載の次の回は無い。
+- **広告と固定の帯**：右の柱 300×250、本文の全幅の帯、トップ 300×600。OptinMonster の帯が下に固定：PC は California Wire 1440×230（25.6%）とスポンサーの窓 350×402（10.8%）を重ね、ヘッダー 10% と合わせて画面の46%、SP は購読の帯 390×295（34.9%）。フッターが半分見えると消える（x-intersect.half）。日本からは同意の窓が出ない。
+- **色**：黒・白・本文 #484848・h2 #212121・灰 #7a7a7a／#333／#a1a1a1・線 #ededed、黄 #ffd301（DONATE・黒地の分類・14.57:1）と #f9d448（ロゴの丸・線）。トップだけ黒地に反転。ダークモード無し。
+- **文字**：自社の woff2 4本 207KB（PublicoText Roman 51・Bold 56、ABCFavorit Book 50・Bold 50）、font-display swap。HTML に Typogrify の印（span.caps・pull-double・a&amp;nbsp;）があるが、main.css に規則が無く効いていない。
+- **動き**：ロゴの丸だけ Lottie 5.12.2（cdnjs・298KB）で6秒・loop:false。ヘッダーの高さ .15s、下線の色 .15s、コピーの吹き出し opacity .5s。自前の keyframes 0、prefers-reduced-motion 0。Alpine を unpkg の @3.x.x（版を固定しない）から。
+- **データと重さ**：記事の JSON-LD は NewsArticle の5項目（headline・url・thumbnailUrl・datePublished ISO・articleSection・creator の文字列）で author・image・dateModified 無し。og:type は記事でも website、og:image:alt はロゴの説明のまま。画像は imgix の WebP・srcset・width/height 全部あり。転送（全部込み）PC top 5,741KB／234件・list 4,186KB・article 4,690KB／181件・54ホスト（自社 545KB＝12%）・long 4,789KB・column 3,866KB。大きいのは FundraiseUp の寄付の窓（static.fundraiseup.com 821KB を全ページ）、reCAPTCHA 352KB（HubSpot の購読フォーム）、Flourish 272KB、広告の PNG。measure.js（展開後）は reCAPTCHA をフォームの数だけ数えて top 17.20MB・article 16.02MB。
+
 ## 真似る型
-ProPublica・The Markup・Grist・The 19th（米国の非営利の報道）と Tansa（日本の非営利の探査報道）、東洋経済オンライン（日本の出版社の経済ニュース・広告あり）から。
+ProPublica・The Markup・Grist・The 19th・Canary Media（米国の非営利の報道）と Tansa（日本の非営利の探査報道）、東洋経済オンライン（日本の出版社の経済ニュース・広告あり）から。
 1. **本文は 600〜754px・18〜22px・行間 1.6〜1.7・段落の間を取り、SP で縮めすぎない**。字下げ無し。SP は The Markup が 18px、Grist が 22px のまま、ProPublica は 16px。段落の間は 18〜32px（Grist は上 18px＝行間の半分）。
 2. **色は役割の少ない組で持つ**：本文・題の濃い色、リード・日時の灰1段、罫の灰1段、アクセント1色。ProPublica は灰6段＋青＋赤、The Markup は紺・灰・桃の3つ、Grist は文字と罫を #3c3830 の1色にして面（ライム・ラベンダー・桃）だけを替える。アクセントを文字の地に使うなら 4.5:1 まで濃くする（3サイトとも Donate が 3.3〜3.6:1）。
 3. **記事の頭は 分類 → 題 → リード → 書き手 → 日時（タイムゾーンか時刻まで）**。Tansa は「2026年10月23日 17時26分」と日本語で時分まで。日時は「October 5, 2026, 5:00 am」（ProPublica）「8:00 a.m. UTC」（The Markup）のように時刻まで書く。Grist は日付・分類・共有を本文の左 300px の `dl` にまとめる。更新日は3サイトとも画面に無いので、足す。
@@ -129,6 +147,10 @@ ProPublica・The Markup・Grist・The 19th（米国の非営利の報道）と T
 19. **広告枠は高さを書いた箱で先に取る**（東洋経済：PC 300×250・522×76、SP min-height 73px を style に、CLS 記事 PC 0.0041。The 19th は padding-top 25.773% の比率で 0.04、ProPublica は min-height 0 で 0.0885）。
 20. **カードの中に別の押せるものがあるとき、ホバーの動きをそこで止める**（東洋経済：`.m-article:hover:not(:has(.c-btn-bookmark:hover)) img{transform:scale(1.05)}`）。
 21. **読み終えたところで、何が良かったかを3つの言葉で聞く**（東洋経済：button 125×90 ×3「仕事に役立つ／新たな気づき／もっと知りたい」・aria-pressed・数つき）。
+22. **本文の列は狭く、図だけ広げる。高さは先に取る**（Canary Media：本文 584px・20/30.4、Flourish の図は左右 -240px で 1064px。入れ物に高さが無く SP の CLS 0.36。aspect-ratio を書く）。
+23. **型の段を名前で持ち、幅の区切りごとの値を並べる**（Canary Media：type-alpha 32/44/55・beta 28/38/44・gamma 16/18/22・theta 13 を 640px と 1280px で）。
+24. **SP で送ったらヘッダーを題1行に縮め、下に線を引く**（Canary Media：108 → 41px・ロゴの丸 16px＋題を省略で1行・2px の黄の線）。線は本文の箱で割り transform で動かす（本家は文書全体・width）。
+25. **週1の図の連載をトップに「図の大きな組＋図つきの4本」で置く**（Canary Media の Chart of the week：図 592px＋題 44px、4本は題 16px と 80×46 の絵）。
 
 ## 反面教師
 - 編集用 JS（block-editor・editor・components で 2.8MB）を訪問者に配り、1ページ 10〜13MB になる（ProPublica）。
@@ -170,3 +192,12 @@ ProPublica・The Markup・Grist・The 19th（米国の非営利の報道）と T
 - PC と SP の CSS を media 属性の link で分け、合わない方も通信する（東洋経済：記事 PC で smartphone の 88KB＋48KB）。
 - 一覧のページ送りの最後を ?page=999 にする（東洋経済）。
 - JS が無いときの「次ページへ」のリンクを cursor:default・下線無しで押せない見た目にする（東洋経済）。
+- 図の iframe の入れ物に高さを取らず、記事 SP の CLS 0.3556（Canary Media：Flourish の高さが 1.5秒後に届く）。
+- SP の下に購読の帯 34.9%、PC はスポンサーの窓と帯を重ねてヘッダーと合わせ 46%（Canary Media：OptinMonster）。
+- 進み具合の線を文書全体の高さで割り、本文を読み終えても半分ほど。scroll のたびに width を書く（Canary Media の SP）。
+- 寄付の窓（static.fundraiseup.com 821KB）と reCAPTCHA を、押す前・フォームに触れる前から全ページで読む（Canary Media）。
+- 点の地図の SVG 8枚・280KB（rect 2,608個）を全ページの HTML に入れる。通常とかざした形を別の SVG で持つ（Canary Media）。
+- Typogrify の印（span.caps・pull-double）を入れて CSS が無く、幅 0 の空白だけが残る（Canary Media）。
+- NewsArticle に author・image・dateModified が無く、og:type が website、og:image:alt がロゴの説明のまま（Canary Media）。
+- 1枚だけの写真を点も矢印も無い Flickity のスライダーに入れる（Canary Media の long：498px ×3）。
+- Alpine を unpkg の @3.x.x から版を固定せずに読む（Canary Media：3本）。

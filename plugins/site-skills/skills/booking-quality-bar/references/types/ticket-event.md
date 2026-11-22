@@ -96,8 +96,28 @@
 - **動き**：`0.41s cubic-bezier(.58,.09,.11,.93)` が32か所。ボタンのホバーは地と字の反転（黄地・黒字 → 黒地・黄字）。prefers-reduced-motion は CSS 54枚・420,819字に0。
 - **重さ（PC / SP）**：約款 3.24 / 3.10MB、番組 3.47 / 3.36MB、トップ 4.49 / 3.80MB、Der Nussknacker 7.09 / 5.65MB、Die Fledermaus 7.52 / 5.94MB（頭の元の JPEG 2,189KB を SP でも読む）。どのページも HTML 1.1〜1.35MB・JS 約 2MB。上位10は全部自社のホスト。
 
+### Wigmore Hall（https://www.wigmore-hall.org.uk/ ・2026-11-22・ロンドンの室内楽ホール（552席）の自社サイト。席の画面も自社の /booking/{番号}＝Tessitura の REST API を Bureau VA が自前でつないだもの）
+条件：トップ・What's on・公演（il Pomo d'Oro Choir、11/23 19:30、残り43席）・席を選ぶ画面（同じ回と、売り切れの Sir András Schiff 11/24）・FAQ。PC 1440 と SP 390。席の吹き出しの SELECT SEAT（席を押さえる）と ADD TO BASKET は押していない。ヘッドレスの Chrome の名乗りでは CloudFront が 403 を返すので、名乗りを Chrome 130 にして測った。
+
+- **入口**：検索の欄も人数も無い。トップは季節の頭 1133×630 の写真の回しに「Autumn 2026」と BOOK NOW、What's On の横の回し、件数つきのタグ（Chamber 2447 など）。
+- **一覧**：日の見出し h3 42px/54px・字間 3.1px（SP 22px/30px）の下に1行1公演（PC 1400×180〜214、1つおきに地 #f9f9f9）。右の列は BOOK NOW 220×40（黒の塗り、SP 315×40）か SOLD OUT（白地・#c4c4c4 の 1px の枠、押せない）と ♡。12件ずつ、下まで読むと次を読み URL が `?page=2`（PC +206KB）。全部で243件・21ページ、件数は画面に出ない。
+- **状態の取り方**：一覧の API（36KB）は状態を持たず、ページを出したあと `POST /api/v1/performances/sales-information` に12公演の番号を送り（16KB）、段ごとの AvailableCount・isSoldOut・受付の始めと終わり（終わりは開演の1時間前、会員の稽古は2時間前）を受け取る。
+- **残りの言葉**：JS で `totalAvailableSeatsForConstituent<=5` なら時刻の横に「Limited Availability」（数なし）。お気に入りの一覧だけ 5 より多く 300 未満で「◯ Seats Left」。isSoldOut は残りの数と別：Dudok Quartet 残り4席・Schiff 残り2席（£18 の段だけ）も SOLD OUT。取りやめの回も題の頭の「Cancelled:」と SOLD OUT。
+- **状態の8つ（JS）**：ONSALE（Book now／Tickets Available）・SOLDOUT・BOXOFFICE（web の受付の終わりから1時間「Box Office Only」）・PRIORITY（会員の先行の前）・CANCELLED・HIDDEN_BUTTON・LOADING／NA・CUSTOM_MESSAGE。公演ページの表の AVAILABILITY に言葉を1つ。
+- **絞り込み**：SHOW FILTERS と CALENDAR は aquamarine #45ffb8 の 300×40。どちらも地 rgba(13,13,13,.5) の窓（Esc で閉じる）。絞り込みは開閉6つ（Genres 9・Learning & Participation 4・Offers 1・Watch 1・Seasons 2・Times of Day 4）と Reset・APPLY。暦は日の升が無く、WHOLE MONTH／STARTING FROM のタブと12か月のボタン。
+- **公演ページ**：題 42px の下に BOOK NOW 220×40＋♡、PROGRAMME & SONG TEXT 374×40。PC は y=840、貼り付かない（1,500px 読むと画面の外、ページは 5,419px）。表は DATE／TICKETS「£50 £43 £33 £27 £18」／DURATION／AVAILABILITY。返券の決まりは0語。
+- **座席表**：SVG 742×989（viewBox 0 0 270 360）に 552 の rect。1席 21.97px・間 5.49px（SP 10.37px・間 2.59px）。空いている席だけ段の色に太字の番号（1 #7699e0・2 #D07E7E・3 #A1D5A2・4 #C098CA、番号の字との比 6.45〜11.62:1）、ほかは白に #474747 の線を .6。凡例は上に1行で、その回に空きの無い段は凡例から消える（il Pomo d'Oro は £18 が消えて4段）。升に aria-label も役割も無く、キーボードで選べない。
+- **吹き出し**：升を押すと 430×124 の吹き出し（席の名 D18・£50.00・Standard/Full・SELECT SEAT 169×40・View seat）、PC 72ms／SP 271ms、通信0。View seat でその席から舞台を撮った写真 640×420（`1-D-18.jpg`）。553枚の一覧を席の画面の HTML（382KB）に持ち、押した1枚だけ読む。
+- **おまかせ**：BEST AVAILABLE SEATS のタブに「Price per seat｜Available seats｜Price description｜Number of seat selector」の表。£50.00 20 available・£43.00 15・£33.00 2・£27.00 2・£18.00 0、枚数の欄 217×40。ここだけ残りの数が出る。
+- **右の欄**：Selected tickets・Total £0.00・ADD TO BASKET 518×40（押せない間は #807f7f に白、3.99:1）。SP は日時の行と右の欄が消える（display:none）。
+- **予約前の不安**：FAQ の開閉（返券は y=3,310px）と規約だけ。返券は開演の2週間前まで、お金でなく口座のクレジット（翌シーズンの 7月31日まで）。売り切れの回は開演まで受け、売れたときだけ、1枚 £2。予約の手数料は無い（規約の Fees は resale £2・exchange £2 の2行）。人気の回は1世帯2枚か4枚まで。
+- **データ**：JSON-LD は5ページとも0。座席表は `GET /api/v1/seatmap/{番号}`（14.9KB、空いている席だけの位置と段の値段。セッションが無いと 401）。
+- **見た目**：地 concrete #f3f2f2・白い面・#0d0d0d、押すものの面だけ aquamarine #45ffb8、知らせの面 almond #efdbce。書体は SangBleu Kingdom Light（題 60／51／42px・字間 .07em）と Söhne（本文 15px、ボタンとナビは 12px/20px・字間 3px の大文字）、自社配信の woff2 3本 128KB。写真が読めるまで1×1 の JPEG でその写真の1色の地。
+- **動き**：ボタンは color・background-color・border-color を .2s ease（黒 → aquamarine に黒い字）。写真は opacity .2s cubic-bezier(.45,.34,.65,.96)。keyframes は marquee・slide-fade-in・spin。prefers-reduced-motion は0。
+- **重さ（PC / SP）**：公演 2.70 / 2.75MB、FAQ 2.85、席の画面 2.86、What's on 3.11、トップ 3.55 / 3.61MB。どのページも index.js 1,733KB と Cookiebot 545KB。
+
 ## 真似る型
-見本は DICE（販売サービス）・Shakespeare's Globe（劇場の自社サイト）・Philharmonie de Paris（コンサートホールの自社サイト＋SecuTix）・Barbican（芸術センターの自社サイト＋Spektrix）・Concertgebouw（コンサートホールの自社サイト＋Tix）・Oper Leipzig（歌劇場の自社サイト＋Eventim）の6つ。
+見本は DICE（販売サービス）・Shakespeare's Globe（劇場の自社サイト）・Philharmonie de Paris（コンサートホールの自社サイト＋SecuTix）・Barbican（芸術センターの自社サイト＋Spektrix）・Concertgebouw（コンサートホールの自社サイト＋Tix）・Oper Leipzig（歌劇場の自社サイト＋Eventim）・Wigmore Hall（室内楽ホールの自社サイト＋自前の席の画面＋Tessitura）の7つ。
 
 1. **値段は手数料込みで出し、含んだことを1文で添える**。DICE は「From £36.05」の下に「The price you'll pay. No surprises later.」、Globe は「£89–£29*」の * で「£3 per order・£1 per ticket を含む、立ち見は除く」を DETAILS と公演日の表の上の面（656×152）の2か所で言う。作るときは、合計の下に内訳の1行を置く。
 2. **公演日がいくつもある演目は、1行1回の表**（Globe：行 656×110、日付・時刻のボタン 120×43・値段の幅 13px 700、同じ日の2回は2行）。DICE は1公演1ページなので表が無い。作るときは、行に「日付・時刻のボタン・席種ごとの値段（と残り）」を並べ、配慮の回の印も行に入れる。
@@ -127,6 +147,13 @@
 22. **番組の一覧は10件ずつ、末尾に行と同じ形の骨組みを置き、見えたら次を読む**（Oper Leipzig：`page_size: 10`、骨組みの地 #fff7b2）。作るときは骨組みの下に「続きの10件」のボタンと残りの数を置く（本家は無い）。
 23. **絞り込みは部門と劇場の2つに絞り、URL に残す。SP は1つのボタンで全部の選択肢を1枚の面に縦に出す**（Oper Leipzig：GENRES 4・VENUES 2、`?branch=2`、854ms、FILTER の面は #fffce6）。
 24. **演目の頭に日程への錨のボタン、日程は3回＋全部を出すボタン**（Oper Leipzig：TERMINE & TICKETS 213×61 → #tickets、SHOW MORE DATES で 3→13）。作るときは SP に回と合計の帯を貼り付ける（本家は無い）。
+
+25. **座席表は、空いている升だけ段の色に番号を重ね、売れた升は白に細い線**（Wigmore Hall：1席 21.97px・間 5.49px、番号は太字で色との比 6.45〜11.62:1）。色が見分けにくくても番号で段がわかる。作るときは升を button にして「D列18番・£50・空き」と読ませ、SP は升を指で押せる大きさにするか段を先に選ばせる（本家は SP 10.37px で、名前も無い）。
+26. **凡例には、その回に空きのある段だけを並べる**（Wigmore Hall：il Pomo d'Oro の回は £18 の段が消えて4段）。凡例に並ぶ値段＝いま買える値段になる。消したことは1行で言う（本家は言わない）。
+27. **升を押したら、席の名・値段・券の種類・選ぶボタン・「その席からの眺め」を1つの吹き出しに**（Wigmore Hall：430×124、PC 72ms、通信0。眺めは席ごとの写真 553枚を一覧で持ち、押した1枚だけ 640×420 で読む）。写真が無いなら、席の位置から舞台と柱の線を描き、隠れる割合を数で書く。
+28. **座席表の隣に「おまかせ」のタブを置き、段ごとの行に残りの数と枚数の欄**（Wigmore Hall：BEST AVAILABLE SEATS、£50.00 20 available・£33.00 2 available、枚数 217×40）。席の位置にこだわらない人は升を見ずに済む。0席の段は行ごと外す（本家は枚数の欄を残す）。
+29. **一覧と状態を分けて読む**：一覧は状態なしの API（12件 36KB）でキャッシュし、出したあとに公演の番号の束で状態だけ取る（Wigmore Hall：POST sales-information 16KB）。
+30. **web の受付の終わり（開演の1時間前）と、その後の言葉を決めておく**（Wigmore Hall：終わりから1時間は「Box Office Only」、返った席は Book now に戻る）。行と公演ページの両方に出す。
 
 ## 反面教師
 - 残りが「LIMITED TICKETS」の一言だけで、SP は 8.32px。席種ごとの残りは席の画面まで出ない（Globe）。
@@ -168,3 +195,6 @@
 - 次の10件を骨組みが見えたときだけ読み、ボタンが無い。キーボードでは届かない（Oper Leipzig）。
 - 骨組みの明滅の keyframes に無効な値（`lighter()`・`rgba(var(--hex),.2)`）で動かない（Oper Leipzig）。
 - HTML の約 500KB が埋め込んだ番組のデータ、実行時の CSS で同じ色の宣言が94回、頭の写真は元の JPEG 2,189KB（Oper Leipzig）。
+- 残りの数がおまかせのタブにしか出ない。一覧と公演ページは残り43席の回も271席の回も「BOOK NOW」「Tickets Available」で、5席以下だけ数なしの「Limited Availability」（Wigmore Hall）。
+- 残り2〜4席の回が SOLD OUT（isSoldOut が残りの数と別）、取りやめの回も SOLD OUT。何が残り、どこで買えるかを言わない（Wigmore Hall）。
+- 座席表の升に名前も役割も無く、キーボードで選べない。SP の升は 10.37px で、日時と合計の欄も消える（Wigmore Hall）。

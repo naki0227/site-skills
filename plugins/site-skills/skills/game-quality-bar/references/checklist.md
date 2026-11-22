@@ -193,3 +193,8 @@
 - [ ] ニュースの2つの絞り込み（種類×機種）は互いに残し、0件になる札は disabled にした（FINAL FANTASY VII REBIRTH は 0件の札を opacity .5 にするが、種類を押すと機種が戻る）
 - [ ] 先の話を含む相関図・人物は、開く前に確かめる dialog を挟み、Esc で閉じてフォーカスを戻した（FINAL FANTASY VII REBIRTH の「閉じる」は div）
 - [ ] SP では見えた区画の背景動画だけを取り、SP 用のファイルを指した（FINAL FANTASY VII REBIRTH は SP で9本 38,546KB、main story は SP も _pc）
+- [ ] 見える前の区画の動画は preload="none" にし、区画の手前（IntersectionObserver）で src を入れた（Arknights: Endfield は 7画面下の 01.mp4 51,934KB を preload="auto" で読み込みの3〜6秒に取る）
+- [ ] 人物・文言のデータを言語ごと・ページごとに分け、全ページ共通の JS に全言語を入れていない（Arknights: Endfield は 37人×14言語を layout の JS 1,610KB に）
+- [ ] 動きのライブラリ（framer-motion など）の reduce の設定を "user" にした（Arknights: Endfield は "never"）
+- [ ] 人物の絞り込みが0件のとき、「0人」と条件を外すボタンを出した（Arknights: Endfield は白紙）
+- [ ] 入手の店の札を店ごとの a にし、SP でもほかの端末の店へ1手で行ける（Arknights: Endfield は div＋img、iPhone は App Store だけ）

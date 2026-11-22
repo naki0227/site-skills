@@ -85,6 +85,17 @@
 - **入手・表記**：ストアのボタンは top だけで、a の中の alt 空の img（名前なし）。App Store は bit.ly、Google Play は adjust、Windows 版は .exe へ直接。「基本無料」・年齢区分（CERO／IARC）は4ページで0件。© は画像だけ。`lang="ja_JP"`。
 - **書体と重さ**（measure.js、解析タグ除く）：top PC 13.29MB／SP 12.55MB、system 12.42／7.13MB、character 15.79／16.48MB、news 20.80／16.83MB。Adobe Fonts のキット2つ（18ファミリー）の字の追加分＋opentype が 9,623〜17,837KB（71〜84%）で、描いている書体は Google Fonts の Noto Sans JP だけ。自社の絵・JS・CSS は 1.3〜2.3MB。keyframes 0・transition は opacity .3s が中心・reduced-motion 0件。inspect.js（top）：390 本文 9px で FAIL 1。
 
+### Arknights: Endfield 海外公式（https://endfield.gryphline.com/en-us ・2026-11-22 解剖、2026年配信の運営中タイトル。iOS・Android・Windows・Steam・Epic・Google Play Games・PS5、14言語。歩いた5ページ：/en-us・/en-us/operator・/en-us/news・/en-us/news/9569・/en-us/video。世界観と入手は top の中だけ）
+- **枠**：Next.js（App Router）。top は1枚に8区画（home 900・operator 892・lore 930・Media 810・calendar 2,555・gameplay 943・aic 695・news 767、PC 9,170px）。`html{font-size:min(.625vw,1.111111vh)}`（PC 1440×900 で 9px）・SP `min(1.481481vw,.833333vh)`（390px で 5.78px）の rem で全部組む。`html{user-select:none}`。
+- **部品の型**：白 #fff・墨 #191919（88回）・黄 #fffa00（60回、面だけ）。名前の両側の「[ ]」、「01 / 37」の通し番号（Gilroy 9px）、名前の下の三色の線（border-image：#ff00f0 11.25rem／#fffa00 〜22.56rem／#00ffa2）、黒い札「Faction」「Race」＋灰 #f2f2f2 の値（12.375px・行 20.25px）を top・一覧・詳細で同じ寸法に。
+- **最初の画面**：静止画 4,274KB のキービジュアル＋版の題の PNG（言語ごと、en-us 2,069KB）、左に固定の縦の列 67.5px（7項目の絵、ホバーで 203px に開いて名前）、右下に Download の箱 505×112（店7つ 110×33）。ローディング PC 6.6〜7.2s・SP 6.8s。Sound: On が初期値で、どこかを1回押すと bgm.mp3 2,765KB を取って鳴る。
+- **動画**：Media の背景 mp4 は poster・preload="metadata" で、区画に来たら無音で再生、送りを押すとその予告の短い mp4 に替わる。▶（div 40.5×40.5）を押して初めて `youtube.com/embed/{id}` の iframe（押す前 0件）。Esc で閉じず role なし。gameplay のプレイ動画 `01.mp4`（y=6,379）は preload="auto" で読み込み 3〜6秒に 51,934KB を全部取る（PC・SP・reduce とも）。
+- **キャラクター**：37人。top は1人の立ち絵＋左の縦の顔の列（77×77 の丸、12個見える、上下の矢印 42×42）で1人ずつ送る。/operator は 6列の札 171×218、Class（All＋6）・Element（All＋5）の Dropdown（開く札は role=button・tabIndex 0、項目は role=option・tabIndex −1）、札を押すと同じページで詳細（Back to Operator List）。URL・題はどこでも同じで、戻るでトップへ出る。Caster×Physical の0件は白紙。CV は英語版の声優名の文字、ボイスの再生なし。37人×14言語のデータを全ページ共通の layout の JS 1,610KB に JSON で（1,067,485字）。
+- **ナビ**：PC の縦の列の今の区画は灰の地＋左の黒い線、SP は全面のメニューで今の項目を黄 #fffa00。下の段（Account・Top-up Center・Creators・Sound）と SP の三本線・音は div で名前なし。top で Tab が止まるのは13か所。
+- **入手・表記**：基本無料で値段0件。店7つ（Steam・Epic・GPG・App Store・Google Play・PS5・Windows）は `div` の中の alt つき img で、押すと JS で新しいタブ。iPhone の UA では App Store と課金のページ（topup.gryphline.com）の2つだけ。年齢区分はフッターの ESRB TEEN の画像1つ（内容記述と In-Game Purchases (Includes Random Items) も画像の中）。版の予定表（Version Calendar）は 1850×3146 の jpg 1枚で alt「calendar.content」。
+- **ニュース**：API `web-news.gryphline.com/api/bulletin?…&page=&pageSize=9&tabs[]=`。Latest 135・Notices 97・Events 12・News 26（2026-11-22）、sticky の3件が先頭。札は div、日付は文字（time なし）、札も番号送り 01｜02 も URL は変わらない。カードの絵は CMS の原寸 PNG（2MB 前後）。
+- **安全と重さ**：CSS 9ファイルに prefers-reduced-motion 0件、framer-motion に `reducedMotion:"never"`。区画に入るたび左の飾りを 1s で3回明滅（0→.5→0）。measure.js：top PC 43.69／SP 41.11MB、operator 10.31、news 17.10、記事 5.62、video 16.44MB。CDP で top を20秒数えると PC 92.88MB・SP 90.18MB（差は 01.mp4）。
+
 ## 真似る候補（1サイトだけで見たもの。2つ目で確かめたら「真似る型」へ上げる）
 - 人物の色を CSS 変数2つ（main・sub）で持ち、詳細ページの面・札・ボタン・枠を全部それで塗る。テンプレートは1枚（ウマ娘）。
 - 衣装・姿の切り替えは同じ枠で、丸いサムネに種類名を付ける（ウマ娘：4種・99px）。2枚目以降は押したときに読む方がよい。
@@ -108,7 +119,11 @@
 - どのページも 1440×810 の1画面に収め、縦に流さない（ブルーアーカイブ：4ページとも高さ 1053px）。作るときは SP で字が縮まないよう、1画面にこだわらず流す。
 - ニュースを冊子の見開き（左右8件ずつ）にし、種類の4タブと番号で送る（ブルーアーカイブ：597件・16件ずつ）。件数と URL を足す。
 
-## 真似る型（ウマ娘・ゼンレスゾーンゼロ・学園アイドルマスター・怪獣８号 THE GAME・プロジェクトセカイ・ブルーアーカイブで確かめた）
+- 世界観を小さな部品の形にそろえる：「[ 名前 ]」・「01 / 37」・名前の下の三色の線・黒い札＋灰の値の行を、top・一覧・詳細で同じ寸法に（Endfield）。作るときは題材の世界の目盛り・番号（工事なら標高と打設ブロック）に置き換える。
+- 左の縦の列のナビ（PC 67.5px、開いて 203px）で今の区画を地の色＋左の線で示す（Endfield）。名前はホバーだけでなく Tab で入ったときも出す。
+- 人物を「今の1人＋縦の顔の列」で1人ずつ送る（Endfield：77×77 の丸を12個、上下の矢印、番号）。顔は button にし、URL に1人を残す。
+
+## 真似る型（ウマ娘・ゼンレスゾーンゼロ・学園アイドルマスター・怪獣８号 THE GAME・プロジェクトセカイ・ブルーアーカイブ・Arknights: Endfield で確かめた）
 1. **入手の導線を全ページの同じ場所に置く。** ウマ娘はフッター直前のストア5つの帯（PC 68px 1行／SP 2・2・1）、ZZZ はヘッダー右の地色の丸「Download Now」（93×25）から 72ms のモーダル（QR＋ストア7つ＋ESRB）。学マスは全ページのフッターの QR＋ストア3つと、top 左下の固定の帯（PC 545×218）。怪獣８号は PC が右の固定の列にストア3つ、SP が下端の固定の帯（108×40）。どれも全ページ・全章で同じ位置。作るときは、ヘッダーのボタン → モーダル（Esc で閉じる）と、最初の画面の下端の列の2つを置く。 ブルーアーカイブは top の左下に4つ（PC 337×235 の塊、SP は予告＋3つ）で、下層ページには0個。
 2. **最初の画面の下端に、ストアの全部と年齢区分の箱を1列に。** ZZZ：ESRB（区分・内容記述・In-Game Purchases (Includes Random Items)）＋QR＋ストア 4＋3。ウマ娘は最初の画面にストアが無かった（y=2,960）ので、ZZZ の置き方を採る。
 3. **人物は1人1URL、人物の色を詳細の面に。** 怪獣８号は1人1URL が無く（詳細のモーダルで URL は #character のまま）、人に送れない反対の例。学マスも `/idol/kotone/`（title も人名）。プロジェクトセカイは `/character/unite01/ichika/`（title も人名）でユニットの色（#45d ほか5色）を帯に塗り、前後の矢印はユニットの中で一周する（ウマ娘も端で一周）。ウマ娘 `/character/specialweek`＋`--color-main`/`--color-sub`、ZZZ `?id=166651`＋斜めの色の面（15rem 角・skewX(−45deg)）と章札。どちらも色の上の文字の比が足りない人がいる（ウマ娘の札 2.44〜2.73、ZZZ の Sunbringer 2.30）ので、文字は面に乗せないか色ごとに選ぶ。
@@ -116,7 +131,7 @@
 5. **お知らせの種類タブは URL つきのリンク。** ウマ娘 `?t=game`、ZZZ `?category=295`。運営のお知らせ（ウマ娘の [追記] の帯、ZZZ のガチャ提供割合の先頭固定 `/news/public`）は一覧の中で目立たせる。
 6. **人物が数十人を超えたら、まとまり（陣営・グループ・ユニット）で先に絞る。** プロジェクトセカイは 6ユニット → 1人。 ウマ娘 175人を2グループ＋並べ替え5種＋身長の範囲、ZZZ 65人を陣営22 → 同じ陣営のサムネ。まとまりが無い数十人なら、横送りと全員の格子の2つの見え方を切り替える（怪獣８号 27人・CHANGE VIEW。ボタンには名前と aria-pressed を付ける）。。ブルーアーカイブは14人でも 4校 → 顔 の2段にし、同じ画面の左の列（校章4つ）と下の帯（顔）で選ぶ（URL には残らない）。
 
-7. **入手の箱を PC の右に固定し、SP は端末のストアを先に出す。** 怪獣８号は右の固定の列 192px（章・ストア3つ・Web Store）、プロジェクトセカイは右の固定の箱 220×409（App Store・Google Play・公式ストア）。SP はどちらも UA でストアを絞る（怪獣８号：iPhone は App Store＋Steam、プロジェクトセカイ：iPhone は App Store だけ）。どちらも、ほかの端末のストアへ届く道が無い（rules 28）ので、作るときは「ほかの端末のストア」のリンクを1つ残す。
+7. **入手の箱を PC の右に固定し、SP は端末のストアを先に出す。** 怪獣８号は右の固定の列 192px（章・ストア3つ・Web Store）、プロジェクトセカイは右の固定の箱 220×409（App Store・Google Play・公式ストア）。SP はどちらも UA でストアを絞る（怪獣８号：iPhone は App Store＋Steam、プロジェクトセカイ：iPhone は App Store だけ）。どちらも、ほかの端末のストアへ届く道が無い（rules 28）ので、作るときは「ほかの端末のストア」のリンクを1つ残す。 （追記 2026-11-22 Arknights: Endfield：固定の列ではなく最初の画面の右下の箱 505×112 に店7つ〔110×33 を4列2段〕、iPhone の UA では App Store と課金の2つだけ。7つとも div＋img で Tab が届かないので、作るときは店ごとの a にする）
 8. **課金の買い物は公式の Web ストアに分け、値段と札を文字で出す。** 怪獣８号の Web Store（Xsolla）は ¥160〜¥30,000・あと1回・あと25日、プロジェクトセカイの公式ストアはクリスタル9（￥160〜￥50,000、初回18〜20%増量）とパス7で、購入の button の名前に札・品名・値段まで入る。どちらも年齢・未成年の文は無いので、作るときは購入の確認に「12+・未成年は保護者の同意」を書く。
 
 ## 反面教師
@@ -148,3 +163,8 @@
 - ナビ・校章・顔・ボイス・タブ・番号が li・img・div の click で、Tab がナビに届かない（ブルーアーカイブ）。
 - 記事の開き方が PC は別タブ・SP は同じタブ（ブルーアーカイブ）。
 - 「基本無料」も年齢区分も無く、ストアのボタンは名前の無い画像のリンク（ブルーアーカイブ）。
+- 見えない区画のプレイ動画を preload="auto" で読み込みの数秒に全部取る（Endfield：y=6,379 の 01.mp4 51,934KB、top を20秒で PC 92.88MB）。preload="none" にし、区画の手前で src を入れる。
+- 37人×14言語のデータを全ページ共通の JS に入れ、文字だけの記事でも取る（Endfield：layout 1,610KB、記事 5.62MB のうち JS 4.6MB）。
+- framer-motion に `reducedMotion:"never"` を渡し、動きを減らす設定を消す（Endfield）。"user" にする。
+- 版の予定表を1枚の絵にし、alt が翻訳の鍵のまま（Endfield：1850×3146、alt「calendar.content」）。
+- 人物の絞り込みが0件のとき白紙（Endfield：Caster×Physical）。「0人。条件を外す」の文とボタンを出す。
