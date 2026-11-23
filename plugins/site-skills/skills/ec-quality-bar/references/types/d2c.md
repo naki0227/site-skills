@@ -90,8 +90,21 @@
 - **データ**：Product の JSON-LD は JS で後から足す。Offer は SE 6995 SEK・US 629 USD・GB 525 GBP・EU 599 EUR（eligibleRegion）と地域なしの 599 USD（画面の $629 と違う）。BreadcrumbList は store → 品。値段の h2 は HTML で空、products.json を待って PC 2.16秒で出る（最初の描画 1.06秒）。alt の欠け 0、/store の h1 は空。
 - **重さ**：PC top 3.50MB / list 1.90MB / item 1.55MB / guide 1.34MB（SP 2.53 / 1.77 / 1.56 / 1.34MB）、解析を除く。毎ページ products.json 464KB（335品・6つの価格表・3つの市場の在庫）と Google タグ 1,106KB。画像は avif の w=768（SP w=480）で1枚 33〜57KB。
 
+### Craighill（https://craighill.co/ ・2026-11-23 計測・机と身の回りの金属の道具・US（ブルックリン）・Shopify 自前のテーマ「Foundry Shopify」）
+- **位置づけ**：真鍮・ステンレス・アルミの道具 42品（ItemList）。仕上げ（Finish）で値段が違う品がある（Standing Bowl — Small Round：Polished Aluminum $145／Matte Black・Alpine・Moss $130、Best Wine Key：$98／$128／$148）。色・字・余白・動きを CSS の変数で持つ（--gray-950 #0C0D0D〜--gray-50 #FAFAFA の13段、--orange-500 #FF6600、--motion-duration-fast .15s／md .3s／slow .5s／xl .8s、--motion-ease-out cubic-bezier(.16,1,.3,1)）。どのページも最初に全画面の登録の窓（Alia）。事例集・受賞は確かめられなかった。
+- **一覧の写真**：壁 rgb(205,205,203)・台 rgb(246,246,246) の境目を、Home の写真12枚中11枚で高さの 75.1%（213px 中 160 行目）にそろえる（ファイル名に horizon_matched。真上から撮った盆だけ外れる）。詳細の主写真・引き出しの行の写真も同じ線。品の大きさは実寸に比例させない。
+- **一覧**（/collections/home、13品）：VIEW 1（PC 3列 453×639・写真 453×567＝4:5・列間 20px、SP 2列 170px）・VIEW 2（1列、左に「(A)」〜「(M)」の記号・名前・3行の箇条、中央に写真 740×925、右に見本と長い説明）・VIEW 3（PC 6列 170×213、SP 3列 110×138、写真だけで名前と値段は指を乗せたとき）。1回に出す数は 12／6／24（PAGE_SIZE）、写真の sizes も替える（VIEW 2 で +1,714KB）。ボタンは「1」「2」「3」の字だけ 6〜8×20px・#A6A7A7（2.41:1）、読み直すと VIEW 1 に戻る。カードは名前 16px（GT Alpina Condensed・大文字）・一行 14px #696969・「$ 98」・「4 colors」。指を乗せると情報を .15s で消して「DISCOVER MORE」と 20px の見本、写真は2枚目へ .3s、見本に指でその色の写真。絞り込みは無く、売り場のタブ5つ（MD Nichrome 50.4px、外は #878888 3.55:1）。SORT は7つのラジオ。件数は画面に無い。LOAD MORE（125×28）で 12 → 24（0.21秒・通信なし）→ 36（0.42秒・?page=2）。品切れは値段の場所に「SOLD OUT」。
+- **詳細の最初の画面**：PC は左に写真 728×910（小窓 70×70 を3枚）、右の 462px の列に 売り場名 y=195 → 名前 y=245（MD Nichrome 800・60px・2行）→「$ 145」y=401（16px）→ 3行の利点 → Finish の見本 y=710（32×32 の丸）→ ADD TO CART y=839（462×40・角 500px・白／#0C0D0D 19.46:1、ホバーで #FF6600 2.94:1）。下端 879 で 900px に入る。SP（390×664）は名前が 60px で3行・y=821、値段 y=1,044、ボタン y=1,491。
+- **仕上げと在庫**：見本は仕上げの写真の丸。品切れの Matte Black は見本がほかと同じ見た目（opacity 1・線なし）。押すと 0.25秒（SP 0.30秒）・+164KB でボタンが「SOLD OUT」（disabled・opacity .5）、下に同じ幅の「NOTIFY ME WHEN AVAILABLE」462×40（Klaviyo）、値段 $130・写真・URL（?variant=）を替える。値段の書き方が最初の HTML の「$ 145」から JS の「$130」に変わる。入荷の時期なし。一覧のカードは $145 の1つだけで「〜から」なし。
+- **SP の固定の帯**：position:fixed・bottom:65px（下のナビ 65px の上）に 390×61・ボタン 350×40。購入のボタンが画面に無い かつ フッターが画面に無いとき（IntersectionObserver 2つ）、translateY(100%)→0 と opacity を .3s。押すと #product-form を requestSubmit()。PC は無い。
+- **カートに入れる**：テーマの引き出し（data-free-shipping-threshold 12500）は隠れ、アプリ Rebuy の引き出しが出る。SP の帯から押して 0.11秒で下から出始める（全画面、top を .25s ease-in-out）が中身は空のカートと「$ 125 away」のまま、0.78秒で購入の列のボタンが「ADDED TO CART」、0.97秒で品の行と「$ 81 away from free shipping」・342×4 の棒（#FF6600 on #E4E4E4）35%、1.30秒で上がりきる。＋は 1.43秒で「$ 37 away」、印なし。PC は 718px（画面の半分）を right .25s で約0.42秒。下に「3 - 6 day US delivery／Free US shipping $125+／Complementary returns」。送料の金額は無い。/cart は robots.txt が禁止。
+- **買う前の不安**：$125 未満の送料の金額はどこにも無い（/policies/shipping-policy は本文が空、FAQ は「US $125・海外 $250 で無料、海外は手続きで見積もり」）。返品は返品のページ「購入から30日・返送料は客の負担」と、FAQ・詳細の FAQ「到着から30日・無料」、回る3行「Free 30 Day US Returns」、JSON-LD FreeReturn が食い違う。11月23日〜12月24日の注文は45日（FAQ）。発送は FAQ「同日〜翌営業日」、トップと引き出し「3 - 6 day delivery」、JSON-LD 処理 1〜3日＋輸送 3〜7日。
+- **データ**：詳細に ProductGroup（hasVariant 4、仕上げごとの availability）・AggregateOffer（130〜145）・OfferShippingDetails（shippingRate 0）・MerchantReturnPolicy（30日・FreeReturn）・FAQPage。weight が value 839・unitCode「lb」（仕様は 1 lb 9 oz）、VideoObject の contentUrl が {"error":"json not allowed for this object"}。パンくずは Home → Products（トップ）→ 名前。指を乗せた写真の alt が「dataVariant_Orange」。
+- **動き**：ページの移り変わりは @view-transition（root .15s、主写真に view-transition-name）。reduced motion で長さの変数4つを 0ms、全体 .01ms（20か所）。引き出し（Rebuy）だけ top・right を .25s ease-in-out。
+- **重さ**：PC top 38.16MB / list 18.84MB / item 17.80MB / guide 17.29MB（SP 26.77 / 18.06 / 17.53 / 17.74MB）、解析・広告タグを除く。トップは 1080p の動画 19.5MB。どのページも JS 12〜13.6MB（checkout-web 1,661KB・Rebuy 841KB・Alia 778KB・Google タグ3本 約1.4MB）、書体 1.21〜1.31MB、通信 490〜618本。テーマ自身の JS は 101KB・CSS は段ごとの 35本 232KB。
+
 ## 真似る型
-見本6つ（Our Place・BASE FOOD・Graza・Fellow・BALMUDA・teenage engineering）から。
+見本7つ（Our Place・BASE FOOD・Graza・Fellow・BALMUDA・teenage engineering・Craighill）から。
 1. **買い方の選択肢は、幅いっぱいのラジオカードか行にし、選んだ1つに条件や次の選択を出す。**Our Place は単品／セット3枚（464px、未選択 113〜129px、選んだ1枚 195〜203px に色）、BASE FOOD は継続／一回の2枚（432px、305px／76px）、Graza は1回／定期便の2行（約56px・点線の区切り、行の右に値段）で、定期便を選ぶと頻度の選択が出る。未選択の枠は 3:1 以上にする（Our Place #D2D5D8 1.47・BASE FOOD #c8c8c8 1.67 は足りない。Graza は #3C422E の 1px で足りる）。
 2. **選ぶ段を「形 → 数 → 買い方」と同じ形のカードで重ね、最初の画面（PC 900px）に全部入れる。**Graza：形 215×95 の2枚・数 4枚・買い方 2行・ボタン y=838。数のカードは「1・2・3・6組」、上の札に得を書く。札は実際に安くなる率か円にする（Graza は2つの率を足した数で 1〜1.5 ポイント大きい）。
 3. **金額は、比べる元を打ち消し線か「Value」で横に置き、選ぶたびに通信なしで言い直す。ボタンの文字にも合計を入れる。**Our Place「$239.95（$284 Value）」、BASE FOOD「¥3,060（打ち消し）¥2,448、2回目以降 ¥2,748」、Graza「Subscribe – $87.96 $77.40」（0.05秒）。比べる元は、実際に別々に買う合計にする（Graza の $43.98 は単品2本の合計 $42.98 より $1 高い＝反面教師）。
@@ -112,6 +125,11 @@
 18. **品数が少ない店の一覧は、幅2種のタイルを混ぜ、カードは写真・名前・値段・＋の4つにする。品切れは値段の場所に「sold out」と書いて＋を消す。**teenage engineering：PC 647／316px、SP 354／173px、名前と値段は同じ 19.1px。件数は分類の行の右端に。
 19. **入れた反応は、押した瞬間のスピナーと、画面の端の数入りの印で返す。SP は下の帯に写真・名前・「見る」を3秒。**teenage engineering：25ms・0.78秒・右下の袋 47×90（.2s ease-in）・SP の帯 3.0秒。ただし印から中身と合計と送料無料の残りへ1手で届かせる（本家は届かない）。
 20. **SP の詳細では、値段と在庫の言葉の右に正方形の買うボタンを置き、写真・見本・値段・ボタンを最初の画面に入れる。**teenage engineering：84×84 の #fab413、y=524。
+
+21. **品の写真は、壁と台の境目を全部の品で同じ高さにし、一覧・詳細・カートの行で同じ写真を使う。**Craighill：12枚中11枚が高さの 75.1%（壁 rgb(205,205,203)・台 rgb(246,246,246)）、6列に並べると1本の棚に見える。品の大きさは比例させなくてよい。
+22. **品数の少ない一覧に、表示の切り替えを3つ持つ（3列で名前と値段／1列で写真と説明／6列で写真だけ）。1回に出す数も表示ごとに変える。**Craighill：VIEW 1／2／3、PC 3・1・6列、12／6／24品。ボタンは 44px にし、選んだ表示を覚える（Craighill は 6〜8×20px で、読み直すと戻る）。
+23. **カードに指を乗せたら、名前と値段を「次の手」と見本に入れ替え、見本に指を乗せたらその色の写真にする。タッチの画面では入れ替えない。**Craighill：.15s で入れ替え、写真は .3s cubic-bezier(.16,1,.3,1)。
+24. **SP の固定の帯は、購入のボタンとフッターの2つを IntersectionObserver で見て、どちらも画面に無いときだけ出す。下にナビがあるならその上に積む。**Craighill：bottom:65px に 390×61、.3s。押すと同じフォームを requestSubmit()。
 
 ## 反面教師
 - 売り切れの色を画面から消し、入荷通知も無い。8色中3色が見えない（Our Place）。丸を残して斜線、選んだら入荷通知に（Allbirds の型）。
@@ -152,3 +170,8 @@
 - 品切れの通知の窓に入荷の時期が無い。明るい色の品切れの斜線が 1.26:1 で見えない。見本の色の名前が指を乗せても出ない（teenage engineering）。
 - SP の本文 14.3px・色の名前 10.3px・一覧の＋ 19.9px 角、件数は SP で消える（teenage engineering）。
 - 入れた後の袋と帯が数と名前だけで、中身・合計・送料無料までの残りへは /store/checkout に移るしかない（teenage engineering）。
+- 入れて 0.11秒で出る引き出しが空のカートのまま、品と残りに替わるのは 0.97秒。＋は 1.43秒、どちらも印なし。テーマの引き出しを隠してアプリの引き出しを足し、2つを毎ページ読む（Craighill）。
+- 品切れの仕上げの見本がほかと同じ見た目で、押すまで品切れとわからない。入荷の時期も無い（Craighill の Matte Black）。
+- $125 未満の送料の金額がどこにも無く、送料の案内のページは本文が空。返品は「購入から30日・返送料は客」と「到着から30日・無料」が並び、発送の日数も3通り（Craighill）。
+- 一覧の値段が一番安い仕上げの値段だけで「〜から」が無い。値段の書き方が「$ 145」と「$130」で揺れる（Craighill）。
+- SP の詳細の名前が 60px で3行になり、値段が y=1,044（Craighill）。SP では名前を小さくして値段を最初の画面に入れる。

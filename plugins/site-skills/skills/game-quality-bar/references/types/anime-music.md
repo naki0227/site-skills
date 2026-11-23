@@ -98,6 +98,20 @@
 - **動き**：transition は background-color .3s ease（84）・transform .3s ease-out（63）・opacity .6s easeInOutQuart＋filter（18）。keyframes 82。視差5枚（y −30〜−200・scrub 3）、本文は1行ずつ span（PC と SP で改行を別に組む）。reduce 0件、reduce で開いても getAnimations 77。
 - **重さ**（measure.js）：top PC 16.87／SP 16.79MB、/story/ 7.80、第1話 7.39、/news/ 6.84、/bd/ 7.40MB。フッターの飾りの字が動く WebP（640×300・150コマ×67ms・4,169KB）を親 opacity .15 で全ページに（下層の 53〜61%）。GTM 533KB も全ページ。inspect.js（top）PC FAIL 0 / WARN 4、SP FAIL 2（本文 11px）/ WARN 4。
 
+### 「ぼっち・ざ・ろっく！」公式（https://bocchi.rocks/ ・2026-11-23 解剖。トップは2027年公開の映画「星のあしあと」の告知、同じドメインに TV（/tv/）・劇場総集編（/omnibus/）・作中のバンド「結束バンド」（/kessokuband/）。歩いた5ページ：/・/tv/introduction/・/tv/character/・/tv/news/・/kessokuband/discography/ と ?article_id=kessoku）
+- **枠**：自前の webpack のビルド（GSAP・ScrollTrigger・SplitText、Swiper）。小さなサイトごとに CSS・JS・色・書体を総入れ替え：映画は紺 #090836・水色 #6898ff・黄、Outfit＋Noto Serif JP、TV は黒・白・黄 #fff000、Barlow Condensed、結束バンドは白地・黒、futura-pt（Adobe Fonts）・中央 500px の列。和文は3つとも Noto Sans JP＋YakuHanJP。行き来はフッターのバナー3つ。
+- **最初の画面（top）**：PC は左に場面の絵（819px）、右 621px の列にロゴ（h1、601×259）・「2027年映画化決定」の SVG・News 3件、右下に sticky の丸「ムビチケ情報」168×168（SP 119）。SP は絵の下にロゴ。音は鳴らない。
+- **ロゴを手で書く**：ロゴの webp に、筆の線21本（stroke 44・viewBox 2048×890）を SVG の mask として重ね、stroke-dashoffset で筆順どおりに出す（1画目 .4s sine.in、全体 2.5倍速）。区画の題も4〜14画を3倍速、書き始めに流れ星。初回は演出の間 body の overflow hidden で、止めが解けるのは PC 6,149ms・SP 8,341ms（DOMContentLoaded から）。sessionStorage `hoshinoashiato:intro-played` で2回目は止めない。reduce でも同じ。
+- **予告**：背景に YouTube（mute・controls=0、tabindex −1）を HTML に置き、読み込み時に PC 24件・1,373KB を取る。再生のボタン 1440×307（名前なし）を押すと `<dialog>` の showModal で youtube-nocookie の autoplay を開き、フォーカスは閉じるへ、Esc で閉じて src を外し再生のボタンへ戻る。重ねている間とタブを隠した間は背景を pauseVideo。
+- **ムビチケ**：Movie Ticket / 01 の dl に「発売開始 11月6日(金)～／価格 各1,600円(税込)／特典 イラストステッカー（2種）／販売場所 映画館／オンライン」を文字で、店はメイジャー・ムービーウォーカーの名前つきボタン（269×67、白 on #6898ff で 2.79:1）。#ticket が画面に入ると右下の丸を隠す。
+- **世界観**：TV の /tv/introduction/ は引用符の中の4段落（強調は黄）だけ。映画のトップの INTRODUCTION は本文 18px 500 #6898ff（6.84:1）を SplitText で1字ずつ opacity .4s・stagger .6 from random。区画で body の data-background を top→introduction→light と替え、夜空から明けていく。
+- **人物（TV）**：4人を1人1URL（hitori.html・nijika.html・ryo.html・ikuyo.html）、タブは本物のリンク。人の色の帯（#ff2291・#ffb400・#02d1e0・#ff4637）の左右に前後、端で一周。帯の名前は黒で 5.89〜11.78:1。前後の矢印は img alt="" で名前が空、題は4人とも同じ、名前は profile.svg の alt だけ。読み直しで 2,636ms。
+- **ニュース（TV）**：303件（2021.12.18〜2026.11.16）の題と本文を `window.btrNews` の JSON 1,259,186B で HTML に入れ（HTML 1,444KB）、href の無い a 303個を押して右の枠を入れ替える。URL は変わらないが ?id= で開くとその記事。ALL・INFORMATION・GOODS は本物のリンク（GOODS 1件）、記事の categories は全部空。SP は 31,569px の1列。映画・結束バンドのニュースは1件1URL のリンク。
+- **結束バンドの DISCOGRAPHY**：24作を ALBUM 4・SINGLE 10・LIVE 2・Blu-ray&DVD 2・OST/LP/etc. 6。絞り6つは本物のリンク（./?category=OPENING で4件）。1作1URL で版ごとに 品番・発売日・「4,070円（税抜価格3,700円）」・仕様・収録曲、店舗共通特典（15店の名前）と店舗別特典（店名のリンク＋特典の写真）。動画 ID の無い YouTube の埋め込みを読み込み時に作り、JS 3,391KB。
+- **表記**：権利はフッター1行（10〜11px）。言語・hreflang・JSON-LD 0。TV の h1 は alt 空の img。TV の共有の文が全ページ劇場総集編のまま。
+- **安全**：3サイトとも初期化の CSS に `a{outline:none} a:focus{outline:none} button{outline:none}`。reduce は取った CSS 8・JS 9ファイルで0件。コメントの重ね6つは div（Esc 不可・フォーカスは body）。CSS・JS の URL に開いた時刻（`?20261123081423`）を付け、画像は no-cache、webp を application/octet-stream で返す。
+- **重さ**（measure.js）：top PC 14.35／SP 14.80MB（bg_stars.png 2,790KB・YouTube・Google Fonts の CSS 562＋460KB）、world 2.81／2.62、chara 2.83／2.70、news 4.69／4.55、buy 7.88／7.87MB。
+
 ## 真似る候補（見本1つ。2つ目で確かめたら「真似る型」へ上げる）
 - 入口で音の有無を選ばせ、音なしを文字のボタンにする（Wicked：72px の丸＋192×48）。音のファイルは「音あり」を押してから取る。
 - 世界観は場所の単位で URL を切り、どの場所にも同じ入口（ようこそ＋地名＋操作の説明3つ＋始める）を置く（Wicked：5部屋）。
@@ -122,6 +136,11 @@
 - 人物を物語の区切り（時代・章）の帯で分け、名前を縦書きで立ち絵に重ねる（チ。：3時代・紺の帯・70px）。見本1つ。
 - 人物の詳細を「文字の面＋絵の面」の2分割にし、全員の顔の列と前後を下に（チ。：左白・右紺、顔8つ、Prev／Next）。見本1つ。
 
+- 同じドメインの中で、作品（映画・TV・作中のバンド）ごとに色・書体・組み方を総入れ替えし、フッターのバナーで行き来する（ぼっち・ざ・ろっく！：紺と明朝／黒と黄と Barlow Condensed／白と futura-pt の中央 500px）。【推しの子】の期ごとの木と同じ考えを、色まで分けた形。
+- ロゴの画像に筆の線の mask をかけ、筆順どおりに引いて出す（ぼっち・ざ・ろっく！：21画・2.5倍速、区画の題も3倍速）。初回だけにし、スクロールは止めず、reduce では最初から全部。見本1つ。
+- 作中のバンド・組織のサイトに、円盤を1作1URL で品番・税込と税抜・仕様・収録曲・店ごとの特典まで文字で（ぼっち・ざ・ろっく！ /kessokuband/discography/）。【推しの子】の /talent/ と同じ「作中の組織のサイト」で、こちらは買う段まである。
+- 区画ごとに地の色を替え、作品の時間（夜空→明け）を見せる（ぼっち・ざ・ろっく！：data-background top／introduction／light）。見本1つ。
+
 ## 真似る型（Wicked と SAKAMOTO DAYS の2つで確かめた）
 - 「いま何ができるか」をロゴの近くに日付で出し、時期で替える（Wicked：「ON SALE NOW. DIGITAL, 4K UHD & BLU-RAY.」12px、SAKAMOTO DAYS：「2027.01.ON AIR」1402×273）。どちらも弱点があった（Wicked は 12px、SAKAMOTO DAYS は画像で最初の画面の外）ので、文字で組み、最初の画面に入る大きさで、日・曜日・時刻まで書く。
 - 予告の一覧は押すまで埋め込みを作らず、押すとモーダルか同じ場所で音つき再生（SAKAMOTO DAYS /movie/：3本・題名つき、Wicked /videos：自前の mp4 14本だが題名なし）。題名と長さを文字で出す。トップでも同じにする（SAKAMOTO DAYS の top は開くだけで YouTube 4,761KB）。
@@ -142,6 +161,10 @@
 - （チ。で6つ目）配信を払い方で段に分けるのは3つ目（01 見放題 15・02 都度課金 6）。ダンダダン・【推しの子】と同じく、半分以上（21件中13件）がサービスのトップへ。
 - （チ。で6つ目）円盤の値段・品番・発売日を文字で書くのは2つ目（￥38,500・ZMAZ-18481）。黒い札のラベル＋値の行が読みやすい。店のボタンの名前が3つとも同じ文なのは直す。
 - （ダンダダンで5つ目）円盤は値段・品番・発売日を文字で、期ごとに URL（aniplex の 1st.html・2nd.html、巻に #package7）。【推しの子】の Blu-ray のページ（店のリンク0件）より進んでいるが、店10の行き先は5巻だけ。
+
+- （ぼっち・ざ・ろっく！で7つ目）人物は1人1URL＋前後で一周（hitori.html 〜 ikuyo.html）。前後を付けたのは7サイトで初めて。ただし前後の矢印は名前が空、題は4人とも同じ。
+- （ぼっち・ざ・ろっく！で7つ目）予告を押してから開くのは dialog の showModal が手本（Esc・src を外す・押したボタンへ戻る）。ただし同じページの背景に YouTube を読み込み時から流し、押す前に 1,373KB。
+- （ぼっち・ざ・ろっく！で7つ目）値段を文字で書くのは3つ目（ムビチケ「各1,600円(税込)」、結束バンドの CD「4,070円（税抜価格3,700円）」）。店ごとの特典を店名のリンクで並べたのは初めて。
 
 ## 反面教師
 - 和文の本文を画面比で縮め、SP で 16px を割る（SAKAMOTO DAYS：750px 基準で 12.48px）。
@@ -170,3 +193,7 @@
 - 飾りの字を動く WebP（4,169KB・150コマ）にして opacity .15 で全ページに置き、下層の重さの半分以上（チ。）。
 - 発売・リリース後もトップの円盤・CD のサムネが「Now Printing」「Coming Soon」の仮画像のまま（チ。：BD は発売14か月後）。
 - 円窓の YouTube を読み込み時から無音で流し、止める手段なし（チ。：押す前 4,662KB）。
+- 初回の演出の間、スクロールを止める（ぼっち・ざ・ろっく！：PC 6.1s・SP 8.3s、reduce でも）。
+- ニュース303件の本文を毎回 HTML に入れ（1,444KB）、一覧は href の無い a で Tab が届かない（ぼっち・ざ・ろっく！ /tv/news/）。
+- 同じページで予告の重ねは dialog、コメントの重ねは div（Esc 不可）と、作りがそろっていない（ぼっち・ざ・ろっく！）。
+- CSS・JS の URL に秒の時刻を付け、画像は no-cache で、ページを移るたびにまた取る（ぼっち・ざ・ろっく！）。

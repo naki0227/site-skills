@@ -220,4 +220,8 @@
 - [ ] HTML に入れた組版の印（span.caps・引用符のクラス）に、CSS の規則があるかを検索する（Canary Media：.caps・.pull-double に規則が無い）
 - [ ] 同じ絵の通常とかざした形を別の SVG で HTML に持っていないか。fill を CSS で替える（Canary Media：地域の地図 8枚・280KB）
 - [ ] CDN から読む JS の URL に版が固定されているか（Canary Media：unpkg の alpinejs@3.x.x）
-
+- [ ] 閉じている窓・隠したカード・「もっと見る」の後ろの画像を、最初の読み込みで取っていないか（キャンプ飯：閉じた ABOUT の窓の絵 5.8MB を全ページ、トップの 278枚）
+- [ ] JS・CSS が gzip か br で配られているか、応答の Content-Encoding を見る（キャンプ飯：all.min.js 5,109,357B を無圧縮・Cache-Control no-cache）
+- [ ] og:title・og:site_name が自分のサイトの名前か、og:image の URL の前後に空白が無いか（キャンプ飯：同じ会社の別のサイトの名前・空白8つ）
+- [ ] 手順を追う目次・いまの手順の印が SP でも出るか、390px で長いレシピを送って確かめる（キャンプ飯：SP は display:none）
+- [ ] 窓（サイトの説明・QR・登録）が Esc で閉じ、閉じたらフォーカスが押したボタンへ戻るか（キャンプ飯 ABOUT：Esc で閉じない）

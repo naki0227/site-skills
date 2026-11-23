@@ -104,8 +104,24 @@ PC 1440×900 / SP 390×844（全部込みは iPhone 13 の 390×664）。見た�
 - **動き**：all .2s ×190（かざすと opacity .7〜.8）、all .6s ease-in-out ×15、ラジオとチェックの印 transform .4s cubic-bezier(.45,1.8,.5,.75)。:hover 419 の多くを @media (hover:hover)（148）の中に。keyframes 25（窓の fade・アプリの slide-up .5s）。
 - **重さ**：measure.js PC top 2.80MB／list 7.93MB／article 12.79MB／long 15.94MB（SP 2.31／8.36／9.90／8.31MB）。article PC の全部込み 11,378KB・766応答・160ホスト・自社 1,809KB（16%）。JS 11,207KB（prebid を2版・apstag 2回・yads 5回）、画像は AVIF で 156KB。トップは広告を読まず 86リクエスト。
 
+### キャンプ飯（LOGOS・https://www.campjo.com/campmeshi ・2026-11-23 計測）
+PC 1440×900 / SP 390×844。見たページ：トップ（/campmeshi・278本）、分類「メイン料理」（/campmeshi/recipe/3・105本）、ふつうのレシピ（/campmeshi/290・材料19行・手順5＋完成・高さ 8,127px）、長いレシピ（/campmeshi/241・材料33行・手順14＋完成・14,607px。103本の手順の数を数えて一番多いもの）。アウトドア用品の会社の自前の CMS（jQuery・Swiper）。同意の窓は出ない。選んだ理由：黄の額縁と鉛筆画・手順を追う縦の点・材料と使用アイテムの2列。Web Design Clip に載っている。受賞は確かめられなかった。
+- **額縁**：#wrapper に border 15px #ffff01（SP 10px）、ヘッダーは白 112px（SP 64px）・下に 1px #000、右上に同じ黄の 64×64 のメニュー。足もとも黄。色は黒・白・黄の3つで、黄は面にだけ使い字には使わない（黒／黄 19.56:1）。
+- **記事の頭**：中央に「#0290」12.8px 700 → 題 h2 27.2px 700 → 副題 12.8px 700 → 札（span・1px・角 3.2px・内 4.8px 12.8px）→ 写真 987×658・角 3px。日付・時間・書き手は無い。人数は材料の見出し「材料（3人分）」だけ。
+- **材料｜使用アイテム**：987px の箱・上下 2px・左右の間に 1px の縦線、左右 444px。見出し 18.72px 800・中央・上下 18.72px・下に 2px dashed。材料は div を並べ「キャベツ…３枚」と名前と量を「…」でつなぐ（16px・行 22px、組は「〈肉団子〉」の行）。使用アイテムは店の商品ページへ、下に「※このページの後半にも…」9.6px を #productsarea へ。箱の左上の線に鉛筆画 125×99 を −30px 重ね、右下にトングの絵。SP は1列。
+- **手順**：section#stepN ごとに 写真 761×508（3:2・角 3px）→ 文の箱（左 32px・上 16px）→「Step N」h3 18.72px 700 下線 → 文 p 14.4px・行の高さ normal（20px）。手順の間 48px、section の padding-top 112px／margin −112px で固定ヘッダーの分を飛び先で空ける。完成は id="complete" の「Complete!」。ol 0。SP は写真 333×222・文の箱の左 0。
+- **縦の点（目次）**：#cd-vertical-nav を fixed・left 40px・top 50%。window.onload で section の数だけ li＞a href="#stepN" を足し、最後に COMPLETE。点は 17px・1px #000 を scale(.6)、間に 1px×10px の線。いまの手順は a.is-selected で点 scale(1)・黒、ラベル「STEP 1」11.2px の opacity 0→1（transform .2s・background-color .5s）。scroll のたびに全 section の位置を測り、画面の真ん中がある section を選ぶ。押すと jQuery で 600ms 送る（# は変わらない）。手順14でも 367px の高さに収まる。SP は display:none。
+- **記事の終わり**：PRODUCT 今回使用したロゴス製品（Swiper・カード 277×222・名前 14px・「￥4,565 (税込)」12px）→ 前後の2本（通し番号の前と後ろ、434×130＝写真 194×130＋番号＋題 14.4px 700、2本の間に 1px）→「一覧に戻る」150×42 黒 → 番組の宣伝 → 関連6本（3列 342px・.fadein で opacity と translateY 20px .5s）。
+- **一覧と絞り込み**：札13（a href="#"・12.8px 700）を複数選ぶと JS が style に黒地を書く（aria-pressed 無し）→「検索」（div 175×44 黒）で POST /search、#recipelist を JSON から描き直す（+2KB・URL は変わらない）。「リセット」は #e9eaec。/recipe/3 のように分類を選んだ状態の URL もある。カード 3列 342px（写真 270×173・角 3px・#0303 12.8px・題 16px 700・札）、最初の6枚の後ろを「もっと見る」で全部出す（6 → 278）。写真のホバーは scale(1.1)・.3s cubic-bezier(.215,.61,.355,1)。件数・0件の文・並べ替え無し。
+- **トップ**：鍋の鉛筆画（PNG 1531×1772・5,027KB を 766×887）・英字の題 OUTDOOR COOKING RECIPE・縦書きの「キャンプ飯。」（PNG）・黄の丸 160px「278 現在のレシピ数」（transition 1s cubic-bezier(.38,.01,.54,1.41)＝行き過ぎて戻る）→ RANKING（集計期間「11/10 〜11/23」・写真の右下に「RANKING 1」の札：白・2px の枠・上の縁だけ太い）→ 全レシピ。
+- **広告と同意**：他社の広告 0。自社の宣伝は使用アイテム・PRODUCT・番組・会員。500px 送ると共有の黄の帯（PC 右端 80×192・SP 左下 176×59＝3%）。ABOUT の窓は Esc で閉じない。CLS 記事 PC 0.172・SP 0、トップ PC 0.183（img 45／374枚とも width/height 無し）。
+- **データ**：JSON-LD 0（Recipe 無し）。BreadcrumbList の microdata だけ。og:title が同じ会社の別のサイトの名前（「…│まめ知識│キャンプ場ドットコム」）、og:image の URL の前に空白、og:type website。題が h2（h1 はロゴ）。画像 45枚：寸法 0・lazy 0・alt 無し 18。ダーク・文字サイズ 0。* に word-break:break-all（「キャン／プ飯」と語の途中で折れる）。
+- **文字**：欧文 urw-din（Adobe Fonts）、和文は font-family に指定が無く端末の書体。ボタンだけ見出ゴMB31。大きさは rem と em が混ざって 10段（27.2・18.72・17.6・16・14.4・12.8・12・11.2・9.6px）。読み込むが使っていない garamond-premier-pro。
+- **動き**：写真 scale(1.1) .3s、.fadein .5s、点 .2s／.5s、丸 1s の行き過ぎ、jQuery の送り 600ms。keyframes 0・prefers-reduced-motion 0・:focus 0・(hover:hover) 0。
+- **重さ**：measure.js PC top 89.48MB／list 42.16MB／article 20.51MB／long 20.14MB（SP も同じ値：画像の出し分け無し）。全部込みの転送 article PC 21,517KB・95件・16ホスト（自社 72%）、top 91,810KB・382件。上位は Font Awesome Pro の all.min.js 4,990KB（使用0・gzip 無し・Cache-Control no-cache）、閉じた ABOUT の窓の絵 i_9.png 3,165KB と i_12.png 2,680KB を全ページ、Adobe Fonts の和文の動的分割 features=ALL 2.4〜4.0MB×2。トップは 278本の写真（600×400・約 340KB）を全部読む。
+
 ## 真似る型
-見本6つ（King Arthur Baking・白ごはん.com・Great British Chefs・Ottolenghi・dancyu・Nadia）から。作るときの出発点。
+見本7つ（King Arthur Baking・白ごはん.com・Great British Chefs・Ottolenghi・dancyu・Nadia・キャンプ飯）から。作るときの出発点。
 - 記事の頭に「時間」を大きく置き、その横に要約を開くボタン（King Arthur Baking：HANDS-ON／BAKE／TOTAL TIME の欄、白ごはん.com：「調理時間：40分」19px 700＋「大まかな流れをチェック」）。要約は工程を2組（下ごしらえ／調理と仕上げ）・8行前後に縮める（白ごはん.com）。
 - 工程を読みながら材料を見られるようにする。PC は材料の列を手順の横に（King Arthur Baking：材料 325px・手順の面 785px。固定はしない）、SP は右下の丸いボタン（60px）から下のシート（max 60vh）で呼び戻す（白ごはん.com）。作るときは PC の材料の列を sticky にする（2サイトとも固定していない）。
 - 工程の中で、その工程で使う量をもう一度書く。文の中に書いて地の色で目立たせる（白ごはん.com：.bg 地 #fffadf）か、手順の下に枠で書き直す（Great British Chefs：550px の枠・11手順のうち8）。合計の量は使う手順ごとに割る（同：14本 → 7本と7本）。
@@ -137,6 +153,14 @@ PC 1440×900 / SP 390×844（全部込みは iPhone 13 の 390×664）。見た�
 - 手順の文の中の料理用語（細切り・面取り）を、点線の下線で用語の説明へつなぐ（Nadia：1px dashed・字の色の 50%・/wordlist/）。
 - PC で開いたレシピを台所のスマホへ渡す QR のボタンを、写真の下の行動の列に（Nadia の「スマホで見る」・360px の窓）。dialog・Esc・戻り先を付ける。
 - 食材の一覧は、頭に「区画へ飛ぶ札」（高さ 44px・SP は2列）を並べ、区画を 6本ずつで止める。カードの題は 3行の高さで止めて下の行をそろえる（Nadia：15px／21px・63px）。写真の下端に作った人の数の帯（12px 700・rgba(65,33,10,.6)）。
+
+- 手順の数だけ点を縦に並べて左に固定し、いまの手順を示す（キャンプ飯：left 40px・top 50%、点 17px を scale(.6)、いまの点は scale(1)・黒、ラベル「STEP 3」11.2px を opacity で出す、点の間に 1px の線、手順14でも高さ 367px）。拾うのは IntersectionObserver（rootMargin −50% 0 −50% 0）で aria-current="step"、SP は下に「STEP 3／7」の帯と進み具合の線（キャンプ飯は SP で消す）。King Arthur Baking・Great British Chefs・dancyu は長い手順でも目次も印も無かった。
+- 材料の横の列に「使う道具」を同じ箱で並べ（キャンプ飯：987px・上下 2px・真ん中 1px・見出しの下 2px dashed）、手順の後に同じ道具を名前と値段で並べ直す（PRODUCT・「￥4,565 (税込)」12px）。店の宣伝が読む流れの中に入り、他社の広告を置かずに済む（キャンプ飯は他社の広告 0）。
+- 手順は「写真 3:2 → Step N の下線 → 文」で、文の箱を写真の左から 32px 入れる（キャンプ飯：写真 761×508・Step 18.72px 700）。文は 17px 以上に（同 14.4px は小さい）。
+- 全部の回に通し番号を振り、記事の頭・カード・前後の2本で同じ番号を出す。記事の終わりの前後は番号の前と後ろ（キャンプ飯：「#0290」、#0289｜#0291 の 434×130・間に 1px）。
+- 画面を一色の 15px の枠で囲み（SP 10px）、右上のメニューと足もとを同じ色の面に。色は黒・白・その1色だけで、その色を字に使わない（キャンプ飯：#ffff01、黒／黄 19.56:1）。
+- 料理の写真と別に、道具を鉛筆で描いた絵を、箱の線や見出しの角に重ねる（キャンプ飯：材料の箱の左上 125×99・右下のトング・一覧の題の右の鍋 215×206）。絵は小さく表示の2倍まで（キャンプ飯のトップの鍋は 5,027KB の PNG）。
+- 人気の回には集計期間を書き、写真の角に番号の札を差す（キャンプ飯：「集計期間： 11/10 〜11/23」、白・2px・上の縁だけ太い札）。
 
 ## 反面教師
 - 単位のつまみが div role="button"・tabIndex -1、手順の文の中の量と温度は替わらない、換算が「7 1/16 oz」（Great British Chefs）。
@@ -170,3 +194,8 @@ PC 1440×900 / SP 390×844（全部込みは iPhone 13 の 390×664）。見た�
 - Recipe の recipeYield "0人分"・日付に T と時差が無い・手順の text に a タグ。一覧とコラムも Recipe と名乗る（Nadia）。
 - 手順が ul と span の番号で ol 0。QR の窓が Esc で閉じない・:focus-visible 0・reduced-motion 0（Nadia）。
 - レシピ1本で 160ホスト・転送 11.4MB、自社は 16%（Nadia）。
+- トップに全レシピ 278本のカードを書き、写真を全部読んで「もっと見る」で隠すだけ（キャンプ飯：89.48MB・JPEG 64.9MB）。
+- 使っていない Font Awesome Pro 4,990KB を gzip 無し・no-cache で全ページ、閉じた窓の絵 5.8MB の PNG を全ページ（キャンプ飯）。
+- 手順の文 14.4px・行の高さ normal、注記 9.6px、* に word-break:break-all で語の途中で折れる（キャンプ飯）。
+- 手順を追う縦の点を SP で消す。Recipe の JSON-LD 0・題が h2・材料が div・手順が ol でない・日付も時間も無い、og:title が別のサイトの名前（キャンプ飯）。
+- 分類の札と「検索」が a href="#" と div、選んだ札は style の書き換えだけ、結果は POST で URL に残らず件数も出ない（キャンプ飯）。

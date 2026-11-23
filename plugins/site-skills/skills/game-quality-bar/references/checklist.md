@@ -198,3 +198,9 @@
 - [ ] 動きのライブラリ（framer-motion など）の reduce の設定を "user" にした（Arknights: Endfield は "never"）
 - [ ] 人物の絞り込みが0件のとき、「0人」と条件を外すボタンを出した（Arknights: Endfield は白紙）
 - [ ] 入手の店の札を店ごとの a にし、SP でもほかの端末の店へ1手で行ける（Arknights: Endfield は div＋img、iPhone は App Store だけ）
+- [ ] 入口の演出（ロゴを線で引くなど）の間もスクロールを止めず、reduce では演出なしで最初から全部見せた（ぼっち・ざ・ろっく！は PC 6.1s・SP 8.3s 止め、reduce でも）
+- [ ] 同じページの重ね（予告・コメント・人物）を全部 dialog の showModal にそろえた（ぼっち・ざ・ろっく！は予告だけ dialog、コメント6つは div で Esc 不可）
+- [ ] ニュースの一覧は1件1URL のリンクにし、全件の本文を一覧のページに入れていない（ぼっち・ざ・ろっく！は303件 1,444KB、a に href なし）
+- [ ] CSS・JS は版の番号で URL を替え、長いキャッシュにした。開いた時刻を URL に付けていない（ぼっち・ざ・ろっく！は `?20261123081423`、画像も no-cache）
+- [ ] 画像の content-type を image/webp などで返した（ぼっち・ざ・ろっく！は webp を application/octet-stream）
+- [ ] 人物の前後のリンクに相手の名前を書いた（ぼっち・ざ・ろっく！は端で一周するが、矢印は img alt="" で名前が空）

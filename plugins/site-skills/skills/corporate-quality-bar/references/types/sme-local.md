@@ -94,7 +94,23 @@
 - **動き**：下線の background-size 0↔100% 1px .3s ease-out（20回、右から引く／右へ消す）、写真 scale(1.05) .4s ease-out、ナビの color .3s。ページ内リンクは rAF 600ms。CSS・JS とも prefers-reduced-motion 0、reduce でもトップの6枚が約3.6秒ごとに替わる。
 - **重さ（PC/SP、解析タグ除く）**：top 4.61/4.61MB（写真 6枚 3,306KB を SP でも全部）、会社概要 1.81/1.81、実績 7.76/7.76、採用 3.40/3.40、マガジン 1.73/1.73。どのページも kimono.json 388KB（/story/kimono/ の拡大表示用）と vendor 415KB を読み、会社概要では 2つで 47%。GTM 892KB（会社概要の 32%）。srcset・picture は 0。
 
-## 真似る型（竹中庭園緑化・由紀精密・Vitsœ・能作・玉川堂・HOSOO の6サイトから）
+### Heath Ceramics（https://www.heathceramics.com/ 、2026-11-23 解剖。選んだ理由：工場とショールーム6か所を「VISIT US」の板で場所の写真の札にする骨組み、About の工場ごとの住所・人数と商品の生まれた年の帯、ニュースに場所の札と催しの期間、採用の募集のすぐ下の求人詐欺の注意。事例集・受賞歴は確かめられなかった）
+米国カリフォルニアの食器とタイルの工房（1948年創業、Sausalito の食器工場〔1959年の建物、40 craftspeople〕・San Francisco のタイル工場〔60,000 square feet〕、店は LA・Ferry Building・Austin・Newsstand・Clay Studio）。Purpose Trust が持つ会社で B Corp。Shopify の店のサイト（テーマ t/199）に会社のページを載せる。
+- **ナビ（PC）**：上の帯 34px（#26211b・13px、催しの1文＋Gift Cards・Registry・Trade・Pass The Plate・Support）→ sticky 87px（SP 60px）の6項目 CERAMICS・HOME・COLLECTIONS・HEATH CLAY STUDIO・TILE・VISIT US（12px BentonSans-Bold・字間 .45px・#d1ccc6／#26211b 10.00:1）。スクロールで隠さない。会社（About・Careers・News）はヘッダーにも上の帯にも無く、フッターの COMPANY 8本（Journal・About Us・News & Events・Sustainability・Careers・Press・Heath Gives・Trade）だけ。
+- **板**：全幅 1,440×627px・#3c3229・opacity .2s cubic-bezier(.72,.16,.345,.875)。CERAMICS は4列（写真 318×166 → 10px/700 大文字 #b8b1aa の見出し → 14px のリンク）＋宣伝の箱2つ。VISIT US は場所の札6枚（写真 318×181 を grayscale、ホバーで色、「Dinnerware Factory and Showroom／Sausalito, CA」の2行）と右 325px の列（Holiday Pop-Up・Factory Tours & Workshops）。開くのはホバーだけで、button の aria-expanded は Enter でも false、aria-controls なし。VISIT US は a。
+- **トップの順番（PC 10,289px）**：季節の商品の送り 692px（3枚・約6秒・白い箱に題 約40px）→ 小さな札7つ → 商品9 → Who We Are（y=1,867、1文と About へ）→ Heath Tile → 食器のセット → Lines のタブ → Home のタブ → The Coupe Plate（「it takes 12 people」）→ 商品と生まれた年 → Journal 4本 → Inside Heath（拠点7つのタブ、時間・地図・tel: に内線 `tel:+14153323732,1`）。h1 は0、採用の入口は0。
+- **信頼の材料**：About は動画の上の h1（36px）→ Where It's Made（工場2つ：住所・人数か広さ・「Learn More」と「Book a Factory Tour」）→ Timeless Design（商品10点に生まれた年 1948〜2025、トップと同じ部品）→ Our Purpose（Purpose Trust）→ 年表の札11枚（1948 が2枚〜2025）→ Our People → Journal・Podcast・Substack。会社概要の表・会社全体の人数・代表は無い。年数は About「78 years」と募集の詳細「75 years」。
+- **工場見学**：/pages/factory-tours。約1時間・$15・5歳から・つま先の閉じた靴・保護めがねを貸す・終わったらショールームへ、工程7つの写真と説明。2026年11月は「Factory tours in 2026 have concluded. Stay tuned for upcoming 2027 tour dates!」のまま Eventbrite の申し込みのリンク2本が残る。
+- **拠点のページ**：Sausalito は一番上に「It's high tide and rainy season … Our showroom is currently open.」、高潮の日の道の地図（jpg）、11月26日の休み、電話・FAX、二級品の棚・タイルの小屋の時間。
+- **問い合わせ**：電話 x2・平日 8〜17時（PT）・メール・広報のメール、フォーム3つ（タイル・広報の貸し出し・Wufoo）、FAQ 7本、チャット。採用の振り分けは無い。
+- **採用（/pages/careers、2,963px）**：h1「Work with us」→ Our Culture（福利・Purpose Trust・B Corp）→ Available Positions：#52483d の箱 370px に職種＋「Full Time, Sausalito」と「Inquire About Position」（jobs.heathceramics.com、JazzHR）→ 箱のすぐ下に「Notice to Candidates: Recruitment Fraud Alert」と Journal の記事へ → People at Heath。詳細は給与「$80,000 - $85,000」・出社の曜日・JobPosting（baseSalary・validThrough）。応募 13欄・必須7（住所・電話・LinkedIn・希望年収）、18歳以上と在留資格を聞く。詳細の見出し3つが社内の Google ドキュメントへのリンク。
+- **ニュース（News & Events）**：カード 428×460〜525px を3列で1ページ60枚・3ページ（2018年4月まで）。場所の札＋掲載日（Grotesque MT Bold Extended 10px・#988d82・2.88:1、`<time datetime="2026-11-20 08:00:03 -0800">`）→「Upcoming Event」11px（#706356／#eae4dd 4.61:1）→ 催しの期間 Schoolbook 20px（12.05.2026-12.06.2026）→ 題 → 抜粋。Upcoming は手で付け、09.16〜09.25 の催しに残る。場所で絞れない（上の8本は Journal の分類へのリンク）。
+- **データ**：5ページとも JSON-LD 0（パンくずは画面にあるが BreadcrumbList 0）。h1 はトップ 0・ほか1。alt の無い img 0。リンクの名前の写し間違い3つ（Podcast・Substack が「Learn more about our journal」）。トップで Swiper の JS エラー。
+- **見た目の値**：CSS の色 #52483d 295・#fff 137・#9a8d81 50・#f7f0ea 42・#3c3229 24・#706356 20・#26211b 10。書体は Schoolbook-Regular（見出し 44/36/24/20px・字間 -1%）、BentonSans の Book・Medium・Bold を別名で（本文 13〜14px・行間 1.3）、Grotesque MT Bold Extended（札 10px・.8px・大文字）、woff2 計 85KB。13px 未満の字がトップ SP 33%・About SP 37%。札 10px の #9a8d81 は地の上で 2.86:1。
+- **動き**：250ms ease-in-out、色と不透明度 .2〜.3s cubic-bezier(.72,.16,.345,.875)、画面に入ると 6px 上がって 800ms、場所の写真は grayscale からホバーで色、送りの番号の丸に conic-gradient の進む輪。prefers-reduced-motion は7か所あるが、送り（2.5s・8.5s）と About の動画（22.5秒・6,707KB）は reduce でも動く。
+- **重さ（PC/SP、展開後）**：top 21.47/16.42MB（転送 11.96MB）、about 19.18/14.69（＋動画 6.7MB）、tile 17.51/14.90、careers 15.18/13.70（転送 6.67MB）、news 20.52/15.89。どのページも JS 11.3MB（チェックアウトの JS 1,661KB・Freshchat 約2.3MB・UserWay の json 936KB・OneTrust 493KB・自社ドメイン経由のタグ 1.2MB）。画像は Shopify の width= で出し分け、SP のトップの画像は PC の 24%。
+
+## 真似る型（竹中庭園緑化・由紀精密・Vitsœ・能作・玉川堂・HOSOO・Heath Ceramics の7サイトから）
 - 会社概要は表で全部書く。右上に「（YYYY年MM月現在）」、従業員は部門別の内訳と合計（竹中庭園緑化 34行）。取引先は業界ごとに3〜5社＋「その他、約N社」、認証は範囲と登録番号まで（由紀精密）。3サイトとも数字の帯が無い（Vitsœ は表も無く、年数は本文だけ）。作るときは数字4つを表の上に、どれにも日付を添える。
 - 沿革は全部の年を1ページに並べる（竹中庭園緑化 49行、由紀精密 20行、Vitsœ 48年）。長いなら Vitsœ のように年の帯を貼りつけ（65px・今の年に下線）、押した年を URL（#1976）に残す。最後の行は今年か「今日」。
 - 何をしている会社かは、事業の名前より「客の言葉」か「事例」か「割り算」で見せる。竹中庭園緑化は悩みの吹き出し6つ、由紀精密は事例36件を材質と加工の札で、Vitsœ は値段を年と週に割る（£520→£52／年→£1／週）。
@@ -114,6 +130,12 @@
 - ナビを「見せる物」と「用事」に分ける。物（物語・商品・実績・ギャラリー・店）は左に fixed 280px の柱で5つ、用事（会社概要・採用・問い合わせ・方針）は全ページ最下段の1行に（HOSOO）。能作の縦書きの柱4本＋行の用事3本、Vitsœ の上段の用事・下段の本と同じ分け方。作るときは用事の行も 4.5:1 の色にし、採用だけは柱の近く（またはトップの本文）にも置く（rules.md 1）。
 - 会社概要の表は、拠点ごとの群に分けて群の間に罫を引く（HOSOO：会社7行・本社4・HOUSE of HOSOO 3・丹波工房 3、題の列 223px）。拠点ごとに住所（地図）・電話・FAX をそろえた順で。電話は tel: にする（rules.md 40）。
 - 募集の詳細は、全職種で同じ区画の順にする（HOSOO：人物像 → 職務 → 条件 → 待遇 dl 6行 → 応募方法 → 選考4段と最初の日数、5ページ）。ただし給与の額・時点の新しい休日・一覧との一致を足す（rules.md 26・21・14）。
+
+- 工場と店を「行ける場所」としてヘッダーの1項目にし、板に場所の札（写真・役割・都市）を並べ、隣に見学の次の行動を置く（Heath Ceramics：VISIT US に6枚＋見学と催しの列。能作の柱「工場見学・体験・カフェ」、玉川堂の店3つの並びと同じ向き）。ただし会社・採用もヘッダーに置く（Heath はフッターだけ、rules.md 1）。
+- 会社のページの最初の区画で、工場ごとに 住所・人数（か広さ）・作る物・「くわしく」と「見学」の2本のリンクを並べる（Heath Ceramics：Where It's Made の2つ）。人数は全部の拠点にそろえ、時点を付ける。
+- 沿革を商品の「生まれた年」で見せる：いま売っている物に年を添えて横に流す（Heath Ceramics：10点 1948〜2025、About とトップで同じ部品）。代の1枚（玉川堂）・年の帯（Vitsœ）と並ぶ3つ目の形。前後のボタンも置く。
+- ニュースのカードに「場所の札＋掲載日＋催しの期間」を持ち、期間を見出しの書体で大きくする（Heath Ceramics：期間 20px）。「これから・開催中・終わり」の札は期間と今日の日付から出す（Heath は手で付けて残った）。
+- 拠点のページの一番上に、その日の注意（天気・道・休み）を置く（Heath Ceramics：Sausalito の高潮の季節と道の地図・祝日の休み）。
 
 ## 反面教師
 - 白字の分類の札が #7a9f9f で 2.88:1（竹中庭園緑化。アクセシビリティ賞の受賞サイトでも残った）。地を #547b7b（4.67:1）にする。
@@ -150,3 +172,7 @@
 - 採用の一覧に2職種、詳細は5ページ（3つは sitemap にだけ）。給与は全部「当社規定」、休日は「2022年度」、社員数は「2023年6月現在」のまま（HOSOO）。
 - 1ページでしか使わない JSON 388KB を全ページで fetch し、SP でも 2,320px の写真6枚を最初に全部読む（HOSOO）。
 - 同じ住所を「下る」と「下ル」の2通りで書く（HOSOO：会社概要とスタイリストは「下る」、ほかの募集の詳細は「下ル」）。
+- 会社と採用がヘッダーに無く、フッターの COMPANY だけ。トップの h1 は0で、最初の画面は季節の商品の題（Heath Ceramics）。
+- 見学のページに「2026年は終わり」と書いたまま、申し込みのリンクを2本残す（Heath Ceramics）。次の回が無ければリンクを外し、次の日程を載せる月を書く。
+- 「Upcoming Event」の札を手で付け、終わった催しに残る（Heath Ceramics：09.16〜09.25 の催し）。
+- 札・日付 10px を #9a8d81 で 2.86:1、SP の © は 2.15:1。送りと動画が reduce でも動き、どのページも JS 11.3MB（Heath Ceramics）。
