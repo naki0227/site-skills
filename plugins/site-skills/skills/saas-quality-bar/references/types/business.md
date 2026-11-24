@@ -91,8 +91,21 @@
 - **見た目の値**：地 #fefdfb と #f4f3f0、字は #000・#1b1a18（17.39:1）・#55534e（白 7.68:1）・#7b7974（4.35:1）、線 #e0dedc。色は CSS 変数 190個。書体は Roobert VF（Webflow の CDN）だけで、太さ 575（h1）・600・500・400。大きな字は字間 -0.03〜-0.04em・行間 1.0、本文 16px／1.5。動きはリンクの色 .1s ease-out、ボタンの地 .3s cubic-bezier(.075,.82,.165,1)、比較表の行 max-height .3s cubic-bezier(.785,.135,.15,.86)、GSAP（3.15.0 と 3.14.1 の2版）。
 - **データと重さ**：PC で top 37.18MB（動画 23.9MB）/ features 27.68MB / pricing 14.00MB / customers 20.59MB / docs 9.76MB。どのページも 42〜44ホスト、Inkeep の AI 検索 1,616KB・Sequel 953KB・reCAPTCHA 846KB を読む（フォームの無い料金ページでも）。章の動画は preload none。トップの構造化データは SoftwareApplication と AggregateRating 4.9／ratingCount "1000"（出典なし）、Offer「14-day Pro trial」（Pro は無い）。
 
+### Dovetail（顧客の声を集めて AI に渡す基盤、海外）https://dovetail.com/ — 2026-11-24
+- **最初の画面**：地 #0a0a0a に canvas 1440×1439 の ASCII（0 1 / : % = + < >）が約1秒ごとに替わる（reduce で止まる）。上に一文 Inter 20px・白 64%（170字）、頭の分類名「The Customer Context Layer」だけ PP Mondwest（ドットの字）25px・#fafafa。その下に Book a demo（#0044ff・120×42・角 8）と Start free trial（地 #1e1e1e の 85%・縁 白 24%、新しいタブで /auth/signup/）。右に星3（G2・Capterra・TrustRadius、数値なし）。h1「Feed the facts machine」Inter 600・160px／140px・字間 −2.3px を画面の下半分（y=468）に置き、「Feed」と「the」の間に目のある複写機 188×199px。瞳はポインタの方へ最大 ±5.7px。下にロゴ 10（各 90×40）。SP は h1 70.48px。
+- **製品の見せ方**：h1 の下に DOM の会話の窓（問い→答え4行→「5 sources from Sales calls and Customer success」）、字を打つ演出は var(--play) で見えるまで paused。章の画面は PNG 1232×800 ×4 をタブで、処理10種は canvas 400×438 ×12。機能ページは 10.0秒の mp4 827×465（855KB）を見えたら再生、reduce では再生しない。
+- **機能の並べ方**：機能ページ（Digital Twins）は地 #7d00d6、h1 72px の中の「talk to them.」だけ Mondwest 84px、間に拡声器の絵。使い道は役割9つの 3×3（397×364、線 白 8%）：札（JetBrains Mono 12px 大文字）→ 題（動詞の句 22〜24px）→ 一文 #a7a7a7。ホバーで中身が「Try Digital Twin」の面に替わる。FAQ 6問（FAQPage）。
+- **料金表**：3枚 376×1,242px（Bronze 5 users／Silver 25+／Gold 100+）。印はコイン 64px、地は #121212→#191919→#212121。値段の大きな数字は無く、Bronze の箇条の1行目「$4,800 a year for the platform, plus credits at 15c each」だけ。その Bronze のボタンは disabled の「Coming soon」、Silver・Gold は「Talk to sales」（Gold だけ白の塗り）。月年の切り替え・おすすめの札・税の語・通貨の切り替えは無い（年払いのみ、FAQ に billed annually）。Gold に 30-day free trial。
+- **比較表**：table を使わず section ごとに主張の h2＋一文（6区分 8・8・7・4・15・5 行＝47行、「Not included」30個、Add-on 2）。行の名前は Inter 20px に点線の下線、ホバーで説明 280px・14px・地 #212121（46行。span でキーボード不可）。比較表に入るとプランの頭（名前・人数・ボタン）が固定で出る（PC 169px、隠れるとき top −240px。SP 71px は名前を押して1プランを選ぶ）。Silver の列だけ地 #141414。
+- **クレジット**：1 data point＝1 credit（文字起こし・翻訳・要約・分類・索引をまとめて）、黒塗りは＋1、Chat・Twin・Agents は Variable。15¢ は全プラン同じ。失敗・取り消し・止めた Chat・適用しなかった黒塗りの提案は数えない。超えたら overage が既定でオン・月ごとに請求。FAQ 9問中8問がクレジット。「Get an estimate」はリンクで計算の部品は無い。
+- **試すまで**：Start free trial → Auth0 の画面で入力は Email の1つ（ほか Google・Microsoft）。カードの要否は4ページで書いていない（「credit card」0回）。Book a demo はトップに9か所。
+- **事例と信頼**：事例一覧 40件、業種のチップ 13（button・aria-pressed・32px、選ぶと地 白 8%→16%、URL は変わらず件数も出さない。Technology 19・Manufacturing 4・Financial Services 4…）。カード 376×414 は引用が先頭。h1 は顧客の引用 96px で読み込みごとに替わり、字を打つ演出で最初は空。料金に引用＋数字（30hrs／週、66% faster shipping、Forrester TEI へ）。認証（SOC 2 Type II・ISO 27001・ISO 42001・GDPR）は比較表の1行。
+- **ドキュメント**：docs.dovetail.com は Mintlify（白い地、左の目次 16区分、Ctrl K の検索、「Open in ChatGPT」、Yes／No、system／light／dark）。/llms.txt あり、/pricing.md は 404。
+- **見た目の値**：字 #fafafa（18.97:1）・#a7a7a7＝白 64%（8.23:1）、線 白 8%、段は白の透明度 8・16・24・64%。色相は主ボタンの青 #0044ff（字 6.15:1）と機能ページの紫 #7d00d6 だけ。書体は自前の /fonts/ の Inter 400・500・600、JetBrains Mono、PP Mondwest（計 136KB）。transition は all 300ms（18）、color/background/opacity 200ms（11）、transform 150ms cubic-bezier(.2,.6,.6,1)（11）、説明は opacity 150ms。reduce で animation 30本→0。
+- **データと重さ**：PC で top 15.00MB / features 21.24MB / pricing 18.89MB / customers 32.42MB / docs 3.31MB（SP 6.02／12.20／11.12／17.04／3.80MB）。どのページも RSC の先読み 50本（転送 3,169KB）、Intercom 約 2.7MB（料金で読み込みから 4.4〜6.1秒で Fin の3択を開く）、解析 27ホスト。下へ 63〜65% で「Introducing Digital Twins」のダイアログが出て、事例の業種のボタンを覆う。構造化データは料金に Offer 3つ（Bronze だけ price 4800・InStock）と FAQPage。本家のトップの inspect は FAIL 2（横スクロール PC・SP）。
+
 ## 真似る型
-見本7つ（Backlog・コドモン・Linear・Attio・Plain・Ramp・Clay）に共通するもの、または1つで測った値を出発点にするもの。値の出どころを添える。
+見本8つ（Backlog・コドモン・Linear・Attio・Plain・Ramp・Clay・Dovetail）に共通するもの、または1つで測った値を出発点にするもの。値の出どころを添える。
 1. **行動の数は、試す入口の有無で決める**：試せる製品は「試す」を主に（Backlog は試す＋資料、Linear は Get started と Contact sales）、試せない製品は資料請求＋問い合わせ（コドモン）。主は塗り、副は白地か枠か半透明。Linear のように最初の画面から行動を消さない（ヘッダーの 73×32 だけでは小さい）。
 2. **実績の数字には時点と数え方**：Backlog「2026年6月末」、コドモン「2026年10月1日時点」＋※の数え方と調査元。Linear は「40,000」を3通りに言い、時点なし（真似ない）。
 3. **料金は規模で決める**：Backlog は「31人以上か」を診断の1問に、コドモンは定員3段、Linear と Attio は per user/month の4列（Attio は 4列とも同じ 271×398 のカード）。人数で決まるなら、入力させる前に段を見せ、大きく出す価格は1つ（コドモン 88px、ほか 30px）。
@@ -127,6 +140,13 @@
 29. **最初の画面は「上に世界、下に題」**：Clay は上 6割を作り込んだ絵の動画、h1 88px（-0.04em）を左下、右の列に一文 24px とボタン2つ。絵が題材そのもの（漏斗・虫めがね＝データを集めて絞る）であること。
 30. **何を作りたいかを聞く欄**：Clay の textarea 624×144 とチップ3つで例文を替える。作るときは label・空のときの文・送ってからの骨組みを足す。
 
+31. **説明の一文の頭の分類名だけ書体を替えて 1.25 倍**：Dovetail は「The Customer Context Layer」を PP Mondwest 25px・#fafafa、残りを Inter 20px・白 64%（SP 20px／16px）。長い一文でも、何の道具かが名前だけで入る。
+32. **大きな題の語の間に題材の物を1つ**：Dovetail の h1 160px「Feed [複写機 188×199、瞳がポインタを ±5.7px 追う] the facts machine」、機能ページの「let you [拡声器] talk to them.」。物は題材の世界から（声を吸い込む機械・拡声器）。
+33. **プランを素材の段で名づけ、地の明るさで段を見せる**：Dovetail は Bronze／Silver／Gold とコイン 64px、地 #121212→#191919→#212121、最上段だけボタンを白で塗る。値段は箇条の1行目。値段を大きく出すときは、買えるプランに出す（Dovetail は買えない Bronze にだけ値段がある：真似ない）。
+34. **比較表の区分を主張の h2 にし、入ったらプランの頭を出す**：Dovetail は6区分の h2＋一文、47行中46行に点線の説明 280px、固定の頭 PC 169px・SP 71px（名前を押して1プラン）。説明は button にして Tab で届くように（本家は span）。
+35. **使った分は1つの単位にし、数えない場合を FAQ に書く**：Dovetail は「1 data point＝1 credit・15¢ 全プラン同じ」、失敗・取り消し・途中で止めた Chat・適用しなかった提案は数えない、超えたら月ごと。FAQ 9問中8問。
+36. **使い道を役割の 3×3 に、札→題→一文**：Dovetail の機能ページ 397×364 ×9、札 Mono 12px、題は動詞の句。ホバーで試す面に替える。
+
 ## 反面教師
 - 商談予約ウィジェットを全ページで読み込み、どのページでも一番重いファイルにする。診断の途中で日時の枠を開いて結果と重ねる（Backlog）。
 - カルーセルの複製で同じ事例見出しの h2 を3回ずつ出す（Backlog トップ）。
@@ -148,3 +168,5 @@
 - 料金の select を color:transparent にしてラベル0、月年の button に aria-pressed なし、比較表の button に aria-expanded なし、FAQ はラベルの無い checkbox を被せて outline:none（Clay）。
 - 導入数を 500,000／16,000+／500,000+ とページで違え、構造化データに出典の無い星 4.9・1000件と、無いプラン名「Pro」の試用を書く（Clay）。
 - ヒーローの動画 9.1MB に poster も止めるボタンも無く reduce でも再生、事例の h1 を1字ずつの span にして読み上げを崩す、動画を個人の GitHub（jsDelivr gh）から・開発用の vercel.app の JS を本番で読む（Clay）。
+- 値段を、まだ買えない「Coming soon」のプランにだけ書き、買えるプランは「Talk to sales」で値段0。構造化データはその準備中のプランを InStock と書く（Dovetail）。
+- 下へ 63〜65% で告知のダイアログを開き、事例の絞り込みのボタンを覆う。チャット（Intercom Fin）は読み込みから 4〜6秒で3択を開く。事例一覧の h1 を読み込みごとに違う顧客の引用にし、字を打つ演出で最初は空、同じ文を h1 に2回（Dovetail）。

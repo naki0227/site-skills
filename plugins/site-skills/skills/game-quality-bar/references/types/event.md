@@ -5,7 +5,7 @@
 
 ## 下位の型
 同じ「イベント」でも、見本で別れた。作るものがどちらに近いかを先に決める。
-- **チケット制のフェス・ライブ**（Lollapalooza、Primavera Sound、Tomorrowland Thailand、Flow Festival、Le Guess Who?）：最初の画面は出演者のポスターかチケット、出演者の一覧と時間割が中心、購入ボタンが全ページに。
+- **チケット制のフェス・ライブ**（Lollapalooza、Primavera Sound、Tomorrowland Thailand、Flow Festival、Le Guess Who?、Øyafestivalen）：最初の画面は出演者のポスターかチケット、出演者の一覧と時間割が中心、購入ボタンが全ページに。
 - **配信が主の授賞式・ショーケース**（見本は The Game Awards）：会場の券は少なく、主な行動は「カレンダーに入れる・どこで見るか」。中心は本番までの日数・候補と受賞者・過去の回。トップは本番の前・最中・後で形を替える。
 - **入場無料か少額の、日本の地方の催し**（陶器市・祭り・マルシェ。見本は笠間の陶炎祭）：買うボタンは無い。中心は会場図・出店者一覧・行き方と駐車場・雨の扱い。出店者は数十〜数百件、会場図は印刷物（PDF）が正本になりやすい。
 
@@ -98,6 +98,20 @@
 - **表記**：`lang="en"` だけ・hreflang なし・JSON-LD 0・年齢の表記なし。alt の無い画像 0。解析タグは `navigator.webdriver` でないときだけ差し込む。
 - **重さ**（PC／SP、展開後・解析タグ除く）：top 6.12／6.12MB（mp4 3,131KB・入口1枚目の PNG 1,598KB）、/about 16.45／16.45MB（原寸 JPEG 12,587KB、1枚 2,820KB）、/lineup 9.43／9.34MB、/news 8.38／7.60MB（HTML 2,533KB）、/tickets 10.61／10.61MB（CM.com の JS 2,040KB・Usercentrics 972KB）。inspect.js（トップ）：FAIL 0／WARN 5。
 
+### Øyafestivalen 公式（https://www.oyafestivalen.no/ と券の店 https://shop.oyafestivalen.no/no/oyafestivalen-2027 ・ 2026-11-24 解剖、会期 2027-08-11〜14 の約8か月半前・最初の16組を発表、通し券4種を販売中。歩いたページ：/・/baerekraft・/artister・/artister/robyn-2027・/nyheter・/praktiskinfo・店）
+- **枠**：Next.js（App Router・Turbopack、CMS は Sanity）＋Tailwind v4＋framer-motion。色は変数5つだけ（地 #f6f1ee・墨 #2d2d2d・青 #21498f・橙 #ea5641・灰 #d8d4d1）、字は自前の BootzyCondensedTM（OTF 257KB）と BootzyTM（TTF 151KB）の2つだけ。券の店は Superstruct の One Stop Shop（Astro＋React、地 #244A91・Open Sans）で、本体と書体も色も別。フッターに「DESIGN OG UTVIKLING AV NOA」。
+- **最初の画面**：上端に流れる帯「OSLO, 11.–14. AUGUST 2027 ∞」（react-fast-marquee 30.8s、下端に2本目 34.8s、なぞる・押すで止まる）。ロゴ 666×128、その右に手で書いた会期の SVG 167×154（橙、aria-hidden）、券のボタン 339×80（青・Bootzy Condensed 48px・字間 4.8px・角 4px）、MENY 80×80（墨。SP は下端の真ん中に固定の橙 48×48）。その下はキービジュアルでなく、いちばん新しいお知らせの墨の札（h2 128px、リード 30px／36px・字間 3px、出演者5組の名前の2列リスト）と、破った形の写真の自動送り。動画は0本、音なし。
+- **写真の二色刷り**：出演者・お知らせの写真は img に `grayscale(1)`、上に `bg-orange mix-blend-screen` の面。なぞると面を opacity 0・写真を scale 1.25・名前を橙に、.3s（/artister・/nyheter・1組）。カード全体は `a::before{inset:0}` の1つのリンク。
+- **破った紙**：HTML の頭に `clipPath id="oya-shape-1〜4" clipPathUnits="objectBoundingBox"`（点 9〜12 の多角形）。写真の縁に地の色で塗った SVG を重ね、ちぎれた紙に見せる。手で描いた線は webp の絵（359×359・alt 空）と、framer-motion の pathLength 0→1（1.5s circOut）。
+- **自動送り**：3,000ms（実測 3,014〜3,017ms）、遷移 .4s outCubic、onMouseEnter・onFocus で止める、←→ とスワイプ（|移動×速さ| > 5,000）、点 20×20 に aria-label「Gå til bilde 2 av 5」と aria-current。
+- **reduce**：framer-motion の `duration: x * !reduce`（線 1.5s・送り .4s が 0 に）、現れる動き（y 10vh・scale .95・.75s outCubic）は reduce で y 0・scale 1 の opacity だけ、自動送りは reduce なら始めない（7秒で点が動かない）、帯は CSS の `@media (prefers-reduced-motion:reduce){.rfm-marquee{animation-play-state:paused!important}}`。なぞったときの拡大だけは止めない。
+- **出演者**：/artister は16組（名前は h2、ジャンルの札）。FINN ARTIST（152×64）で左から引き出し、見出しの横に件数「SØK ETTER ARTIST (16)」→ rob で (1) → zzzz で (0)。ジャンルの札19個にも件数。0件は白紙。Cover／Liste は aria-pressed なし・URL に残らず再読み込みで Cover に戻る。年は listbox で `?year=2026`（91組）。1組1URL `/artister/robyn-2027`（title「Robyn til Øya 2027」、h1 128px）、前後のリンクは無く ← ALLE ARTISTER。Spotify の埋め込みは loading=lazy でも読み込み4秒で約 2.6MB。
+- **世界観**：/baerekraft（持続可能性）。年表の開閉38本（Headless UI の Disclosure、aria-expanded・aria-controls、846×56 の青、開くと墨）と、数字の文（電気の排出 97% 減・食べ物 73% 減・ごみ 1人1日 340g・移動が排出の約 84%・客の 74% が公共交通・自転車・徒歩）。h1 が6つ。
+- **ニュース**：12件ずつ・18ページ、`/nyheter?page=2`（押すと先頭へ）。`<time datetime="19.11.26">`（ISO でない）。一覧の HTML 1,410KB の 96% が 209件の本文の RSC。
+- **券**：段の札4つが a（`/festival-pass`・`/oppgradering`・`/merchandise`・`/extras`）、今の段は `aria-current="step"`、下端の固定の帯に「Neste - Oppgradering」。Festivalpass は値段の段を radio で並べ、Prisnivå 1 3,499kr を disabled＋Utsolgt、Prisnivå 2 3,999kr を checked。STUDENT 3,499・U/18 2,299・BARN 200kr。各券の説明に年齢の確かめ方（U/18 は入口で、18歳なら差額）。maks 5。上に「Gjenstående tid 19:53」。BARN の説明が「Øyafestivalen 2026」のまま。ロゴ 1080×1080 PNG 917KB を 75px・alt 空。
+- **ナビ・表記**：メニューは role=dialog、Esc で閉じて Meny へ戻る（aria-controls なし）。フォーカスは 2px・offset 2px で、地に合わせて墨・青・白。会場は年齢制限なし、上の席 Høyden は 20歳（Praktisk info と券の説明）。lang nb-NO、英語は「翻訳中」1枚、JSON-LD 0件、top の h1 は見えない「Forsiden Øyafestivalen 2026」。
+- **重さ**（展開後・解析タグ除く・読み込み時）：top PC 2.79／SP 2.77MB、world 2.77／2.76、/artister 3.63／3.78（HTML 849KB は全年の出演データ 273件）、news 4.05／4.17、店 6.95／6.95（店の JS 1,558KB・PNG 917KB）。全ページで Superstruct の会員 SDK（JS 562KB＋CSS 236KB＋設定 JSON 179KB）。`tools/inspect.js` は top で FAIL 0／WARN 15（Cookie の帯込み）。
+
 ### 笠間の陶炎祭（ひまつり）公式（https://www.himatsuri.net/ ・ 2026-10-26 解剖、第45回 2026-04-29〜05-05 の約5か月半後。歩いた5ページ：/・/about/・/syutten/・/blog/・/access/ と、会場図・ハウツー・バス路線図の PDF 3本）
 - **下位の型**：入場料 1日500円（18歳以下無料）の地方の陶器市。会場は笠間芸術の森公園、来場8万人（閉幕あいさつ）。
 - **最初の画面**：黒 #000 のヘッダー 70px（SP 56px 固定）→ 写真4枚のフェード 80vh（PC 720px・SP 591px）。日付・時刻・会場はその下にロゴ画像と横並びで、PC は日付 18px が y=892px（1440×900 の折り目の下）、SP は 34px（時刻・会場 24px）が y=734px。曜日は 6px（SP 12px）の黒い札。入場料は上下 3px double の囲み。
@@ -128,6 +142,9 @@
 
 - （チケット制のフェス）出演者の絞り込み（曜日・企画・ステージ）は URL に残し、開いたときに読む。1組のページの札からも同じ絞り込みへ戻す（Le Guess Who?：`/lineup#friday`、Tomorrowland Thailand：日・1組を query に）。
 - 企画・ブランドの色は面（行の地・縁・地の面）に使い、字は黒にする（Flow Festival：黄は面だけ。Le Guess Who? は企画名を色の字にして 1.53〜2.94:1 になった反面教師）。
+
+- （チケット制のフェス）出演者の検索は、見出しの横に件数を出し、絞り込みの札にも件数を付ける（Øyafestivalen：「SØK ETTER ARTIST (16)」→ (1) → (0)、Rock (7)）。年・ページは URL に（Øya：`?year=2026`・`?page=2`。Le Guess Who? の `#friday` と同じく開いたときに読む）。0件のときは文と「条件を外す」を出す（Øya も Arknights: Endfield も白紙だった）。
+- （チケット制のフェス）券の店は、段の札を URL の違うリンクにし、今の段に `aria-current="step"`（Øyafestivalen の店：/festival-pass → /oppgradering）。値段は文字で、売り切れた段も消さずに disabled で並べる（Øya：Prisnivå 1 3,499kr Utsolgt／Prisnivå 2 3,999kr。Flow Festival の店も値段を文字で、1回の上限を券ごとに）。
 
 ## 真似る候補（見本1つ）
 - トップの最初の画面を「告知・本番中・終了後」の3状態で持ち、同じ部品の class だけを替える（The Game Awards：`home-hero--announcement／--live／--post-show`）。
@@ -166,6 +183,12 @@
 - 本体・別の企画・地元の無料の日など、同じ団体の催しを、トップで同じ大きさの入口に並べる（Le Guess Who?：472×776 の3枚）。
 - ニュースは分類ごとの横送りの行にし、行の右上に矢印（Le Guess Who?：8行・40px の丸）。ただし全件を1枚に入れない（1,698 件で 2,533KB）。
 
+- 撮った人も色もばらばらの写真を、CSS の二色刷り（img に grayscale(1)＋上に色の面を mix-blend-mode:screen）でそろえ、なぞると面を消して原色に戻す（Øyafestivalen：#ea5641、.3s、scale 1.25）。画像を作り直さないので CMS に入れるだけで済む。
+- 写真を `clipPath clipPathUnits="objectBoundingBox"` の多角形（点 9〜12、縁から 0〜5%）で切り、紙を破ったように見せる。形を4つ持って順に当てる（Øyafestivalen の oya-shape-1〜4）。
+- 動きをライブラリの1か所で reduce に結ぶ（Øyafestivalen：`duration: x * !reduce`、現れる動きは reduce で opacity だけ、自動送りは始めない、帯は CSS で paused）。
+- 世界観のページを「団体の約束の年表」にし、年ごとの項を開閉の button（aria-expanded・aria-controls）で並べ、数字は本文の文で書く（Øyafestivalen の /baerekraft：1999〜2025 の38本）。
+- 券の説明に、年齢を「いつ・どう確かめるか」と、違ったときにどうなるか（差額）まで書く（Øyafestivalen：U/18・BARN・上の席 Høyden 20歳）。
+
 ## 反面教師
 - 最初の画面の行動を「カレンダーに入れる」だけにし、配信先・券・値段をどこにも表で出さない（The Game Awards：配信先の名前0・値段0、時刻は FAQ の文の中）。
 - 背景を PNG のまま置き、poster の PNG と動画の両方を取る（The Game Awards：top PC 8,333KB＋mp4 6,296KB）。本番に不具合報告の道具（BugHerd）を残す。
@@ -193,3 +216,6 @@
 - お気に入りのハートにメールのログインを求める。時間割ではハートの button を a の中に入れる（Le Guess Who?）。
 - 値段の段を告知しながら、自分のページに値段を書かず、売り場の iframe の中だけにする（Le Guess Who? の /tickets：0件）。
 - 写真をぼかすだけで暗くせず、白い h1 を明るい写真に載せる（Le Guess Who? の1組：まわりの画素で 1.82:1 まで）。
+- 一覧のページの HTML に全件の本文・全年のデータを入れる（Øyafestivalen：/nyheter 1,410KB の 96% が 209件の本文、/artister 849KB に全年 273件）。ぼっち・ざ・ろっく！の TV ニュース（303件 1,444KB）と同じ。
+- 前年の年が残る（Øyafestivalen：top の見えない h1「… 2026」、店の BARN の説明「Øyafestivalen 2026」）。年は1か所の値から差し込む。
+- `<time datetime="19.11.26">` のように datetime を ISO で書かない（Øyafestivalen のニュース12個）。

@@ -92,8 +92,22 @@ PC 1440×900 / SP 390×844。見たページ：トップ（/now・6,812px）、�
 - **広告と同意**：広告 0、同意の窓はこの環境では出ない。計測は e.・constellation.・api.linear.app に 4件 5KB。CLS は4ページ×PC・SP で 0（width/height と aspect-ratio）。
 - **データと重さ**：JSON-LD 0、記事に meta description 無し、og:title・og:image は記事ごと。記事の転送 3,376KB・402件（static.linear.app の JS・CSS・フォント 386件 2,671KB）、下まで送ると先読みの ?_rsc= 39本が増えて 5,953KB・590件。トップは展開後 PC 22.63MB（text/x-component 13,484KB）。検索の索引 223KB（展開後 1,146KB）を全ページで。
 
+### Google Design（https://design.google/ ・2026-11-24 計測）
+PC 1440×900 / SP 390×844。見たページ：トップ（/・6,014px）、分類 Guides（/category/guides・10本＋送ると10本）、記事（/library/code-is-a-design-material・h2 3・8,503px）、長い対談（/library/the-next-interface-gemini・16,916px）、図の多い記事（/library/google-sans-flex-font・13,621px）。Google のデザインの読みもの。Next.js（pages）。選んだ理由：色を「種の1色＋調子の表」から区画ごとに作り、区画が画面の中央を越えるとページの地と字を塗り替える。事例集・受賞歴はサイトそのものについては確かめられなかった。
+- **本文**：Roboto 400 18px／29.25px を PC・SP とも。列は PC 1100px（1行 約135字）・SP 326px。段落の間 24px。区画の間（段落の塊・写真・図・見出しのどの間も）PC 120px・SP 32px。リンクは字と同じ色・下線の位置 .3em。
+- **記事の頭**：中央に題 Roboto Flex 48.33px／58px・800・font-stretch 120%・-.5px（SP 32／38.4）→ リード 16／24（SP 14.4）→ 60px → 全幅の絵 1320×743。日付・書き手・分類は頭に無い（書き手は最初の段落の斜体の紹介と最後の Contributors）。
+- **目次**：無い。h2 は中央 29.33px／35.2px（SP 20／24）で上下 120px、id 0。long2 の h2 は「直した問題」を1文で（6つとも同じ形）。
+- **部品**：写真2枚は正方形 450px を 60px あけて（全体 960px）、図1枚は本文の幅 1100px、頭の絵と動画だけ 1320px。キャプションは上 16px・中央・14px／21px・.15px に「Source:」の行（figure・figcaption は使わず div）。動画は autoplay・muted・loop・preload=metadata、画面から出ると止め（IntersectionObserver .25）、reduce の端末では止めたまま、右下に円の線の進み具合つき 33px の一時停止。GIF は /_next/image?w=1920 を通っても 22〜24MB のまま。
+- **記事の終わり**：Contributors（23.83px・下 60px、丸 64px・名前・肩書き・LinkedIn）→ Related 10本（新しい順で、記事と関係が薄いものも）。共有・次の記事・購読は無い。
+- **一覧**：題「Guides」48.33px（h2、h1 0）。カードは文 360px＋正方形 210px を1組に1行2組、題 20／28・800 → 24px → 説明 16／24 → 札。札は高さ 36px・枠 2px・角 100px・14px・左右 30px、分類の札は data-is-category。ホバーで地と字を入れ替え .25s cubic-bezier(0,.4,.2,1)。送ると 10本足す（URL・件数無し）。10本中 4本は外のサイトへ 308（印無し）。全体ナビ（右半分 720px のメニュー）に分類の入口が無い。
+- **色**：CSS に色はほぼ無い（#000 10・#fff 6）。JS の表で、テーマ4種（neutral・primary・secondary・tertiary）×明暗に「どのパレットの何番の調子」を割り当て、Material Color Utilities で種の色から9つの変数（--theme-background・surface・foreground・accent・accent-active・analogous-0〜2・bright）を作って style に入れる。neutral の明は地 99・面 95・字 5・強調 primary 40、暗は地 5・面 20・字 100・強調 primary 90。記事は #12110c／#fff（18.90:1）・面 #32302a・強調 #fae366。区画の頭の印を ScrollTrigger（"top center"）で見て、越えたら onLeave でテーマを積み、戻ったら onLeaveBack で外す（トップ：特集2で #fdfdf5／#10120e）。カードの写真にホバーすると、写真の主な色（colors.dominant）のテーマを積む。地と字は .4s cubic-bezier(0,0,.25,1)。
+- **文字**：Roboto Flex（opsz・wdth 64〜150・wght 500〜900）を見出しに font-stretch 120%・800（51回）、全画面メニューだけ 60%・600（61.67px）。本文は Roboto。大きさは 61.67・48.33・29.33・23.83・20・18・16・14px。
+- **動き**：カーソルは pointer:fine だけ 26px の白い丸・exclusion、.js-cursor-target に乗るとその要素の大きさ（札なら 111×36）に伸びる（transform .15s ease-in・大きさ .1s）。メニューは translateX .165s cubic-bezier(0,0,.2,1)・Esc で閉じる。動きは (prefers-reduced-motion:no-preference) の中に 31か所、:focus-visible 0（既定の outline）。メニューと検索の入口は div tabindex=0。
+- **広告と同意**：広告 0。同意は下の帯 PC 66px・SP 166px（19.7%）で「OK, got it」だけ。CLS は PC 0.095〜0.47・SP 0.18〜1.82（img が fill で寸法無し、送りの部品が後から高さを持つ）。
+- **データと重さ**：JSON-LD はトップの Organization だけ、記事 0。og:type は記事も website。日付は画面・HTML・JSON-LD のどこにも無い。記事の転送 2,376KB・87件（自社 1,715KB・GTM 320KB・フォント 282KB）、長い対談 90,989KB（GIF 4枚 77,390KB）。Next の Link の先読みで article PC の JSON 1,607KB（SP 219KB）。JS は全ページ 1,202KB。
+
 ## 真似る型
-見本6つ（北欧、暮らしの道具店・Quanta Magazine・YAMAP MAGAZINE・ほぼ日・Works in Progress・Linear Now）から。
+見本7つ（北欧、暮らしの道具店・Quanta Magazine・YAMAP MAGAZINE・ほぼ日・Works in Progress・Linear Now・Google Design）から。
 1. **本文は細い列に、行間 1.75〜2.0**：518px・16/28（北欧）、560px・16/30（Quanta）、728px・18/36・字間 1px（YAMAP）、490〜700px・16/32・字間 .05em（ほぼ日、PC は手で 20〜26字に改行）。段落の間は行の高さ以上（北欧 PC 32px、Quanta 30px、YAMAP 60px、ほぼ日 32px）。補足は列の外に出し、本文の幅を変えない（Quanta：右 64px あけて 300px、YAMAP：書き手は左 100px・共有は右 45px）。
 2. **色は墨と灰に、ブランドの色を1つだけ**：北欧は灰の変数 #444 が 242回で橙 #f39800 はカートだけ、Quanta は #1a1a1a・#fff と橙 #ff8600 を線と点にだけ、YAMAP は #222・#545454・#fafafa で、赤はロゴの印とストアへのリンクだけ。ブランドの色を白地の小さな文字に使わない（Quanta の橙は 2.42:1）。
 3. **運営の関わりを札と本文の外で言う**：北欧は「SPONSORED」の札、Quanta は記事の終わりの編集注記、YAMAP は記事の頭と一覧のカードの右端に「Sponsored」とタグ「PR」。札はすべてのカードに（YAMAP は関連のカードで抜けた）。
@@ -112,6 +126,13 @@ PC 1440×900 / SP 390×844。見たページ：トップ（/now・6,812px）、�
 14. **図を押すと拡大の窓、SP には縦に切り直した図**：Linear Now は図全体を button（aria-label）にし、role=dialog・aria-modal の窓でフォーカスを移し、Esc で押した図へ戻す。SP には 2352×2720 などの縦の版を別に用意する（出し分けは rules.md 36 のとおり picture か lazy で）。
 15. **文字の灰を段の変数にし、ダークとライトを対で持つ**：Linear Now は primary・secondary・tertiary・quaternary の4段を [data-theme] で対に（本文 secondary 13.64:1）。ほかの見本も墨と灰の段（北欧 #444、YAMAP #222・#545454）。一番薄い段（Linear の 3.45:1）は線・点だけにし、メタの文字は tertiary（6.13:1）までにする。
 16. **製品の更新の記録は、横の線に点、新しい1件だけ色**：Linear Now の Changelog（4件・題 15px・説明2行・最新の点だけ赤）。古い記事は1行 56px の Archive に切り替える（題と書き手・日付だけ）。
+
+17. **テーマは「種の1色＋調子の表」から作る**：Google Design は neutral の明に地 99・面 95・字 5・強調 primary 40、暗に地 5・面 20・字 100・強調 primary 90 を当て、Material Color Utilities で種から9つの変数を作る。Works in Progress の分類ごとの対（型10）、Linear Now の文字の灰4段（型15）を、手で選ばず表で作る形。調子の差を大きく取るので、種を替えても字と地は 13:1 以上（記事 18.90:1）。
+18. **区画の印が画面の中央を越えたら、ページ全体の地と字を替える。戻ったら1つ戻す**：Google Design は ScrollTrigger の "top center" で onLeave にテーマを積み、onLeaveBack で外す。.4s cubic-bezier(0,0,.25,1)。トップの特集2で #12110c → #fdfdf5。Works in Progress の上の帯（型11）が「いまどこ」を文字で言うのに対し、地の色で言う。
+19. **カードにホバーしたら、その写真の主な色でページを染める**：Google Design は写真ごとに主な色（colors.dominant）を持ち、ホバーでそのテーマを積み、離れると外す。マウスのある端末だけ。
+20. **札は2種（分類・話題）を同じピルで**：Google Design は高さ 36px・枠 2px・角 100px・14px、分類の札に data-is-category、ホバーで地と字を入れ替え .25s cubic-bezier(0,.4,.2,1)。一覧・トップ・Related のカードで同じ部品。
+21. **可変書体の幅の軸で、題とナビの声を分ける**：Google Design は Roboto Flex を題・カードの題に font-stretch 120%・800、全画面メニューに 60%・600（同じ 61.67px）。書体を増やさずに2つの役を持たせる。
+22. **区画の間を1つの値にそろえる**：Google Design は段落の塊・写真・図・見出しのどの間も PC 120px・SP 32px。YAMAP の段落の間 60px のように、本文の中の間とは別に「区画の間」を1つ決める。
 
 ## 反面教師
 - 日付を記事の最後に置く。頭では「いつの話か」が分からない（北欧、暮らしの道具店：編集部のおすすめの下に 12px）。
@@ -151,3 +172,12 @@ PC 1440×900 / SP 390×844。見たページ：トップ（/now・6,812px）、�
 - 共有で写す URL が canonical と違う（Linear Now：/blog/<slug>、canonical は /now/<slug>）。SP では共有のボタンが消える。
 - 斜体を本の題1か所のために 380KB 読む（Linear Now：InterVariable-Italic）。
 - ライトに切り替えても本文の図が暗いまま（Linear Now）。カードのメタを 3.45:1 の灰に、SP の本文を 15px に（Linear Now）。
+- 本文を 1100px・18px にして1行 約135字にする（Google Design：article・long・long2）。英語は 65〜75字、日本語は 38〜45字に。
+- 記事に日付・更新日がどこにも無い（Google Design：画面・HTML・JSON-LD とも 0）。
+- 16,916px の対談に目次も見出しの id も無い（Google Design：h2 の id 0）。
+- アニメーション GIF を画像の変換に通しても縮まない（Google Design：/_next/image?w=1920 で 24.3MB・23.7MB・22.7MB、長い対談の転送 91MB）。動画にして poster を付ける。reduce でも止まらない。
+- 一覧のカードの一部が外のサイトへ飛ぶのに印が無い（Google Design：Guides 10本中 4本が 308）。全体ナビに分類の入口が無い。
+- 一覧に h1 が無く、送ると足すだけで URL・件数が無い（Google Design：/category/guides）。
+- メニューと検索の入口を div tabindex=0 にし、:focus-visible を書かない（Google Design）。
+- Related を新しい順の 10本にし、記事と関係の薄いものが並ぶ。次の1本・共有が無い（Google Design：article）。
+- img を fill（absolute）で寸法無しにし、SP の CLS が 1.82（Google Design：long2）。

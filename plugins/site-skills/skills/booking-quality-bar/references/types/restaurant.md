@@ -1,7 +1,7 @@
 # 飲食（レストラン、カフェの席予約）
 
 ## この下位タイプで特に見ること
-時間帯の選び方、コースと席のみ、人数の上限、席を開ける時刻（毎朝◯時に◯日先）と人数で変わる空きの見せ方、1年先まで受け付ける店の営業日の暦と待ちの名簿
+時間帯の選び方、コースと席のみ、人数の上限、席を開ける時刻（毎朝◯時に◯日先）と人数で変わる空きの見せ方、1年先まで受け付ける店の営業日の暦と待ちの名簿、予約しない店の順番待ちの時刻と今日の日付の品書き
 
 ## 見本の実測
 
@@ -95,8 +95,26 @@
 - **動き**：ヘッダーが下へのスクロールで縮む（margin-top 30px→0、all .5s、scroll の検知を毎回）。メニュー .5s／.25s ease-in-out。prefers-reduced-motion 0。
 - **重さ（PC / SP 同じ）**：トップ 27.43MB（jpeg 26,248KB、原寸 4414×2970 の1枚 8,720KB を幅 416px に、img 524個で lazy 0）・年の暦 1.75MB（HTML 622KB）・予約のページ 6.78MB・部品だけ 4.49MB（Adyen 1,325KB・Stripe 1,184KB・Mercado Pago 318KB を時刻の前から）・規約 1.18MB。
 
+### Padella（https://www.padella.co/ ＋ 予約・順番待ち Dojo https://web.dojo.app/ ・2026-11-24・ロンドンの手打ちパスタ3店、予約を取らない1店と4週間先まで取る2店）
+条件：2026-11-24 01:00〜02:00 UTC（ロンドン時間も同じ）。tools/measure.js と tools/flow.js（PC 1440・SP 390、FLOW_SAVE_JSON で GraphQL の応答を保存）。人数・日・時刻・席の場所まで選び、Continue（type=submit）は flow.js が止めたので押していない。
+
+- **入口**：トップに予約のボタンは0。予約への道は、全ページで1日1回だけ出る窓「GROUP BOOKINGS」（470px、cookie hasVisitedBefore が翌0時まで）の「here」1語で、どの店のページでも Soho の予約へ。店のページは RESERVATIONS（PC y=1,216）の本文リンクと、右の箱の BOOK A TABLE 307×64（白 2px の線・地は透明、y=1,531、貼り付かない）。
+- **今日の日付の品書き**：3店のページとトップに「Tuesday 24th November」（トップ 40px／49px・店 24px、Oswald 500）。店で品と値段が違う（Pici £13.5／Soho £13、Pappardelle £16.5／Soho £15.5、パスタ 10・9・9品、パルメザンの注記が Soho だけ逆）。トップの品は Borough Market と同じ。FOOD／DRINK のタブ（22px、選んでいない側は白の 60%）。
+- **予約の欄**：1ページに縦の欄（group は店 → 人数 → 日 → 時刻）、欄 358×48（PC 400×48）、前の欄を選ぶまで次は押せない。暦は面 312×374（#003f33）・升 40×40、見出し「11 2026」、選んだ日は「28 11 2026」。開くたびに BookingCalendarAvailability（1日〜翌月1日、空いている日の並びだけ）。2名は 11/24〜30・12/1〜21、7名は 11/28（土）だけ押せない（理由の文なし）。
+- **受付の幅**：店のページ「up to 4 weeks」＝ Dojo の bookingMaximumMinutesAhead 40,320分（28日）。端の日（12/21）と、その先が受付前であることは画面に無い（過ぎた日・受付前・満席の日が同じ #196254 on #003f33＝1.66:1）。
+- **時刻**：15分ごと、bookingDuration 90 は API だけ（画面に終わりの時刻なし、displayAvailabilitySlotEndTime: true なのに）。select の言葉が「12:00 noon」「12:15 noon」「13:00 PM」。日を選んでから時刻が入るまで SP 247ms・PC 753ms。選ぶと「You are booking for 12:15 local time for Padella」14px。
+- **満席の時刻**：API は FULLY_BOOKED_PARTIES で持つが select から消す。Soho 11/28・2名：38枠中16枠（17:00〜20:45）が消え、15:30 の次が 21:00。Shoreditch 同日：34枠中11枠（17:45〜20:15）。空白の理由も順番待ちへの道も出ない。
+- **席の場所**（Shoreditch だけ allowAreaSelection）：時刻を選ぶと「Seating area」にチップ（Kitchen Counter 131×36 塗り #3ceac7／Standard Seating 140×36 線、角 8px）と説明1行 14px 500。17:30 は空いた場所が1つ（areasAvailable 1）。API の場所は6つ（Bakery・Bar Counter・Counter Seating・Covered Terrace ほか、それぞれ説明つき）。
+- **人数の上限**：Shoreditch は予約 1〜6・問い合わせ 7〜30（enabled false）で本文「7名からはメール、22名まで」と一致。Soho は予約 1〜7・問い合わせ 6〜99 で、本文「7名からはメール」と食い違う。団体は3品のセット £40pp。
+- **順番待ち**（予約を取らない Borough Market）：店先の QR 11:00／席 11:30／遠隔 11:45、夜 16:30／17:00／17:15。遠隔は店から 2km 以内、6名まで、スマホが無ければ店の人へ。Shoreditch・Soho も混んだ時だけ順番待ち。JSON-LD は Borough も acceptsReservations "True" で、ReserveAction の先は順番待ちのアプリ。
+- **予約前の不安**：取り消し・預かりの語は公式の4ページと Dojo の画面に0（API の bookingConfigurationWithMenus は slots［］・menus null）。遅れ「10分お待ちします」は Shoreditch のページだけ。Shoreditch は paymentAccountId あり・規約 URL あり、Soho は両方 null。1回目に開くと「This restaurant is not accepting online bookings currently.」（2回目から欄が出た）。
+- **営業の時間**：公式の本文・JSON-LD・Dojo の operatingTimes が5か所で食い違う（Soho 昼 15:45／Dojo 15:30、Soho 木〜土 23:00／22:30、Shoreditch 夜 22:00／21:45 ほか）。Dojo の close は最後に入れる時刻に近い値で、店ごとに意味がそろわない（Shoreditch は close 21:45 で最後の枠 21:30、Soho は close 22:30 で最後の枠 22:30）。
+- **見た目**：公式は地 #000・字 #fff の2色、Oswald（題）と Roboto Condensed 18px／25.74px（本文）、品書きは白 2px の枠。Dojo は地 #001a15・欄の線 #196254・主 #3ceac7（Continue 358×44 角 40px、字 #001a15 で 11.9:1）、Roobert（otf 75KB×2）。
+- **動き**：トップの全画面の動画 timelapse.mp4（13.6MB、autoplay・loop、止める手段なし）。窓 .25s（opacity と top）。prefers-reduced-motion 0。
+- **重さ（PC）**：トップ 1.59MB（webp 3枚 1,101KB、動画は別）・店 1.08MB・Borough 0.89MB。Dojo 7.72MB（SP 8.12MB）：JS 1本 6,395KB、全言語の文言 321KB を3回、ロゴ PNG 123KB、Font Awesome 4.7 の CSS。
+
 ## 真似る型
-見本：TableCheck・Resy・ポケットコンシェルジュ・Dishoom・Septime・Disfrutar。
+見本：TableCheck・Resy・ポケットコンシェルジュ・Dishoom・Septime・Disfrutar・Padella。
 
 1. **一覧のカードに、その日の空き時刻を4つのボタンで並べ、「+」「…」で残りへ。** 押すと日付・時刻・人数を持って予約へ進む（TableCheck 118×36・SP 71×36／Resy 101×40・SP 3つ）。時刻を指定したら、その前後の4つに入れ替える（Resy：7:00 PM で 6:15〜7:00 PM）。ポケットコンシェルジュはカードに時刻を出さず件数だけ減らす（97→53件）ので、作るときは時刻のボタンの型にする。
 2. **席の種類で在庫が分かれるなら、時刻ボタンの2行目に席の名前を書く。**（Resy：11px「Dining Room／Bar／Patio」。TableCheck は予約フォームでカテゴリーを先に、ポケットコンシェルジュは時刻の下の「座席指定」チップ 96×34 で選ぶ）
@@ -122,6 +140,12 @@
 21. **日を先に選ばせるなら、その日に残る卓の人数を言葉で書き、人数ごとに入れる日の数を一覧で言う。**（Disfrutar：12か月の空き6日は 4名か5名だけで2名は0日だが、人数の欄に 4 しか出ないことで気づくしかない。Septime の破線の輪・ポケットコンシェルジュの disabled と同じ穴）
 22. **満席の日も押せるようにし、時刻の欄のすぐ下に待ちの名簿を昼と夜で分けて置く。**（Disfrutar：Book の 57px 下に Waiting List 696×34、昼・夜の受け付けを `waiting_list_lunch／dinner` で別に持つ。ただし押せない Book が同じ見た目で残る）
 23. **コースの値段に「◯月◯日の席まで」の有効期限を添え、受付の幅がそれを越えるなら、選んだ日の値段を出す。**（Disfrutar：「Price valid until 07/08/2027」325€、受付は 2027-11-20 まで）
+
+24. **品書きに今日の日付を入れ、店ごとに中身と値段を持ち、予約の入口のそばに置く。**（Padella：3店とトップに「Tuesday 24th November」、Pici £13.5／Soho £13。ただし予約の入口とは離れている——作るときは予約のボタンのすぐ下に「今朝の品書き ◯月◯日」）
+25. **予約を取らない店（時間帯）は、並ぶ方法ごとに始まる時刻を書き分ける。**（Padella Borough Market：店先の QR 11:00・席 11:30・遠隔 11:45、夜 16:30・17:00・17:15、遠隔は 2km 以内・6名まで。作るときは予約の画面の満席の時間帯からも、この案内へつなぐ）
+26. **席の場所は、選んだ時刻の空きでチップにし、選んだ側の説明を1行出す。**（Dojo・Padella Shoreditch：131×36／140×36、17:30 は場所が1つ。作るときはチップに残りの卓の数と「この時刻はカウンターだけ」を）
+27. **大人数の道（メール・セット）と予約の人数の上限を同じ数にする。**（Padella Shoreditch：予約 1〜6・問い合わせ 7〜。Soho は予約 1〜7 で本文の「7名から」と食い違う）
+28. **知らせの窓は1日1回にし、閉じたら翌0時まで出さない。ただし予約の入口を窓の中だけに置かない。**（Padella：cookie hasVisitedBefore。トップの予約の入口は窓の「here」だけで、閉じると0）
 
 ## 反面教師
 - 数量を選んでも合計を出さない（TableCheck の予約フォーム）。人数×単価の合計（税サ込）を時刻の下に常に出す。
@@ -157,3 +181,10 @@
 - 満席 #fff / #ecaca1＝1.91:1・休み #555 / #000＝2.82:1・今日 #fff / #ccc＝1.61:1（CoverManager・Disfrutar）。
 - 取り消し（15日前・€150／名）と値段（325€）を、予約のページにも部品にも出さない（Disfrutar：規約 §3.1 とトップの #offers だけ）。
 - 時刻を選ぶ前から決済の SDK 3つ（2.8MB）を読む（CoverManager・Disfrutar）。
+- 満席の時刻を select から黙って消し、夜の空白の理由を言わない（Dojo・Padella Soho：11/28 は 15:30 の次が 21:00、16枠）。
+- 時刻を「12:15 noon」「13:00 PM」、日を「28 11 2026」、暦の見出しを「11 2026」と書く（Dojo）。
+- 過ぎた日・受付前の日・満席の日を同じ #196254 on #003f33（1.66:1）にする（Dojo）。
+- トップの予約の入口が、1日1回の窓の中の「here」1語だけで、どの店から開いても Soho の予約（Padella）。
+- 営業の時間を公式の本文・JSON-LD・予約の設定で別々に持ち、5か所で食い違う（Padella・Dojo）。
+- 取り消し・遅れ・預かりの語が予約の画面に0（Dojo・Padella。遅れの10分は Shoreditch のページだけ）。
+- 予約の画面で JS 1本 6,395KB と全言語の文言 321KB×3 を読む（Dojo）。

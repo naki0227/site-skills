@@ -60,3 +60,5 @@
 40. 手順が8を超える記事は、いまの手順を示す印を PC と SP の両方に置く。長い手順でも目次も印も無いか、PC だけのサイトが続いた（King Arthur Baking：手順17・10,852px で無し、Great British Chefs：手順18・SP 15,224px で無し、dancyu：無し、キャンプ飯：PC だけ左に縦の点・SP は display:none）。
 41. 一覧は最初の 12〜24本だけ配り、続きは URL のあるページ送りで読む。全件を1ページに書いて写真も全部読むサイトが続いた（白ごはん.com：831件・PC 52,092px・15.41MB、キャンプ飯：278本のカードと写真をトップに全部・89.48MB、「もっと見る」は隠したものを出すだけ、The Fly Blog：213本を1ページ）。
 42. アイコンの書体・ライブラリは、使うアイコンだけを SVG で持つ。ページで1つも使っていないアイコンのライブラリを全ページで読むサイトが続いた（SmartHR Tech Blog：Font Awesome 665KB・使用0、キャンプ飯：Font Awesome Pro の all.min.js 4,990KB・使用0・gzip 無し）。
+43. 本文の列は、1行が英語 65〜75字・日本語 38〜45字に収まる幅にする。広い画面に合わせて列を広げ、1行が長くなるサイトが続いた（Google Design：1100px・18px で約135字、SmartHR Tech Blog：930px・18px、DeNA Engineering：870px・17px、東洋経済オンライン：870px・18px、dancyu：1000px・15px で約66字）。守れている見本は Canary Media（584px）・Linear Now（624px）・The Markup（620px）。
+44. 記事の公開日は画面のどこかに必ず出す。日付が記事のどこにも無いか、HTML では空のサイトが続いた（Google Design：画面・HTML・JSON-LD とも 0、LINEヤフー Tech Blog：日付が HTML で空、ほぼ日：頭に無く終わりに英字の曜日つきだけ）。

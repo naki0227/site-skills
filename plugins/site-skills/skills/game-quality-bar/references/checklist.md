@@ -204,3 +204,13 @@
 - [ ] CSS・JS は版の番号で URL を替え、長いキャッシュにした。開いた時刻を URL に付けていない（ぼっち・ざ・ろっく！は `?20261123081423`、画像も no-cache）
 - [ ] 画像の content-type を image/webp などで返した（ぼっち・ざ・ろっく！は webp を application/octet-stream）
 - [ ] 人物の前後のリンクに相手の名前を書いた（ぼっち・ざ・ろっく！は端で一周するが、矢印は img alt="" で名前が空）
+
+- [ ] 写真を二色刷りにそろえるなら、画像は作り直さず CSS（img に grayscale(1)＋色の面を mix-blend-mode:screen）で。なぞる・フォーカスで原色に戻し、reduce では拡大しない（Øyafestivalen：#ea5641・.3s・scale 1.25、拡大は reduce でも止めない）
+- [ ] 動きの長さを `duration: x * !reduce` のように1か所で reduce に結び、自動送りは reduce なら始めず、hover・focus で止め、←→ で送れる（Øyafestivalen の写真の送り 3,000ms）
+- [ ] 出演者の検索・絞り込みで、件数を見出しの横と札に出し、0件のときは文と「条件を外す」を出した（Øyafestivalen は (0) で白紙）
+- [ ] Cover／Liste などの表示の切り替えは aria-pressed を付け、URL（?view=）に残した（Øyafestivalen は無く、再読み込みで戻る）
+- [ ] 一覧のページに全件の本文・全年のデータを渡していない（Øyafestivalen：/nyheter 1,410KB の 96% が本文、/artister 849KB に全年 273件）
+- [ ] 券の店の段の札をリンクにし URL と aria-current="step" を付け、売り切れた値段の段も disabled で残した（Øyafestivalen の店）
+- [ ] 年（2026→2027）を1か所の値から差し込み、見えない h1・券の説明に前年が残っていない（Øyafestivalen は2か所に「2026」）
+- [ ] time の datetime を ISO（2026-11-19）で書いた（Øyafestivalen は "19.11.26"）
+- [ ] 音楽の埋め込み（Spotify など）は押してから作る。loading="lazy" に頼らない（Øyafestivalen の1組のページは読み込み時に約 2.6MB）
