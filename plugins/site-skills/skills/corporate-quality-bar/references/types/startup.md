@@ -98,7 +98,19 @@ Astro＋Netlify。採用の募集は外の Ashby（2026-10-28 に 226件）。
 - **見た目の値**：地 #000、本文 rgb(161,164,165) 8.37:1、見出し #f0f0f0 に白→白50% の斜めのグラデーションを切り抜く、日付 #6c6c6c 4.00:1・行番号 rgb(70,74,77) 2.35:1。h2 Favorit 56px 字間 -0.05em（About・Careers 36px）、h3 20px、本文 Inter 14/22.4、リード 18/27（SP 16/24）、コード Commit Mono 12〜16px。速さ .15s／.2s cubic-bezier(.4,0,.2,1)、板 .35s、SP のメニュー .5s cubic-bezier(.36,.66,.6,1)。reduce の CSS は2つで、動画は読まないが rotate・disco が残る（走るアニメ 8 → 4）。
 - **重さ（PC/SP）**：top 13.67/9.91MB（Spline 1,968KB の JS は PC だけ）、about 7.12/7.30、email-api 8.62/8.21、careers 9.50/9.34、blog 9.33/11.77（札の先読み RSC 1,803／2,237KB）。どのページも JS 4.4〜7.6MB（89〜96本）・CSS 1,032〜1,045KB（Tailwind のビルド2つ 511＋508KB、規則 3,782 が重なる）・fp.resend.com の指紋 246KB・PostHog の録画 210KB。外のホストは3つだけ。本家のトップの inspect は FAIL 3 / WARN 18。
 
-## 真似る型（LayerX・Mistral AI・Linear・Mercury・Runway・Clay・Resend の7つで確かめた）
+### Oxide Computer Company（https://oxide.computer/ 、2026-11-25 解剖。選んだ理由：カリフォルニア州エメリービルのラック型クラウドコンピュータの会社。ブランドとサイトを Pentagram が作り〔Print Magazine の記事〕、Lapa Ninja に載る。端末の窓・ASCII の図・「FIG. 1」の札で全ページを組み、▾の板にその日の中身、採用に全員同じ給与と選考の段と FAQ 18問。受賞歴は確かめられなかった）
+見たページ：トップ・/principles（/about が 301 で来る）・/product/compute（事業の代表）・/careers・/blog（＋/careers/os-kernel・/careers/feed・/events・/press・/contact）。Remix＋Tailwind＋Radix、Vercel。
+- **ナビ（PC）**：sticky 60px、送っても隠れない。Product▾・Solutions▾・Resources▾・Company▾・Podcasts▾・Blog、右に TRY NOW と CONTACT SALES（#00d892 on #002923、8.39:1）。項目は GT America Mono 12px・字間 .64px・大文字。板は Radix Navigation Menu：地 #131519・角 4px、幅は Product 800・Solutions 680・Resources 1021・Company 822・Podcasts 768px、幅と高さを .25s cubic-bezier(0,0,.2,1)、中身は来た向きで enterFromLeft／Right、reduce は opacity .1s。ホバーと Enter で開き Esc で閉じる。板の中身がその日のもの：Resources▾ に公開の RFD 2件と FAQ Friday の最新2件（NOV 20・NOV 13）、Company▾ に次の催しの札（CONFERENCE・SC26・Chicago・Nov 15）と報道2件（媒体名つき）、Podcasts▾ に最新3回の日付。Company▾ は Events・Press・Careers・Principles の4つで「About」は無い。フッター6群。
+- **トップの順番**：h1「On-prem that feels like the public cloud」SuisseIntl 400・65px・-.025em（SP 36px）＋端末の窓（CLI・API・CONSOLE のタブでコマンドを打つ）＋「FIG. 1 OXIDE CLOUD COMPUTER」の札とラックの 3D、窓とラックを 1px の折れ線でつなぐ → 顧客ロゴ5（45s で流れる）→ 一体の基盤の2色の文と写真2 → 柱4（ASCII の絵）→ 従来と公共クラウドの比較 → 利点4（2-hour setup など）→ FIG. 2 管理画面の見本（架空の「Maze War」で NEW INSTANCE → CREATE →「Instance created」）→ ニュースレター → 使い道9 → 部品3 → 利点5 → 相談。会社の数・ニュース・採用はトップの本文に0。
+- **信頼の材料**：会社概要（設立・所在地・人数・代表）は5ページに無い。/press に会社の説明2段落と media@、素材3つ（ロゴ・ラック・UI）。/principles は Mission 1（5語の文と語ごとの説明）・Principles 3（「制約であって目標ではない」）・Values 15（「目標で、ぶつかり合う」）、PC は3列の格子・SP は15行の開閉。h1 は0。出資は Careers の最後のロゴとブログの題（$445M Series D 2026-10-09・$200M Series C 2026-02-05）。
+- **採用**：/careers に19件（題 22px・Full-time・場所）、件数・絞り込みなし。「Remote positions are open to candidates worldwide」。福利4つの1つが Compensation「Everyone at Oxide makes $275,000 USD, regardless of location」（営業は一部歩合）。Hiring Process 4段（You Apply・We Review〔EST TIME: 3-6 WEEKS〕・We Talk with You・We Huddle）を左の ASCII の図と並べ、FAQ 18問（複数応募・掲載期間・LLM で書いてよいか・人が読むか・応募の数・再応募）。ただし FAQ は「4-6 weeks is pretty normal」で段の図と食い違う。詳細の頭に SOFTWARE・REMOTE・$275,000 USD、Before applying（触る OS・読むコード・RFD・番組の回）、応募はメールで本人確認してから履歴書と Materials の PDF。欄は placeholder だけ。求人は /careers/feed の Atom（2026-11-20 更新）。採用のページだけ差し色が黄（#febb55／#c18918）。JobPosting 0。
+- **問い合わせ**：/contact 5欄（名前・仕事のメール・会社名・何で知ったか・メモ）、label に for が無く、required 0、autocomplete="off"。例の文は「Alan Turing」「Maze War」でトップの見本とつながる。
+- **ニュース**：/blog に注目4・All posts 12件ずつ（1 OF 3）・RFDs 4・FAQ Friday 6件ずつ（1 OF 12）。日付「16 NOV 2026」等幅 12px、NEW の札、分類の札 NEWS・PRODUCT・COMPANY・OPEN-SOURCE は押せない。送りは手元で URL に残らず、◀▶ に aria-label が無い。/events は30件の表と分類の選択・Show past events（最初から on、label なし）、「All events in Pacific Time Zone」。
+- **見た目**：地 oklch(16.2% .01 260)=#0b0e12、灰 15段、文字5段 #dedede 14.36:1・#bababb 10.01・#a3a4a5 7.72（本文）・#818284 5.02・#5d5e61 3.00、ASCII の図 #434547 2.01:1。書体 SuisseIntl（300/400/500、700 なし）と GT America Mono の2つ。文字の段は 65・52・50・36・25・20・18・16（本文 16／22px）・14・12・11px。13px 未満の字は PC 28%・SP 30%（inspect FAIL）、SP の見本の等幅 7.5px。
+- **動き**：既定 .15s cubic-bezier(.4,0,.2,1)、板 .25s、開閉 .3s。reduce でもロゴの帯は 180s に遅くなるだけ、カーソルの点滅 .8s と gentle-ping 2s、3D が動き続ける。
+- **重さ**：top PC 5.15MB（three.js の scene 1,026KB・cosmo.glb 879KB・draco 279KB）、SP 3.28MB（3D の3つを読まない）。ほかは principles 1.52・compute 1.60・careers 1.39・blog 1.86MB。どのページも JS 700〜1,070KB と CSS 173KB、解析 cdn.drda.io 125KB。画像は Vercel の変換で w=64&q=20 のぼかしを先に。SP の Compute は 394px にはみ出す。
+
+## 真似る型（LayerX・Mistral AI・Linear・Mercury・Runway・Clay・Resend・Oxide の8つで確かめた）
 - 会社サイトは「志・事業の地図・ニュース・連絡先」に絞り、事業は1ページ（LayerX：アンカー、Mistral：/products/ のタイル5枚・2,344px、Linear：トップの柱4本＋柱ごとのページ、Runway：トップの3製品の3列＋製品ごとのページ）で並べ、プロダクトの本体と採用の応募は外へ渡す（LayerX：別ドメインと外部ATS、Mistral：Ashby、Linear：募集の詳細は自サイト・Apply だけ Ashby、Runway：Ashby と Google フォーム）。
 - ヘッダーの右端に、目立つ形の行動を置く（LayerX：Join Us の丸いボタン、Mistral：黒の Login と Get in touch、Linear：#e5e5e6 の Sign up）。ヘッダーは隠さない（Mistral 48px、Linear 73px・blur(20px)・下線 白8%、Runway 68px・白95%＋blur(12px)、上の告知の帯 48px だけ送ると流れる）。下がり窓は、項目が8つ以下なら1列の小さな窓（LayerX 5項目、Mistral 1行 57px）、段階と1語の項目が混ざるなら1枚の板（Linear：860px に2行4つ＋1語4つ＋「New と最新の更新」の行、opacity と scale(.98→1) .16s、大きさの替わり .22s）。
 - トップは1文で始め、数字の帯を置かない（LayerX：h1 60px、Mistral：96px の1文＋最新の1件、Linear：h1 64px＋1文＋「New Loops →」、Runway：動画の上に h1 56px＋1文 16px＋ボタン1つ）。1文は h1 にし、最初から見える状態で HTML に置く（Mistral は aria-hidden の p、Linear は JS を待って 6.4〜8.2 秒見えない）。
@@ -132,6 +144,12 @@ Astro＋Netlify。採用の募集は外の Ashby（2026-10-28 に 226件）。
 - 価値観は、書いた人・アドレス・日付つきの手紙として並べる（Resend の About：4通・3人＋1人・2022年12月〜2023年5月）。
 - 製品が API や CLI なら、応募も同じ使い方で受ける（Resend：Apply via UI／CLI／API）。福利の札に適用範囲を付ける（Global 6・US-only 3）。新しく入った人をニュースの列にする（Blog「Humans behind Resend」）。
 
+- ▾の板に、その日の中身を入れる（Oxide：Resources▾ に公開の設計文書2件と FAQ Friday の最新2件の日付、Company▾ に次の催しの札と媒体名つきの報道2件、Podcasts▾ に最新3回。Linear の「New と最新の更新」の行も同じ。rules.md 46）。終わった催しは札から外す（Oxide は会期の過ぎた催しが残った）。
+- 給与を全員同じ1つの数で書けるなら、福利の欄と求人の詳細の頭の2か所に出す（Oxide：$275,000 USD・住む場所で変えない・営業の例外も同じ文に）。選考は段の図と期間の札、迷う所は FAQ で先に答える（Oxide：4段・EST TIME・18問。LLM で書いてよいか・人が読むか・再応募）。期間は1つの値から出す（Oxide は 3-6 と 4-6 で食い違った）。
+- 求人の詳細に「応募の前にしてほしいこと」（触る道具・読む文書・聴く回）と、全員同じ資料の問いを置く（Oxide）。求人を Atom のフィードで配る（Oxide /careers/feed）。
+- 製品の図に「FIG. 番号」と札・引き出し線を付け、製品の画面を動く見本にして、同じ架空の名前を問い合わせの欄の例まで通す（Oxide：FIG. 1 ラック・FIG. 2 管理画面・「Maze War」）。SP では 3D を読まず画像に（Oxide：PC 5.15MB → SP 3.28MB）。
+- 考え方は層に分け、層ごとに「それが何か」を1文で定義する（Oxide：Mission 1・Principles 3＝制約・Values 15＝ぶつかり合う目標）。
+
 ## 反面教師
 - 会社概要に規模の数字（社員数・資本金）が無く、導入社数が本文に埋もれる（LayerX）。数字は会社概要かトップに置く。
 - 見出しを1文字ずつ span に分けて動かし、読み上げで切れて見える。PC 用と SP 用の見出しを二重に置く（LayerX）。
@@ -161,3 +179,6 @@ Astro＋Netlify。採用の募集は外の Ashby（2026-10-28 に 226件）。
 - 採用がトップの本文に無く、/careers のタブに件数が無い。1つの職を地域ごとに2行にして 13行のうち12行が6職の重なり。給与は詳細の本文にだけ、JobPosting 0（Resend）。
 - Careers の「声」が6つとも顧客の会社で、社員の声が無い。規模の数（50人・15か国）が募集の詳細の本文にだけで、About に無い（Resend）。
 - 同じ Tailwind の CSS を2つのビルドで全ページに読み（511KB＋508KB、規則 3,782 が重なる）、会社・採用のページでも端末の指紋 246KB と録画 210KB を読む（Resend）。
+- 会社概要が無く /about が考え方のページへ 301、設立・所在地・人数は5ページに無く JSON-LD も 0。採用は Company▾ の3番目でトップの本文に無く、19件に件数・絞り込みなし。考え方のページに h1 が無く空の h3 が15（Oxide）。
+- 選考の期間が段の図「3-6 WEEKS」と FAQ「4-6 weeks」で2通り。問い合わせと応募の欄に label のつながりが無く、問い合わせは required 0・autocomplete="off"（Oxide）。
+- 13px 未満の字が PC 28%・SP 30%、選んでいない端末のタブ 1.63:1、reduce でもロゴの帯・カーソル・3D が動く。ブログの送りが URL に残らず、送りのボタンに名前が無い（Oxide）。

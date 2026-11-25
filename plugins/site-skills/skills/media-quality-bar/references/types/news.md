@@ -124,8 +124,27 @@ PC 1440×900 / SP 390×844。見たページ：トップ、分類の一覧（/ar
 - **動き**：ロゴの丸だけ Lottie 5.12.2（cdnjs・298KB）で6秒・loop:false。ヘッダーの高さ .15s、下線の色 .15s、コピーの吹き出し opacity .5s。自前の keyframes 0、prefers-reduced-motion 0。Alpine を unpkg の @3.x.x（版を固定しない）から。
 - **データと重さ**：記事の JSON-LD は NewsArticle の5項目（headline・url・thumbnailUrl・datePublished ISO・articleSection・creator の文字列）で author・image・dateModified 無し。og:type は記事でも website、og:image:alt はロゴの説明のまま。画像は imgix の WebP・srcset・width/height 全部あり。転送（全部込み）PC top 5,741KB／234件・list 4,186KB・article 4,690KB／181件・54ホスト（自社 545KB＝12%）・long 4,789KB・column 3,866KB。大きいのは FundraiseUp の寄付の窓（static.fundraiseup.com 821KB を全ページ）、reCAPTCHA 352KB（HubSpot の購読フォーム）、Flourish 272KB、広告の PNG。measure.js（展開後）は reCAPTCHA をフォームの数だけ数えて top 17.20MB・article 16.02MB。
 
+### nippon.com（https://www.nippon.com/ja/ ・2026-11-25 計測）
+PC 1440×900 / SP 390×844。見たページ：トップ、分類の一覧（/ja/data）、ふつうの記事（/ja/articles/-/56882・PC 10,542px）、データ記事（/ja/articles/-/56427・表1・グラフの PNG 2）、対談（/ja/articles/-/57508）。選んだ理由：公益財団法人ニッポンドットコムが8つの言語で出すニュースと読みもので、言語ごとの文字の組みとアラビア語の右から左の組みを1つの CSS で書き分けている（2026-10-28 に全面リニューアル）。事例集・受賞歴は確かめられなかった。
+- **多言語の組み**：shared.css の先頭で言語の属性ごとに1行ずつ。ja：Zen Kaku Gothic New・body 16/28・記事 17/30・palt。en・es・fr：Noto Sans・body 14/24。zh-Hans：Noto Sans SC・17/32・palt を切り、見出しの 700 を 500 に、h2 の行 40。zh-Hant：Noto Sans TC・題 32px。ar：Noto Kufi Arabic 18/38・斜体を全部 normal。ru：IBM Plex Sans 16/26。部品ごとに書いた書体を `html[lang=ja] [class]{font-family:…}` で言語ごとに上書きする。
+- **右から左への備え**：inset-inline 20・margin／padding-inline 47・border-start-start-radius などの論理の角、[dir=rtl] は矢印の scaleX(-1) など 34、left: の直書き 7。
+- **言語の窓**：記事の右端の縦の帯（30×148・Share／Languages）から 460×139 の窓（角 10px・地 #0006）。8言語を「|」で並べ、その記事がある言語だけリンク、無い言語は span の silver（#c0c0c0・1.82:1）。記事の head に hreflang は無い（トップだけ8つ）。
+- **本文**：列 PC 619px（1行 約36字）・SP 354px（左右 18px・約20字）。17px／30px・#000・段落の間 24px（SP 20px）・字下げ無し。h2 24px／32px 700 字間 -0.24px・上 48 下 24（SP 20px・上 40 下 20）、h3 18px／25.2px。リンクは字の色のまま下線だけ。
+- **記事の頭**：PC は左 508px に 分類の札（#0095d9 に白 14px 700・3.33:1）→ 題 36px／44px 700 -0.36px → 分類の行（12px 700 #0095d9 を「|」で5つ）→「筆者： 名前 ＋ 公開日: 2026. 11. 13」14px 斜体 #888787、右に写真 544×306。SP は題 24px／28px（1.17）。リードは本文の列の最初に #f0efef・内 20px・16px／28px の箱。更新日は画面に無い（JSON-LD は dateModified あり）。
+- **部品**：写真は列いっぱい 619px・下 36px、キャプション 14px／22px #000 の右に 18×18 の印。写真もキャプションの印も /ja/articles/photo/56882?pn=2 の写真ごとのページへ。グラフは PNG（400m／800m）を 500px の箱に。表は div.scroll（overflow-x:auto）に th #efeeee・1列目 #f8f8f8・罫 1px #ebebeb・内 10px 12px・16px／24px・数を右寄せ（tabular-nums 無し）。
+- **目次**：無い。右の列（254px・static）は人気記事ランキング5本で、記事 10,542px のうち上の約 900px しか埋まらない。
+- **記事の終わり**：罫 → タグ（12px #0095d9・枠 1px #dcdbdb）＋印刷 35×35 → 特集・シリーズ → 関連記事（4列 254px・写真 16:9）→ あなたへのおすすめ（cxense）。次の1本・筆者の紹介（頭の「＋」の窓だけ）・購読の誘いは無い。
+- **一覧**：h1 英字「JAPAN DATA」→ 3列 250px で 18本（題 16px／20px 700、メタ 12px 600 斜体 #888787）＋ランキング5 → ?page=2…158 の a と rel="next"（36×36・角 8px）。SP は写真 120px を右に置いた行。
+- **トップ**：話題の帯（日本語教育｜ジブリ｜紅葉）→ 新着（544×306 の大1・題 24px・リード4行）＋ランキング → 分類ごとの区画8つ（区画の見出しは上 2px #192f60＋青い札 14px 700）→ 特集 → おすすめ → PHOTOS（紺の地）→ VIDEO → 全記事ランキング。高さ PC 9,689px。
+- **ヘッダー**：上の帯 30px #192f60（13px）＋本体 60px #0095d9（SP 52px）。下へ送ると隠れ、上へ戻すと出る：rAF で間引き、差 6px 未満は無視、ヘッダーの高さより下で .is-hidden（transform .3s ease）。メニューを開いている間・ページ内リンクの後 400ms・注へ送る 1500ms・ヘッダーにフォーカスがある間は隠さない。高さは ResizeObserver で --gnb-h に書き scroll-padding-top に。reduced-motion で transition:none。
+- **広告と同意**：本文中の広告枠は 0。DataSign の同意の窓が PC 左下 360×366（面積 10%）・SP 351×366（高さ 43%）で、「個人情報を販売または共有しない」「閉じる」を同じ 322×40 で。SP は下に ShareThis の共有の帯 390×48 も固定。窓の部品 external_services.json 788KB（展開後）を全ページで。
+- **色**：#000（89回）・#0095d9（59）・#fff（42）・#d2d2d2（28）・#f0efef（22）・#192f60（20）・#888787（18）。小さな字の #888787 3.58:1・#0095d9 3.33:1・#0095d9／#f0efef 2.90:1。ダークモード無し。
+- **文字**：Zen Kaku Gothic New 400／500／700（Google Fonts）で、記事1本 woff2 91本・923KB。日付・メタ・筆者・順位の数字を font-style:italic にして、和文が機械的に傾く。
+- **動き**：a・button に color／background-color／opacity .2s ease を @media (hover:hover) の中で（31ブロック）、写真は opacity .7。上へ戻るは smooth で reduced-motion を見ない。:focus-visible 0。
+- **データと重さ**：NewsArticle（datePublished・dateModified・author Person＋url・image 1200wm）・BreadcrumbList（2つ目の item が記事自身の URL）・WebSite。重さ（解析を除く）PC top 7.20MB / list 2.54MB / article 5.64MB / long 9.90MB / essay 13.85MB（SP 6.47 / 2.54 / 5.25 / 15.63 / 12.68MB）。全部込みの記事 PC は転送 4,939KB・193件・24ホスト。long の SP は、JS で入れるおすすめのカード 120×68 に元の大きさの JPEG（URL の /-/）6,064KB など8枚で JPEG 12,951KB。本文の写真は 619m／1238m の srcset・width／height・lazy で正しい。
+
 ## 真似る型
-ProPublica・The Markup・Grist・The 19th・Canary Media（米国の非営利の報道）と Tansa（日本の非営利の探査報道）、東洋経済オンライン（日本の出版社の経済ニュース・広告あり）から。
+ProPublica・The Markup・Grist・The 19th・Canary Media（米国の非営利の報道）と Tansa（日本の非営利の探査報道）、東洋経済オンライン（日本の出版社の経済ニュース・広告あり）、nippon.com（日本の財団の8言語のニュース）から。
 1. **本文は 600〜754px・18〜22px・行間 1.6〜1.7・段落の間を取り、SP で縮めすぎない**。字下げ無し。SP は The Markup が 18px、Grist が 22px のまま、ProPublica は 16px。段落の間は 18〜32px（Grist は上 18px＝行間の半分）。
 2. **色は役割の少ない組で持つ**：本文・題の濃い色、リード・日時の灰1段、罫の灰1段、アクセント1色。ProPublica は灰6段＋青＋赤、The Markup は紺・灰・桃の3つ、Grist は文字と罫を #3c3830 の1色にして面（ライム・ラベンダー・桃）だけを替える。アクセントを文字の地に使うなら 4.5:1 まで濃くする（3サイトとも Donate が 3.3〜3.6:1）。
 3. **記事の頭は 分類 → 題 → リード → 書き手 → 日時（タイムゾーンか時刻まで）**。Tansa は「2026年10月23日 17時26分」と日本語で時分まで。日時は「October 5, 2026, 5:00 am」（ProPublica）「8:00 a.m. UTC」（The Markup）のように時刻まで書く。Grist は日付・分類・共有を本文の左 300px の `dl` にまとめる。更新日は3サイトとも画面に無いので、足す。
@@ -151,6 +170,11 @@ ProPublica・The Markup・Grist・The 19th・Canary Media（米国の非営利�
 23. **型の段を名前で持ち、幅の区切りごとの値を並べる**（Canary Media：type-alpha 32/44/55・beta 28/38/44・gamma 16/18/22・theta 13 を 640px と 1280px で）。
 24. **SP で送ったらヘッダーを題1行に縮め、下に線を引く**（Canary Media：108 → 41px・ロゴの丸 16px＋題を省略で1行・2px の黄の線）。線は本文の箱で割り transform で動かす（本家は文書全体・width）。
 25. **週1の図の連載をトップに「図の大きな組＋図つきの4本」で置く**（Canary Media の Chart of the week：図 592px＋題 44px、4本は題 16px と 80×46 の絵）。
+
+26. **多言語なら、言語の属性ごとに本文の書体・大きさ・行の高さ・字間・約物の詰めを1行ずつ書く**（nippon.com：ja 17/30・palt、zh-Hans 17/32・palt を切り見出し 500、ar 18/38、en body 14/24）。左右は論理プロパティで書き、矢印だけ [dir=rtl] で裏返す（論理 67か所・[dir=rtl] 34）。
+27. **記事の言語の窓は、ある言語をリンク、無い言語を押せない字で並べる**（nippon.com：8言語・460×139）。無い言語の字も 4.5:1 に（本家の silver は 1.82:1）。訳のある言語は head の hreflang にも出す（本家は記事に 0）。
+28. **ヘッダーは下へ送ると隠し、上へ戻すと出す**（nippon.com：rAF・差 6px 未満は無視・transform .3s ease・メニューを開いている間とヘッダーにフォーカスがある間は隠さない・高さを ResizeObserver で --gnb-h に書き scroll-padding-top に）。
+29. **写真ごとに URL のある写真のページを持つ**（nippon.com：キャプションの右の 18×18 の印から /articles/photo/56882?pn=2）。
 
 ## 反面教師
 - 編集用 JS（block-editor・editor・components で 2.8MB）を訪問者に配り、1ページ 10〜13MB になる（ProPublica）。
@@ -201,3 +225,9 @@ ProPublica・The Markup・Grist・The 19th・Canary Media（米国の非営利�
 - NewsArticle に author・image・dateModified が無く、og:type が website、og:image:alt がロゴの説明のまま（Canary Media）。
 - 1枚だけの写真を点も矢印も無い Flickity のスライダーに入れる（Canary Media の long：498px ×3）。
 - Alpine を unpkg の @3.x.x から版を固定せずに読む（Canary Media：3本）。
+- JS で入れるおすすめ・関連のカードに、元の大きさの画像を入れる（nippon.com：long の SP で 120×68 に 6,064KB、8枚で 12MB。本文の写真は正しく縮めている）。
+- 和文のメタ・筆者・順位を font-style:italic にして、斜体の無い書体を機械的に傾ける（nippon.com：12px 600・14px）。
+- 同意の窓が SP の高さの 43% を覆い、下の共有の帯 48px と同時に出る（nippon.com：DataSign 351×366・ShareThis）。
+- 記事の言語の窓で無い言語を silver 1.82:1 にし、記事に hreflang を出さない（nippon.com）。
+- 右の列をランキング5本で終わらせ、長い記事の右側 約 7,000px を空ける（nippon.com：position:static・目次無し）。
+- パンくずの JSON-LD の2つ目の item を記事自身の URL にする（nippon.com：name は分類「JAPAN LIFE」）。

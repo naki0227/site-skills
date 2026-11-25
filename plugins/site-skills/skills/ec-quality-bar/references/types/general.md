@@ -114,8 +114,22 @@
 - **見た目**：地は白、線と字は黒、テーマの色は clay #f8f4ed／#f6eae3 と頭の帯 #635c38（Longleaf の釉薬の色）だけで、色は品と釉薬に任せる。書体は Galano Classic（文・題 58px 600）・Quincy CF（品の名前と値段）・Toma（手書きの大文字のボタン）。ロゴは scroll のたびに scrollY を見て 400〜2200px で1字ずつ器の絵に替わる（reduced motion を見ない）。
 - **重さ**：PC で top 14.30MB・list 17.04MB・item 12.14MB・cart 13.97MB・guide 10.98MB（解析タグを除く）。どのページも JS 9.3〜9.7MB、うち購入手続きの先読み checkout-web 1,661KB（85本・2,637KB）、Swym（欲しいもの）の JS 375KB を3回（2つの置き場から）、Shopify Forms 745KB、Contentsquare 583KB。写真は webp と JPEG XL、一覧の img は全部 lazy。タグ込みで詳細 18.39MB（Google タグ 4,016KB）。
 
+### Heath Ceramics（https://www.heathceramics.com/ ・2026-11-25 計測・器とタイルと台所の道具・米国カリフォルニア州サウサリート・Shopify の自前のテーマ（t/199、Web Components）・USD）
+- **位置づけ**：1948年からの窯の直営。同じ形の器（Dinner Plate・Cereal Bowl など）を 4〜15 の釉薬で売り、釉薬を「Limited Edition」と「Core」の2段に分ける。ほかの作り手の道具（Weck の蓋・木のトング・Heath Flatware）も同じ店で売る。products.json は1,498品、色の選択肢を持つ品は少なく（2つ以上は95品）、釉薬ごとに別の商品にして見本でつなぐ。
+- **一覧**（/collections/all-dinnerware、57品）：PC 3列（カード 354px・列の間 135px・行の間 54px）、SP 2列（174.5px・9px）。写真 354×356 の下に 1px #d1ccc6 の線（指を乗せると #52483d へ border-color .15s）。名前 BentonSans-Bold 14px → 値段 14px（釉薬で違っても1つ、Dinner Plate は「$58」）→ 線の名前 13px #9a8d81 → 18px の丸を6つと「+ 6 more」。**自分の窯の品にだけ写真の左に縦の「MADE BY HEATH」**（SVG 7×109・#b8b1aa・PC のみ。/cart のおすすめ12品では器3つだけに付き、Weck・木のトング・Heath Flatware には無い）。件数「57 PRODUCTS」10px 字間 0.8px。1・2・3 のページ送り。6・12枚ごとに 1333×600 の読みもの。上に種類の横送り（Bowls 17・Plates 21 と小さな数）。品切れの品は値段の場所に「Sold out」、名前に釉薬（「Coupe Dinner Bowl in Turmeric」）。
+- **絞り込み**：「Filter ＋」152×38 で右から 700×880 の白い面（SP 全画面）、.25s ease-in-out。群は LINES 7・AVAILABILITY 2・PRICE（$0〜$618）・COLOR FAMILY 12（30px の丸だけ）。**チェックした瞬間に、面は開いたまま裏の一覧が替わる**（Out of stock で 57 → 17、PC 680ms・SP 601ms・読み直さない）。SP の「Apply Filters」は押す前に替わっている。上に条件の札と Clear All。**件数が品の数と合わない**（57品で In stock 276、White 71 products）。URL に sort_by=manual が付く（robots.txt が禁止する形）。並べ替え9つ、初期値 Featured。
+- **詳細のファーストビュー**（/products/dinner-plate-1）：PC は左に写真 637×637（2枚を縦に積む）、右の列は sticky。Coupe Line（Schoolbook 18px 下線）→ h1 Schoolbook 36px（SP 24px）→ 値段 14px 太 → 3行の説明 → Color（Limited 3・Core 9、30px の丸を 43px ごと）と右に説明の面 327×216 #eae4dd → 数 118×48 と「Add to cart — $185」538×48（y=749、#52483d に #f7f0ea 7.91:1）→ SAFE SHIPPING・30 DAY RETURNS（y=912）。SP のボタンは y=1,062、下に固定の帯（数＋ボタン 114×48）。
+- **釉薬の見本**：見本は a 要素で href は釉薬ごとの別の商品。**指を乗せると右の面が「その釉薬の名前・SKU・説明1〜2文・作る期間の1文」に替わり、離すと戻る**（値段・ボタンは替えない）。押すと 107〜201ms（SP 565〜622ms）で値段・ボタンの文言・写真・URL（pushState）・title を替え、読み直さない（最初の1回 +1,311KB）。期間の1文は釉薬ごとに違う（Indigo は「2026 Annual Edition のために作った」、Lunar Mist は「2027 Annual Edition で期間限定」、Skogmoss は「冬のコレクションで期間限定」、Core は「available year round」）。Limited の段の i は「These pieces are here for a limited time.」。SP は面が無く、名前の横の i で同じ説明。
+- **値段**：Dinner Plate は Indigo $185・Lunar Mist $130・Skogmoss $119・Core 9つ $58。一覧のカードは $58 だけ、**/products/dinner-plate-1 を開くと variants の先頭の Indigo（$185・Limited）が選ばれる**。ボタンの文言に金額（「Add to cart — $58」）。
+- **品切れ**：見本は opacity .5 と ×（押せる）。購入のボタンは「Sold Out」disabled #b8b1aa に #f7f0ea（1.88:1）。**SP の固定の帯のボタンは品切れでも #26211b の暗い地のまま**。入荷通知・次に焼く時期は無く、面は「available year round」のまま。
+- **カートに入れる**：type=submit（flow.js が止まるので押していない）。cart.js は入れた後に右から 466px の引き出しを開く（SP は全幅）。カートの印で開いた空の引き出しは 159ms で動き出し 296ms で止まる、幕 rgba(0,0,0,.7) opacity .25s、Esc と幕で閉じる。空は「Your shopping cart is empty」だけ。数の変更は /cart/change で引き出し・カート・頭の数を差し替え、読み上げの領域あり。/cart は「My Cart (0)」とおすすめ12品。送料の行・送料無料の語は無い。
+- **買う前の不安**：詳細の SAFE SHIPPING・30 DAY RETURNS から案内の該当の問いへ1手。**送料の金額はどこにも無く**「calculated at checkout」（UPS Ground、重さと届け先）。発送は 3-5 business days。**年末の締め切りを祝日ごとに3地域（East・West・California）と店の受け取り3店の日付で表に**（Christmas：East 12/11・West 12/15・California 12/18、Sausalito の受け取り 12/21）。ギフトの包装はしない理由を書く（三角の紙の詰め物 ExpandOS と包み紙が合わない）。割れは届いて5日以内に写真で。返品は30日、$200 を超える現金の返金は郵送の小切手。
+- **データ**：JSON-LD は5ページとも0。パンくずは文字だけ（BentonSans-Bold 12px #d1ccc6、1.41:1）。詳細の写真の alt は表と裏で同じ。見本に aria-label「View Dinner Plate in Sand」と aria-current。
+- **見た目**：地 #f7f0ea、頭の帯と h1 #26211b、本文と PC のボタン #52483d、注記 #9a8d81（2.86:1）、面 #eae4dd、線 #d1ccc6。角丸・影なし。書体は自前の woff2 6本 85KB（Schoolbook-Regular・BentonSans の4太さ・Grotesque MT Bold Extended）。動きは background-color .3s・border-color .15s ease-in-out・重ね .25s ease-in-out、cubic-bezier(.72,.16,.345,.875) が23回。prefers-reduced-motion 7か所。
+- **重さ**：PC で top 21.30MB・list 16.95MB・item 16.47MB・cart 14.69MB・guide 14.84MB（SP 13.45〜16.05MB）。どのページも JS 10.6〜11.2MB、うち Freshchat（チャット）約3.8MB・UserWay（読み上げ補助）1.3MB・購入手続きの先読み 1.7MB・OneTrust 0.8MB。HTML は 0.8〜2.1MB（style 17本・約320KB を埋める）。詳細の画像は SP で 199KB。
+
 ## 真似る型
-（見本7つ：中川政七商店・Iittala・Ferm Living は色ごとに別の商品（Ferm Living は大きさまで別）、KINTO は色を1つの商品の選択肢にしている。ほぼ日手帳はカバーと本体を組で売る。Snow Peak は器は色ごとに別の商品、服は色×サイズを1つの商品にして窓の行で選ばせる。East Fork は釉薬の色×組（4・8個）を1つの商品にし、単品は別の商品）
+（見本8つ：中川政七商店・Iittala・Ferm Living は色ごとに別の商品（Ferm Living は大きさまで別）、KINTO は色を1つの商品の選択肢にしている。ほぼ日手帳はカバーと本体を組で売る。Snow Peak は器は色ごとに別の商品、服は色×サイズを1つの商品にして窓の行で選ばせる。East Fork は釉薬の色×組（4・8個）を1つの商品にし、単品は別の商品。Heath Ceramics は釉薬ごとに別の商品にして見本でつなぎ、釉薬の系統（Limited・Core）で値段が違う）
 1. **色や柄の違いは、一覧では色ごとに1枚のカードにする**。名前に色の名前まで入れる（中川：ふきん94点、Iittala：「Vase 160mm clear」と「Vase 160 mm Finnish sand」を別のカード）。カードからそのまま入れられるようにする（中川：222×40 の「カートに入れる」、Iittala：ホバーで出る袋の印 20×40、SP は常に）。
 2. **詳細では、同じ形のほかの色に、写真か色の行で1手で届かせる**。色が10未満なら 40×40 の写真の見本を並べ、選んだ色に下線（Iittala）。色ごとに在庫とボタンを持たせたいなら、色ごとの行 356×118 にボタンを置く（中川）。どちらも、押してもページを読み直さずに写真・在庫・URL を替える（両店とも読み直す＝直す）。
 3. **品切れの色も消さない**。見本は薄く（Iittala：opacity .4）、行なら「在庫がありません」と書き（中川）、ボタンの場所を同じ幅の次の行動に替える（Iittala：灰 #ececec の「Notify me」344×51、中川：「店舗在庫を確認」356×48 から店ごとの在庫）。入荷の時期は両店とも書かないので、作るときは書く（Ferm Living は品切れの詳細で届く日の行を「Expected stock date: 27/11/2026」に替える。ただし見本は在庫ありと同じ見た目＝直す）。
@@ -144,6 +158,12 @@
 22. **組（4・8個）の打ち消し線は「単品 × 数」、札の率は実際の率**（East Fork：$158／$176・10.2%「Save 10%」、$299／$352・15.1%「Save 15%」。ドロワーの行にも元値）。単品を別の商品にするなら、組の札から移ったときにパンくずと見出しを単品にする（East Fork はパンくずが古い）。
 23. **一覧のカードに色の丸を7つ（SP 5つ）と「+残りの数」、押すとカードの写真だけ替える**（East Fork：0.31秒・移らない）。色で絞ったらカードの写真もその色に。カードの＋は、PC はカードの中・SP は全画面で色と組を選ばせる。
 24. **絞り込みは選んだ瞬間に反映し、URL に残し、残りの品に無い値は消すか押せなくする**（East Fork：0.81秒・Collections 6→2）。色の札には色の名前も出す（East Fork は丸だけ＝直す）。
+
+25. **釉薬（色）の見本を系統で2段に分け、段の名前の横に i を付けて系統の意味を1文で言う**（Heath Ceramics：Limited Edition 3・Core 9、「These pieces are here for a limited time.」）。系統で値段が違う品（$119〜$185 と $58）では、高い理由が段の名前で伝わる。
+26. **見本に指を乗せたら、横の面にその色の名前・品番・説明・作る期間を出し、離したら選んでいる色に戻す。値段とボタンは押すまで替えない**（Heath Ceramics：面 327×216、作る期間の1文は「通年」「2026年の限定版」「冬の期間限定」と色ごと）。SP は名前の横の i で同じ説明を開く。
+27. **自分で作った品と仕入れの品を同じ一覧に並べるなら、自分の品にだけ同じ場所に同じ印を付ける**（Heath Ceramics：写真の左に縦の MADE BY HEATH、SVG 7×109。Weck の蓋・木のトングには無い）。印の字は本家（#b8b1aa・1.88:1）より濃く。
+28. **年末の締め切りを、祝日ごとに地域と受け取り方の日付の表で出す**（Heath Ceramics：Christmas の East 12/11・West 12/15・California 12/18、店の受け取り 12/21）。作るときは、詳細とカートから1手で、届け先を選ぶと日付が出る形に。
+29. **見本を押したら、ボタンの文言に今の金額を入れて言い直す**（Heath Ceramics：「Add to cart — $185」→「— $58」、107〜201ms）。SP の固定の帯も同じ文言と状態にそろえる（Heath は品切れで帯だけ暗いまま＝直す）。
 
 ## 反面教師
 - 色の見本を押すとページごと読み直す（Iittala：3.51秒・2,868KB）。見本の上の名前を系統名にして品の色とずらす（calluna を「Red」）。
@@ -187,3 +207,8 @@
 - 「この組に無い」色の見本を押すと、断りなく単品の別ページへ移り、パンくずが組の名前のまま残る（East Fork）。
 - 在庫数を HTML に持つのに、残り3でも何も言わない。絞り込みの色の札が丸と × だけ。一覧の件数が 80 と 83 の2通り（East Fork）。
 - 同じ「欲しいもの」の JS（Swym 375KB）を2つの置き場から3回、購入手続きの先読み 85本・2.64MB を全ページで読む。ロゴの切り替えを scroll のたびに計算し、reduced motion でも替える（East Fork）。
+- 一覧のカードは $58 だけなのに、詳細を開くと variants の先頭の $185（限定の Indigo Landscape）が選ばれ、URL もその商品に替わる（Heath Ceramics）。
+- 品切れの釉薬は「Sold Out」disabled（#b8b1aa に #f7f0ea 1.88:1）で入荷通知も次に焼く時期も無く、説明の面は「available year round」のまま。SP の固定の帯のボタンだけ品切れでも暗い地（Heath Ceramics）。
+- 絞り込みの件数が品の数と合わない（57品の一覧で In stock 276・White 71 products）。押すと URL に robots.txt が禁止する sort_by=manual が付く（Heath Ceramics）。
+- 送料の金額がどこにも無く「calculated at checkout」。JSON-LD が5ページとも0、パンくず 12px #d1ccc6（1.41:1）、写真の alt が表と裏で同じ（Heath Ceramics）。
+- チャット（Freshchat 約3.8MB）・読み上げ補助（UserWay 1.3MB）・購入手続きの先読み（1.7MB）を全ページで、HTML に CSS 約320KB を埋める（Heath Ceramics）。
