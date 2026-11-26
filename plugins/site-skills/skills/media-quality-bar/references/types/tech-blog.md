@@ -108,8 +108,24 @@ PC 1440×900 / SP 390×844、ja。見たページ：トップ（/blog/・14本×
 - **広告と同意**：広告0・同意の窓なし。計測は gtag 2本（295KB）、記事だけ X・Facebook・はてなの部品（254KB）。CLS article PC 0.0196、long 0.0235。
 - **データと重さ**：JSON-LD 0（4ページ）。og:image が 404（古い子テーマの道）、twitter:image は記事の絵。重さ PC top 5.89MB / list 5.69MB / article 2.02MB（全部込み 1,623KB・64件・14ホスト）/ long 8.91MB（SP 6.43MB）。全記事で MathJax 2.7.9・highlight.js 193KB、アイコンフォントは FontAwesome 4.4.0 と 4.7.0・ionicons の3つ。
 
+### Josh W. Comeau（https://www.joshwcomeau.com/ ・2026-11-26 計測）
+PC 1440×900 / SP 390×844、lang="en"、Next.js（App Router）。見たページ：トップ、分類 CSS（/css/・31本を1ページ）、ふつうの記事（/css/header-blockers/・h2 4・動画6・ライブエディタ2・高さ 10,681px）、長い記事（/css/interactive-guide-to-flexbox/・h2 10・h3 6・img 30・コード7・注記9・対話の部品24・高さ 37,293px／SP 45,986px）、分類 General（/blog/）。個人の技術ブログ。選んだ理由：本文の中で押して試す図・CSS だけのヘッダーの遮り・音の出るボタン・約70個の色の変数のダークモード。事例集・受賞歴は確かめられなかった。
+- **組み**：article に grid 162.5｜686｜350｜162.5px（左右 32px）、SP 0｜358｜0。記事の頭は html の地 #c5eafc の空に題、雲の SVG で白の本文へ。
+- **本文**：Wotfard 18px／27px（1.5）・#0a0c10（19.57:1）・段落の下 22.5px。1行 英語約70字。SP も 18px のまま。h2 32px／48px・700・#2c0b8e（13.59:1）・上 48 下 32。h3 24px／36px・#262d40。
+- **リンク**：文字は本文の色・500・text-decoration なし。`box-shadow:0 1.5px 0 #4242fa`（primary・6.19:1）を下線に、ホバーで .2s で消す。box-decoration-break:clone。em は斜体にせず手書きの Sriracha。行内のコードは 0.9375em・地 #e8f1fc・角 3px。
+- **記事の頭**：題 36px／54px・500（PC=SP）→「Filed under CSS on March 23rd, 2026. Last updated on May 5th, 2026.」16px、ラベルだけ斜体 #5a6072（空で 4.94:1）。SP は2行で「Mar 2026」と日を落とす。書き手・写真・リード・読む時間なし。`<time>` 0。
+- **目次**：右 250px・sticky top 160px。題「Table of Contents」16px 大文字・字間 2px、h2 の項目 16px／24px・上 12px、h3 の項目 14px／21px・左 12px・上 4px。いまの節は style に color:var(--color-primary)（aria-current なし）。下に「いいね」のハート 48×40 と数。SP では幅 0 で消える。見出しは h2 id＝"the-core-concept"・中の a に "-1" つきの id、scroll-margin-top 112px、「#」の SVG を opacity .4s 遅れ .25s で出す。
+- **ヘッダーの遮り**：ヘッダーは透明のまま、入れ物ごとに sticky top 0・z 2 の板（空の頭は #c5eafc の 92.5%→100% のグラデーション、本文は白）。板は入れ物の終わりで一緒に抜ける。JS なし。
+- **部品**：コードは Shiki（--shiki-light／--shiki-dark を span ごと）・地 #e8f1fc・角 6px・左右 −32px で 750px・16px／25.6px。コピー 44×44 は sticky top 88px で付いてくるが opacity:0、箱のホバーか :focus-visible で 1（消えるのは 1秒後）。色 #DA0079 4.33:1・#AA00FF 4.43:1。注記は info #e8f1fc・warning #fbf4d0・success #ecf8f4、左右 −32px・内 24 32 24 29・左上を地の色の SVG で抜いた切り欠き、題 18px 600・本文 16px／24px。ライブエディタは Sandpack（article）と iframe lazy の4つ（long）。
+- **記事の終わり**：「Last updated on」（h3・等幅 13px 斜体 #6c7693）と「# of hits」の7セグの数だけ。関連・次・前・書き手の紹介・共有は 0。足は雲の地にニュースレター（罠の checkbox つき）と日替わりのあいさつ。下まで送ると fixed 328×192 のマスコットの窓がニュースレターを勧める。
+- **一覧**：地 #ebf4fa、h1 38px と「31 Articles」、白いカード 31（PC 2列 534px・SP 1列 343px・角 8px・内 25 32 27）。題は見出しでなく a 22px／33px・600、副題 17px #5a6072、抜粋 16px。Read more（tabindex -1・隠した「: 題」）の中の div でカード全体を押せる。写真・日付・ページ送り・`<main>` なし。トップは12本＋Show more（URL 変わらず、PC +576KB・SP +1,710KB）。
+- **広告と同意**：他社の広告・同意の窓 0。解析は Fathom 4KB。セールの帯 44px #ffdf80（sticky・閉じられる）。CLS PC 0〜0.0021、SP 0。
+- **データ**：JSON-LD 0（5ページ）、記事も og:type website、og:image 1280×675。RSS あり。ダークは html の data-color-mode と style の約70個の変数、cookie「saved-color-theme」でサーバーが書く。入れ替え 350ms cubic-bezier(.41,.1,.13,1)。地 #0d0f12・本文 15.31:1。最初から音あり（mp3 11種 268KB を押す前に読む）。
+- **動き**：keyframes 76、reduced-motion no-preference 27・reduce 26。:hover 61 に (hover:hover) 8。:focus-visible 42。Wotfard-fallback に size-adjust 90%・ascent 93%・descent 18%、font-display:fallback。
+- **重さ**：measure.js 展開後 PC top 5.27／list 6.07／article 24.48／long 12.57／all 3.00MB。転送（下まで）top 1,426KB・list 1,532KB・article 9,892KB（mp4 6本 7,077KB＝72%・autoplay・width/height なし）・long 2,326KB（unpkg の @babel/standalone 545KB）。トップと一覧は見えたリンクの ?_rsc= を先読み（トップを 2,200px 送ると +653KB）。
+
 ## 真似る型
-見本7つ（メルカリエンジニアリング・LINEヤフー Tech Blog・DeNA Engineering・Smashing Magazine・SmartHR Tech Blog・The Fly Blog・CyberAgent Developers Blog）から。作るときの出発点。
+見本8つ（メルカリエンジニアリング・LINEヤフー Tech Blog・DeNA Engineering・Smashing Magazine・SmartHR Tech Blog・The Fly Blog・CyberAgent Developers Blog・Josh W. Comeau）から。作るときの出発点。
 - 本文の箱は 780〜790px、16〜18px、行間 1.75〜2.0、段落の間は 20〜35px。1行は約43〜49字（メルカリエンジニアリング 780px・18px／36px、LINEヤフー Tech Blog 790px・16px／28px・字間 -0.4px）。DeNA Engineering の 870px・17px は約51字で長い。
 - 本文の色は題より1段薄い灰にし、比は 6:1 以上を保つ（LINEヤフー Tech Blog：本文 #616161 6.19:1・題 #1f1f1f 16.48:1）。
 - 節の切れ目は罫でなく上の余白で見せる（メルカリエンジニアリング：h2 の上 120px＋60px、DeNA Engineering：h2 の上 100px＋左 4px の線、LINEヤフー Tech Blog：h2 の上 40px）。h3 は h2 より一段小さく（DeNA Engineering は h2 と同じ 33px で崩れる）。SP でも h1 を一番大きく。
@@ -146,6 +162,13 @@ PC 1440×900 / SP 390×844、ja。見たページ：トップ（/blog/・14本×
 - 一覧を「大きいカード1枚（写真 633：文 328）＋3列×2段」の繰り返しにすると、14本でも単調にならない（CyberAgent Developers Blog）。ただし写真は img と srcset・lazy で、SP は1列にして題 16px 以上。
 - コードの色づけの既定のテーマを選ぶなら、地での比を先に計算する。Tomorrow Night Bright は黒地で6色とも 5.04:1 以上（CyberAgent Developers Blog）。LINEヤフー Tech Blog の Prism・DeNA Engineering の Chroma の既定は届かなかった。
 - タグの一覧は開閉の button に入れ、各タグに件数を付ける（CyberAgent Developers Blog：「エンジニア / 142件」の3列・aria-expanded・Esc）。
+
+- ヘッダーを透明のまま読ませるなら、入れ物（空の頭・本文）ごとに sticky top 0 の板をヘッダーの後ろへ入れる。板は入れ物の終わりで抜けるので、地の色が変わる所でも JS 無しで済む（Josh W. Comeau：板の高さ 124px・z 2、空の板は 92.5%→100%）。
+- 本文のリンクは文字を本文の色・500 にし、下線だけをアクセントにする（Josh W. Comeau：box-shadow 0 1.5px 0 #4242fa・ホバーで .2s で消す・box-decoration-break:clone）。横断ルール30 の形。
+- 押して試す図は、ボタンの組で状態を切り替え、選んだ側に太い下線（Josh W. Comeau：display block／flex、#ffd500 の 3px）。長い記事でも1節に1つまでにし、本文の言葉で何を見るかを先に言う。
+- 注記は3色（info・warning・success）に限り、左右 −32px で本文から張り出し、文字の頭は本文とそろえる。題 18px 600・本文 16px／24px（Josh W. Comeau：#e8f1fc・#fbf4d0・#ecf8f4、長い記事に9つ）。
+- テーマの色を html の変数に全部置き（コードの色づけの --syntax-* も）、選んだテーマを cookie に覚えてサーバーで書く。ちらつかない（Josh W. Comeau：約70個・350ms）。
+- 代わりの書体を size-adjust・ascent-override で寸法合わせする（Josh W. Comeau：90%・93%・18%、CLS 0.0021 以下。Smashing Magazine は合わせずに 0.1171）。
 
 ## 反面教師
 - コードの言語を書かずに自動判定させ、全言語分の色づけ JS を全記事で読む（メルカリエンジニアリング：1.2MB、判定も外れる）。言語は書き手が指定し、使う言語だけ読む。
@@ -190,3 +213,10 @@ PC 1440×900 / SP 390×844、ja。見たページ：トップ（/blog/・14本×
 - og:image が 404、JSON-LD 0、更新日なし、分類の一覧の h1 が文字の画像（CyberAgent Developers Blog）。
 - サムネを 1024px の PNG にして CSS の背景で出し、トップで14枚 4.4MB（CyberAgent Developers Blog）。
 - タグの窓の書体を font-family: auto にして明朝に落ちる。カードの transform .6s に :hover が無い（CyberAgent Developers Blog）。
+- 記事の終わりが更新日と「# of hits」の数だけで、関連・次の記事・書き手の紹介が 0。代わりにマスコットの窓がニュースレターを勧める（Josh W. Comeau）。
+- 自動再生の mp4 6本を開いた時に全部読み、記事の転送の 72%（7,077KB）。width/height も無い（Josh W. Comeau：header-blockers）。
+- 画面に入ったリンクの先（?_rsc=）を全部先読みし、トップを送るだけで +653KB、Show more で SP +1,710KB（Josh W. Comeau）。
+- SP で目次を幅 0 にして消す。長い記事は SP 45,986px（Josh W. Comeau）。
+- 一覧 31本を1ページ・カードの題が見出しでなく日付も無い・一覧に `<main>` が無い（Josh W. Comeau）。
+- JSON-LD 0・記事も og:type website・`<time>` 0。コードの色 #DA0079 4.33:1・#AA00FF 4.43:1。コピーは箱のホバーか :focus-visible のときだけ（Josh W. Comeau）。
+- 最初から音を出す設定で、mp3 11種 268KB を押す前に読む（Josh W. Comeau）。

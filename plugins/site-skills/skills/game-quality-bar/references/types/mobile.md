@@ -96,6 +96,20 @@
 - **ニュース**：API `web-news.gryphline.com/api/bulletin?…&page=&pageSize=9&tabs[]=`。Latest 135・Notices 97・Events 12・News 26（2026-11-22）、sticky の3件が先頭。札は div、日付は文字（time なし）、札も番号送り 01｜02 も URL は変わらない。カードの絵は CMS の原寸 PNG（2MB 前後）。
 - **安全と重さ**：CSS 9ファイルに prefers-reduced-motion 0件、framer-motion に `reducedMotion:"never"`。区画に入るたび左の飾りを 1s で3回明滅（0→.5→0）。measure.js：top PC 43.69／SP 41.11MB、operator 10.31、news 17.10、記事 5.62、video 16.44MB。CDP で top を20秒数えると PC 92.88MB・SP 90.18MB（差は 01.mp4）。
 
+### Reverse: 1999 海外公式（https://re1999.bluepoch.com/en/home/ ・2026-11-26 解剖、2023年配信の運営中タイトル〔Ver. 3.9〕。iOS・Android・PC。歩いた6ページ：入口 /en/・/en/home/〔#0〜#4 の5画面〕・detail.html#news・detail.html#newsId?325・/payment/）
+- **枠**：jQuery 1.11.3＋Swiper。本体は1つの HTML を縦の Swiper（`speed:300, mousewheel:true`）で HOME・NEWS・CAST・BACKSTORY・GALLERY の5画面に分け、`router.js` は読み込み時に `#0〜#4` を読むだけ（動いても書かない）。PC は `html` の font-size を JS で `innerWidth/1920×16`（1440px で 12px）。版の告知は別の入口 `/en/`（3.9 の題・新しい人物2人・特徴6枚・SNS、右上の OFFICIAL SITE で本体へ）。
+- **部品の形**：細い軌道の円（`changeRotate` 60s linear）と、頭の1字だけ #b55829 で大きいセリフ体の題（CAST の名前・BACKSTORY の章・GALLERY の VIDEO／WALLPAPER／MUSIC、どれも画像）と、右上だけ丸めた枠（物語の絵 100px・ニュースのバナー 75px）。地は #131818 系の絵、字は #bba893（7.80:1）・#e9dccd（13.30:1）。
+- **最初の画面（PC 1440）**：雨の窓ごしの通りの mp4（1920×1080・14.17s・muted loop、poster あり、止めるボタンなし）。題・告知は置かず、右下に入手の塊：QR 128×125（x814 y730）・PC 100×90（exe を直接）・App Store／Google Play 148×44 の2段・PV の丸 131×125。入口 `/en/` も同じ並び。ストアの img は alt 空、PV は div。
+- **カーソル**：`body{cursor:none}`。mousemove で動く div が、ふつう 12px・枠の上 12〜18px・物語の絵の上 50px（`ball2` 0.3s）。絵の上では円の背景に色を反転した版（`p1c.png`）を `background-position:-offsetX -offsetY` で入れ、円の中だけネガが見える。円の左上を点に合わせるので中身は 25px ずれる。
+- **人物**：10人。左に顔の札 106×106 を x90／x165 の交互・129.5px おきに積んだ縦のループ（`slidesPerView:5, loop:true`）、選んだ人だけ色・ほかはセピア。押して 515〜539ms で入れ替え（out 左へ／`selfFadeInRight` 0.5s）、1人ごとに 2.7〜4.0MB。名前は画像（alt 空）、台詞は文字 12px／22.5px、ボイス 62×45（押して mp3、4.mp3 353KB）、Live2D 78×45（待機と立ち絵の2本の動きを切り替え）。URL は `#2` のまま。
+- **立ち絵の動き**：webm 940×2320 の上半分に色・下半分に白黒の型を積み、`canvas.js` が毎フレーム `getImageData` で下の赤 ≤ 90 を透明、それ以外を不透明（0／255 の2段）にして上の色を移す。CAST 以外の画面では `cancelAnimationFrame`。SP は `5m.gif`（4,146KB）で、この gif を PC でも取る。
+- **物語**：本文は文字（Ⅰ The Storm は2段落）。章8つをローマ数字の画像Ⅰ〜Ⅷと前後の矢印で（次へ 21KB）。絵 720×432 を押すと 3000×1385 の拡大（5,329KB、拡大・縮小・保存、Esc で閉じない）。
+- **ニュース**：`detail.html#news`。種類 LATEST・NOTICE・EVENTS・NEWS（div、16.47px）、2列×5件・ページ 1〜3、どれも URL に残らない。1件は div の onclick で別タブの `detail.html#newsId?325`（開き直しても同じ記事）。サムネは 1920×1080 を 149×84 に、同じ NOTICE の絵 3,217KB を別 URL で4回。
+- **入手・課金**：値段の文字 0件。Official Top-up はヘッダーの唯一の a で、`/payment/info` の Top-up Center（ゲームを選ぶ → ログイン）。SP は最初の画面の下に DOWNLOAD NOW 197×41 と端末の絵 30×25 を3つ。
+- **表記**：年齢区分・課金の注記は6ページで0件。© は入口のフッターだけ。英語のページの `lang="zh-cn"`、ロゴの alt「重返未来logo」、入口の h2「游戏特色」「官方社群」。
+- **操作**：押せる物 125個（div 52・img 63・a 10）、button 0。Tab はロゴ・Top-up・ストア3つ・物語の前後・cookie の8手。reduce は animate.css の既定だけで、KV・軌道の円・人物の webm は動き続ける。
+- **書体と重さ**：SourceHanSerifCN を使う字だけに間引いた Serif.ttf 66,020B の1本。measure.js：入口 PC 13.54／SP 6.08MB、top 38.61／28.64MB、#3 29.20／28.64、#2 32.71／28.71、detail 24.02／15.64、/payment/ 1.00／0.99。KV の mp4 9,887KB と 9,375KB を2回、BGM 3,518KB は鳴らさないのに読み込み 4.3s で取る。PV の YouTube は押してから（1,245KB）。
+
 ## 真似る候補（1サイトだけで見たもの。2つ目で確かめたら「真似る型」へ上げる）
 - 人物の色を CSS 変数2つ（main・sub）で持ち、詳細ページの面・札・ボタン・枠を全部それで塗る。テンプレートは1枚（ウマ娘）。
 - 衣装・姿の切り替えは同じ枠で、丸いサムネに種類名を付ける（ウマ娘：4種・99px）。2枚目以降は押したときに読む方がよい。
@@ -123,9 +137,15 @@
 - 左の縦の列のナビ（PC 67.5px、開いて 203px）で今の区画を地の色＋左の線で示す（Endfield）。名前はホバーだけでなく Tab で入ったときも出す。
 - 人物を「今の1人＋縦の顔の列」で1人ずつ送る（Endfield：77×77 の丸を12個、上下の矢印、番号）。顔は button にし、URL に1人を残す。
 
-## 真似る型（ウマ娘・ゼンレスゾーンゼロ・学園アイドルマスター・怪獣８号 THE GAME・プロジェクトセカイ・ブルーアーカイブ・Arknights: Endfield で確かめた）
+- 世界観の言葉（Reverse＝反転）を1つの操作に落とす：物語の絵の上でカーソルが 50px の円になり、円の中だけ色を反転した版が見える（Reverse: 1999）。作るときは中心を合わせ、キーボード用に全部を切り替えるボタンを置く。
+- 立ち絵を透過で動かすのに、色と型（マスク）を上下に積んだ1本の動画を canvas で抜く（Reverse: 1999：webm 940×2320）。型の明るさをそのまま不透明度にし（しきい値の2段にしない）、見えている間だけ回す。
+- 人物の一覧を縦のジグザグの札にし、選んだ人だけ色・ほかはセピア（Reverse: 1999：106×106 を x90／x165 の交互）。
+- 版の告知を本体と別の入口ページにし、同じ入手の塊を両方に置く（Reverse: 1999：/en/ と /en/home/）。
+- 書体を使う字だけに間引いて1本で配る（Reverse: 1999：Serif.ttf 66KB）。
+
+## 真似る型（ウマ娘・ゼンレスゾーンゼロ・学園アイドルマスター・怪獣８号 THE GAME・プロジェクトセカイ・ブルーアーカイブ・Arknights: Endfield・Reverse: 1999 で確かめた）
 1. **入手の導線を全ページの同じ場所に置く。** ウマ娘はフッター直前のストア5つの帯（PC 68px 1行／SP 2・2・1）、ZZZ はヘッダー右の地色の丸「Download Now」（93×25）から 72ms のモーダル（QR＋ストア7つ＋ESRB）。学マスは全ページのフッターの QR＋ストア3つと、top 左下の固定の帯（PC 545×218）。怪獣８号は PC が右の固定の列にストア3つ、SP が下端の固定の帯（108×40）。どれも全ページ・全章で同じ位置。作るときは、ヘッダーのボタン → モーダル（Esc で閉じる）と、最初の画面の下端の列の2つを置く。 ブルーアーカイブは top の左下に4つ（PC 337×235 の塊、SP は予告＋3つ）で、下層ページには0個。
-2. **最初の画面の下端に、ストアの全部と年齢区分の箱を1列に。** ZZZ：ESRB（区分・内容記述・In-Game Purchases (Includes Random Items)）＋QR＋ストア 4＋3。ウマ娘は最初の画面にストアが無かった（y=2,960）ので、ZZZ の置き方を採る。
+2. **最初の画面の下端に、ストアの全部と年齢区分の箱を1列に。** ZZZ：ESRB（区分・内容記述・In-Game Purchases (Includes Random Items)）＋QR＋ストア 4＋3。ウマ娘は最初の画面にストアが無かった（y=2,960）ので、ZZZ の置き方を採る。 （追記 2026-11-26 Reverse: 1999：最初の画面の右下に QR 128×125・PC 100×90・App Store／Google Play 148×44 の2段・PV 131×125 を1列に置き、版の告知の入口 /en/ でも同じ並び。ただし年齢区分は0件で、ストアは alt 空の img。並びは手本、区分と名前を足す）
 3. **人物は1人1URL、人物の色を詳細の面に。** 怪獣８号は1人1URL が無く（詳細のモーダルで URL は #character のまま）、人に送れない反対の例。学マスも `/idol/kotone/`（title も人名）。プロジェクトセカイは `/character/unite01/ichika/`（title も人名）でユニットの色（#45d ほか5色）を帯に塗り、前後の矢印はユニットの中で一周する（ウマ娘も端で一周）。ウマ娘 `/character/specialweek`＋`--color-main`/`--color-sub`、ZZZ `?id=166651`＋斜めの色の面（15rem 角・skewX(−45deg)）と章札。どちらも色の上の文字の比が足りない人がいる（ウマ娘の札 2.44〜2.73、ZZZ の Sunbringer 2.30）ので、文字は面に乗せないか色ごとに選ぶ。
 4. **ボイスは CV 表記の横のボタンで。** ウマ娘 27.8px の丸（押して mp3 119KB）、ZZZ 32px のマイク（押すたびに次の台詞、再生中は帯が揺れる）。押すまで声を取らない方を採る（ウマ娘、学マス：`new Audio()` を押した時に作り 62,868B、前の音は止める）。学マスは自己紹介を2つ並べる。 ブルーアーカイブはカードの右下のマイクで、押すたび `pause()`→`currentTime=0`→`play()`（頭から）。ただし `preload` で先に取る（SP 416KB）ので、取るのは押してからにする。
 5. **お知らせの種類タブは URL つきのリンク。** ウマ娘 `?t=game`、ZZZ `?category=295`。運営のお知らせ（ウマ娘の [追記] の帯、ZZZ のガチャ提供割合の先頭固定 `/news/public`）は一覧の中で目立たせる。
@@ -168,3 +188,6 @@
 - framer-motion に `reducedMotion:"never"` を渡し、動きを減らす設定を消す（Endfield）。"user" にする。
 - 版の予定表を1枚の絵にし、alt が翻訳の鍵のまま（Endfield：1850×3146、alt「calendar.content」）。
 - 人物の絞り込みが0件のとき白紙（Endfield：Caster×Physical）。「0人。条件を外す」の文とボタンを出す。
+- 5画面を1つの HTML にし、どの画面から入っても 29〜39MB を取る（Reverse: 1999：KV の mp4 を2回・SP 用の gif を PC でも）。画面ごとに分けるか、見えた画面の分だけ取る。
+- カーソルを消して自前の円にし、押せる物 125個を div・img の onclick にする（Reverse: 1999：button 0、Tab は8手）。
+- 英語のページの `lang` と alt と見出しが中国語のまま（Reverse: 1999：`zh-cn`・「重返未来logo」・「游戏特色」）。

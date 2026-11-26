@@ -235,3 +235,9 @@
 - [ ] 記事の訳がある言語を、画面の言語の窓と head の hreflang の両方に出しているか。無い言語の字も 4.5:1 か（nippon.com：窓はあるが hreflang 0・silver 1.82:1）
 - [ ] BreadcrumbList の各 item が、その name のページの URL か（nippon.com：「JAPAN LIFE」の item が記事自身）
 - [ ] 送ると隠れるヘッダーは、メニューを開いている間・ページ内リンクで飛んだ直後・ヘッダーにフォーカスがある間に隠れないか（nippon.com は3つとも守る）
+- [ ] 透明のヘッダーの下を通る題・本文が読めるか。入れ物ごとに sticky の板を後ろに入れたか（Josh W. Comeau：空の板と白の板、JS 無し）
+- [ ] autoplay の動画を、見える範囲に来る前に読んでいないか。通信の一覧で mp4 が開いた直後に全部来ていないかを見る（Josh W. Comeau：6本 7,077KB）
+- [ ] 一覧・トップを下まで送ったとき、先読み（?_rsc=・prefetch）が何 KB 増えるかを測ったか（Josh W. Comeau：+653KB、Linear Now：+1,155KB）
+- [ ] 音の出る部品は、最初は音を切り、入れたときに音のファイルを読むか（Josh W. Comeau：最初から音あり・mp3 268KB を先に読む）
+- [ ] SP の長い記事にも目次があるか。390px で目次の箱が幅 0 になっていないか（Josh W. Comeau：long SP 45,986px で目次 0）
+- [ ] 「最終更新」「閲覧数」のようなラベルを h2・h3 にしていないか。見出しの骨組みを書き出して確かめる（Josh W. Comeau：「Last updated on」「# of hits」が h3）

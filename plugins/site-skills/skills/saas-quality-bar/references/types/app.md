@@ -90,8 +90,21 @@
 - **見た目**：Web フォント0（端末の書体）、h1 36・h2 30・h3 24・本文 16/1.6・札と表 13.2px。色は #fff・#212121・#f5f5f5 とプランの3色、主ボタン #1aa3f0 の白字 2.78:1。Bootstrap の .15s ease-in-out、reduced-motion は transition:none だけで、/photobooks のカルーセル5つ（5秒）は reduce でも回る。
 - **重さ**：PC top 2.96MB・/photobooks 4.65MB・/premium 6.09MB（PNG 4,746KB、lazy 0／73枚、alt なし 64枚）・ヘルプ（Zendesk）2.30MB（チャット 1,193KB）。解析込みでは top 5,865KB（GTM 1,676・Facebook 1,096）。構造化データ0。ヘッドレスの標準 UA に 403。
 
+### Raycast（Raycast Technologies）https://www.raycast.com/ — 2026-11-26
+- **最初の画面**：地 #07080a に three.js r186 の赤い斜めの光（canvas 1200×967）。h1「Your shortcut to everything.」64px/600・行間 70.4px（SP 36px）、何をする道具かは一文 18px/400 字間 .2px（SP 14px）。行動は「Download for Mac」173×36px（#e6e6e6 に #2f3031・角 8px、y=797）1つ、その下に GeistMono 12px の要件「macOS Tahoe and Apple Silicon required」（白 40%＝3.75:1）と副の「Install via Homebrew｜Download V1」。SP は /download/mac 4本が高さ 0 で、行動はニュースのピル「Introducing Raycast MCP →」221×30px だけ。
+- **製品の見せ方**：DOM の Mac のデスクトップ（メニューバー＋Raycast の窓＋Dock 5）。Dock は div（tabIndex -1）54px→選ぶと 68px・.2s、窓の中身・ツールチップ・下の「太字の機能名＋灰の一文」が替わる。約14.1秒で自動送り、reduce では止まる（光は止まらない）。
+- **見出し**：章の頭は h2 20px/500 の白い一言＋同じ 20px の灰の p（#6a6b6c＝3.75:1）。機能カードも「Fast. Think in milliseconds.」「Reliable. 99.8% crash-free rate.」。
+- **料金**：「Monthly｜Yearly -20%」（Yearly が初め、札 GeistMono 12px #2c1617 on #fff）の下に3枚。Pro+ のカードの中で Pro／Plus／Max（aria-pressed の button）を選ぶと題（Raycast Pro／Pro+／Pro Max）・値段・年額・クレジットが替わる：月 $10／$20／$50、年 $96／$192／$480（月あたり $8／$16／$40）、クレジット 500／3,000／7,500。Teams は Free／Pro／Plus／Max で $0／$15／$25／$65（年 $144／$240／$624）/user。年払いの割引は全6段で 20.0% ちょうど。年払いのとき値段の下に「$240（取り消し線 #6a6b6c）$192 billed annually」GeistMono 14px、月払いでは消える。おすすめは札なし：Pro+ だけ地 137deg #222326→#151619・縁 1px #2f3031・角 16px で 16px 上、題 24px（ほか 20px）、ボタンが白。税の語なし。月年の radio は display:none で Tab が届かない。料金ページに h1 0・JSON-LD 0。
+- **比較表**：div の行 32本・5列（Free・Pro・Teams Free・Teams Pro・Enterprise）、段のある列は1セルに段の値を縦に3つ。最後に Monthly／Annual Subscription の値段の行とボタンの行。PC は sticky なし・開閉なし、SP は表 984px を横に送り1列目 164px を sticky。
+- **機能（/pro）**：h1 48px、会社11のモデル表（speed・intelligence を5本のダッシュ #ff6363、context）、注「*requires Advanced AI add-on」が料金の段の名前と合わない。テーマの range 2本にラベルなし。
+- **試すまで**：ダウンロード1手、フォーム・登録なし。Choose Pro+ は href の無い button、Teams は /settings/organizations/new、比較表の Create Organization は raycast:// でアプリを開く。Enterprise は mailto。
+- **事例**：/customers に3件。詳細は左 320px sticky（top:108px、ロゴ 80px・社名・一言・URL）＋右 774px（h1 48px、本文 16px/1.6 白 85%、h2「The Challenge:／The Solution:／The Results:」、引用4つはイタリック、Key Takeaways 4つ）。結果の章「Seconds Instead of Minutes」に数の比較なし。トップは人の名前のピル＋声＋「Favorite Feature」。
+- **マニュアル**：manual.raycast.com、地 #fff・System／Light／Dark、⌘K の検索にタブ「All／Manual／v1 Manual」と件数、待つ間「Searching...」。
+- **見た目**：Inter 100〜900・GeistMono 100〜900（自前 woff2）。色は #fff と白の透明度（10%・60%・6%・40%）と差し色 #ff6363（29回）・札 #56c2ff。ボタンの transition は background .2s・box-shadow .2s ease-in-out・transform .1s。イージング上位 cubic-bezier(.23,1,.32,1)。
+- **重さ**：PC top 7.31MB／/pro 3.95MB／pricing 18.66MB／事例 20.80MB／マニュアル 3.02MB（SP 6.55／3.16／14.39／19.89／2.55）。最初の画面だけなら /pricing 1.0MB、フッターの /changelog の先読みに画像の preload 11本（PNG 11,853KB）。外部は ProfitWell・Rewardful・Sentry だけ、チャットなし。
+
 ## 真似る型
-（Todoist・TimeTree・マネーフォワード ME・Moneytree・くふう Zaim・ワンバンク・みてねの7件から）
+（Todoist・TimeTree・マネーフォワード ME・Moneytree・くふう Zaim・ワンバンク・みてね・Raycast の8件から）
 - 最初の画面の行動は1つ（「無料で開始する」／ストアの入口／「Webで無料登録」）にし、相談・資料の副は置かない（3件とも）。その1つは PC の 900px に入れる（TimeTree のバッジは y=1,121px で外）。SP は主をアプリに替え、下に帯で常に出す（マネーフォワード ME の 75px の帯）。
 - 製品画面は言語ごとに作り直し、その言語の暮らしの値で埋める（Todoist /sequences/ja/、TimeTree hero_ja.png、マネーフォワード ME の「食費 ¥64,080」「ドラッグストア 田町店」）。キリのいい数（¥300,000・¥9,800,000）は避ける。
 - 最初の画面で「誰の悩みが、どの画面で解けるか」を3組回す（マネーフォワード ME：利用歴7年・1年・13年の声と、家計・資産・共有の画面、28.233秒）。組の順を機能の並びとそろえる。文字は HTML にし、止めるボタンと reduce で止める（本家は画像で止まらない）。
@@ -125,6 +138,11 @@
 - 長い料金ページの主な行動は下の帯に固定し、2行目に無料体験の条件（「はじめて限定1ヶ月無料」）を書く。比較表と登録方法の上では帯を隠す（みてねは出したまま）。
 - Web とアプリで値段を分けるなら、Web の値段を料金ページの本文に出す。購入の画面まで隠して「お得！」とだけ書かない（みてね /premium/plans まで ¥540・¥990 が出ない）。
 
+- 入れられない端末では入れるボタンを出さない。Mac のアプリは SP でダウンロードを隠し、行動を1つ（ニュースのピル、または iOS 版の入口）に替える（Raycast：/download/mac 4本が SP で高さ 0）。PC は題の下にボタン1つ＋等幅 12px の要件1行（4.5:1 以上に）。
+- 料金に段が多いなら、上の切り替えは月年だけにし、段はカードの中の aria-pressed のボタンで選ばせる。選ぶと題・値段・年額・クレジット数を一緒に替え、割引の率は全段で同じ（札の「-20%」と合わせる）（Raycast：6段とも 20.0%）。
+- おすすめは札でなく、1枚だけ地と縁を持たせて 16px 持ち上げ、題・一文を1段大きく、ボタンだけ白（塗り）に。ほかのカードは地なし（Raycast の Pro+）。
+- 製品画面を DOM で組むなら、機能の切り替え（Dock・タブ）を button にし、自動送り（約14秒）は reduce で止める（Raycast は自動送りを止めるが Dock は div でキーボード不可）。
+
 ## 反面教師
 - 主ボタンの白文字 4.09:1、小見出しの色 #6b9fa0 2.91:1・#78a271 2.87:1・#ee6449 3.15:1、料金の「月額」「$60 年払い」12px・3.05:1（Todoist）。
 - 料金の切り替えの checkbox に名前が無い。SP のシートで通貨の select が AUD のまま、カードは US $（Todoist）。
@@ -150,3 +168,4 @@
 - 「Web決済なら年間最大10%お得！」が計算で 8.47%・9.17%。料金ページはアプリの値段だけで、税の語0、年払いの得 16.7% も書かない（みてね）。
 - 主ボタン #1aa3f0 の白字 2.78:1、プランの札 2.25〜2.71:1、声の★ 2.76:1。比較表 19行はページの 68% の所で頭が sticky でない。下の帯は比較表の上でも出たまま（みてね /premium）。
 - 機能の画面の PNG 73枚に lazy 0・alt なし 64、SP 用の 564KB を PC でも読む。カルーセル5つが reduce でも 5秒ごとに回る。ナビの事例のカテゴリが記事0件（みてね）。
+- フッターのリンクを全部先読みし、/changelog の分の画像 preload 11本（11,853KB）を料金・機能・事例で読む。月年の radio が display:none で Tab が届かない。料金ページに h1 0・JSON-LD 0。three.js の光が reduce でも動く。灰の続き・取り消し線・要件の行が 3.75:1（Raycast）。
