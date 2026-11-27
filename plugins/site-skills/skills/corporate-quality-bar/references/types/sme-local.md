@@ -110,7 +110,21 @@
 - **動き**：250ms ease-in-out、色と不透明度 .2〜.3s cubic-bezier(.72,.16,.345,.875)、画面に入ると 6px 上がって 800ms、場所の写真は grayscale からホバーで色、送りの番号の丸に conic-gradient の進む輪。prefers-reduced-motion は7か所あるが、送り（2.5s・8.5s）と About の動画（22.5秒・6,707KB）は reduce でも動く。
 - **重さ（PC/SP、展開後）**：top 21.47/16.42MB（転送 11.96MB）、about 19.18/14.69（＋動画 6.7MB）、tile 17.51/14.90、careers 15.18/13.70（転送 6.67MB）、news 20.52/15.89。どのページも JS 11.3MB（チェックアウトの JS 1,661KB・Freshchat 約2.3MB・UserWay の json 936KB・OneTrust 493KB・自社ドメイン経由のタグ 1.2MB）。画像は Shopify の width= で出し分け、SP のトップの画像は PC の 24%。
 
-## 真似る型（竹中庭園緑化・由紀精密・Vitsœ・能作・玉川堂・HOSOO・Heath Ceramics の7サイトから）
+### Pentagram（https://www.pentagram.com/ 、2026-11-27 解剖。選んだ理由：トップの最初の画面の1文「We design ［分野▾］ for ［業種▾］」が、そのまま作品の2軸の絞り込みになり、選ぶと /分野/業種 のパスへ移って同じ文が下に固定の帯で残る。事例集・受賞歴は確かめられなかった）
+ロンドン・ニューヨーク・オースティン・ベルリンのデザイン事務所（1972年から、23人のパートナーが持ち主で作り手で窓口）。下位タイプは「専門業者」として中小・地域企業に入れた。
+- **ナビ（PC）**：header 60px・`position: static`（3,000px 下げると y=-3,000、戻らない）。Work・About・News・Contact・検索（20×20px）・Archive を 16px／間 24px。採用はヘッダーに無い。SP は 60×60px のボタンで黒の全画面（24px の6項目、下に 16px の Instagram〜Careers〜Privacy）。
+- **最初の画面の文の絞り込み**：490×44px の箱（rgba(232,232,232,.8)＋blur 7.5px・角 4px・16px）。分野15・業種18。写真12枚（Swiper fade：待ち 2,000ms＋切り替え 1,000ms）の各枚に data-target で語を結び、語を 44px（SP 28px）ずつ GSAP 1s・power4.inOut で転がす（y と width を同時に）。押すと全体がぼけ、札 28px（#00000012・角 4px）を中央に。Esc で閉じる。選ぶと URL が /brand-identity → /brand-identity/arts-culture、裏で /get-featured-works?sector=&discipline= と /valid-filters/…（18業種すべて true）。結果に「Showing the latest 27 projects」、文の箱は画面の下 24px に fixed。札に件数は無い。
+- **トップの順番（PC 25,205px）**：送り＋文 → 特集の暗い帯（#222・題 52px）→ 最新9件 → 回顧の帯 → 引用（19px）→「8 latest Brand Identity projects」…を5回。特集・回顧の帯7・引用4・分野ごとの最新5。会社の説明はトップの本文に0字（title とフッターの About だけ）。h1 はロゴの「Pentagram」2つ。
+- **信頼の材料（/about 6,658px）**：h1 と3段落（3段落目が「所有者がそのまま作り手で、どの依頼主にも最初の窓口」）→ Working at Pentagram のボタン → Partners 23人（白黒写真・名前・都市：NY 11・London 10・Austin 1・Berlin 1）→ Consulting Partner 1 → Associates 42（名前だけ4列）→ Partners Emeriti 32（名前だけ4列）。数字は「23 partners」「five decades」だけ、創業 1972 は © の行だけ。沿革・会社概要の表・取引先のロゴは無い。
+- **拠点（/contact）**：4都市に、JS で入る現地の時刻・メール・電話・住所・建物の1行（London：元郵便局の仕分け場、Berlin：保護建物の元郵便局）・写真の送り。依頼の窓口はフッターの「New Business Inquiries」に都市別のメール4つ。フォームは無い。
+- **採用（/careers 3,246px）**：h1「Working at Pentagram」→ 写真 → 2段落（パートナーが率いる小さなチーム）→「Open Positions」は空の li 1つ・高さ 0px・文字 0字。0件の文・次の募集の知らせ方・給与・選考は無い。入口は About のボタン・フッターの最下行・SP メニューの小さな行。
+- **ニュース**：種類7（All news・Work・Preview・Events・Publications・Press・Commentary）をパス /news/category/press に。30件・2列の大小、Load more（690×55px）で ?page=2。日付「Nov 20, 2026」13px #767676。/news の30件は Work 16・Press 13・Preview 1、Nov 20〜Sep 16, 2026。Atom の /feed。
+- **データ**：全ページ同じ Organization（address は NY の1つだけ、foundingDate・logo 無し）。lang en-US のみ。検索の input に label・aria-label 無し。トップの HTML 1,163KB（srcset 824か所）。
+- **見た目の値**：#fff 83・#1a1a1a 50・#767676 37・#e3e4e5 27・#e61428 16（リンクの下線とエラーだけ）、灰のトークン 19段。書体 Plain 1つ（350/375/400、読むのは Regular 77KB）。文字 52／32／19／16／13px（SP 36／24／17／16／13）、見出し 1.05・-.02em、本文 1.25。#767676×#fff 4.54:1、#8c8c8c×#222 4.73:1。
+- **動き**：transition opacity .25s・.15s・transform .3s ease、cubic-bezier(.4,0,.2,1)。prefers-reduced-motion は2か所で、reduce でも送りと語の転がりが3秒ごとに続き、止めるボタンも無い。
+- **重さ（PC/SP）**：top 20.79/9.32MB（avif 12,156KB・mp4 6,757KB、最後までスクロールしてタグ込み 25.35MB、うち imgix 22,654KB）、about 2.20/1.79、work 4.51/2.20、careers 1.41/1.35、news 2.38/1.93。回顧の GIF 685〜1,570KB、同じ名前の GIF を2回ずつ。
+
+## 真似る型（竹中庭園緑化・由紀精密・Vitsœ・能作・玉川堂・HOSOO・Heath Ceramics・Pentagram の8サイトから）
 - 会社概要は表で全部書く。右上に「（YYYY年MM月現在）」、従業員は部門別の内訳と合計（竹中庭園緑化 34行）。取引先は業界ごとに3〜5社＋「その他、約N社」、認証は範囲と登録番号まで（由紀精密）。3サイトとも数字の帯が無い（Vitsœ は表も無く、年数は本文だけ）。作るときは数字4つを表の上に、どれにも日付を添える。
 - 沿革は全部の年を1ページに並べる（竹中庭園緑化 49行、由紀精密 20行、Vitsœ 48年）。長いなら Vitsœ のように年の帯を貼りつけ（65px・今の年に下線）、押した年を URL（#1976）に残す。最後の行は今年か「今日」。
 - 何をしている会社かは、事業の名前より「客の言葉」か「事例」か「割り算」で見せる。竹中庭園緑化は悩みの吹き出し6つ、由紀精密は事例36件を材質と加工の札で、Vitsœ は値段を年と週に割る（£520→£52／年→£1／週）。
@@ -136,6 +150,11 @@
 - 沿革を商品の「生まれた年」で見せる：いま売っている物に年を添えて横に流す（Heath Ceramics：10点 1948〜2025、About とトップで同じ部品）。代の1枚（玉川堂）・年の帯（Vitsœ）と並ぶ3つ目の形。前後のボタンも置く。
 - ニュースのカードに「場所の札＋掲載日＋催しの期間」を持ち、期間を見出しの書体で大きくする（Heath Ceramics：期間 20px）。「これから・開催中・終わり」の札は期間と今日の日付から出す（Heath は手で付けて残った）。
 - 拠点のページの一番上に、その日の注意（天気・道・休み）を置く（Heath Ceramics：Sausalito の高潮の季節と道の地図・祝日の休み）。
+
+- 事例・作品の索引を、最初の画面の1文の中の2つのボタンにする（Pentagram：「We design ［分野15▾］ for ［業種18▾］」、選ぶと /brand-identity/arts-culture に移り「Showing the latest 27 projects」）。由紀精密の材質×加工の札と同じ2軸を、会社の自己紹介の文に入れた形。作るときは札に件数を付け、0件は押せない見た目にし、送りを止めるボタンを置く（本家に無い）。
+- 選んだ絞り込みは、画面の下に固定の帯として残す（Pentagram：44px の同じ文の箱を下 24px に fixed、ヘッダーは static）。
+- 会社の形（誰が持ち主で、誰が窓口か）を About の1段落で言い、人を層で見せる（Pentagram：パートナー23人は写真と都市、Associates 42・Emeriti 32 は名前だけ）。
+- 拠点ごとに、現地の時刻と建物の1行を添える（Pentagram：4都市、元郵便局の仕分け場など）。依頼の窓口も拠点ごとに分ける。
 
 ## 反面教師
 - 白字の分類の札が #7a9f9f で 2.88:1（竹中庭園緑化。アクセシビリティ賞の受賞サイトでも残った）。地を #547b7b（4.67:1）にする。
@@ -176,3 +195,7 @@
 - 見学のページに「2026年は終わり」と書いたまま、申し込みのリンクを2本残す（Heath Ceramics）。次の回が無ければリンクを外し、次の日程を載せる月を書く。
 - 「Upcoming Event」の札を手で付け、終わった催しに残る（Heath Ceramics：09.16〜09.25 の催し）。
 - 札・日付 10px を #9a8d81 で 2.86:1、SP の © は 2.15:1。送りと動画が reduce でも動き、どのページも JS 11.3MB（Heath Ceramics）。
+- 採用の「Open Positions」が空の li 1つで高さ 0px、0件の文も次の知らせ方も無い（Pentagram）。Vitsœ のように見出しを残し、「今は無い」と次の行動を書く。
+- 自己紹介が title・About・フッターで3通り（Pentagram：largest independent design consultancy／independently owned design studio／most acclaimed creative collective）。
+- 会社の説明がトップの本文に0字、h1 はロゴ2つ、会社概要の表も沿革も無い。創業 1972 は © の行だけ（Pentagram）。
+- 送り（3秒ごと）に止めるボタンが無く、reduce でも止まらない。文の箱の width を GSAP で1秒動かす（Pentagram）。

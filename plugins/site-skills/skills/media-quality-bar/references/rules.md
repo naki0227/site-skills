@@ -63,3 +63,6 @@
 43. 本文の列は、1行が英語 65〜75字・日本語 38〜45字に収まる幅にする。広い画面に合わせて列を広げ、1行が長くなるサイトが続いた（Google Design：1100px・18px で約135字、SmartHR Tech Blog：930px・18px、DeNA Engineering：870px・17px、東洋経済オンライン：870px・18px、dancyu：1000px・15px で約66字）。守れている見本は Canary Media（584px）・Linear Now（624px）・The Markup（620px）。
 44. 記事の公開日は画面のどこかに必ず出す。日付が記事のどこにも無いか、HTML では空のサイトが続いた（Google Design：画面・HTML・JSON-LD とも 0、LINEヤフー Tech Blog：日付が HTML で空、ほぼ日：頭に無く終わりに英字の曜日つきだけ）。
 45. リンクの先読みは、かざした時か押し始めた時だけにする。画面に入ったリンクを全部先読みすると、読まない記事のデータで一覧と記事が重くなるサイトが続いた（Linear Now：記事を下まで送ると ?_rsc= 39本・1,155KB、Josh W. Comeau：トップを 2,200px 送ると +653KB・9件、Show more で SP +1,710KB。どちらも Next.js の Link の既定。2026-11-26）。Next.js なら prefetch={false} にして onMouseEnter・onTouchStart で router.prefetch を呼ぶ。LINEヤフー Tech Blog はカードのホバーで 318KB を先読みしていた。
+46. JSON-LD はテンプレートに文字を差し込んで組まず、データを JSON.stringify で書き出す。手順や本文に生の改行や引用符が入ると JSON として読めなくなるサイトが続いた（Ottolenghi：Recipe 6本中3本が末尾のカンマ・生の改行、ミツカン おうちレシピ：4本中3本が手順の text の生の改行）。
+47. 記事の頭の写真（最初の画面で一番大きい絵）には loading="lazy" を付けず、fetchpriority="high" と width/height を書く。LCP の写真を lazy にしているサイトが続いた（東洋経済オンライン：SP の LCP の写真、ミツカン おうちレシピ：2764×2072 の頭の写真に lazy・寸法無しで PC の LCP 2,272ms・SP の CLS 0.304）。
+48. 写真と図は表示の幅の2倍までに縮めて配る。元の大きさのまま小さく出すサイトが続いた（Linear Now：3904px の PNG を 976px に、ミツカン おうちレシピ：一覧で 3960×2790 を 301×212 に・一覧1ページ 33.77MB）。

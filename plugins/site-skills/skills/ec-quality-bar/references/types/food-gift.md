@@ -108,8 +108,23 @@
 - **データ**：詳細に Product＋Offer（sku・gtin13・InStock・3780 JPY、送料・返品・評価なし）、BreadcrumbList は 店 → 品 の2段（一覧を飛ばす）。カードと詳細の alt は品の名前、カートの写真と送料の画像は空。
 - **重さ**：PC top 38.48MB / list 21.53MB / item 23.40MB / cart 15.06MB / guide 7.31MB（SP 38.27 / 21.92 / 23.52 / 15.08 / 7.42）。トップの 24.6MB（64%）が Adobe Fonts の和文（1本 5MB 前後を2本、ほか6本）。どのページでも JS 8〜9MB と購入手続きの先読み 1.66MB、0件のレビューの投稿窓 Uppy 508KB。
 
+### Diaspora Co.（https://www.diasporaco.com/ ・2026-11-27 計測・単一産地のスパイス・米国・Shopify テーマ t/411、絞り込みは Smart Product Filters、定期便は Loop Subscriptions。計測の日は Black Friday の 20% 引き）
+- **入口**：橙の告知帯 #f57320「20% OFF EVERYTHING」12px（白字 2.85:1）→ マゼンタ #d5137b の頭 → 棚の写真の全面に黄の大きな字（765px）→ 黄 #ffd000 の4つの約束（110px）→ 料理本と品の横送り → Most Popular の入口5つ → 雑誌の言葉と農家の写真 → レシピ → 150以上の農場の地図 → 他社との比べる表 → よくある質問。h1 は空。
+- **一覧**（/collections/spices-1、80品）：PC 4列（カード 237×501・写真 235×235）＋左の絞り込み 295px、SP 2列（175×423）。カードは 札（BESTSELLER／NEW!）・名前 P22 Mackinac Pro 18px #d5137b・星と件数・値段と打ち消し線と「SAVE $2.40」と「| 45g」・「ANNUAL SALE 20% OFF」札（#d9ff01 / #07742b、5.15:1）・説明1〜2行・**缶の札「Everyday Tin」「Chef Tin」**・ADD TO CART 48px。札を押すと 122ms（PC）・130ms（SP）で値段・打ち消し線・SAVE の額・グラムが替わる（Hot Cocoa $9.60・45g → $25.60・250g）。写真は替わらない。26件ずつ、Show more で 50件まで 580ms・URL そのまま。格子の6枚目に品と同じ大きさの告知のカード「Order by Dec 14th to get them in time」（並べ替えても同じ位置）。写真は全部 lazy・srcset 480/832。
+- **絞り込み**：4群14項目（Type 3・Flavor 6〔Savory 25・Sweet 23・Spicy 5・Warming 19・Herbal 2・Umami 4〕・Usage 3〔Grilling & Roasting 35・Baking & Desserts 27・Beverages 12〕・Availability 2〔In stock 73・Out of stock 7〕）、件数つき。PC は押した瞬間に URL が替わり「12 of 80 products」・チップ「Ground Spices ×」・Clear all。SP は「FILTER & SORT」で全画面のパネル（頭マゼンタ・白い丸の閉じる・Sort by が先頭の開閉）、下に「SEE 80 PRODUCTS」。並べ替え9つ、初期値 Featured。
+- **詳細**（/products/pragati-turmeric）：PC は写真 670×670 の右に 星と317件・名前 40px 700 #d7197f（字間 -1.2px）・値段 26.4px（y=232）・説明 18px 500・合う料理2つ・**缶のタブ 275×44 が2つ（y=625）**・一回／定期便・スプーン $1 の付け足し・ボタン 550×52（y=890、画面900の下端）。SP はボタンが y=1,402 で最初の画面に入らない。ボタンの下に「✓ In stock · Usually ships within 24 - 48 hours」14px（#0a9b61・3.47:1）。続いて 6缶・12缶の帯、レビューの一言（33.6px）、3つの印、開閉3つ（Cooking Tips・Ingredients・Shipping & Returns）、産地「Grown in Vijayawada, Andhra Pradesh」（インドの地図・農家 Prabhu Kasaraneni・クルクミン 4.5〜5%、ふつうは 1〜1.5%）。
+- **缶の大きさ**：45g Everyday Tin／185g Chef Tin の radio をタブにし、185g の右上に「SAVE 37%」（10px、SP 8px）。37% は1gあたりの差（$12.50÷45g と $32÷185g で 37.7%）。押すと 228ms（PC）・166ms（SP）でボタンが「Add to cart — $10」→「— $25.60」、値段の行、1枚目の写真（Chef Tin の缶）、URL ?variant= が替わる（読み直しなし）。**Chef Tin には定期便が無く（selling_plan_allocations が空）、一回／定期便の欄が理由の文なしに消える。**
+- **定期便**：「SUBSCRIBE AND SAVE」の札は「FREE SHIPPING」（#fffbe6 / #007e00）。間隔は毎月〜6か月ごとの6つ、値引きは0（price_adjustments 0）。選ぶとボタンが「ADD SUBSCRIPTION TO CART — $10」。
+- **12缶のゲージ**：一覧と詳細の画面の下に、自前の部品 tin-meter（995×64・SP 358×54、sticky・下から20px、#015e02 に白 8.07:1）「BUY 6 TINS SAVE $4 ｜ FREE GIFT BUY 12 TINS GET 1 TIN FOR FREE」。/cart.js を読み、対象の variant の数で地 #0a8233 の幅を数/12（width .3s）、role="progressbar"、12 で「FREE TIN UNLOCKED」。組の中身（_parent_bundle_id）は数えない。チャットの丸を帯の上へ逃がす。6缶の段は文字が替わらない。
+- **カートに入れる**：押して PC 1.47秒・SP 1.29秒で dialog のドロワー（PC 右に 500×836、SP 全画面、slideInLeft .5s cubic-bezier(.7,0,.2,1)）。上から 缶のゲージ「Get the 12th spice free / 11 more spices to go!」（溝 #ad1064 に #ffd300）→ 行（「20% off (-$2.50)」・数 −＋）→ LAST MINUTE ESSENTIALS の横送り（ADD · $38.40 など）→「YOU SAVED $2.50 ON THIS ORDER!」→ □ Add a gift note → 小計 $10 $12.50 → 送料「Add products worth $65 more for FREE SHIPPING」と緑のゲージ → CHECK OUT 52px #bd0e68。＋で 0.99秒（SP 1.05秒）後に「10 more」「$55 more」。$75 はセールで引いた後の小計で数える。6缶 $4 の段はドロワーに出ない。
+- **カート**（/cart）：ドロワーと同じ部品を本文に。SP は中身が右へ 178px はみ出し（右端 x=568）、小計の額・送料の残り・数の −＋ が切れる（横スクロールは出ない）。空は題と3つの入口と CONTINUE SHOPPING。
+- **買う前の不安**：送料は重さの3段（$6＝0.5 lb 未満・1〜2缶／$7.50＝0.5〜1 lb・3〜4缶か Chef 1つ／$9＝それ以外）と $75 以上無料を、詳細の開閉（1手）と FAQ（例「1 chef tin → $7.50」「5 base tins → $9」）に同じ表で。商品の weight は 45g 缶 88g・185g 缶 275g で、88g×5＝440g は 1 lb 未満なのに FAQ では $9（箱の重さかは確かめられなかった）。日数は Economy 8〜10日・Standard 6〜8日・Expedited 1〜2日・海外 8〜21日。スパイスは返品不可、破損は24時間以内に写真とロット番号、道具は30日。
+- **見た目**：地 #fffceb、主 #d5137b（55回）、見出しの紺 #080a5c（22回）、選んだタブ #d7197f に #fff1e5（4.38:1）、選ばないタブ #fff1e5 に #d5137b（4.51:1）。題は P22 Mackinac Pro（Adobe Fonts）、本文 Fustat 14px／22.4px。時間の段 .25／.35／.5／.6s、Lenis のなめらかなスクロール、prefers-reduced-motion 16か所。
+- **データ**：詳細に ProductGroup＋hasVariant の Product 2つ（gtin・sku・Offer InStock）。Offer の price は定価 12.50／32.00 で画面のセール値 $10 と違う。評価・送料・返品なし、一覧に BreadcrumbList なし。
+- **重さ**：PC top 14.80MB / list 19.26MB / item 16.60MB / cart 13.02MB / guide 13.19MB（SP 14.78 / 15.52 / 15.32 / 12.26 / 12.81）。JS が毎ページ約10MB（購入手続きの先読み 1,668KB・Gorgias 約1.7MB・LoyaltyLion 1.2MB・Klaviyo 約1MB）、詳細で Cloudflare Turnstile 3,041KB。フォントは 426〜520KB。
+
 ## 真似る型
-見本：とらや（和菓子・写真のカード）、Sey（コーヒー豆・文字のラベル）、Dammann Frères（紅茶・形の違う同じ茶）、Minimal（板チョコと生菓子・お届け期間で選ぶ）、HIGASHIYA（和菓子・販売期間と eギフト）、Le Chocolat Alain Ducasse（ショコラ・2段のゲージと受け取り方の行）、一保堂茶舗（日本茶・量と形を別の商品にし味の段を色の札に）。
+見本：とらや（和菓子・写真のカード）、Sey（コーヒー豆・文字のラベル）、Dammann Frères（紅茶・形の違う同じ茶）、Minimal（板チョコと生菓子・お届け期間で選ぶ）、HIGASHIYA（和菓子・販売期間と eギフト）、Le Chocolat Alain Ducasse（ショコラ・2段のゲージと受け取り方の行）、一保堂茶舗（日本茶・量と形を別の商品にし味の段を色の札に）、Diaspora Co.（スパイス・大きさ違いの缶を2つのタブとカードの札で、12缶と送料の2本のゲージ）。
 1. **「いつ作り、いつ送るか」を、購入の列のすぐ近くに日付で書く。** とらや：最短お届け日をボタンの下に16px太字（2026年10月29日 (木) 予定）。Sey：「火曜に焙煎、水曜に発送」12px（小さすぎるので16pxに上げる）。Dammann：ボタンの23px上に「En stock, expédition sous 48h」14px（日付でなく時間。作るときは日付に）。
 2. **期限・中身・産地・淹れ方など選ぶ理由の細部は、見出し＋値の2列の表か数字の印にする。** とらや：中身の表（特定原材料等・賞味期限）。Sey：仕様の表（見出し12px・.15em・幅120px、値16px／22px）。Dammann：淹れ方を時間「4/5 mn」・温度「90°C」・アイスティー可の3つの印に。
 3. **形・容量の違う同じ品は、同じ単位の値段で比べさせる。** Dammann：値段の下に「(Soit 66,00 € le Kg) Soit 0,13 € la tasse」、量り売り 0,13 € → 缶 0,28 € → ティーバッグ 0,47 € → 個包装 0,63 €。一覧のカードでは値段の上に単位（Les 100g・25 sachets）。とらやの箱の入り数違いは別ページで、名前と価格しか違わない（1本あたりは書かない＝足す）。
@@ -135,6 +150,11 @@
 21. **量・形（袋・小缶・中缶）を詳細の名前の下のボタンで行き来させ、どの量にも100gあたりを書く。** 一保堂：86〜144×52〜54 のボタン（選んだ方は2pxの枠）。一保堂は別の商品で読み直し 1.97MB・数量が1に戻り、100gあたりも出さない（小缶 ¥4,800 が袋 ¥4,725 より高い）。作るなら同じページで言い直し、Dammann の「1kg あたり」（型3）を当てる。
 22. **淹れ方は4つの数字の帯（量・湯の量・温度・時間）と3手の文、味は2〜3軸×3点の目盛り。** 一保堂：「10g・210ml・80℃・60秒」を印＋18px で 140×46 ずつ、味の力強さ・味・香りの目盛りで選んだ点を #ba876a の輪。
 23. **包装・熨斗・手提袋はカートの行ごとに選ばせ、行に今の値を書く。** 一保堂：「包装なし／包装のみ／包装＋ギフトシール／包装＋のし」と「手提袋が必要」、行に「包装なし 手提袋なし」。とらやの「ご進物（必須）」より軽く、熨斗の要らない人は触らずに進める。
+
+24. **同じ品の大きさ違いは2つのタブにし、大きい方に同じ単位の得の率の札を付け、元の値段を1行で言う。** Diaspora Co.：45g／185g のタブ 275×44、185g に「SAVE 37%」（1gあたり $0.278 → $0.173）。札は 13px 以上に（Diaspora は 10px・SP 8px）。Dammann の「Soit 66,00 € le Kg」（型3）と一保堂の100gあたり（型21）を、選ぶ場所に寄せた形。
+25. **一覧のカードにも同じ大きさの札を置き、押したらその場で値段・打ち消し線・節約の額・量を替える。** Diaspora Co.：「Everyday Tin／Chef Tin」、122ms。Dammann の形の印（型4）・Ducasse の 250g／1kg（型18）と同じ型。写真も大きさの分かる写真に替えると良い（Diaspora は替えない）。
+26. **まとめ買いの段を「数」で決めるなら、一覧と詳細の下の浮いた帯で段を見せ、カートの数で地を満たし、ドロワーでは数の残りと送料無料の金額の残りを別の2本で言う。** Diaspora Co.：6缶 $4 引き・12缶で1缶おまけの帯（/cart.js の数で幅、role="progressbar"）と、ドロワーの「11 more spices to go!」「Add products worth $65 more for FREE SHIPPING」。帯に出す段は全部ドロワーにも出す（Diaspora は6缶の段が出ない）。Ducasse の2段（型17、どちらも金額）と違い、単位の違う2本。
+27. **送料を重さの段で決めるなら、段ごとに「何をいくつなら」の例を、詳細の開閉と案内に同じ表で書く。** Diaspora Co.：$6／$7.50／$9／$75 以上無料と「1 chef tin → $7.50」。例と商品の重さのデータを食い違わせない（Diaspora は 88g×5＝440g なのに $9）。
 
 ## 写真を使わない一覧（作るときの出発点）
 - 行：Sey の4行（生産者・農園・品種と精製・国）に、比べる軸の3行（味の3語・焙煎度・値段と在庫）を足す。比べる軸は全部の札で同じ行に置く。
@@ -197,3 +217,7 @@ Le Chocolat Alain Ducasse の状態：0件は件数のある項目だけ出す�
 - カートの送料無料の金額が画像の中（alt 空）で、残りの額も送料の金額も言わない。送料は別のドメインの3手目（一保堂）。
 - 入れた後のパネルに値段・小計が無く、SP の頭の数が 2.5秒後も 0 のまま（一保堂）。
 - Adobe Fonts の和文だけでトップ 24.6MB（全体の64%）（一保堂）。
+- 大きい缶を選ぶと、一回／定期便の欄が理由の文なしに消える。定期便の札「SUBSCRIBE AND SAVE」なのに値引きは0で送料無料だけ（Diaspora Co.）。
+- SP のカートのページで中身が 178px はみ出し、小計・送料の残り・数の −＋ が切れる（Diaspora Co.）。
+- 帯で言う「6缶で $4 引き」がドロワーのゲージに無い。構造化データの値段が定価のままでセール値と違う（Diaspora Co.）。
+- SAVE 37% の札 10px（SP 8px）、告知帯の白字と橙 2.85:1、In stock の緑 3.47:1、JS が毎ページ約10MB でカートのボタンからドロワーまで 1.3〜1.5秒（Diaspora Co.）。
