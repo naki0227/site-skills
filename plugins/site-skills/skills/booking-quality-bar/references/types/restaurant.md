@@ -1,7 +1,7 @@
 # 飲食（レストラン、カフェの席予約）
 
 ## この下位タイプで特に見ること
-時間帯の選び方、コースと席のみ、人数の上限、席を開ける時刻（毎朝◯時に◯日先）と人数で変わる空きの見せ方、1年先まで受け付ける店の営業日の暦と待ちの名簿、予約しない店の順番待ちの時刻と今日の日付の品書き
+時間帯の選び方、コースと席のみ、人数の上限、席を開ける時刻（毎朝◯時に◯日先）と人数で変わる空きの見せ方、1年先まで受け付ける店の営業日の暦と待ちの名簿、予約しない店の順番待ちの時刻と今日の日付の品書き、1つの建物に部屋がいくつもある店の入口（物で部屋を選ぶ）とほかの部屋の空き
 
 ## 見本の実測
 
@@ -113,8 +113,23 @@
 - **動き**：トップの全画面の動画 timelapse.mp4（13.6MB、autoplay・loop、止める手段なし）。窓 .25s（opacity と top）。prefers-reduced-motion 0。
 - **重さ（PC）**：トップ 1.59MB（webp 3枚 1,101KB、動画は別）・店 1.08MB・Borough 0.89MB。Dojo 7.72MB（SP 8.12MB）：JS 1本 6,395KB、全言語の文言 321KB を3回、ロゴ PNG 123KB、Font Awesome 4.7 の CSS。
 
+### sketch（https://sketch.london/ ＋ 予約 SevenRooms https://www.sevenrooms.com/explore/sketch-the-gallery/reservations/create/search/ ・2026-11-28・ロンドンの1つの建物に5つの部屋〔三つ星・午後のお茶と夕食・朝食・バー〕）
+条件：the Gallery・2026/12/12（土）・2名（ほかに 1・4・6・10名、11/28・12/24・1/11・3/6）。時間帯 Europe/London。PC 1440 と SP 390。制作は Credit に「Design and build by HATO」。
+- **トップ**：雪の上に5つの物（three.js、表面は部屋の内装の柄）。触れるとほかの物が薄くなり、部屋の名前が MAD Serif Fill 144px／172.8px で重なる（「the Gallery」＋「Brasserie – Afternoon Tea / Dinner」）。押せる印は無く canvas でキーボードから移れない。予約の入口は右上の「RESERVATIONS & MENUS」1つ（18px・1px #000 の縁）。押すと5部屋×時間帯×曜日の表（9行、行ごとに Menu・Book）まで 5,345ms。JSON-LD 0・lang 空。
+- **部屋のページ**（/the-gallery）：写真でなく白い皿。押すと料理の切り抜きが落ちて積もる（matter-js）。右の縦2段（ポット＝お茶／ナイフとフォーク＝夕食）で料理が入れ替わる。BOOK で 468×246 の窓に「Afternoon Tea」「Dinner」の2つだけ、ボタンの字が「CLOSE BOOK」に替わる。
+- **予約の面**：公式の /book/<部屋>/<時間帯> に SevenRooms を iframe で（22.17MB）。人数・日・時刻の丸い帯 920×67、下に枠の升を時刻順に4列（221×55・角 12px・#f8c0ba、SP 173×55 の2列）。升の2行目が枠の名前（Festive Afternoon Tea・Bar Counter・Dinner）で、18:00 に Bar Counter と Dinner が並ぶ。升の読み上げは字のまま（空きの数なし）。
+- **満席の枠**：API の request の枠（12/12・2名は63本中33本）を升から消す。14:00 の次が 16:30、19:00 の次が 21:30。消えた理由は言わず、最後に Alert Me の白い升が1つ。API は15分ごとの上限と残り（pacing_limit・pacing_covers_remaining：18:00 は 30 のうち 6）を持つが、升はみな同じ色。
+- **人数**：欄は 1〜10名（max_guests 10）。12/12 の画面の枠は 1名 29・2名 30・4名 28・6名 16・10名 0（お茶は 1名 16・2名 18・4名 21 本で、人数が少ないほうが少ない）。10名は「There is no availability that meets your search criteria.」と「Submit a request」、下にほかの日の枠。11名からの道は予約の面に無い。選んだ人数の字は #fff on #f8c0ba＝1.59:1。
+- **暦**：2か月、升 44×44 の丸。休みは disabled（12/25・1月の月曜）、aria-label「Saturday, December 12, 2026, selected」。凡例なし。日を押して応答まで 1,807ms・24KB。受付は今日〜2027-07-15（valid_dates 224日）。
+- **日の境目**：2026-11-28 01:05（ロンドン）に日付なしで /book/ を開くと既定の日が 27 Nov で「We are closed on Fri 27 Nov. Book one of these upcoming dates.」。valid_dates は 11-28 から。
+- **ほかの部屋・ほかの日**：枠の下に畳みが2つ。「Availability within our other salons」で同じ日・同じ人数の Glade と Parlour の枠（93KB）、「Other dates with availability」で近い日の枠（84KB）。どの部屋をまたぐかは URL の venues=。
+- **枠の窓**：升を押すと0通信で窓（600 幅・角 24px）。写真・「Sat 12 Dec • 11:00」・About（Adult £130・Child £65）・Cancellation Policy の全文（48時間前・「the full price of the menu which is £130」）・Select。2名の額 £260（computed 26000）と締めの日時は無い。席の時間（お茶 120分・夕食 105分）は API だけ。12/24 は24時間前、同じ「11:00 Festive Afternoon Tea」の升が2つずつ（54升、違いは写真だけ）。Reservations Policy の札は「clicking here」の1行。
+- **営業時間と枠**：部屋のページの「Dinner Fri-Sat: 17:30 - 22:00」に対し、枠は 22:15・22:30 まで予約でき、22:45・23:00 が request。
+- **体験の券**（/experiences/<部屋>）：売り切れを題名に「- SOLD OUT」と書き足し、追加の日も題名に「| New Date Added」。値段は「£95 per person」と単位なしの「£100」「£30」が混ざる。
+- **重さ**：top 6.37MB・部屋 5.66MB・予約の面 17.30MB（SevenRooms 単体）・/book/ 22.17MB・体験 8.92MB。予約の面は部屋の写真を PNG 3枚（1,978＋1,728＋1,699KB）、枠を選ぶ前に Stripe 1,194KB と Google Maps。公式は全ページで vendor.js 1,796KB と全部屋の results.json 506KB、トップは WhatsApp のウィジェットを2版（496＋488KB）。prefers-reduced-motion は0回。
+
 ## 真似る型
-見本：TableCheck・Resy・ポケットコンシェルジュ・Dishoom・Septime・Disfrutar・Padella。
+見本：TableCheck・Resy・ポケットコンシェルジュ・Dishoom・Septime・Disfrutar・Padella・sketch。
 
 1. **一覧のカードに、その日の空き時刻を4つのボタンで並べ、「+」「…」で残りへ。** 押すと日付・時刻・人数を持って予約へ進む（TableCheck 118×36・SP 71×36／Resy 101×40・SP 3つ）。時刻を指定したら、その前後の4つに入れ替える（Resy：7:00 PM で 6:15〜7:00 PM）。ポケットコンシェルジュはカードに時刻を出さず件数だけ減らす（97→53件）ので、作るときは時刻のボタンの型にする。
 2. **席の種類で在庫が分かれるなら、時刻ボタンの2行目に席の名前を書く。**（Resy：11px「Dining Room／Bar／Patio」。TableCheck は予約フォームでカテゴリーを先に、ポケットコンシェルジュは時刻の下の「座席指定」チップ 96×34 で選ぶ）
@@ -146,6 +161,11 @@
 26. **席の場所は、選んだ時刻の空きでチップにし、選んだ側の説明を1行出す。**（Dojo・Padella Shoreditch：131×36／140×36、17:30 は場所が1つ。作るときはチップに残りの卓の数と「この時刻はカウンターだけ」を）
 27. **大人数の道（メール・セット）と予約の人数の上限を同じ数にする。**（Padella Shoreditch：予約 1〜6・問い合わせ 7〜。Soho は予約 1〜7 で本文の「7名から」と食い違う）
 28. **知らせの窓は1日1回にし、閉じたら翌0時まで出さない。ただし予約の入口を窓の中だけに置かない。**（Padella：cookie hasVisitedBefore。トップの予約の入口は窓の「here」だけで、閉じると0）
+
+29. **1つの建物に部屋（店）がいくつもあるなら、入口で部屋を物か写真の部分で選ばせ、触れたら部屋の名前と時間帯を大きく出す。押せる印を付け、キーボードでも移れるようにする。**（sketch：5つの物・名前 144px・ほかを薄く。印も読み上げも無いのは直す）
+30. **同じ建物のほかの部屋の空きを、同じ日・同じ人数で枠の下に出し、ほかの日も並べる。**（sketch の SevenRooms：「Availability within our other salons」93KB・「Other dates with availability」84KB。Dishoom の複数店の行〔型12〕と同じ考えで、部屋が同じ建物なら畳んだ1面でよい）
+31. **時間帯の違う枠（お茶・夕食・バーの席）を1日の時刻順に混ぜて並べ、升の2行目で区別する。**（sketch：221×55、18:00 に Bar Counter と Dinner。Resy の席の名前〔型2〕と同じ置き場所）
+32. **部屋のページの予約は、時間帯だけを選ぶ小さな窓にし、押したボタンを「閉じる」の字に替える。**（sketch：BOOK → 468×246 に Afternoon Tea／Dinner、字は CLOSE BOOK）
 
 ## 反面教師
 - 数量を選んでも合計を出さない（TableCheck の予約フォーム）。人数×単価の合計（税サ込）を時刻の下に常に出す。
@@ -188,3 +208,9 @@
 - 営業の時間を公式の本文・JSON-LD・予約の設定で別々に持ち、5か所で食い違う（Padella・Dojo）。
 - 取り消し・遅れ・預かりの語が予約の画面に0（Dojo・Padella。遅れの10分は Shoreditch のページだけ）。
 - 予約の画面で JS 1本 6,395KB と全言語の文言 321KB×3 を読む（Dojo）。
+- 満席の枠を升ごと消し、消えた時間の理由を言わない。API の残りの人数も升に出さない（sketch の SevenRooms：12/12・2名は63本中33本、14:00 の次が 16:30。18:00 は残り6でも同じ色）。
+- 日付なしで開くと、店の夜中に既定の日が昨日になり「closed」と出る（sketch：ロンドン 01:05 に「We are closed on Fri 27 Nov.」、受付は 11/28 から）。
+- 取り消し料を1人分の値段で書き、人数分の額と締めの日時を出さない（sketch：「£130」、2名の computed は £260）。
+- 同じ中身の枠を同じ時刻に2つ並べる（sketch：12/24 の「11:00 Festive Afternoon Tea」×2、違いは写真だけ）。
+- 体験の売り切れ・追加の日を題名に書き足し、値段の単位を混ぜる（sketch の Experiences：「- SOLD OUT」「| New Date Added」、「£95 per person」と「£100」）。
+- 予約の面で部屋の写真を PNG で 5.4MB、枠を選ぶ前に決済の SDK 1,194KB（sketch の SevenRooms）。

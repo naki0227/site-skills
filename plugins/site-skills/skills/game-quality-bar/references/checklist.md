@@ -229,3 +229,11 @@
 - [ ] 値段・売り場を WordPress の <pre> に入れていない（ガールズバンドクライは monospace 10.5px になる）。売り場のリンクに「新しいタブ」と書いた
 - [ ] 人物の札の英字・© など小さな字も 13px 以上・4.5:1 以上にした（ガールズバンドクライは 9px #6b6b6b on #000 で 3.94:1、© 2.41:1）
 
+
+- [ ] 時間割の晩の札をステージの色（CSS 変数1つ）で塗り、札の足に値段・売り切れ・ボタンを1晩に1つ置いた。取りやめの組は消さずに印で残した（Montreux Jazz Festival：--stage-color #fab9d6／#accbfa、CANCELED は opacity .5＋−10° の黒い札）
+- [ ] 日付の一覧から行へ飛んだら、選んだ日を URL の # に残し、選ぶ前の札は「Dates」か会期の初日にした（Montreux Jazz Festival は URL に残らず、札にサーバーの今日「27 November Friday」）
+- [ ] お気に入り・自分の回る順はログインなしで端末に覚える（Montreux Jazz Festival・Le Guess Who? はログインで止まる）
+- [ ] 動画の帯は、ポスターだけ出して押した1本だけ HLS・埋め込みを読む。帯が画面に入っただけで全部を取っていない（Montreux Jazz Festival は10本 31,617KB）
+- [ ] 文字を転がす動きのために字を複製するなら、複製に aria-hidden を付け、読み上げの名前が1回になっている（Montreux Jazz Festival は「ListenListen」）。reduce で転がりを止めた
+- [ ] 1組のページにも、今年の出演の晩・ステージ・券を置いた（Montreux Jazz Festival の /artist/ は過去の出演だけ）
+- [ ] 出演者の発表前に売る券に、交換の期限と、期限内なら売り切れでも入れる保証を書いた（Montreux Jazz Festival の Blind Ticket）

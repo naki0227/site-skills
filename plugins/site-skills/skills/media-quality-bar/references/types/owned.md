@@ -106,9 +106,25 @@ PC 1440×900 / SP 390×844。見たページ：トップ（/・6,014px）、分�
 - **広告と同意**：広告 0。同意は下の帯 PC 66px・SP 166px（19.7%）で「OK, got it」だけ。CLS は PC 0.095〜0.47・SP 0.18〜1.82（img が fill で寸法無し、送りの部品が後から高さを持つ）。
 - **データと重さ**：JSON-LD はトップの Organization だけ、記事 0。og:type は記事も website。日付は画面・HTML・JSON-LD のどこにも無い。記事の転送 2,376KB・87件（自社 1,715KB・GTM 320KB・フォント 282KB）、長い対談 90,989KB（GIF 4枚 77,390KB）。Next の Link の先読みで article PC の JSON 1,607KB（SP 219KB）。JS は全ページ 1,202KB。
 
+### Emergence Magazine（https://emergencemagazine.org/ ・2026-11-28 計測）
+PC 1440×900 / SP 390×844。見たページ：トップ（/・6,486px）、一覧＝上の帯の「Stories」で開く引き出し（URL の一覧 /media_type/read/ は飾りの無い題の羅列・900px）、エッセイ（/essay/new-life-for-the-ezo-spruce/・11,564px）、動画5本の長いエッセイ（/essay/protecting-bahsahwahbee/・25,167px）、音の特集（/feature/50-seasonal-meditations/）。Kalliopeia Foundation の読みもの。WordPress。選んだ理由：記事ごとに地と頭の組みを替え、本文を見出しなしの大きなセリフ体で流し、朗読と読む・聴く・観るの引き出しを持つ。Webby の Crafted with Code に載り、Features & Design の People's Voice（検索で確かめた。年は確かめられなかった）。
+- **本文**：Bradford 500 22.8px／32px（1.40）・字間 .4px・684px、1行 61〜69字（平均 65.4）。SP 17px／22px・362px・約46字。段落の間＝行の高さ（32px・SP 22px）。本文の中に h2・h3 は 0。地 #f9f9f7（記事ごとに style で）に #000（19.92:1）。
+- **記事の頭**：絵か動画（中央 1011×738／全幅 1440×810、出典は右下 11px）→ 題 Bradford 500 34px／40px・字間 1px・大文字・中央（SP 25／28）→ by の行 斜体 22.8px／32px（訳者も同じ大きさで続ける）→ 日付 GT America 12px に黒 1px の下線 → リード Bradford 700 22.8px／32px・684px。題の上には何も無い。見えている題は div で、h1 は隠れている。
+- **目次**：無い。代わりに上の帯（63px・送ると隠れ戻すと出る transform .3s ease-out）に「ESSAY｜題 | by 著者」12px 700 と、下端の 2px の進み棒（地 rgba(0,0,0,.1)・進み #000・width を書き換え）。SP は題を出さない。
+- **部品**：章の頭は最初の数語を大文字（.new-section-drop「THEY LEAD ME FIRST」、大きさは本文と同じ）。引用は GT America 900 32px／40px・中央・幅 1253px（SP 24／30）。動画は全幅 1440×810・muted・loop・preload none・poster 無し（long に5本）。写真の組は 625×417 を2枚。表・コード・注・番号つきの手順は 0。
+- **朗読と寄稿者**：本文の左の余白（幅 378px）に 53px の丸の再生＋「Listen to this Story／Narrated by …」と「CONTRIBUTOR BIOS ▸」（12px 700・rgba(0,0,0,.3)）。開くと幅 318px の紹介。再生すると画面下に 64px・#fcfcfc の帯（10秒戻し・再生・10秒送り・00:00／27:40・音量・Subscribe to our podcast）。再生器は Plyr。
+- **記事の終わり**：出典の行 → READ MORE ESSAYS（14px／23px・字間 1.4px・← →）に 272×363 の縦長カード7枚（Swiper）。写真の上に種類の札（Courier 13px・白・角 2px）、題 18px と著者を1行に続けて著者だけ rgba(0,0,0,.3)、「April 20, 2026 ｜ 57 min」。シェアは左下 fixed 175×88、購読は右下 90px の黒い丸（押すと 520×429 の窓）。次の記事は無い。
+- **一覧**：どのページからでも「Stories」で右から幅 1105px の引き出し（SP は全面・transform .6s ease-in-out .3s）。タブ All stories／Read／Listen／Watch（12px、選んだ方に ●・ほかは rgba(0,0,0,.3)、下に黒 1px）。行 117px・写真 115×76・種類 Courier 12px → 題 GT America 500 18px → 著者 400 18px 灰 → 日付 10px 右下。右に検索 276×42 と種類の札 11（Courier 11px・字と線 rgba(0,0,0,.2)＝1.61:1・選ぶと黒・フォーカス #079861）。開くと admin-ajax.php?action=search から 739,876B を読み 419行を一度に作る（DOM 40,942px）。絞り込み 759ms・追加の通信 0。意味の無い語で検索しても0件の文が無く、別の記事が並ぶ。
+- **トップ**：号の動画 1652px（右下に号の札 $40.00）→ 特集の動画 811px（白い題 24px／30px 大文字）→ EDITORIAL STATEMENT（24px／28px）→ SELECTED STORIES を「Read: / Listen: / Watch:」の段に、左に段の名前・右に 199×279 のカード3枚。写真は opacity .6s linear で出る。
+- **色**：#fff 108・#000 95 と黒の透明度 .1・.2・.3 だけ。緑 #079861・#00a95d はフォーカスとフォームのホバーだけ。灰 rgba(0,0,0,.3)＝2.12:1 を著者・日付・タブに。
+- **文字**：Bradford（読む所）・GT America（それ以外）・Courier Prime Sans（種類の札）・WindsorD（ロゴ）。html 10px で rem、font-size の上位 1.2rem 64回・1.6rem 24回・1.8rem 20回。
+- **動き**：自前の keyframes 0（Plyr の3つだけ）。opacity .3s（27か所）、写真 .6s linear、帯 transform .3s ease-out。prefers-reduced-motion 0。
+- **広告と同意**：広告 0・同意のバナー 0。固定は帯・シェア・購読の丸・再生の帯だけ。
+- **データと重さ**：Article・BreadcrumbList（Yoast）。author.name が "by Aya Kōda"、wordCount 6。og:image 2000×1047。alt はすべて空。記事 2.37MB（main.js 1,170KB が全ページ共通・Bradford 4ファイル 407KB）、長いエッセイ PC 21.93MB・SP 5.33MB（mp4 19,819KB）、トップ PC 83.33MB・SP 54.61MB（mp4 82,590KB、送らなくても読み続ける）。
+
 ## 真似る型
-見本7つ（北欧、暮らしの道具店・Quanta Magazine・YAMAP MAGAZINE・ほぼ日・Works in Progress・Linear Now・Google Design）から。
-1. **本文は細い列に、行間 1.75〜2.0**：518px・16/28（北欧）、560px・16/30（Quanta）、728px・18/36・字間 1px（YAMAP）、490〜700px・16/32・字間 .05em（ほぼ日、PC は手で 20〜26字に改行）。段落の間は行の高さ以上（北欧 PC 32px、Quanta 30px、YAMAP 60px、ほぼ日 32px）。補足は列の外に出し、本文の幅を変えない（Quanta：右 64px あけて 300px、YAMAP：書き手は左 100px・共有は右 45px）。
+見本8つ（北欧、暮らしの道具店・Quanta Magazine・YAMAP MAGAZINE・ほぼ日・Works in Progress・Linear Now・Google Design・Emergence Magazine）から。
+1. **本文は細い列に、行間 1.75〜2.0**：518px・16/28（北欧）、560px・16/30（Quanta）、728px・18/36・字間 1px（YAMAP）、490〜700px・16/32・字間 .05em（ほぼ日、PC は手で 20〜26字に改行）。段落の間は行の高さ以上（北欧 PC 32px、Quanta 30px、YAMAP 60px、ほぼ日 32px、Emergence 32px＝行の高さ）。英文のセリフ体で大きく組むなら Emergence の 22.8/32（1.40）・684px・1行約65字（SP 17/22・約46字）。補足は列の外に出し、本文の幅を変えない（Quanta：右 64px あけて 300px、YAMAP：書き手は左 100px・共有は右 45px）。
 2. **色は墨と灰に、ブランドの色を1つだけ**：北欧は灰の変数 #444 が 242回で橙 #f39800 はカートだけ、Quanta は #1a1a1a・#fff と橙 #ff8600 を線と点にだけ、YAMAP は #222・#545454・#fafafa で、赤はロゴの印とストアへのリンクだけ。ブランドの色を白地の小さな文字に使わない（Quanta の橙は 2.42:1）。
 3. **運営の関わりを札と本文の外で言う**：北欧は「SPONSORED」の札、Quanta は記事の終わりの編集注記、YAMAP は記事の頭と一覧のカードの右端に「Sponsored」とタグ「PR」。札はすべてのカードに（YAMAP は関連のカードで抜けた）。
 4. **一覧の次のページに URL を持たせる**：/note/page/2（北欧）、/mathematics/page/2（Quanta）、どちらも rel="next"。YAMAP は「もっと見る」で URL が変わらない（真似しない）。
@@ -133,6 +149,11 @@ PC 1440×900 / SP 390×844。見たページ：トップ（/・6,014px）、分�
 20. **札は2種（分類・話題）を同じピルで**：Google Design は高さ 36px・枠 2px・角 100px・14px、分類の札に data-is-category、ホバーで地と字を入れ替え .25s cubic-bezier(0,.4,.2,1)。一覧・トップ・Related のカードで同じ部品。
 21. **可変書体の幅の軸で、題とナビの声を分ける**：Google Design は Roboto Flex を題・カードの題に font-stretch 120%・800、全画面メニューに 60%・600（同じ 61.67px）。書体を増やさずに2つの役を持たせる。
 22. **区画の間を1つの値にそろえる**：Google Design は段落の塊・写真・図・見出しのどの間も PC 120px・SP 32px。YAMAP の段落の間 60px のように、本文の中の間とは別に「区画の間」を1つ決める。
+23. **一覧と棚を媒体（読む・聴く・観る）で分ける**：Emergence Magazine は引き出しのタブ All stories／Read／Listen／Watch と、トップの「Read: / Listen: / Watch:」の段（左に段の名前、右に 199×279 の縦長3枚）。朗読や映像を持つ読みものは、分類（随筆・詩・対談）とは別の軸として媒体を先に選ばせる。
+24. **朗読と寄稿者の紹介は、本文の左の余白に畳み、再生は画面下の帯で続ける**：Emergence Magazine は幅 378px の余白に 53px の再生の丸と「Narrated by」、「CONTRIBUTOR BIOS ▸」で 318px の紹介。再生すると下に 64px の帯（10秒戻し・送り・時刻・購読）。読みながら聴け、記事を移っても帯が残る。
+25. **見出しで区切らない読みものは、章の頭の数語と、上の帯の題と進み棒で位置を言う**：Emergence Magazine は最初の数語を大文字に（本文と同じ大きさ）、帯 63px に題と著者、下端 2px の進み棒。Works in Progress の帯（型11）と同じ「いまどこ」を、目次を置かずに示す形。長い記事（Emergence の long は約4,600語）では章の頭に id も振る（振っていないのは反面教師）。
+26. **記事の頭は「絵 → 題 → by → 日付 → リード」の5段で、題の上に何も置かない**：Emergence Magazine は題 34px 大文字・by 22.8px 斜体・日付 12px の下線・リード 700 を本文と同じ幅と大きさで。リードは太さだけを変えて本文へつなぐ。
+27. **引用は本文と書体を替えて全幅に**：Emergence Magazine は本文のセリフ体に対して GT America 900 32px／40px・中央・幅 1253px（SP 24／30）、上下に地の余白。本文と同じ書体の斜体にすると段落と見分けにくい。
 
 ## 反面教師
 - 日付を記事の最後に置く。頭では「いつの話か」が分からない（北欧、暮らしの道具店：編集部のおすすめの下に 12px）。
@@ -181,3 +202,9 @@ PC 1440×900 / SP 390×844。見たページ：トップ（/・6,014px）、分�
 - メニューと検索の入口を div tabindex=0 にし、:focus-visible を書かない（Google Design）。
 - Related を新しい順の 10本にし、記事と関係の薄いものが並ぶ。次の1本・共有が無い（Google Design：article）。
 - img を fill（absolute）で寸法無しにし、SP の CLS が 1.82（Google Design：long2）。
+- 著者・日付・選ばれていないタブを黒の透明度で薄くする（Emergence Magazine：rgba(0,0,0,.3)＝2.12:1、種類の札 .2＝1.61:1）。
+- 一覧を JS の引き出しだけにし、URL のある一覧を作らない（Emergence Magazine：/media_type/read/ は題をつないだ1段落、引き出しは開くたびに 723KB・419行）。
+- 検索で0件のときに0件と言わない（Emergence Magazine：意味の無い語でも別の記事が並ぶ）。
+- トップの全面の動画を画面の外でも読み続ける（Emergence Magazine：3本で 82,590KB、reduced-motion でも止まらない）。
+- author.name に「by」を入れ、wordCount を 6 のまま出す（Emergence Magazine）。
+

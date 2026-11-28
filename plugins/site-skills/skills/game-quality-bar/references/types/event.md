@@ -5,7 +5,7 @@
 
 ## 下位の型
 同じ「イベント」でも、見本で別れた。作るものがどちらに近いかを先に決める。
-- **チケット制のフェス・ライブ**（Lollapalooza、Primavera Sound、Tomorrowland Thailand、Flow Festival、Le Guess Who?、Øyafestivalen）：最初の画面は出演者のポスターかチケット、出演者の一覧と時間割が中心、購入ボタンが全ページに。
+- **チケット制のフェス・ライブ**（Lollapalooza、Primavera Sound、Tomorrowland Thailand、Flow Festival、Le Guess Who?、Øyafestivalen、Montreux Jazz Festival）：最初の画面は出演者のポスターかチケット、出演者の一覧と時間割が中心、購入ボタンが全ページに。
 - **配信が主の授賞式・ショーケース**（見本は The Game Awards）：会場の券は少なく、主な行動は「カレンダーに入れる・どこで見るか」。中心は本番までの日数・候補と受賞者・過去の回。トップは本番の前・最中・後で形を替える。
 - **入場無料か少額の、日本の地方の催し**（陶器市・祭り・マルシェ。見本は笠間の陶炎祭）：買うボタンは無い。中心は会場図・出店者一覧・行き方と駐車場・雨の扱い。出店者は数十〜数百件、会場図は印刷物（PDF）が正本になりやすい。
 
@@ -112,6 +112,20 @@
 - **ナビ・表記**：メニューは role=dialog、Esc で閉じて Meny へ戻る（aria-controls なし）。フォーカスは 2px・offset 2px で、地に合わせて墨・青・白。会場は年齢制限なし、上の席 Høyden は 20歳（Praktisk info と券の説明）。lang nb-NO、英語は「翻訳中」1枚、JSON-LD 0件、top の h1 は見えない「Forsiden Øyafestivalen 2026」。
 - **重さ**（展開後・解析タグ除く・読み込み時）：top PC 2.79／SP 2.77MB、world 2.77／2.76、/artister 3.63／3.78（HTML 849KB は全年の出演データ 273件）、news 4.05／4.17、店 6.95／6.95（店の JS 1,558KB・PNG 917KB）。全ページで Superstruct の会員 SDK（JS 562KB＋CSS 236KB＋設定 JSON 179KB）。`tools/inspect.js` は top で FAIL 0／WARN 15（Cookie の帯込み）。
 
+### Montreux Jazz Festival 公式（https://www.montreuxjazzfestival.com/en/ ・ 2026-11-28 解剖、第61回 2027-07-02〜17 の約7か月前・出演者は春に発表、クリスマスの券を販売中。歩いたページ：/en/・/en/festival/timeline/・/en/programme/〔2026 年〕・/en/news/・/en/festival/passes-packages/、補いに /en/artist/ezra-collective/・/offres-de-noel/・/plan-du-festival/）
+- **枠**：WordPress（テーマ mjf、制作 SUPERHUIT）。ヘッダーは黒い帯 36px（財団の別事業と FR｜EN｜DE）＋白 72px（ロゴ SVG 96×62・「61ST EDITION（14px 700）／2-17 July, 2027」・5項目 14px 500 大文字・黒い CHRISTMAS OFFERS）を sticky で 108px（SP は 56px の帯だけ fixed）。書体は TT Norms 1つ（宣言 238回）。
+- **最初の画面**：1440×792 を左右に割り、右 715px にポスターの画像（1440 角を 705×772）、左は同じ画像の上に `backdrop-filter:blur(90px)`（左右に割る型は 70px）＋黒 40% で白い h1 48/56px 700・字間 −0.8px（SP 32/38、画像 390×279 が上）。h1 は「…for the 61st for the 61st…」と同じ語が2回（/news/ も同じ）。会期はヘッダーだけ。
+- **プログラム（2026）**：16日×2ステージの表。列＝ステージ（頭は sticky、(i) で開場時刻・券の形・座席図 PDF）、行＝日。晩の札32枚・70組。札の色は要素の style の `--stage-color: #fab9d6`（Auditorium Stravinski）／`#accbfa`（Montreux Jazz Lab）、CSS は `background:var(--stage-color,#fffef8)` の1行。札の頭 #262626 に開演 20:30／20:00、足に dd「From CHF 147.–」（CHF 92〜167 の9通り）・赤い点 8×8 rgb(255,16,16) の Sold out・白いボタン（Buy 24／Waiting list 3／Sold out 4、券の店へ新しいタブ）。取りやめ3組は opacity .5 と黒 85%・ぼかし 70px・rotate(−10deg) の CANCELED。
+- **日付**：DATES（button 107×46）で16日を2列の一覧、選ぶと #day-20260711 の行へ（押して 80ms、URL は変わらない）。選ぶ前の札の文字がサーバーの今日「27 November Friday」。
+- **試聴・お気に入り**：LISTEN（78×28）は `data-spotify-url` の button で、押してから Spotify の埋め込みを右下に（2.5秒で PC +1,561KB／SP +1,503KB、押す前 0）。Esc で閉じない。ハート（aria-label「Like」）は「My programme：…must be logged in」の吹き出しと SIGN IN／SIGN UP で止まる。
+- **1組**：/en/artist/<slug>/（FR /fr/artiste/…・DE と対）。h1・STYLE・COUNTRY・リンク6つ・紹介文・「Previous performances at MJF」（2025 だけ、区画が2回）。2026 年の出演日・ステージ・券は無く、YouTube と Spotify を読み込み時に埋め込む（PC 5.83MB）。
+- **動画の帯**：縦長10本の coverflow（真ん中 304×541、1枚ごとに translateZ −268.5px、不透明度 1・1・.5・0）。ポスターと再生ボタンで自動再生しないのに、帯が画面に入って約2秒で10本の m3u8＋最初の segment を取る（PC 31,617KB・SP 3本 7,777KB、reduce でも同じ）。hls.js 527KB はトップだけ。
+- **世界観**：/festival/timeline/ に16の年（h2 34/38px、文 24/29px、正方形の写真 515px）。錨「1967-1979｜1980-1999｜2000-2019」は #timeline1980 で URL に残るが、2021・2022 の区画へ飛ぶ錨は無い。
+- **買う**：クリスマスの券のページに Blind Ticket（出演者の発表後に好きな晩と交換、発表から15日以内なら売り切れでも保証、当夜の Fast Lane、2026-12-23 まで、BUY がホール2つ）・All Music Pass CHF 1490（通常 1690）・Priority Pass CHF 200（通常 300、18歳以上）。パスのページの 2027 は名前の箇条書きだけで値段0、2026 のホスピタリティ4枚（CHF 500〜1'600）が残る。
+- **ニュース・表記**：種類 All／Festival／News／Videos は本物の URL（/news/category/festival/）、カードに time 0。英語版に LIRE LA SUITE・VOIR TOUT。会場図は /plan-du-festival/ の文とダウンロードだけ。JSON-LD に Event 0。
+- **動き・安全**：全部のボタンの文字を JS で1字ずつ span にし、`transitionDelay=.015×i s`、同じ組を下に複製して hover で translateY(−100%)・.8s cubic-bezier(.625,.05,0,1)。複製のせいで読み上げの名前が「ListenListen」。CSS の先頭に `*,:after,:before{outline:none}`、ナビの Tab 14手とも枠なし。reduce は scroll-behavior の1件だけ。
+- **重さ**（展開後・解析タグ除く）：top PC 39.38／SP 15.76MB（HLS 31,607KB）、world 7.20／6.98（JPEG 4,551KB、1439〜1708px の正方形を 515px で）、programme 3.23／3.05、news 3.21／2.84、passes 2.56／2.52。全ページで CSS 911KB（規則 8,772）と recaptcha__ja.js 846KB。
+
 ### 笠間の陶炎祭（ひまつり）公式（https://www.himatsuri.net/ ・ 2026-10-26 解剖、第45回 2026-04-29〜05-05 の約5か月半後。歩いた5ページ：/・/about/・/syutten/・/blog/・/access/ と、会場図・ハウツー・バス路線図の PDF 3本）
 - **下位の型**：入場料 1日500円（18歳以下無料）の地方の陶器市。会場は笠間芸術の森公園、来場8万人（閉幕あいさつ）。
 - **最初の画面**：黒 #000 のヘッダー 70px（SP 56px 固定）→ 写真4枚のフェード 80vh（PC 720px・SP 591px）。日付・時刻・会場はその下にロゴ画像と横並びで、PC は日付 18px が y=892px（1440×900 の折り目の下）、SP は 34px（時刻・会場 24px）が y=734px。曜日は 6px（SP 12px）の黒い札。入場料は上下 3px double の囲み。
@@ -189,6 +203,11 @@
 - 世界観のページを「団体の約束の年表」にし、年ごとの項を開閉の button（aria-expanded・aria-controls）で並べ、数字は本文の文で書く（Øyafestivalen の /baerekraft：1999〜2025 の38本）。
 - 券の説明に、年齢を「いつ・どう確かめるか」と、違ったときにどうなるか（差額）まで書く（Øyafestivalen：U/18・BARN・上の席 Høyden 20歳）。
 
+- ステージの色を CSS 変数1つ（要素の style に `--stage-color`）で晩の札に塗り、表は列＝ステージ・行＝日。札の頭に開演、足に「From 値段・売り切れの点・Buy／Waiting list」を1晩に1つ（Montreux Jazz Festival：#fab9d6／#accbfa、32晩・70組）。
+- 取りやめの組は一覧から消さず、半透明 .5 と −10° の黒い札で残す（Montreux Jazz Festival の CANCELED）。
+- 出演者の発表前に売る券には、交換の期限（発表から何日）と、その期限内なら売り切れの晩でも入れる保証、交換先のホールを先に選ぶ BUY を書く（Montreux Jazz Festival の Blind Ticket）。
+- 最初の画面のポスターを、同じ絵を backdrop-filter でぼかした地と左右に並べ、地の色を別に決めない（Montreux Jazz Festival：blur 90px＋黒 40%、白い h1 48/56px）。
+
 ## 反面教師
 - 最初の画面の行動を「カレンダーに入れる」だけにし、配信先・券・値段をどこにも表で出さない（The Game Awards：配信先の名前0・値段0、時刻は FAQ の文の中）。
 - 背景を PNG のまま置き、poster の PNG と動画の両方を取る（The Game Awards：top PC 8,333KB＋mp4 6,296KB）。本番に不具合報告の道具（BugHerd）を残す。
@@ -219,3 +238,7 @@
 - 一覧のページの HTML に全件の本文・全年のデータを入れる（Øyafestivalen：/nyheter 1,410KB の 96% が 209件の本文、/artister 849KB に全年 273件）。ぼっち・ざ・ろっく！の TV ニュース（303件 1,444KB）と同じ。
 - 前年の年が残る（Øyafestivalen：top の見えない h1「… 2026」、店の BARN の説明「Øyafestivalen 2026」）。年は1か所の値から差し込む。
 - `<time datetime="19.11.26">` のように datetime を ISO で書かない（Øyafestivalen のニュース12個）。
+- 押していない動画の帯の全部の HLS（m3u8＋最初の segment）を、帯が画面に入っただけで取る（Montreux Jazz Festival：10本 31,617KB、reduce でも同じ）。
+- ボタンの文字を動きのために2組入れ、読み上げの名前が2重になる（Montreux Jazz Festival の「ListenListen」「L O A D M O R E L O A D M O R E」）。複製には aria-hidden を付ける。
+- 日付の選択の札に、会期でないサーバーの今日の日付を出す（Montreux Jazz Festival の「27 November Friday」）。
+- 1組のページに今年の出演の晩と券が無く、過去の出演だけ（Montreux Jazz Festival の /artist/）。

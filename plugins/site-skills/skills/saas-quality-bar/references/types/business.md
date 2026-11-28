@@ -104,8 +104,20 @@
 - **見た目の値**：字 #fafafa（18.97:1）・#a7a7a7＝白 64%（8.23:1）、線 白 8%、段は白の透明度 8・16・24・64%。色相は主ボタンの青 #0044ff（字 6.15:1）と機能ページの紫 #7d00d6 だけ。書体は自前の /fonts/ の Inter 400・500・600、JetBrains Mono、PP Mondwest（計 136KB）。transition は all 300ms（18）、color/background/opacity 200ms（11）、transform 150ms cubic-bezier(.2,.6,.6,1)（11）、説明は opacity 150ms。reduce で animation 30本→0。
 - **データと重さ**：PC で top 15.00MB / features 21.24MB / pricing 18.89MB / customers 32.42MB / docs 3.31MB（SP 6.02／12.20／11.12／17.04／3.80MB）。どのページも RSC の先読み 50本（転送 3,169KB）、Intercom 約 2.7MB（料金で読み込みから 4.4〜6.1秒で Fin の3択を開く）、解析 27ホスト。下へ 63〜65% で「Introducing Digital Twins」のダイアログが出て、事例の業種のボタンを覆う。構造化データは料金に Offer 3つ（Bronze だけ price 4800・InStock）と FAQPage。本家のトップの inspect は FAIL 2（横スクロール PC・SP）。
 
+### Notion（チームとエージェントの共有ワークスペース、海外）https://www.notion.com/ — 2026-11-28
+- **最初の画面**：h1 Die Grotesk 500・80/80px の2行（SP 600・40px の3行）＋一文 18/28px＋ピル2つ（黒 #000／#f6f5f4、44px・padding 6px 23px・角 9999px）。ヘッダーの「Try Notion」は最初 rgba(0,0,0,.05) の淡いピル 32px で、下へ動くと黒に替わる。
+- **製品の見せ方**：壁紙 1,252×783px（角 16px）の上に DOM の窓 1,037×648px・45要素と Dock 5つ。窓は「It all starts with an idea…」→ 題を打つ（2.4s）→ 箇条（4.4〜6.5s）→ サイドバー（9.5s）→ 段落（21.7s）。一時停止のボタン3つ、reduce では最初から最後の形。動きの時間はどれも 45ms の倍数（.54・.855・.405・.9・.18・.225s）。連携は「Slack 22,224 messages」のようなアプリ名＋件数のカード4枚（件数は読み込みごとに違う）。
+- **機能の並べ方**：/product/ai はブロック4つ（244×100px・角 12px・選んだ1つだけ #fff＋2px rgba(0,0,0,.08)、ほか #f6f5f4、.15s ease-out）でパネルを替え、パネルの地をブロックごとの色に。自動送りなし。ブロックは tabindex -1 の div で Tab が届かない。機能の章は4つ（h2 42/48px＋一文＋Learn more＋手描きの顔＋動画）。
+- **料金表**：4プランを2つの箱に束ねる（「Essentials for staying organized.」Free・Plus／「The AI workspace for work that matters.」Business・Enterprise）。箱の題 32/40px 700、左は白＋2px #f6f5f4、右は #f9f9f8。年払いで開く radio の fieldset（billingInterval）。Plus $10／$12・Business $20／$24（16.7%）、Enterprise は「Custom pricing」だがページの JSON では $28／$35（20.0%）で、「Save up to 20% with yearly」はその率。おすすめは札（黒 12px 600）と黒いボタンだけで、カードの大きさは同じ。
+- **比較表**：8区分59行（6・6・9・5・7・5・18・3）、開閉なし。頭（名前・値段・30px のボタン）144px を top:-1px、区分名 44px を top:60px。行の名前は点線、ホバーとフォーカスで説明（rgba(0,0,0,.8)）。SP では表ごと高さ 0。FAQ は details 17問、FAQPage なし。
+- **試すまで**：Get Notion free・Try Notion・Sign up は /signup、Plus と Business の Get started は同じ /signup?target=plans。カードの要否の表記は無い。Request a demo・Contact Sales は /contact-sales。
+- **事例と信頼**：/customers は全82件・1ページ9枚・カードは media（写真＋題＋数字）／quote（灰の面＋Lyon Text の引用）／stats（数字3つ）の3種。絞り込みは規模3・業種11で、印を付けると Reset と Apply が出て、Apply まで一覧は変わらない。h1 は文字が絵でテキストが空。/product/ai に信頼6項目（学習に使わない・SOC 2 Type 2・ISO 27001・GDPR・HIPAA など）。
+- **ドキュメント**：/help は左に17区分、h1＋検索の欄 735px、よく見る4語、人気の6枚（手描きの小さな絵）。BreadcrumbList。
+- **見た目の値**：字は黒の .95（19.44:1）・.898・.54（4.61:1）、面は暖かい灰のトークン9段（#f9f9f8・#f6f5f4・#dfdcd9 … #191919）。差し色は製品の窓の中だけ（#2383e2・印 #ffcb001f＋下線 #ffcb0059）。月年の切り替えの選んでいない方 3.93:1。トップ・料金は新しい組み（Die Grotesk・黒いピル）、機能・事例・ヘルプは前の組み（NotionInter・青 #0075de 角 8px、白字 4.57:1）。
+- **データと重さ**：PC で top 9.69MB / features 31.92MB（動画5本 17,757KB）/ pricing 8.59MB / customers 9.93MB / docs 9.87MB（解析除く）。CSS はどのページも約2MB、実験の JSON 1.2MB を全ページ。top は解析込み 35ホスト・約13.7MB（GTM 2,705KB）。JSON-LD は top の SoftwareApplication（price 0）だけ。/llms.txt は「More than 50 million」、事例の帯は「100M Users」。
+
 ## 真似る型
-見本8つ（Backlog・コドモン・Linear・Attio・Plain・Ramp・Clay・Dovetail）に共通するもの、または1つで測った値を出発点にするもの。値の出どころを添える。
+見本9つ（Backlog・コドモン・Linear・Attio・Plain・Ramp・Clay・Dovetail・Notion）に共通するもの、または1つで測った値を出発点にするもの。値の出どころを添える。
 1. **行動の数は、試す入口の有無で決める**：試せる製品は「試す」を主に（Backlog は試す＋資料、Linear は Get started と Contact sales）、試せない製品は資料請求＋問い合わせ（コドモン）。主は塗り、副は白地か枠か半透明。Linear のように最初の画面から行動を消さない（ヘッダーの 73×32 だけでは小さい）。
 2. **実績の数字には時点と数え方**：Backlog「2026年6月末」、コドモン「2026年10月1日時点」＋※の数え方と調査元。Linear は「40,000」を3通りに言い、時点なし（真似ない）。
 3. **料金は規模で決める**：Backlog は「31人以上か」を診断の1問に、コドモンは定員3段、Linear と Attio は per user/month の4列（Attio は 4列とも同じ 271×398 のカード）。人数で決まるなら、入力させる前に段を見せ、大きく出す価格は1つ（コドモン 88px、ほか 30px）。
@@ -147,6 +159,11 @@
 35. **使った分は1つの単位にし、数えない場合を FAQ に書く**：Dovetail は「1 data point＝1 credit・15¢ 全プラン同じ」、失敗・取り消し・途中で止めた Chat・適用しなかった提案は数えない、超えたら月ごと。FAQ 9問中8問。
 36. **使い道を役割の 3×3 に、札→題→一文**：Dovetail の機能ページ 397×364 ×9、札 Mono 12px、題は動詞の句。ホバーで試す面に替える。
 
+37. **プランを「基本」と「AI（上の段）」の2つの箱に束ね、箱に題を付ける**：Notion は Free・Plus を白＋2px の縁の箱、Business・Enterprise を #f9f9f8 の面の箱に入れ、箱の題 32/40px 700。4列を同じ大きさで並べたまま、どこで性格が変わるかを見せる。
+38. **最初の画面の製品の窓は、空のページから打ち始める**：Notion は「It all starts with an idea…」の薄い字 → 題 → 箇条 → サイドバー → 段落を約22秒。reduce では最後の形で始め、一時停止のボタンを置く。時間は 45ms の倍数でそろえる。
+39. **機能のブロックで切り替え、パネルの地をブロックごとの色に**：Notion /product/ai は 244×100px のブロック4つ、選んだ1つだけ白＋2px の縁、パネルは紙の質感の色の面。作るときは role=tab と矢印キー（本家は Tab が届かない）。
+40. **ヘッダーの主ボタンは、最初は淡く、下へ動くと濃くする**：Notion「Try Notion」rgba(0,0,0,.05) → #000。最初の画面では本文の主ボタンと競わせない。
+
 ## 反面教師
 - 商談予約ウィジェットを全ページで読み込み、どのページでも一番重いファイルにする。診断の途中で日時の枠を開いて結果と重ねる（Backlog）。
 - カルーセルの複製で同じ事例見出しの h2 を3回ずつ出す（Backlog トップ）。
@@ -170,3 +187,4 @@
 - ヒーローの動画 9.1MB に poster も止めるボタンも無く reduce でも再生、事例の h1 を1字ずつの span にして読み上げを崩す、動画を個人の GitHub（jsDelivr gh）から・開発用の vercel.app の JS を本番で読む（Clay）。
 - 値段を、まだ買えない「Coming soon」のプランにだけ書き、買えるプランは「Talk to sales」で値段0。構造化データはその準備中のプランを InStock と書く（Dovetail）。
 - 下へ 63〜65% で告知のダイアログを開き、事例の絞り込みのボタンを覆う。チャット（Intercom Fin）は読み込みから 4〜6秒で3択を開く。事例一覧の h1 を読み込みごとに違う顧客の引用にし、字を打つ演出で最初は空、同じ文を h1 に2回（Dovetail）。
+- 「Save up to 20% with yearly」の20%は値段を出さない Enterprise の率で、見えるプランは 16.7%。トップ・料金と、機能・事例・ヘルプで見た目の組み（書体・ボタンの色と角）が違う。SP で比較表が丸ごと無い。機能のブロックに Tab が届かず、事例の絞り込みは Apply まで効かない。/product/ai は「per member」、/pricing は「per seat」（Notion）。

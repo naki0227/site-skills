@@ -110,8 +110,21 @@
 - **データ**：5ページとも JSON-LD 0。パンくずは SP だけ。詳細の alt 欠け8（色の見本は alt=""）。
 - **重さ**：top 3.14MB / list 5.49MB / item 5.19MB / 空のかご 0.92MB / guide 4.14MB（PC）。entry.js 640KB と jQuery 1.12.3 を毎ページ、詳細は large_ の写真7枚（〜574KB）と Noto Serif JP の切れ端 810KB、案内はサイズ表の画像 638KB を2回。prefers-reduced-motion の規則 0。
 
+### AURALEE ONLINE STORE（https://auralee.jp/ ・2026-11-28 計測・服・日本（東京）・jQuery 3.7.1＋Foundation＋FuelPHP の自前の仕組み。Cookie lang=ja・debug_language=JP で日本・円の画面）
+- **位置づけ**：地 #fbfbfb・字 #6c6c6c（5.07:1）の1色、色は品の点だけ。品名・ボタンは Marcellus、本文は gill-sans-nova の 300・字間 0.07em、和文は端末の游ゴシック（Web フォントは2本で約76KB）。押せる言葉を全部「( LOG IN )」「( Search )」「( View Bag )」「( Remove )」と括弧でそろえる。枠線・影・角丸 0。
+- **一覧**（/item?category_id=3・MEN 149品）：PC 4列 352×604（隣と 1px）・写真 352×469（3:4）、SP 2列 195×402。札は写真・8×8 の色の点（右寄せ・間 12px）・品名 Marcellus 13px・「¥154,000 tax in」12px の4つだけ（新着・在庫・残りわずかの印は無い）。**「View: Outfit | Product」で、同じ枠の2枚の写真（着た姿／物だけ）の opacity を jQuery animate 400ms で入れ替える**。PC は指を乗せたカードだけ逆の写真へ。選んだ表示は URL にも端末にも残らず、読み直すと Outfit。件数「See 32 of 149」は HTML にあるが hidden。infinite-scroll で 32品ずつ（32→64）、img 67枚中40枚が lazysizes。
+- **絞り込み**：「+ Filters」（43×12 の文字）で一覧を覆う #f3f3f3 の窓、PC は Sort by（Newest・In stock・Coming soon）・Size 8・Color 13（9px の点）の3列、SP は縦に積んで見出しで開閉。チェックの箱を「( ○ )」と括弧で描く。選んでも件数は出ず、「( Search )」で GET の読み直し（In stock 111・Blue 37・両方 15、0件は「ご指定の条件に一致する商品が見つかりませんでした。」の1行）。値段の並べ替えは無い。絞った条件のチップも無い。Blue で絞るとカードのリンクは青の色へ替わるが写真は替わらない。
+- **詳細**（FINE CALF LEATHER DOWN BLOUSON ¥363,000・3色×4サイズ）：PC は右の 386px の列に名前 y=187（18px）・値段 y=258（右寄せ 14px）・色の見本 12×12 y=333（選んだ色に 1px の輪、下に色名 12px）・サイズ y=413（文字 16px、選んだものに 1px の下線）・タブ（Description／Material／Care／Size Guide）・「ギフトラッピング対象外」y=774・ADD TO BAG 386×40 y=797（#666 に白 5.74:1）。SP は名前 y=692・ボタン y=1,302、固定の帯なし。
+- **色×サイズ**：**URL /2000（BEIGE・4サイズとも在庫0）を開くと、JS が在庫のある最初の色（ROYAL BLUE）とサイズ（3）を選び直す。URL は /2000 のまま**で、Product の JSON-LD も BEIGE・OutOfStock。品切れのサイズ（class no_stock）と品切れの色の見本は、在庫ありと同じ見た目（CSS なし）。押すとボタンが「REMIND ME」（同じ #666）に替わる。ボタンは状態ごとに8つ（ADD TO BAG・REMIND ME×2・COMING SOON・SOLD OUT・抽選に応募する×2・YOU ARE ON THE LIST）を持ち hide を付け替える。REMIND ME は未ログインならログインへ（item_detail.js）。色を替えてもサイズの選択を保つ。値段・URL は替わらない。
+- **サイズの表**：Size Guide のタブに、各サイズの実寸（着丈・身幅・裄丈、cm／inch の切り替え）と、換算「Auralee 3・4・5・6 ＝ Japan Men S・M・L・XL ＝ Inter Men XS・S・M・L」。選んだサイズの列に active。
+- **かごへ入れる**：POST /apis/cart/add.json、**1,342ms は何も変わらず**、そのあとボタンが「ADDED」（#d5d5d5 に #6c6c6c・3.58:1・pointer-events:none）、**ボタンの真上に 386×182 の小窓が translateY(50%)→0・opacity を 0.6s ease-out**（写真・名前・値段・( View Bag )・×）、袋の数 0→1。小窓は閉じるまで残る。小窓の写真はサーバーが URL の色で書くので、/2000 で BLACK を入れても BEIGE の写真が出た。
+- **カート**（/cart・2.64秒）：行に Size・Color・Qty（− ＋）・「ギフトラッピング対象外」・( Remove )・Move to wishlist、下に「Total: ¥363,000 tax in」と CHECK OUT。送料の行・返品の言葉・案内へのリンクは無い。空は「カートの中身がありません。」と「ショッピングを続ける」。
+- **買う前の不安**：詳細のボタンの 39px 下「Shopping guide」で1手。送料 国内 770円一律（無料の条件は書かれていない）・通貨ごとに14の額、代引き 330円、出荷 2〜4日、返品・交換は不良と誤配送だけ（到着7日以内）、ギフトラッピング 330円（自分で包む・1注文1点）、購入には会員登録が必要、「カートに入れても在庫は確保されない」。
+- **データ**：Product の JSON-LD は description の改行で壊れる（スキマと同じ）。BreadcrumbList は5ページとも読める。詳細の alt 欠け6。
+- **重さ**：top 19.78MB（SP 26.94MB）/ list 5.62MB / item 8.04MB / cart 3.73MB / guide 1.07MB（PC）。トップは PROJECTS の PNG 4枚（1.0〜1.3MB）と YouTube の埋め込み（消音の自動再生、SP は youtubei/v1/next 2.1MB×4）。詳細の写真8枚は lazy なし。facebook 1.05MB・GTM 0.96MB を毎ページ。prefers-reduced-motion の規則 0。
+
 ## 真似る型
-見本は Allbirds・Tracksmith・土屋鞄製造所・ASKET・VEJA・SOU・SOU・スキマ・minä perhonen の8つ。2つ以上で同じだったことを型にする（値はどれのものかを添える）。
+見本は Allbirds・Tracksmith・土屋鞄製造所・ASKET・VEJA・SOU・SOU・スキマ・minä perhonen・AURALEE の9つ。2つ以上で同じだったことを型にする（値はどれのものかを添える）。
 1. **品切れのサイズ・色は消さずに斜線で残し、押せるようにする。押したら購入のボタンを入荷通知に替える**（Allbirds：14個の四角に斜線＋薄く、押すと「NOTIFY ME」。Tracksmith：50×32 の枠に 1px の斜線、押すとメールか電話の欄。土屋鞄：34px の丸に斜線、押すと「在庫なし」と白の「売り切れ」＋藍の「入荷お知らせ登録」413×48）。ASKET：丈の格子で打ち消し線（灰）＋黒の「Notify Me」、押すと「Available: Spring 2027」）。VEJA：#888 の枠で残して押せ、押すと黒の「NOTIFY ME」（斜線なし・3.54:1＝斜線は足す）。入荷の時期を書いたのは ASKET だけ（季節で）。作るときは時期を書き、メールマガジンの登録を最初からチェックしない（ASKET は未チェック、土屋鞄は入っている）。
 2. **サイズを選ぶまで、購入のボタンに何を選ぶかを書いて押せなくする**（Allbirds・Tracksmith とも「SELECT A SIZE」）。選ぶと URL にバリエーションを残す（Allbirds ?size=…&variant=…、Tracksmith ?sku=…、土屋鞄 ?variant=）。VEJA は押せるまま、押すとサイズの下に「*Please select a size」11px #d80000（13px 以上にする）。押せない状態の文字は読めるように（Tracksmith は opacity .2 で 1.28:1、ASKET は「Add to cart」のまま #b2b2b2 に白で 2.12:1 で、何を選ぶかも言わない＝反面教師）。
 3. **色は丸い見本、選んだ色の名前を上の行で言い直す**（Allbirds 36px の丸を2色に斜めに塗り分け、Tracksmith 36px（SP 40px）に「COLOR: NAVY/IVORY」、土屋鞄 34px に「Color: 【数量限定色】シェードウォームグレー」）。色ごとに写真が替わる。見本には枠を付ける（土屋鞄のアクアグリーン #88bfbf は白に 2.05 で溶ける）。
@@ -134,6 +147,10 @@
 20. **柄の服の色の選択肢は、その色の生地の写真を見本にし、1色＝1行に色名とその色のサイズを並べる**（minä perhonen：50×50 の生地の写真・Garamond 18px の色名・76×30 のボタンを縦に3つ、行 151px。SOU・SOU：柄ごとに 19px の柄の見本、サイズは1行ずつの表）。丸い単色の見本では柄の違いが分からない。行に品切れの次の手（打ち消し線で押せて店の在庫・入荷通知）を置く。
 21. **品の名前を「図案（柄）・品の種類・季節」の段に分け、一覧と詳細で同じ段にする**（minä perhonen：詳細 24px×3段、一覧は名前・種類・季節の斜体 14px。同じ図案の品が「関連アイテム」でつながる）。一覧の札には値段の行を足す（minä perhonen は一覧に値段が無い）。
 22. **かごへ入れたら、ボタンの言葉で答え、続けて「かごを見る」を足し、頭の袋に印を付ける**（minä perhonen：485ms で「追加しました」、1,473ms で「かごを見る」、471ms で袋に点）。言葉は role="status" で読み上げ、品・合計・送料の残りも言う。
+23. **一覧に「着た姿｜物」の切り替えを置き、同じ枠の中の写真だけを替える**（AURALEE：View: Outfit | Product、400ms、カードの大きさ・名前・値段は動かさない。PC は指を乗せたカードだけ逆の写真に）。選んだ表示は URL か端末に残す（AURALEE は読み直すと戻る＝直し。横断ルール42）。
+24. **開いた色が全部品切れなら、在庫のある色と在庫のあるサイズを選んで開く。そのとき URL・小窓の写真・構造化データも選んだ色にそろえ、「この色は品切れ」を1行で言う**（AURALEE：/2000 の BEIGE を開くと ROYAL BLUE・3 に選び直すが、URL と小窓の写真は BEIGE のまま＝直し。スキマの型17と同じく、勝手に移すなら言う）。
+25. **入れたらボタンの真上に小窓を上げ、品・値段・「かごを見る」を出し、閉じるまで残す**（AURALEE：386×182・0.6s ease-out・translateY(50%)→0、ボタンは「ADDED」）。小窓の写真は入れた色から取り、返事を待つあいだはボタンの言葉を替える（AURALEE は 1.34秒そのまま＝直し）。2点目を入れられるようにボタンは押せるまま残す（AURALEE は ADDED で押せない）。
+26. **押せる言葉の形を1つにそろえる**（AURALEE：( LOG IN )・( Search )・( Reset )・( View Bag )・( Remove ) と括弧で囲む。字の色を #6c6c6c の1つにしても押せる物が分かる）。ただし購入のボタンだけは地の色の面にする（ADD TO BAG は #666 の面）。
 
 ## 反面教師
 - 有料の返品保証（$4.98）を込みにした金額を、いちばん目立つ購入ボタンに出し、保証なしを文字リンクにする（Allbirds）。
@@ -174,3 +191,8 @@
 - 色を選んでも写真が替わらない（khaki を選んで black の写真のまま）。品切れのサイズは #bdbdbd の disabled で押せず、全色品切れの品も言葉なし。店の在庫を調べられることは案内の開閉の中だけ（minä perhonen）。
 - sold out の札が白字と #bdbdbd で 1.88:1。かごの注意が #f00 の 14px で 4.0:1（minä perhonen）。
 - かごに送料の行はあるが 11,000円までの残りを言わず、送料 770円は案内の開閉の中だけ。構造化データ 0（minä perhonen）。
+- 品切れのサイズ（class no_stock）と品切れの色の見本が在庫ありと同じ見た目で、押してボタンが REMIND ME に替わるまで分からない（AURALEE）。
+- URL の色（/2000＝品切れの BEIGE）と画面で選ばれる色（ROYAL BLUE）がずれ、入れた後の小窓に URL の色の写真を出す（BLACK を入れて BEIGE の写真）。Product の JSON-LD も BEIGE・OutOfStock だけ（AURALEE）。
+- 件数「See 32 of 149」を hidden にし、絞り込みの窓は選んでも件数を言わず、結果の上に条件のチップも無い。値段の並べ替えが無い（AURALEE）。
+- 送料 770円・返品は不良のみが、詳細にもカートにも無く案内のページだけ。購入に会員登録が必要（AURALEE）。
+- 本文の 100% が 13px 未満（トップ、inspect）、薄い字 #a5a5a5 は 2.38:1、ADDED は 3.58:1（AURALEE）。
